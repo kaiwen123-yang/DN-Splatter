@@ -1,16 +1,20 @@
 {
-  "schema_version": 1,
-  "updated_date": "2026-11-18",
-  "timezone": "Asia/Shanghai",
-  "status": "planned_not_executed",
-  "stage": "repository_preparation",
-  "resource_policy_mode": "dedicated_full_allocation",
+  "schema_version": 2,
+  "updated_at": "2026-11-18T15:13:43.319664+00:00",
+  "run_id": "vr-room-iphone-30k",
+  "status": "running",
+  "stage": "installing_blackwell_dependencies",
+  "failed_stage": null,
+  "reason": null,
+  "registered_frame_counts": {
+    "train": 376,
+    "within": 42,
+    "with": 186
+  },
+  "actual_cpu_budget": 25,
   "full_cpu_gpu_authorized_by_user": true,
-  "resource_authorization_date": "2026-11-18",
-  "actual_cpu_budget": null,
-  "run_id": null,
-  "target_host_inspected": false,
-  "environment_created": false,
+  "target_host_inspected": true,
+  "environment_created": true,
   "blackwell_forward_backward_verified": false,
   "training_completed_updates": null,
   "target_training_updates": 30000,
@@ -18,9 +22,7 @@
   "rgb_depth_evaluation_complete": false,
   "poisson_mesh_complete": false,
   "mesh_evaluation_complete": false,
-  "server_process_state": "not_started_by_this_repository_preparation",
-  "source_candidate_sha": "811f5cdf342d92d12a9d9a4be185d374c430c184",
   "metrics": null,
-  "next_action": "Run or resume the updated startup prompt on the actual AutoDL instance. Inspect resources, preserve any existing progress, and use the full allocated CPU and GPU with the isolated project environment. Remove obsolete shared-workload waiting rules without duplicating or restarting a healthy run.",
-  "note": "Plan and source audit only. No target-server installation or training result is claimed."
+  "pipeline_completed": false,
+  "next_action": "Read the project-local workflow status and stage log. Resume with bash scripts/launch_vr_room.sh."
 }

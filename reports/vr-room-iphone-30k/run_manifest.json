@@ -1,0 +1,68 @@
+{
+  "run_id": "vr-room-iphone-30k",
+  "time_utc": "2026-11-18T15:13:43.319664+00:00",
+  "time_asia_shanghai": "2026-11-18T23:13:43.319664+08:00",
+  "repository_at_report": "89adc2c1eeee2f817f552ee2fa797df5df0384e8",
+  "policy_commit": "7f8d6afd360382d628b96af769db086966ca1964",
+  "source": "811f5cdf342d92d12a9d9a4be185d374c430c184",
+  "patch_sha256": {
+    "dn-811f5cd-poisson-threads.patch": "800b17f3720661483baca78dbb840f488bce87309b75f30b791959051334b415",
+    "gsplat-1.0.0-build-jobs.patch": "d1962b4e59abade4cdbe10cf67fd7571a89575440b594960ff9dffa3e06fcf5e"
+  },
+  "gsplat_source": "c7b0a383657307a13dff56cb2f832e3ab7f029fd",
+  "pytorch3d_source": "33824be3cbc87a7dd1db0f6a9a9de9ac81b2d0ba",
+  "blackwell_runtime": null,
+  "data": "MuSHRoom vr_room / iphone",
+  "inputs": [
+    {
+      "name": "vr_room_iphone.tar.gz",
+      "url": "https://zenodo.org/records/10230733/files/vr_room_iphone.tar.gz",
+      "bytes": 244279042,
+      "zenodo_md5": "6c411b7bad82041e2fb5eb8d6a46fbf9",
+      "sha256": "3f7d577c832bc68a627b49c9cf50a6a9a2a1a4ecabf0d37d16249a393d2aea75"
+    },
+    {
+      "name": "vr_room_mesh_pd.tar.gz",
+      "url": "https://zenodo.org/records/10222321/files/vr_room_mesh_pd.tar.gz",
+      "bytes": 218765772,
+      "zenodo_md5": "7a56daf91c3c610cb126c54ba9216f79",
+      "sha256": "3cf8eb5a6a9260a55b2777a906eae341b8b75fabed27f2c964ac5df99dc27639"
+    }
+  ],
+  "frame_counts": {
+    "train": 376,
+    "within": 42,
+    "with": 186
+  },
+  "normal_alignment_checked": false,
+  "seed": 42,
+  "normal_prior": "Omnidata v2 low; opengl",
+  "initialization": {
+    "source": "pinned iPhone initializer, long capture excluding test.txt",
+    "vertices": null,
+    "sha256": null
+  },
+  "training": null,
+  "resume_segments": [],
+  "optimizer_protocol": "original historical loss weights; flattening is included in normal_lambda",
+  "stages": [],
+  "cpu_budget": 25,
+  "compile_jobs_at_report": 20,
+  "frame_validation_workers": 25,
+  "mesh": null,
+  "peaks_sampled_every_15s": {
+    "starting": {
+      "samples": 1,
+      "gpu_used_mib_device": 0,
+      "gpu_util_pct_device": 0,
+      "cgroup_memory_bytes": 20042616832
+    },
+    "installing_blackwell_dependencies": {
+      "samples": 19,
+      "gpu_used_mib_device": 0,
+      "gpu_util_pct_device": 0,
+      "cgroup_memory_bytes": 21184675840
+    }
+  },
+  "resources_scope": "device and whole container; samples can miss transient peaks"
+}

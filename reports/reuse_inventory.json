@@ -1,0 +1,21 @@
+{
+  "system_toolkit": "CUDA 12.8 (nvcc 12.8.93), read-only",
+  "conda_manager": "existing manager, new project prefix",
+  "project_prefix": ".local/conda/dn-splatter-bw",
+  "inputs": [
+    {
+      "name": "vr_room_iphone.tar.gz",
+      "url": "https://zenodo.org/records/10230733/files/vr_room_iphone.tar.gz",
+      "bytes": 244279042,
+      "zenodo_md5": "6c411b7bad82041e2fb5eb8d6a46fbf9",
+      "sha256": "3f7d577c832bc68a627b49c9cf50a6a9a2a1a4ecabf0d37d16249a393d2aea75"
+    },
+    {
+      "name": "vr_room_mesh_pd.tar.gz",
+      "url": "https://zenodo.org/records/10222321/files/vr_room_mesh_pd.tar.gz",
+      "bytes": 218765772,
+      "zenodo_md5": "7a56daf91c3c610cb126c54ba9216f79",
+      "sha256": "3cf8eb5a6a9260a55b2777a906eae341b8b75fabed27f2c964ac5df99dc27639"
+    }
+  ]
+}
