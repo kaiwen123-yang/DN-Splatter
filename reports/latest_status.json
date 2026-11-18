@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "updated_date": "2026-11-18",
+  "timezone": "Asia/Shanghai",
+  "status": "planned_not_executed",
+  "stage": "repository_preparation",
+  "run_id": null,
+  "target_host_inspected": false,
+  "environment_created": false,
+  "blackwell_forward_backward_verified": false,
+  "training_completed_updates": null,
+  "target_training_updates": 30000,
+  "checkpoint_step": null,
+  "rgb_depth_evaluation_complete": false,
+  "poisson_mesh_complete": false,
+  "mesh_evaluation_complete": false,
+  "server_process_state": "not_started_by_this_repository_preparation",
+  "source_candidate_sha": "811f5cdf342d92d12a9d9a4be185d374c430c184",
+  "metrics": null,
+  "next_action": "Run the startup prompt on the actual AutoDL instance; inspect resources read-only before creating the project environment.",
+  "note": "Plan and source audit only. No target-server installation or training result is claimed."
+}

@@ -1,0 +1,33 @@
+# Per-project environment, source checkout, data, caches, runs and private logs
+/.local/
+/datasets/
+/data/
+/outputs/
+/mesh_exports/
+/checkpoints/
+/wandb/
+/logs/
+
+# Python/tool cache
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.egg-info/
+/build/
+/dist/
+
+# Credentials and local editor/configuration
+.env
+.env.*
+*.pem
+*.key
+.DS_Store
+/.vscode/
+/.idea/
+
+# Raw private reports must remain in .local; accidental copies are excluded
+reports/**/private_*
+reports/**/raw_host_*
+reports/**/credentials*
