@@ -18,12 +18,28 @@ src="$DN_PROJECT_ROOT/.local/upstream/gsplat"
 test "$(git -C "$DN_SOURCE_DIR" rev-parse HEAD)" = 811f5cdf342d92d12a9d9a4be185d374c430c184
 test "$(git -C "$src" rev-parse HEAD)" = c7b0a383657307a13dff56cb2f832e3ab7f029fd
 test "$(git -C "$src/gsplat/cuda/csrc/third_party/glm" rev-parse HEAD)" = 45008b225e28eb700fa0f7d3ff69b7c1db94fadf
-for pair in "$src:gsplat-1.0.0-build-jobs" "$DN_SOURCE_DIR:dn-811f5cd-poisson-threads"; do
-  tree="${pair%:*}"
-  patch="$DN_PROJECT_ROOT/patches/${pair##*:}.patch"
+for patch in "$DN_PROJECT_ROOT"/patches/*.patch; do
+  case "$(basename "$patch")" in
+    gsplat-1.0.0-*) tree="$src" ;;
+    dn-811f5cd-*) tree="$DN_SOURCE_DIR" ;;
+    *) echo "Unknown patch target: $(basename "$patch")"; exit 1 ;;
+  esac
   if ! git -C "$tree" apply --reverse --check "$patch" 2>/dev/null; then git -C "$tree" apply "$patch"; fi
 done
-if ! python -c 'import gsplat.csrc, gsplat.csrc_legacy' 2>/dev/null; then
+if ! python - <<'PY'
+from importlib.metadata import distribution
+from importlib.util import module_from_spec, spec_from_file_location
+import torch
+try:
+    dist = distribution("gsplat")
+    assert dist.version == "1.0.0"
+    for name in ("csrc", "csrc_legacy"):
+        spec = spec_from_file_location(name, dist.locate_file(f"gsplat/{name}.so"))
+        spec.loader.exec_module(module_from_spec(spec))
+except (ImportError, AssertionError, FileNotFoundError):
+    raise SystemExit(1)
+PY
+then
   python -m pip install --no-build-isolation --no-deps -v "$src"
 fi
 python -m pip install --prefer-binary -c scripts/blackwell_constraints.txt -e "$DN_SOURCE_DIR"

@@ -49,6 +49,51 @@ def registered():
          "normal_alignment_checked":False})
 
 
+def alignment():
+    import numpy as np
+    from PIL import Image
+
+    folder = SCENE/"iphone/long_capture"
+    doc = json.loads((folder/"transformations_colmap.json").read_text())
+    test = set((folder/"test.txt").read_text().split())
+    train = sorted((f for f in doc["frames"] if Path(f["file_path"]).stem not in test),
+                   key=lambda f:f["file_path"])
+    def camera(frame):
+        with Image.open(folder/frame["depth_file_path"]) as im:
+            depth = np.asarray(im,dtype=np.float64)*0.001
+        h,w = depth.shape
+        meta = {**doc, **frame}
+        k = np.array([[meta["fl_x"],0,meta["cx"]],[0,meta["fl_y"],meta["cy"]],[0,0,1.0]])
+        k[:2] *= np.array([w/meta["w"],h/meta["h"]])[:,None]
+        pose = np.asarray(frame["transform_matrix"])@np.diag([1,-1,-1,1])
+        return depth,k,pose
+    rows = []
+    for i in (0,len(train)//2,len(train)-2):
+        a,b = train[i:i+2]
+        da,ka,ta = camera(a)
+        db,kb,tb = camera(b)
+        y,x = np.mgrid[:da.shape[0]:4,:da.shape[1]:4]
+        valid = da[y,x]>0
+        y,x = y[valid],x[valid]
+        xyz = np.linalg.solve(ka,np.stack([x,y,np.ones_like(x)]))*da[y,x]
+        rel = np.linalg.solve(tb,ta)
+        xyz = rel[:3,:3]@xyz+rel[:3,3:4]
+        xyz = xyz[:,xyz[2]>0]
+        uv = np.rint((kb@xyz)[:2]/xyz[2]).astype(int)
+        inside=(uv[0]>=0)&(uv[0]<db.shape[1])&(uv[1]>=0)&(uv[1]<db.shape[0])
+        target=db[uv[1,inside],uv[0,inside]]
+        errors=np.abs(xyz[2,inside][target>0]-target[target>0])
+        if not len(errors):
+            raise ValueError("No valid cross-view depth overlap")
+        rows.append({"source":a["file_path"],"target":b["file_path"],"source_valid_samples":len(x),
+                     "matched_samples":int(errors.size),"depth_size_wh":list(da.shape[::-1]),
+                     "median_abs_axial_depth_difference_m":float(np.median(errors)),
+                     "p90_abs_axial_depth_difference_m":float(np.quantile(errors,.9))})
+    dump("input_alignment.json",{"method":"Every fourth sensor pixel in fixed adjacent registered training views; "
+         "source depth backprojected in metres, OpenGL COLMAP poses converted to OpenCV, nearest target sensor pixel. "
+         "Both depths must be positive. Occlusions are included.", "pairs":rows})
+
+
 def extract(name):
     src = DATA / "downloads" / name
     rid, size, checksum = FILES[name]
@@ -143,12 +188,15 @@ def frames():
 
 if __name__ == "__main__":
     p = argparse.ArgumentParser()
-    p.add_argument("action", choices=["extract", "frames", "registered"])
+    p.add_argument("action", choices=["extract", "frames", "registered", "alignment"])
     p.add_argument("name", nargs="?")
     args = p.parse_args()
     if args.action == "extract":
         extract(args.name)
     elif args.action == "frames":
         frames()
+        alignment()
+    elif args.action == "alignment":
+        alignment()
     else:
         registered()

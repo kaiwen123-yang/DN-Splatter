@@ -9,6 +9,7 @@ import shlex
 import shutil
 import subprocess
 import sys
+import tempfile
 
 ROOT = Path(os.environ["DN_PROJECT_ROOT"])
 RUN = Path(os.environ["DN_RUN_ROOT"])
@@ -45,6 +46,19 @@ def shellarg(arg):
     if arg.startswith(str(ROOT)+"/"):
         return '"${DN_PROJECT_ROOT}"/'+shlex.quote(str(Path(arg).relative_to(ROOT)))
     return shlex.quote(arg)
+
+
+def patch_matches(tree, pattern):
+    # Compare the checkout to HEAD plus the published patches without touching its index.
+    with tempfile.TemporaryDirectory(dir=os.environ["TMPDIR"]) as work:
+        env = dict(os.environ, GIT_INDEX_FILE=str(Path(work)/"index"))
+        def run(*args, check=True):
+            return subprocess.run(["git",*args],cwd=tree,env=env,check=check,capture_output=True)
+        run("read-tree","HEAD")
+        for p in sorted((ROOT/"patches").glob(pattern)):
+            run("apply","--cached",str(p))
+        run("update-index","--refresh",check=False)
+        return run("diff","--exit-code","--quiet",check=False).returncode==0
 
 
 def ply_vertices(path):
@@ -132,7 +146,9 @@ def main(mode):
             else:
                 shutil.copyfile(a,b)
             staged.append(b)
-    for source,dest in [("registered.json","registered_frames.json"),("frames.json","frames.json"),("blackwell.json","blackwell.json"),
+    for source,dest in [("registered.json","registered_frames.json"),("input_alignment.json","input_alignment.json"),
+            ("compiled_extensions.json","compiled_extensions.json"),
+            ("frames.json","frames.json"),("blackwell.json","blackwell.json"),
             ("evaluation/rgb_depth_official.json","rgb_depth_official.json"),
             ("evaluation/rgb_depth_faro_official_raw.json","faro_official_raw.json"),
             ("evaluation/faro_audited.json","faro_audited.json"),("mesh/mesh_metrics.json","mesh_metrics.json"),
@@ -174,30 +190,46 @@ def main(mode):
     write(conda,[{k:p[k] for k in fields if k in p} for p in (read(f) for f in sorted((prefix/"conda-meta").glob("*.json")))])
     staged.append(conda)
     peaks = {}
+    previous = None
     for row in resources:
         peak = peaks.setdefault(row["stage"],{"samples":0})
         peak["samples"]+=1
         for key in ("gpu_used_mib_device","gpu_util_pct_device","cgroup_memory_bytes"):
             peak[key]=max(peak.get(key,0),row[key])
+        if previous and previous["stage"]==row["stage"]:
+            seconds=(dt.datetime.fromisoformat(row["utc"])-dt.datetime.fromisoformat(previous["utc"])).total_seconds()
+            if seconds>0:
+                cores=(row["cgroup_cpu_usage_usec"]-previous["cgroup_cpu_usage_usec"])/1_000_000/seconds
+                peak["peak_interval_mean_cpu_cores"]=round(max(peak.get("peak_interval_mean_cpu_cores",0),cores),3)
+        previous=row
     sessions = []
     for r in stages:
         sessions.append({k:v for k,v in r.items() if k!="command"})
     manifest = PUB/"run_manifest.json"
+    installlog = RUN/"logs/install.log"
+    compile_jobs = []
+    if installlog.exists():
+        compile_jobs=sorted({int(n) for n in re.findall(r"Using envvar MAX_JOBS \((\d+)\)",installlog.read_text(errors="replace"))})
+    checked_trees = {"dn_splatter":patch_matches(SRC,"dn-811f5cd-*.patch"),
+        "gsplat":patch_matches(ROOT/".local/upstream/gsplat","gsplat-1.0.0-*.patch")}
+    if mode=="complete" and not all(checked_trees.values()):
+        raise ValueError("Checkout contains changes absent from the recorded patches")
     write(manifest,{"run_id":RUN.name,"time_utc":time.isoformat(),
         "time_asia_shanghai":time.astimezone(dt.timezone(dt.timedelta(hours=8))).isoformat(),
         "repository_at_report":git("rev-parse","HEAD"),"policy_commit":"7f8d6afd360382d628b96af769db086966ca1964",
         "source":git("rev-parse","HEAD",directory=SRC),
         "patch_sha256":{p.name:sha(p) for p in sorted((ROOT/"patches").glob("*.patch"))},
+        "tracked_sources_match_published_patches":checked_trees,
         "gsplat_source":git("rev-parse","HEAD",directory=ROOT/".local/upstream/gsplat"),
         "pytorch3d_source":git("rev-parse","HEAD",directory=ROOT/".local/upstream/pytorch3d"),
         "blackwell_runtime":bw, "data":"MuSHRoom vr_room / iphone",
         "inputs":[{k:v for k,v in a.items() if k!="selected_members"} for a in inputs],
         "frame_counts":split_counts,"normal_alignment_checked":bool(frames),"seed":42,"normal_prior":"Omnidata v2 low; opengl",
-        "initialization":{"source":"pinned iPhone initializer, long capture excluding test.txt",
+        "initialization":{"source":"pinned iPhone initializer, long capture excluding test.txt" if init.is_file() else None,
             "vertices":ply_vertices(init),"sha256":sha(init) if init.is_file() else None},
         "training":trained or None,"resume_segments":records(STATE/"training_segments.jsonl"),
         "optimizer_protocol":"original historical loss weights; flattening is included in normal_lambda",
-        "stages":sessions,"cpu_budget":cpu,"compile_jobs_at_report":int(os.environ["MAX_JOBS"]),
+        "stages":sessions,"cpu_budget":cpu,"observed_gsplat_ninja_job_limits":compile_jobs,
         "frame_validation_workers":cpu,"mesh":mesh,"peaks_sampled_every_15s":peaks,
         "resources_scope":"device and whole container; samples can miss transient peaks"})
     staged.append(manifest)
@@ -213,7 +245,9 @@ def main(mode):
     info = {"schema_version":2,"updated_at":time.isoformat(),"run_id":RUN.name,"status":mode,
         "stage":state.get("stage"),"failed_stage":state.get("failed_stage"),"reason":reason,"registered_frame_counts":split_counts,
         "actual_cpu_budget":cpu,"full_cpu_gpu_authorized_by_user":True,"target_host_inspected":True,
-        "environment_created":(prefix/"conda-meta/history").is_file(),"blackwell_forward_backward_verified":bool(bw),
+        "environment_created":(prefix/"conda-meta/history").is_file(),
+        "compiled_gsplat_libraries_loaded":bool(read(RUN/"compiled_extensions.json")),
+        "verified_zenodo_files":[a["name"] for a in inputs],"blackwell_forward_backward_verified":bool(bw),
         "training_completed_updates":saved_step+1 if saved_step is not None else None,"target_training_updates":30000,
         "checkpoint_step":saved_step,"rgb_depth_evaluation_complete":bool(metrics),
         "poisson_mesh_complete":bool(mesh),"mesh_evaluation_complete":bool(geometry),

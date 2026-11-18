@@ -8,5 +8,6 @@ trimesh==3.23.5
 tyro==0.8.14
 torchmetrics==1.4.3
 pytorch-lightning==2.4.0
+rerun-sdk==0.22.1
 timm==0.6.7
 setuptools<81
