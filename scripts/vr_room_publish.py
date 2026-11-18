@@ -223,7 +223,7 @@ def main(mode):
     write(last,info)
     staged.append(last)
     summary = PUB/"summary.md"
-    details = ["# VR Room historical implementation baseline","",f"Run status **{mode}**. ",
+    details = ["# VR Room historical implementation baseline","",f"Run status **{mode}**.",
                f"Recorded checkpoint step {saved_step}; observed split counts {split_counts}.",
                "The historical loss places the flattening term inside the normal weight. Table 4 gives one VR Room row; the official implementation reports two trajectories."]
     if mode=="complete":
