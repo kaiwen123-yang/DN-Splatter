@@ -1,14 +1,15 @@
 {
   "run_id": "vr-room-iphone-30k",
-  "time_utc": "2026-11-18T15:36:33.560190+00:00",
-  "time_asia_shanghai": "2026-11-18T23:36:33.560190+08:00",
-  "repository_at_report": "2a0901454e9fd34032e7b5e5c0c2924d0e3adc9b",
+  "time_utc": "2026-11-18T15:58:25.311574+00:00",
+  "time_asia_shanghai": "2026-11-18T23:58:25.311574+08:00",
+  "repository_at_report": "19be771ba3266dacb97d972e0ed053c2774e4db2",
   "policy_commit": "7f8d6afd360382d628b96af769db086966ca1964",
   "source": "811f5cdf342d92d12a9d9a4be185d374c430c184",
   "patch_sha256": {
-    "dn-811f5cd-omnidata-checkpoint.patch": "82fc90a7d69863d99c8aa6a58cd6e93b4e3e9513908d93094405f84880ca9e27",
+    "dn-811f5cd-omnidata-checkpoint.patch": "ac01ecff32811ed1b618c5e423627d93b637e57272a182c5b27cf317789fa94c",
     "dn-811f5cd-poisson-threads.patch": "800b17f3720661483baca78dbb840f488bce87309b75f30b791959051334b415",
-    "gsplat-1.0.0-build-jobs.patch": "d1962b4e59abade4cdbe10cf67fd7571a89575440b594960ff9dffa3e06fcf5e"
+    "gsplat-1.0.0-build-jobs.patch": "d1962b4e59abade4cdbe10cf67fd7571a89575440b594960ff9dffa3e06fcf5e",
+    "omnidata-tools-0.0.23-backbone.patch": "9c69452a37676d15e1829fbc18970b1c75dcd65da4c7515f2124b4cbd477eec4"
   },
   "tracked_sources_match_published_patches": {
     "dn_splatter": true,
@@ -57,12 +58,19 @@
   "seed": 42,
   "normal_prior": "Omnidata v2 low; opengl",
   "initialization": {
-    "source": null,
-    "vertices": null,
-    "sha256": null
+    "source": "pinned iPhone initializer, long capture excluding test.txt",
+    "vertices": 1000160,
+    "sha256": "881bed324b5ece8abf990d05fd67977bef5d50910b915525f90c273258081eb3"
   },
   "training": null,
-  "resume_segments": [],
+  "resume_segments": [
+    {
+      "started_utc": "2026-11-18T15:53:07.025651+00:00",
+      "saved_step": null,
+      "checkpoint": null,
+      "requested_updates": 30000
+    }
+  ],
   "optimizer_protocol": "original historical loss weights; flattening is included in normal_lambda",
   "stages": [],
   "cpu_budget": 25,
@@ -73,17 +81,31 @@
   "mesh": null,
   "peaks_sampled_every_15s": {
     "starting": {
-      "samples": 1,
+      "samples": 2,
       "gpu_used_mib_device": 0,
       "gpu_util_pct_device": 0,
-      "cgroup_memory_bytes": 20042616832
+      "cgroup_memory_bytes": 37493473280
     },
     "installing_blackwell_dependencies": {
-      "samples": 109,
+      "samples": 152,
       "gpu_used_mib_device": 3,
       "gpu_util_pct_device": 0,
-      "cgroup_memory_bytes": 35988635648,
+      "cgroup_memory_bytes": 37337407488,
       "peak_interval_mean_cpu_cores": 4.248
+    },
+    "normals-long_capture": {
+      "samples": 23,
+      "gpu_used_mib_device": 3,
+      "gpu_util_pct_device": 0,
+      "cgroup_memory_bytes": 38279086080,
+      "peak_interval_mean_cpu_cores": 0.066
+    },
+    "training": {
+      "samples": 21,
+      "gpu_used_mib_device": 9513,
+      "gpu_util_pct_device": 43,
+      "cgroup_memory_bytes": 62813757440,
+      "peak_interval_mean_cpu_cores": 1.372
     }
   },
   "resources_scope": "device and whole container; samples can miss transient peaks"
