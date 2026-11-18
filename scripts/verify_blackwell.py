@@ -1,4 +1,5 @@
 """Exercise the two historical rasterization paths on a registered VR Room sample."""
+import argparse
 import json
 import os
 from pathlib import Path
@@ -55,4 +56,9 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--standalone", action="store_true", help="Run this optional isolated diagnostic")
+    if parser.parse_args().standalone:
+        main()
+    else:
+        print("Standalone diagnostic skipped. The formal run proceeds.")

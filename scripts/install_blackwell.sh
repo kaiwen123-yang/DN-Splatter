@@ -22,6 +22,7 @@ for patch in "$DN_PROJECT_ROOT"/patches/*.patch; do
   case "$(basename "$patch")" in
     gsplat-1.0.0-*) tree="$src" ;;
     dn-811f5cd-*) tree="$DN_SOURCE_DIR" ;;
+    omnidata-tools-0.0.23-backbone.patch) continue ;;
     *) echo "Unknown patch target: $(basename "$patch")"; exit 1 ;;
   esac
   if ! git -C "$tree" apply --reverse --check "$patch" 2>/dev/null; then git -C "$tree" apply "$patch"; fi
@@ -43,5 +44,10 @@ then
   python -m pip install --no-build-isolation --no-deps -v "$src"
 fi
 python -m pip install --prefer-binary -c scripts/blackwell_constraints.txt -e "$DN_SOURCE_DIR"
+site_dir="$(python -c 'from importlib.metadata import distribution; d=distribution("omnidata-tools"); assert d.version=="0.0.23"; print(d.locate_file(""))')"
+dep_patch="$DN_PROJECT_ROOT/patches/omnidata-tools-0.0.23-backbone.patch"
+if ! patch --batch --dry-run -R -p1 -d "$site_dir" -i "$dep_patch" >/dev/null; then
+  patch --batch --forward -p1 -d "$site_dir" -i "$dep_patch"
+fi
 python -m pip check
 python -m pip list --format=freeze > "$DN_RUN_ROOT/environment.freeze"

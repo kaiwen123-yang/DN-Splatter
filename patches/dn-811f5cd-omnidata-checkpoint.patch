@@ -1,12 +1,14 @@
 diff --git a/dn_splatter/scripts/normals_from_pretrain.py b/dn_splatter/scripts/normals_from_pretrain.py
-index 3ee3dd5..0dfad87 100644
+index 3ee3dd5..fb7a15b 100644
 --- a/dn_splatter/scripts/normals_from_pretrain.py
 +++ b/dn_splatter/scripts/normals_from_pretrain.py
-@@ -175,7 +175,13 @@ def run_monocular_normals(
+@@ -174,8 +174,14 @@ def run_monocular_normals(
+     omnidata_pretrained_weights_path = (
          omnidata_pretrained_weights_path / "omnidata_dpt_normal_v2.ckpt"
      )
-     model = DPTDepthModel(backbone="vitb_rn50_384", num_channels=3)  # DPT Hybrid
+-    model = DPTDepthModel(backbone="vitb_rn50_384", num_channels=3)  # DPT Hybrid
 -    checkpoint = torch.load(omnidata_pretrained_weights_path, map_location=map_location)
++    model = DPTDepthModel(backbone="vitb_rn50_384", num_channels=3, use_pretrained_backbone=False)
 +    # The verified Omnidata v2 Lightning archive uses this class as a callback key.
 +    from pytorch_lightning.callbacks.model_checkpoint import ModelCheckpoint
 +

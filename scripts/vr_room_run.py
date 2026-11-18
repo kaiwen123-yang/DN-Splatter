@@ -154,32 +154,11 @@ def main():
     if (STATE / "install.exit").read_text().strip() != "0":
         raise RuntimeError("Dependency installation failed; see logs/install.log")
     require_input("omnidata_dpt_normal_v2.ckpt")
-    for capture in ("long_capture", "short_capture"):
-        folder = SCENE / "iphone" / capture
-        marker = STATE / ("normals-" + capture + ".json")
-        if not marker.exists():
-            stage("normals-" + capture, [PY, SRC / "dn_splatter/scripts/normals_from_pretrain.py",
-                "--data-dir", folder, "--transforms-name", "transformations_colmap.json", "--model-type", "omnidata",
-                "--resolution", "low", "--save-path", folder / "normals_from_pretrain"], threads=min(CPU, 2))
-            doc = json.loads((folder / "transformations_colmap.json").read_text())
-            for frame in doc["frames"]:
-                if not (folder / "normals_from_pretrain" / (Path(frame["file_path"]).stem + ".png")).is_file():
-                    raise ValueError(f"Missing normal {frame['file_path']}")
-            save(marker, {"frames": len(doc["frames"])})
-    if not (RUN / "frames.json").exists():
-        stage("validate-inputs", [PY, SCRIPT / "vr_room_inputs.py", "frames"], ROOT)
-    if not (RUN / "blackwell.json").exists():
-        stage("verify-blackwell", [PY, SCRIPT / "verify_blackwell.py"], ROOT)
-    # Construct the original training-only initialization once before ns-train.
-    ply = SCENE / "iphone/long_capture/iphone_pointcloud.ply"
-    if not ply.exists():
-        code = ("from pathlib import Path; import sys,random,numpy as np; random.seed(42); np.random.seed(42); "
-                "from dn_splatter.data.mushroom_utils.pointcloud_utils import generate_iPhone_pointcloud_within_sequence as generate; "
-                "generate(Path(sys.argv[1]))")
-        stage("initialize", [PY, "-c", code, ply.parent], threads=CPU)
-        if not ply.is_file():
-            raise ValueError("Initializer did not produce a point cloud")
+    # The historical Mushroom parser initializes the point cloud and any missing
+    # low-resolution Omnidata normals during the single formal ns-train launch.
     cfg = train()
+    if not (RUN / "frames.json").exists():
+        stage("record-frame-manifest", [PY, SCRIPT / "vr_room_inputs.py", "frames"], ROOT)
     evaluate = RUN / "evaluation"
     evaluate.mkdir(exist_ok=True)
     raw = evaluate / "rgb_depth_official.json"

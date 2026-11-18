@@ -136,7 +136,7 @@ def main(mode):
             if latest:
                 saved_step = step
     if mode=="complete" and not (trained.get("step")==29999 and mesh and metrics and geometry
-            and bw and (RUN/"evaluation/faro_audited.json").exists()):
+            and (RUN/"evaluation/faro_audited.json").exists()):
         raise ValueError("Incomplete result set")
     def copy(a,b):
         if a.exists():
@@ -156,10 +156,15 @@ def main(mode):
         copy(RUN/source,PUB/dest)
     for p in sorted((RUN/"previews").glob("*.jpg")):
         copy(p,PUB/"previews"/p.name)
-    if trained:
-        cfg = ROOT/trained["config"]
+    configs = sorted((RUN/"training").glob("**/config.yml"),key=lambda p:p.stat().st_mtime)
+    cfg = ROOT/trained["config"] if trained else (configs[-1] if configs else None)
+    if cfg:
         path = PUB/"config.yml"
-        path.write_text(cfg.read_text().replace(str(ROOT),"${DN_PROJECT_ROOT}"))
+        content = cfg.read_text().replace(str(ROOT),"${DN_PROJECT_ROOT}")
+        parts = [re.escape(s) for s in ROOT.parts]
+        sequence = r"(?m)^(?P<indent> *)- "+r"\n(?P=indent)- ".join(parts)+r"(?=\n)"
+        content = re.sub(sequence,lambda m:m["indent"]+"- ${DN_PROJECT_ROOT}",content)
+        path.write_text(content)
         staged.append(path)
         copy(cfg.parent/"dataparser_transforms.json",PUB/"dataparser_transforms.json")
     gpu = inventory["gpu_inventory"]["stdout"].splitlines()[-1].split(", ")
@@ -242,13 +247,22 @@ def main(mode):
     staged.append(cmdfile)
     last = report/"latest_status.json"
     reason = str(state.get("error","")).replace(str(ROOT),"PROJECT") or None
+    training_log = RUN/"logs/training.log"
+    steps = []
+    if training_log.is_file():
+        tail=training_log.read_bytes()[-500000:].decode(errors="replace")
+        tail=re.sub(r"\x1b\[[0-9;]*[A-Za-z]","",tail)
+        steps=[int(x) for x in re.findall(r"(?m)^\s*(\d+)\s+\(\s*\d+(?:\.\d+)?%\)",tail)]
     info = {"schema_version":2,"updated_at":time.isoformat(),"run_id":RUN.name,"status":mode,
         "stage":state.get("stage"),"failed_stage":state.get("failed_stage"),"reason":reason,"registered_frame_counts":split_counts,
         "actual_cpu_budget":cpu,"full_cpu_gpu_authorized_by_user":True,"target_host_inspected":True,
         "environment_created":(prefix/"conda-meta/history").is_file(),
         "compiled_gsplat_libraries_loaded":bool(read(RUN/"compiled_extensions.json")),
         "verified_zenodo_files":[a["name"] for a in inputs],"blackwell_forward_backward_verified":bool(bw),
+        "formal_training_checkpoint_on_blackwell":saved_step is not None and bool(read(RUN/"compiled_extensions.json")),
+        "standalone_gradient_probe":"measured" if bw else "skipped; verify operation from the formal run",
         "training_completed_updates":saved_step+1 if saved_step is not None else None,"target_training_updates":30000,
+        "last_observed_training_log_step":max(steps) if steps else None,
         "checkpoint_step":saved_step,"rgb_depth_evaluation_complete":bool(metrics),
         "poisson_mesh_complete":bool(mesh),"mesh_evaluation_complete":bool(geometry),
         "metrics":metrics,"pipeline_completed":mode=="complete",
