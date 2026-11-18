@@ -1,0 +1,28 @@
+diff --git a/dn_splatter/export_mesh.py b/dn_splatter/export_mesh.py
+index d0c9c02..cec33d1 100644
+--- a/dn_splatter/export_mesh.py
++++ b/dn_splatter/export_mesh.py
+@@ -1,5 +1,6 @@
+ """Various GS mesh exporters"""
+
++import os
+ import random
+ from dataclasses import dataclass
+ from pathlib import Path
+@@ -430,6 +431,7 @@ class DepthAndNormalMapsPoisson(GSMeshExporter):
+             colors = torch.cat(colors, dim=0)
+             normals = torch.cat(normals, dim=0)
+
++            CONSOLE.print(f"DN sampled points before filtering: {points.shape[0]}")
+             points = points.cpu().numpy()
+             normals = normals.cpu().numpy()
+             colors = colors.cpu().numpy()
+@@ -450,7 +452,7 @@ class DepthAndNormalMapsPoisson(GSMeshExporter):
+             )
+             CONSOLE.print("Computing Mesh... this may take a while.")
+             mesh, densities = o3d.geometry.TriangleMesh.create_from_point_cloud_poisson(
+-                pcd, depth=self.poisson_depth
++                pcd, depth=self.poisson_depth, n_threads=int(os.environ["DN_CPU_BUDGET"])
+             )
+             vertices_to_remove = densities < np.quantile(densities, 0.01)
+             mesh.remove_vertices_by_mask(vertices_to_remove)
