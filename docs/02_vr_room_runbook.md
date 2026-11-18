@@ -2,7 +2,7 @@
 
 更新日期：2026-11-18（Asia/Shanghai）。状态：**计划与源码核查完成，尚未在目标 AutoDL 服务器上验证**。
 
-本轮目标是在同一轮持续任务中完成 **Blackwell 环境适配 → VR Room 单场景累计 30,000 次优化 → RGB/深度评估及渲染 → Poisson 网格 → 网格评估 → 结果推送**。首轮只运行一个训练任务。已有项目优先，资源忙时排队；不为本项目终止、迁移或修改其他任务。
+本轮目标是在同一轮持续任务中完成 **Blackwell 环境适配 → VR Room 单场景累计 30,000 次优化 → RGB/深度评估及渲染 → Poisson 网格 → 网格评估 → 结果推送**。用户已授权本轮使用 AutoDL 实例全部已分配的 CPU 和 GPU；首轮仍只运行一个 VR Room 主训练任务，按阶段使用全部合理资源。保留独立环境和目录，不为本项目终止、迁移或修改其他任务。
 
 先读仓库根目录 `AGENTS.md` 和 [隔离与复用要求](01_autodl_isolation.md)，再执行本手册。机器规格由用户提供：RTX PRO 6000 96GB、120GB RAM、25 核 CPU；现有占用需要在服务器现场检查。
 
@@ -100,13 +100,15 @@ python dn_splatter/data/mushroom_utils/reference_depth_download.py \
 - Faro GT 只用于评价；`use-faro-scanner-depths=False`、`use-faro-scanner-pd=False`，避免把评价真值加入训练或初始化。
 - 训练前抽查少量 RGB/深度/法线可视化，以及几帧反投影的几何对齐。这是数据检查，不启动额外训练轮次。
 
-历史 `mushroom` parser 可以在法线缺失时调用 Omnidata。若先显式预计算，使用该版本真实参数：`--model-type omnidata`、`--transforms-name transformations_colmap.json`、`--save-path <该序列>/normals_from_pretrain`，长短两段分别处理。Omnidata `low` 模式内部使用 384×384 输入再还原输出尺寸，不代表训练 RGB 应统一改成 384×384。法线预测也使用 GPU，必须遵守与正式训练相同的资源准入。
+历史 `mushroom` parser 可以在法线缺失时调用 Omnidata。若先显式预计算，使用该版本真实参数：`--model-type omnidata`、`--transforms-name transformations_colmap.json`、`--save-path <该序列>/normals_from_pretrain`，长短两段分别处理。Omnidata `low` 模式内部使用 384×384 输入再还原输出尺寸，不代表训练 RGB 应统一改成 384×384。法线预测与正式训练一样允许使用整张 GPU；按阶段执行，避免重复加载多个模型造成无益竞争。
 
 ## 5. 阶段 C：正式累计 30k 训练
 
-初始单进程，CPU/native 线程从 4–6 起步，具体预算由环境检查确定。共享 GPU 没有资源隔离机制时不能保证零性能影响；已有任务繁忙时保留可恢复的等待任务，先完成允许的 CPU 工作。不要因为空闲显存看起来足够，就擅自争抢其他任务的 GPU 计算资源。
+保持单个主训练进程，允许使用整张目标 GPU 和全部已分配 CPU。按环境盘点确认 `DN_CPU_BUDGET`：不超过容器 affinity/cpuset、cgroup quota 和 AutoDL 实际分配共同允许的 CPU 数，标称为 25 核。线程与编译/数据预处理并发按阶段安排，避免“多个 worker × 每个 worker 全核线程”造成过量并发；不再沿用此前的小线程预算。具体设置见 [隔离与资源配置](01_autodl_isolation.md)。
 
-以下是从零开始的模板。只有资源准入通过、环境和数据检查通过后才执行。参数顺序已对照历史源码：模型/Trainer 参数在 `mushroom` 之前，数据参数在之后。
+有其他活跃 GPU 进程或利用率较高本身不再触发排队；在实际显存、系统内存和磁盘足以执行当前阶段时继续工作，不等待整卡空闲。若残留任务造成明确的容量不足或当前阶段无法运行，记录实际占用、报错与恢复路径，只处理本项目进程，不终止其他项目。资源授权不改变 30k、图像分辨率、损失、点数或网格协议，也不为追求 100% 利用率增加训练任务。
+
+以下是从零开始的模板。环境和数据检查通过、实际容量满足当前阶段后执行。参数顺序已对照历史源码：模型/Trainer 参数在 `mushroom` 之前，数据参数在之后。
 
 ```bash
 cd "$DN_SOURCE_DIR"
@@ -212,9 +214,9 @@ ns-eval \
 
 ## 7. 阶段 E：Poisson 网格与几何评价
 
-训练进程完成并释放 GPU 后再提取网格。导出阶段仍会加载模型渲染；CPU Poisson 也可能使用很多线程。先检查当前资源，沿用本项目预算。
+训练进程完成后再提取网格。导出阶段仍会加载模型渲染，允许使用整张目标 GPU；CPU Poisson 允许使用全部确认的 CPU 预算。核对当前可用内存后执行，避免与本项目的另一个高内存阶段重叠。
 
-历史导出器没有显式传入 Open3D Poisson 的 `n_threads`。共享服务器上应核对安装版本的接口，并在**本项目导出副本**中明确设置不超过本项目 CPU 预算的线程数；记录这一资源补丁，不改变采样量、Poisson depth、过滤或网格阈值。
+历史导出器没有显式传入 Open3D Poisson 的 `n_threads`。核对安装版本的接口，在**本项目导出副本**的 Poisson 调用中显式设置 `n_threads=int(os.environ["DN_CPU_BUDGET"])`，使用全部已确认的 CPU 预算（配额确认为 25 核时即为 25）。这不是 `gs-mesh dn` 已有的 CLI 参数，不要直接添加未经验证的命令行开关。记录补丁与实际线程数；不改变采样量、Poisson depth、过滤或网格阈值。
 
 ```bash
 gs-mesh dn \
@@ -263,7 +265,7 @@ python dn_splatter/eval/eval_mesh_mushroom_vis_cull.py \
 
 论文表 4 的 VR Room 完整配置参考为 PSNR 26.8、SSIM 0.879、F-score 0.871（阈值 5 cm），30k、RTX 4090 训练计时 17.9 min。它不是本服务器的实测结果，也不是强制耗时上限。报告真实差距，不设置“达到某阈值就隐藏其他失败”的判据；单场景闭环结束后停止新增训练实验，先推送与汇报。
 
-如果因资源持续繁忙、必要下载不可达或实际技术错误未完成，状态应为 `waiting_for_resources` 或 `blocked`，包含精确阶段、日志、可恢复入口；不能写成成功。可持久等待的任务继续等待，不给训练设置后台完成截止时间。
+如果因实际容量不足、必要下载不可达或技术错误未完成，状态应为 `waiting_for_resources` 或 `blocked`，包含精确阶段、证据、日志和可恢复入口；不能写成成功。不能仅因 GPU 利用率高或存在其他活跃进程就设置资源等待。真实容量阻塞可持久等待并复查，不给训练设置后台完成截止时间。
 
 ## 9. 固定源码与论文来源
 

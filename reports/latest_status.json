@@ -4,6 +4,10 @@
   "timezone": "Asia/Shanghai",
   "status": "planned_not_executed",
   "stage": "repository_preparation",
+  "resource_policy_mode": "dedicated_full_allocation",
+  "full_cpu_gpu_authorized_by_user": true,
+  "resource_authorization_date": "2026-11-18",
+  "actual_cpu_budget": null,
   "run_id": null,
   "target_host_inspected": false,
   "environment_created": false,
@@ -17,6 +21,6 @@
   "server_process_state": "not_started_by_this_repository_preparation",
   "source_candidate_sha": "811f5cdf342d92d12a9d9a4be185d374c430c184",
   "metrics": null,
-  "next_action": "Run the startup prompt on the actual AutoDL instance; inspect resources read-only before creating the project environment.",
+  "next_action": "Run or resume the updated startup prompt on the actual AutoDL instance. Inspect resources, preserve any existing progress, and use the full allocated CPU and GPU with the isolated project environment. Remove obsolete shared-workload waiting rules without duplicating or restarting a healthy run.",
   "note": "Plan and source audit only. No target-server installation or training result is claimed."
 }

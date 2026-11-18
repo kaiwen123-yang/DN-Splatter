@@ -11,7 +11,7 @@
     "automatic_extra_baselines": false,
     "automatic_hyperparameter_search": false,
     "training_walltime_deadline": null,
-    "existing_projects_have_priority": true
+    "existing_projects_have_priority": false
   },
   "hardware_user_reported": {
     "gpu": "NVIDIA RTX PRO 6000 Blackwell",
@@ -52,18 +52,27 @@
     "runtime_verified": false
   },
   "resource_policy": {
+    "mode": "dedicated_full_allocation",
+    "authorization": "User explicitly authorized all CPU and GPU resources on 2026-11-18; this supersedes the prior shared-workload limits.",
     "read_only_inspection_first": true,
     "reuse_existing_environments_read_only": true,
     "create_dedicated_conda_prefix": true,
     "modify_other_environments": false,
     "modify_driver_or_global_cuda": false,
     "terminate_other_projects": false,
-    "initial_cpu_threads": 4,
-    "initial_cpu_threads_allowed_range": [4, 6],
+    "cpu_budget": "all CPU capacity allocated to this AutoDL container, verified using affinity and cgroup quota; nominally 25 cores",
+    "actual_cpu_budget": null,
+    "worker_and_native_threads_configured_per_stage": true,
+    "avoid_nested_cpu_oversubscription": true,
+    "compile_parallelism_respects_available_ram": true,
+    "full_allocated_gpu_authorized": true,
+    "artificial_vram_fraction_limit": null,
     "gpu_admission_requires_live_check": true,
-    "free_vram_alone_is_not_admission": true,
-    "busy_gpu_action": "persistent waiting or allowed CPU preparation; do not compete with active work",
-    "poisson_threads_must_be_explicitly_capped": true
+    "gpu_must_be_idle_before_run": false,
+    "busy_gpu_action": "Inspect actual device and capacity, then proceed when runnable; active processes or utilization alone do not require waiting. Do not terminate or modify other projects.",
+    "resource_wait_requires_concrete_blocker": true,
+    "poisson_threads": "explicit n_threads=DN_CPU_BUDGET, using all verified allocated CPU capacity",
+    "change_experiment_to_saturate_hardware": false
   },
   "network_policy": {
     "github_preferred_transport": "official HTTPS with AutoDL official academic acceleration scoped to the project command subshell",
