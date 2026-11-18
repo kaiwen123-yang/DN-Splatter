@@ -4,6 +4,20 @@
   "project_prefix": ".local/conda/dn-splatter-bw",
   "inputs": [
     {
+      "name": "omnidata_dpt_normal_v2.ckpt",
+      "url": "https://zenodo.org/records/10447888/files/omnidata_dpt_normal_v2.ckpt",
+      "bytes": 1947430960,
+      "zenodo_md5": "f2e0962ea6e248a1648f20d74b1b034d",
+      "sha256": "38db3f7d952f48f900f0b32d6cce6749e41641045ebc5713cf29618f54aff3bb"
+    },
+    {
+      "name": "reference_depth.tar.gz",
+      "url": "https://zenodo.org/records/10438963/files/reference_depth.tar.gz",
+      "bytes": 3849632019,
+      "zenodo_md5": "e19690ad110f623ae958d19afb627059",
+      "sha256": "4f156e8a4b184945932de8df2eb1bb44b1f808e9ea51a7279f62446d33e7a348"
+    },
+    {
       "name": "vr_room_iphone.tar.gz",
       "url": "https://zenodo.org/records/10230733/files/vr_room_iphone.tar.gz",
       "bytes": 244279042,

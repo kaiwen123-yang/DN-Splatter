@@ -1,19 +1,38 @@
 {
   "run_id": "vr-room-iphone-30k",
-  "time_utc": "2026-11-18T15:13:43.319664+00:00",
-  "time_asia_shanghai": "2026-11-18T23:13:43.319664+08:00",
-  "repository_at_report": "89adc2c1eeee2f817f552ee2fa797df5df0384e8",
+  "time_utc": "2026-11-18T15:36:33.560190+00:00",
+  "time_asia_shanghai": "2026-11-18T23:36:33.560190+08:00",
+  "repository_at_report": "2a0901454e9fd34032e7b5e5c0c2924d0e3adc9b",
   "policy_commit": "7f8d6afd360382d628b96af769db086966ca1964",
   "source": "811f5cdf342d92d12a9d9a4be185d374c430c184",
   "patch_sha256": {
+    "dn-811f5cd-omnidata-checkpoint.patch": "82fc90a7d69863d99c8aa6a58cd6e93b4e3e9513908d93094405f84880ca9e27",
     "dn-811f5cd-poisson-threads.patch": "800b17f3720661483baca78dbb840f488bce87309b75f30b791959051334b415",
     "gsplat-1.0.0-build-jobs.patch": "d1962b4e59abade4cdbe10cf67fd7571a89575440b594960ff9dffa3e06fcf5e"
+  },
+  "tracked_sources_match_published_patches": {
+    "dn_splatter": true,
+    "gsplat": true
   },
   "gsplat_source": "c7b0a383657307a13dff56cb2f832e3ab7f029fd",
   "pytorch3d_source": "33824be3cbc87a7dd1db0f6a9a9de9ac81b2d0ba",
   "blackwell_runtime": null,
   "data": "MuSHRoom vr_room / iphone",
   "inputs": [
+    {
+      "name": "omnidata_dpt_normal_v2.ckpt",
+      "url": "https://zenodo.org/records/10447888/files/omnidata_dpt_normal_v2.ckpt",
+      "bytes": 1947430960,
+      "zenodo_md5": "f2e0962ea6e248a1648f20d74b1b034d",
+      "sha256": "38db3f7d952f48f900f0b32d6cce6749e41641045ebc5713cf29618f54aff3bb"
+    },
+    {
+      "name": "reference_depth.tar.gz",
+      "url": "https://zenodo.org/records/10438963/files/reference_depth.tar.gz",
+      "bytes": 3849632019,
+      "zenodo_md5": "e19690ad110f623ae958d19afb627059",
+      "sha256": "4f156e8a4b184945932de8df2eb1bb44b1f808e9ea51a7279f62446d33e7a348"
+    },
     {
       "name": "vr_room_iphone.tar.gz",
       "url": "https://zenodo.org/records/10230733/files/vr_room_iphone.tar.gz",
@@ -38,7 +57,7 @@
   "seed": 42,
   "normal_prior": "Omnidata v2 low; opengl",
   "initialization": {
-    "source": "pinned iPhone initializer, long capture excluding test.txt",
+    "source": null,
     "vertices": null,
     "sha256": null
   },
@@ -47,7 +66,9 @@
   "optimizer_protocol": "original historical loss weights; flattening is included in normal_lambda",
   "stages": [],
   "cpu_budget": 25,
-  "compile_jobs_at_report": 20,
+  "observed_gsplat_ninja_job_limits": [
+    21
+  ],
   "frame_validation_workers": 25,
   "mesh": null,
   "peaks_sampled_every_15s": {
@@ -58,10 +79,11 @@
       "cgroup_memory_bytes": 20042616832
     },
     "installing_blackwell_dependencies": {
-      "samples": 19,
-      "gpu_used_mib_device": 0,
+      "samples": 109,
+      "gpu_used_mib_device": 3,
       "gpu_util_pct_device": 0,
-      "cgroup_memory_bytes": 21184675840
+      "cgroup_memory_bytes": 35988635648,
+      "peak_interval_mean_cpu_cores": 4.248
     }
   },
   "resources_scope": "device and whole container; samples can miss transient peaks"

@@ -1,0 +1,22 @@
+{
+  "device": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+  "compute_capability": [
+    12,
+    0
+  ],
+  "torch": "2.7.1+cu128",
+  "torchvision": "0.22.1+cu128",
+  "torch_cuda": "12.8",
+  "gsplat": "1.0.0",
+  "loaded_compiled_libraries": {
+    "csrc.so": {
+      "bytes": 1776928,
+      "sha256": "25bb66b675a091f48092fc306b88a8eb8a91345f94ea9777c5ec78a518e77468"
+    },
+    "csrc_legacy.so": {
+      "bytes": 447120,
+      "sha256": "9baa2d42a525e45bec9182a64f656e435a1fac583048f4ed93129db8fa556f01"
+    }
+  },
+  "validation": "Native library load. The separate blackwell.json records path-specific forwards and backwards."
+}

@@ -1,6 +1,6 @@
 {
   "schema_version": 2,
-  "updated_at": "2026-11-18T15:13:43.319664+00:00",
+  "updated_at": "2026-11-18T15:36:33.560190+00:00",
   "run_id": "vr-room-iphone-30k",
   "status": "running",
   "stage": "installing_blackwell_dependencies",
@@ -15,6 +15,13 @@
   "full_cpu_gpu_authorized_by_user": true,
   "target_host_inspected": true,
   "environment_created": true,
+  "compiled_gsplat_libraries_loaded": true,
+  "verified_zenodo_files": [
+    "omnidata_dpt_normal_v2.ckpt",
+    "reference_depth.tar.gz",
+    "vr_room_iphone.tar.gz",
+    "vr_room_mesh_pd.tar.gz"
+  ],
   "blackwell_forward_backward_verified": false,
   "training_completed_updates": null,
   "target_training_updates": 30000,

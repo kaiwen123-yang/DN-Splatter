@@ -1,0 +1,41 @@
+{
+  "method": "Every fourth sensor pixel in fixed adjacent registered training views; source depth backprojected in metres, OpenGL COLMAP poses converted to OpenCV, nearest target sensor pixel. Both depths must be positive. Occlusions are included.",
+  "pairs": [
+    {
+      "source": "./images/frame_00001.jpg",
+      "target": "./images/frame_00002.jpg",
+      "source_valid_samples": 46065,
+      "matched_samples": 45579,
+      "depth_size_wh": [
+        738,
+        994
+      ],
+      "median_abs_axial_depth_difference_m": 0.010526099035247594,
+      "p90_abs_axial_depth_difference_m": 0.08353161518959845
+    },
+    {
+      "source": "./images/frame_00214.jpg",
+      "target": "./images/frame_00215.jpg",
+      "source_valid_samples": 46065,
+      "matched_samples": 21434,
+      "depth_size_wh": [
+        738,
+        994
+      ],
+      "median_abs_axial_depth_difference_m": 0.019653803350079713,
+      "p90_abs_axial_depth_difference_m": 0.2932796279270741
+    },
+    {
+      "source": "./images/frame_00420.jpg",
+      "target": "./images/frame_00422.jpg",
+      "source_valid_samples": 46065,
+      "matched_samples": 9180,
+      "depth_size_wh": [
+        738,
+        994
+      ],
+      "median_abs_axial_depth_difference_m": 0.00839379482770164,
+      "p90_abs_axial_depth_difference_m": 0.06413152039135829
+    }
+  ]
+}
