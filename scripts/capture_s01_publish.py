@@ -80,7 +80,7 @@ def inventory():
     paths = [
         p
         for p in RUN.rglob("*")
-        if p.is_file() and not p.relative_to(RUN).parts[0] == "state" and p != RUN / "logs/publish.log"
+        if p.is_file() and not p.relative_to(RUN).parts[0] == "state" and p not in (RUN / "logs/publish.log", RUN / "logs/runner.log")
     ]
     paths.extend(
         [

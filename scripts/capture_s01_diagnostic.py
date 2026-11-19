@@ -3,7 +3,7 @@ import cv2
 import numpy as np
 from capture_metric import remap_points
 from capture_rectify import describe, edges, imwrite, project, read, save, zbuffer
-from capture_s01_inputs import GEO_RUN, REPORT, ensure
+from capture_s01_inputs import FULL, GEO_RUN, REPORT, ensure
 
 GRID = GEO_RUN / "rect/640"
 
@@ -64,7 +64,7 @@ def compare(src, dst, poses, cam, visual):
         neg = int((diff[mask] < -threshold[mask]).sum())
         stats[key] = dict(
             pixels=count,
-            fraction_of_original=count / int(base.sum()),
+            fraction_of_original=count / int(base.sum()) if base.any() else None,
             signed_m=describe(diff[mask]),
             absolute_m=describe(abs(diff[mask])),
             positive_candidates=pos,
@@ -102,7 +102,10 @@ def compare(src, dst, poses, cam, visual):
 
 def main():
     pairs = read(GEO_RUN / "metric/cross_view.json")["pairs"]
-    ensure(len(pairs) == 20, "pair count")
+    if FULL:
+        pairs=[p for p in pairs if "source" in p]
+    else:
+        ensure(len(pairs) == 20, "pair count")
     poses = {k: np.array(v) for k, v in read(GEO_RUN / "metric/poses.json")["poses"].items()}
     k = np.array(read(GEO_RUN / "rect/grids.json")["640"]["K_cv"])
     cam = dict(width=640, height=360, fx=k[0, 0], fy=k[1, 1], cx=k[0, 2], cy=k[1, 2])

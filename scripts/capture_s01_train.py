@@ -36,6 +36,8 @@ def config():
     parser_settings = dict(P["parser"]["settings"])
     if FULL:
         parser_settings["scene_scale"] = read(SCENE / "geometry.json")["parser_settings"]["scene_scale"]
+        if not read(SCENE/"transforms.json")["val_filenames"]:
+            cfg.steps_per_eval_image=cfg.steps_per_eval_batch=cfg.steps_per_eval_all_images=0
     cfg.pipeline.datamanager.dataparser = NormalNerfstudioConfig(data=SCENE, **parser_settings)
     cfg.pipeline.datamanager.camera_res_scale_factor = 1.0
     for key, value in P["training"]["pipeline"]["model"].items():

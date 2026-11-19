@@ -184,18 +184,47 @@ def previews(mesh):
         )
         gray, color = shaded(scene, o3d.core.Tensor(rays.astype("float32")), mesh)
         rgb = cv2.imread(str(SCENE / f["file_path"]))[y0:y1, x0:x1]
+        extra=[]
+        support={}
+        if FULL:
+            from capture_s01_eval import color as depth_color
+            crop=np.s_[y0:y1,x0:x1]
+            name=f"frame_{fid:05d}"
+            ref=np.load(SCENE/f["depth_file_path"])[crop]
+            pred=np.load(RUN/"video"/(name+"_depth.npy"))[crop]
+            norm=cv2.imread(str(RUN/"video"/(name+"_normal.png")))[crop]
+            hit=scene.cast_rays(o3d.core.Tensor(rays.astype("float32")),nthreads=CPU)["t_hit"].numpy()
+            cloud=o3d.io.read_point_cloud(str(MESH/(PREFIX+"pcd.ply")))
+            # Project the complete sampled point cloud in chunks and keep the nearest positive Z.
+            cloud_z=np.full(ref.shape,np.inf)
+            pts=np.asarray(cloud.points)
+            for start in range(0,len(pts),250000):
+                pc=(pts[start:start+250000]-c2w[:3,3])@c2w[:3,:3]
+                pc=pc[pc[:,2]>0]
+                x=np.rint(meta["fl_x"]*pc[:,0]/pc[:,2]+meta["cx"]-.5).astype(int)-x0
+                y=np.rint(meta["fl_y"]*pc[:,1]/pc[:,2]+meta["cy"]-.5).astype(int)-y0
+                ok=(x>=0)&(y>=0)&(x<x1-x0)&(y<y1-y0)
+                np.minimum.at(cloud_z,(y[ok],x[ok]),pc[ok,2])
+            for label_z,z in (("Sensor Z",ref),("Model Z",pred),("Sample cloud Z",cloud_z),("Mesh Z",hit)):
+                valid=np.isfinite(z)&(z>0)
+                mask=valid&(ref>0)
+                support[label_z]=dict(reference_pixels=int((ref>0).sum()),matched_pixels=int(mask.sum()),
+                                      MAE_m=float(np.abs(z[mask]-ref[mask]).mean()) if mask.any() else None)
+                extra.append((depth_color(z,.3,6,valid),label_z))
+            extra.append((norm,"Model normal"))
         sheet = np.hstack(
             [
                 titled(img, lbl)
-                for img, lbl in (
+                for img, lbl in [
                     (rgb, "Train RGB"),
+                    *extra,
                     (color, "Mesh vertex color"),
                     (gray, "Mesh face shading"),
-                )
+                ]
             ]
         )
         imwrite(REPORT / "previews" / ("mesh_" + label + ".jpg"), sheet)
-        records.append(dict(object=label, train_id=fid, xyxy=[x0, y0, x1, y1]))
+        records.append(dict(object=label, train_id=fid, xyxy=[x0, y0, x1, y1],depth_comparison=support))
     return records
 
 
@@ -227,6 +256,7 @@ def validate():
         original_exporter="DepthAndNormalMapsPoisson",
         views=len(rows),
         samples=count,
+        samples_by_view={r["id"]:r["samples"] for r in rows},
         target_samples=5000000,
         poisson_depth=9,
         threads=CPU,
@@ -252,6 +282,8 @@ def validate():
         faces_index_range=[int(f.min()), int(f.max())],
         connected_components=len(sizes),
         largest_component_faces=int(max(sizes)),
+        largest_component_face_fraction=float(max(sizes)/len(f)),
+        nominal_depth9_cell_m=float(1.1*np.ptp(xyz,axis=0).max()/512),
         largest_component_surface_area_m2=float(max(areas)),
         geometry_finite=True,
         pcd_path=str(MESH / (PREFIX + "pcd.ply")),

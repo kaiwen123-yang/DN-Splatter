@@ -1,0 +1,70 @@
+{
+  "identity.json": {
+    "run": "capture-full-dn-30k-20261119-v1",
+    "bag": "3982cb269ea03ddf4234b45f74be27143eb66bcd807e4e471d0f3a9cd6b03b59",
+    "protocol_sha256": "71e6342ba923c7474b599b7cd09d33472a4786019e04e71c56e24ed223a7fa4c",
+    "packet_sha256": "99db85bab5c06622fa6cadbd97fb6298304bde4613fafbe4f4f15fad298b5216",
+    "upstream": "811f5cdf342d92d12a9d9a4be185d374c430c184",
+    "selection_sha256": "7d9eff8bf784b8405a44ed8bc2f440c50edfa9dd80e764de3e1ab4863a0f6e2e",
+    "split_sha256": "114c3b82bec6b71ef3acca8cdb9ad4c138a6b8557d8f5e5ef3f47530147f69a4",
+    "weight_sha256": "38db3f7d952f48f900f0b32d6cce6749e41641045ebc5713cf29618f54aff3bb",
+    "patches": {
+      "dn-811f5cd-omnidata-checkpoint.patch": "ac01ecff32811ed1b618c5e423627d93b637e57272a182c5b27cf317789fa94c",
+      "dn-811f5cd-poisson-threads.patch": "800b17f3720661483baca78dbb840f488bce87309b75f30b791959051334b415",
+      "gsplat-1.0.0-build-jobs.patch": "d1962b4e59abade4cdbe10cf67fd7571a89575440b594960ff9dffa3e06fcf5e",
+      "omnidata-tools-0.0.23-backbone.patch": "9c69452a37676d15e1829fbc18970b1c75dcd65da4c7515f2124b4cbd477eec4"
+    }
+  },
+  "current.json": {
+    "stage": "match",
+    "pid": 393573,
+    "updated_utc": "2026-11-19T12:20:02.402287+00:00",
+    "child_pid": 393746,
+    "started_utc": "2026-11-19T12:20:02.401409+00:00"
+  },
+  "features.done.json": {
+    "identity": "c826225917a6997ae1476c89418f3394896d892062b6b4cd4b0f6cc94522f238",
+    "rows": 1478,
+    "table": "images",
+    "utc": "2026-11-19T12:20:02.400800+00:00"
+  },
+  "rectify.done.json": {
+    "identity": "c826225917a6997ae1476c89418f3394896d892062b6b4cd4b0f6cc94522f238",
+    "output": "/root/autodl-tmp/DN-Splatter/.local/capture-geometry/20261119-full-5hz-3982cb26/rect/registration.json",
+    "output_sha256": "7e365582dcc46fa12a6bc4ca95763860bd7d5b4bc737371cc2f7dd91bf53966a",
+    "utc": "2026-11-19T12:19:16.486077+00:00"
+  },
+  "packet_sha256": "99db85bab5c06622fa6cadbd97fb6298304bde4613fafbe4f4f15fad298b5216",
+  "rectified_pairs": 1846,
+  "tmux_session": "dn-capture-full-30k",
+  "stage_records": [
+    {
+      "stage": "rectify",
+      "command": "/root/autodl-tmp/DN-Splatter/.local/conda/dn-splatter-bw/bin/python /root/autodl-tmp/DN-Splatter/scripts/capture_rectify.py /root/autodl-tmp/DN-Splatter/.local/capture-geometry/20261119-full-5hz-3982cb26/transfer /root/autodl-tmp/DN-Splatter/.local/capture-geometry/20261119-full-5hz-3982cb26/rect --all --workers 25",
+      "cwd": ".local/upstream/dn-splatter",
+      "started_utc": "2026-11-19T12:18:55.327641+00:00",
+      "omp_threads": 1,
+      "blas_threads": 1,
+      "exit_code": 0,
+      "duration_seconds": 21.16,
+      "ended_utc": "2026-11-19T12:19:16.485476+00:00"
+    },
+    {
+      "stage": "features",
+      "command": "/root/autodl-tmp/DN-Splatter/.local/conda/capture-geometry/bin/python /root/autodl-tmp/DN-Splatter/scripts/capture_sfm.py /root/autodl-tmp/DN-Splatter/.local/capture-geometry/20261119-full-5hz-3982cb26 features --device cuda",
+      "cwd": ".local/upstream/dn-splatter",
+      "started_utc": "2026-11-19T12:19:16.486336+00:00",
+      "omp_threads": 1,
+      "blas_threads": 1,
+      "exit_code": 0,
+      "duration_seconds": 45.91,
+      "ended_utc": "2026-11-19T12:20:02.399486+00:00"
+    }
+  ],
+  "observed_utc": "2026-11-19T12:25:03.479814+00:00",
+  "server_run": "/root/autodl-tmp/DN-Splatter/.local/runs/capture-full-dn-30k-20261119-v1",
+  "server_packet": "/root/autodl-tmp/DN-Splatter/.local/capture-geometry/20261119-full-5hz-3982cb26/transfer",
+  "packet_files_including_manifest": 3697,
+  "packet_bytes_including_manifest": 714979577,
+  "rgb_span_s": 368.874747
+}

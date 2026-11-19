@@ -38,6 +38,11 @@ def main():
     n=int(os.environ["DN_CPU_BUDGET"])
     db=s/("queries.db" if a.stage=="queries" else "train.db")
     opt=pc.ImageReaderOptions(camera_model="PINHOLE",camera_params=",".join(map(str,params)))
+    if a.bridge and db.is_file():
+        with sqlite3.connect(db) as cx:
+            camera_ids=cx.execute("select distinct camera_id from images").fetchall()
+        assert len(camera_ids)==1
+        opt.existing_camera_id=camera_ids[0][0]
     device=getattr(pc.Device,a.device)
     if a.stage in ("queries","features"):
         names=held if a.stage=="queries" else train
@@ -47,6 +52,8 @@ def main():
         with sqlite3.connect(db) as cx:
             actual=cx.execute("select name, keypoints.rows from images join keypoints using(image_id)").fetchall()
             assert {r[0] for r in actual}==set(names)
+            if not (a.run/"transfer/splits.json").is_file() or "s01_identities_verified" not in read(a.run/"transfer/splits.json")["review"]:
+                assert all(r[1]>=4 for r in actual)
         return
     if a.stage=="match":
         mo=pc.FeatureMatchingOptions(num_threads=n,use_gpu=a.device=="cuda")

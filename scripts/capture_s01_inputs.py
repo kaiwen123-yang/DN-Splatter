@@ -74,6 +74,9 @@ def prepare():
     versions = {k: md.version(k) for k in ["torch", "nerfstudio", "gsplat", "open3d"]}
     versions["python"] = platform.python_version()
     ensure(versions == P["source"]["expected_versions"], "environment versions")
+    meta=read(GEO/"transforms.json")
+    train_n=len(meta["train_filenames"])
+    val_n=len(meta["val_filenames"])
     save(
         REPORT / "environment.json",
         dict(
@@ -84,6 +87,8 @@ def prepare():
                 for k in ["torch", "gsplat", "nerfstudio", "dn_splatter", "open3d"]
             },
             cpu_budget=CPU,
+            expected_cache_device="cpu" if train_n>500 else "gpu",
+            base_float32_rgb_z_normal_bytes=(train_n+val_n)*1280*720*7*4,
             affinity=sorted(os.sched_getaffinity(0)),
             memory_limit_bytes=int(Path("/sys/fs/cgroup/memory.max").read_text()),
             gpu=subprocess.check_output(

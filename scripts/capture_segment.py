@@ -97,8 +97,8 @@ def main():
                        rgb_vendor_frame_number=streams[0][i]["number"], depth_minus_rgb_ns=dt,
                        relative_s=float((rgb[i]-dep[0])/1e9), id=f"frame_{n:05d}", drop_reason=None)
             selected.append(row)
-            row.update(depth_zero_based_index=int(j), actual_depth_timestamp_ns=str(dep[j]))
             if args.full:
+                row.update(depth_zero_based_index=int(j), actual_depth_timestamp_ns=str(dep[j]))
                 row["requested_split"] = ("train" if n%10<8 else "val" if n%10==8 else "test")
                 row["annotation"] = ("late dynamic interval" if 351<=row["relative_s"]<=355
                                      else "endpoint camera roll" if n==len(targets)-1 else None)

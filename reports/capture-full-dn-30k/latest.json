@@ -1,16 +1,16 @@
 {
   "schema_version": 1,
-  "kind": "execution_protocol_pointer_not_completed_result",
+  "kind": "full_capture_execution",
   "updated_date": "2026-11-19",
   "timezone": "Asia/Shanghai",
-  "status": "planned_not_started_here",
+  "status": "running",
   "scene": "capture-full",
   "run_id": "capture-full-dn-30k-20261119-v1",
   "geometry_run_id": "20261119-full-5hz-3982cb26",
   "evidence_commit": "ee3e87bf8a63486ed96df1c0d37b6a72d30fca88",
   "source_results_reviewed": true,
-  "server_accessed_this_task": false,
-  "windows_bag_accessed_this_task": false,
+  "server_accessed_this_task": true,
+  "windows_bag_accessed_this_task": true,
   "protocol": "configs/capture_full_test_protocol.json",
   "plan": "docs/10_capture_full_test_plan.md",
   "local_prompt": "prompts/local_capture_full_test.md",
@@ -29,10 +29,10 @@
   },
   "expected_counts_are_measurements": false,
   "actual_requested": {
-    "train": null,
-    "val": null,
-    "test": null,
-    "total": null
+    "train": 1478,
+    "val": 184,
+    "test": 184,
+    "total": 1846
   },
   "actual_pose_available": {
     "train": null,
@@ -40,7 +40,7 @@
     "test": null,
     "total": null
   },
-  "actual_updates": null,
+  "actual_updates": 0,
   "actual_final_step": null,
   "actual_checkpoint_sha256": null,
   "actual_metrics": null,
@@ -50,5 +50,13 @@
   "intermediate_human_review_required": false,
   "separate_smoke_training": false,
   "source_archive_unchanged": "reports/capture-s01-dn-30k/20261119-v1",
-  "note": "This pointer records the authorized next full-capture execution plan. No full-capture extraction, server work, training, evaluation or Poisson result was produced in this planning task."
+  "note": "Live handoff snapshot. Geometry/30k/evaluation/Poisson completion is recorded in the final verified report.",
+  "actual_selected": {
+    "train": 1478,
+    "val": 184,
+    "test": 184,
+    "total": 1846
+  },
+  "observed_stage": "match",
+  "observed_utc": "2026-11-19T12:25:03.479814+00:00"
 }

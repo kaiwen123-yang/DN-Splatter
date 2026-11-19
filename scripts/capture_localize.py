@@ -21,7 +21,7 @@ def stats(v):
 
 def blob(db, table, image_id, dtype):
     rows,cols,data=db.execute(f"select rows,cols,data from {table} where image_id=?",(image_id,)).fetchone()
-    return np.frombuffer(data,dtype).reshape(rows,cols)
+    return np.frombuffer(data or b"",dtype).reshape(rows,cols)
 
 
 def main():
@@ -57,22 +57,30 @@ def main():
         names=sorted(rec.images[e.image_id].name for e in track)
         l=centers[names[0]]-pt.xyz
         r=centers[names[-1]]-pt.xyz
-        angles.append(float(np.degrees(np.arccos(np.clip(l@r/(np.linalg.norm(l)*np.linalg.norm(r)),-1,1)))))
+        denom=np.linalg.norm(l)*np.linalg.norm(r)
+        if denom>0:
+            angles.append(float(np.degrees(np.arccos(np.clip(l@r/denom,-1,1)))))
         for e in track:
             im=rec.images[e.image_id]
             if im.name.startswith("aux_"):
                 continue
             uv=im.points2D[e.point2D_idx].xy
             pc3=im.cam_from_world()*pt.xyz
+            if pc3[2]<=0:
+                continue
             pred=camera.img_from_cam(pc3)
+            if pred is None or not np.isfinite(pred).all():
+                continue
             err=np.linalg.norm(pred-uv)
             reproj.append(err)
             observations.append([int(Path(im.name).stem.split("_")[-1]),pi,*uv,pc3[2],err,len(track)])
     np.savez_compressed(s/"observations.npz",observations=np.array(observations),xyz=xyz,point_ids=point_ids)
-    @lru_cache(maxsize=10)
+    @lru_cache(maxsize=24)
     def index(name):
         im=train_names[name]
-        ix=np.array([i for i,k in enumerate(im.points2D) if k.has_point3D()])
+        ix=np.array([i for i,k in enumerate(im.points2D) if k.has_point3D()],dtype=int)
+        if len(ix)<2:
+            return None,None
         ids=np.array([im.points2D[i].point3D_id for i in ix])
         desc=blob(train,"descriptors",im.image_id,np.uint8)[ix].astype(np.float32)
         tree=cv2.FlannBasedMatcher(dict(algorithm=1,trees=4),dict(checks=64))
@@ -89,6 +97,8 @@ def main():
         candidates=[]
         for n in neighbors:
             tree,ids=index(n)
+            if tree is None:
+                continue
             for match in tree.knnMatch(desc,k=2) if len(desc) else ():
                 if len(match)!=2:
                     continue
