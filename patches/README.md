@@ -8,3 +8,5 @@
 | `dn-811f5cd-poisson-threads.patch` | The selected DN exporter omitted the Open3D thread argument. It now passes `n_threads=DN_CPU_BUDGET` and reports the number of samples before the existing outlier filter. The saved PLY supplies the post-filter count. |
 
 The execution checkout uses DN-Splatter `811f5cd`, gsplat `c7b0a38` and GLM `45008b2`. The installer checks each patch against its source tree. Runtime checks and measured outcomes are recorded in the run report.
+
+The VR Room checkpoint stores NumPy scalar optimizer or scheduler state. With PyTorch 2.7.1 the default weights-only reader rejected `numpy.core.multiarray.scalar` after the trainer saved step 29,999. The project checkpoint reader permits the NumPy scalar constructor, dtype and concrete float64 dtype while keeping weights-only loading. The official resume, evaluation and export commands use that scope only for the selected run checkpoint.

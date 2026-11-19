@@ -132,9 +132,13 @@ def main(mode):
         saved_step = None
         if first_ckpts:
             from vr_room_run import latest_checkpoint
-            latest, step, _ = latest_checkpoint()
-            if latest:
-                saved_step = step
+            try:
+                latest, step, _ = latest_checkpoint()
+                if latest:
+                    saved_step = step
+            except Exception:
+                if mode != "blocked":
+                    raise
     if mode=="complete" and not (trained.get("step")==29999 and mesh and metrics and geometry
             and (RUN/"evaluation/faro_audited.json").exists()):
         raise ValueError("Incomplete result set")

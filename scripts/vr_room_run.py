@@ -90,12 +90,12 @@ def require_input(name):
 
 
 def latest_checkpoint():
-    import torch
+    from vr_room_checkpoint import read_training_state
     files = sorted((RUN / "training").glob("**/nerfstudio_models/step-*.ckpt"),
                    key=lambda p: (int(p.stem.removeprefix("step-")), p.stat().st_mtime), reverse=True)
     for path in files:
         try:
-            ck = torch.load(path, map_location="cpu", weights_only=True, mmap=True)
+            ck = read_training_state(path)
             step = int(ck["step"])
             if step != int(path.stem.removeprefix("step-")) or not ck.get("optimizers") or not ck.get("schedulers"):
                 raise ValueError("incomplete optimizer/scheduler state")
@@ -132,6 +132,8 @@ def train():
         with (STATE / "training_segments.jsonl").open("a") as f:
             f.write(json.dumps({"started_utc": now(), "saved_step": step if ckpt else None,
                 "checkpoint": str(ckpt.relative_to(ROOT)) if ckpt else None, "requested_updates": remaining}) + "\n")
+        if ckpt:
+            args = [PY, SCRIPT/"vr_room_checkpoint.py", ckpt, *args]
         stage("training", args, threads=max(1, CPU // 2))
         ckpt, step, count = latest_checkpoint()
     if step != 29999:
@@ -157,16 +159,27 @@ def main():
     # The historical Mushroom parser initializes the point cloud and any missing
     # low-resolution Omnidata normals during the single formal ns-train launch.
     cfg = train()
+    checkpoint = ROOT / json.loads((RUN/"training_complete.json").read_text())["checkpoint"]
+    cli = [PY, SCRIPT/"vr_room_checkpoint.py", checkpoint]
     if not (RUN / "frames.json").exists():
         stage("record-frame-manifest", [PY, SCRIPT / "vr_room_inputs.py", "frames"], ROOT)
     evaluate = RUN / "evaluation"
     evaluate.mkdir(exist_ok=True)
     raw = evaluate / "rgb_depth_official.json"
     if not raw.is_file():
-        stage("rgb-depth-evaluation", ["ns-eval", "--load-config", cfg, "--output-path", raw], threads=max(1, CPU//2))
+        stage("rgb-depth-evaluation", [*cli, "ns-eval", "--load-config", cfg, "--output-path", raw], threads=max(1, CPU//2))
+    require_input("reference_depth.tar.gz")
+    renders = RUN / "renders_official"
+    renders.mkdir(exist_ok=True)
+    # The historical renderer prepends its working directory to the render path.
+    shutil.copyfile(cfg.parent / "dataparser_transforms.json", renders / "dataparser_transforms.json")
+    raw_faro = evaluate / "rgb_depth_faro_official_raw.json"
+    if not raw_faro.exists():
+        stage("render-and-faro", [*cli, "ns-eval", "--load-config", cfg, "--output-path", raw_faro,
+              "--render-output-path", os.path.relpath(renders, SRC)], threads=max(1, CPU//2))
     mesh = RUN / "mesh/DepthAndNormalMapsPoisson_poisson_mesh.ply"
     if not (STATE / "mesh-export.ok").exists():
-        stage("poisson", ["gs-mesh", "dn", "--load-config", cfg, "--output-dir", mesh.parent,
+        stage("poisson", [*cli, "gs-mesh", "dn", "--load-config", cfg, "--output-dir", mesh.parent,
               "--total-points", "5000000", "--poisson-depth", "9"], threads=CPU)
         if not mesh.is_file() or mesh.stat().st_size < 1000:
             raise ValueError("Missing Poisson mesh")
@@ -179,15 +192,6 @@ def main():
             stage("install-mesh-rasterizer", [PY, "-m", "pip", "install", "--no-build-isolation", p3d], ROOT)
         stage("geometry-evaluation", [PY, SRC / "dn_splatter/eval/eval_mesh_mushroom_vis_cull.py",
               "--gt-mesh-path", SCENE, "--pred-mesh-path", mesh, "--device", "iphone"], threads=CPU)
-    require_input("reference_depth.tar.gz")
-    renders = RUN / "renders_official"
-    renders.mkdir(exist_ok=True)
-    # Historical save_outputs_helper prepends os.getcwd(); its render argument must be relative.
-    shutil.copyfile(cfg.parent / "dataparser_transforms.json", renders / "dataparser_transforms.json")
-    raw_faro = evaluate / "rgb_depth_faro_official_raw.json"
-    if not raw_faro.exists():
-        stage("render-and-faro", ["ns-eval", "--load-config", cfg, "--output-path", raw_faro,
-              "--render-output-path", os.path.relpath(renders, SRC)], threads=max(1, CPU//2))
     stage("audit-and-previews", [PY, SCRIPT / "vr_room_evaluation.py"], ROOT, threads=CPU)
     stage("publication", [PY, SCRIPT / "vr_room_publish.py", "complete"], ROOT)
     status("complete", cumulative_updates=30000)
