@@ -1,0 +1,17 @@
+{
+  "geometry": "/root/autodl-tmp/DN-Splatter/.local/data/custom/capture-s01/20261119-s01-5hz-3982cb26",
+  "copy": "/root/autodl-tmp/DN-Splatter/.local/runs/capture-s01-dn-30k-20261119-v1/inputs",
+  "geometry_manifest_sha256": "2cc67f7af6ad6444131529ee392879c064bc6a76394220784e7b4b79a039b278",
+  "geometry_files": 488,
+  "geometry_bytes": 1206355295,
+  "train_depth_coverage": {
+    "min": 0.09060872395833333,
+    "p10": 0.11861111111111111,
+    "p50": 0.16282877604166668,
+    "p90": 0.2062282986111111,
+    "p95": 0.21154405381944444,
+    "max": 0.22685221354166665
+  },
+  "geometry_preserved": true,
+  "shared_inodes": 0
+}

@@ -1,0 +1,11 @@
+{
+  "observed_utc": "2026-11-19T11:16:11.412415+00:00",
+  "stage": "training",
+  "saved_step": 10000,
+  "updates_in_saved_checkpoint": 10001,
+  "gaussians_in_saved_checkpoint": 429517,
+  "checkpoint": "/root/autodl-tmp/DN-Splatter/.local/runs/capture-s01-dn-30k-20261119-v1/training/capture-s01/dn-splatter/2026-11-19_190748/nerfstudio_models/step-000010000.ckpt",
+  "tmux": "dn-capture-s01-full",
+  "continuation": "bash scripts/launch_capture_s01.sh",
+  "logs": "/root/autodl-tmp/DN-Splatter/.local/runs/capture-s01-dn-30k-20261119-v1/logs"
+}
