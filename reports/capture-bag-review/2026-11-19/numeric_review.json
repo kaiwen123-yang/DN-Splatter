@@ -1,0 +1,352 @@
+{
+  "schema_version": 1,
+  "status": "executed_on_four_published_samples",
+  "executed_at": "2026-11-19T09:57:59.631027+00:00",
+  "script_sha256": "16b0adf65d27c47542aa7c9391b3d8b4b7bfbf444628d3c9822d6716d1c175c8",
+  "execution_environment": {
+    "python": "3.12.14",
+    "numpy": "2.3.5",
+    "Pillow": "13.0.0",
+    "matplotlib": "3.10.8"
+  },
+  "source_commit": "a13bb40445c1c049c2931094e533a5ed43472297",
+  "source_audit_run": "20261119T091841Z-3982cb26",
+  "source_bag_sha256": "3982cb269ea03ddf4234b45f74be27143eb66bcd807e4e471d0f3a9cd6b03b59",
+  "original_bag_opened": false,
+  "world_camera_poses_estimated": false,
+  "training_started": false,
+  "numeric_sample_count": 4,
+  "inputs": [
+    {
+      "path": "calibration.json",
+      "sha256": "b279b092495d8e690a35681998ce99aaf8e468699a602510c0358dedc1472973"
+    },
+    {
+      "path": "samples_metadata.json",
+      "sha256": "44747ddc2afb6d322626f1850f8060f252abf684eff4e0337425059b3bf4e834"
+    },
+    {
+      "path": "summary.json",
+      "sha256": "2b8b787473a3f651a12634ca775acae647e1044547c6c1035c97b70a1baf54dc"
+    },
+    {
+      "path": "samples/pair_01_rgb.jpg",
+      "sha256": "96de7a8527c95fde1fb6ed4a72163ef4286ec1d9952c8374911e1f1034861138"
+    },
+    {
+      "path": "samples/pair_01_depth.npz",
+      "sha256": "48d5d34e0d017916b5be9da4f1c9f361ca460cf17bfd7d2c72bb17b00599dc4e"
+    },
+    {
+      "path": "samples/pair_13_rgb.jpg",
+      "sha256": "9d8274d66bfda35e9066e91d3b0612203c2c6a03463c090843378f75e9d3f90b"
+    },
+    {
+      "path": "samples/pair_13_depth.npz",
+      "sha256": "8a8f563fc074cf3c898eda15579033e3d641d7643cabc7d244af0b2e2f461a2b"
+    },
+    {
+      "path": "samples/pair_24_rgb.jpg",
+      "sha256": "6dab421fd310c3462062824c5eadc8f88e2ff1ef86b8a776e50a215ddd13f887"
+    },
+    {
+      "path": "samples/pair_24_depth.npz",
+      "sha256": "a9f05d660242663c6e92a1c4f9cd37f20b411d983384836a10db8912f75014f7"
+    },
+    {
+      "path": "samples/pair_25_rgb.jpg",
+      "sha256": "c39320f138fb7bac259a91a0b238285b75e64de039c65154a442ae37d10a45ce"
+    },
+    {
+      "path": "samples/pair_25_depth.npz",
+      "sha256": "2e5c43687eb364341182ad1dd82ff69704f403d53c9f57d84068745b6c1b06b0"
+    }
+  ],
+  "method": {
+    "projection": "Integer array pixel centers; depth Z in m; p_color=R@p_depth+t_m; explicit rational Brown for native RGB; pinhole for rectified grid.",
+    "target_rectified_grid_cv": {
+      "width": 640,
+      "height": 360,
+      "fx": 347.1377868652344,
+      "fy": 347.1076354980469,
+      "cx": 322.98370361328125,
+      "cy": 178.94134521484375
+    },
+    "target_rectified_grid_colmap_nerfstudio": {
+      "width": 640,
+      "height": 360,
+      "fx": 347.1377868652344,
+      "fy": 347.1076354980469,
+      "cx": 323.48370361328125,
+      "cy": 179.44134521484375
+    },
+    "zbuffer": "Round each projected point to one nearest target pixel and keep minimum positive color-axis Z. No footprint filling, interpolation or invented depth.",
+    "rgb_rectification": "Bilinear inverse remapping with the recorded full Brown model; fixed 640x360 target K; invalid RGB mappings also invalidate projected depth there.",
+    "depth_visualization": "Only 0.3-6 m displayed in overlay, not a validated sensor range or deletion of other source depths.",
+    "edge_visualization": "Nearer valid side of raw-neighbor depth change > max(0.05 m, 3% of nearer depth), restricted to 0.3-6 m."
+  },
+  "pooled_four_sample_non_sentinel_quantiles_m": {
+    "p50": 6.729,
+    "p95": 26.783,
+    "p99": 36.193,
+    "max": 41.848
+  },
+  "rows": [
+    {
+      "sample_id": 1,
+      "relative_time_s": 0.465019,
+      "depth_minus_rgb_ms": 0.079,
+      "native_depth_pixels": 407040,
+      "non_sentinel_pixels": 370441,
+      "non_sentinel_fraction": 0.9100850039308176,
+      "native_depth_bins_m": [
+        0,
+        0.3,
+        3,
+        6,
+        10,
+        20,
+        30,
+        65.535
+      ],
+      "native_depth_bin_counts_among_non_sentinel": [
+        0,
+        81791,
+        75119,
+        25970,
+        100475,
+        72328,
+        14758
+      ],
+      "fraction_of_non_sentinel_in_0p3_3m": 0.22079359466149806,
+      "fraction_of_non_sentinel_in_0p3_6m": 0.4235762240140805,
+      "fraction_of_non_sentinel_in_0p3_10m": 0.4936818548702762,
+      "fraction_of_non_sentinel_above_20m": 0.23508736883876244,
+      "native_depth_quantiles_m": {
+        "p50": 10.462,
+        "p95": 28.492,
+        "p99": 37.198,
+        "max": 41.848
+      },
+      "projected_points_in_native_rgb_fraction": 0.815004278684055,
+      "native_rgb_single_point_zbuffer_coverage": 0.32758463541666666,
+      "rectified_640_single_point_zbuffer_coverage": 0.90671875,
+      "rectified_640_0p3_6m_fraction_of_all_pixels": 0.3874001736111111,
+      "rectified_rgb_valid_mapping_fraction": 1.0,
+      "resize_only_vs_calibrated_displacement_native_px": {
+        "p50": 39.895838019268595,
+        "p95": 66.40041925091901,
+        "p99": 71.54193641016364,
+        "max": 79.27285719147089
+      },
+      "ignore_distortion_displacement_native_px": {
+        "p50": 0.9725992092820401,
+        "p95": 7.4045198851845155,
+        "p99": 8.459364245144421,
+        "max": 8.793678406901758
+      },
+      "abs_color_z_minus_depth_z_m": {
+        "p50": 0.009515579711617761,
+        "p95": 0.04985136440376259,
+        "p99": 0.07939294400183529,
+        "max": 0.10481338545555019
+      },
+      "sample_depth_pixels_sha256_verified": true,
+      "original_jpeg_sha256_verified": true
+    },
+    {
+      "sample_id": 13,
+      "relative_time_s": 192.926678,
+      "depth_minus_rgb_ms": 0.085,
+      "native_depth_pixels": 407040,
+      "non_sentinel_pixels": 386920,
+      "non_sentinel_fraction": 0.9505699685534591,
+      "native_depth_bins_m": [
+        0,
+        0.3,
+        3,
+        6,
+        10,
+        20,
+        30,
+        65.535
+      ],
+      "native_depth_bin_counts_among_non_sentinel": [
+        0,
+        61392,
+        127243,
+        34349,
+        88784,
+        67245,
+        7907
+      ],
+      "fraction_of_non_sentinel_in_0p3_3m": 0.15866845859609222,
+      "fraction_of_non_sentinel_in_0p3_6m": 0.48752972190633725,
+      "fraction_of_non_sentinel_in_0p3_10m": 0.5763051793652435,
+      "fraction_of_non_sentinel_above_20m": 0.19423136565698335,
+      "native_depth_quantiles_m": {
+        "p50": 6.287,
+        "p95": 24.799,
+        "p99": 33.478,
+        "max": 40.58
+      },
+      "projected_points_in_native_rgb_fraction": 0.8258554739997932,
+      "native_rgb_single_point_zbuffer_coverage": 0.34666341145833335,
+      "rectified_640_single_point_zbuffer_coverage": 0.9597005208333333,
+      "rectified_640_0p3_6m_fraction_of_all_pixels": 0.4269618055555556,
+      "rectified_rgb_valid_mapping_fraction": 1.0,
+      "resize_only_vs_calibrated_displacement_native_px": {
+        "p50": 39.04082696613503,
+        "p95": 65.33612607495911,
+        "p99": 70.74067543582393,
+        "max": 79.47118260757
+      },
+      "ignore_distortion_displacement_native_px": {
+        "p50": 0.9570274310730512,
+        "p95": 7.275399649725322,
+        "p99": 8.287476346903183,
+        "max": 8.79368029469475
+      },
+      "abs_color_z_minus_depth_z_m": {
+        "p50": 0.009753157050718997,
+        "p95": 0.04320498991150374,
+        "p99": 0.06483020792909529,
+        "max": 0.1034583228228172
+      },
+      "sample_depth_pixels_sha256_verified": true,
+      "original_jpeg_sha256_verified": true
+    },
+    {
+      "sample_id": 24,
+      "relative_time_s": 369.339766,
+      "depth_minus_rgb_ms": 0.091,
+      "native_depth_pixels": 407040,
+      "non_sentinel_pixels": 372970,
+      "non_sentinel_fraction": 0.9162981525157232,
+      "native_depth_bins_m": [
+        0,
+        0.3,
+        3,
+        6,
+        10,
+        20,
+        30,
+        65.535
+      ],
+      "native_depth_bin_counts_among_non_sentinel": [
+        0,
+        232226,
+        50020,
+        11060,
+        35029,
+        36526,
+        8109
+      ],
+      "fraction_of_non_sentinel_in_0p3_3m": 0.6226398906078237,
+      "fraction_of_non_sentinel_in_0p3_6m": 0.7567525538247044,
+      "fraction_of_non_sentinel_in_0p3_10m": 0.7864064133844545,
+      "fraction_of_non_sentinel_above_20m": 0.11967450465184867,
+      "native_depth_quantiles_m": {
+        "p50": 2.317,
+        "p95": 24.348,
+        "p99": 34.337,
+        "max": 40.58
+      },
+      "projected_points_in_native_rgb_fraction": 0.8345952757594445,
+      "native_rgb_single_point_zbuffer_coverage": 0.3377408854166667,
+      "rectified_640_single_point_zbuffer_coverage": 0.9306987847222222,
+      "rectified_640_0p3_6m_fraction_of_all_pixels": 0.7145920138888889,
+      "rectified_rgb_valid_mapping_fraction": 1.0,
+      "resize_only_vs_calibrated_displacement_native_px": {
+        "p50": 37.02922983622625,
+        "p95": 60.60406799095636,
+        "p99": 65.91982502960782,
+        "max": 73.66223767917432
+      },
+      "ignore_distortion_displacement_native_px": {
+        "p50": 0.8260511636216328,
+        "p95": 7.118152607048814,
+        "p99": 8.476836640772301,
+        "max": 8.793691563282247
+      },
+      "abs_color_z_minus_depth_z_m": {
+        "p50": 0.00365856575409107,
+        "p95": 0.047286241639220704,
+        "p99": 0.06517718055135292,
+        "max": 0.09967695713552871
+      },
+      "sample_depth_pixels_sha256_verified": true,
+      "original_jpeg_sha256_verified": true
+    },
+    {
+      "sample_id": 25,
+      "relative_time_s": 106.29556,
+      "depth_minus_rgb_ms": -5.879,
+      "native_depth_pixels": 407040,
+      "non_sentinel_pixels": 381914,
+      "non_sentinel_fraction": 0.9382714229559749,
+      "native_depth_bins_m": [
+        0,
+        0.3,
+        3,
+        6,
+        10,
+        20,
+        30,
+        65.535
+      ],
+      "native_depth_bin_counts_among_non_sentinel": [
+        3,
+        32479,
+        67122,
+        38502,
+        143825,
+        82068,
+        17915
+      ],
+      "fraction_of_non_sentinel_in_0p3_3m": 0.08504270594950696,
+      "fraction_of_non_sentinel_in_0p3_6m": 0.2607943149504862,
+      "fraction_of_non_sentinel_in_0p3_10m": 0.3616075870483931,
+      "fraction_of_non_sentinel_above_20m": 0.2617945401320716,
+      "native_depth_quantiles_m": {
+        "p50": 14.096,
+        "p95": 29.759,
+        "p99": 37.198,
+        "max": 41.848
+      },
+      "projected_points_in_native_rgb_fraction": 0.8191687133752625,
+      "native_rgb_single_point_zbuffer_coverage": 0.3394650607638889,
+      "rectified_640_single_point_zbuffer_coverage": 0.9393185763888889,
+      "rectified_640_0p3_6m_fraction_of_all_pixels": 0.2210329861111111,
+      "rectified_rgb_valid_mapping_fraction": 1.0,
+      "resize_only_vs_calibrated_displacement_native_px": {
+        "p50": 39.005765623310864,
+        "p95": 66.26034400182877,
+        "p99": 71.27149389856484,
+        "max": 79.83802532627357
+      },
+      "ignore_distortion_displacement_native_px": {
+        "p50": 1.1152284119454117,
+        "p95": 7.422167573942598,
+        "p99": 8.474137285065968,
+        "max": 8.793693923345016
+      },
+      "abs_color_z_minus_depth_z_m": {
+        "p50": 0.016431470834175954,
+        "p95": 0.04782582238955975,
+        "p99": 0.06246868816935935,
+        "max": 0.09970131006564742
+      },
+      "sample_depth_pixels_sha256_verified": true,
+      "original_jpeg_sha256_verified": true
+    }
+  ],
+  "limits": [
+    "Numeric code presence is not depth accuracy; no independent range or calibration ground truth.",
+    "Projection displacement compares algorithms, not observed calibration error.",
+    "Four samples are not a continuous sequence and cannot establish camera trajectory, drift or full-recording quality.",
+    "Single-point z-buffer leaves sampling holes, especially at the larger RGB resolution; no complete training data set was produced.",
+    "Edge overlays are qualitative diagnostics, not measured ground-truth edge residuals."
+  ],
+  "preview": "sample_projection_review.jpg"
+}

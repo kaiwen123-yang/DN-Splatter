@@ -1,0 +1,293 @@
+{
+  "schema_version": 1,
+  "kind": "capture_geometry_execution_plan_not_measured_result",
+  "updated_date": "2026-11-19",
+  "timezone": "Asia/Shanghai",
+  "status": "planned_not_executed",
+  "measured_results": null,
+  "goal": "Prepare and verify a compact first-scene RGB-D geometry dataset and metric camera poses before generating normal priors or training DN-Splatter.",
+  "source": {
+    "audit_commit": "a13bb40445c1c049c2931094e533a5ed43472297",
+    "audit_run_id": "20261119T091841Z-3982cb26",
+    "audit_directory": "reports/capture-bag-audit/20261119T091841Z-3982cb26",
+    "originally_requested_windows_path": "H:\\capture.bag",
+    "resolved_windows_file": "H:\\capture.bag\\capture.bag",
+    "requested_path_is_directory": true,
+    "wsl_candidate_file": "/mnt/h/capture.bag/capture.bag",
+    "wsl_condition": "Use only after confirming actual local access and source identity; do not infer a mount or an AutoDL path.",
+    "sha256": "3982cb269ea03ddf4234b45f74be27143eb66bcd807e4e471d0f3a9cd6b03b59",
+    "bytes": 5919666852,
+    "format_from_audit": "ROS1 bag v2.0 / Orbbec Gemini 335 SDK extended messages",
+    "read_only": true,
+    "upload_original_bag": false,
+    "full_bag_copy_or_extraction": false
+  },
+  "segment": {
+    "scene_id": "capture-s01",
+    "basis": "Exact device/header timestamps from audit samples #01 and #04; relative to the first depth frame.",
+    "first_depth_device_timestamp_ns": "2426763600000",
+    "rgb_start_timestamp_ns": "2427228619000",
+    "rgb_end_timestamp_ns": "2475353026000",
+    "start_relative_to_first_depth_s": 0.465019,
+    "end_relative_to_first_depth_s": 48.589426,
+    "bounds_inclusive": true,
+    "reference_rgb_vendor_frame_numbers": [
+      1,
+      1443
+    ],
+    "reference_rgb_zero_based_indices": [
+      0,
+      1442
+    ],
+    "frame_number_equals_array_index": false,
+    "rgb_topic": "/cam/sensor_2/frameType_2",
+    "depth_topic": "/cam/sensor_3/frameType_3",
+    "sampling": {
+      "target_rate_hz": 5,
+      "target_period_ns": "200000000",
+      "target_definition": "start_ns + k * 200000000, integer k >= 0, target <= end_ns",
+      "expected_target_count_from_interval": 241,
+      "expected_target_count_is_actual_export_count": false,
+      "selection": "Nearest actual RGB timestamp within the inclusive source interval, earlier frame wins a tie; use each source RGB at most once.",
+      "record_for_every_target": [
+        "candidate_index_zero_based",
+        "target_device_timestamp_ns",
+        "actual_rgb_timestamp_ns",
+        "rgb_zero_based_index",
+        "rgb_vendor_frame_number",
+        "rgb_payload_sha256",
+        "selected_or_dropped",
+        "drop_reason"
+      ],
+      "depth_association": "Use audited device/header nearest-depth association, enforce injective use of actual depth frames and an absolute offset <= 10 ms.",
+      "max_rgb_depth_offset_ns": "10000000",
+      "preserve_actual_timestamps": true,
+      "report_duplicate_selections_unmatched_and_dropped": true,
+      "inspect_all_selected_rgb_frames": true,
+      "quality_screening": "Inspect actual selected frames for decode failures, severe blur, occlusion/dynamic foreground and overlap. Record measured distributions, rejection reasons and retained count; no universal blur threshold is prefilled."
+    }
+  },
+  "execution": {
+    "local": {
+      "host": "Windows machine with the original file, or an already available readable WSL",
+      "reuse": [
+        "existing isolated bag-audit Python environment where compatible",
+        "audited Gemini-specific parser and indexed chunk reader",
+        ".local/bag-audit/20261119T091841Z-3982cb26/times.sqlite when its source identity matches"
+      ],
+      "source_identity_check": "Check resolved path, bytes and mtime against the audit fingerprint. Recompute source SHA-256 when identity differs or the fingerprint cannot be trusted; never claim a changed source is the audited one.",
+      "packet_directory_template": ".local/capture-geometry/<run-id>/transfer",
+      "native_packet_contents": [
+        "selected original JPEG payloads",
+        "selected native uint16 depth arrays as lossless NPZ, retaining raw invalid codes",
+        "calibration and depth-unit provenance",
+        "selection and injective association manifest with exact timestamps",
+        "source identity, script versions and per-file SHA-256 manifest"
+      ],
+      "do_not_rerun_full_audit_without_concrete_need": true,
+      "no_original_source_changes": true,
+      "local_resource_policy": "Recheck local RAM, disk and CPU; use bounded streaming/selected-payload processing. AutoDL's resource allocation is not a local resource measurement.",
+      "git_publication": "Only compact reports, bounded previews and reusable code; neither this native data packet nor derived full datasets belong in ordinary Git."
+    },
+    "transfer": {
+      "destination": "Existing DN-Splatter project on the user's AutoDL instance, in its isolated .local directory.",
+      "use_existing_authorized_connection_only": true,
+      "create_or_guess_ssh_credentials_or_hosts": false,
+      "contents": "Only the compact selected-scene packet, not the 6 GB original recording.",
+      "verify_sender_and_receiver_manifest_sha256": true,
+      "resumable_when_supported": true,
+      "no_archive_required": true,
+      "if_connection_unavailable": "Finish the local packet and report blocked_transfer with its exact ready directory, byte count, packet-manifest SHA-256 and missing connection fact; do not fabricate a transfer or request the original bag upload."
+    },
+    "server": {
+      "preserve_verified_dn_training_environment": true,
+      "separate_preprocessing_environment": ".local/conda/capture-geometry",
+      "reuse_compatible_existing_colmap_read_only": true,
+      "cpu_gpu_policy": "May use all actually allocated AutoDL CPU/GPU resources for the necessary stage, without stopping or modifying existing jobs; record measured capacity and avoid nested oversubscription.",
+      "github_transport": "Prefer AutoDL official academic acceleration in the project command subshell for GitHub operations actually run on AutoDL.",
+      "install_policy": "Inspect existing tool versions and CLI/API support, isolate only missing preprocessing dependencies, and record exact versions/commands. Do not reinstall the working DN environment or global CUDA stack.",
+      "prepared_dataset_directory_template": ".local/data/custom/capture-s01/<run-id>"
+    }
+  },
+  "registration": {
+    "can_run_without_world_camera_poses": true,
+    "transform": "p_color_m = R_depth_to_color @ p_depth_m + translation_mm * 0.001",
+    "extrinsic_source": "Audit calibration.json static_extrinsics depth -> color; verify direction, row-major layout and unit against recorded SDK metadata.",
+    "native_depth": {
+      "dimensions_wh": [
+        848,
+        480
+      ],
+      "dtype": "uint16",
+      "metres_per_count": 0.001,
+      "interpretation": "optical-axis Z in depth-camera coordinates",
+      "invalid_codes": [
+        0,
+        65535
+      ],
+      "preserve_native_packet": true
+    },
+    "rgb_distortion": {
+      "source_order": [
+        "k1",
+        "k2",
+        "k3",
+        "k4",
+        "k5",
+        "k6",
+        "p1",
+        "p2"
+      ],
+      "opencv_order": [
+        "k1",
+        "k2",
+        "p1",
+        "p2",
+        "k3",
+        "k4",
+        "k5",
+        "k6"
+      ],
+      "policy": "Apply the recorded rational Brown-Conrady model or a correctly matched SDK Align implementation; do not assume an enum-4 projection helper handles K6."
+    },
+    "virtual_grids": {
+      "sfm_rgb_dimensions_wh": [
+        1280,
+        720
+      ],
+      "geometry_rgbd_dimensions_wh": [
+        640,
+        360
+      ],
+      "purpose": "Use a documented undistorted RGB optical frame for both resolutions. The 640 grid is an initial geometry-processing choice, not a measured optimal DN training resolution.",
+      "intrinsics": "Save exact K for each grid, rectification/remap and any crop/resize mapping; projection and actual resampling must use the same convention.",
+      "pixel_centres": "SDK/OpenCV image-array coordinates use integer pixel centres; export principal point +0.5 exactly once for COLMAP/Nerfstudio's corner-based coordinates. Do not shift 3D poses when changing pixel-coordinate convention.",
+      "do_not_treat_resize_as_registration": true
+    },
+    "derived_depth": {
+      "quantity": "Z_C after transforming into the RGB optical coordinate system",
+      "format": "float32 .npy",
+      "unit": "metre",
+      "invalid_value": 0,
+      "overlap_resolution": "z-buffer nearest positive Z_C at each target pixel",
+      "fill_missing_depth": false,
+      "linear_interpolation_across_holes_or_depth_edges": false,
+      "depth_validity_is_rgb_mask_path": false,
+      "retain_coverage_and_occlusion_masks_separately": true,
+      "avoid_automatic_datamanager_undistortion": "Export already-corrected RGB and matching depth with zero distortion metadata; historical GDataset uses sensor_depth, which is not jointly rectified by the parent datamanager."
+    },
+    "distance_diagnostics": {
+      "candidate_windows_m": [
+        [
+          0.3,
+          3
+        ],
+        [
+          0.3,
+          6
+        ],
+        [
+          0.3,
+          10
+        ]
+      ],
+      "are_verified_sensor_accuracy_ranges": false,
+      "final_supervision_range_m": null,
+      "policy": "Report valid-code and usable-near-surface fractions separately, depth distributions and boundary stability. Choose a supervision/scale-estimation range from actual evidence; preserve far values in native data and never silently call all non-sentinel depths accurate."
+    }
+  },
+  "splits_and_poses": {
+    "freeze_splits_after_quality_screening_before_pose_scale_or_training": true,
+    "split_rule": "Sort retained initial 5 Hz candidates by actual RGB time; assign a separate zero-based retained_order_index. retained_order_index % 10: 0..7 train, 8 val, 9 test.",
+    "split_input_is_vendor_frame_number_or_raw_bag_index": false,
+    "save_exact_filenames_timestamps_source_indices_and_hashes": true,
+    "evaluation_scope": "Held-out views within this capture, not an independently captured scene/trajectory and not an external geometric ground truth.",
+    "primary_method": "COLMAP calibrated RGB SfM, one shared fixed intrinsic camera per actual grid, with explicitly disabled focal/principal-point/distortion refinement.",
+    "primary_map_inputs": "Training RGB only.",
+    "metric_scale_inputs": "Training-camera observations of training-map points and valid registered training depth only.",
+    "metric_scale_policy": "Estimate one robust global positive scale for the connected model; save sample/track selection, rejection rules, residual distributions and per-time/depth stability. Apply the same scale to camera translations and map points. Do not fit a separate scale per frame or use held-out depth.",
+    "heldout_pose_policy": "Localize each held-out RGB against the fixed training map with PnP/pose refinement only. Do not optimize the map or shared intrinsics with held-out observations; do not use held-out depth in localization or scale fitting.",
+    "missing_heldout_poses": "Report all failures and denominators; never silently drop failed held-out views or substitute identity poses.",
+    "all_rgb_sfm_alternative": "If separately attempted, label it all_rgb_sfm_diagnostic and disclose that held-out RGB influenced pose/map estimation. Keep its outputs/metrics separate; it is not the strict training-map protocol.",
+    "continuity_failure_escalation": [
+      "Inspect registration failures, graph components, actual overlap, blur and candidate-gap locations.",
+      "Request extra source frames only around actual gaps, first at 10 Hz and then native rate if justified. Record new bridge frames as training-map support and keep initial val/test IDs frozen.",
+      "If geometry still fails, use one explicitly recorded Open3D RGB-D odometry/pose-graph alternative on the verified common grid; retain its own evaluation-input disclosure and compare residuals."
+    ],
+    "default_start_full_vio_or_parallel_slam_sweep": false,
+    "imu_policy": "Retain the existence/provenance of IMU; do not treat zero orientation quaternions as camera poses and do not require a new VIO calibration project for this stage.",
+    "engineering_targets": {
+      "dominant_training_model_registered_fraction": 0.9,
+      "scope": "Target for pipeline coverage, not a camera-pose accuracy guarantee or a universal paper threshold.",
+      "enforce_universal_reprojection_pixel_or_geometry_cm_threshold": false
+    },
+    "required_pose_evidence": [
+      "all attempted/registered/unregistered train and held-out image IDs",
+      "connected components and retained time coverage",
+      "track lengths, triangulation/baseline evidence and reprojection-error distributions",
+      "relative trajectory, discontinuities and localized held-out failures",
+      "metric scale fit residuals and temporal/distance stability",
+      "occlusion-aware cross-view depth/point-cloud consistency with the exact masks and sample counts",
+      "same-view and cross-view overlays of actual nearby surfaces"
+    ]
+  },
+  "completion": {
+    "output": "Geometry report and, only when evidence supports it, a prepared dataset with real camera poses and matching RGB-grid depth.",
+    "on_failed_geometry": "Keep the diagnostic report, actual failures and partial packet/model; do not mark a trainable dataset complete.",
+    "generate_normal_priors_this_round": false,
+    "start_dn_training_this_round": false,
+    "start_poisson_this_round": false,
+    "change_or_stop_existing_autodl_runs": false,
+    "training_ready": false,
+    "subsequent_dn_requirements": {
+      "upstream_commit": "811f5cdf342d92d12a9d9a4be185d374c430c184",
+      "parser": "normal-nerfstudio",
+      "pose": "Per-frame metric RGB-camera c2w, convert OpenCV c2w by right-multiplying diag(1,-1,-1,1) for OpenGL; invert COLMAP w2c first.",
+      "depth": "Matching-grid Z_C float32 metres .npy, zero invalid, depth_unit_scale_factor=1.0.",
+      "auto_scale_poses": false,
+      "scale_factor": 1,
+      "orientation_method": "none",
+      "center_method": "none",
+      "parser_downscale_factor": 1,
+      "camera_res_scale_factor": 1,
+      "num_downscales": 0,
+      "point_initialization": "Construct from allowed training RGB-D frames only; supply a real ply_file_path before the default load_pcd_normals path is enabled.",
+      "normals": "Generate Omnidata later from the final processed training-grid RGB, save same-stem PNGs in normals_from_pretrain, use the verified opengl convention and check exact per-frame correspondence.",
+      "depth_validity": "Historical DN only tests depth > depth_tolerance; invalid 65535 and rejected/unknown depths must already be zero.",
+      "no_gt_geometry_accuracy_claim": "No Faro/F-score/absolute mesh accuracy without independent geometric ground truth."
+    }
+  },
+  "deliverables": {
+    "report_directory_template": "reports/capture-geometry/<run-id>",
+    "latest_pointer": "reports/capture-geometry/latest.json",
+    "report_files": [
+      "overview.md",
+      "summary.json",
+      "selection.json",
+      "registration.json",
+      "pose_quality.json",
+      "scale_alignment.json",
+      "split_manifest.json",
+      "dataset_manifest.json",
+      "artifact_manifest.json"
+    ],
+    "previews_directory": "previews",
+    "report_requirements": [
+      "source audit commit and full bag SHA-256",
+      "actual selected, decoded, exported and transferred counts",
+      "packet manifest SHA-256 and verified recipient status",
+      "exact tool versions, code versions and executed commands",
+      "actual grid intrinsics, distortion/coordinate transformations and depth coverage",
+      "primary versus alternative reconstruction protocol identity",
+      "all pose and scale failures plus evidence-based next action",
+      "prepared dataset location, file sizes and hashes, or the precise blocking stage"
+    ],
+    "public_report_target_bytes": 20971520,
+    "public_report_maximum_bytes": 52428800,
+    "raw_or_bulk_data_in_git": false,
+    "original_audit_and_vr_room_reports_unchanged": true,
+    "latest_pointer_and_report_same_commit": true,
+    "force_push": false,
+    "reusable_scripts_in_tracked_scripts_directory": true
+  }
+}

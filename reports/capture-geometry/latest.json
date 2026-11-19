@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "updated_date": "2026-11-19",
+  "timezone": "Asia/Shanghai",
+  "status": "planned_not_executed",
+  "kind": "geometry_preparation_task_pointer",
+  "input_audit_commit": "a13bb40445c1c049c2931094e533a5ed43472297",
+  "input_audit_run": "20261119T091841Z-3982cb26",
+  "source_bag_sha256": "3982cb269ea03ddf4234b45f74be27143eb66bcd807e4e471d0f3a9cd6b03b59",
+  "resolved_source_windows_path": "H:\\capture.bag\\capture.bag",
+  "sample_review": "reports/capture-bag-review/2026-11-19/overview.md",
+  "plan": "configs/capture_geometry_protocol.json",
+  "run_id": null,
+  "report_directory": null,
+  "source_pairs_exported": null,
+  "data_transferred_to_autodl": null,
+  "camera_poses_estimated": null,
+  "metric_scale_verified": null,
+  "dataset_path": null,
+  "training_started": false,
+  "measured_results": null
+}

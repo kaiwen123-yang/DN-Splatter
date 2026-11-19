@@ -10,11 +10,11 @@
 
 ## 开始前读取
 
-**当前阶段（2026-11-19）：首轮已完成，结果提交为 `c747cc92d70055d5d5ceb70699e85b77faad87da`。用户最新要求先让本地 Codex 详细分析 `H:\capture.bag`（用户估计约 6GB），回传结果后再由后续审查决定自有数据接入方式。** 当前入口是 `prompts/local_capture_bag_audit.md`、`docs/07_local_bag_audit.md` 和 `configs/capture_bag_audit.json`。已知原始路径，不等于已经读取文件、确认格式或得到可训练数据。
+**当前阶段（2026-11-19）：VR Room 首轮完成；本地 bag 审计也已完成并回传 `a13bb40445c1c049c2931094e533a5ed43472297`。** 已确认实际原件为 `H:\capture.bag\capture.bag`，上层是目录；设备为 Gemini 335。请先读 `reports/capture-bag-review/2026-11-19/overview.md`、`docs/08_capture_geometry_plan.md`、`configs/capture_geometry_protocol.json`，按所在位置执行 `prompts/local_capture_geometry.md` 或 `prompts/autodl_capture_geometry.md`。
 
-这轮仅做本地只读审计和小型证据回传，不自动开始全量数据转换、SfM/SLAM 或训练。必须在能实际读取 H 盘的 Windows 本机或其已可用 WSL 中执行；AutoDL 不能凭这个 Windows 路径访问原包。完整原包不上传、不全量复制、不改写、不重索引。所有实际数据结论保持未测，直到本地真实执行。
+下一阶段是指定首段提取、同帧 D2C、相机轨迹和米制几何验证、条件满足时准备真实数据集。允许按新协议执行必要的 COLMAP/SfM 和有限失败备选；不要继续用上一轮“只审计、禁止SfM”的结束条件阻塞当前数据准备。四组公开样例的同帧投影已在本次复核执行，首段提取/传输/位姿求解仍是计划。新任务到几何报告回传为止，不自动运行法线推理、DN训练或Poisson。
 
-原第二轮 A/B 基准任务保留在 `docs/04_round2_plan.md` 和 `configs/round2_protocol.json`。本地审计不会启动它们，也不终止已经运行的 AutoDL 任务；不要因为本地暂时缺少 GPU、CUDA 或服务器连接而把 bag 只读分析当作受阻。报告回传后的自有数据转换和训练另据真实证据继续安排。
+原包只读留在 Windows；本地依现有SQLite索引提取约5Hz的选定原值帧，AutoDL只接收紧凑派生包，不能凭Windows路径访问原件。保留原始审计与VR Room结果。原第二轮 A/B 基准计划仍在 `docs/04_round2_plan.md`，本次不新增它们，也不终止已在执行的服务器任务。
 
 首轮 docs/00、01、02、03、05 和 `configs/vr_room_protocol.json` 继续作为实现/协议依据；已有环境与 VR Room checkpoint 不从头重做。先检查本项目工作区和远端，保留用户已有未提交修改。计划与已执行记录分开，第二轮未运行的指标不得填入完成状态。
 
@@ -63,7 +63,7 @@
 
 Nerfstudio 1.1.3 的恢复训练会把 max_num_iterations 作为本次追加步数。累计目标是 30,000，零基最后 step=29,999；从 checkpoint 读取实际 saved_step，使用 `remaining=30000-(saved_step+1)`，保留原 30,000 步调度和原数据配置。不要从中间 checkpoint 再盲目加 30,000。不要用未经核实的 `--load-config` 覆盖规则丢失参数。
 
-每 5,000 步保存 checkpoint，保留必要中间点。常规图像/点云/评估检查足以判定下一步时就进入完整训练，不堆叠无关 smoke tests。
+正式训练阶段每5,000步保存checkpoint，保留必要中间点；必要检查充分后进入该阶段完整训练，不堆叠无关smoke tests。**当前docs/08阶段只做首段几何准备，以上训练恢复规则不构成提前开启训练的入口。**
 
 ## 证据与推送
 

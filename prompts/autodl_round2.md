@@ -1,6 +1,6 @@
 # 给 AutoDL Codex：第二轮执行提示词
 
-> 最新任务说明（2026-11-19）：用户当前先安排本地 `H:\capture.bag` 只读审计，入口为 `prompts/local_capture_bag_audit.md`。本文件继续服务 AutoDL 基准任务；不要把 Windows 原包路径当作服务器训练目录。已有服务器任务不停止，自有数据分支等待本地报告回传与审查。
+> 最新任务说明（2026-11-19）：本地审计已完成，自有数据分支改按 `prompts/local_capture_geometry.md` 和 `prompts/autodl_capture_geometry.md` 准备首段几何。本文件继续服务AutoDL基准任务；实际原件在本机 `H:\capture.bag\capture.bag`，不能作为服务器目录。已有任务不停止，自有数据训练等待几何报告。
 
 请在我的 DN-Splatter AutoDL 项目中实际执行第二轮。仓库：
 https://github.com/kaiwen123-yang/DN-Splatter.git
@@ -13,7 +13,7 @@ https://github.com/kaiwen123-yang/DN-Splatter.git
 
 A. 不重训 VR Room，使用原 checkpoint、渲染和网格补齐诊断。
 B. 固定 coffee_room/iPhone 作为第二场景，完整 30k、双轨迹评估、Poisson 和几何评价。
-C. 准备自有数据入口；现有本地原包 H:\capture.bag 的内容待审计，C 标为 awaiting_local_bag_audit。保持已运行的 A/B，不因该本地路径自动启动自有数据转换或训练。
+C. 准备自有数据入口；bag审计已回传a13bb40，C标为audited_geometry_preparation_planned。自有数据准备依docs/08独立执行，保持已运行的A/B，不因原包路径存在而自动开启训练。
 
 【先解决跨场景运行器问题】
 
@@ -39,9 +39,9 @@ C. 准备自有数据入口；现有本地原包 H:\capture.bag 的内容待审�
 
 【C：自有数据】
 
-我已提供本地原包 H:\capture.bag，约6GB。它不在本 AutoDL 实例上，本地 Codex 将按 docs/07 做只读审计和小型回传。先保留独立入口和输入说明，原始路径与可训练的 dataset_path 分开；不要把其他项目数据自动当作本项目输入。
+本地原包实际为 H:\capture.bag\capture.bag，约6GB，已完成审计。按docs/08，本地将提取首段紧凑数据包，本服务器只在收到对应hash/manifest后恢复轨迹并准备派生数据。原始路径与可训练dataset_path分开，不使用其他项目数据代替。
 
-回传报告审查确定方案后，再按 docs/06 准备数据。静态RGB-D、内参、逐帧相机位姿齐全时可用历史normal-nerfstudio路径，显式预计算Omnidata，注意单位/轴约定/深度配准/初始化点云。新场景重新初始化并优化，不使用VRRoom checkpoint直接推理新场景。当前不启动该自有场景训练；没有几何GT就不计算或伪造Faro/F-score。
+当前先按docs/08完成配准、SfM米制轨迹和几何报告，暂不法线推理/训练。几何准备完成后的新场景仍需重新初始化并优化，不使用VRRoom checkpoint直接推理；没有几何GT不计算或伪造Faro/F-score。
 
 【持续执行与交付】
 

@@ -2,9 +2,9 @@
 
 更新日期：2026-11-19（Asia/Shanghai）。审查基于用户仓库提交 `c747cc92d70055d5d5ceb70699e85b77faad87da` 和官方历史源码 `811f5cdf342d92d12a9d9a4be185d374c430c184`。
 
-**当前状态：`awaiting_local_bag_audit`。用户已提供本地原始录制路径 `H:\capture.bag`，估计约 6GB；本轮先由本地 Codex 只读分析，回传后再判断接入方式。** 文件格式、实际大小、RGB/RGB-D 类型、内参、逐帧相机位姿、深度单位与配准、场景静动态均尚未实测。本文件没有声称已经转换或训练自有数据，也不把其他机器人项目的传感器或数据自动认作该文件来源。
+**当前状态：`audited_geometry_preparation_planned`。用户已在本地完成 Gemini 335 审计，回传提交 `a13bb40445c1c049c2931094e533a5ed43472297`。** 实际原件为 `H:\capture.bag\capture.bag`；RGB、毫米轴向Z、双相机标定和设备时间可用，无逐帧相机位姿。四组公开样例已有同帧D2C计算和目视复核，尚未得到首段连续轨迹或可训练数据集。
 
-当前执行入口：[本地审计手册](07_local_bag_audit.md)、[Codex 提示词](../prompts/local_capture_bag_audit.md)、[回传协议](../configs/capture_bag_audit.json)。原包留本地；不要求上传到 ChatGPT、GitHub 或 AutoDL。以下转换与训练章节供回传审查后使用，不是本轮立即执行的命令。
+当前入口：[数据复核](../reports/capture-bag-review/2026-11-19/overview.md)、[首段几何计划](08_capture_geometry_plan.md)、[本地提示词](../prompts/local_capture_geometry.md)、[AutoDL提示词](../prompts/autodl_capture_geometry.md)。本轮执行提取/配准/SfM尺度与几何核验，原包留本地，仅传选定数据包；以下训练章节留作几何报告通过后的步骤。
 
 ## 1. 现在能否直接处理
 
@@ -30,7 +30,7 @@ RGB-only 路径在历史源码中存在，但当前成功运行的证据来自 s
 
 ## 3. 当前输入和需要核实的内容
 
-用户已经给出 `H:\capture.bag`，不重复索要约 6GB 原包。由可访问该路径的本地 Codex 从真实录制中读取能确认的信息，返回小型报告和带标定/时间关联的代表 RGB/原数值深度样例；仍缺失的内容在报告中明确列出。路径存在与 `.bag` 扩展名本身不能证明格式、相机型号或是否具备位姿。
+输入已核实为 `H:\capture.bag\capture.bag` 的 Orbbec Gemini 335 SDK 扩展录制。复用已有解析器、SQLite索引和已回传报告，不再要求用户重复填写标定/话题信息。下一步需要从本地原件导出指定首段并恢复实际相机位姿，不能根据四个跨时段样例补造轨迹。
 
 只读盘点用户指定的目录，生成以下事实记录：
 
@@ -47,9 +47,11 @@ RGB-only 路径在历史源码中存在，但当前成功运行的证据来自 s
 
 ## 4. 首选 RGB-D 接入协议
 
+**本次 Gemini 数据的具体转换以 docs/08 为准。** 必须离线统一去畸变RGB与D2C深度，使用彩色光轴Z；推荐米制float32 .npy、无效为0、depth_unit_scale_factor=1。原NPZ是回传格式，65535不能直接参与监督。保留K_cv与K_colmap/ns的半像素映射；不依赖父datamanager自动校正sensor_depth。DN的num_downscales保持0，深度mask不直接作为全RGB mask_path。
+
 ### 4.1 建立独立工作副本
 
-回传审查确定接入方案后，在 AutoDL 沿用已有项目 Conda 和缓存，创建 `.local/data/custom/<scene-id>/` 及 `.local/runs/<new-run-id>/`。原始采集只读保留；预处理、法线和初始化点云写入本项目工作副本。未从实际数据确认的标定、位姿和单位不得补造；当前只读审计不建立全量训练副本。
+按docs/08在AutoDL创建 `.local/data/custom/<scene-id>/` 及 `.local/runs/<new-run-id>/`，复用已有资源并将缺少的预处理依赖隔离。原始采集只读保留；当前只处理指定首段，派生图像、深度和初始化点云写入本项目工作副本。位姿与尺度必须来自真实求解；法线推理和训练留到几何报告审查之后。
 
 推荐文件组织为 `images/`、`depth/`、`normals_from_pretrain/`、`transforms.json` 和训练帧初始化点云。各图像使用统一补零编号，例如 `frame_00001`，避免图像与法线的排序不同。
 
