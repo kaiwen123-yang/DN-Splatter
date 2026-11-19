@@ -8,6 +8,14 @@
 /wandb/
 /logs/
 
+# Original sensor recordings stay local; only bounded audit evidence is committed
+*.bag
+*.bag.active
+*.db3
+*.db3-shm
+*.db3-wal
+*.mcap
+
 # Python/tool cache
 __pycache__/
 *.py[cod]

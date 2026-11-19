@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "updated_date": "2026-11-19",
+  "timezone": "Asia/Shanghai",
+  "status": "awaiting_local_execution",
+  "kind": "planned_task_pointer_not_a_measured_result",
+  "user_reported_source": {
+    "windows_path": "H:\\capture.bag",
+    "approximate_size_gb": 6,
+    "size_is_user_estimate": true
+  },
+  "source_access_verified": false,
+  "source_format": null,
+  "source_sha256": null,
+  "source_bytes": null,
+  "run_id": null,
+  "report_directory": null,
+  "measured_results": null,
+  "training_readiness": null,
+  "plan": "configs/capture_bag_audit.json",
+  "instructions": "docs/07_local_bag_audit.md",
+  "prompt": "prompts/local_capture_bag_audit.md",
+  "next_action": "Run the read-only audit with Codex on the local Windows computer or its already available WSL that can actually access the specified source. Return compact evidence for subsequent review; do not upload the original recording or start training."
+}

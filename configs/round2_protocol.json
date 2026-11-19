@@ -12,7 +12,8 @@
     "reuse_verified_environment": true,
     "max_concurrent_new_scene_trainers": 1,
     "training_walltime_deadline": null,
-    "github_transport": "AutoDL official academic acceleration in project command subshell"
+    "github_transport": "AutoDL official academic acceleration in project command subshell",
+    "applies_to": "AutoDL benchmark and later training; local audit resources must be measured separately"
   },
   "vr_room_audit": {
     "source_run_id": "vr-room-iphone-30k",
@@ -20,10 +21,18 @@
     "retrain": false,
     "overwrite_original_outputs": false,
     "expected_final_checkpoint_step": 29999,
-    "expected_frame_counts": {"train": 376, "within": 42, "with": 186},
+    "expected_frame_counts": {
+      "train": 376,
+      "within": 42,
+      "with": 186
+    },
     "official_culling_view_count": 418,
     "strict_train_only_culling_view_count": 376,
-    "geometry_eval_seeds": [0, 1, 2],
+    "geometry_eval_seeds": [
+      0,
+      1,
+      2
+    ],
     "first_run_mesh_sampling_seed": "unknown",
     "first_run_geometry_eval_seed": "unknown",
     "required_outputs": [
@@ -58,17 +67,25 @@
   },
   "custom_data": {
     "dataset_path": null,
-    "status": "waiting_for_dataset",
+    "status": "awaiting_local_bag_audit",
     "preferred_input": "static multiview RGB-D with calibrated RGB intrinsics and per-frame camera-to-world poses",
     "preferred_parser": "normal-nerfstudio",
     "use_vr_room_gaussian_checkpoint": false,
     "normal_prior": "Omnidata, explicit precomputation and per-frame correspondence check",
     "geometry_ground_truth_available": null,
     "generate_geometry_accuracy_without_gt": false,
-    "complete_one_scene_if_inputs_are_provided_and_valid": true
+    "complete_one_scene_if_inputs_are_provided_and_valid": false,
+    "raw_source_windows_path": "H:\\capture.bag",
+    "raw_source_content_verified": false,
+    "audit_plan": "configs/capture_bag_audit.json",
+    "audit_prompt": "prompts/local_capture_bag_audit.md",
+    "audit_status_pointer": "reports/capture-bag-audit/latest.json",
+    "wait_for_returned_audit_review_before_conversion_or_training": true,
+    "later_training_policy": "After the requested local audit is returned and reviewed, determine the missing preparation and an explicit custom-scene execution plan."
   },
   "preserve_first_run_results": true,
   "automatic_extra_ablations": false,
   "automatic_remaining_benchmark_scenes": false,
-  "measured_round2_results": null
+  "measured_round2_results": null,
+  "active_user_request": "local_capture_bag_audit_then_review"
 }

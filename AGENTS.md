@@ -10,13 +10,19 @@
 
 ## 开始前读取
 
-**当前阶段（2026-11-19）：首轮已完成，结果提交为 `c747cc92d70055d5d5ceb70699e85b77faad87da`。** 接续任务先读 `reports/review_2026-11-19.md`、`docs/04_round2_plan.md`、`docs/06_custom_data.md` 和 `configs/round2_protocol.json`。第二轮允许用原 checkpoint 补诊断、固定 coffee_room 第二场景及自有数据入口准备；真实自有数据提供且核验通过后可进行一个自有场景完整运行。自有数据尚未给出时只等待该分支，继续基准工作。
+**当前阶段（2026-11-19）：首轮已完成，结果提交为 `c747cc92d70055d5d5ceb70699e85b77faad87da`。用户最新要求先让本地 Codex 详细分析 `H:\capture.bag`（用户估计约 6GB），回传结果后再由后续审查决定自有数据接入方式。** 当前入口是 `prompts/local_capture_bag_audit.md`、`docs/07_local_bag_audit.md` 和 `configs/capture_bag_audit.json`。已知原始路径，不等于已经读取文件、确认格式或得到可训练数据。
+
+这轮仅做本地只读审计和小型证据回传，不自动开始全量数据转换、SfM/SLAM 或训练。必须在能实际读取 H 盘的 Windows 本机或其已可用 WSL 中执行；AutoDL 不能凭这个 Windows 路径访问原包。完整原包不上传、不全量复制、不改写、不重索引。所有实际数据结论保持未测，直到本地真实执行。
+
+原第二轮 A/B 基准任务保留在 `docs/04_round2_plan.md` 和 `configs/round2_protocol.json`。本地审计不会启动它们，也不终止已经运行的 AutoDL 任务；不要因为本地暂时缺少 GPU、CUDA 或服务器连接而把 bag 只读分析当作受阻。报告回传后的自有数据转换和训练另据真实证据继续安排。
 
 首轮 docs/00、01、02、03、05 和 `configs/vr_room_protocol.json` 继续作为实现/协议依据；已有环境与 VR Room checkpoint 不从头重做。先检查本项目工作区和远端，保留用户已有未提交修改。计划与已执行记录分开，第二轮未运行的指标不得填入完成状态。
 
 所有后续场景和审计使用独立 run 目录及身份清单，不用旧 checkpoint、指标文件或完成标记误跳新场景阶段。保留第一轮原始 JSON/PLY；规范化审计指标另存，不静默修改历史实验结论。
 
 ## 隔离边界
+
+以下 GPU、CUDA、25 核和 Conda 训练环境约定适用于 AutoDL。**本地 bag 审计另行盘点本机 CPU/RAM、磁盘和 Python，优先复用兼容读取工具；缺依赖时建立本项目专属轻量 venv 或 Conda 环境。** 不向 base、系统 Python 或其他项目装包，不要求安装完整 ROS、Docker、WSL 或复制 Blackwell/CUDA 环境。原始文件只读；小型报告写仓库，完整时间表和临时输出放项目 `.local/`。
 
 1. 先只读盘点 GPU 进程、利用率、显存、CPU/RAM、磁盘、Conda 前缀和现成工具链。不要启动全 GPU 压测来“检查环境”。
 2. 不结束、暂停、重启或修改其他项目进程，不关闭实例，不重启容器，不设置自动关机或任务完成时限。
@@ -31,6 +37,8 @@
 ## GitHub 与网络
 
 用户明确要求 GitHub 优先使用 AutoDL 官方学术加速。AutoDL 上的 GitHub clone/fetch/push、GitHub 源码依赖下载，先在本项目子 shell 中 `source /etc/network_turbo`，保留原始 `https://github.com/...` 地址。参考 https://www.autodl.com/docs/network_turbo/ 。
+
+该加速约定按执行位置适用。本地 Windows/WSL 审计使用本机现有 GitHub 连接和凭据，不假定存在 AutoDL 的 `/etc/network_turbo`，不复制 AutoDL 代理或修改全局代理。
 
 不得向 .bashrc、全局 gitconfig 或其他项目写代理。加速脚本缺失/不可用时记录，再尝试官方域名直连，保留可重试工作；不要臆造加速端口、证书设置或第三方镜像。禁止关闭 TLS 校验。Zenodo/PyPI/Conda 未被官方内置服务列为支持域，独立处理这些下载，避免错误代理影响正常网络。
 

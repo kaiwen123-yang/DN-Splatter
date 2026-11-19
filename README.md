@@ -13,12 +13,17 @@
 - 目标 AutoDL 已完成盘点，独立 Python 3.10 环境及 VR Room iPhone/Faro 几何包已就位。最新实测阶段、checkpoint 和指标见 [运行状态](reports/latest_status.json)。下文列出的协议数值为目标值。
 - 2026-11-19：VR Room 首轮完整执行结束，结果提交 `c747cc9`。累计 30k；同轨迹 PSNR 26.9720 / SSIM 0.88108；官方网格 F-score@5cm 86.8629%、C-L1 2.5517cm、NC 89.6993%。主要指标接近论文 Table 4，当前结论限于单场景历史实现。
 - 已复核六张图像拼图、两张网格预览及运行/评价脚本，新增 [结果审查](reports/review_2026-11-19.md)、[第二轮计划](docs/04_round2_plan.md) 和 [自有数据接入说明](docs/06_custom_data.md)。第二轮尚未执行。
+- 2026-11-19：用户给出本地原始采集 `H:\capture.bag`，估计约 6GB。最新任务改为 [本地 bag 只读审计](docs/07_local_bag_audit.md)，由可访问 H 盘的本地 Codex 执行并回传小型报告。当前仅已准备任务，**文件内容尚未读取、可训练性尚未确认**；不上传原包。
 - 目标不是仅安装成功，而是尽可能在一个持续执行的任务中完成上述完整流程。
 - 原论文历史实现与论文公式存在待核实差异，首轮结果应标记为“固定历史官方实现的单场景基线”，不能提前称完整论文复现成功。
 
 ## 从这里开始
 
-继续工作请使用 [第二轮 Codex 提示词](prompts/autodl_round2.md)：保留现有 VR Room 结果，补齐诊断，复现 coffee_room 并准备自有数据入口。自有数据目录尚未提供，不自动使用其他项目的数据。
+**当前请在本地 Windows 或已能读取 H 盘的 WSL 中执行 [capture.bag 审计提示词](prompts/local_capture_bag_audit.md)。** 输入固定为 `H:\capture.bag`；核对文件格式、话题、同步、标定、深度、相机轨迹和视角变化，回传后再决定转换和训练。任务协议见 [capture_bag_audit.json](configs/capture_bag_audit.json)，回传入口见 [审计状态](reports/capture-bag-audit/latest.json)。
+
+报告写入 `reports/capture-bag-audit/<run-id>/`，目标总量不超过 20 MiB，发布上限 50 MiB。包括图文结论、结构化记录、全时段抽样预览，以及存在相应传感器流时的 3–5 组 RGB 与保留原数值的无损深度样例；完整原包留本地。
+
+[AutoDL 第二轮提示词](prompts/autodl_round2.md) 保留为服务器基准任务入口。当前本地任务不自动启动新基准或自有场景训练，也不打断正在运行的 AutoDL 工作。`H:\capture.bag` 是本地原始录制路径，不是 AutoDL 的训练数据目录。
 
 [首轮启动提示词](prompts/autodl_first_run.md) 作为历史执行入口保留；无需重复安装或重新训练已经完成的 VR Room。
 
@@ -31,7 +36,7 @@
 5. [源码与协议审计](docs/03_source_audit.md)：当前 main 与历史候选的差异。
 6. [结果交付约定](docs/05_result_contract.md)：哪些证据进 Git，哪些大文件保留并登记。
 
-机器可读计划：[第二轮协议](configs/round2_protocol.json)。[首轮协议](configs/vr_room_protocol.json) 保留原计划字段，实际完成情况以 `reports/vr-room-iphone-30k/` 和 `reports/latest_status.json` 为准。
+机器可读计划：[本地 bag 审计协议](configs/capture_bag_audit.json)、[第二轮协议](configs/round2_protocol.json)。[首轮协议](configs/vr_room_protocol.json) 保留原计划字段，实际完成情况以 `reports/vr-room-iphone-30k/` 和 `reports/latest_status.json` 为准。
 
 ## GitHub：优先 AutoDL 官方学术加速
 
@@ -47,6 +52,8 @@
 如果目标目录已经存在，先检查其远端与工作区，不能覆盖或强制重置。`/root/autodl-tmp/DN-Splatter` 是建议路径，实际以数据盘和已有目录盘点结果为准。
 
 后续 GitHub clone/fetch/push、从 GitHub 获取依赖，也优先使用这个方式。不要写全局代理或修改其他项目配置。内置服务不可用时记录原因，再尝试原官方域名直连；不能把带身份凭据的 push 改投第三方镜像。Zenodo、PyPI、Conda 下载按域单独处理，不假定该服务支持所有网址。
+
+本地 Windows/WSL 的 bag 审计使用本机现有 GitHub 连接；上述 AutoDL 命令不要求在本机执行。
 
 依据：[AutoDL 官方学术资源加速文档](https://www.autodl.com/docs/network_turbo/)。
 
