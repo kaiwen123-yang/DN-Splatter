@@ -1,5 +1,7 @@
 # AutoDL Codex：capture-s01 法线、30k、评估与 Poisson
 
+> 历史阶段已完成：s01结果冻结于 `ee3e87bf8a63486ed96df1c0d37b6a72d30fca88`。本文件保留为重放依据。当前任务是整段采集完整测试，请使用 [全程本地提示词](local_capture_full_test.md)或[全程AutoDL提示词](autodl_capture_full_test.md)；下文原阶段的“暂不扩全包/等待效果复核”不再是当前任务停止条件。
+
 在现有 AutoDL 项目 /root/autodl-tmp/DN-Splatter 继续执行。先检查已有工作区、未提交修改、远端和本项目活跃进程，通过本项目子 shell 的 AutoDL 官方学术加速更新用户仓库 main。读取本提示词、AGENTS.md、docs/09_capture_training_plan.md、configs/capture_s01_train_protocol.json、reports/capture-geometry-review/2026-11-19/overview.md，以及 d72f56836028d7a7885f21f02522e4f7cc310429 的原几何报告。
 
 几何审查已通过进入首个训练基线，带已知宽基线一致性局限。此前“geometry_prepared_pending_review，暂不运行法线/训练/Poisson”是上一阶段停止点，现已完成审查。本轮请实际完成下面整条链，不只写计划或停在环境检查、法线、短训练。已有持续项目授权和全 CPU/GPU 授权；无需为这些既定步骤反复确认。

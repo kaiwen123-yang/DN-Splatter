@@ -1,0 +1,662 @@
+{
+  "schema_version": 1,
+  "kind": "execution_protocol_not_nerfstudio_config",
+  "updated_date": "2026-11-19",
+  "timezone": "Asia/Shanghai",
+  "phase": "capture_full_first_complete_test",
+  "status": "planned_not_started_here",
+  "goal": "Process the entire capture at a frozen 5 Hz temporal sampling, then run one fresh 30000-update DN-Splatter baseline, all available heldout evaluations, a full-timeline rendering and the historical raw Poisson export without intermediate review gates.",
+  "review": {
+    "evidence_commit": "ee3e87bf8a63486ed96df1c0d37b6a72d30fca88",
+    "source_results_reviewed": true,
+    "scope": "Committed source, completed capture-s01 results, numeric reports and representative previews were reviewed; the full capture and AutoDL server were not accessed in this planning task.",
+    "source_report": "reports/capture-s01-dn-30k/20261119-v1/overview.md",
+    "bag_audit": "reports/capture-bag-audit/20261119T091841Z-3982cb26/overview.md",
+    "geometry_report": "reports/capture-geometry/20261119-s01-5hz-3982cb26/overview.md",
+    "plan": "docs/10_capture_full_test_plan.md",
+    "local_prompt": "prompts/local_capture_full_test.md",
+    "server_prompt": "prompts/autodl_capture_full_test.md",
+    "intermediate_human_review_required": false,
+    "preliminary_small_training_required": false
+  },
+  "paths": {
+    "server_project_root": "/root/autodl-tmp/DN-Splatter",
+    "source": ".local/upstream/dn-splatter",
+    "environment": ".local/conda/dn-splatter-bw",
+    "geometry_environment": ".local/conda/capture-geometry",
+    "windows_raw_bag": "H:\\capture.bag\\capture.bag",
+    "local_extraction": ".local/capture-full/20261119-full-5hz-3982cb26",
+    "local_transfer": ".local/capture-full/20261119-full-5hz-3982cb26/transfer",
+    "geometry_run": ".local/capture-geometry/20261119-full-5hz-3982cb26",
+    "geometry_dataset": ".local/data/custom/capture-full/20261119-full-5hz-3982cb26",
+    "run": ".local/runs/capture-full-dn-30k-20261119-v1",
+    "training_inputs": ".local/runs/capture-full-dn-30k-20261119-v1/inputs",
+    "report": "reports/capture-full-dn-30k/20261119-v1",
+    "latest": "reports/capture-full-dn-30k/latest.json",
+    "relative_paths_base": "The existing DN-Splatter project checkout on the executing host; server paths are relative to server_project_root."
+  },
+  "capture": {
+    "scene_name": "capture-full",
+    "geometry_run_id": "20261119-full-5hz-3982cb26",
+    "training_run_id": "capture-full-dn-30k-20261119-v1",
+    "source_bag_sha256": "3982cb269ea03ddf4234b45f74be27143eb66bcd807e4e471d0f3a9cd6b03b59",
+    "source_bag_bytes": 5919666852,
+    "source_bag_read_only": true,
+    "source_rgb_frames": 11041,
+    "source_depth_frames": 11068,
+    "dynamic_sensor_duration_s": 369.352598,
+    "first_rgb_device_timestamp_ns": 2427228619000,
+    "last_rgb_device_timestamp_ns": 2796103366000,
+    "first_depth_device_timestamp_ns": 2426763600000,
+    "rgb_interval_relative_to_first_depth_s": [
+      0.465019,
+      369.339766
+    ],
+    "rgb_duration_s": 368.874747,
+    "full_temporal_coverage_required": true,
+    "final_human_occlusion_and_camera_roll": "Retain in the requested timeline and report their effects; do not truncate or silently discard them."
+  },
+  "selection": {
+    "sampling_hz": 5,
+    "target_interval_ns": 200000000,
+    "anchor": "first RGB device timestamp",
+    "target_formula": "first_rgb_device_timestamp_ns + candidate_index * 200000000",
+    "expected_regular_grid_targets": 1845,
+    "append_last_rgb_if_not_already_selected": true,
+    "expected_maximum_unique_primary_pairs": 1846,
+    "synchronization_tolerance_ms": 10,
+    "synchronization_timebase": "recorded device timestamps, not bag wall-clock write time",
+    "unique_rgb_required": true,
+    "unique_depth_required": true,
+    "first_241_source_identities": "Must match the committed capture-s01 selection by original RGB index and device timestamp; reuse these identities, not just similarly named files.",
+    "prior_selection": "reports/capture-geometry/20261119-s01-5hz-3982cb26/selection.json",
+    "prior_selection_sha256": "38ce4202ac630370f454208ca9e418c8e8aad711595e3b9234a9bbc4bd192c8b",
+    "freeze_before_pose_estimation": true,
+    "candidate_index_survives_exclusion": true,
+    "renumber_after_exclusion": false,
+    "automatic_quality_drops": false,
+    "objective_unavailability_reasons": [
+      "RGB or depth decoding failure",
+      "no unique RGB-D association within the fixed tolerance",
+      "required source bytes or calibration cannot be read"
+    ],
+    "blur_and_dynamic_content": "Annotate for result interpretation; keep usable frames in their frozen roles.",
+    "required_per_candidate_fields": [
+      "candidate_index",
+      "target_device_timestamp_ns",
+      "original_rgb_index",
+      "original_rgb_device_timestamp_ns",
+      "original_depth_index",
+      "original_depth_device_timestamp_ns",
+      "absolute_sync_delta_ns",
+      "frozen_split",
+      "selection_available",
+      "selection_unavailable_reason",
+      "pose_available",
+      "pose_unavailable_reason"
+    ],
+    "actual": {
+      "regular_grid_targets": null,
+      "appended_endpoint_targets": null,
+      "selected_unique_pairs": null,
+      "unavailable_candidates": null,
+      "first_241_source_identity_match": null
+    }
+  },
+  "split": {
+    "rule": "Frozen original candidate_index modulo 10: residues 0-7 train, 8 val, 9 test.",
+    "train_residues": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "val_residues": [
+      8
+    ],
+    "test_residues": [
+      9
+    ],
+    "assign_before_exclusion": true,
+    "reassign_or_renumber_after_exclusion": false,
+    "preserve_all_prior_s01_heldout_source_identities": true,
+    "prior_split_manifest": "reports/capture-geometry/20261119-s01-5hz-3982cb26/split_manifest.json",
+    "prior_split_manifest_sha256": "b717366514222c22d0bf17569f429e18224dcc55306c054a4e7f790514f4862d",
+    "prior_s01_first_candidate_count": 241,
+    "prior_s01_heldout_counts": {
+      "val": 24,
+      "test": 24
+    },
+    "expected_if_1846_targets_all_available": {
+      "train": 1478,
+      "val": 184,
+      "test": 184,
+      "total": 1846
+    },
+    "expected_regular_grid_only": {
+      "train": 1477,
+      "val": 184,
+      "test": 184,
+      "total": 1845
+    },
+    "actual_requested": {
+      "train": null,
+      "val": null,
+      "test": null,
+      "total": null
+    },
+    "actual_selected": {
+      "train": null,
+      "val": null,
+      "test": null,
+      "total": null
+    },
+    "actual_pose_available": {
+      "train": null,
+      "val": null,
+      "test": null,
+      "total": null
+    },
+    "coverage_denominator": "Keep requested, selected, pose-available, trained and evaluated counts distinct; unavailable candidates remain in coverage reports."
+  },
+  "transfer": {
+    "extract_locally_then_transfer_compact_inputs": true,
+    "raw_bag_upload_required": false,
+    "per_file_sha256_required": true,
+    "verify_server_files_before_use": true,
+    "reuse_verified_s01_source_pairs_when_identity_matches": true,
+    "source_selection_and_split_manifests_included": true,
+    "calibration_and_provenance_included": true,
+    "actual_transfer_manifest_sha256": null,
+    "actual_bytes": null,
+    "actual_file_count": null
+  },
+  "pose": {
+    "strategy": "One global primary-training SfM map, followed by heldout localization against its frozen geometry.",
+    "reuse_environment_and_cuda_sift": true,
+    "default_matching": "Existing CUDA SIFT plus exhaustive matching on the frozen primary-training images.",
+    "optional_sequential_prefill": "Sequential matching may run first in the same database, then exhaustive matching reuses existing pairs.",
+    "expected_primary_train_pairs_if_1478": 1091503,
+    "existing_native_global_retrieval_alternative": "If already installed and operational, native COLMAP global retrieval may be selected once instead of exhaustive matching; record the exact route, options and vocabulary/index provenance.",
+    "new_retrieval_engineering": false,
+    "fixed_shared_calibration_model": "PINHOLE",
+    "optimize_intrinsics": false,
+    "primary_train_only_mapping": true,
+    "bundle_adjustment_before_heldout_localization": true,
+    "select_connected_component": "Choose the usable connected model with the most registered primary-training frames; report all components and temporal coverage rather than combining independently scaled models.",
+    "bridge_fallback": {
+      "max_rounds": 1,
+      "trigger": "An actual tracking or mapping discontinuity in the initial global solve.",
+      "native_rgb_radius_s": 2,
+      "role": "pose_auxiliary_train",
+      "source_identity_exclusion": "Exclude every frozen full-capture val/test RGB source identity and the union of all old s01 val/test identities, including unavailable primary candidates.",
+      "deduplicate_against_primary_and_other_auxiliary": true,
+      "use_for_training_map_and_training_bundle_adjustment": true,
+      "use_for_dn_training": false,
+      "use_for_metric_scale_fit": false,
+      "use_for_initialization_point_cloud": false,
+      "use_for_holdout_evaluation_or_mesh_views": false,
+      "required_records": [
+        "triggering discontinuities",
+        "time windows",
+        "original RGB identities",
+        "matching options",
+        "registration results"
+      ]
+    },
+    "heldout_localization": {
+      "geometry_frozen": true,
+      "record_map_hashes_before_after": true,
+      "initial_route": "Reuse the existing four-nearest-primary-training-view feature/PnP route.",
+      "bounded_retry": "For actual localization failures, expand matching once to broader or global registered training candidates; retain fixed map geometry.",
+      "heldout_bundle_adjustment": false,
+      "insert_heldout_into_training_map": false,
+      "failures": "Keep source identities and reasons in the original denominators; continue all available heldout frames."
+    },
+    "partial_pose_failure": "After the bounded repair, continue the complete pipeline on a usable connected primary-training model and set completed_with_coverage_gaps when requested coverage is missing.",
+    "geometry_quality_threshold_gate": false,
+    "require_all_requested_poses_before_training": false,
+    "block_if_no_usable_primary_training_map": true,
+    "actual_primary_registered": null,
+    "actual_auxiliary_registered": null,
+    "actual_heldout_localized": null,
+    "actual_component_count": null
+  },
+  "geometry": {
+    "reuse_calibration_and_d2c_implementation": true,
+    "offline_depth_to_color_registration": true,
+    "rgb_and_depth_joint_rectification": true,
+    "training_grid": [
+      1280,
+      720
+    ],
+    "diagnostic_and_initialization_grid": [
+      640,
+      360
+    ],
+    "depth_format": "float32 NPY color-camera optical-axis Z in metres",
+    "depth_range_m": [
+      0.3,
+      6
+    ],
+    "depth_holes": 0,
+    "depth_fill": false,
+    "depth_downscale_averaging": false,
+    "preserve_original_and_unclipped_registered_depth": true,
+    "pose_format": "OpenGL c2w",
+    "pixel_center_convention": "Reuse the s01 conversion, including its pixel-center adjustment exactly once.",
+    "new_full_capture_scale_fit": true,
+    "scale_fit_source": "Only depth-supported observations from registered frozen primary-training frames; explicitly exclude auxiliary and heldout observations.",
+    "reuse_s01_metric_scale_as_fixed_value": false,
+    "scale_poses_and_points_consistently": true,
+    "origin": "first registered primary-training camera",
+    "actual_scale_m_per_sfm_unit": null,
+    "init_ply": "init_train.ply",
+    "init_source": "Registered primary-training RGB-D only; no auxiliary, val or test contribution.",
+    "init_sampling_stride_xy": 4,
+    "init_voxel_m": 0.03,
+    "init_filtering": "Reuse existing s01 D2C competition and near-side depth-discontinuity exclusion.",
+    "actual_init_points": null,
+    "scene_scale_rule": "max(15, ceil(1.1 * max(abs(registered_primary_train_camera_centers), abs(init_points)))) in the final metric frame",
+    "actual_scene_scale": null,
+    "immutable_geometry": true,
+    "training_input_copy_strategy": "reflink or ordinary copy; no writable hardlinks to geometry originals",
+    "training_manifest_includes_geometry_manifest_and_normals": true,
+    "actual_geometry_manifest_sha256": null,
+    "actual_training_manifest_sha256": null
+  },
+  "source": {
+    "reproduction_repository": "https://github.com/kaiwen123-yang/DN-Splatter",
+    "baseline_evidence_commit": "ee3e87bf8a63486ed96df1c0d37b6a72d30fca88",
+    "upstream_repository": "https://github.com/maturk/dn-splatter",
+    "upstream_commit": "811f5cdf342d92d12a9d9a4be185d374c430c184",
+    "reuse_current_verified_environment": true,
+    "expected_versions": {
+      "python": "3.10.22",
+      "torch": "2.7.1+cu128",
+      "nerfstudio": "1.1.3",
+      "gsplat": "1.0.0",
+      "open3d": "0.18.0"
+    },
+    "reuse_recorded_compatibility_patches": true,
+    "algorithm_changes_or_parameter_sweeps": false
+  },
+  "parser": {
+    "name": "normal-nerfstudio",
+    "settings": {
+      "depth_unit_scale_factor": 1,
+      "auto_scale_poses": false,
+      "scale_factor": 1,
+      "orientation_method": "none",
+      "center_method": "none",
+      "downscale_factor": 1,
+      "scene_scale": null,
+      "normal_format": "opengl",
+      "load_3D_points": true,
+      "load_normals": true,
+      "load_pcd_normals": true
+    },
+    "scene_scale_source": "geometry.scene_scale_rule; resolve once from the available training data and record the actual value.",
+    "explicit_split_lists_required": [
+      "train_filenames",
+      "val_filenames",
+      "test_filenames"
+    ],
+    "lists_include_only_available_frames_with_unchanged_frozen_roles": true,
+    "camera_res_scale_factor": 1,
+    "distortion": "all zero after RGB-D rectification",
+    "pcd_normals": {
+      "method": "historical Open3D estimate_normals then normalize_normals",
+      "radius_m": 0.1,
+      "max_nn": 30
+    }
+  },
+  "normal_prior": {
+    "model": "omnidata",
+    "resolution_mode": "low",
+    "internal_inference_grid": [
+      384,
+      384
+    ],
+    "output_grid": [
+      1280,
+      720
+    ],
+    "data_scope": "All selected primary frames retained in the geometry dataset; split-selective loading remains enforced.",
+    "directory": "normals_from_pretrain",
+    "training_format": "PNG",
+    "save_png_and_npy": true,
+    "checkpoint_reuse": true,
+    "checkpoint_path": ".local/upstream/dn-splatter/omnidata_ckpt/omnidata_dpt_normal_v2.ckpt",
+    "checkpoint_sha256": "38db3f7d952f48f900f0b32d6cce6749e41641045ebc5713cf29618f54aff3bb",
+    "expected_count_rule": "Match the actual exported primary-frame identities, not the old constant 241.",
+    "actual_png": null,
+    "actual_npy": null,
+    "actual_first_formal_training_batch_finiteness_record_required": true
+  },
+  "diagnostics": {
+    "cross_view_reference": "Same-capture sensor consistency, not independent geometric ground truth.",
+    "cross_view_grid": [
+      640,
+      360
+    ],
+    "directed_temporal_and_wide_baseline_pairs": true,
+    "cover_entire_available_timeline": true,
+    "both_source_and_target_depth_range_m": [
+      0.3,
+      6
+    ],
+    "full_zbuffer_before_visible_winner_selection": true,
+    "required_support_and_failure_denominators": true,
+    "distinguish_occlusion_edges_holes_and_smooth_support": true,
+    "cross_view_metrics_are_results_not_execution_gates": true,
+    "modify_training_inputs_from_heldout_error": false,
+    "extra_small_training_runs": false
+  },
+  "training": {
+    "method": "dn-splatter",
+    "from_scratch": true,
+    "scene_checkpoint_from_s01_or_vr_room": false,
+    "seed": 42,
+    "cumulative_updates": 30000,
+    "final_step_zero_based": 29999,
+    "checkpoint_interval": 5000,
+    "save_only_latest_checkpoint": false,
+    "vis": "tensorboard",
+    "viewer_quit_on_train_completion": true,
+    "pipeline": {
+      "skip_point_metrics": true,
+      "datamanager": {
+        "camera_res_scale_factor": 1
+      },
+      "model": {
+        "use_depth_loss": true,
+        "depth_loss_type": "EdgeAwareLogL1",
+        "sensor_depth_lambda": 0.2,
+        "mono_depth_lambda": 0,
+        "use_normal_loss": true,
+        "normal_lambda": 0.1,
+        "use_normal_tv_loss": true,
+        "normal_supervision": "mono",
+        "two_d_gaussians": true,
+        "num_downscales": 0,
+        "camera_optimizer": {
+          "mode": "off"
+        }
+      }
+    },
+    "other_algorithm_fields": "Reuse s01 historical optimizer, learning-rate, densification and model defaults; do not multiply updates or alter the densification schedule because there are more images.",
+    "first_batch_check": "Record finiteness of the actual first formal training batch and its losses within the 30000-update run; do not launch a separate smoke training job.",
+    "resume": {
+      "formula": "remaining = 30000 - (saved_step + 1)",
+      "load_optimizers": true,
+      "load_schedulers": true,
+      "scheduler_original_max_steps": 30000,
+      "bind_same_run_identity": true
+    },
+    "actual_updates": null,
+    "actual_final_step": null,
+    "actual_gaussians": null,
+    "actual_checkpoint_sha256": null
+  },
+  "conditional_adaptations": {
+    "principle": "Apply only when a concrete full-capture input or execution condition requires it; retain the old non-triggering behavior and record patches and counts.",
+    "empty_sensor_reference_or_directional_reduction": {
+      "preemptive_source_patch": false,
+      "trigger": "An actual frame has no valid sensor Z in [0.3,6], or an EdgeAwareLogL1 directional cropped mask is empty even when the full image mask is nonempty.",
+      "retain_frame_rgb_normal_pose_and_zero_depth": true,
+      "dataset_export": "If zero-valid-depth frames occur, remove only the positive-coverage assertion and retain their all-zero depth arrays and frozen roles.",
+      "loss_behavior": "For each empty directional reduction return a differentiable zero, such as that empty selected loss tensor's sum; preserve the historical mean for every nonempty direction. A wholly empty sensor mask contributes zero sensor loss while other losses remain active.",
+      "internal_depth_metrics": "When no reference support exists, omit or mark unsupported depth scalars instead of emitting NaN; do not fabricate zero error.",
+      "evaluation_behavior": "Depth metrics are null for frames with zero valid reference pixels, with explicit valid-depth-frame and valid-pixel counts; their RGB metrics remain included.",
+      "required_records": [
+        "observed trigger source identities",
+        "triggered training steps",
+        "empty_reduction_counts_by_axis",
+        "zero-reference frame count",
+        "exact source patch and hash"
+      ],
+      "actual_zero_depth_frames": null,
+      "actual_empty_reduction_counts_by_axis": null,
+      "actual_guard_trigger_steps": null,
+      "actual_patch_applied": null
+    },
+    "memory_capacity": {
+      "trigger": "One concrete preload estimate or actual allocation failure shows the full data cache exceeds currently available capacity.",
+      "permitted": "Numerically equivalent bounded caching or streaming of the same full-resolution frozen dataset; record actual cache policy.",
+      "change_resolution_split_or_scope": false
+    },
+    "real_execution_failures": {
+      "policy": "Keep error evidence, make a bounded necessary compatibility or numerical correction, and resume the same run identity. Do not start parameter sweeps or unrelated cleanup.",
+      "require_new_user_review_gate": false
+    }
+  },
+  "evaluation": {
+    "requested_split_counts_if_no_selection_loss": {
+      "val": 184,
+      "test": 184
+    },
+    "scope": "Every selected, localized frame in each frozen heldout split; separately publish unavailable frame identities and coverage against the full requested split.",
+    "checkpoint_step": 29999,
+    "bind_actual_checkpoint_path_and_sha256": true,
+    "checkpoint_selection": "fixed final step; no test-based model selection",
+    "pipeline_skip_point_metrics": true,
+    "split_api": "nerfstudio.utils.eval_utils.eval_setup(test_mode='val'|'test')",
+    "verify_loaded_checkpoint_after_eval_setup_required": true,
+    "rgb_metrics": [
+      "PSNR",
+      "SSIM",
+      "LPIPS"
+    ],
+    "per_frame_metrics": true,
+    "frame_equal_weight_means": true,
+    "depth_metrics": [
+      "MAE_m",
+      "RMSE_m",
+      "AbsRel",
+      "absolute_error_P50_m",
+      "absolute_error_P95_m"
+    ],
+    "reference_depth_mask": "finite original sensor Z in [0.3,6] and >0; no prediction-dependent or error-dependent exclusion",
+    "empty_reference_depth_metrics": null,
+    "empty_reference_rgb_frames_still_counted": true,
+    "report_depth_valid_frame_and_pixel_denominators": true,
+    "invalid_predictions": "Report counts and support; do not silently remove invalid predictions from the primary reference denominator.",
+    "pixel_pooled_and_frame_means_separate": true,
+    "temporal_bin_s": 30,
+    "temporal_axis": "relative to the first depth device timestamp, as in the audit",
+    "bins_include_requested_unavailable_and_evaluated_counts": true,
+    "optional_prior_s01_comparison": {
+      "enabled_when_corresponding_sources_available": true,
+      "val_frames": 24,
+      "test_frames": 24,
+      "identity": "Exact original RGB indices and device timestamps from the frozen s01 heldout list.",
+      "remain_heldout_in_full_run": true,
+      "report_missing_comparison_frames": true,
+      "replace_primary_full_capture_metrics": false
+    },
+    "accumulation_zero_diagnostic": {
+      "reference_support_counts": true,
+      "changes_primary_metric_support": false,
+      "reason": "Historical rendered depth may be finite after filling alpha==0 pixels, so positive finite Z alone does not establish surface support."
+    },
+    "depth_interpretation": "same-capture sensor consistency; no independent geometric ground truth",
+    "unseen_trajectory_generalization": false,
+    "ground_truth_mesh_metrics": false,
+    "normal_angular_metrics_required": false,
+    "raw_renders": "All available val/test frames retained on AutoDL, plus representative fixed-time and worst-case previews in the report.",
+    "actual_evaluated": {
+      "val": null,
+      "test": null
+    },
+    "actual_rgb_metrics": null,
+    "actual_depth_metrics": null
+  },
+  "video": {
+    "trajectory": "Entire frozen 5 Hz primary timeline, including appended endpoint when present.",
+    "include_all_frozen_roles_for_rendering": true,
+    "retain_source_time_labels": true,
+    "unavailable_pose_frames": "Render explicit gap cards or visibly marked missing intervals at the original timeline positions; do not concatenate away missing time.",
+    "publish_summary_preview_and_keep_full_video_on_server": true,
+    "actual_frame_count": null,
+    "actual_gap_count": null
+  },
+  "mesh": {
+    "exporter": "gs-mesh dn / DepthAndNormalMapsPoisson",
+    "checkpoint_step": 29999,
+    "bind_same_checkpoint_as_evaluation": true,
+    "view_split": "available registered primary train only",
+    "auxiliary_and_heldout_views": false,
+    "expected_views_rule": "Actual registered primary-training count, not the old constant 193.",
+    "total_points_target": 5000000,
+    "poisson_depth": 9,
+    "normal_method": "normal_maps",
+    "filter_edges_from_depth_maps": false,
+    "outlier_removal": false,
+    "down_sample_voxel": null,
+    "density_vertex_quantile_removed": 0.01,
+    "n_threads": "Actual allocated CPU budget without nested oversubscription.",
+    "rgbd_range_automatically_applied": false,
+    "add_preemptive_alpha_or_range_filter": false,
+    "retain_raw_poisson": true,
+    "retain_sampled_pcd": true,
+    "second_mesh_parameter_sweep": false,
+    "automatic_support_cropped_variant": false,
+    "ground_truth_metrics": false,
+    "sampling_seed": 42,
+    "report_actual_total_and_per_view_sample_allocation": true,
+    "report_metric_bounding_box_and_approximate_octree_cell_size": true,
+    "report_outside_sensor_range_and_alpha_zero_samples": true,
+    "invalid_normal_policy": "Report nonfinite or zero sampled normals; only if export actually fails, preserve failure evidence and make the minimum numerical correction with counts and a recorded patch.",
+    "validation": [
+      "nonempty points/vertices/faces",
+      "finite xyz/normals",
+      "valid face indices",
+      "metric bounds",
+      "actual sample counts",
+      "connected components",
+      "global and local previews"
+    ],
+    "actual_views": null,
+    "actual_sampled_points": null,
+    "actual_vertices": null,
+    "actual_faces": null,
+    "actual_mesh_sha256": null
+  },
+  "execution": {
+    "continuous_stages": [
+      "environment_and_identity_check",
+      "full_selection_and_compact_transfer",
+      "d2c_rectification",
+      "global_train_mapping",
+      "fixed_map_heldout_localization",
+      "metric_geometry_export",
+      "normal_priors",
+      "formal_30000_update_training",
+      "val_test_and_timeline_render",
+      "raw_poisson",
+      "evidence_and_publication"
+    ],
+    "intermediate_human_review_required": false,
+    "stop_after_geometry_prepared": false,
+    "separate_smoke_training": false,
+    "stage_resume_identity": [
+      "source bag hash",
+      "selection manifest hash",
+      "split manifest hash",
+      "protocol hash",
+      "geometry/training manifest hash",
+      "upstream commit and patch hashes",
+      "Omnidata weight hash"
+    ],
+    "terminal_statuses": {
+      "completed": "Full requested coverage processed, formal training has exactly 30000 updates, all heldout evaluation/rendering and raw mesh deliverables completed.",
+      "completed_with_coverage_gaps": "The complete available-data pipeline finished but requested selection, pose or evaluation coverage is incomplete; publish the full denominators and all gap identities.",
+      "blocked": "A concrete data, connectivity, environment or execution error prevents the remaining required work; publish the error and completed artifacts. Lack of a usable primary-training map is a blocker."
+    },
+    "accuracy_metrics_or_appearance_are_not_stop_gates": true
+  },
+  "resource_policy": {
+    "all_allocated_cpu_and_gpu_authorized": true,
+    "nominal_cpu_cores": 25,
+    "nominal_gpu": "RTX PRO 6000 Blackwell",
+    "nominal_gpu_memory_gb": 96,
+    "nominal_host_memory_gb": 120,
+    "check_actual_available_resources_once_before_work": true,
+    "use_stage_appropriate_actual_capacity": true,
+    "artificial_gpu_fraction_limit": null,
+    "max_simultaneous_formal_training_jobs": 1,
+    "avoid_nested_thread_oversubscription": true,
+    "streaming_preprocessing_and_outputs": true,
+    "initial_cache_capacity_estimate_required": true,
+    "kill_other_projects": false,
+    "rebuild_environment_without_concrete_error": false,
+    "retrain_vr_room_or_s01": false,
+    "walltime_deadline": null,
+    "automatic_shutdown": false,
+    "persistent_runner": true,
+    "github_preferred_transport": "AutoDL official /etc/network_turbo in a project subshell, using official GitHub HTTPS URLs.",
+    "global_proxy_edits": false
+  },
+  "deliverable": {
+    "prior_s01_archive_immutable": true,
+    "report_target_mib": 20,
+    "git_new_files_max_mib": 50,
+    "bulk_in_git": false,
+    "required_files": [
+      "overview.md",
+      "run_manifest.json",
+      "selection.json",
+      "split_manifest.json",
+      "coverage.json",
+      "environment.json",
+      "commands.sh",
+      "pose_summary.json",
+      "scale_fit.json",
+      "inputs.json",
+      "reader_check.json",
+      "normal_prior.json",
+      "cross_view_diagnostic.json",
+      "config.yml",
+      "training.json",
+      "metrics_val.json",
+      "metrics_test.json",
+      "metrics_by_time.json",
+      "conditional_adaptations.json",
+      "video_manifest.json",
+      "mesh_validation.json",
+      "artifact_manifest.json"
+    ],
+    "optional_comparison_file": "comparison_s01_same_sources.json",
+    "server_bulk_artifacts": [
+      "full derived dataset",
+      "all normal priors",
+      "training checkpoints",
+      "full heldout renders",
+      "full-timeline video",
+      "sampled point cloud",
+      "raw Poisson mesh"
+    ],
+    "publish_to": "kaiwen123-yang/DN-Splatter/main",
+    "force_push": false,
+    "final_report_requires_actual_counts_and_hashes": true,
+    "no_planned_value_presented_as_measured": true
+  },
+  "observed_this_task": {
+    "committed_s01_source_and_results_reviewed": true,
+    "server_accessed": false,
+    "windows_bag_accessed": false,
+    "full_capture_extracted": false,
+    "full_capture_poses_generated": false,
+    "normal_priors_generated": false,
+    "training_started": false,
+    "training_complete": false,
+    "evaluation_complete": false,
+    "poisson_complete": false,
+    "metrics": null
+  }
+}

@@ -1,10 +1,10 @@
 # 自有数据接入：复用已验证环境，为新场景重新优化
 
-更新日期：2026-11-19（Asia/Shanghai）。VR基础审查基于 `c747cc92d70055d5d5ceb70699e85b77faad87da`，首段几何依据 `d72f56836028d7a7885f21f02522e4f7cc310429`；官方历史源码固定 `811f5cdf342d92d12a9d9a4be185d374c430c184`。
+更新日期：2026-11-19（Asia/Shanghai）。VR基线提交 `c747cc92d70055d5d5ceb70699e85b77faad87da`；自采s01完整结果 `ee3e87bf8a63486ed96df1c0d37b6a72d30fca88`；固定历史源码 `811f5cdf342d92d12a9d9a4be185d374c430c184`。
 
-**当前状态：`review_accepted_execution_pending`。Gemini 335首段的241帧配准、相机位姿、统一米制尺度和训练初始化已经生成，并通过带局限的审查。** 数据已在AutoDL；193/24/24冻结划分，正式1280×720、0.3–6m米制Z。原始bag本身无位姿，但本轮派生位姿来自真实训练图SfM与留出PnP。法线、DN训练和Poisson仍待下轮执行。
+**当前已实际完成自有数据s01的完整30k、留出评估和原始Poisson，接入链路可用。下一轮直接覆盖整段约369秒。** 现有结果支持开始全程测试，尚不证明薄结构达到所需精度；见[效果复核](../reports/capture-s01-review/2026-11-19/overview.md)。当前入口为[docs/10](10_capture_full_test_plan.md)、[全程协议](../configs/capture_full_test_protocol.json)、[本地协调提示词](../prompts/local_capture_full_test.md)与[AutoDL提示词](../prompts/autodl_capture_full_test.md)。不再重复索取样例或开展新的首段小实验。
 
-当前入口：[几何结果审查](../reports/capture-geometry-review/2026-11-19/overview.md)、[首个自有场景训练计划](09_capture_training_plan.md)、[训练协议](../configs/capture_s01_train_protocol.json)、[AutoDL提示词](../prompts/autodl_capture_s01_train.md)。当前执行完整法线、30k、留出评估与Poisson。以下为通用接入说明；本次具体范围和固定参数以docs/09为准，原几何manifest保持封存。
+以下通用接入说明供后续新数据参考；当前全程测试以docs/10为准。原bag仍需要配准与位姿转换，现有工具已经完成过首段，现在在同一正式全程任务内扩展这些准备工作，接着直接训练和交付结果。
 
 ## 1. 现在能否直接处理
 
@@ -26,11 +26,11 @@ DN-Splatter 为每个场景优化一套高斯位置、尺度、方向、颜色�
 | 背景静态，少量行人或机械臂运动 | 静态区域可作为目标；必要时剔除受影响帧或提供一致掩膜 | 明确哪些表面属于重建目标，验证掩膜和有效深度 |
 | 重建主体持续移动、形变或被操作 | 当前固定静态场景模型不适合直接描述整个过程 | 单独设计静态片段、物体坐标系或动态重建方法；不能宣称现有方法已支持动态场景 |
 
-RGB-only 路径在历史源码中存在，但当前成功运行的证据来自 sensor RGB-D 的 MuSHRoom 分支。不要把它写成已经验证的 RGB-only 完整流程。COLMAP 的尺度未必是米；将单目深度对齐至 SfM 可以统一重建尺度，并不自动取得物理尺度。[S1][S3][S5]
+RGB-only 路径在历史源码中存在；当前完整运行证据来自 MuSHRoom 的sensor RGB-D基线和自采s01的normal-nerfstudio RGB-D分支。不要把它写成已经验证的 RGB-only 完整流程。COLMAP 的尺度未必是米；将单目深度对齐至 SfM 可以统一重建尺度，并不自动取得物理尺度。[S1][S3][S5]
 
 ## 3. 当前输入和需要核实的内容
 
-输入已核实为 `H:\capture.bag\capture.bag` 的 Orbbec Gemini 335 SDK 扩展录制。指定首段已导出到AutoDL、完成D2C及真实SfM/PnP；复用其清单和数据，不再要求重复填写标定/话题信息或回到原包提取。下表适用于核对新的数据或后续扩段，本轮已有字段直接引用报告。
+输入已核实为 `H:\capture.bag\capture.bag` 的 Orbbec Gemini 335 SDK 扩展录制。指定首段已导出到AutoDL、完成D2C及真实SfM/PnP；复用其标定、代码、清单和相同帧文件；全程新增帧按原包索引提取，不重复审计或索要标定信息。下表适用于核对新的数据或后续扩段，本轮已有字段直接引用报告。
 
 只读盘点用户指定的目录，生成以下事实记录：
 
@@ -47,11 +47,11 @@ RGB-only 路径在历史源码中存在，但当前成功运行的证据来自 s
 
 ## 4. 首选 RGB-D 接入协议
 
-**本次 Gemini 数据的具体转换以 docs/08 为准。** 必须离线统一去畸变RGB与D2C深度，使用彩色光轴Z；推荐米制float32 .npy、无效为0、depth_unit_scale_factor=1。原NPZ是回传格式，65535不能直接参与监督。保留K_cv与K_colmap/ns的半像素映射；不依赖父datamanager自动校正sensor_depth。DN的num_downscales保持0，深度mask不直接作为全RGB mask_path。
+**Gemini的标定和转换依据见docs/08，当前全程执行范围与阶段规则以docs/10为准。** 必须离线统一去畸变RGB与D2C深度，使用彩色光轴Z；推荐米制float32 .npy、无效为0、depth_unit_scale_factor=1。原NPZ是回传格式，65535不能直接参与监督。保留K_cv与K_colmap/ns的半像素映射；不依赖父datamanager自动校正sensor_depth。DN的num_downscales保持0，深度mask不直接作为全RGB mask_path。
 
 ### 4.1 建立独立工作副本
 
-本首段已经按docs/08建立几何目录；现在按docs/09创建独立run及训练输入副本，只新增法线和新清单。原始采集和几何目录保持封存，不改现有位姿与尺度；几何报告审查已完成，法线路径核验后直接正式训练。新数据的预处理依赖仍需按项目隔离。
+首段几何和完整s01模型已经封存。全程按docs/10使用独立目录、全程训练侧SfM与新米制尺度、独立初始化及checkpoint；相同帧的原值和法线可以按身份复用。所需输入核对嵌入全程正式准备，直接接续30k；不回到首段审阅或短训练循环。
 
 推荐文件组织为 `images/`、`depth/`、`normals_from_pretrain/`、`transforms.json` 和训练帧初始化点云。各图像使用统一补零编号，例如 `frame_00001`，避免图像与法线的排序不同。
 
@@ -94,15 +94,11 @@ python dn_splatter/scripts/normals_from_pretrain.py \
 
 复用本轮已经处理好的 Omnidata checkpoint 加载兼容补丁及权重。`low` 是先验网络的输入处理模式，不表示将训练 RGB 任意改为 384×384。生成后逐帧核对文件名、尺寸和法线方向。
 
-### 4.4 做一次真正影响结果的输入检查，然后完整训练
+### 4.4 正式输入核对后持续完成训练
 
-选择 **5–10 帧**覆盖近远距离、相机移动及主要表面，完成：
+对于本次全程采集，已有D2C、单位和读取路径验证直接复用。随正式生成过程一次核对逐帧身份、尺寸、K/c2w、深度单位、法线、训练点云和冻结split；跨视角残差等质量诊断并入最终报告，不再新增5–10帧审阅或短训练门槛。新数据如存在实际格式或坐标错误，在正式流水线中修复后继续。
 
-1. RGB、深度、法线和位姿按同一帧对应，检查实测尺寸与内参。
-2. 深度转为真实单位，反投影到世界坐标，叠合相邻及间隔视角，查看表面、尺度和方向是否一致。
-3. 检查训练/测试划分、初始化点云来源及实际点数，确认损失所需输入存在。
-
-这些检查通过后直接开展独立的新场景 **30,000 次更新**，不额外堆叠短训练。保留现有 checkpoint 保存与累计恢复规则，目标最后 step 为 29,999；禁止加载 VR Room checkpoint 当作新场景初始化。
+正式从新场景初始化累计30,000次更新，最后step29,999；按真实checkpoint断点续接，不加载s01或VR场景checkpoint冒充从头训练。当前允许完整时间范围内未能定位的少数帧保留失败记录，完成其余可用统一地图的完整训练与评价，公开覆盖分母。
 
 训练配置应从本轮 [实际配置](../reports/vr-room-iphone-30k/config.yml) 的模型和优化器部分生成，改用 `normal-nerfstudio`，并填写真实场景路径、显式划分、深度单位和已核对的初始化信息。首个 RGB-D 实验继续采用传感器深度权重 0.2、Omnidata `mono` 法线监督及本轮记录的历史实现行为。不要把 `mushroom` 专有的 `--mode`、`--normals-from`、`--use-faro-scanner-*` 等参数搬进这个 parser。
 
@@ -145,7 +141,7 @@ python dn_splatter/scripts/normals_from_pretrain.py \
 
 首个自有场景完成后，交付完整 30k checkpoint 清单、实际配置、留出评价、RGB/深度/法线代表图、Poisson 网格和产物哈希；存在独立几何真值时再报告相应几何指标。所有真实运行结论写入新的 run 目录，不覆盖首轮基准数据。
 
-**当前可立即执行的下一步是获取用户指定目录或样例，确认输入属于第 2 节哪一条路径。** 不必先完成全文所有数据集再做接入，也不在输入尚缺时凭空启动“自有数据训练”。
+**当前直接执行docs/10的完整采集测试。** 已有真实bag身份、标定、解析代码、服务器环境和成功s01结果，不再要求用户重复上传或提供样例。全文多场景复现仍是后续独立范围。
 
 ## 来源
 

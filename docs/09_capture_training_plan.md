@@ -1,5 +1,7 @@
 # capture-s01 首个 DN-Splatter 30k 基线执行计划
 
+> 历史阶段已完成：s01结果冻结于 `ee3e87bf8a63486ed96df1c0d37b6a72d30fca88`。本文件保留为重放依据。当前任务是整段采集完整测试，请使用 [docs/10](10_capture_full_test_plan.md)和[全程提示词](../prompts/local_capture_full_test.md)；下文原阶段的“暂不扩全包/等待效果复核”不再是当前任务停止条件。
+
 ## 1. 审查决定与本轮终点
 
 几何输入基于提交 d72f56836028d7a7885f21f02522e4f7cc310429。公开报告、源代码和代表图的复核支持进入首个自有场景训练；状态为 **accepted_for_first_training_baseline_with_known_limitations**。具体依据见 [几何复核](../reports/capture-geometry-review/2026-11-19/overview.md)。这不是独立几何精度认证，也不是训练已完成。

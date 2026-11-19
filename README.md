@@ -16,21 +16,20 @@
 - 2026-11-19：本地 Gemini 335 bag 审计已回传 `a13bb40`。实际原件 `H:\capture.bag\capture.bag`，5,919,666,852字节；RGB/毫米Z深度/双相机标定与时间关联可用，相机位姿缺失，原生深度未注册至RGB。见 [原始审计](reports/capture-bag-audit/20261119T091841Z-3982cb26/overview.md)。
 - 已对四组回传原数值样例执行同帧D2C并核对SDK/DN接口，见 [数据复核](reports/capture-bag-review/2026-11-19/overview.md)。
 - 2026-11-19：首段几何回传 `d72f568`：241对唯一RGB-D，193张训练图单一地图，48张留出图固定地图定位，统一尺度1.46499035 m/SfM单位，436361点训练初始化；历史读取器逐帧通过。见 [首段几何结果](reports/capture-geometry/20261119-s01-5hz-3982cb26/overview.md)。
-- 已完成 [几何审查](reports/capture-geometry-review/2026-11-19/overview.md)，接受进入首个自有场景30k基线，保留宽基线不一致局限。正式输入为1280×720、0.3–6m；正深度覆盖中位数16.28%。法线、训练与Poisson尚未在此次审查中执行；[下一轮状态入口](reports/capture-s01-dn-30k/latest.json)与[计划](docs/09_capture_training_plan.md)分开记录。
+- 2026-11-19：capture-s01已完整完成，结果提交 `ee3e87b`。241帧、193/24/24；累计30k、step29999、440882高斯；Test PSNR23.3502、SSIM0.77934、LPIPS0.30406，同采集深度等权帧MAE0.19838m。原始Poisson已交付；桌沿/椅腿细节和末段238/239仍有明显失败。见[完整结果](reports/capture-s01-dn-30k/20261119-v1/overview.md)与[效果复核](reports/capture-s01-review/2026-11-19/overview.md)。
+- 当前下一步：按用户要求，直接执行[整段约369秒的首次完整测试](docs/10_capture_full_test_plan.md)，全程5Hz、预计最多1846对、从头30k、完整评估/轨迹视频/原始Poisson。无新增s01小实验或中间审阅门槛；[全程状态入口](reports/capture-full-dn-30k/latest.json)目前是计划未运行，不能把s01结果当作全程结果。
 - 目标不是仅安装成功，而是尽可能在一个持续执行的任务中完成上述完整流程。
 - 原论文历史实现与论文公式存在待核实差异，首轮结果应标记为“固定历史官方实现的单场景基线”，不能提前称完整论文复现成功。
 
 ## 从这里开始
 
-**当前执行 [AutoDL 自有场景30k提示词](prompts/autodl_capture_s01_train.md)。** 先读 [几何审查](reports/capture-geometry-review/2026-11-19/overview.md)、[docs/09](docs/09_capture_training_plan.md) 与 [训练协议](configs/capture_s01_train_protocol.json)。
+**当前执行 [本地Codex全程协调提示词](prompts/local_capture_full_test.md)。** 它从H盘原包提取完整时间范围的5Hz紧凑输入，复用已有授权连接传到AutoDL，并接续[服务器完整测试提示词](prompts/autodl_capture_full_test.md)到最终结果。先读[本次复核](reports/capture-s01-review/2026-11-19/overview.md)、[docs/10计划](docs/10_capture_full_test_plan.md)和[机器可读协议](configs/capture_full_test_protocol.json)。
 
-当前主线：保留已校验几何 → 有界补充诊断 → 独立输入副本生成Omnidata法线 → 实际训练读取核验 → 正式累计30k → val/test评估与渲染 → Poisson → 报告。复用现有Blackwell环境；不重跑VR Room或已完成几何。
+当前主线：全程冻结选帧/划分 → 统一训练地图与米制输入 → Omnidata → 从头累计30k → 全部可定位val/test与完整轨迹视频 → 原始Poisson → 报告和代码推送。不再截取另一个短片段；个别定位失败保留分母和时间缺口，继续可用地图的完整输出，不反复等待审阅。
 
-原几何数据目录与manifest保持不变；输入副本新增法线并建立新清单。约6GB原包继续留在Windows，AutoDL已有紧凑包和1.206GB派生数据，不再上传原件。报告目标20MiB、上限50MiB，模型/完整渲染/PLY保留服务器并登记哈希。
+复用现有Blackwell环境，允许全部已分配CPU/GPU。原bag只读留H盘；s01与VR结果封存；新增全程数据和run独立管理。固定5Hz预计1845均匀目标加末帧，最多1846对，预计1478/184/184；实际以清单为准。30k和原始网格方法保持，待完整效果出来后再决定延长训练、位姿处理或网格改进。
 
-[本地首段提取](prompts/local_capture_geometry.md)、[AutoDL几何准备](prompts/autodl_capture_geometry.md) 与 [docs/08](docs/08_capture_geometry_plan.md) 保留为已执行阶段的重放依据；其等审查停止点现已完成。没有独立几何真值，本轮传感深度指标只说明内部一致性，不输出Faro/F-score精度结论。
-
-[上一轮bag审计提示词](prompts/local_capture_bag_audit.md) 与 [AutoDL基准第二轮提示词](prompts/autodl_round2.md) 保留历史入口；不要重做已完成的审计或把Windows原始路径当作服务器训练目录。
+[首段提取](prompts/local_capture_geometry.md)、[首段几何](prompts/autodl_capture_geometry.md)、[s01训练](prompts/autodl_capture_s01_train.md)及docs/08/09作为历史重放依据保留，其原来的阶段停止点不再是当前任务门槛。[基准第二轮](prompts/autodl_round2.md)仍保留，不自动与本轮并行启动。
 
 [首轮启动提示词](prompts/autodl_first_run.md) 作为历史执行入口保留；无需重复安装或重新训练已经完成的 VR Room。
 
@@ -43,7 +42,7 @@
 5. [源码与协议审计](docs/03_source_audit.md)：当前 main 与历史候选的差异。
 6. [结果交付约定](docs/05_result_contract.md)：哪些证据进 Git，哪些大文件保留并登记。
 
-机器可读计划：当前 [首个自有场景训练协议](configs/capture_s01_train_protocol.json)；已执行 [首段几何准备协议](configs/capture_geometry_protocol.json)；保留 [第二轮协议](configs/round2_protocol.json) 与 [bag审计协议](configs/capture_bag_audit.json)。[首轮协议](configs/vr_room_protocol.json) 保留原计划字段，VR实际完成情况以 `reports/vr-room-iphone-30k/` 和 `reports/latest_status.json` 为准，不能作为capture的完成标记。
+机器可读计划：当前 [全程完整测试协议](configs/capture_full_test_protocol.json)；已执行的 [s01训练协议](configs/capture_s01_train_protocol.json)、[首段几何协议](configs/capture_geometry_protocol.json)和[bag审计协议](configs/capture_bag_audit.json)保留原计划快照；[基准第二轮协议](configs/round2_protocol.json)保留待后续安排。[首轮协议](configs/vr_room_protocol.json) 保留原计划字段，VR实际完成情况以 `reports/vr-room-iphone-30k/` 和 `reports/latest_status.json` 为准，不能作为capture的完成标记。
 
 ## GitHub：优先 AutoDL 官方学术加速
 
@@ -96,7 +95,7 @@
 | `.local/runs/<run-id>/` | checkpoint、完整日志、渲染、网格 | 否；提交指标和清单 |
 | `.local/reports/` | 原始环境盘点及私有诊断 | 否；公开摘要需脱敏 |
 
-不向官方仓库推送。首轮结果保持原样；第二轮范围由 docs/04 和 configs/round2_protocol.json 规定，不自动扩展全数据集、AGS-Mesh 或超参数搜索。
+不向官方仓库推送。VR Room和s01结果保持原样；当前自采全程任务由docs/10和configs/capture_full_test_protocol.json规定。docs/04中的基准第二轮留待后续，不自动增加AGS-Mesh或超参数搜索。
 
 ## 文献和实现依据
 

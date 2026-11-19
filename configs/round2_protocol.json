@@ -66,8 +66,8 @@
     "use_six_scene_average_as_scene_target": false
   },
   "custom_data": {
-    "dataset_path": ".local/data/custom/capture-s01/20261119-s01-5hz-3982cb26",
-    "status": "review_accepted_execution_pending",
+    "dataset_path": ".local/data/custom/capture-full/20261119-full-5hz-3982cb26",
+    "status": "s01_completed_full_capture_planned",
     "preferred_input": "static multiview RGB-D with calibrated RGB intrinsics and per-frame camera-to-world poses",
     "preferred_parser": "normal-nerfstudio",
     "use_vr_room_gaussian_checkpoint": false,
@@ -80,7 +80,7 @@
     "audit_plan": "configs/capture_bag_audit.json",
     "audit_prompt": "prompts/local_capture_bag_audit.md",
     "audit_status_pointer": "reports/capture-bag-audit/latest.json",
-    "later_training_policy": "Geometry d72f568 reviewed and accepted with known limitations. Execute docs/09 and capture_s01_train_protocol through Omnidata, 30k, val/test, Poisson and report. Preserve geometry source and prior VR results.",
+    "later_training_policy": "s01 is completed. Execute docs/10 and capture_full_test_protocol through full-duration extraction, unified geometry, Omnidata, from-scratch 30k, all available holdouts, full trajectory video, raw Poisson and final report. No intermediate review or small-run gates.",
     "raw_source_requested_windows_path": "H:\\capture.bag",
     "source_verification_scope": "User local full bag audit a13bb40445c1c049c2931094e533a5ed43472297; subsequent review independently used the four published numeric examples, not the original file.",
     "audit_result_commit": "a13bb40445c1c049c2931094e533a5ed43472297",
@@ -93,12 +93,22 @@
     "geometry_review_completed": true,
     "geometry_result_commit": "d72f56836028d7a7885f21f02522e4f7cc310429",
     "geometry_review": "reports/capture-geometry-review/2026-11-19/overview.md",
-    "training_plan": "configs/capture_s01_train_protocol.json",
-    "training_prompt": "prompts/autodl_capture_s01_train.md"
+    "training_plan": "configs/capture_full_test_protocol.json",
+    "training_prompt": "prompts/autodl_capture_full_test.md",
+    "training_result_commit": "ee3e87bf8a63486ed96df1c0d37b6a72d30fca88",
+    "full_capture_plan": "configs/capture_full_test_protocol.json",
+    "full_capture_local_prompt": "prompts/local_capture_full_test.md",
+    "full_capture_autodl_prompt": "prompts/autodl_capture_full_test.md",
+    "full_capture_status_pointer": "reports/capture-full-dn-30k/latest.json",
+    "completed_s01_dataset_path": ".local/data/custom/capture-s01/20261119-s01-5hz-3982cb26",
+    "completed_s01_training_plan": "configs/capture_s01_train_protocol.json",
+    "completed_s01_training_prompt": "prompts/autodl_capture_s01_train.md"
   },
   "preserve_first_run_results": true,
   "automatic_extra_ablations": false,
   "automatic_remaining_benchmark_scenes": false,
   "measured_round2_results": null,
-  "active_user_request": "capture_s01_first_30000_update_baseline_after_geometry_review"
+  "active_user_request": "capture_full_first_complete_test",
+  "active_custom_data_plan": "configs/capture_full_test_protocol.json",
+  "active_custom_data_prompt": "prompts/local_capture_full_test.md"
 }
