@@ -14,17 +14,21 @@
 - 2026-11-19：VR Room 首轮完整执行结束，结果提交 `c747cc9`。累计 30k；同轨迹 PSNR 26.9720 / SSIM 0.88108；官方网格 F-score@5cm 86.8629%、C-L1 2.5517cm、NC 89.6993%。主要指标接近论文 Table 4，当前结论限于单场景历史实现。
 - 已复核六张图像拼图、两张网格预览及运行/评价脚本，新增 [结果审查](reports/review_2026-11-19.md)、[第二轮计划](docs/04_round2_plan.md) 和 [自有数据接入说明](docs/06_custom_data.md)。仓库尚无第二场景完成记录。
 - 2026-11-19：本地 Gemini 335 bag 审计已回传 `a13bb40`。实际原件 `H:\capture.bag\capture.bag`，5,919,666,852字节；RGB/毫米Z深度/双相机标定与时间关联可用，相机位姿缺失，原生深度未注册至RGB。见 [原始审计](reports/capture-bag-audit/20261119T091841Z-3982cb26/overview.md)。
-- 已对四组回传原数值样例执行同帧D2C并核对SDK/DN接口，新增 [数据复核](reports/capture-bag-review/2026-11-19/overview.md)。下一步为首段配准、SfM米制轨迹与派生数据准备；首段完整处理和自有场景训练尚未执行。
+- 已对四组回传原数值样例执行同帧D2C并核对SDK/DN接口，见 [数据复核](reports/capture-bag-review/2026-11-19/overview.md)。
+- 2026-11-19：首段几何回传 `d72f568`：241对唯一RGB-D，193张训练图单一地图，48张留出图固定地图定位，统一尺度1.46499035 m/SfM单位，436361点训练初始化；历史读取器逐帧通过。见 [首段几何结果](reports/capture-geometry/20261119-s01-5hz-3982cb26/overview.md)。
+- 已完成 [几何审查](reports/capture-geometry-review/2026-11-19/overview.md)，接受进入首个自有场景30k基线，保留宽基线不一致局限。正式输入为1280×720、0.3–6m；正深度覆盖中位数16.28%。法线、训练与Poisson尚未在此次审查中执行；[下一轮状态入口](reports/capture-s01-dn-30k/latest.json)与[计划](docs/09_capture_training_plan.md)分开记录。
 - 目标不是仅安装成功，而是尽可能在一个持续执行的任务中完成上述完整流程。
 - 原论文历史实现与论文公式存在待核实差异，首轮结果应标记为“固定历史官方实现的单场景基线”，不能提前称完整论文复现成功。
 
 ## 从这里开始
 
-**当前先用 [本地首段提取提示词](prompts/local_capture_geometry.md)，之后接 [AutoDL 几何准备提示词](prompts/autodl_capture_geometry.md)。** 详细步骤见 [docs/08](docs/08_capture_geometry_plan.md)，协议见 [capture_geometry_protocol.json](configs/capture_geometry_protocol.json)，状态入口见 [capture-geometry/latest.json](reports/capture-geometry/latest.json)。
+**当前执行 [AutoDL 自有场景30k提示词](prompts/autodl_capture_s01_train.md)。** 先读 [几何审查](reports/capture-geometry-review/2026-11-19/overview.md)、[docs/09](docs/09_capture_training_plan.md) 与 [训练协议](configs/capture_s01_train_protocol.json)。
 
-首段相对首张深度为0.465019–48.589426秒，先按5Hz目标时间格选约241组真实RGB-D。复用已有审计索引，只把选定JPEG/原值深度/标定与时间清单组成紧凑包传入已有AutoDL项目。原始6GB包留本地，大数据不进普通Git；报告目标20MiB、上限50MiB。
+当前主线：保留已校验几何 → 有界补充诊断 → 独立输入副本生成Omnidata法线 → 实际训练读取核验 → 正式累计30k → val/test评估与渲染 → Poisson → 报告。复用现有Blackwell环境；不重跑VR Room或已完成几何。
 
-当前主线：离线统一RGB-D网格 → 训练图COLMAP SfM → 训练深度单一米制尺度 → 留出RGB定位与跨帧几何核验 → 派生数据集和报告。到几何报告回传为止，不自动法线推理/30k训练/Poisson，不打断已有AutoDL任务。
+原几何数据目录与manifest保持不变；输入副本新增法线并建立新清单。约6GB原包继续留在Windows，AutoDL已有紧凑包和1.206GB派生数据，不再上传原件。报告目标20MiB、上限50MiB，模型/完整渲染/PLY保留服务器并登记哈希。
+
+[本地首段提取](prompts/local_capture_geometry.md)、[AutoDL几何准备](prompts/autodl_capture_geometry.md) 与 [docs/08](docs/08_capture_geometry_plan.md) 保留为已执行阶段的重放依据；其等审查停止点现已完成。没有独立几何真值，本轮传感深度指标只说明内部一致性，不输出Faro/F-score精度结论。
 
 [上一轮bag审计提示词](prompts/local_capture_bag_audit.md) 与 [AutoDL基准第二轮提示词](prompts/autodl_round2.md) 保留历史入口；不要重做已完成的审计或把Windows原始路径当作服务器训练目录。
 
@@ -39,7 +43,7 @@
 5. [源码与协议审计](docs/03_source_audit.md)：当前 main 与历史候选的差异。
 6. [结果交付约定](docs/05_result_contract.md)：哪些证据进 Git，哪些大文件保留并登记。
 
-机器可读计划：[首段几何准备协议](configs/capture_geometry_protocol.json)、[第二轮协议](configs/round2_protocol.json)；[bag审计协议](configs/capture_bag_audit.json) 保留历史任务。[首轮协议](configs/vr_room_protocol.json) 保留原计划字段，实际完成情况以 `reports/vr-room-iphone-30k/` 和 `reports/latest_status.json` 为准。
+机器可读计划：当前 [首个自有场景训练协议](configs/capture_s01_train_protocol.json)；已执行 [首段几何准备协议](configs/capture_geometry_protocol.json)；保留 [第二轮协议](configs/round2_protocol.json) 与 [bag审计协议](configs/capture_bag_audit.json)。[首轮协议](configs/vr_room_protocol.json) 保留原计划字段，VR实际完成情况以 `reports/vr-room-iphone-30k/` 和 `reports/latest_status.json` 为准，不能作为capture的完成标记。
 
 ## GitHub：优先 AutoDL 官方学术加速
 

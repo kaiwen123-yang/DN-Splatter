@@ -1,10 +1,10 @@
 # 自有数据接入：复用已验证环境，为新场景重新优化
 
-更新日期：2026-11-19（Asia/Shanghai）。审查基于用户仓库提交 `c747cc92d70055d5d5ceb70699e85b77faad87da` 和官方历史源码 `811f5cdf342d92d12a9d9a4be185d374c430c184`。
+更新日期：2026-11-19（Asia/Shanghai）。VR基础审查基于 `c747cc92d70055d5d5ceb70699e85b77faad87da`，首段几何依据 `d72f56836028d7a7885f21f02522e4f7cc310429`；官方历史源码固定 `811f5cdf342d92d12a9d9a4be185d374c430c184`。
 
-**当前状态：`audited_geometry_preparation_planned`。用户已在本地完成 Gemini 335 审计，回传提交 `a13bb40445c1c049c2931094e533a5ed43472297`。** 实际原件为 `H:\capture.bag\capture.bag`；RGB、毫米轴向Z、双相机标定和设备时间可用，无逐帧相机位姿。四组公开样例已有同帧D2C计算和目视复核，尚未得到首段连续轨迹或可训练数据集。
+**当前状态：`review_accepted_execution_pending`。Gemini 335首段的241帧配准、相机位姿、统一米制尺度和训练初始化已经生成，并通过带局限的审查。** 数据已在AutoDL；193/24/24冻结划分，正式1280×720、0.3–6m米制Z。原始bag本身无位姿，但本轮派生位姿来自真实训练图SfM与留出PnP。法线、DN训练和Poisson仍待下轮执行。
 
-当前入口：[数据复核](../reports/capture-bag-review/2026-11-19/overview.md)、[首段几何计划](08_capture_geometry_plan.md)、[本地提示词](../prompts/local_capture_geometry.md)、[AutoDL提示词](../prompts/autodl_capture_geometry.md)。本轮执行提取/配准/SfM尺度与几何核验，原包留本地，仅传选定数据包；以下训练章节留作几何报告通过后的步骤。
+当前入口：[几何结果审查](../reports/capture-geometry-review/2026-11-19/overview.md)、[首个自有场景训练计划](09_capture_training_plan.md)、[训练协议](../configs/capture_s01_train_protocol.json)、[AutoDL提示词](../prompts/autodl_capture_s01_train.md)。当前执行完整法线、30k、留出评估与Poisson。以下为通用接入说明；本次具体范围和固定参数以docs/09为准，原几何manifest保持封存。
 
 ## 1. 现在能否直接处理
 
@@ -30,7 +30,7 @@ RGB-only 路径在历史源码中存在，但当前成功运行的证据来自 s
 
 ## 3. 当前输入和需要核实的内容
 
-输入已核实为 `H:\capture.bag\capture.bag` 的 Orbbec Gemini 335 SDK 扩展录制。复用已有解析器、SQLite索引和已回传报告，不再要求用户重复填写标定/话题信息。下一步需要从本地原件导出指定首段并恢复实际相机位姿，不能根据四个跨时段样例补造轨迹。
+输入已核实为 `H:\capture.bag\capture.bag` 的 Orbbec Gemini 335 SDK 扩展录制。指定首段已导出到AutoDL、完成D2C及真实SfM/PnP；复用其清单和数据，不再要求重复填写标定/话题信息或回到原包提取。下表适用于核对新的数据或后续扩段，本轮已有字段直接引用报告。
 
 只读盘点用户指定的目录，生成以下事实记录：
 
@@ -51,7 +51,7 @@ RGB-only 路径在历史源码中存在，但当前成功运行的证据来自 s
 
 ### 4.1 建立独立工作副本
 
-按docs/08在AutoDL创建 `.local/data/custom/<scene-id>/` 及 `.local/runs/<new-run-id>/`，复用已有资源并将缺少的预处理依赖隔离。原始采集只读保留；当前只处理指定首段，派生图像、深度和初始化点云写入本项目工作副本。位姿与尺度必须来自真实求解；法线推理和训练留到几何报告审查之后。
+本首段已经按docs/08建立几何目录；现在按docs/09创建独立run及训练输入副本，只新增法线和新清单。原始采集和几何目录保持封存，不改现有位姿与尺度；几何报告审查已完成，法线路径核验后直接正式训练。新数据的预处理依赖仍需按项目隔离。
 
 推荐文件组织为 `images/`、`depth/`、`normals_from_pretrain/`、`transforms.json` 和训练帧初始化点云。各图像使用统一补零编号，例如 `frame_00001`，避免图像与法线的排序不同。
 

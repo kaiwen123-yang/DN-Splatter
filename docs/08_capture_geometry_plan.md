@@ -1,5 +1,7 @@
 # capture.bag 下一阶段：配准、相机轨迹与训练数据准备
 
+**阶段归档说明（2026-11-19）：本计划已经执行，结果见提交 d72f568 的[首段报告](../reports/capture-geometry/20261119-s01-5hz-3982cb26/overview.md)，并已完成[几何审查](../reports/capture-geometry-review/2026-11-19/overview.md)。当前执行入口为 [docs/09](09_capture_training_plan.md) 与 [训练提示词](../prompts/autodl_capture_s01_train.md)。下文保留当时的几何准备范围；其中“等待审查、不启动训练”是已完成阶段的停止条件，不适用于新的训练任务。**
+
 日期：2026-11-19（Asia/Shanghai）。依据为用户实际审计提交 `a13bb40445c1c049c2931094e533a5ed43472297`。**本文件是下一阶段执行计划，不是已完成几何重建或已完成训练的记录。**
 
 ## 1. 已知事实与本轮终点

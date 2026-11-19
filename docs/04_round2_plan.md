@@ -2,7 +2,7 @@
 
 日期：2026-11-19（Asia/Shanghai）。依据：用户仓库实测提交 `c747cc92d70055d5d5ceb70699e85b77faad87da`。本文件是下一轮执行计划，**不是已完成实验**。
 
-**最新执行顺序：本地bag审计已回传 `a13bb40`，现在进入首段配准、相机轨迹与米制数据准备。** 当前任务使用 [首段几何手册](08_capture_geometry_plan.md)、[本地入口](../prompts/local_capture_geometry.md) 和 [AutoDL入口](../prompts/autodl_capture_geometry.md)。本文 A/B 保留为服务器基准计划，不因数据准备自动启动或停止；C 的30k训练等待几何报告，当前允许按新计划进行SfM和必要转换。
+**最新执行顺序：首段几何已回传 `d72f568` 并通过带局限的审查，现在执行C的首个自有场景30k。** 当前任务以 [docs/09](09_capture_training_plan.md)、[训练协议](../configs/capture_s01_train_protocol.json) 和 [AutoDL入口](../prompts/autodl_capture_s01_train.md) 为准。本文A/B继续保留为基准计划，不由本次任务自动启动或停止。原几何阶段的等待审查条件已经完成。
 
 ## 1. 起点与本轮目标
 
@@ -12,7 +12,7 @@ VR Room 已完成累计 30,000 次更新、两个留出轨迹的评价、Poisson
 
 1. **A：用已有 VR Room checkpoint 和产物补齐诊断。** 不新增 VR Room 训练。
 2. **B：固定 MuSHRoom `coffee_room` / iPhone 作为第二场景，完整训练 30k 并评估、导出网格。** 不根据结果换场景，不把六场景均值当单场景目标。
-3. **C：准备独立自有数据入口。** 当前状态为 `audited_geometry_preparation_planned`，实际原件为 `H:\capture.bag\capture.bag`。按docs/08准备首段，不把原包路径或四样例同帧投影视为已完成训练数据集。
+3. **C：完成首个自有数据基线。** 241帧首段几何已准备并复核；按docs/09在原几何封存副本上增加法线，完成193训练/24验证/24测试的30k、评估与Poisson。原始bag继续留本地。
 
 全 CPU/GPU 授权继续有效。保留现有 Conda、源码、缓存隔离，GitHub 优先本项目子 shell 中的 AutoDL 官方学术加速。不给后台训练设置完成期限，不做 Windows 归档，不删除已有产物。
 

@@ -10,11 +10,13 @@
 
 ## 开始前读取
 
-**当前阶段（2026-11-19）：VR Room 首轮完成；本地 bag 审计也已完成并回传 `a13bb40445c1c049c2931094e533a5ed43472297`。** 已确认实际原件为 `H:\capture.bag\capture.bag`，上层是目录；设备为 Gemini 335。请先读 `reports/capture-bag-review/2026-11-19/overview.md`、`docs/08_capture_geometry_plan.md`、`configs/capture_geometry_protocol.json`，按所在位置执行 `prompts/local_capture_geometry.md` 或 `prompts/autodl_capture_geometry.md`。
+**当前阶段（2026-11-19）：首段几何已完成并回传 `d72f56836028d7a7885f21f02522e4f7cc310429`，审查接受进入首个自有场景训练基线。** 先读 `reports/capture-geometry-review/2026-11-19/overview.md`、`docs/09_capture_training_plan.md`、`configs/capture_s01_train_protocol.json`，执行 `prompts/autodl_capture_s01_train.md`。审查带宽基线一致性局限，不是独立几何精度认证。
 
-下一阶段是指定首段提取、同帧 D2C、相机轨迹和米制几何验证、条件满足时准备真实数据集。允许按新协议执行必要的 COLMAP/SfM 和有限失败备选；不要继续用上一轮“只审计、禁止SfM”的结束条件阻塞当前数据准备。四组公开样例的同帧投影已在本次复核执行，首段提取/传输/位姿求解仍是计划。新任务到几何报告回传为止，不自动运行法线推理、DN训练或Poisson。
+本轮持续完成：有界跨视角补充诊断、Omnidata、实际法线路径读取核验、累计30k、val/test各24帧评估与渲染、原始Poisson、小报告与代码推送。此前docs/08的“停在geometry_prepared_pending_review”已经达到并经复核，不再构成本轮停止条件。当前仅完成审查和计划发布，法线/训练/网格是否已执行以新run实际状态为准。
 
-原包只读留在 Windows；本地依现有SQLite索引提取约5Hz的选定原值帧，AutoDL只接收紧凑派生包，不能凭Windows路径访问原件。保留原始审计与VR Room结果。原第二轮 A/B 基准计划仍在 `docs/04_round2_plan.md`，本次不新增它们，也不终止已在执行的服务器任务。
+固定241帧、193/24/24划分、1280×720、0.3–6m米制Z、现有相机和436361点训练初始化。原几何目录及manifest封存；在独立训练副本增加法线和新清单，不能把约95%的640诊断覆盖率写成1280训练监督覆盖。保持既有尺度和测试划分，补充诊断不用于反复调参或删除困难测试帧。
+
+原包留在Windows只读，紧凑包和完整派生数据已经在AutoDL，不再上传6GB原件、不重做已成功的SfM或Blackwell安装。保留VR Room和原几何报告；新增capture专属runner，不能只替换旧VR脚本的--data。原第二轮A/B计划继续保留，本轮不自动启动它们，也不终止已有服务器任务。
 
 首轮 docs/00、01、02、03、05 和 `configs/vr_room_protocol.json` 继续作为实现/协议依据；已有环境与 VR Room checkpoint 不从头重做。先检查本项目工作区和远端，保留用户已有未提交修改。计划与已执行记录分开，第二轮未运行的指标不得填入完成状态。
 
@@ -63,7 +65,7 @@
 
 Nerfstudio 1.1.3 的恢复训练会把 max_num_iterations 作为本次追加步数。累计目标是 30,000，零基最后 step=29,999；从 checkpoint 读取实际 saved_step，使用 `remaining=30000-(saved_step+1)`，保留原 30,000 步调度和原数据配置。不要从中间 checkpoint 再盲目加 30,000。不要用未经核实的 `--load-config` 覆盖规则丢失参数。
 
-正式训练阶段每5,000步保存checkpoint，保留必要中间点；必要检查充分后进入该阶段完整训练，不堆叠无关smoke tests。**当前docs/08阶段只做首段几何准备，以上训练恢复规则不构成提前开启训练的入口。**
+正式训练阶段每5,000步保存checkpoint，保留必要中间点；必要检查充分后进入该阶段完整训练，不堆叠无关smoke tests。**当前docs/09阶段已接受首段几何，补齐法线读取后直接执行完整30k、评估和Poisson；不是提前绕过上一阶段审查。**
 
 ## 证据与推送
 

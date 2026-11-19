@@ -46,5 +46,13 @@
   "dataset_path": "/root/autodl-tmp/DN-Splatter/.local/data/custom/capture-s01/20261119-s01-5hz-3982cb26",
   "registered_camera_count": 241,
   "metric_scale_validation_scope": "sensor consistency on this capture",
-  "measured_results": "reports/capture-geometry/20261119-s01-5hz-3982cb26/summary.json"
+  "measured_results": "reports/capture-geometry/20261119-s01-5hz-3982cb26/summary.json",
+  "review": {
+    "decision": "accepted_for_first_training_baseline_with_known_limitations",
+    "report": "reports/capture-geometry-review/2026-11-19/overview.md",
+    "evidence_commit": "d72f56836028d7a7885f21f02522e4f7cc310429",
+    "next_plan": "configs/capture_s01_train_protocol.json",
+    "next_status": "reports/capture-s01-dn-30k/latest.json",
+    "note": "Original geometry preparation status and measurements above are preserved. Acceptance does not mean normals/training/Poisson have run."
+  }
 }

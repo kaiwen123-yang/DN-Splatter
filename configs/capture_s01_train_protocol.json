@@ -1,0 +1,331 @@
+{
+  "schema_version": 1,
+  "kind": "execution_protocol_not_nerfstudio_config",
+  "updated_date": "2026-11-19",
+  "timezone": "Asia/Shanghai",
+  "phase": "capture_s01_first_training_baseline",
+  "status": "review_accepted_execution_pending",
+  "review": {
+    "decision": "accepted_for_first_training_baseline_with_known_limitations",
+    "report": "reports/capture-geometry-review/2026-11-19/overview.md",
+    "numeric": "reports/capture-geometry-review/2026-11-19/numeric_review.json",
+    "evidence_commit": "d72f56836028d7a7885f21f02522e4f7cc310429",
+    "review_scope": "Committed source, JSON and representative images; no direct server dataset access or new training in this review"
+  },
+  "goal": "Omnidata, cumulative 30000 updates, separate val/test evaluation, rendered previews and historical Poisson for capture-s01",
+  "paths": {
+    "source": ".local/upstream/dn-splatter",
+    "environment": ".local/conda/dn-splatter-bw",
+    "geometry_run": ".local/capture-geometry/20261119-s01-5hz-3982cb26",
+    "geometry_dataset": ".local/data/custom/capture-s01/20261119-s01-5hz-3982cb26",
+    "run": ".local/runs/capture-s01-dn-30k-20261119-v1",
+    "training_inputs": ".local/runs/capture-s01-dn-30k-20261119-v1/inputs",
+    "report": "reports/capture-s01-dn-30k/20261119-v1"
+  },
+  "input": {
+    "geometry_commit": "d72f56836028d7a7885f21f02522e4f7cc310429",
+    "geometry_run_id": "20261119-s01-5hz-3982cb26",
+    "source_bag_sha256": "3982cb269ea03ddf4234b45f74be27143eb66bcd807e4e471d0f3a9cd6b03b59",
+    "geometry_manifest_sha256": "2cc67f7af6ad6444131529ee392879c064bc6a76394220784e7b4b79a039b278",
+    "geometry_file_count_including_manifest": 488,
+    "geometry_bytes_including_manifest": 1206355295,
+    "immutable_geometry": true,
+    "copy_strategy": "reflink or ordinary copy; no writable hardlinks to geometry originals",
+    "training_manifest_includes_geometry_manifest_and_normals": true,
+    "frame_counts": {
+      "train": 193,
+      "val": 24,
+      "test": 24,
+      "total": 241
+    },
+    "width": 1280,
+    "height": 720,
+    "depth_format": "float32 NPY color camera optical-axis Z metres",
+    "depth_range_m": [
+      0.3,
+      6
+    ],
+    "depth_holes": 0,
+    "depth_fill": false,
+    "observed_depth_positive_fraction": {
+      "min": 0.09060872395833333,
+      "median": 0.16282877604166668,
+      "max": 0.22685221354166665
+    },
+    "pose_format": "OpenGL c2w, already metric",
+    "scale_already_applied_m_per_sfm_unit": 1.464990352305482,
+    "refit_scale": false,
+    "refit_poses": false,
+    "refreeze_splits": false,
+    "init_ply": "init_train.ply",
+    "init_points": 436361,
+    "init_source": "frozen train RGB-D only",
+    "new_scene_checkpoint_from_vr_room": false
+  },
+  "source": {
+    "repository": "https://github.com/maturk/dn-splatter",
+    "commit": "811f5cdf342d92d12a9d9a4be185d374c430c184",
+    "reuse_current_verified_environment": true,
+    "expected_versions": {
+      "python": "3.10.22",
+      "torch": "2.7.1+cu128",
+      "nerfstudio": "1.1.3",
+      "gsplat": "1.0.0",
+      "open3d": "0.18.0"
+    },
+    "reuse_recorded_compatibility_patches": true,
+    "algorithm_changes": false
+  },
+  "parser": {
+    "name": "normal-nerfstudio",
+    "settings": {
+      "depth_unit_scale_factor": 1,
+      "auto_scale_poses": false,
+      "scale_factor": 1,
+      "orientation_method": "none",
+      "center_method": "none",
+      "downscale_factor": 1,
+      "scene_scale": 15,
+      "normal_format": "opengl",
+      "load_3D_points": true,
+      "load_normals": true,
+      "load_pcd_normals": true
+    },
+    "explicit_split_lists_required": [
+      "train_filenames",
+      "val_filenames",
+      "test_filenames"
+    ],
+    "camera_res_scale_factor": 1,
+    "distortion": "all zero, RGB and depth already rectified",
+    "pcd_normals": {
+      "method": "historical Open3D estimate_normals then normalize_normals",
+      "radius_m": 0.1,
+      "max_nn": 30
+    }
+  },
+  "normal_prior": {
+    "model": "omnidata",
+    "resolution_mode": "low",
+    "internal_inference_width": 384,
+    "internal_inference_height": 384,
+    "output_width": 1280,
+    "output_height": 720,
+    "data_scope": "all 241 frames with split-selective loading",
+    "directory": "normals_from_pretrain",
+    "training_format": "PNG",
+    "expected_png": 241,
+    "expected_npy": 241,
+    "checkpoint_reuse": true,
+    "checkpoint_sha256": null,
+    "normal_inputs_verified": false,
+    "actual_first_training_normal_finiteness_record_required": true
+  },
+  "diagnostics": {
+    "prior_report_immutable": true,
+    "existing_pair_count": 20,
+    "add_reverse": true,
+    "max_directed_pairs": 40,
+    "grid": [
+      640,
+      360
+    ],
+    "source_and_target_range_m": [
+      0.3,
+      6
+    ],
+    "first_zbuffer_all_valid_source_then_select_winners": true,
+    "subsets": [
+      "original target-Z-only",
+      "both depths within target-axis Z range",
+      "also source-camera Z in range",
+      "local smooth supports independent of inter-view residual"
+    ],
+    "local_edge_dilation_radius_px": 2,
+    "hole_neighborhood_radius_px": 2,
+    "d2c_competition_dilation_radius_px": 2,
+    "signed_candidate_threshold": {
+      "absolute_m": 0.05,
+      "relative_target_z": 0.03,
+      "operation": "max"
+    },
+    "candidate_visibility_labels_are_not_ground_truth": true,
+    "visual_pairs": [
+      [
+        164,
+        179
+      ],
+      [
+        134,
+        149
+      ],
+      [
+        224,
+        239
+      ]
+    ],
+    "required_denominators": true,
+    "modify_training_inputs_from_test_diagnostics": false,
+    "new_numeric_accuracy_gate": false
+  },
+  "training": {
+    "method": "dn-splatter",
+    "seed": 42,
+    "cumulative_updates": 30000,
+    "final_step_zero_based": 29999,
+    "checkpoint_interval": 5000,
+    "save_only_latest_checkpoint": false,
+    "vis": "tensorboard",
+    "viewer_quit_on_train_completion": true,
+    "pipeline": {
+      "skip_point_metrics": true,
+      "datamanager": {
+        "camera_res_scale_factor": 1
+      },
+      "model": {
+        "use_depth_loss": true,
+        "depth_loss_type": "EdgeAwareLogL1",
+        "sensor_depth_lambda": 0.2,
+        "mono_depth_lambda": 0,
+        "use_normal_loss": true,
+        "normal_lambda": 0.1,
+        "use_normal_tv_loss": true,
+        "normal_supervision": "mono",
+        "two_d_gaussians": true,
+        "num_downscales": 0,
+        "camera_optimizer": {
+          "mode": "off"
+        }
+      }
+    },
+    "other_algorithm_fields": "historical DN defaults, no new loss or parameter sweep",
+    "resume": {
+      "formula": "remaining = 30000 - (saved_step + 1)",
+      "load_optimizers": true,
+      "load_schedulers": true,
+      "scheduler_original_max_steps": 30000,
+      "bind_same_run_identity": true
+    },
+    "additional_short_training_runs": false
+  },
+  "evaluation": {
+    "splits": {
+      "val": 24,
+      "test": 24
+    },
+    "checkpoint_step": 29999,
+    "bind_actual_checkpoint_sha256": true,
+    "checkpoint_selection": "fixed final step; no test-based selection",
+    "pipeline_skip_point_metrics": true,
+    "split_api": "nerfstudio.utils.eval_utils.eval_setup(test_mode='val'|'test')",
+    "render_path": "relative to fixed source cwd when using historical output helper",
+    "rgb_metrics": [
+      "PSNR",
+      "SSIM",
+      "LPIPS"
+    ],
+    "per_frame_metrics": true,
+    "frame_equal_weight_means": true,
+    "depth_metrics": [
+      "MAE_m",
+      "RMSE_m",
+      "AbsRel",
+      "absolute_error_P50_m",
+      "absolute_error_P95_m"
+    ],
+    "reference_depth_mask": "finite original sensor Z in [0.3,6] and >0; no prediction-dependent exclusion",
+    "invalid_predictions": "report count and coverage; do not silently remove from primary denominator; invalid full-reference metrics declared explicitly",
+    "pixel_pooled_and_frame_means_separate": true,
+    "depth_interpretation": "same-capture sensor consistency, no independent geometric ground truth",
+    "unseen_trajectory_generalization": false,
+    "test_previously_seen_for_geometry_diagnostics": true,
+    "gt_mesh_metrics": false,
+    "normal_angular_metrics_required": false,
+    "raw_renders": "all 48 heldout frames on server",
+    "fixed_preview_selection": "first/middle/last of each split plus diagnostics 149,179,239 in their own splits",
+    "accumulation_zero_diagnostic": {
+      "reference_support_counts": true,
+      "changes_primary_metric_support": false,
+      "reason": "Historical RGB+ED fills alpha==0 depth with the frame maximum, so finite positive Z does not guarantee supported surface"
+    }
+  },
+  "mesh": {
+    "exporter": "gs-mesh dn / DepthAndNormalMapsPoisson",
+    "checkpoint_step": 29999,
+    "view_split": "train",
+    "expected_views": 193,
+    "total_points_target": 5000000,
+    "poisson_depth": 9,
+    "normal_method": "normal_maps",
+    "filter_edges_from_depth_maps": false,
+    "outlier_removal": false,
+    "down_sample_voxel": null,
+    "density_vertex_quantile_removed": 0.01,
+    "n_threads": "DN_CPU_BUDGET",
+    "rgbd_range_automatically_applied": false,
+    "retain_raw_poisson": true,
+    "retain_sampled_pcd": true,
+    "ground_truth_metrics": false,
+    "optional_support_cropped_variant": "only after raw output; train support only; separate file, protocol and retained fractions",
+    "validation": [
+      "nonempty points/vertices/faces",
+      "finite xyz/normals",
+      "valid face indices",
+      "metric bounds",
+      "actual sample counts",
+      "connected components",
+      "global and local previews"
+    ],
+    "sampling_seed": 42,
+    "accumulation_zero_sample_count_required": true,
+    "invalid_normal_policy": "Report actual nonfinite/zero sampled normals; if exporter fails, preserve failure and minimally repair numerical validity with counts and patch, no silent artistic filtering"
+  },
+  "resource_policy": {
+    "all_allocated_cpu_and_gpu_authorized": true,
+    "nominal_cpu_cores": 25,
+    "max_simultaneous_training_jobs": 1,
+    "kill_other_projects": false,
+    "rebuild_environment_without_concrete_error": false,
+    "retrain_vr_room": false,
+    "walltime_deadline": null,
+    "automatic_shutdown": false,
+    "persistent_runner": true,
+    "avoid_nested_thread_oversubscription": true,
+    "github_preferred_transport": "AutoDL official /etc/network_turbo in project subshell; official HTTPS URL",
+    "global_proxy_edits": false
+  },
+  "deliverable": {
+    "report_target_mib": 20,
+    "git_new_files_max_mib": 50,
+    "bulk_in_git": false,
+    "required_files": [
+      "overview.md",
+      "run_manifest.json",
+      "config.yml",
+      "commands.sh",
+      "environment.json",
+      "inputs.json",
+      "normal_prior.json",
+      "reader_check.json",
+      "cross_view_diagnostic.json",
+      "training.json",
+      "metrics_val.json",
+      "metrics_test.json",
+      "mesh_validation.json",
+      "artifact_manifest.json"
+    ],
+    "publish_to": "kaiwen123-yang/DN-Splatter/main",
+    "force_push": false,
+    "stop_after": "complete 30k plus both holdout evaluations plus mesh and reviewable evidence, or a concrete documented blocker"
+  },
+  "observed_this_task": {
+    "server_accessed": false,
+    "normal_priors_generated": false,
+    "training_started": false,
+    "training_complete": false,
+    "evaluation_complete": false,
+    "poisson_complete": false,
+    "metrics": null
+  }
+}
+
