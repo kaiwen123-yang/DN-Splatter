@@ -1,9 +1,9 @@
 {
   "schema_version": 2,
-  "updated_at": "2026-11-18T15:58:25.311574+00:00",
+  "updated_at": "2026-11-19T04:09:13.142547+00:00",
   "run_id": "vr-room-iphone-30k",
   "status": "running",
-  "stage": "training",
+  "stage": "rgb-depth-evaluation",
   "failed_stage": null,
   "reason": null,
   "registered_frame_counts": {
@@ -23,12 +23,12 @@
     "vr_room_mesh_pd.tar.gz"
   ],
   "blackwell_forward_backward_verified": false,
-  "formal_training_checkpoint_on_blackwell": false,
+  "formal_training_checkpoint_on_blackwell": true,
   "standalone_gradient_probe": "skipped; verify operation from the formal run",
-  "training_completed_updates": null,
+  "training_completed_updates": 30000,
   "target_training_updates": 30000,
-  "last_observed_training_log_step": 1210,
-  "checkpoint_step": null,
+  "last_observed_training_log_step": 29999,
+  "checkpoint_step": 29999,
   "rgb_depth_evaluation_complete": false,
   "poisson_mesh_complete": false,
   "mesh_evaluation_complete": false,

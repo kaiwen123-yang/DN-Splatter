@@ -1,1 +1,38 @@
-[]
+[
+  {
+    "path": ".local/runs/vr-room-iphone-30k/training/vr_room_iphone_dn_official/dn-splatter/2026-11-18_235318/nerfstudio_models/step-000005000.ckpt",
+    "bytes": 881366893,
+    "sha256": "26b7906443193e919e4affaf37e41a8919823f79943702398610043d9e8d5f93",
+    "storage": "local_only"
+  },
+  {
+    "path": ".local/runs/vr-room-iphone-30k/training/vr_room_iphone_dn_official/dn-splatter/2026-11-18_235318/nerfstudio_models/step-000010000.ckpt",
+    "bytes": 924615533,
+    "sha256": "d59097bc577276495bc0de922905a0fd220b17e1cb830206fa30f246affce072",
+    "storage": "local_only"
+  },
+  {
+    "path": ".local/runs/vr-room-iphone-30k/training/vr_room_iphone_dn_official/dn-splatter/2026-11-18_235318/nerfstudio_models/step-000015000.ckpt",
+    "bytes": 1033487533,
+    "sha256": "c4f7d8d306668f1a270490dbdbf191bdbcadbeb91d877d6a1db6800674b81ea5",
+    "storage": "local_only"
+  },
+  {
+    "path": ".local/runs/vr-room-iphone-30k/training/vr_room_iphone_dn_official/dn-splatter/2026-11-18_235318/nerfstudio_models/step-000020000.ckpt",
+    "bytes": 881616621,
+    "sha256": "e602b858a01053de389ce1b2d4994c0cc39669075047b3614ac9760435eff9e7",
+    "storage": "local_only"
+  },
+  {
+    "path": ".local/runs/vr-room-iphone-30k/training/vr_room_iphone_dn_official/dn-splatter/2026-11-18_235318/nerfstudio_models/step-000025000.ckpt",
+    "bytes": 828402797,
+    "sha256": "d1aa8727e4139c07b097b8747a7f4cb2bd9558b7a0d3d6917bbf40bcd18ce222",
+    "storage": "local_only"
+  },
+  {
+    "path": ".local/runs/vr-room-iphone-30k/training/vr_room_iphone_dn_official/dn-splatter/2026-11-18_235318/nerfstudio_models/step-000029999.ckpt",
+    "bytes": 800489837,
+    "sha256": "91da79bd5d733e5d215c1d7512d8340573b3b81d4406d7816b5bfe4c6de319cb",
+    "storage": "local_only"
+  }
+]

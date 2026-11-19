@@ -1,3 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 source "${DN_PROJECT_ROOT:?}/scripts/autodl_env.sh"
+cd "${DN_PROJECT_ROOT}"/.local/upstream/dn-splatter
+OMP_NUM_THREADS=12 ns-train dn-splatter --output-dir "${DN_PROJECT_ROOT}"/.local/runs/vr-room-iphone-30k/training --experiment-name vr_room_iphone_dn_official --machine.seed 42 --max-num-iterations 30000 --steps-per-save 5000 --save-only-latest-checkpoint False --vis tensorboard --viewer.quit-on-train-completion True --pipeline.model.use-depth-loss True --pipeline.model.depth-loss-type EdgeAwareLogL1 --pipeline.model.sensor-depth-lambda 0.2 --pipeline.model.use-normal-loss True --pipeline.model.normal-lambda 0.1 --pipeline.model.use-normal-tv-loss True --pipeline.model.normal-supervision mono --pipeline.model.two-d-gaussians True mushroom --data "${DN_PROJECT_ROOT}"/.local/data/room_datasets/vr_room --mode iphone --normal-format opengl --eval-mode all --load-depths True --depth-mode sensor --load-normals True --normals-from pretrained --use-faro-scanner-depths False --use-faro-scanner-pd False
+cd "${DN_PROJECT_ROOT}"/.
+OMP_NUM_THREADS=1 "${DN_PROJECT_ROOT}"/.local/conda/dn-splatter-bw/bin/python "${DN_PROJECT_ROOT}"/scripts/vr_room_inputs.py frames

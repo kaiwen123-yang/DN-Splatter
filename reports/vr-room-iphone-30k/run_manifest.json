@@ -1,8 +1,8 @@
 {
   "run_id": "vr-room-iphone-30k",
-  "time_utc": "2026-11-18T15:58:25.311574+00:00",
-  "time_asia_shanghai": "2026-11-18T23:58:25.311574+08:00",
-  "repository_at_report": "19be771ba3266dacb97d972e0ed053c2774e4db2",
+  "time_utc": "2026-11-19T04:09:13.142547+00:00",
+  "time_asia_shanghai": "2026-11-19T12:09:13.142547+08:00",
+  "repository_at_report": "37460f075e887edb41d8dd117538c462b8aa32ef",
   "policy_commit": "7f8d6afd360382d628b96af769db086966ca1964",
   "source": "811f5cdf342d92d12a9d9a4be185d374c430c184",
   "patch_sha256": {
@@ -54,7 +54,7 @@
     "within": 42,
     "with": 186
   },
-  "normal_alignment_checked": false,
+  "normal_alignment_checked": true,
   "seed": 42,
   "normal_prior": "Omnidata v2 low; opengl",
   "initialization": {
@@ -62,7 +62,13 @@
     "vertices": 1000160,
     "sha256": "881bed324b5ece8abf990d05fd67977bef5d50910b915525f90c273258081eb3"
   },
-  "training": null,
+  "training": {
+    "checkpoint": ".local/runs/vr-room-iphone-30k/training/vr_room_iphone_dn_official/dn-splatter/2026-11-18_235318/nerfstudio_models/step-000029999.ckpt",
+    "step": 29999,
+    "cumulative_updates": 30000,
+    "final_gaussians": 1084297,
+    "config": ".local/runs/vr-room-iphone-30k/training/vr_room_iphone_dn_official/dn-splatter/2026-11-18_235318/config.yml"
+  },
   "resume_segments": [
     {
       "started_utc": "2026-11-18T15:53:07.025651+00:00",
@@ -72,7 +78,28 @@
     }
   ],
   "optimizer_protocol": "original historical loss weights; flattening is included in normal_lambda",
-  "stages": [],
+  "stages": [
+    {
+      "stage": "training",
+      "cwd": ".local/upstream/dn-splatter",
+      "started_utc": "2026-11-18T15:53:07.025796+00:00",
+      "omp_threads": 12,
+      "blas_threads": 1,
+      "exit_code": 0,
+      "duration_seconds": 1633.28,
+      "ended_utc": "2026-11-18T16:20:20.303591+00:00"
+    },
+    {
+      "stage": "record-frame-manifest",
+      "cwd": ".",
+      "started_utc": "2026-11-19T04:08:08.619177+00:00",
+      "omp_threads": 1,
+      "blas_threads": 1,
+      "exit_code": 0,
+      "duration_seconds": 2.67,
+      "ended_utc": "2026-11-19T04:08:11.291828+00:00"
+    }
+  ],
   "cpu_budget": 25,
   "observed_gsplat_ninja_job_limits": [
     21
@@ -81,10 +108,10 @@
   "mesh": null,
   "peaks_sampled_every_15s": {
     "starting": {
-      "samples": 2,
+      "samples": 3,
       "gpu_used_mib_device": 0,
       "gpu_util_pct_device": 0,
-      "cgroup_memory_bytes": 37493473280
+      "cgroup_memory_bytes": 38213373952
     },
     "installing_blackwell_dependencies": {
       "samples": 152,
@@ -101,11 +128,18 @@
       "peak_interval_mean_cpu_cores": 0.066
     },
     "training": {
-      "samples": 21,
-      "gpu_used_mib_device": 9513,
-      "gpu_util_pct_device": 43,
-      "cgroup_memory_bytes": 62813757440,
+      "samples": 108,
+      "gpu_used_mib_device": 10983,
+      "gpu_util_pct_device": 75,
+      "cgroup_memory_bytes": 68225527808,
       "peak_interval_mean_cpu_cores": 1.372
+    },
+    "rgb-depth-evaluation": {
+      "samples": 4,
+      "gpu_used_mib_device": 879,
+      "gpu_util_pct_device": 0,
+      "cgroup_memory_bytes": 40013000704,
+      "peak_interval_mean_cpu_cores": 1.05
     }
   },
   "resources_scope": "device and whole container; samples can miss transient peaks"
