@@ -1,8 +1,8 @@
 {
   "run_id": "vr-room-iphone-30k",
-  "time_utc": "2026-11-19T04:09:13.142547+00:00",
-  "time_asia_shanghai": "2026-11-19T12:09:13.142547+08:00",
-  "repository_at_report": "37460f075e887edb41d8dd117538c462b8aa32ef",
+  "time_utc": "2026-11-19T04:10:35.841763+00:00",
+  "time_asia_shanghai": "2026-11-19T12:10:35.841763+08:00",
+  "repository_at_report": "b24869ff94b013e7618f4d221a9e57d32f7fdc6c",
   "policy_commit": "7f8d6afd360382d628b96af769db086966ca1964",
   "source": "811f5cdf342d92d12a9d9a4be185d374c430c184",
   "patch_sha256": {
@@ -98,6 +98,16 @@
       "exit_code": 0,
       "duration_seconds": 2.67,
       "ended_utc": "2026-11-19T04:08:11.291828+00:00"
+    },
+    {
+      "stage": "rgb-depth-evaluation",
+      "cwd": ".local/upstream/dn-splatter",
+      "started_utc": "2026-11-19T04:08:11.292308+00:00",
+      "omp_threads": 12,
+      "blas_threads": 1,
+      "exit_code": 0,
+      "duration_seconds": 101.42,
+      "ended_utc": "2026-11-19T04:09:52.714337+00:00"
     }
   ],
   "cpu_budget": 25,
@@ -135,11 +145,18 @@
       "peak_interval_mean_cpu_cores": 1.372
     },
     "rgb-depth-evaluation": {
-      "samples": 4,
+      "samples": 6,
       "gpu_used_mib_device": 879,
       "gpu_util_pct_device": 0,
-      "cgroup_memory_bytes": 40013000704,
-      "peak_interval_mean_cpu_cores": 1.05
+      "cgroup_memory_bytes": 40044736512,
+      "peak_interval_mean_cpu_cores": 1.482
+    },
+    "render-and-faro": {
+      "samples": 3,
+      "gpu_used_mib_device": 879,
+      "gpu_util_pct_device": 0,
+      "cgroup_memory_bytes": 40363864064,
+      "peak_interval_mean_cpu_cores": 1.203
     }
   },
   "resources_scope": "device and whole container; samples can miss transient peaks"
