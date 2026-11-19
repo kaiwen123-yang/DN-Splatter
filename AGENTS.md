@@ -10,7 +10,11 @@
 
 ## 开始前读取
 
-按 README 的顺序读取 docs/00、01、02、03、05，以及 `configs/vr_room_protocol.json`。先检查本项目工作区和远端；保留用户已有未提交修改。文档只是计划，不能将计划中的环境、训练或指标标成已完成。
+**当前阶段（2026-11-19）：首轮已完成，结果提交为 `c747cc92d70055d5d5ceb70699e85b77faad87da`。** 接续任务先读 `reports/review_2026-11-19.md`、`docs/04_round2_plan.md`、`docs/06_custom_data.md` 和 `configs/round2_protocol.json`。第二轮允许用原 checkpoint 补诊断、固定 coffee_room 第二场景及自有数据入口准备；真实自有数据提供且核验通过后可进行一个自有场景完整运行。自有数据尚未给出时只等待该分支，继续基准工作。
+
+首轮 docs/00、01、02、03、05 和 `configs/vr_room_protocol.json` 继续作为实现/协议依据；已有环境与 VR Room checkpoint 不从头重做。先检查本项目工作区和远端，保留用户已有未提交修改。计划与已执行记录分开，第二轮未运行的指标不得填入完成状态。
+
+所有后续场景和审计使用独立 run 目录及身份清单，不用旧 checkpoint、指标文件或完成标记误跳新场景阶段。保留第一轮原始 JSON/PLY；规范化审计指标另存，不静默修改历史实验结论。
 
 ## 隔离边界
 

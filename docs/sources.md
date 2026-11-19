@@ -1,6 +1,6 @@
 # 官方来源与审阅范围
 
-核查日期：2026-11-18（Asia/Shanghai）。本仓库计划依据论文与源码静态审阅；目标服务器的兼容性和训练尚待实测。
+核查日期：2026-11-19（Asia/Shanghai）。首轮计划依据论文与源码静态审阅；现已核查目标服务器正式运行的 [c747cc9 结果提交](https://github.com/kaiwen123-yang/DN-Splatter/tree/c747cc92d70055d5d5ceb70699e85b77faad87da)，结论见 [本轮审查](../reports/review_2026-11-19.md)。第二轮计划尚未执行。
 
 ## 论文与数据
 
@@ -20,6 +20,9 @@
 - [历史MuSHRoom解析器](https://github.com/maturk/dn-splatter/blob/811f5cdf342d92d12a9d9a4be185d374c430c184/dn_splatter/data/mushroom_dataparser.py)
 - [历史Poisson导出](https://github.com/maturk/dn-splatter/blob/811f5cdf342d92d12a9d9a4be185d374c430c184/dn_splatter/export_mesh.py)
 - [历史Faro评估](https://github.com/maturk/dn-splatter/blob/811f5cdf342d92d12a9d9a4be185d374c430c184/dn_splatter/data/mushroom_utils/eval_faro.py)
+- [历史网格裁剪与评价](https://github.com/maturk/dn-splatter/blob/811f5cdf342d92d12a9d9a4be185d374c430c184/dn_splatter/eval/eval_mesh_mushroom_vis_cull.py)
+- [历史图像、深度和法线指标](https://github.com/maturk/dn-splatter/blob/811f5cdf342d92d12a9d9a4be185d374c430c184/dn_splatter/metrics.py)
+- [历史自有RGB-D数据解析器](https://github.com/maturk/dn-splatter/blob/811f5cdf342d92d12a9d9a4be185d374c430c184/dn_splatter/data/normal_nerfstudio.py)
 - [当前main的审计快照97588b4](https://github.com/maturk/dn-splatter/tree/97588b4290128ce7ba6fdbfaac3020b42b17de4c)
 - [当前main的正则策略](https://github.com/maturk/dn-splatter/blob/97588b4290128ce7ba6fdbfaac3020b42b17de4c/dn_splatter/regularization_strategy.py)
 - [Nerfstudio1.1.3训练和续训](https://github.com/nerfstudio-project/nerfstudio/blob/v1.1.3/nerfstudio/engine/trainer.py)

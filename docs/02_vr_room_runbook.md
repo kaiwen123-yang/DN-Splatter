@@ -1,6 +1,6 @@
 # VR Room 首轮复现执行手册
 
-更新日期：2026-11-18（Asia/Shanghai）。状态：**计划与源码核查完成，尚未在目标 AutoDL 服务器上验证**。
+更新日期：2026-11-19（Asia/Shanghai）。首轮已在目标 AutoDL 完成，见 [结果审查](../reports/review_2026-11-19.md)。本手册保留版本匹配的首轮执行方法；后续使用 [第二轮计划](04_round2_plan.md)，不重复训练已完成的 VR Room。
 
 本轮目标是在同一轮持续任务中完成 **Blackwell 环境适配 → VR Room 单场景累计 30,000 次优化 → RGB/深度评估及渲染 → Poisson 网格 → 网格评估 → 结果推送**。用户已授权本轮使用 AutoDL 实例全部已分配的 CPU 和 GPU；首轮仍只运行一个 VR Room 主训练任务，按阶段使用全部合理资源。保留独立环境和目录，不为本项目终止、迁移或修改其他任务。
 
@@ -21,7 +21,7 @@
 | 深度 | 真实传感器深度，`EdgeAwareLogL1`，`sensor-depth-lambda 0.2` |
 | 法线参数 | `normal-lambda 0.1`，启用 mono 法线、TV、扁平化 |
 | 网格 | `gs-mesh dn`，目标采样 5,000,000 点，Poisson depth 9 |
-| 几何评价 | 官方训练相机可见性裁剪，F-score 阈值 0.05 m |
+| 几何评价 | 固定官方可见性裁剪，F-score 阈值 0.05 m；实际遍历全部 long_capture 注册视角，strict train-only 作为独立审计 |
 
 **名称应写成“历史官方实现基线”，不要预先写成“论文完全复现成功”。** 该提交是基于源码审计选出的候选，不是作者公布的唯一论文提交。
 
@@ -241,7 +241,7 @@ python dn_splatter/eval/eval_mesh_mushroom_vis_cull.py \
   --device iphone
 ```
 
-`gt-mesh-path` 这里需要的是包含 GT、对齐文件和采集数据的场景目录。脚本会做坐标对齐和训练视野可见性裁剪，默认在预测 mesh 目录保存 `mesh_metrics.json` 和裁剪后的 mesh。保留未裁剪与裁剪后两份；不把整场景未裁剪指标与论文裁剪指标混用。
+`gt-mesh-path` 这里需要的是包含 GT、对齐文件和采集数据的场景目录。脚本会做坐标对齐和可见性裁剪，默认在预测 mesh 目录保存 `mesh_metrics.json` 和裁剪后的 mesh。2026-11-19 审计确认 `test_ids` 参数未用于过滤，所以本轮遍历全部 418 个 long_capture 注册视角，含 42 个留出视角；并非严格仅 376 个训练视角。这是官方评价口径，不代表训练加入了留出图像。保留原 official 结果，严格 training-only 诊断另存。原始未裁剪与裁剪后两份网格都保留，不混用不同口径。
 
 检查网格非空、顶点/面有效、包围盒及单位合理，并保存至少两张固定视角网格图。任何网格清理、异常点过滤、简化或阈值更改都写入配置；不以额外清理掩盖原模型问题。
 
@@ -281,4 +281,4 @@ python dn_splatter/eval/eval_mesh_mushroom_vis_cull.py \
 - [WACV 2025 正文](https://openaccess.thecvf.com/content/WACV2025/papers/Turkulainen_DN-Splatter_Depth_and_Normal_Priors_for_Gaussian_Splatting_and_Meshing_WACV_2025_paper.pdf)
 - [WACV 2025 补充材料](https://openaccess.thecvf.com/content/WACV2025/supplemental/Turkulainen_DN-Splatter_Depth_and_WACV_2025_supplemental.pdf)
 
-这些文件在准备计划时已做源码/文献检查，GPU 运行验证仍待执行。实际安装后还应核对本地文件与固定版本一致。
+这些文件在准备计划时已做源码/文献检查，首轮 GPU 正式运行现已完成。继续执行时仍核对本地源码、已登记补丁和环境归属，实际结果以 reports 为准。

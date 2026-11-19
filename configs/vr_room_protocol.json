@@ -3,7 +3,11 @@
   "kind": "execution_protocol_not_nerfstudio_config",
   "updated_date": "2026-11-18",
   "timezone": "Asia/Shanghai",
-  "status": "planned_not_executed",
+  "status": "archived_first_round_plan_not_runtime_status",
+  "observed_run_report": "reports/vr-room-iphone-30k/run_manifest.json",
+  "observed_status": "reports/latest_status.json",
+  "next_round_plan": "configs/round2_protocol.json",
+  "note": "Original planned values and null observation fields below are preserved; completed execution evidence is in the observed run report, not inferred from this plan.",
   "goal": "Blackwell adaptation, VR Room cumulative 30000-step training, evaluation, renders, Poisson mesh and mesh metrics",
   "scope": {
     "scenes": ["vr_room"],
@@ -152,7 +156,9 @@
     "actual_sampled_points": null,
     "expected_mesh_filename": "DepthAndNormalMapsPoisson_poisson_mesh.ply",
     "metric_script": "dn_splatter/eval/eval_mesh_mushroom_vis_cull.py",
-    "visibility_culling": "official training-camera visibility protocol",
+    "visibility_culling": "pinned official code uses all registered long_capture views; test_ids is passed but not applied",
+    "paper_culling_description": "training camera views",
+    "separate_planned_audit": "strict_train_only; preserve official results",
     "fscore_threshold_m": 0.05,
     "mesh_metrics_filename": "mesh_metrics.json",
     "observed_metrics": null

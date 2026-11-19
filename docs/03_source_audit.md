@@ -2,7 +2,7 @@
 
 更新时间：2026-11-18（Asia/Shanghai）。
 
-本文件记录已经完成的论文阅读和源码静态审计，供 AutoDL 上的 Codex 执行者使用。**尚未在目标 RTX PRO 6000 上安装环境、训练或测得指标。** 源码核查不等于 Blackwell 兼容性已经验证，也不等于论文已经复现成功。
+本文件记录论文和源码审计，供 AutoDL 上的 Codex 执行者使用。2026-11-19 已核查目标 RTX PRO 6000 上完成的正式 30k、评价和网格，见 [结果审查](../reports/review_2026-11-19.md)。下面保留首轮版本选择依据，并补充实际评价口径；单场景完成不等于全文复现。
 
 本轮任务是一个完整的 VR Room 实验闭环：环境适配、30k 训练、评估、Poisson 网格和结果回传。本文不授权另开超参数搜索、多场景训练或新的方法分支。
 
@@ -130,6 +130,10 @@ pipeline.get_average_eval_image_metrics(
 ### 6.3 网格评价遵循原协议
 
 正文及补充材料明确：Poisson depth 为 9；MuSHRoom 提取使用 500 万表面采样点；F-score 阈值为 5 cm；评价限制在训练相机可见范围。执行应使用 [MuSHRoom 可见性裁剪评估脚本](https://github.com/maturk/dn-splatter/blob/811f5cdf342d92d12a9d9a4be185d374c430c184/dn_splatter/eval/eval_mesh_mushroom_vis_cull.py)，并记录几何对齐、单位、裁剪与采样参数。
+
+**2026-11-19 追加审计：论文文字与固定官方评价代码在视角选择上有差异。** `cull_mesh(..., test_ids, ...)` 接收留出 ID，却没有在遍历 `transformations_colmap.json` 时过滤它们。本轮 official 实际用了 418 个 long_capture 注册视角，而训练为其中 376 个。保留官方结果；严格训练视角裁剪另存，不能把两套口径混称或覆盖，也不能据此声称训练数据泄漏。
+
+固定 `metrics.py` 还存在两个需要区分定义的字段：`DepthMetrics.rmse_log` 实际先逐元素开方再平均，相当于平均绝对 log 误差；`NormalMetrics` 直接对输入点积取 acos，调用方传入的是 `[0,1]` 法线编码，未完成角度评价所需的解码和单位化。规范审计结果必须另存，并明确法线参考是 Omnidata 先验。几何 NC 来自另一套网格法线计算，不受该图像法线字段问题直接影响。
 
 `--total-points` 是网格提取的目标表面采样数，与初始化高斯数、最终高斯数及网格评估阶段的表面采样数是不同概念。应同时记录请求值和实际产物数量。原始网格和裁剪后网格都保留，不能用手工修补后的外观图替代原始方法输出。
 

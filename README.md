@@ -11,12 +11,16 @@
 - 2026-11-18：建立复现计划、执行约束、协议配置和只读环境检查脚本。
 - 2026-11-18：依据用户最新授权，将执行约定、配置和 Codex 提示词同步改为使用实例全部 CPU/GPU 资源。
 - 目标 AutoDL 已完成盘点，独立 Python 3.10 环境及 VR Room iPhone/Faro 几何包已就位。最新实测阶段、checkpoint 和指标见 [运行状态](reports/latest_status.json)。下文列出的协议数值为目标值。
+- 2026-11-19：VR Room 首轮完整执行结束，结果提交 `c747cc9`。累计 30k；同轨迹 PSNR 26.9720 / SSIM 0.88108；官方网格 F-score@5cm 86.8629%、C-L1 2.5517cm、NC 89.6993%。主要指标接近论文 Table 4，当前结论限于单场景历史实现。
+- 已复核六张图像拼图、两张网格预览及运行/评价脚本，新增 [结果审查](reports/review_2026-11-19.md)、[第二轮计划](docs/04_round2_plan.md) 和 [自有数据接入说明](docs/06_custom_data.md)。第二轮尚未执行。
 - 目标不是仅安装成功，而是尽可能在一个持续执行的任务中完成上述完整流程。
 - 原论文历史实现与论文公式存在待核实差异，首轮结果应标记为“固定历史官方实现的单场景基线”，不能提前称完整论文复现成功。
 
 ## 从这里开始
 
-将 [完整 Codex 启动提示词](prompts/autodl_first_run.md) 交给运行在目标 AutoDL 实例、或已连接该实例的 Codex。
+继续工作请使用 [第二轮 Codex 提示词](prompts/autodl_round2.md)：保留现有 VR Room 结果，补齐诊断，复现 coffee_room 并准备自有数据入口。自有数据目录尚未提供，不自动使用其他项目的数据。
+
+[首轮启动提示词](prompts/autodl_first_run.md) 作为历史执行入口保留；无需重复安装或重新训练已经完成的 VR Room。
 
 读取顺序：
 
@@ -27,7 +31,7 @@
 5. [源码与协议审计](docs/03_source_audit.md)：当前 main 与历史候选的差异。
 6. [结果交付约定](docs/05_result_contract.md)：哪些证据进 Git，哪些大文件保留并登记。
 
-机器可读协议：[configs/vr_room_protocol.json](configs/vr_room_protocol.json)。
+机器可读计划：[第二轮协议](configs/round2_protocol.json)。[首轮协议](configs/vr_room_protocol.json) 保留原计划字段，实际完成情况以 `reports/vr-room-iphone-30k/` 和 `reports/latest_status.json` 为准。
 
 ## GitHub：优先 AutoDL 官方学术加速
 
@@ -57,12 +61,12 @@
 | 法线 | 预训练 Omnidata；历史 parser 参数为 `opengl` |
 | 总训练更新数 | 30,000；零基 checkpoint 目标 step 为 29,999 |
 | 网格 | `gs-mesh dn`；5,000,000 目标采样点；Poisson depth 9 |
-| 几何协议 | 官方训练视角可见性裁剪；F-score 阈值 0.05 m |
+| 几何协议 | 固定官方裁剪脚本，F-score 阈值 0.05 m；审计确认实际使用全部 long_capture 注册视角，严格 training-only 另存诊断 |
 | 首轮训练并发 | 一个正式训练进程使用整张 GPU；不额外并行启动其他实验 |
 | CPU 预算 | 允许全部已分配 CPU，标称 25 核；按实际 quota/affinity 确认，按阶段设置并发 |
-| 环境候选 | Python 3.10、PyTorch 2.7.1/cu128、torchvision 0.22.1、CUDA Toolkit 12.8、Nerfstudio 1.1.3、gsplat 1.0.0 源码构建 |
+| 首轮实测环境 | Python 3.10.22、PyTorch 2.7.1/cu128、torchvision 0.22.1、CUDA Toolkit 12.8、Nerfstudio 1.1.3、gsplat 1.0.0 源码构建 |
 
-环境组合是尚待目标机器验证的候选，不是已实测通过的锁文件。安装成功后才提交实际环境清单。
+这组环境已用于目标机器的正式 30k、评价和网格导出；实际包清单见 [environment_actual.txt](reports/environment_actual.txt)，编译信息见 [compiled_extensions.json](reports/vr-room-iphone-30k/compiled_extensions.json)。独立梯度探针没有运行，正式运行证据与该探针状态分别记录。
 
 ## 项目目录约定
 
@@ -78,7 +82,7 @@
 | `.local/runs/<run-id>/` | checkpoint、完整日志、渲染、网格 | 否；提交指标和清单 |
 | `.local/reports/` | 原始环境盘点及私有诊断 | 否；公开摘要需脱敏 |
 
-不向官方仓库推送。首轮不展开全数据集、AGS-Mesh、自有数据或超参数搜索。单场景闭环后再决定下一轮。
+不向官方仓库推送。首轮结果保持原样；第二轮范围由 docs/04 和 configs/round2_protocol.json 规定，不自动扩展全数据集、AGS-Mesh 或超参数搜索。
 
 ## 文献和实现依据
 
