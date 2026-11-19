@@ -75,7 +75,7 @@ def main():
                 for x in (0,1280):
                     public[:500,x:x+700]=45
             imwrite(REPORT/"previews"/(stem+"_timeline.jpg"),cv2.resize(title(public),(1152,344),interpolation=cv2.INTER_AREA))
-        tape.extend(["file '"+image.name+"'","option framerate 1000"])
+        tape.append("file '"+image.name+"'")
         if i+1<len(rows):
             dt=(int(rows[i+1]["actual_rgb_timestamp_ns"])-int(r["actual_rgb_timestamp_ns"]))/1e9
             tape.append(f"duration {dt:.9f}")
@@ -93,7 +93,7 @@ def main():
     save(REPORT/"video_manifest.json",dict(path=str(movie),bytes=movie.stat().st_size,sha256=sha(movie),
          frames=len(rows),gaps=gaps,source_time_s=[rows[0]["relative_s"],rows[-1]["relative_s"]],
          duration_s=float(probe["format"]["duration"]),checkpoint_sha256=sha(checkpoint),step=step,
-         previews=[rows[i]["id"] for i in sorted(choices)],timing="Variable frame durations from consecutive device timestamps."))
+         previews=[rows[i]["id"] for i in sorted(choices)],timing="Consecutive device timestamps set frame durations; concat image timestamps are quantized to 1/25 s."))
 
 
 if __name__=="__main__":
