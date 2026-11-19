@@ -1,0 +1,7 @@
+{
+  "scope": "All 241 time-ordered thumbnails (7 local sheets); native centre crops of the 10 lowest Laplacian-variance images, plus endpoints.",
+  "criteria": "Reject unreadable payloads, missing unique association, foreground-dominated obstruction or motion smear that prevents recognition of overlapping static structure. No rank-based blur rejection.",
+  "observations": "The tables, chairs and tall box remain traceable across the sequence. Faster pans around candidates 42, 47 and 55–56 produce directional blur; the lower-detail frame 56 still has recognizable tabletop and chair outlines. Later views move past the tall foreground box with continuous overlap. No dominant moving person or hard scene cut visible at screening resolution.",
+  "exclude": {},
+  "freeze": "Before pose estimation, metric scale and initialization."
+}

@@ -1,0 +1,1352 @@
+{
+  "frame_count": 241,
+  "checked_frames": 9,
+  "grids": {
+    "1280": {
+      "K_cv": [
+        [
+          694.2755737304688,
+          0,
+          646.4674072265625
+        ],
+        [
+          0,
+          694.2152709960938,
+          358.3826904296875
+        ],
+        [
+          0,
+          0,
+          1
+        ]
+      ],
+      "K_colmap_ns": [
+        [
+          694.2755737304688,
+          0.0,
+          646.9674072265625
+        ],
+        [
+          0.0,
+          694.2152709960938,
+          358.8826904296875
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "width": 1280,
+      "height": 720,
+      "D_cv_source": [
+        0.003619363997131586,
+        -0.04637078940868378,
+        0.0002979962155222893,
+        0.0003877193375956267,
+        0.03155425935983658,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "target_model": "PINHOLE",
+      "distortion_target": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "640": {
+      "K_cv": [
+        [
+          347.1377868652344,
+          0,
+          322.98370361328125
+        ],
+        [
+          0,
+          347.1076354980469,
+          178.94134521484375
+        ],
+        [
+          0,
+          0,
+          1
+        ]
+      ],
+      "K_colmap_ns": [
+        [
+          347.1377868652344,
+          0.0,
+          323.48370361328125
+        ],
+        [
+          0.0,
+          347.1076354980469,
+          179.44134521484375
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "width": 640,
+      "height": 360,
+      "D_cv_source": [
+        0.003619363997131586,
+        -0.04637078940868378,
+        0.0002979962155222893,
+        0.0003877193375956267,
+        0.03155425935983658,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "target_model": "PINHOLE",
+      "distortion_target": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    }
+  },
+  "metric": "Nearest positive color-axis Z in metres. Raw 0/65535 excluded. Rounded single-pixel projection; holes zero.",
+  "rgb": "Bilinear inverse map with all Brown coefficients, no crop; both grids use the recorded color optical axes.",
+  "occlusion": "Target has a farther competing sample separated by >max(0.05m,3% of visible depth). Coverage is separate.",
+  "edge": "Adjacent valid projected pixels separated by >max(0.05m,3% of nearer Z). On the nearer side within each window, measure distance to nearest grayscale Canny(50,150) edge in pixels of this grid. Texture edges can be unrelated; no independent reference.",
+  "rows": [
+    {
+      "id": "frame_00000",
+      "relative_s": 0.465019,
+      "grid": "1280",
+      "source_non_sentinel": 370441,
+      "behind": 0,
+      "out_of_bounds": 74135,
+      "in_bounds": 296306,
+      "additional_hits_at_same_pixel": 13,
+      "discarded_by_rgb_remap": 0,
+      "target_coverage": 0.3214984809027778,
+      "occlusion_pixels": 13,
+      "z_m": {
+        "min": 1.6467328071594238,
+        "p10": 2.670123338699341,
+        "p50": 9.977157592773438,
+        "p90": 24.794984436035158,
+        "p95": 29.789511108398436,
+        "max": 41.92641067504883
+      },
+      "windows": {
+        "3": {
+          "target_coverage": 0.06405490451388889,
+          "edge_pixels": 753,
+          "nearest_canny_px": {
+            "min": 0.0,
+            "p10": 0.0,
+            "p50": 1.4142135381698608,
+            "p90": 10.29563045501709,
+            "p95": 13.015362358093261,
+            "max": 30.232433319091797
+          }
+        },
+        "6": {
+          "target_coverage": 0.13730794270833332,
+          "edge_pixels": 2941,
+          "nearest_canny_px": {
+            "min": 0.0,
+            "p10": 0.0,
+            "p50": 2.0,
+            "p90": 15.811387062072754,
+            "p95": 29.96664810180664,
+            "max": 108.70602416992188
+          }
+        },
+        "10": {
+          "target_coverage": 0.1607931857638889,
+          "edge_pixels": 4320,
+          "nearest_canny_px": {
+            "min": 0.0,
+            "p10": 0.0,
+            "p50": 2.0,
+            "p90": 19.646883010864258,
+            "p95": 29.732135772705078,
+            "max": 108.70602416992188
+          }
+        }
+      }
+    },
+    {
+      "id": "frame_00000",
+      "relative_s": 0.465019,
+      "grid": "640",
+      "source_non_sentinel": 370441,
+      "behind": 0,
+      "out_of_bounds": 74135,
+      "in_bounds": 296306,
+      "additional_hits_at_same_pixel": 87398,
+      "discarded_by_rgb_remap": 0,
+      "target_coverage": 0.90671875,
+      "occlusion_pixels": 10503,
+      "z_m": {
+        "min": 1.6467328071594238,
+        "p10": 2.6671649694442747,
+        "p50": 9.907984256744385,
+        "p90": 24.769849014282226,
+        "p95": 29.76174726486206,
+        "max": 41.92641067504883
+      },
+      "windows": {
+        "3": {
+          "target_coverage": 0.18122395833333332,
+          "edge_pixels": 2192,
+          "nearest_canny_px": {
+            "min": 0.0,
+            "p10": 0.0,
+            "p50": 1.0,
+            "p90": 4.0,
+            "p95": 5.385164737701416,
+            "max": 17.464250564575195
+          }
+        },
+        "6": {
+          "target_coverage": 0.3874001736111111,
+          "edge_pixels": 8091,
+          "nearest_canny_px": {
+            "min": 0.0,
+            "p10": 0.0,
+            "p50": 1.0,
+            "p90": 7.071068286895752,
+            "p95": 14.866067886352539,
+            "max": 47.88528060913086
+          }
+        },
+        "10": {
+          "target_coverage": 0.45380208333333333,
+          "edge_pixels": 11655,
+          "nearest_canny_px": {
+            "min": 0.0,
+            "p10": 0.0,
+            "p50": 1.0,
+            "p90": 10.0,
+            "p95": 15.700149536132697,
+            "max": 47.88528060913086
+          }
+        }
+      }
+    },
+    {
+      "id": "frame_00030",
+      "relative_s": 6.473719,
+      "grid": "1280",
+      "source_non_sentinel": 384122,
+      "behind": 0,
+      "out_of_bounds": 74244,
+      "in_bounds": 309878,
+      "additional_hits_at_same_pixel": 14,
+      "discarded_by_rgb_remap": 0,
+      "target_coverage": 0.33622395833333335,
+      "occlusion_pixels": 14,
+      "z_m": {
+        "min": 1.690839171409607,
+        "p10": 2.1991353034973145,
+        "p50": 4.126652002334595,
+        "p90": 23.053994178771973,
+        "p95": 26.739312362670894,
+        "max": 41.87116241455078
+      },
+      "windows": {
+        "3": {
+          "target_coverage": 0.10977864583333333,
+          "edge_pixels": 182,
+          "nearest_canny_px": {
+            "min": 0.0,
+            "p10": 0.0,
+            "p50": 3.8027756214141846,
+            "p90": 86.98659973144531,
+            "p95": 91.18623008728026,
+            "max": 136.23507690429688
+          }
+        },
+        "6": {
+          "target_coverage": 0.210908203125,
+          "edge_pixels": 2116,
+          "nearest_canny_px": {
+            "min": 0.0,
+            "p10": 0.0,
+            "p50": 3.0,
+            "p90": 38.09855270385742,
+            "p95": 58.13776397705078,
+            "max": 136.23507690429688
+          }
+        },
+        "10": {
+          "target_coverage": 0.24096571180555557,
+          "edge_pixels": 3502,
+          "nearest_canny_px": {
+            "min": 0.0,
+            "p10": 0.0,
+            "p50": 5.0,
+            "p90": 38.06571197509767,
+            "p95": 54.08095874786376,
+            "max": 136.23507690429688
+          }
+        }
+      }
+    },
+    {
+      "id": "frame_00030",
+      "relative_s": 6.473719,
+      "grid": "640",
+      "source_non_sentinel": 384122,
+      "behind": 0,
+      "out_of_bounds": 74244,
+      "in_bounds": 309878,
+      "additional_hits_at_same_pixel": 91728,
+      "discarded_by_rgb_remap": 0,
+      "target_coverage": 0.9468315972222222,
+      "occlusion_pixels": 7763,
+      "z_m": {
+        "min": 1.690839171409607,
+        "p10": 2.194181489944458,
+        "p50": 4.119778871536255,
+        "p90": 22.717048263549806,
+        "p95": 26.280912113189697,
+        "max": 41.86024475097656
+      },
+      "windows": {
+        "3": {
+          "target_coverage": 0.3100217013888889,
+          "edge_pixels": 751,
+          "nearest_canny_px": {
+            "min": 0.0,
+            "p10": 0.0,
+            "p50": 3.0,
+            "p90": 40.24922180175781,
+            "p95": 50.234445571899414,
+            "max": 67.47592163085938
+          }
+        },
+        "6": {
+          "target_coverage": 0.5944921875,
+          "edge_pixels": 6662,
+          "nearest_canny_px": {
+            "min": 0.0,
+            "p10": 0.0,
+            "p50": 1.4142135381698608,
+            "p90": 22.022714614868164,
+            "p95": 33.935960197448715,
+            "max": 67.47592163085938
+          }
+        },
+        "10": {
+          "target_coverage": 0.6790625,
+          "edge_pixels": 10468,
+          "nearest_canny_px": {
+            "min": 0.0,
+            "p10": 0.0,
+            "p50": 2.0,
+            "p90": 20.136950111389297,
+            "p95": 31.60616025924681,
+            "max": 67.47592163085938
+          }
+        }
+      }
+    },
+    {
+      "id": "frame_00060",
+      "relative_s": 12.480882,
+      "grid": "1280",
+      "source_non_sentinel": 381230,
+      "behind": 0,
+      "out_of_bounds": 74153,
+      "in_bounds": 307077,
+      "additional_hits_at_same_pixel": 7,
+      "discarded_by_rgb_remap": 0,
+      "target_coverage": 0.33319227430555554,
+      "occlusion_pixels": 7,
+      "z_m": {
+        "min": 1.4773838520050049,
+        "p10": 2.222346830368042,
+        "p50": 4.329396963119507,
+        "p90": 23.08101005554199,
+        "p95": 27.896741580963134,
+        "max": 41.915130615234375
+      },
+      "windows": {
+        "3": {
+          "target_coverage": 0.088896484375,
+          "edge_pixels": 45,
+          "nearest_canny_px": {
+            "min": 0.0,
+            "p10": 1.0,
+            "p50": 4.4721360206604,
+            "p90": 48.10253143310547,
+            "p95": 51.291162109374994,
+            "max": 53.0377197265625
+          }
+        },
+        "6": {
+          "target_coverage": 0.21157769097222223,
+          "edge_pixels": 2261,
+          "nearest_canny_px": {
+            "min": 0.0,
+            "p10": 0.0,
+            "p50": 1.4142135381698608,
+            "p90": 15.524174690246582,
+            "p95": 27.856775283813477,
+            "max": 97.98469543457031
+          }
+        },
+        "10": {
+          "target_coverage": 0.24267252604166667,
+          "edge_pixels": 3735,
+          "nearest_canny_px": {
+            "min": 0.0,
+            "p10": 0.0,
+            "p50": 2.0,
+            "p90": 21.02379608154297,
+            "p95": 39.22284202575668,
+            "max": 97.98469543457031
+          }
+        }
+      }
+    },
+    {
+      "id": "frame_00060",
+      "relative_s": 12.480882,
+      "grid": "640",
+      "source_non_sentinel": 381230,
+      "behind": 0,
+      "out_of_bounds": 74153,
+      "in_bounds": 307077,
+      "additional_hits_at_same_pixel": 90837,
+      "discarded_by_rgb_remap": 0,
+      "target_coverage": 0.9385416666666667,
+      "occlusion_pixels": 7511,
+      "z_m": {
+        "min": 1.4773838520050049,
+        "p10": 2.2204135417938233,
+        "p50": 4.324235677719116,
+        "p90": 23.071221351623535,
+        "p95": 27.88495407104492,
+        "max": 41.9145622253418
+      },
+      "windows": {
+        "3": {
+          "target_coverage": 0.25067708333333333,
+          "edge_pixels": 216,
+          "nearest_canny_px": {
+            "min": 0.0,
+            "p10": 0.0,
+            "p50": 2.2360680103302,
+            "p90": 16.013149738311768,
+            "p95": 28.279103755950928,
+            "max": 80.05623626708984
+          }
+        },
+        "6": {
+          "target_coverage": 0.5963845486111111,
+          "edge_pixels": 6672,
+          "nearest_canny_px": {
+            "min": 0.0,
+            "p10": 0.0,
+            "p50": 1.0,
+            "p90": 7.280109882354736,
+            "p95": 19.709131240844723,
+            "max": 80.05623626708984
+          }
+        },
+        "10": {
+          "target_coverage": 0.6838715277777778,
+          "edge_pixels": 10359,
+          "nearest_canny_px": {
+            "min": 0.0,
+            "p10": 0.0,
+            "p50": 1.0,
+            "p90": 11.207014274597265,
+            "p95": 25.298221588134766,
+            "max": 80.05623626708984
+          }
+        }
+      }
+    },
+    {
+      "id": "frame_00090",
+      "relative_s": 18.454582,
+      "grid": "1280",
+      "source_non_sentinel": 383904,
+      "behind": 0,
+      "out_of_bounds": 76139,
+      "in_bounds": 307765,
+      "additional_hits_at_same_pixel": 10,
+      "discarded_by_rgb_remap": 0,
+      "target_coverage": 0.333935546875,
+      "occlusion_pixels": 10,
+      "z_m": {
+        "min": 2.084815740585327,
+        "p10": 2.7040979862213135,
+        "p50": 7.101302146911621,
+        "p90": 22.722230529785158,
+        "p95": 26.771271705627438,
+        "max": 41.927467346191406
+      },
+      "windows": {
+        "3": {
+          "target_coverage": 0.05329427083333333,
+          "edge_pixels": 272,
+          "nearest_canny_px": {
+            "min": 0.0,
+            "p10": 0.0,
+            "p50": 2.0,
+            "p90": 54.711572265625,
+            "p95": 102.75562057495117,
+            "max": 150.3329620361328
+          }
+        },
+        "6": {
+          "target_coverage": 0.1491427951388889,
+          "edge_pixels": 2629,
+          "nearest_canny_px": {
+            "min": 0.0,
+            "p10": 0.0,
+            "p50": 2.2360680103302,
+            "p90": 24.21562843322758,
+            "p95": 54.00555725097656,
+            "max": 150.3329620361328
+          }
+        },
+        "10": {
+          "target_coverage": 0.1917404513888889,
+          "edge_pixels": 4227,
+          "nearest_canny_px": {
+            "min": 0.0,
+            "p10": 0.0,
+            "p50": 2.0,
+            "p90": 18.0,
+            "p95": 36.816996383666954,
+            "max": 150.3329620361328
+          }
+        }
+      }
+    },
+    {
+      "id": "frame_00090",
+      "relative_s": 18.454582,
+      "grid": "640",
+      "source_non_sentinel": 383904,
+      "behind": 0,
+      "out_of_bounds": 76139,
+      "in_bounds": 307765,
+      "additional_hits_at_same_pixel": 91165,
+      "discarded_by_rgb_remap": 0,
+      "target_coverage": 0.9401041666666666,
+      "occlusion_pixels": 9242,
+      "z_m": {
+        "min": 2.084815740585327,
+        "p10": 2.702411913871765,
+        "p50": 7.100293397903442,
+        "p90": 22.715963935852052,
+        "p95": 26.760881996154787,
+        "max": 41.927467346191406
+      },
+      "windows": {
+        "3": {
+          "target_coverage": 0.15085503472222223,
+          "edge_pixels": 1094,
+          "nearest_canny_px": {
+            "min": 0.0,
+            "p10": 0.0,
+            "p50": 1.0,
+            "p90": 40.09363059997559,
+            "p95": 53.26190605163571,
+            "max": 80.72174835205078
+          }
+        },
+        "6": {
+          "target_coverage": 0.4205859375,
+          "edge_pixels": 7628,
+          "nearest_canny_px": {
+            "min": 0.0,
+            "p10": 0.0,
+            "p50": 1.0,
+            "p90": 16.124515533447266,
+            "p95": 30.610454559326172,
+            "max": 80.72174835205078
+          }
+        },
+        "10": {
+          "target_coverage": 0.5401779513888889,
+          "edge_pixels": 11825,
+          "nearest_canny_px": {
+            "min": 0.0,
+            "p10": 0.0,
+            "p50": 1.0,
+            "p90": 12.806248664855957,
+            "p95": 25.047943115234332,
+            "max": 80.72174835205078
+          }
+        }
+      }
+    },
+    {
+      "id": "frame_00120",
+      "relative_s": 24.4611,
+      "grid": "1280",
+      "source_non_sentinel": 383698,
+      "behind": 0,
+      "out_of_bounds": 74106,
+      "in_bounds": 309592,
+      "additional_hits_at_same_pixel": 5,
+      "discarded_by_rgb_remap": 0,
+      "target_coverage": 0.3359233940972222,
+      "occlusion_pixels": 5,
+      "z_m": {
+        "min": 2.065901041030884,
+        "p10": 2.54053635597229,
+        "p50": 7.005112648010254,
+        "p90": 23.932604598999024,
+        "p95": 27.96717357635498,
+        "max": 41.92485427856445
+      },
+      "windows": {
+        "3": {
+          "target_coverage": 0.06201822916666667,
+          "edge_pixels": 647,
+          "nearest_canny_px": {
+            "min": 0.0,
+            "p10": 0.0,
+            "p50": 2.2360680103302,
+            "p90": 23.08284568786617,
+            "p95": 65.21718521118162,
+            "max": 90.66972351074219
+          }
+        },
+        "6": {
+          "target_coverage": 0.15721896701388888,
+          "edge_pixels": 2576,
+          "nearest_canny_px": {
+            "min": 0.0,
+            "p10": 1.0,
+            "p50": 4.0,
+            "p90": 35.0,
+            "p95": 49.86475658416748,
+            "max": 90.66972351074219
+          }
+        },
+        "10": {
+          "target_coverage": 0.17897677951388888,
+          "edge_pixels": 3794,
+          "nearest_canny_px": {
+            "min": 0.0,
+            "p10": 1.0,
+            "p50": 4.123105525970459,
+            "p90": 33.53654708862305,
+            "p95": 46.916910171508775,
+            "max": 90.66972351074219
+          }
+        }
+      }
+    },
+    {
+      "id": "frame_00120",
+      "relative_s": 24.4611,
+      "grid": "640",
+      "source_non_sentinel": 383698,
+      "behind": 0,
+      "out_of_bounds": 74106,
+      "in_bounds": 309592,
+      "additional_hits_at_same_pixel": 91833,
+      "discarded_by_rgb_remap": 0,
+      "target_coverage": 0.9451345486111111,
+      "occlusion_pixels": 10211,
+      "z_m": {
+        "min": 2.065901041030884,
+        "p10": 2.5373849868774414,
+        "p50": 6.9765944480896,
+        "p90": 23.904540252685546,
+        "p95": 27.947838973999023,
+        "max": 41.924560546875
+      },
+      "windows": {
+        "3": {
+          "target_coverage": 0.17504774305555557,
+          "edge_pixels": 2006,
+          "nearest_canny_px": {
+            "min": 0.0,
+            "p10": 0.0,
+            "p50": 2.0,
+            "p90": 32.10137748718262,
+            "p95": 51.231160163879395,
+            "max": 95.04735565185547
+          }
+        },
+        "6": {
+          "target_coverage": 0.4430121527777778,
+          "edge_pixels": 7506,
+          "nearest_canny_px": {
+            "min": 0.0,
+            "p10": 0.0,
+            "p50": 2.0,
+            "p90": 19.92485809326172,
+            "p95": 30.31074571609497,
+            "max": 95.04735565185547
+          }
+        },
+        "10": {
+          "target_coverage": 0.5041536458333333,
+          "edge_pixels": 10368,
+          "nearest_canny_px": {
+            "min": 0.0,
+            "p10": 0.0,
+            "p50": 2.0,
+            "p90": 17.464250564575195,
+            "p95": 26.139012908935513,
+            "max": 95.04735565185547
+          }
+        }
+      }
+    },
+    {
+      "id": "frame_00150",
+      "relative_s": 30.468734,
+      "grid": "1280",
+      "source_non_sentinel": 372428,
+      "behind": 0,
+      "out_of_bounds": 70846,
+      "in_bounds": 301582,
+      "additional_hits_at_same_pixel": 28,
+      "discarded_by_rgb_remap": 0,
+      "target_coverage": 0.32720703125,
+      "occlusion_pixels": 28,
+      "z_m": {
+        "min": 1.8005541563034058,
+        "p10": 2.349549102783203,
+        "p50": 5.297643423080444,
+        "p90": 21.9803165435791,
+        "p95": 27.96092205047607,
+        "max": 41.90110397338867
+      },
+      "windows": {
+        "3": {
+          "target_coverage": 0.09747395833333333,
+          "edge_pixels": 137,
+          "nearest_canny_px": {
+            "min": 0.0,
+            "p10": 0.0,
+            "p50": 1.0,
+            "p90": 123.17976837158204,
+            "p95": 175.04105834960936,
+            "max": 201.00994873046875
+          }
+        },
+        "6": {
+          "target_coverage": 0.181083984375,
+          "edge_pixels": 1452,
+          "nearest_canny_px": {
+            "min": 0.0,
+            "p10": 1.0,
+            "p50": 9.353188514709473,
+            "p90": 62.02740821838379,
+            "p95": 88.48524818420411,
+            "max": 201.00994873046875
+          }
+        },
+        "10": {
+          "target_coverage": 0.24719075520833333,
+          "edge_pixels": 2837,
+          "nearest_canny_px": {
+            "min": 0.0,
+            "p10": 0.0,
+            "p50": 8.5440034866333,
+            "p90": 51.478153228759766,
+            "p95": 67.47729644775386,
+            "max": 201.00994873046875
+          }
+        }
+      }
+    },
+    {
+      "id": "frame_00150",
+      "relative_s": 30.468734,
+      "grid": "640",
+      "source_non_sentinel": 372428,
+      "behind": 0,
+      "out_of_bounds": 70846,
+      "in_bounds": 301582,
+      "additional_hits_at_same_pixel": 89451,
+      "discarded_by_rgb_remap": 0,
+      "target_coverage": 0.9207074652777778,
+      "occlusion_pixels": 5329,
+      "z_m": {
+        "min": 1.8005541563034058,
+        "p10": 2.346949815750122,
+        "p50": 5.29556941986084,
+        "p90": 21.97614097595215,
+        "p95": 27.95095443725586,
+        "max": 41.900848388671875
+      },
+      "windows": {
+        "3": {
+          "target_coverage": 0.27496961805555553,
+          "edge_pixels": 520,
+          "nearest_canny_px": {
+            "min": 0.0,
+            "p10": 0.0,
+            "p50": 3.0,
+            "p90": 62.20041236877442,
+            "p95": 88.12457160949705,
+            "max": 102.17631530761719
+          }
+        },
+        "6": {
+          "target_coverage": 0.5095963541666667,
+          "edge_pixels": 4517,
+          "nearest_canny_px": {
+            "min": 0.0,
+            "p10": 0.0,
+            "p50": 6.0,
+            "p90": 33.03330917358399,
+            "p95": 45.23272323608398,
+            "max": 102.17631530761719
+          }
+        },
+        "10": {
+          "target_coverage": 0.6960069444444444,
+          "edge_pixels": 8264,
+          "nearest_canny_px": {
+            "min": 0.0,
+            "p10": 0.0,
+            "p50": 4.0615527629852295,
+            "p90": 24.293964958190895,
+            "p95": 34.63593444824212,
+            "max": 102.17631530761719
+          }
+        }
+      }
+    },
+    {
+      "id": "frame_00180",
+      "relative_s": 36.476289,
+      "grid": "1280",
+      "source_non_sentinel": 395387,
+      "behind": 0,
+      "out_of_bounds": 74313,
+      "in_bounds": 321074,
+      "additional_hits_at_same_pixel": 27,
+      "discarded_by_rgb_remap": 0,
+      "target_coverage": 0.34835828993055556,
+      "occlusion_pixels": 27,
+      "z_m": {
+        "min": 1.551312804222107,
+        "p10": 1.7504362106323241,
+        "p50": 11.34924030303955,
+        "p90": 22.654391860961915,
+        "p95": 24.746813201904295,
+        "max": 40.67215347290039
+      },
+      "windows": {
+        "3": {
+          "target_coverage": 0.07679144965277777,
+          "edge_pixels": 199,
+          "nearest_canny_px": {
+            "min": 0.0,
+            "p10": 1.0,
+            "p50": 3.605551242828369,
+            "p90": 110.79431762695313,
+            "p95": 167.0538345336914,
+            "max": 209.3131561279297
+          }
+        },
+        "6": {
+          "target_coverage": 0.14774739583333332,
+          "edge_pixels": 1677,
+          "nearest_canny_px": {
+            "min": 0.0,
+            "p10": 0.0,
+            "p50": 5.0,
+            "p90": 86.65667266845706,
+            "p95": 110.43902587890618,
+            "max": 209.3131561279297
+          }
+        },
+        "10": {
+          "target_coverage": 0.166796875,
+          "edge_pixels": 3247,
+          "nearest_canny_px": {
+            "min": 0.0,
+            "p10": 0.0,
+            "p50": 3.1622776985168457,
+            "p90": 52.38510055541993,
+            "p95": 87.64807510375972,
+            "max": 209.3131561279297
+          }
+        }
+      }
+    },
+    {
+      "id": "frame_00180",
+      "relative_s": 36.476289,
+      "grid": "640",
+      "source_non_sentinel": 395387,
+      "behind": 0,
+      "out_of_bounds": 74313,
+      "in_bounds": 321074,
+      "additional_hits_at_same_pixel": 95305,
+      "discarded_by_rgb_remap": 0,
+      "target_coverage": 0.9799001736111111,
+      "occlusion_pixels": 10665,
+      "z_m": {
+        "min": 1.551312804222107,
+        "p10": 1.7503688335418701,
+        "p50": 11.238983154296875,
+        "p90": 22.37144317626953,
+        "p95": 24.40412254333496,
+        "max": 40.67213439941406
+      },
+      "windows": {
+        "3": {
+          "target_coverage": 0.21724826388888888,
+          "edge_pixels": 814,
+          "nearest_canny_px": {
+            "min": 0.0,
+            "p10": 0.30000000000001137,
+            "p50": 2.2360680103302,
+            "p90": 44.05200080871583,
+            "p95": 78.5598304748535,
+            "max": 105.09519958496094
+          }
+        },
+        "6": {
+          "target_coverage": 0.41706597222222225,
+          "edge_pixels": 5082,
+          "nearest_canny_px": {
+            "min": 0.0,
+            "p10": 0.0,
+            "p50": 2.8284270763397217,
+            "p90": 45.61688423156739,
+            "p95": 60.43674106597899,
+            "max": 105.09519958496094
+          }
+        },
+        "10": {
+          "target_coverage": 0.47076388888888887,
+          "edge_pixels": 8715,
+          "nearest_canny_px": {
+            "min": 0.0,
+            "p10": 0.0,
+            "p50": 2.0,
+            "p90": 32.4499626159668,
+            "p95": 49.59938507080073,
+            "max": 105.09519958496094
+          }
+        }
+      }
+    },
+    {
+      "id": "frame_00210",
+      "relative_s": 42.449804,
+      "grid": "1280",
+      "source_non_sentinel": 392812,
+      "behind": 0,
+      "out_of_bounds": 72765,
+      "in_bounds": 320047,
+      "additional_hits_at_same_pixel": 10,
+      "discarded_by_rgb_remap": 0,
+      "target_coverage": 0.3472623697916667,
+      "occlusion_pixels": 10,
+      "z_m": {
+        "min": 2.1578290462493896,
+        "p10": 3.0863701820373537,
+        "p50": 15.360112190246582,
+        "p90": 23.960192489624024,
+        "p95": 26.284546279907225,
+        "max": 40.68440246582031
+      },
+      "windows": {
+        "3": {
+          "target_coverage": 0.030979817708333333,
+          "edge_pixels": 54,
+          "nearest_canny_px": {
+            "min": 10.0,
+            "p10": 35.10831489562988,
+            "p50": 48.10955810546875,
+            "p90": 97.07090301513672,
+            "p95": 97.95990257263183,
+            "max": 99.62429809570312
+          }
+        },
+        "6": {
+          "target_coverage": 0.12748697916666665,
+          "edge_pixels": 1344,
+          "nearest_canny_px": {
+            "min": 0.0,
+            "p10": 1.0,
+            "p50": 7.280109405517578,
+            "p90": 80.4474967956543,
+            "p95": 94.73982048034665,
+            "max": 136.01470947265625
+          }
+        },
+        "10": {
+          "target_coverage": 0.14920572916666666,
+          "edge_pixels": 2816,
+          "nearest_canny_px": {
+            "min": 0.0,
+            "p10": 0.0,
+            "p50": 3.605551242828369,
+            "p90": 74.98986053466797,
+            "p95": 93.04833602905273,
+            "max": 136.01470947265625
+          }
+        }
+      }
+    },
+    {
+      "id": "frame_00210",
+      "relative_s": 42.449804,
+      "grid": "640",
+      "source_non_sentinel": 392812,
+      "behind": 0,
+      "out_of_bounds": 72765,
+      "in_bounds": 320047,
+      "additional_hits_at_same_pixel": 95056,
+      "discarded_by_rgb_remap": 0,
+      "target_coverage": 0.9765234375,
+      "occlusion_pixels": 12170,
+      "z_m": {
+        "min": 2.1578290462493896,
+        "p10": 3.0826210975646973,
+        "p50": 15.204243659973145,
+        "p90": 23.94249153137207,
+        "p95": 26.228232383728027,
+        "max": 40.68440246582031
+      },
+      "windows": {
+        "3": {
+          "target_coverage": 0.08758246527777777,
+          "edge_pixels": 396,
+          "nearest_canny_px": {
+            "min": 0.0,
+            "p10": 5.192582368850708,
+            "p50": 40.620073318481445,
+            "p90": 72.80109405517578,
+            "p95": 79.21001243591309,
+            "max": 85.7962646484375
+          }
+        },
+        "6": {
+          "target_coverage": 0.35924913194444447,
+          "edge_pixels": 4710,
+          "nearest_canny_px": {
+            "min": 0.0,
+            "p10": 1.0,
+            "p50": 10.0,
+            "p90": 47.927024841308594,
+            "p95": 55.97588367462159,
+            "max": 85.7962646484375
+          }
+        },
+        "10": {
+          "target_coverage": 0.4204600694444444,
+          "edge_pixels": 8114,
+          "nearest_canny_px": {
+            "min": 0.0,
+            "p10": 0.0,
+            "p50": 4.0,
+            "p90": 41.62931442260742,
+            "p95": 51.689444351196244,
+            "max": 85.7962646484375
+          }
+        }
+      }
+    },
+    {
+      "id": "frame_00240",
+      "relative_s": 48.455934,
+      "grid": "1280",
+      "source_non_sentinel": 391620,
+      "behind": 0,
+      "out_of_bounds": 75124,
+      "in_bounds": 316496,
+      "additional_hits_at_same_pixel": 8,
+      "discarded_by_rgb_remap": 0,
+      "target_coverage": 0.3434114583333333,
+      "occlusion_pixels": 8,
+      "z_m": {
+        "min": 2.104818105697632,
+        "p10": 3.0644391775131226,
+        "p50": 16.11933994293213,
+        "p90": 24.82392978668213,
+        "p95": 29.17502965927124,
+        "max": 41.92494201660156
+      },
+      "windows": {
+        "3": {
+          "target_coverage": 0.031126302083333335,
+          "edge_pixels": 507,
+          "nearest_canny_px": {
+            "min": 0.0,
+            "p10": 0.0,
+            "p50": 1.0,
+            "p90": 9.305319023132332,
+            "p95": 15.943416118621824,
+            "max": 162.92942810058594
+          }
+        },
+        "6": {
+          "target_coverage": 0.10692708333333334,
+          "edge_pixels": 2180,
+          "nearest_canny_px": {
+            "min": 0.0,
+            "p10": 0.0,
+            "p50": 4.0,
+            "p90": 98.42204742431642,
+            "p95": 110.0229476928711,
+            "max": 202.74366760253906
+          }
+        },
+        "10": {
+          "target_coverage": 0.1389333767361111,
+          "edge_pixels": 4826,
+          "nearest_canny_px": {
+            "min": 0.0,
+            "p10": 0.0,
+            "p50": 3.605551242828369,
+            "p90": 60.2909049987793,
+            "p95": 92.61883544921875,
+            "max": 202.74366760253906
+          }
+        }
+      }
+    },
+    {
+      "id": "frame_00240",
+      "relative_s": 48.455934,
+      "grid": "640",
+      "source_non_sentinel": 391620,
+      "behind": 0,
+      "out_of_bounds": 75124,
+      "in_bounds": 316496,
+      "additional_hits_at_same_pixel": 93726,
+      "discarded_by_rgb_remap": 0,
+      "target_coverage": 0.9668836805555555,
+      "occlusion_pixels": 13147,
+      "z_m": {
+        "min": 2.104818105697632,
+        "p10": 3.0600308179855347,
+        "p50": 16.097639083862305,
+        "p90": 24.815068244934082,
+        "p95": 29.16589221954346,
+        "max": 41.92494201660156
+      },
+      "windows": {
+        "3": {
+          "target_coverage": 0.08830729166666666,
+          "edge_pixels": 1366,
+          "nearest_canny_px": {
+            "min": 0.0,
+            "p10": 0.0,
+            "p50": 1.0,
+            "p90": 7.141085147857666,
+            "p95": 38.98330211639404,
+            "max": 109.32978057861328
+          }
+        },
+        "6": {
+          "target_coverage": 0.3015798611111111,
+          "edge_pixels": 6359,
+          "nearest_canny_px": {
+            "min": 0.0,
+            "p10": 0.0,
+            "p50": 3.0,
+            "p90": 57.28001403808594,
+            "p95": 74.72683486938476,
+            "max": 109.32978057861328
+          }
+        },
+        "10": {
+          "target_coverage": 0.39178819444444446,
+          "edge_pixels": 12252,
+          "nearest_canny_px": {
+            "min": 0.0,
+            "p10": 0.0,
+            "p50": 2.2360680103302,
+            "p90": 42.29656982421875,
+            "p95": 57.9741325378418,
+            "max": 109.32978057861328
+          }
+        }
+      }
+    }
+  ],
+  "local_checked_frames": 9,
+  "local_vs_server_depth_arrays_matching_sha256": 18,
+  "native_metres_per_count": 0.001,
+  "invalid_native_codes": [
+    0,
+    65535
+  ],
+  "transform_depth_to_color": {
+    "source_sensor": "depth",
+    "destination_sensor": "color",
+    "static": true,
+    "topic": "/cam/streamProfileType_3",
+    "count": 1,
+    "header_ns": "2426763600000",
+    "R": [
+      [
+        0.9999675750732422,
+        -0.007584353443235159,
+        0.0027173368725925684
+      ],
+      [
+        0.00758380675688386,
+        0.9999712109565735,
+        0.00021145583014003932
+      ],
+      [
+        -0.0027188623789697886,
+        -0.0001908412086777389,
+        0.9999963045120239
+      ]
+    ],
+    "translation_mm": [
+      -13.604243278503418,
+      0.16550984978675842,
+      -1.7640596628189087
+    ],
+    "det_R": 1.0000000383929235,
+    "max_abs_RtR_minus_I": 5.7535421760235295e-08
+  },
+  "native_cameras": {
+    "RGB": {
+      "topic": "/cam/sensor_2/frameType_2",
+      "profile": "/cam/streamProfileType_2",
+      "frame_id": "",
+      "count": 1,
+      "distinct_calibration_count": 1,
+      "first_header_ns": "2426763600000",
+      "width": 1280,
+      "height": 720,
+      "nominal_fps": 30,
+      "stream_type": 2,
+      "format_enum": 5,
+      "fx": 694.2755737304688,
+      "fy": 694.2152709960938,
+      "cx": 646.4674072265625,
+      "cy": 358.3826904296875,
+      "K": [
+        [
+          694.2755737304688,
+          0,
+          646.4674072265625
+        ],
+        [
+          0,
+          694.2152709960938,
+          358.3826904296875
+        ],
+        [
+          0,
+          0,
+          1
+        ]
+      ],
+      "distortion_model": "Brown-Conrady K6",
+      "distortion_model_enum": 4,
+      "D_sdk_k1_k2_k3_k4_k5_k6_p1_p2": [
+        0.003619363997131586,
+        -0.04637078940868378,
+        0.03155425935983658,
+        0.0,
+        0.0,
+        0.0,
+        0.0002979962155222893,
+        0.0003877193375956267
+      ],
+      "R": null,
+      "P": null,
+      "roi": null,
+      "binning": null,
+      "image_resolution_match": true,
+      "finite_and_plausible": true,
+      "associated_frames": 11041,
+      "recorded_changes": 0
+    },
+    "depth": {
+      "topic": "/cam/sensor_3/frameType_3",
+      "profile": "/cam/streamProfileType_3",
+      "frame_id": "",
+      "count": 1,
+      "distinct_calibration_count": 1,
+      "first_header_ns": "2426763600000",
+      "width": 848,
+      "height": 480,
+      "nominal_fps": 30,
+      "stream_type": 3,
+      "format_enum": 8,
+      "fx": 414.2334289550781,
+      "fy": 414.2334289550781,
+      "cx": 422.6750183105469,
+      "cy": 235.36251831054688,
+      "K": [
+        [
+          414.2334289550781,
+          0,
+          422.6750183105469
+        ],
+        [
+          0,
+          414.2334289550781,
+          235.36251831054688
+        ],
+        [
+          0,
+          0,
+          1
+        ]
+      ],
+      "distortion_model": "Brown-Conrady",
+      "distortion_model_enum": 3,
+      "D_sdk_k1_k2_k3_k4_k5_k6_p1_p2": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "R": null,
+      "P": null,
+      "roi": null,
+      "binning": null,
+      "image_resolution_match": true,
+      "finite_and_plausible": true,
+      "associated_frames": 11068,
+      "recorded_changes": 0
+    }
+  },
+  "pixel_center": "K_cv integer centers. Half grid principal point=(c+0.5)*0.5-0.5. K_colmap_ns adds 0.5 once to the target K_cv principal point.",
+  "preview_crop": {
+    "frame": "frame_00120",
+    "grid": "1280",
+    "xywh": [
+      400,
+      280,
+      480,
+      290
+    ]
+  }
+}

@@ -1,0 +1,6431 @@
+{
+  "map": {
+    "train": [
+      "frame_00000.png",
+      "frame_00001.png",
+      "frame_00002.png",
+      "frame_00003.png",
+      "frame_00004.png",
+      "frame_00005.png",
+      "frame_00006.png",
+      "frame_00007.png",
+      "frame_00010.png",
+      "frame_00011.png",
+      "frame_00012.png",
+      "frame_00013.png",
+      "frame_00014.png",
+      "frame_00015.png",
+      "frame_00016.png",
+      "frame_00017.png",
+      "frame_00020.png",
+      "frame_00021.png",
+      "frame_00022.png",
+      "frame_00023.png",
+      "frame_00024.png",
+      "frame_00025.png",
+      "frame_00026.png",
+      "frame_00027.png",
+      "frame_00030.png",
+      "frame_00031.png",
+      "frame_00032.png",
+      "frame_00033.png",
+      "frame_00034.png",
+      "frame_00035.png",
+      "frame_00036.png",
+      "frame_00037.png",
+      "frame_00040.png",
+      "frame_00041.png",
+      "frame_00042.png",
+      "frame_00043.png",
+      "frame_00044.png",
+      "frame_00045.png",
+      "frame_00046.png",
+      "frame_00047.png",
+      "frame_00050.png",
+      "frame_00051.png",
+      "frame_00052.png",
+      "frame_00053.png",
+      "frame_00054.png",
+      "frame_00055.png",
+      "frame_00056.png",
+      "frame_00057.png",
+      "frame_00060.png",
+      "frame_00061.png",
+      "frame_00062.png",
+      "frame_00063.png",
+      "frame_00064.png",
+      "frame_00065.png",
+      "frame_00066.png",
+      "frame_00067.png",
+      "frame_00070.png",
+      "frame_00071.png",
+      "frame_00072.png",
+      "frame_00073.png",
+      "frame_00074.png",
+      "frame_00075.png",
+      "frame_00076.png",
+      "frame_00077.png",
+      "frame_00080.png",
+      "frame_00081.png",
+      "frame_00082.png",
+      "frame_00083.png",
+      "frame_00084.png",
+      "frame_00085.png",
+      "frame_00086.png",
+      "frame_00087.png",
+      "frame_00090.png",
+      "frame_00091.png",
+      "frame_00092.png",
+      "frame_00093.png",
+      "frame_00094.png",
+      "frame_00095.png",
+      "frame_00096.png",
+      "frame_00097.png",
+      "frame_00100.png",
+      "frame_00101.png",
+      "frame_00102.png",
+      "frame_00103.png",
+      "frame_00104.png",
+      "frame_00105.png",
+      "frame_00106.png",
+      "frame_00107.png",
+      "frame_00110.png",
+      "frame_00111.png",
+      "frame_00112.png",
+      "frame_00113.png",
+      "frame_00114.png",
+      "frame_00115.png",
+      "frame_00116.png",
+      "frame_00117.png",
+      "frame_00120.png",
+      "frame_00121.png",
+      "frame_00122.png",
+      "frame_00123.png",
+      "frame_00124.png",
+      "frame_00125.png",
+      "frame_00126.png",
+      "frame_00127.png",
+      "frame_00130.png",
+      "frame_00131.png",
+      "frame_00132.png",
+      "frame_00133.png",
+      "frame_00134.png",
+      "frame_00135.png",
+      "frame_00136.png",
+      "frame_00137.png",
+      "frame_00140.png",
+      "frame_00141.png",
+      "frame_00142.png",
+      "frame_00143.png",
+      "frame_00144.png",
+      "frame_00145.png",
+      "frame_00146.png",
+      "frame_00147.png",
+      "frame_00150.png",
+      "frame_00151.png",
+      "frame_00152.png",
+      "frame_00153.png",
+      "frame_00154.png",
+      "frame_00155.png",
+      "frame_00156.png",
+      "frame_00157.png",
+      "frame_00160.png",
+      "frame_00161.png",
+      "frame_00162.png",
+      "frame_00163.png",
+      "frame_00164.png",
+      "frame_00165.png",
+      "frame_00166.png",
+      "frame_00167.png",
+      "frame_00170.png",
+      "frame_00171.png",
+      "frame_00172.png",
+      "frame_00173.png",
+      "frame_00174.png",
+      "frame_00175.png",
+      "frame_00176.png",
+      "frame_00177.png",
+      "frame_00180.png",
+      "frame_00181.png",
+      "frame_00182.png",
+      "frame_00183.png",
+      "frame_00184.png",
+      "frame_00185.png",
+      "frame_00186.png",
+      "frame_00187.png",
+      "frame_00190.png",
+      "frame_00191.png",
+      "frame_00192.png",
+      "frame_00193.png",
+      "frame_00194.png",
+      "frame_00195.png",
+      "frame_00196.png",
+      "frame_00197.png",
+      "frame_00200.png",
+      "frame_00201.png",
+      "frame_00202.png",
+      "frame_00203.png",
+      "frame_00204.png",
+      "frame_00205.png",
+      "frame_00206.png",
+      "frame_00207.png",
+      "frame_00210.png",
+      "frame_00211.png",
+      "frame_00212.png",
+      "frame_00213.png",
+      "frame_00214.png",
+      "frame_00215.png",
+      "frame_00216.png",
+      "frame_00217.png",
+      "frame_00220.png",
+      "frame_00221.png",
+      "frame_00222.png",
+      "frame_00223.png",
+      "frame_00224.png",
+      "frame_00225.png",
+      "frame_00226.png",
+      "frame_00227.png",
+      "frame_00230.png",
+      "frame_00231.png",
+      "frame_00232.png",
+      "frame_00233.png",
+      "frame_00234.png",
+      "frame_00235.png",
+      "frame_00236.png",
+      "frame_00237.png",
+      "frame_00240.png"
+    ],
+    "components": [
+      {
+        "key": 0,
+        "model": "/root/autodl-tmp/DN-Splatter/.local/capture-geometry/20261119-s01-5hz-3982cb26/sfm/models/0",
+        "registered": [
+          "frame_00000.png",
+          "frame_00001.png",
+          "frame_00002.png",
+          "frame_00003.png",
+          "frame_00004.png",
+          "frame_00005.png",
+          "frame_00006.png",
+          "frame_00007.png",
+          "frame_00010.png",
+          "frame_00011.png",
+          "frame_00012.png",
+          "frame_00013.png",
+          "frame_00014.png",
+          "frame_00015.png",
+          "frame_00016.png",
+          "frame_00017.png",
+          "frame_00020.png",
+          "frame_00021.png",
+          "frame_00022.png",
+          "frame_00023.png",
+          "frame_00024.png",
+          "frame_00025.png",
+          "frame_00026.png",
+          "frame_00027.png",
+          "frame_00030.png",
+          "frame_00031.png",
+          "frame_00032.png",
+          "frame_00033.png",
+          "frame_00034.png",
+          "frame_00035.png",
+          "frame_00036.png",
+          "frame_00037.png",
+          "frame_00040.png",
+          "frame_00041.png",
+          "frame_00042.png",
+          "frame_00043.png",
+          "frame_00044.png",
+          "frame_00045.png",
+          "frame_00046.png",
+          "frame_00047.png",
+          "frame_00050.png",
+          "frame_00051.png",
+          "frame_00052.png",
+          "frame_00053.png",
+          "frame_00054.png",
+          "frame_00055.png",
+          "frame_00056.png",
+          "frame_00057.png",
+          "frame_00060.png",
+          "frame_00061.png",
+          "frame_00062.png",
+          "frame_00063.png",
+          "frame_00064.png",
+          "frame_00065.png",
+          "frame_00066.png",
+          "frame_00067.png",
+          "frame_00070.png",
+          "frame_00071.png",
+          "frame_00072.png",
+          "frame_00073.png",
+          "frame_00074.png",
+          "frame_00075.png",
+          "frame_00076.png",
+          "frame_00077.png",
+          "frame_00080.png",
+          "frame_00081.png",
+          "frame_00082.png",
+          "frame_00083.png",
+          "frame_00084.png",
+          "frame_00085.png",
+          "frame_00086.png",
+          "frame_00087.png",
+          "frame_00090.png",
+          "frame_00091.png",
+          "frame_00092.png",
+          "frame_00093.png",
+          "frame_00094.png",
+          "frame_00095.png",
+          "frame_00096.png",
+          "frame_00097.png",
+          "frame_00100.png",
+          "frame_00101.png",
+          "frame_00102.png",
+          "frame_00103.png",
+          "frame_00104.png",
+          "frame_00105.png",
+          "frame_00106.png",
+          "frame_00107.png",
+          "frame_00110.png",
+          "frame_00111.png",
+          "frame_00112.png",
+          "frame_00113.png",
+          "frame_00114.png",
+          "frame_00115.png",
+          "frame_00116.png",
+          "frame_00117.png",
+          "frame_00120.png",
+          "frame_00121.png",
+          "frame_00122.png",
+          "frame_00123.png",
+          "frame_00124.png",
+          "frame_00125.png",
+          "frame_00126.png",
+          "frame_00127.png",
+          "frame_00130.png",
+          "frame_00131.png",
+          "frame_00132.png",
+          "frame_00133.png",
+          "frame_00134.png",
+          "frame_00135.png",
+          "frame_00136.png",
+          "frame_00137.png",
+          "frame_00140.png",
+          "frame_00141.png",
+          "frame_00142.png",
+          "frame_00143.png",
+          "frame_00144.png",
+          "frame_00145.png",
+          "frame_00146.png",
+          "frame_00147.png",
+          "frame_00150.png",
+          "frame_00151.png",
+          "frame_00152.png",
+          "frame_00153.png",
+          "frame_00154.png",
+          "frame_00155.png",
+          "frame_00156.png",
+          "frame_00157.png",
+          "frame_00160.png",
+          "frame_00161.png",
+          "frame_00162.png",
+          "frame_00163.png",
+          "frame_00164.png",
+          "frame_00165.png",
+          "frame_00166.png",
+          "frame_00167.png",
+          "frame_00170.png",
+          "frame_00171.png",
+          "frame_00172.png",
+          "frame_00173.png",
+          "frame_00174.png",
+          "frame_00175.png",
+          "frame_00176.png",
+          "frame_00177.png",
+          "frame_00180.png",
+          "frame_00181.png",
+          "frame_00182.png",
+          "frame_00183.png",
+          "frame_00184.png",
+          "frame_00185.png",
+          "frame_00186.png",
+          "frame_00187.png",
+          "frame_00190.png",
+          "frame_00191.png",
+          "frame_00192.png",
+          "frame_00193.png",
+          "frame_00194.png",
+          "frame_00195.png",
+          "frame_00196.png",
+          "frame_00197.png",
+          "frame_00200.png",
+          "frame_00201.png",
+          "frame_00202.png",
+          "frame_00203.png",
+          "frame_00204.png",
+          "frame_00205.png",
+          "frame_00206.png",
+          "frame_00207.png",
+          "frame_00210.png",
+          "frame_00211.png",
+          "frame_00212.png",
+          "frame_00213.png",
+          "frame_00214.png",
+          "frame_00215.png",
+          "frame_00216.png",
+          "frame_00217.png",
+          "frame_00220.png",
+          "frame_00221.png",
+          "frame_00222.png",
+          "frame_00223.png",
+          "frame_00224.png",
+          "frame_00225.png",
+          "frame_00226.png",
+          "frame_00227.png",
+          "frame_00230.png",
+          "frame_00231.png",
+          "frame_00232.png",
+          "frame_00233.png",
+          "frame_00234.png",
+          "frame_00235.png",
+          "frame_00236.png",
+          "frame_00237.png",
+          "frame_00240.png"
+        ],
+        "points": 26866
+      }
+    ],
+    "pycolmap": "3.13.0",
+    "single_fixed_pinhole": [
+      694.2755737304688,
+      694.2152709960938,
+      646.9674072265625,
+      358.8826904296875
+    ],
+    "sequential_overlap": 10,
+    "quadratic_overlap": true,
+    "exhaustive": false,
+    "seed": 17,
+    "cpu_threads": 25
+  },
+  "map_files_sha256_before_and_after": {
+    "rigs.bin": "73e4d5f0da0a84a5711b46ae716a149f1532832f95bb09b4b01e73cf2c5afbe9",
+    "cameras.bin": "317fb3248bcac9cec44f84a897e65e4d4c491d3a883700d716645fa2bdf8fe06",
+    "frames.bin": "08b7f0e34dd8b1585b0755a54b5c4d53fb92cc5f61f89f28353a4a154bb9ab8d",
+    "images.bin": "c80ea531539725c8231de5d912f025761156c9b9400ebfc20b730484d4dc5620",
+    "points3D.bin": "5c96127989a44e85a59105c85e82965a7d63c3c5ee44b10b793910aa85b822ea"
+  },
+  "method": "Train-only incremental SfM. Held-out SIFT to 4 nearest-time registered training views, FLANN ratio 0.75; unique 2D and 3D. Fixed camera LO-RANSAC PnP 4px, minimum 20 inliers; pose refinement only.",
+  "train_registered": [
+    "frame_00000.png",
+    "frame_00001.png",
+    "frame_00002.png",
+    "frame_00003.png",
+    "frame_00004.png",
+    "frame_00005.png",
+    "frame_00006.png",
+    "frame_00007.png",
+    "frame_00010.png",
+    "frame_00011.png",
+    "frame_00012.png",
+    "frame_00013.png",
+    "frame_00014.png",
+    "frame_00015.png",
+    "frame_00016.png",
+    "frame_00017.png",
+    "frame_00020.png",
+    "frame_00021.png",
+    "frame_00022.png",
+    "frame_00023.png",
+    "frame_00024.png",
+    "frame_00025.png",
+    "frame_00026.png",
+    "frame_00027.png",
+    "frame_00030.png",
+    "frame_00031.png",
+    "frame_00032.png",
+    "frame_00033.png",
+    "frame_00034.png",
+    "frame_00035.png",
+    "frame_00036.png",
+    "frame_00037.png",
+    "frame_00040.png",
+    "frame_00041.png",
+    "frame_00042.png",
+    "frame_00043.png",
+    "frame_00044.png",
+    "frame_00045.png",
+    "frame_00046.png",
+    "frame_00047.png",
+    "frame_00050.png",
+    "frame_00051.png",
+    "frame_00052.png",
+    "frame_00053.png",
+    "frame_00054.png",
+    "frame_00055.png",
+    "frame_00056.png",
+    "frame_00057.png",
+    "frame_00060.png",
+    "frame_00061.png",
+    "frame_00062.png",
+    "frame_00063.png",
+    "frame_00064.png",
+    "frame_00065.png",
+    "frame_00066.png",
+    "frame_00067.png",
+    "frame_00070.png",
+    "frame_00071.png",
+    "frame_00072.png",
+    "frame_00073.png",
+    "frame_00074.png",
+    "frame_00075.png",
+    "frame_00076.png",
+    "frame_00077.png",
+    "frame_00080.png",
+    "frame_00081.png",
+    "frame_00082.png",
+    "frame_00083.png",
+    "frame_00084.png",
+    "frame_00085.png",
+    "frame_00086.png",
+    "frame_00087.png",
+    "frame_00090.png",
+    "frame_00091.png",
+    "frame_00092.png",
+    "frame_00093.png",
+    "frame_00094.png",
+    "frame_00095.png",
+    "frame_00096.png",
+    "frame_00097.png",
+    "frame_00100.png",
+    "frame_00101.png",
+    "frame_00102.png",
+    "frame_00103.png",
+    "frame_00104.png",
+    "frame_00105.png",
+    "frame_00106.png",
+    "frame_00107.png",
+    "frame_00110.png",
+    "frame_00111.png",
+    "frame_00112.png",
+    "frame_00113.png",
+    "frame_00114.png",
+    "frame_00115.png",
+    "frame_00116.png",
+    "frame_00117.png",
+    "frame_00120.png",
+    "frame_00121.png",
+    "frame_00122.png",
+    "frame_00123.png",
+    "frame_00124.png",
+    "frame_00125.png",
+    "frame_00126.png",
+    "frame_00127.png",
+    "frame_00130.png",
+    "frame_00131.png",
+    "frame_00132.png",
+    "frame_00133.png",
+    "frame_00134.png",
+    "frame_00135.png",
+    "frame_00136.png",
+    "frame_00137.png",
+    "frame_00140.png",
+    "frame_00141.png",
+    "frame_00142.png",
+    "frame_00143.png",
+    "frame_00144.png",
+    "frame_00145.png",
+    "frame_00146.png",
+    "frame_00147.png",
+    "frame_00150.png",
+    "frame_00151.png",
+    "frame_00152.png",
+    "frame_00153.png",
+    "frame_00154.png",
+    "frame_00155.png",
+    "frame_00156.png",
+    "frame_00157.png",
+    "frame_00160.png",
+    "frame_00161.png",
+    "frame_00162.png",
+    "frame_00163.png",
+    "frame_00164.png",
+    "frame_00165.png",
+    "frame_00166.png",
+    "frame_00167.png",
+    "frame_00170.png",
+    "frame_00171.png",
+    "frame_00172.png",
+    "frame_00173.png",
+    "frame_00174.png",
+    "frame_00175.png",
+    "frame_00176.png",
+    "frame_00177.png",
+    "frame_00180.png",
+    "frame_00181.png",
+    "frame_00182.png",
+    "frame_00183.png",
+    "frame_00184.png",
+    "frame_00185.png",
+    "frame_00186.png",
+    "frame_00187.png",
+    "frame_00190.png",
+    "frame_00191.png",
+    "frame_00192.png",
+    "frame_00193.png",
+    "frame_00194.png",
+    "frame_00195.png",
+    "frame_00196.png",
+    "frame_00197.png",
+    "frame_00200.png",
+    "frame_00201.png",
+    "frame_00202.png",
+    "frame_00203.png",
+    "frame_00204.png",
+    "frame_00205.png",
+    "frame_00206.png",
+    "frame_00207.png",
+    "frame_00210.png",
+    "frame_00211.png",
+    "frame_00212.png",
+    "frame_00213.png",
+    "frame_00214.png",
+    "frame_00215.png",
+    "frame_00216.png",
+    "frame_00217.png",
+    "frame_00220.png",
+    "frame_00221.png",
+    "frame_00222.png",
+    "frame_00223.png",
+    "frame_00224.png",
+    "frame_00225.png",
+    "frame_00226.png",
+    "frame_00227.png",
+    "frame_00230.png",
+    "frame_00231.png",
+    "frame_00232.png",
+    "frame_00233.png",
+    "frame_00234.png",
+    "frame_00235.png",
+    "frame_00236.png",
+    "frame_00237.png",
+    "frame_00240.png"
+  ],
+  "train_unregistered": [],
+  "graph_components": [
+    193
+  ],
+  "verified_edges_at_least_15_matches": 1142,
+  "sparse_points": 26866,
+  "observations": 232686,
+  "track_length": {
+    "min": 2.0,
+    "p10": 3.0,
+    "p50": 5.0,
+    "p90": 19.0,
+    "p95": 29.0,
+    "max": 127.0
+  },
+  "first_last_track_ray_angle_degrees": {
+    "min": 0.1452037074859862,
+    "p10": 2.270461723593021,
+    "p50": 5.891102485287992,
+    "p90": 21.590396367033193,
+    "p95": 32.951934398503596,
+    "max": 146.1774651879655
+  },
+  "train_reprojection_px": {
+    "min": 0.00033508109782126464,
+    "p10": 0.22817581303937873,
+    "p50": 0.7253413360453689,
+    "p90": 1.878866589535959,
+    "p95": 2.3557393216449096,
+    "max": 3.9981815725438117
+  },
+  "heldout": [
+    {
+      "name": "frame_00008.png",
+      "train_neighbors": [
+        "frame_00007.png",
+        "frame_00006.png",
+        "frame_00010.png",
+        "frame_00005.png"
+      ],
+      "unique_correspondences": 1116,
+      "registered": true,
+      "inliers": 1039,
+      "inlier_reprojection_px": {
+        "min": 0.006414346555775039,
+        "p10": 0.17297688484244556,
+        "p50": 0.4808574481547873,
+        "p90": 1.358281280770871,
+        "p95": 1.7657893226064028,
+        "max": 6.349590260698459
+      }
+    },
+    {
+      "name": "frame_00009.png",
+      "train_neighbors": [
+        "frame_00010.png",
+        "frame_00011.png",
+        "frame_00007.png",
+        "frame_00012.png"
+      ],
+      "unique_correspondences": 1130,
+      "registered": true,
+      "inliers": 1028,
+      "inlier_reprojection_px": {
+        "min": 0.022084837989342798,
+        "p10": 0.1796134725390953,
+        "p50": 0.543851956279328,
+        "p90": 1.542526774064002,
+        "p95": 1.955532150392786,
+        "max": 4.009885695589044
+      }
+    },
+    {
+      "name": "frame_00018.png",
+      "train_neighbors": [
+        "frame_00017.png",
+        "frame_00020.png",
+        "frame_00016.png",
+        "frame_00021.png"
+      ],
+      "unique_correspondences": 1216,
+      "registered": true,
+      "inliers": 1135,
+      "inlier_reprojection_px": {
+        "min": 0.0036209416974329655,
+        "p10": 0.29312062722025434,
+        "p50": 0.8392947851290035,
+        "p90": 1.9328904798460533,
+        "p95": 2.294388098463741,
+        "max": 4.128807607885606
+      }
+    },
+    {
+      "name": "frame_00019.png",
+      "train_neighbors": [
+        "frame_00020.png",
+        "frame_00017.png",
+        "frame_00021.png",
+        "frame_00016.png"
+      ],
+      "unique_correspondences": 1217,
+      "registered": true,
+      "inliers": 1142,
+      "inlier_reprojection_px": {
+        "min": 0.016361474872143504,
+        "p10": 0.21333803117009,
+        "p50": 0.6831951823525583,
+        "p90": 1.7386712212141728,
+        "p95": 2.1660418309021177,
+        "max": 4.302448873406281
+      }
+    },
+    {
+      "name": "frame_00028.png",
+      "train_neighbors": [
+        "frame_00027.png",
+        "frame_00030.png",
+        "frame_00026.png",
+        "frame_00031.png"
+      ],
+      "unique_correspondences": 843,
+      "registered": true,
+      "inliers": 694,
+      "inlier_reprojection_px": {
+        "min": 0.02051323398300134,
+        "p10": 0.4501454684767352,
+        "p50": 1.2003894908135886,
+        "p90": 3.1063858981270522,
+        "p95": 3.7603803763275847,
+        "max": 4.926660269461909
+      }
+    },
+    {
+      "name": "frame_00029.png",
+      "train_neighbors": [
+        "frame_00030.png",
+        "frame_00027.png",
+        "frame_00031.png",
+        "frame_00026.png"
+      ],
+      "unique_correspondences": 860,
+      "registered": true,
+      "inliers": 725,
+      "inlier_reprojection_px": {
+        "min": 0.055608651550664474,
+        "p10": 0.37110061537042954,
+        "p50": 1.0205060744247367,
+        "p90": 2.468729647871819,
+        "p95": 3.056316534113602,
+        "max": 4.654530891164157
+      }
+    },
+    {
+      "name": "frame_00038.png",
+      "train_neighbors": [
+        "frame_00037.png",
+        "frame_00036.png",
+        "frame_00040.png",
+        "frame_00041.png"
+      ],
+      "unique_correspondences": 969,
+      "registered": true,
+      "inliers": 873,
+      "inlier_reprojection_px": {
+        "min": 0.021280487522741368,
+        "p10": 0.31277393891574534,
+        "p50": 1.0316868695519934,
+        "p90": 2.5161157379874632,
+        "p95": 3.0397338548298873,
+        "max": 4.077134226281088
+      }
+    },
+    {
+      "name": "frame_00039.png",
+      "train_neighbors": [
+        "frame_00040.png",
+        "frame_00037.png",
+        "frame_00041.png",
+        "frame_00036.png"
+      ],
+      "unique_correspondences": 1028,
+      "registered": true,
+      "inliers": 933,
+      "inlier_reprojection_px": {
+        "min": 0.004164855114117794,
+        "p10": 0.2814991583117989,
+        "p50": 0.8642020863588031,
+        "p90": 2.1273561857523187,
+        "p95": 2.7296604322469715,
+        "max": 6.840756118265713
+      }
+    },
+    {
+      "name": "frame_00048.png",
+      "train_neighbors": [
+        "frame_00047.png",
+        "frame_00046.png",
+        "frame_00050.png",
+        "frame_00045.png"
+      ],
+      "unique_correspondences": 571,
+      "registered": true,
+      "inliers": 447,
+      "inlier_reprojection_px": {
+        "min": 0.023215092100586854,
+        "p10": 0.3398197067541618,
+        "p50": 1.0637914405173459,
+        "p90": 2.6005576446467686,
+        "p95": 3.0425567502209123,
+        "max": 4.427382679769186
+      }
+    },
+    {
+      "name": "frame_00049.png",
+      "train_neighbors": [
+        "frame_00050.png",
+        "frame_00047.png",
+        "frame_00051.png",
+        "frame_00046.png"
+      ],
+      "unique_correspondences": 548,
+      "registered": true,
+      "inliers": 451,
+      "inlier_reprojection_px": {
+        "min": 0.06104214300331488,
+        "p10": 0.273620739077886,
+        "p50": 0.8382518495904562,
+        "p90": 2.492566435685648,
+        "p95": 3.2452025127241533,
+        "max": 6.320591433364455
+      }
+    },
+    {
+      "name": "frame_00058.png",
+      "train_neighbors": [
+        "frame_00057.png",
+        "frame_00056.png",
+        "frame_00060.png",
+        "frame_00055.png"
+      ],
+      "unique_correspondences": 852,
+      "registered": true,
+      "inliers": 758,
+      "inlier_reprojection_px": {
+        "min": 0.014191351988298177,
+        "p10": 0.3210972783892996,
+        "p50": 0.9564492683218212,
+        "p90": 2.4464716180333084,
+        "p95": 2.8219806075848806,
+        "max": 5.1660441683830225
+      }
+    },
+    {
+      "name": "frame_00059.png",
+      "train_neighbors": [
+        "frame_00060.png",
+        "frame_00057.png",
+        "frame_00061.png",
+        "frame_00056.png"
+      ],
+      "unique_correspondences": 922,
+      "registered": true,
+      "inliers": 862,
+      "inlier_reprojection_px": {
+        "min": 0.01526593322776085,
+        "p10": 0.24920775457803998,
+        "p50": 0.6689773372600568,
+        "p90": 1.7470312650401956,
+        "p95": 2.3178559963397207,
+        "max": 4.361449477888823
+      }
+    },
+    {
+      "name": "frame_00068.png",
+      "train_neighbors": [
+        "frame_00067.png",
+        "frame_00066.png",
+        "frame_00070.png",
+        "frame_00065.png"
+      ],
+      "unique_correspondences": 788,
+      "registered": true,
+      "inliers": 683,
+      "inlier_reprojection_px": {
+        "min": 0.021857229235676283,
+        "p10": 0.34930780831914665,
+        "p50": 0.9534893089943597,
+        "p90": 2.355561775763911,
+        "p95": 2.794390021151721,
+        "max": 4.145937783375027
+      }
+    },
+    {
+      "name": "frame_00069.png",
+      "train_neighbors": [
+        "frame_00070.png",
+        "frame_00071.png",
+        "frame_00067.png",
+        "frame_00072.png"
+      ],
+      "unique_correspondences": 836,
+      "registered": true,
+      "inliers": 756,
+      "inlier_reprojection_px": {
+        "min": 0.016471040702403492,
+        "p10": 0.24357230076726985,
+        "p50": 0.6943720843555664,
+        "p90": 1.6916946205398005,
+        "p95": 2.0546378679240402,
+        "max": 3.993354696059928
+      }
+    },
+    {
+      "name": "frame_00078.png",
+      "train_neighbors": [
+        "frame_00077.png",
+        "frame_00076.png",
+        "frame_00080.png",
+        "frame_00081.png"
+      ],
+      "unique_correspondences": 1018,
+      "registered": true,
+      "inliers": 928,
+      "inlier_reprojection_px": {
+        "min": 0.015653332471044057,
+        "p10": 0.20032524400582027,
+        "p50": 0.5593962334101557,
+        "p90": 1.61555655194092,
+        "p95": 2.1157291816528137,
+        "max": 4.566272392102865
+      }
+    },
+    {
+      "name": "frame_00079.png",
+      "train_neighbors": [
+        "frame_00080.png",
+        "frame_00081.png",
+        "frame_00077.png",
+        "frame_00082.png"
+      ],
+      "unique_correspondences": 987,
+      "registered": true,
+      "inliers": 896,
+      "inlier_reprojection_px": {
+        "min": 0.025787891153430168,
+        "p10": 0.19657404005135803,
+        "p50": 0.6313522854688755,
+        "p90": 1.6785819803223219,
+        "p95": 2.1212873524144737,
+        "max": 4.668824646679709
+      }
+    },
+    {
+      "name": "frame_00088.png",
+      "train_neighbors": [
+        "frame_00087.png",
+        "frame_00086.png",
+        "frame_00090.png",
+        "frame_00085.png"
+      ],
+      "unique_correspondences": 1492,
+      "registered": true,
+      "inliers": 1262,
+      "inlier_reprojection_px": {
+        "min": 0.02028178839519277,
+        "p10": 0.24524731504021777,
+        "p50": 0.7499918020594799,
+        "p90": 2.199981882691128,
+        "p95": 2.825662283295457,
+        "max": 4.9254099657363035
+      }
+    },
+    {
+      "name": "frame_00089.png",
+      "train_neighbors": [
+        "frame_00090.png",
+        "frame_00091.png",
+        "frame_00087.png",
+        "frame_00086.png"
+      ],
+      "unique_correspondences": 1507,
+      "registered": true,
+      "inliers": 1285,
+      "inlier_reprojection_px": {
+        "min": 0.03572848349134416,
+        "p10": 0.26782675022093677,
+        "p50": 0.8409203456806553,
+        "p90": 2.3149604529651087,
+        "p95": 2.823265464755123,
+        "max": 4.846637253265454
+      }
+    },
+    {
+      "name": "frame_00098.png",
+      "train_neighbors": [
+        "frame_00097.png",
+        "frame_00100.png",
+        "frame_00096.png",
+        "frame_00095.png"
+      ],
+      "unique_correspondences": 1549,
+      "registered": true,
+      "inliers": 1336,
+      "inlier_reprojection_px": {
+        "min": 0.003943626709081101,
+        "p10": 0.398262313109266,
+        "p50": 1.1029796917633419,
+        "p90": 2.388315334949818,
+        "p95": 2.7801304326723035,
+        "max": 5.169334911907124
+      }
+    },
+    {
+      "name": "frame_00099.png",
+      "train_neighbors": [
+        "frame_00100.png",
+        "frame_00101.png",
+        "frame_00097.png",
+        "frame_00102.png"
+      ],
+      "unique_correspondences": 1537,
+      "registered": true,
+      "inliers": 1294,
+      "inlier_reprojection_px": {
+        "min": 0.01390962898292167,
+        "p10": 0.3809081101058419,
+        "p50": 1.1465261884664089,
+        "p90": 2.521422875347441,
+        "p95": 3.0544606698959718,
+        "max": 4.828203812375563
+      }
+    },
+    {
+      "name": "frame_00108.png",
+      "train_neighbors": [
+        "frame_00107.png",
+        "frame_00110.png",
+        "frame_00106.png",
+        "frame_00105.png"
+      ],
+      "unique_correspondences": 1395,
+      "registered": true,
+      "inliers": 1162,
+      "inlier_reprojection_px": {
+        "min": 0.02575931200863385,
+        "p10": 0.21178410413590298,
+        "p50": 0.7368206108402211,
+        "p90": 2.2229223273092344,
+        "p95": 2.7933240383104136,
+        "max": 3.968703108449029
+      }
+    },
+    {
+      "name": "frame_00109.png",
+      "train_neighbors": [
+        "frame_00110.png",
+        "frame_00111.png",
+        "frame_00107.png",
+        "frame_00106.png"
+      ],
+      "unique_correspondences": 1378,
+      "registered": true,
+      "inliers": 1152,
+      "inlier_reprojection_px": {
+        "min": 0.03174645546529995,
+        "p10": 0.22272534042745412,
+        "p50": 0.7714955446797337,
+        "p90": 2.2641359043018263,
+        "p95": 2.7330162656725956,
+        "max": 4.165906464896005
+      }
+    },
+    {
+      "name": "frame_00118.png",
+      "train_neighbors": [
+        "frame_00117.png",
+        "frame_00120.png",
+        "frame_00116.png",
+        "frame_00121.png"
+      ],
+      "unique_correspondences": 1295,
+      "registered": true,
+      "inliers": 1085,
+      "inlier_reprojection_px": {
+        "min": 0.0176637346971984,
+        "p10": 0.33338296161091086,
+        "p50": 0.9260859021141117,
+        "p90": 2.3463545381519686,
+        "p95": 2.937778622397037,
+        "max": 5.047661832355585
+      }
+    },
+    {
+      "name": "frame_00119.png",
+      "train_neighbors": [
+        "frame_00120.png",
+        "frame_00121.png",
+        "frame_00117.png",
+        "frame_00122.png"
+      ],
+      "unique_correspondences": 1279,
+      "registered": true,
+      "inliers": 1060,
+      "inlier_reprojection_px": {
+        "min": 0.03500827896871163,
+        "p10": 0.22213748655977442,
+        "p50": 0.7549085563862792,
+        "p90": 2.085299190114973,
+        "p95": 2.7884017476337495,
+        "max": 4.359128848943042
+      }
+    },
+    {
+      "name": "frame_00128.png",
+      "train_neighbors": [
+        "frame_00127.png",
+        "frame_00126.png",
+        "frame_00130.png",
+        "frame_00131.png"
+      ],
+      "unique_correspondences": 1228,
+      "registered": true,
+      "inliers": 1045,
+      "inlier_reprojection_px": {
+        "min": 0.042096076073635566,
+        "p10": 0.3276526750695152,
+        "p50": 0.9403308108565362,
+        "p90": 2.3041267671288987,
+        "p95": 2.8300979795788477,
+        "max": 4.888192249513291
+      }
+    },
+    {
+      "name": "frame_00129.png",
+      "train_neighbors": [
+        "frame_00130.png",
+        "frame_00131.png",
+        "frame_00127.png",
+        "frame_00126.png"
+      ],
+      "unique_correspondences": 1183,
+      "registered": true,
+      "inliers": 984,
+      "inlier_reprojection_px": {
+        "min": 0.0954128508905171,
+        "p10": 0.355903642669713,
+        "p50": 0.9965778920679177,
+        "p90": 2.394867670692104,
+        "p95": 2.9802814181020136,
+        "max": 5.603995670176102
+      }
+    },
+    {
+      "name": "frame_00138.png",
+      "train_neighbors": [
+        "frame_00137.png",
+        "frame_00136.png",
+        "frame_00140.png",
+        "frame_00135.png"
+      ],
+      "unique_correspondences": 960,
+      "registered": true,
+      "inliers": 830,
+      "inlier_reprojection_px": {
+        "min": 0.02894985699864829,
+        "p10": 0.28227522111685904,
+        "p50": 0.8078445787934689,
+        "p90": 2.0150796544429843,
+        "p95": 2.4450705042379193,
+        "max": 4.517911861049526
+      }
+    },
+    {
+      "name": "frame_00139.png",
+      "train_neighbors": [
+        "frame_00140.png",
+        "frame_00137.png",
+        "frame_00141.png",
+        "frame_00142.png"
+      ],
+      "unique_correspondences": 944,
+      "registered": true,
+      "inliers": 832,
+      "inlier_reprojection_px": {
+        "min": 0.03508394168577502,
+        "p10": 0.26601693485361416,
+        "p50": 0.7111809734946833,
+        "p90": 1.8300342480771268,
+        "p95": 2.2960192186479396,
+        "max": 4.097210762995635
+      }
+    },
+    {
+      "name": "frame_00148.png",
+      "train_neighbors": [
+        "frame_00147.png",
+        "frame_00146.png",
+        "frame_00150.png",
+        "frame_00145.png"
+      ],
+      "unique_correspondences": 900,
+      "registered": true,
+      "inliers": 762,
+      "inlier_reprojection_px": {
+        "min": 0.026464743657427094,
+        "p10": 0.3496159014506335,
+        "p50": 1.0030148905255363,
+        "p90": 2.2137014933534287,
+        "p95": 2.646082150258696,
+        "max": 5.2113982590021175
+      }
+    },
+    {
+      "name": "frame_00149.png",
+      "train_neighbors": [
+        "frame_00150.png",
+        "frame_00147.png",
+        "frame_00151.png",
+        "frame_00146.png"
+      ],
+      "unique_correspondences": 973,
+      "registered": true,
+      "inliers": 831,
+      "inlier_reprojection_px": {
+        "min": 0.01841169592378981,
+        "p10": 0.24354192609329287,
+        "p50": 0.7362295531551669,
+        "p90": 2.077020687359715,
+        "p95": 2.8200676265065834,
+        "max": 4.397171084497708
+      }
+    },
+    {
+      "name": "frame_00158.png",
+      "train_neighbors": [
+        "frame_00157.png",
+        "frame_00156.png",
+        "frame_00160.png",
+        "frame_00155.png"
+      ],
+      "unique_correspondences": 814,
+      "registered": true,
+      "inliers": 642,
+      "inlier_reprojection_px": {
+        "min": 0.027295449180238164,
+        "p10": 0.6119394497192266,
+        "p50": 1.4556435222008015,
+        "p90": 2.783777266403442,
+        "p95": 3.1411397215492216,
+        "max": 4.455013139459163
+      }
+    },
+    {
+      "name": "frame_00159.png",
+      "train_neighbors": [
+        "frame_00160.png",
+        "frame_00157.png",
+        "frame_00161.png",
+        "frame_00156.png"
+      ],
+      "unique_correspondences": 768,
+      "registered": true,
+      "inliers": 606,
+      "inlier_reprojection_px": {
+        "min": 0.01958248699523919,
+        "p10": 0.32393408207901375,
+        "p50": 0.8700346707866659,
+        "p90": 2.235474479641142,
+        "p95": 2.891901053346481,
+        "max": 4.135107953451032
+      }
+    },
+    {
+      "name": "frame_00168.png",
+      "train_neighbors": [
+        "frame_00167.png",
+        "frame_00166.png",
+        "frame_00170.png",
+        "frame_00165.png"
+      ],
+      "unique_correspondences": 1117,
+      "registered": true,
+      "inliers": 932,
+      "inlier_reprojection_px": {
+        "min": 0.014931600789532153,
+        "p10": 0.2999027675937298,
+        "p50": 1.0329183384092457,
+        "p90": 2.29036674806059,
+        "p95": 2.783220569309513,
+        "max": 4.351381741633043
+      }
+    },
+    {
+      "name": "frame_00169.png",
+      "train_neighbors": [
+        "frame_00170.png",
+        "frame_00167.png",
+        "frame_00171.png",
+        "frame_00166.png"
+      ],
+      "unique_correspondences": 1254,
+      "registered": true,
+      "inliers": 1085,
+      "inlier_reprojection_px": {
+        "min": 0.011790369681101625,
+        "p10": 0.33418279072724943,
+        "p50": 0.920469241902205,
+        "p90": 2.4211593609410715,
+        "p95": 2.9981765816139054,
+        "max": 4.737890535315314
+      }
+    },
+    {
+      "name": "frame_00178.png",
+      "train_neighbors": [
+        "frame_00177.png",
+        "frame_00176.png",
+        "frame_00180.png",
+        "frame_00175.png"
+      ],
+      "unique_correspondences": 1431,
+      "registered": true,
+      "inliers": 1263,
+      "inlier_reprojection_px": {
+        "min": 0.040030228603403356,
+        "p10": 0.29561225279109493,
+        "p50": 0.8271395553589178,
+        "p90": 1.9951295159546418,
+        "p95": 2.492637052789004,
+        "max": 4.251832469638112
+      }
+    },
+    {
+      "name": "frame_00179.png",
+      "train_neighbors": [
+        "frame_00180.png",
+        "frame_00177.png",
+        "frame_00181.png",
+        "frame_00182.png"
+      ],
+      "unique_correspondences": 1356,
+      "registered": true,
+      "inliers": 1177,
+      "inlier_reprojection_px": {
+        "min": 0.001344263190115168,
+        "p10": 0.1771496238583681,
+        "p50": 0.5587094606452749,
+        "p90": 1.788840339809198,
+        "p95": 2.3372568596706933,
+        "max": 4.653983666633754
+      }
+    },
+    {
+      "name": "frame_00188.png",
+      "train_neighbors": [
+        "frame_00187.png",
+        "frame_00186.png",
+        "frame_00190.png",
+        "frame_00191.png"
+      ],
+      "unique_correspondences": 1315,
+      "registered": true,
+      "inliers": 1092,
+      "inlier_reprojection_px": {
+        "min": 0.011760649820062937,
+        "p10": 0.4151854699316448,
+        "p50": 1.354302821401872,
+        "p90": 3.2684624080277,
+        "p95": 3.6619990887019798,
+        "max": 5.488246010911576
+      }
+    },
+    {
+      "name": "frame_00189.png",
+      "train_neighbors": [
+        "frame_00190.png",
+        "frame_00191.png",
+        "frame_00187.png",
+        "frame_00192.png"
+      ],
+      "unique_correspondences": 1182,
+      "registered": true,
+      "inliers": 953,
+      "inlier_reprojection_px": {
+        "min": 0.053851714063208204,
+        "p10": 0.42211645910480794,
+        "p50": 1.3001140925832664,
+        "p90": 3.225703549405682,
+        "p95": 3.62489164024784,
+        "max": 4.809106667650284
+      }
+    },
+    {
+      "name": "frame_00198.png",
+      "train_neighbors": [
+        "frame_00197.png",
+        "frame_00200.png",
+        "frame_00196.png",
+        "frame_00201.png"
+      ],
+      "unique_correspondences": 1203,
+      "registered": true,
+      "inliers": 962,
+      "inlier_reprojection_px": {
+        "min": 0.031868533824955796,
+        "p10": 0.3890550281069514,
+        "p50": 1.3019581432558551,
+        "p90": 3.2684901918407183,
+        "p95": 3.864529396004963,
+        "max": 6.096500275048039
+      }
+    },
+    {
+      "name": "frame_00199.png",
+      "train_neighbors": [
+        "frame_00200.png",
+        "frame_00201.png",
+        "frame_00197.png",
+        "frame_00202.png"
+      ],
+      "unique_correspondences": 1459,
+      "registered": true,
+      "inliers": 1323,
+      "inlier_reprojection_px": {
+        "min": 0.019568366739775068,
+        "p10": 0.18229378842758162,
+        "p50": 0.5721740212414437,
+        "p90": 1.7644763669236485,
+        "p95": 2.2844805887259274,
+        "max": 5.252482788331881
+      }
+    },
+    {
+      "name": "frame_00208.png",
+      "train_neighbors": [
+        "frame_00207.png",
+        "frame_00206.png",
+        "frame_00210.png",
+        "frame_00205.png"
+      ],
+      "unique_correspondences": 1424,
+      "registered": true,
+      "inliers": 1237,
+      "inlier_reprojection_px": {
+        "min": 0.0258897952104559,
+        "p10": 0.2311116458345146,
+        "p50": 0.7128969287981247,
+        "p90": 2.043633198660539,
+        "p95": 2.780452725391608,
+        "max": 4.832546494281833
+      }
+    },
+    {
+      "name": "frame_00209.png",
+      "train_neighbors": [
+        "frame_00210.png",
+        "frame_00207.png",
+        "frame_00211.png",
+        "frame_00206.png"
+      ],
+      "unique_correspondences": 1438,
+      "registered": true,
+      "inliers": 1235,
+      "inlier_reprojection_px": {
+        "min": 0.02864689774025561,
+        "p10": 0.2283559524459696,
+        "p50": 0.7585859296475534,
+        "p90": 2.0875702946556354,
+        "p95": 2.6461371869174233,
+        "max": 4.663320956575376
+      }
+    },
+    {
+      "name": "frame_00218.png",
+      "train_neighbors": [
+        "frame_00217.png",
+        "frame_00216.png",
+        "frame_00220.png",
+        "frame_00215.png"
+      ],
+      "unique_correspondences": 1267,
+      "registered": true,
+      "inliers": 1063,
+      "inlier_reprojection_px": {
+        "min": 0.004972490522725144,
+        "p10": 0.24707784527734572,
+        "p50": 0.8166118131622624,
+        "p90": 2.1269476602833617,
+        "p95": 2.6752178926946133,
+        "max": 4.5058949842000136
+      }
+    },
+    {
+      "name": "frame_00219.png",
+      "train_neighbors": [
+        "frame_00220.png",
+        "frame_00217.png",
+        "frame_00221.png",
+        "frame_00216.png"
+      ],
+      "unique_correspondences": 1189,
+      "registered": true,
+      "inliers": 995,
+      "inlier_reprojection_px": {
+        "min": 0.01773360852675282,
+        "p10": 0.2593721210797877,
+        "p50": 0.7740746507900437,
+        "p90": 2.3223548832549445,
+        "p95": 2.928141844967841,
+        "max": 4.586882634515854
+      }
+    },
+    {
+      "name": "frame_00228.png",
+      "train_neighbors": [
+        "frame_00227.png",
+        "frame_00230.png",
+        "frame_00226.png",
+        "frame_00231.png"
+      ],
+      "unique_correspondences": 1269,
+      "registered": true,
+      "inliers": 1067,
+      "inlier_reprojection_px": {
+        "min": 0.05897030886542881,
+        "p10": 0.3014177344594498,
+        "p50": 0.8521797434589915,
+        "p90": 2.128045743861996,
+        "p95": 2.705519295773949,
+        "max": 6.022416262083865
+      }
+    },
+    {
+      "name": "frame_00229.png",
+      "train_neighbors": [
+        "frame_00230.png",
+        "frame_00227.png",
+        "frame_00231.png",
+        "frame_00232.png"
+      ],
+      "unique_correspondences": 1241,
+      "registered": true,
+      "inliers": 1056,
+      "inlier_reprojection_px": {
+        "min": 0.04436101826379741,
+        "p10": 0.31314086054814655,
+        "p50": 0.9890601883889716,
+        "p90": 2.381607632216592,
+        "p95": 2.8547593196331658,
+        "max": 4.460167219677209
+      }
+    },
+    {
+      "name": "frame_00238.png",
+      "train_neighbors": [
+        "frame_00237.png",
+        "frame_00240.png",
+        "frame_00236.png",
+        "frame_00235.png"
+      ],
+      "unique_correspondences": 1016,
+      "registered": true,
+      "inliers": 854,
+      "inlier_reprojection_px": {
+        "min": 0.013227376774969263,
+        "p10": 0.3261186298713092,
+        "p50": 0.8189081998532453,
+        "p90": 2.199838490754636,
+        "p95": 2.8037947606230484,
+        "max": 4.188481178042038
+      }
+    },
+    {
+      "name": "frame_00239.png",
+      "train_neighbors": [
+        "frame_00240.png",
+        "frame_00237.png",
+        "frame_00236.png",
+        "frame_00235.png"
+      ],
+      "unique_correspondences": 927,
+      "registered": true,
+      "inliers": 762,
+      "inlier_reprojection_px": {
+        "min": 0.01829359662189454,
+        "p10": 0.3075910386267238,
+        "p50": 1.0064951352043305,
+        "p90": 2.1691120342609542,
+        "p95": 2.5475040683315826,
+        "max": 4.664031532866342
+      }
+    }
+  ],
+  "poses_w2c_sfm_units": {
+    "frame_00047.png": [
+      [
+        0.448532149290385,
+        -0.0697255030006254,
+        -0.8910427965503439,
+        1.1063438412430633
+      ],
+      [
+        -0.060304325489253754,
+        0.9923194981714021,
+        -0.10800648997232946,
+        -0.2411280408934817
+      ],
+      [
+        0.8917299475627326,
+        0.1021781179126262,
+        0.44088244786972364,
+        3.8507768767953396
+      ]
+    ],
+    "frame_00056.png": [
+      [
+        0.9671169571939943,
+        0.1770010945125724,
+        -0.18263461788275887,
+        3.991192033212235
+      ],
+      [
+        -0.18988284348932521,
+        0.9802369337891379,
+        -0.05549828271286962,
+        -0.7675610403191855
+      ],
+      [
+        0.1692019410534003,
+        0.08835251086992714,
+        0.9816132318620919,
+        1.5975978965215707
+      ]
+    ],
+    "frame_00240.png": [
+      [
+        -0.12868997283094696,
+        -0.1218925366099421,
+        0.9841651794346132,
+        -3.949558238764507
+      ],
+      [
+        -0.08975402505293133,
+        0.989775851680894,
+        0.1108511543293921,
+        -0.03565887274169316
+      ],
+      [
+        -0.987614857056924,
+        -0.07406735413226836,
+        -0.13831457324619567,
+        5.398931995292601
+      ]
+    ],
+    "frame_00237.png": [
+      [
+        -0.08284570985607598,
+        -0.11994551993617361,
+        0.9893177753410092,
+        -3.9051812843036338
+      ],
+      [
+        -0.08954368622756739,
+        0.9896108245550033,
+        0.11248263946203246,
+        -0.023110034914375598
+      ],
+      [
+        -0.9925313680762042,
+        -0.07926845634177321,
+        -0.092725375243083,
+        5.398310048621997
+      ]
+    ],
+    "frame_00236.png": [
+      [
+        -0.030693095626601608,
+        -0.12803813150747417,
+        0.9912941898149769,
+        -4.083744977964461
+      ],
+      [
+        -0.0996714405706424,
+        0.9872102790403995,
+        0.12442455099999175,
+        -0.021263490509641568
+      ],
+      [
+        -0.9945469007620654,
+        -0.09498474528602685,
+        -0.04306228451347427,
+        5.243433378351174
+      ]
+    ],
+    "frame_00235.png": [
+      [
+        0.03146776740814461,
+        -0.14585348633218495,
+        0.9888056129184818,
+        -4.2881686648857915
+      ],
+      [
+        -0.08231664601601874,
+        0.9855565836665847,
+        0.14799388561735846,
+        -0.18088858367122523
+      ],
+      [
+        -0.9961093059514207,
+        -0.08605219878769774,
+        0.01900709553777702,
+        5.023747882598727
+      ]
+    ],
+    "frame_00234.png": [
+      [
+        0.0912247561134405,
+        -0.13108357630462983,
+        0.9871652039528296,
+        -4.487736121226228
+      ],
+      [
+        -0.06591956674133176,
+        0.988329459757952,
+        0.13732985726050229,
+        -0.20622332127025603
+      ],
+      [
+        -0.9936461415376594,
+        -0.07760138528237184,
+        0.08151914136924199,
+        4.798905115484659
+      ]
+    ],
+    "frame_00233.png": [
+      [
+        0.1380221760122614,
+        -0.13943017516365908,
+        0.9805657067135644,
+        -4.606033322431682
+      ],
+      [
+        -0.05658699016041004,
+        0.987313917210835,
+        0.14835478228349205,
+        -0.2930428991065785
+      ],
+      [
+        -0.9888113022581336,
+        -0.07596351187002884,
+        0.1283812813105789,
+        4.631865067582885
+      ]
+    ],
+    "frame_00232.png": [
+      [
+        0.14155272412301967,
+        -0.14468821831167067,
+        0.9792998242495231,
+        -4.533851363847549
+      ],
+      [
+        -0.03243319275526706,
+        0.9880520363328765,
+        0.15066937813024822,
+        -0.4174959720615579
+      ],
+      [
+        -0.9893992694059625,
+        -0.0530894808813419,
+        0.13516875644429682,
+        4.65729858234136
+      ]
+    ],
+    "frame_00231.png": [
+      [
+        0.147542119900538,
+        -0.12559905718327807,
+        0.9810485205584517,
+        -4.473566280024815
+      ],
+      [
+        -0.0488244830529993,
+        0.9897699246471418,
+        0.13405844292172975,
+        -0.25782491377899963
+      ],
+      [
+        -0.9878499343067563,
+        -0.06767845372541344,
+        0.13990044385731737,
+        4.6948032794728265
+      ]
+    ],
+    "frame_00230.png": [
+      [
+        0.1604853771967596,
+        -0.12674878327361908,
+        0.9788662777134941,
+        -4.431945913969596
+      ],
+      [
+        -0.04268451748554952,
+        0.9899017729802589,
+        0.13517585515751615,
+        -0.28444064768755056
+      ],
+      [
+        -0.9861148389883604,
+        -0.06347618284992496,
+        0.15345454876856301,
+        4.704725860162617
+      ]
+    ],
+    "frame_00227.png": [
+      [
+        0.24775083988450652,
+        -0.12593418330643413,
+        0.9606040301869774,
+        -4.5418299061671235
+      ],
+      [
+        -0.04088942100455651,
+        0.9892730732733411,
+        0.1402385173418157,
+        -0.27692492607161734
+      ],
+      [
+        -0.9679605242913751,
+        -0.0740227530645818,
+        0.23994385893851544,
+        4.440310749142842
+      ]
+    ],
+    "frame_00226.png": [
+      [
+        0.2564940929484809,
+        -0.14013735633268384,
+        0.9563327358417795,
+        -4.485007318324925
+      ],
+      [
+        -0.031001551017324047,
+        0.9877315506768384,
+        0.1530532183001997,
+        -0.3514928592016535
+      ],
+      [
+        -0.9660484895268231,
+        -0.06890504450049158,
+        0.2490028327656716,
+        4.439716994197132
+      ]
+    ],
+    "frame_00225.png": [
+      [
+        0.23727795898235482,
+        -0.13573631097864008,
+        0.9619120667000067,
+        -4.303693117153474
+      ],
+      [
+        -0.025220492494617233,
+        0.9889956106587346,
+        0.14577931559753424,
+        -0.36693364496142733
+      ],
+      [
+        -0.9711143583221789,
+        -0.05885011452551676,
+        0.23124352332732834,
+        4.580323589692132
+      ]
+    ],
+    "frame_00224.png": [
+      [
+        0.2138708423562563,
+        -0.1062113851700586,
+        0.9710707515161203,
+        -4.104820727214932
+      ],
+      [
+        -0.042995771144887035,
+        0.9920847996202108,
+        0.11797929490458403,
+        -0.16580121267394662
+      ],
+      [
+        -0.9759152762681205,
+        -0.06698426697952112,
+        0.20761137137385888,
+        4.739434941670514
+      ]
+    ],
+    "frame_00223.png": [
+      [
+        0.22249183232153946,
+        -0.10663708785019835,
+        0.9690850922623012,
+        -4.03386869305619
+      ],
+      [
+        -0.03283356558205683,
+        0.9926167212945967,
+        0.11676472745454373,
+        -0.20426421523360502
+      ],
+      [
+        -0.9743815174362517,
+        -0.05779771709327443,
+        0.2173478372964246,
+        4.76005870402108
+      ]
+    ],
+    "frame_00222.png": [
+      [
+        0.2495754199659258,
+        -0.11980576992204922,
+        0.9609155463630591,
+        -4.075080086205232
+      ],
+      [
+        -0.02015359280148498,
+        0.9914594939883218,
+        0.12884837786178296,
+        -0.3117153271689029
+      ],
+      [
+        -0.9681456204755684,
+        -0.051523288654800305,
+        0.24502940288906228,
+        4.6926447641641795
+      ]
+    ],
+    "frame_00221.png": [
+      [
+        0.28227463250353135,
+        -0.10067318926614999,
+        0.9540366559037332,
+        -4.144657832402487
+      ],
+      [
+        -0.019266535632690103,
+        0.9936829927925798,
+        0.1105572722144321,
+        -0.2571181008114135
+      ],
+      [
+        -0.9591401526626391,
+        -0.04958849461078348,
+        0.2785518780272819,
+        4.582428727947492
+      ]
+    ],
+    "frame_00220.png": [
+      [
+        0.28864236033219937,
+        -0.06665296555003322,
+        0.9551141136038368,
+        -4.088859223540093
+      ],
+      [
+        -0.029274010218036692,
+        0.996493072538266,
+        0.07838742698290506,
+        -0.09808309774069823
+      ],
+      [
+        -0.9569893521599973,
+        -0.05058595226574343,
+        0.28567891291755654,
+        4.589605830571034
+      ]
+    ],
+    "frame_00217.png": [
+      [
+        0.24126221237074896,
+        0.02143724464325776,
+        0.9702231647533865,
+        -3.5898281427271614
+      ],
+      [
+        -0.15695549692323024,
+        0.9874556863561172,
+        0.01721160854049633,
+        0.7810041967364207
+      ],
+      [
+        -0.9576834116071729,
+        -0.15643436970523625,
+        0.24160043689400068,
+        4.859483681410221
+      ]
+    ],
+    "frame_00216.png": [
+      [
+        0.21201548301185313,
+        0.054029705584681,
+        0.9757716053860573,
+        -3.3455945236699765
+      ],
+      [
+        -0.17765463149191116,
+        0.9839647223721872,
+        -0.015882601691714238,
+        0.9680131145881303
+      ],
+      [
+        -0.9609829690856774,
+        -0.16998298750597687,
+        0.21821438331562626,
+        4.976484295834321
+      ]
+    ],
+    "frame_00215.png": [
+      [
+        0.1917281362199169,
+        0.02787637266232068,
+        0.9810521034220501,
+        -3.1534554632553964
+      ],
+      [
+        -0.1513542019680599,
+        0.9884784669782672,
+        0.0014919339483784322,
+        0.7818970380129293
+      ],
+      [
+        -0.9697072895097001,
+        -0.14877240391781674,
+        0.19373834030533366,
+        5.076937214147906
+      ]
+    ],
+    "frame_00214.png": [
+      [
+        0.21158563955930132,
+        -0.0034856756366106606,
+        0.9773532458623331,
+        -3.1398576161459006
+      ],
+      [
+        -0.11465913879271734,
+        0.9929998861009584,
+        0.028363851903367855,
+        0.5178684591426147
+      ],
+      [
+        -0.9706105290092386,
+        -0.11806386521218143,
+        0.20970485141638007,
+        5.073642733984612
+      ]
+    ],
+    "frame_00213.png": [
+      [
+        0.22493575404152644,
+        0.013129805378361142,
+        0.974285130115664,
+        -3.1186461377651193
+      ],
+      [
+        -0.10448449799183795,
+        0.9944687295601385,
+        0.010720802509029091,
+        0.49563072265417657
+      ],
+      [
+        -0.9687553335250153,
+        -0.10420918451734643,
+        0.22506343467801726,
+        5.047584229853234
+      ]
+    ],
+    "frame_00212.png": [
+      [
+        0.22742335460469887,
+        0.03099784311410419,
+        0.9733024974295602,
+        -3.0402998375892905
+      ],
+      [
+        -0.09954984421388297,
+        0.9949968847795718,
+        -0.008427798997317146,
+        0.500641549191133
+      ],
+      [
+        -0.9686941964817056,
+        -0.09497543367219195,
+        0.22937135981077073,
+        5.059048113029619
+      ]
+    ],
+    "frame_00211.png": [
+      [
+        0.23588635773382238,
+        0.015465746544996155,
+        0.9716575718425073,
+        -3.005666899789528
+      ],
+      [
+        -0.07666178081405156,
+        0.9970533879361969,
+        0.0027409792720639453,
+        0.3472695643567724
+      ],
+      [
+        -0.9687520826287237,
+        -0.07513555941601491,
+        0.23637692381819553,
+        5.057218967945152
+      ]
+    ],
+    "frame_00210.png": [
+      [
+        0.252200653091164,
+        -0.010138692415387625,
+        0.967621846330733,
+        -3.004836403908512
+      ],
+      [
+        -0.05554097270926955,
+        0.998145010194359,
+        0.024934694195261203,
+        0.1769840045091952
+      ],
+      [
+        -0.9660797228649914,
+        -0.06003120472062158,
+        0.25116971061195326,
+        5.032697166433724
+      ]
+    ],
+    "frame_00207.png": [
+      [
+        0.25126833758064826,
+        0.06584440857573068,
+        0.9656752748148676,
+        -2.8150440343003864
+      ],
+      [
+        -0.0861501993300835,
+        0.9952451716291637,
+        -0.045444378136610696,
+        0.4638402816171949
+      ],
+      [
+        -0.9640759128226597,
+        -0.07177438406666145,
+        0.2557461086839976,
+        4.986056652483735
+      ]
+    ],
+    "frame_00206.png": [
+      [
+        0.3359321438137508,
+        0.047501203201923595,
+        0.9406876370225492,
+        -3.166724165183045
+      ],
+      [
+        -0.10171064141166523,
+        0.9947168109647997,
+        -0.01390724299229032,
+        0.5109909145809876
+      ],
+      [
+        -0.9363784171884384,
+        -0.09100605297664834,
+        0.33898872864047624,
+        4.678249660588623
+      ]
+    ],
+    "frame_00205.png": [
+      [
+        0.3921644930819336,
+        0.04252471355746608,
+        0.918911671001433,
+        -3.4082396534458446
+      ],
+      [
+        -0.10347484562045293,
+        0.9946303153066448,
+        -0.0018687420442049102,
+        0.4930192519205166
+      ],
+      [
+        -0.9140568727872537,
+        -0.09435138901923919,
+        0.394458931576567,
+        4.456867632857671
+      ]
+    ],
+    "frame_00204.png": [
+      [
+        0.4383998490677923,
+        0.04607297232860465,
+        0.8975983809912674,
+        -3.5846809228599636
+      ],
+      [
+        -0.09995883421970857,
+        0.9949890281377973,
+        -0.0022506325418215137,
+        0.4777459273196353
+      ],
+      [
+        -0.8932042340913827,
+        -0.08873621079474331,
+        0.44080844036272393,
+        4.247843347150242
+      ]
+    ],
+    "frame_00203.png": [
+      [
+        0.4577397226343003,
+        0.04309669194227039,
+        0.8880411147386743,
+        -3.62492475784829
+      ],
+      [
+        -0.09403807825217075,
+        0.9955685889230336,
+        0.00015680701003969316,
+        0.4214559210364948
+      ],
+      [
+        -0.8840990816426136,
+        -0.08358145663622304,
+        0.4597640198463281,
+        4.1544072419474345
+      ]
+    ],
+    "frame_00202.png": [
+      [
+        0.4650248810679882,
+        0.05263354144759404,
+        0.8837316166701222,
+        -3.6030409904731573
+      ],
+      [
+        -0.12044473072987184,
+        0.9927109173383748,
+        0.004254578311776704,
+        0.5334329177157732
+      ],
+      [
+        -0.8770660903416071,
+        -0.1084193013807356,
+        0.4679747089971862,
+        4.0903054266068395
+      ]
+    ],
+    "frame_00201.png": [
+      [
+        0.46409554177160406,
+        0.048239487312819504,
+        0.8844706213162299,
+        -3.5373854810799266
+      ],
+      [
+        -0.0990934615750932,
+        0.9950755275196332,
+        -0.002276050216759251,
+        0.4360383884790569
+      ],
+      [
+        -0.8802248655774199,
+        -0.08658895076925237,
+        0.466590333830324,
+        4.058682954350368
+      ]
+    ],
+    "frame_00200.png": [
+      [
+        0.45930721133622776,
+        0.043118345178343565,
+        0.8872303499788651,
+        -3.4511660117929024
+      ],
+      [
+        -0.07557450340647494,
+        0.9970964720182588,
+        -0.00933380541934898,
+        0.32219731854202877
+      ],
+      [
+        -0.8850567100753505,
+        -0.06276490896848952,
+        0.46123224752045977,
+        4.042193229098902
+      ]
+    ],
+    "frame_00197.png": [
+      [
+        0.5817814543621107,
+        0.04524552473617363,
+        0.8120856985883053,
+        -3.833884074865807
+      ],
+      [
+        -0.05938844102781106,
+        0.9981494342288684,
+        -0.013065987175721485,
+        0.22976638416307216
+      ],
+      [
+        -0.8111740580372339,
+        -0.04062695459837237,
+        0.5833918906939557,
+        3.3537737533310654
+      ]
+    ],
+    "frame_00196.png": [
+      [
+        0.589172305201878,
+        0.031655810947654975,
+        0.8073870846232006,
+        -3.800588520421609
+      ],
+      [
+        -0.06055941949762372,
+        0.9981517858366336,
+        0.005056593838752291,
+        0.2007111595420242
+      ],
+      [
+        -0.8057347897994823,
+        -0.051874098203107136,
+        0.5900004461374571,
+        3.2784580636197362
+      ]
+    ],
+    "frame_00195.png": [
+      [
+        0.5840348260507137,
+        0.023710647621435172,
+        0.8113822324584665,
+        -3.71194601041247
+      ],
+      [
+        -0.06145741689162555,
+        0.9979958837298777,
+        0.015073220201048527,
+        0.1919661732278837
+      ],
+      [
+        -0.809398732312401,
+        -0.058668741656801277,
+        0.5843215475091483,
+        3.24180029598539
+      ]
+    ],
+    "frame_00193.png": [
+      [
+        0.5906036665969348,
+        0.04490080824783099,
+        0.8057116273338423,
+        -3.64080519305621
+      ],
+      [
+        -0.044737252466403934,
+        0.998737101134329,
+        -0.022864405952358273,
+        0.15810515339741057
+      ],
+      [
+        -0.8057207253409919,
+        -0.02254152249712768,
+        0.5918665326908572,
+        3.1034102380178403
+      ]
+    ],
+    "frame_00194.png": [
+      [
+        0.5926011176849522,
+        0.04050816909637952,
+        0.8044768508509146,
+        -3.686262907334218
+      ],
+      [
+        -0.06062038441046388,
+        0.9981451546395631,
+        -0.005605288885527703,
+        0.2159317186522025
+      ],
+      [
+        -0.8032117306865438,
+        -0.045445995489391086,
+        0.5939575550336111,
+        3.144264541558708
+      ]
+    ],
+    "frame_00192.png": [
+      [
+        0.5880617624387019,
+        0.047115515102290936,
+        0.8074425625356478,
+        -3.589803153919308
+      ],
+      [
+        -0.05076343152074342,
+        0.9984837134899144,
+        -0.02129196833618967,
+        0.17777318867483347
+      ],
+      [
+        -0.8072214303261074,
+        -0.028467562804643205,
+        0.5895618375456787,
+        3.0643195520614945
+      ]
+    ],
+    "frame_00191.png": [
+      [
+        0.6039161429819955,
+        0.0367424375938106,
+        0.796200530975341,
+        -3.6090746574064614
+      ],
+      [
+        -0.06642591054093498,
+        0.9977819256783753,
+        0.004339031961265637,
+        0.22814553945723295
+      ],
+      [
+        -0.7942750724116663,
+        -0.05550875668953607,
+        0.6050172619654949,
+        2.9287692956788036
+      ]
+    ],
+    "frame_00190.png": [
+      [
+        0.6077804272554221,
+        0.03203904606994522,
+        0.7934585381556774,
+        -3.5971971702551193
+      ],
+      [
+        -0.05869652176216106,
+        0.9982650337449516,
+        0.004651960362570713,
+        0.18728050069362706
+      ],
+      [
+        -0.7919328699948252,
+        -0.049400626808965724,
+        0.6086065292885385,
+        2.853876575097825
+      ]
+    ],
+    "frame_00187.png": [
+      [
+        0.3970974458822645,
+        0.01858759792432917,
+        0.9175882081179911,
+        -2.7708720377901472
+      ],
+      [
+        -0.07797096746084871,
+        0.9968635522930939,
+        0.013549403780732716,
+        0.24924952138289733
+      ],
+      [
+        -0.9144583898171648,
+        -0.0769256739521828,
+        0.39730126350164197,
+        3.495533846063415
+      ]
+    ],
+    "frame_00186.png": [
+      [
+        0.3473202146608656,
+        0.01038067315536221,
+        0.9376891329821264,
+        -2.5748773033335626
+      ],
+      [
+        -0.09070085691471319,
+        0.9956223116870451,
+        0.022573591337692017,
+        0.2923598372937739
+      ],
+      [
+        -0.9333498931498665,
+        -0.09288947247016716,
+        0.3467412909668346,
+        3.6020349911720753
+      ]
+    ],
+    "frame_00185.png": [
+      [
+        0.31664212536606406,
+        0.018205490342765286,
+        0.9483703520065571,
+        -2.438959632727712
+      ],
+      [
+        -0.10519687847636389,
+        0.9943221197646386,
+        0.016035551302802882,
+        0.3571874797313674
+      ],
+      [
+        -0.9426936836547123,
+        -0.10484313171655632,
+        0.31675943005595575,
+        3.6550139411660303
+      ]
+    ],
+    "frame_00184.png": [
+      [
+        0.32535769732290576,
+        0.018921909078612183,
+        0.9454016766166418,
+        -2.4464977122182456
+      ],
+      [
+        -0.0780658184016316,
+        0.9969242387437177,
+        0.006913045822384209,
+        0.24975788023794127
+      ],
+      [
+        -0.9423630387435726,
+        -0.07605276827361146,
+        0.32583412904098996,
+        3.604233429117555
+      ]
+    ],
+    "frame_00183.png": [
+      [
+        0.3661987921754145,
+        0.010422330356457322,
+        0.9304782746734115,
+        -2.56928508483197
+      ],
+      [
+        -0.08169970352925882,
+        0.9964358833432294,
+        0.020992589864742915,
+        0.2498899916100279
+      ],
+      [
+        -0.9269431498492768,
+        -0.08370726023433667,
+        0.3657451182607394,
+        3.4707331706819664
+      ]
+    ],
+    "frame_00182.png": [
+      [
+        0.3797451342015824,
+        0.011158170546633296,
+        0.9250238528169284,
+        -2.580463420027547
+      ],
+      [
+        -0.11192407543111085,
+        0.993136037352174,
+        0.033967817876811704,
+        0.36095618019079545
+      ],
+      [
+        -0.9182955049378786,
+        -0.11643155303642345,
+        0.3783874457066637,
+        3.4183149167457705
+      ]
+    ],
+    "frame_00181.png": [
+      [
+        0.39486826041152057,
+        0.012976714117873892,
+        0.9186461025935302,
+        -2.5822767501794663
+      ],
+      [
+        -0.07871481509295675,
+        0.996701413884418,
+        0.019755238436516224,
+        0.22980671616220638
+      ],
+      [
+        -0.9153595112328605,
+        -0.08011177473695706,
+        0.39458721310254574,
+        3.3840273074503147
+      ]
+    ],
+    "frame_00180.png": [
+      [
+        0.4130889925588014,
+        0.024587281454641296,
+        0.9103586929432953,
+        -2.581613104926906
+      ],
+      [
+        -0.08657468555369574,
+        0.9961684428975762,
+        0.012379709055426923,
+        0.2650113510012994
+      ],
+      [
+        -0.9065662182367228,
+        -0.0839279391245166,
+        0.4136348546559855,
+        3.3451600636874423
+      ]
+    ],
+    "frame_00177.png": [
+      [
+        0.5235796958469988,
+        0.028502885478751284,
+        0.8514997872085168,
+        -2.795182223077184
+      ],
+      [
+        -0.07539436563426283,
+        0.9970692621188991,
+        0.01298368854682921,
+        0.22054541672463138
+      ],
+      [
+        -0.8486341919386535,
+        -0.0709962819946169,
+        0.5241941779680213,
+        2.999369425690571
+      ]
+    ],
+    "frame_00176.png": [
+      [
+        0.5604395708119763,
+        0.02176645448794461,
+        0.8279092395468916,
+        -2.8547119923990243
+      ],
+      [
+        -0.07730293152153318,
+        0.9966652907684701,
+        0.026125752727493973,
+        0.215518314718431
+      ],
+      [
+        -0.8245797379551992,
+        -0.0786417168964745,
+        0.560253278542223,
+        2.8509452888365305
+      ]
+    ],
+    "frame_00175.png": [
+      [
+        0.5917690032843623,
+        0.028294037616641367,
+        0.8056108826146657,
+        -2.894226770675287
+      ],
+      [
+        -0.07625473985267406,
+        0.9968671486885178,
+        0.021002440706391616,
+        0.21184186215341774
+      ],
+      [
+        -0.8024927796571342,
+        -0.07386024167962474,
+        0.5920726334641672,
+        2.725864504501628
+      ]
+    ],
+    "frame_00174.png": [
+      [
+        0.6063350256845288,
+        0.023157350834867464,
+        0.7948720486533998,
+        -2.879071126749251
+      ],
+      [
+        -0.05884799328114741,
+        0.9981417451997289,
+        0.01581044516835236,
+        0.14498393494047593
+      ],
+      [
+        -0.7930288458277692,
+        -0.056363051655763906,
+        0.6065710643388175,
+        2.672160582624461
+      ]
+    ],
+    "frame_00173.png": [
+      [
+        0.6277851202097413,
+        0.01690164932325201,
+        0.7782031721172785,
+        -2.8768587623041904
+      ],
+      [
+        -0.04651418859743277,
+        0.9987921765298763,
+        0.01583093054229507,
+        0.08947463828675291
+      ],
+      [
+        -0.7769956712249838,
+        -0.0461359117485103,
+        0.627813033111587,
+        2.6086444845587033
+      ]
+    ],
+    "frame_00172.png": [
+      [
+        0.6496292806148172,
+        0.02282261362136674,
+        0.7599084984887094,
+        -2.8758866500563447
+      ],
+      [
+        -0.04917065842638865,
+        0.9987178195858685,
+        0.012040066094675433,
+        0.09669697444336216
+      ],
+      [
+        -0.7586593729189606,
+        -0.045186780690137054,
+        0.6499185416135402,
+        2.5330619339964575
+      ]
+    ],
+    "frame_00171.png": [
+      [
+        0.6720039302613265,
+        0.04823014380049657,
+        0.7389753520533102,
+        -2.8860543997697867
+      ],
+      [
+        -0.08060910567369703,
+        0.9967116308671442,
+        0.008252089229067092,
+        0.21830436152181035
+      ],
+      [
+        -0.7361473288655045,
+        -0.06511357863872298,
+        0.6736819220381692,
+        2.4441074845607633
+      ]
+    ],
+    "frame_00170.png": [
+      [
+        0.6825643268394592,
+        0.04607920246858818,
+        0.7293714052703565,
+        -2.8526860967512153
+      ],
+      [
+        -0.06617431287086518,
+        0.997807459967908,
+        -0.0011104721790715748,
+        0.16906984374144118
+      ],
+      [
+        -0.7278233989384132,
+        -0.04750768287604125,
+        0.6841170367893821,
+        2.402906146585994
+      ]
+    ],
+    "frame_00167.png": [
+      [
+        0.7707727325082908,
+        0.06920666825338917,
+        0.633340218122115,
+        -2.942403377657659
+      ],
+      [
+        -0.057708150090567574,
+        0.9975801109330483,
+        -0.038777463608796095,
+        0.13837241976769807
+      ],
+      [
+        -0.6344912641123024,
+        -0.0066602807802912285,
+        0.7729013367986243,
+        1.9731824895831565
+      ]
+    ],
+    "frame_00166.png": [
+      [
+        0.7969902461335306,
+        0.07794955704102245,
+        0.5989410773399355,
+        -2.9568842725758375
+      ],
+      [
+        -0.051249142399085526,
+        0.996788500705699,
+        -0.06153218884651257,
+        0.11364749190583694
+      ],
+      [
+        -0.6018139853570807,
+        0.018345337772660886,
+        0.7984255604692491,
+        1.846987482941457
+      ]
+    ],
+    "frame_00165.png": [
+      [
+        0.8209388788409199,
+        0.10508396871399919,
+        0.5612635002623356,
+        -2.956447926296366
+      ],
+      [
+        -0.05642705119537195,
+        0.9930389678923872,
+        -0.10339050314519799,
+        0.1260734810421615
+      ],
+      [
+        -0.568221211414013,
+        0.053206839471420964,
+        0.8211538754293582,
+        1.730847997974422
+      ]
+    ],
+    "frame_00164.png": [
+      [
+        0.8758470375926407,
+        0.1078611898974396,
+        0.4703806229577318,
+        -3.0441255849504136
+      ],
+      [
+        -0.06797189474964192,
+        0.9925580541625835,
+        -0.10103628378523051,
+        0.13294773239338153
+      ],
+      [
+        -0.47777796963060043,
+        0.05651966764670956,
+        0.8766605608242944,
+        1.4408801105105888
+      ]
+    ],
+    "frame_00163.png": [
+      [
+        0.8923111382060612,
+        0.09949776821035278,
+        0.4403192327784041,
+        -3.0196229201596334
+      ],
+      [
+        -0.10002649370136843,
+        0.9947398832647267,
+        -0.02207408435899323,
+        0.2274193479755139
+      ],
+      [
+        -0.4401994243422106,
+        -0.024346637624870545,
+        0.8975698903401059,
+        1.3441937343871453
+      ]
+    ],
+    "frame_00055.png": [
+      [
+        0.7433561228447179,
+        0.06613088694525632,
+        -0.6656187951230813,
+        2.583974513612831
+      ],
+      [
+        -0.14634975838202244,
+        0.98707040855087,
+        -0.06537397635712738,
+        -0.5947123608835996
+      ],
+      [
+        0.6526893770016428,
+        0.1460092954405723,
+        0.7434230712011536,
+        3.4164680530371023
+      ]
+    ],
+    "frame_00162.png": [
+      [
+        0.9113504961427666,
+        0.09760588750034295,
+        0.3998916902182434,
+        -3.0071866880303744
+      ],
+      [
+        -0.1082019790378645,
+        0.9941211008414763,
+        0.003945705769669038,
+        0.25905677187357484
+      ],
+      [
+        -0.397155643183655,
+        -0.04686499319323182,
+        0.916553908671157,
+        1.2026018984108302
+      ]
+    ],
+    "frame_00070.png": [
+      [
+        0.8297249942279912,
+        0.16440692478812868,
+        -0.5334105332997001,
+        2.9922115535620333
+      ],
+      [
+        -0.24720594061397916,
+        0.9650414341272617,
+        -0.08708761876843221,
+        -1.059075252764058
+      ],
+      [
+        0.5004454584452913,
+        0.20412102659772355,
+        0.8413613668467157,
+        2.819267161164864
+      ]
+    ],
+    "frame_00074.png": [
+      [
+        0.7910992179132916,
+        0.13912593659507766,
+        -0.5956559419526686,
+        2.77254059915594
+      ],
+      [
+        -0.205887533243109,
+        0.977534835487396,
+        -0.045121713882536774,
+        -0.8319485966361478
+      ],
+      [
+        0.5759968325191087,
+        0.1583338851136176,
+        0.8019713397327748,
+        3.08166856540348
+      ]
+    ],
+    "frame_00071.png": [
+      [
+        0.8152337967645391,
+        0.12286391121559825,
+        -0.5659490400501442,
+        2.895408591783755
+      ],
+      [
+        -0.20783743779355862,
+        0.9742068329614775,
+        -0.0878899656535175,
+        -0.8762501334796151
+      ],
+      [
+        0.5405529169880438,
+        0.18927626880296808,
+        0.8197420557734877,
+        2.957697583492367
+      ]
+    ],
+    "frame_00072.png": [
+      [
+        0.8016434344705365,
+        0.12914056674361094,
+        -0.5836870034457009,
+        2.8208181466826434
+      ],
+      [
+        -0.20483403199553704,
+        0.9766197395281518,
+        -0.06524495153202363,
+        -0.8481175825760027
+      ],
+      [
+        0.561614479253103,
+        0.17186214936717092,
+        0.809353185147351,
+        3.033123431378328
+      ]
+    ],
+    "frame_00073.png": [
+      [
+        0.7958569085365007,
+        0.1373340597346966,
+        -0.5897042794244509,
+        2.7917189976152144
+      ],
+      [
+        -0.2040181878684088,
+        0.9778081200113461,
+        -0.04762204803205788,
+        -0.8250308440992179
+      ],
+      [
+        0.5700775036375447,
+        0.15821073439139258,
+        0.8062139935338022,
+        3.0620646618735208
+      ]
+    ],
+    "frame_00075.png": [
+      [
+        0.7946644541298515,
+        0.1388863714585119,
+        -0.5909475282676063,
+        2.7851119565162183
+      ],
+      [
+        -0.20107718685792503,
+        0.9787433112332121,
+        -0.04036701179862931,
+        -0.8098817734454313
+      ],
+      [
+        0.5727795127863847,
+        0.15090429596050545,
+        0.8056994000201663,
+        3.0685103443100785
+      ]
+    ],
+    "frame_00076.png": [
+      [
+        0.7892802416184342,
+        0.12386657214257496,
+        -0.6014098207515358,
+        2.7480312881594875
+      ],
+      [
+        -0.19065414692495786,
+        0.980469616086775,
+        -0.04827347295325622,
+        -0.7738459441942891
+      ],
+      [
+        0.5836845864429373,
+        0.15276257472398286,
+        0.7974809711288646,
+        3.099923609722046
+      ]
+    ],
+    "frame_00077.png": [
+      [
+        0.7834095740695062,
+        0.10744577636621748,
+        -0.6121477308602031,
+        2.7091514385946285
+      ],
+      [
+        -0.17161590639317714,
+        0.9840466110183473,
+        -0.046906801384806636,
+        -0.6937931165080273
+      ],
+      [
+        0.5973419623039077,
+        0.1418015249719347,
+        0.7893509407016316,
+        3.142878718465781
+      ]
+    ],
+    "frame_00080.png": [
+      [
+        0.8393616569632949,
+        0.10039868714758354,
+        -0.5342210333175527,
+        2.9528227895035983
+      ],
+      [
+        -0.14091289556448316,
+        0.9893867331901227,
+        -0.03546051396990748,
+        -0.5359514267286993
+      ],
+      [
+        0.5249910139073478,
+        0.10504282843877816,
+        0.8446007574648015,
+        2.854038589219664
+      ]
+    ],
+    "frame_00137.png": [
+      [
+        0.9496831453434675,
+        0.10227989603967994,
+        -0.2960417982593855,
+        -1.3266248399848701
+      ],
+      [
+        -0.10989206479712216,
+        0.9939014802904149,
+        -0.009142295726295012,
+        0.08022519962140492
+      ],
+      [
+        0.29330130846139013,
+        0.04121492863798492,
+        0.955131232926765,
+        -0.19948239833861378
+      ]
+    ],
+    "frame_00063.png": [
+      [
+        0.9611384416715368,
+        0.2660227094891801,
+        -0.07378898276331702,
+        3.961646480655035
+      ],
+      [
+        -0.2701835246753989,
+        0.9613186715573228,
+        -0.05354693930788572,
+        -1.1017299100632358
+      ],
+      [
+        0.05669002500606166,
+        0.0714025892478669,
+        0.9958352832238434,
+        1.1572159603476082
+      ]
+    ],
+    "frame_00136.png": [
+      [
+        0.9624714917063443,
+        0.08572396932099388,
+        -0.2574879195931682,
+        -1.288443969321834
+      ],
+      [
+        -0.09138338590913345,
+        0.995764864479646,
+        -0.010070325099757355,
+        0.05858373435036206
+      ],
+      [
+        0.25553415511893307,
+        0.03322251874385371,
+        0.9662290410746136,
+        -0.13461536080236539
+      ]
+    ],
+    "frame_00135.png": [
+      [
+        0.9727099822495655,
+        0.08114776062762263,
+        -0.21737141343141728,
+        -1.2522483668221311
+      ],
+      [
+        -0.08517444658194809,
+        0.996323545100272,
+        -0.009203647553284355,
+        0.05122425000297179
+      ],
+      [
+        0.2158254018448916,
+        0.02746696968994328,
+        0.9760455734721318,
+        -0.06636412040971179
+      ]
+    ],
+    "frame_00134.png": [
+      [
+        0.9826762635080382,
+        0.08132492691091399,
+        -0.1665341328401337,
+        -1.204876864574572
+      ],
+      [
+        -0.08539549628323757,
+        0.9961948759224267,
+        -0.017417761062788202,
+        0.050926312586823314
+      ],
+      [
+        0.16448395165614288,
+        0.03133728528183834,
+        0.9858818408910595,
+        0.01915491755990933
+      ]
+    ],
+    "frame_00133.png": [
+      [
+        0.9909687853858313,
+        0.09059348217941238,
+        -0.09886196122644286,
+        -1.138885046832515
+      ],
+      [
+        -0.08790664995010569,
+        0.9956395991292178,
+        0.03121232994122564,
+        0.04655065057695432
+      ],
+      [
+        0.10125851710093223,
+        -0.022239820872004355,
+        0.9946115337568238,
+        0.12509055105746417
+      ]
+    ],
+    "frame_00132.png": [
+      [
+        0.9971485553064764,
+        0.05605573793321968,
+        -0.050522399932793484,
+        -1.0833801927576368
+      ],
+      [
+        -0.055130633854854345,
+        0.9982882660058746,
+        0.019523093139822128,
+        0.020422913923431468
+      ],
+      [
+        0.051530300416055434,
+        -0.016682092187324058,
+        0.9985320905906253,
+        0.18201409910011668
+      ]
+    ],
+    "frame_00131.png": [
+      [
+        0.9985335295036672,
+        0.05335810176659091,
+        -0.009148958017992908,
+        -1.0037422293367455
+      ],
+      [
+        -0.053238262496308864,
+        0.9984988086883376,
+        0.012876973803835798,
+        0.024728174206909745
+      ],
+      [
+        0.009822314560376327,
+        -0.012371015473140809,
+        0.9998752322729273,
+        0.22477076781645383
+      ]
+    ],
+    "frame_00130.png": [
+      [
+        0.9983616553780973,
+        0.03960780809602677,
+        -0.04129438955274325,
+        -0.9231714538950796
+      ],
+      [
+        -0.04010554289894363,
+        0.9991316062881386,
+        -0.011295076133656112,
+        -0.003872836277168152
+      ],
+      [
+        0.04081115655658863,
+        0.01293270481811179,
+        0.9990831770411317,
+        0.1993558116953831
+      ]
+    ],
+    "frame_00081.png": [
+      [
+        0.8832105580686744,
+        0.042519190909610885,
+        -0.46704521036020996,
+        3.1258280907367912
+      ],
+      [
+        -0.07620375827616938,
+        0.9956579487236857,
+        -0.05346247626073342,
+        -0.2917025785888689
+      ],
+      [
+        0.4627440948738383,
+        0.08280922380830774,
+        0.8826157346839324,
+        2.62784511548676
+      ]
+    ],
+    "frame_00082.png": [
+      [
+        0.9311886807628152,
+        0.018275537834472867,
+        -0.3640791748178802,
+        3.3671357139504794
+      ],
+      [
+        -0.04514998464157976,
+        0.9968345097169982,
+        -0.06544034783019598,
+        -0.1890608107169641
+      ],
+      [
+        0.3617307281750791,
+        0.07737548031600627,
+        0.9290661522947623,
+        2.2644987303348767
+      ]
+    ],
+    "frame_00083.png": [
+      [
+        0.9602612441472427,
+        0.028138469732281228,
+        -0.27768069704233156,
+        3.503757045323512
+      ],
+      [
+        -0.046172920365763835,
+        0.9972119059705522,
+        -0.05862146377800091,
+        -0.18225390896360777
+      ],
+      [
+        0.2752569788646356,
+        0.06911324845284104,
+        0.9588831808278887,
+        1.9476022171527747
+      ]
+    ],
+    "frame_00084.png": [
+      [
+        0.9765755410485949,
+        0.032346721566174914,
+        -0.21272964586433304,
+        3.569069874002171
+      ],
+      [
+        -0.03968919422082485,
+        0.9987514975972207,
+        -0.030335027763468116,
+        -0.13108423518952825
+      ],
+      [
+        0.21148281369356195,
+        0.038067514382069824,
+        0.9766400994537471,
+        1.7049960329799896
+      ]
+    ],
+    "frame_00085.png": [
+      [
+        0.9863552640682913,
+        0.029402299201468755,
+        -0.16198394317474396,
+        3.5830135144946023
+      ],
+      [
+        -0.033426434761238195,
+        0.9991951872412956,
+        -0.022173210254375693,
+        -0.10345746277317126
+      ],
+      [
+        0.16120163306841545,
+        0.027285208364595172,
+        0.9865442468032423,
+        1.5074773917043582
+      ]
+    ],
+    "frame_00086.png": [
+      [
+        0.9881894576928754,
+        0.02386501505898056,
+        -0.15136729092143894,
+        3.5117374918969464
+      ],
+      [
+        -0.027103078532117693,
+        0.9994450588522259,
+        -0.019364851405380815,
+        -0.08310209370287841
+      ],
+      [
+        0.15082114851287523,
+        0.02323866158162405,
+        0.9882878860783187,
+        1.456010184351032
+      ]
+    ],
+    "frame_00087.png": [
+      [
+        0.9846416530282978,
+        0.03394819686718148,
+        -0.17125517525367895,
+        3.4054205219169056
+      ],
+      [
+        -0.034351041363626655,
+        0.9994096418704381,
+        0.0006113048642010874,
+        -0.07568283102779644
+      ],
+      [
+        0.17117482606661416,
+        0.005280877376883059,
+        0.9852265177385324,
+        1.5034150891517313
+      ]
+    ],
+    "frame_00090.png": [
+      [
+        0.9800993574823443,
+        0.05296037947315628,
+        -0.19131243469454665,
+        3.1070793991258374
+      ],
+      [
+        -0.04980179761368603,
+        0.9985323039622562,
+        0.021284240608343274,
+        -0.10474108768760794
+      ],
+      [
+        0.19215886765159015,
+        -0.011332967391097527,
+        0.9812983916388384,
+        1.5462751093079197
+      ]
+    ],
+    "frame_00091.png": [
+      [
+        0.9799203669218975,
+        0.07839545656376073,
+        -0.18333092178302351,
+        3.028377773119964
+      ],
+      [
+        -0.07454841222583325,
+        0.9968299991796744,
+        0.02779364981533761,
+        -0.18080189009431663
+      ],
+      [
+        0.18492865847742695,
+        -0.01356853439432153,
+        0.982658275367449,
+        1.506107463224904
+      ]
+    ],
+    "frame_00092.png": [
+      [
+        0.9816306017914525,
+        0.07372878853323828,
+        -0.17596996155018016,
+        2.951294744096494
+      ],
+      [
+        -0.07009789891721921,
+        0.9971808554153572,
+        0.02676987412162898,
+        -0.16796413266788587
+      ],
+      [
+        0.17744758717419115,
+        -0.013943003066684608,
+        0.9840314763621844,
+        1.4520889476899699
+      ]
+    ],
+    "frame_00114.png": [
+      [
+        0.9979766674367101,
+        -0.007910833256135922,
+        -0.06308716168216628,
+        0.70908980631228
+      ],
+      [
+        0.008268779104462961,
+        0.9999511526450784,
+        0.0054147590805734645,
+        -0.001564478988623493
+      ],
+      [
+        0.06304124478498004,
+        -0.005925457026480743,
+        0.9979933318489596,
+        0.5976881772810827
+      ]
+    ],
+    "frame_00115.png": [
+      [
+        0.9968308705891263,
+        0.002605633990378104,
+        -0.07950739658693845,
+        0.5721929506727427
+      ],
+      [
+        -0.000734053106523288,
+        0.9997221584516772,
+        0.02355986134841348,
+        0.0014214337395467471
+      ],
+      [
+        0.07954669450430565,
+        -0.023426834447441897,
+        0.9965558222303509,
+        0.5621457319799964
+      ]
+    ],
+    "frame_00116.png": [
+      [
+        0.9952880846027907,
+        0.02176427660539059,
+        -0.09448780297769716,
+        0.4457944673294419
+      ],
+      [
+        -0.020070935926536047,
+        0.9996211304470718,
+        0.01883489035675823,
+        -0.01855562856826811
+      ],
+      [
+        0.09486193218958253,
+        -0.016849683307476954,
+        0.9953478296523768,
+        0.5286935913435521
+      ]
+    ],
+    "frame_00117.png": [
+      [
+        0.9959272770864795,
+        -0.006924602203110125,
+        -0.08989387431543505,
+        0.3289526863920787
+      ],
+      [
+        0.007302216848753761,
+        0.9999658402212546,
+        0.0038724694568382633,
+        -0.02102870749427666
+      ],
+      [
+        0.08986398825004557,
+        -0.004513122525375413,
+        0.9959438213779263,
+        0.48557932076694155
+      ]
+    ],
+    "frame_00054.png": [
+      [
+        0.6433584683843556,
+        0.016763302822081466,
+        -0.7653815210969176,
+        1.9895675063969296
+      ],
+      [
+        -0.12743221234653676,
+        0.9881575372498682,
+        -0.08547346273986176,
+        -0.5357523222065235
+      ],
+      [
+        0.754884701404528,
+        0.15252433659836245,
+        0.6378757044523848,
+        3.741170505498886
+      ]
+    ],
+    "frame_00127.png": [
+      [
+        0.9980371284935969,
+        -0.009781208648703906,
+        0.06185643140067175,
+        -0.6883042977165686
+      ],
+      [
+        0.009493360773456277,
+        0.9999427065653608,
+        0.004945673661479943,
+        -0.041999547033139024
+      ],
+      [
+        -0.06190126209925362,
+        -0.00434874052012473,
+        0.9980728040611107,
+        0.29146199604528594
+      ]
+    ],
+    "frame_00053.png": [
+      [
+        0.6356250704015898,
+        -0.007171774726897902,
+        -0.7719645947349145,
+        1.939692937643295
+      ],
+      [
+        -0.11158915663241573,
+        0.9886018657721527,
+        -0.10106538039252054,
+        -0.4869309863437236
+      ],
+      [
+        0.7638904568058436,
+        0.150382567603713,
+        0.6275798382372353,
+        3.764783759327548
+      ]
+    ],
+    "frame_00126.png": [
+      [
+        0.9961196586002783,
+        -0.010039431457768089,
+        0.0874347503345764,
+        -0.5893036541073493
+      ],
+      [
+        0.009680552803792614,
+        0.9999428922579486,
+        0.004527595412754807,
+        -0.019662443918981674
+      ],
+      [
+        -0.08747521161722283,
+        -0.003663610079333213,
+        0.9961599597021097,
+        0.3193129793728059
+      ]
+    ],
+    "frame_00125.png": [
+      [
+        0.9949866215038681,
+        -0.01695008666863415,
+        0.09856123776741081,
+        -0.4962646843018331
+      ],
+      [
+        0.017240895959953165,
+        0.9998491603931746,
+        -0.0020995160303933736,
+        -0.03163286589666802
+      ],
+      [
+        -0.09851078385038041,
+        0.003788274407906452,
+        0.99512877279385,
+        0.33682897649275734
+      ]
+    ],
+    "frame_00121.png": [
+      [
+        0.9984573667821679,
+        -0.027162819413321822,
+        0.04842590174626242,
+        -0.06962259545465743
+      ],
+      [
+        0.026934693393309523,
+        0.99962283973875,
+        0.005357290774802161,
+        -0.011032447594346835
+      ],
+      [
+        -0.048553156542369136,
+        -0.004044689624265255,
+        0.998812410553461,
+        0.3349493779615927
+      ]
+    ],
+    "frame_00124.png": [
+      [
+        0.9953240301884702,
+        -0.011926060100152874,
+        0.09585324209367632,
+        -0.38918309716001276
+      ],
+      [
+        0.01078699741357311,
+        0.999865020161303,
+        0.012392826337716977,
+        -0.027943952387900404
+      ],
+      [
+        -0.09598810143023428,
+        -0.011300909181335196,
+        0.9953183278908785,
+        0.3370938235597108
+      ]
+    ],
+    "frame_00122.png": [
+      [
+        0.9989220503441939,
+        -0.008028410674610438,
+        0.045719601465798725,
+        -0.18218615175464223
+      ],
+      [
+        0.0069398215904028,
+        0.999689805587823,
+        0.02391927005729726,
+        -0.010461494750405803
+      ],
+      [
+        -0.04589745322395398,
+        -0.023576200411014905,
+        0.9986679060437131,
+        0.32261471984081863
+      ]
+    ],
+    "frame_00120.png": [
+      [
+        0.9991958211240808,
+        0.004061546249279269,
+        -0.03989003497414995,
+        0.038220732685444944
+      ],
+      [
+        -0.0030526875976984004,
+        0.9996747511438627,
+        0.025319419896335016,
+        -0.02141588172826966
+      ],
+      [
+        0.039979896780817224,
+        -0.02517728673866651,
+        0.9988832324580658,
+        0.36496671424747096
+      ]
+    ],
+    "frame_00103.png": [
+      [
+        0.9737183814937567,
+        0.07549755088232724,
+        -0.21487818258713315,
+        1.7933939754966168
+      ],
+      [
+        -0.07564415399959665,
+        0.997106270127852,
+        0.00755301512034703,
+        -0.13893221232772549
+      ],
+      [
+        0.2148266173146713,
+        0.008899768676392363,
+        0.9766116518917038,
+        1.1868065002842425
+      ]
+    ],
+    "frame_00123.png": [
+      [
+        0.997704217248407,
+        0.0032919204654106218,
+        0.06764213290836546,
+        -0.2833701896394657
+      ],
+      [
+        -0.005336345099522263,
+        0.9995336795762151,
+        0.030065708270571007,
+        -0.022182249529333727
+      ],
+      [
+        -0.06751161607991896,
+        -0.030357645700575794,
+        0.9972565342186512,
+        0.3271310948561278
+      ]
+    ],
+    "frame_00113.png": [
+      [
+        0.990372865168623,
+        0.01579868981107039,
+        -0.1375208687361522,
+        0.7713926274899539
+      ],
+      [
+        -0.01564117445817556,
+        0.999875191475334,
+        0.002226012967858215,
+        -0.022614276332571678
+      ],
+      [
+        0.1375388730478091,
+        -5.35949413382321e-05,
+        0.9904963682559976,
+        0.7128451019388107
+      ]
+    ],
+    "frame_00112.png": [
+      [
+        0.9852601448071817,
+        0.014746864914781188,
+        -0.17042586960234818,
+        0.8500667285415252
+      ],
+      [
+        -0.012725965335685081,
+        0.9998352334911406,
+        0.01294432987803809,
+        -0.01332626579568067
+      ],
+      [
+        0.17058867741091827,
+        -0.010584698621204267,
+        0.9852854750245189,
+        0.7977142145816171
+      ]
+    ],
+    "frame_00111.png": [
+      [
+        0.984467362440264,
+        0.004087120979105432,
+        -0.17552010634685702,
+        0.9524862307677584
+      ],
+      [
+        -0.004357001658382029,
+        0.999989844354246,
+        -0.001152269464917745,
+        -0.014740867014376428
+      ],
+      [
+        0.17551361436213062,
+        0.001899113075380673,
+        0.9844751721313586,
+        0.8346566758608158
+      ]
+    ],
+    "frame_00110.png": [
+      [
+        0.9851100990463818,
+        0.017199626613405423,
+        -0.1710621688193719,
+        1.0669533443449828
+      ],
+      [
+        -0.014624368258995308,
+        0.9997601353808929,
+        0.016303360273388266,
+        -0.01971957383570343
+      ],
+      [
+        0.17130154876665052,
+        -0.013558928701709444,
+        0.9851253396612072,
+        0.8620901180828039
+      ]
+    ],
+    "frame_00107.png": [
+      [
+        0.9835069447583505,
+        0.04112307117792817,
+        -0.17613342280495714,
+        1.4080690498267407
+      ],
+      [
+        -0.040295594979585805,
+        0.9991535476926375,
+        0.008273642393613948,
+        -0.05703007908411941
+      ],
+      [
+        0.17632457184787353,
+        -0.0010397836848497271,
+        0.9843315316561554,
+        0.9822231562685388
+      ]
+    ],
+    "frame_00106.png": [
+      [
+        0.9795176329066987,
+        0.0683793132038662,
+        -0.18939238725626079,
+        1.508604950622482
+      ],
+      [
+        -0.0690841564856452,
+        0.997606662310731,
+        0.002885591085002087,
+        -0.11623374700857897
+      ],
+      [
+        0.18913642205435943,
+        0.01025752596928352,
+        0.9818972436123165,
+        1.051398024098328
+      ]
+    ],
+    "frame_00105.png": [
+      [
+        0.9750613178348172,
+        0.06390894293103248,
+        -0.21253487590432676,
+        1.5830027179379298
+      ],
+      [
+        -0.06110489820364338,
+        0.9979360782541645,
+        0.019742723576556702,
+        -0.09258135828438437
+      ],
+      [
+        0.21335795714655673,
+        -0.006263444111348031,
+        0.9769540170295182,
+        1.1331010227524763
+      ]
+    ],
+    "frame_00104.png": [
+      [
+        0.9733110426804635,
+        0.05540533542617056,
+        -0.22270128648614157,
+        1.6805379637872253
+      ],
+      [
+        -0.058073740598609674,
+        0.9982974420748637,
+        -0.005445897508172333,
+        -0.1066596319445866
+      ],
+      [
+        0.2220203928677597,
+        0.018233648924382995,
+        0.9748715193284436,
+        1.1705996908900531
+      ]
+    ],
+    "frame_00102.png": [
+      [
+        0.9776557584321688,
+        0.067343141972221,
+        -0.19913342068505277,
+        1.9240432998477701
+      ],
+      [
+        -0.06401382744494763,
+        0.9976812132450118,
+        0.023117669298822075,
+        -0.11087698831527268
+      ],
+      [
+        0.20022848923235023,
+        -0.009853830081268822,
+        0.9796996754783887,
+        1.1948013693107318
+      ]
+    ],
+    "frame_00101.png": [
+      [
+        0.981617251961266,
+        0.05161546991625203,
+        -0.18374823514074073,
+        2.0457647740050566
+      ],
+      [
+        -0.049706421252896246,
+        0.998651474531662,
+        0.014983460947550716,
+        -0.0873872971796628
+      ],
+      [
+        0.18427382434367096,
+        -0.0055745565798217865,
+        0.9828591363876598,
+        1.1921422246294566
+      ]
+    ],
+    "frame_00100.png": [
+      [
+        0.9866956940972279,
+        0.04987129844118006,
+        -0.1547399781626595,
+        2.184257165236591
+      ],
+      [
+        -0.05006930297710428,
+        0.9987423095028425,
+        0.002619944334393066,
+        -0.10948953202540675
+      ],
+      [
+        0.15467602318839374,
+        0.005162635055776633,
+        0.9879517574506886,
+        1.1685205718721359
+      ]
+    ],
+    "frame_00097.png": [
+      [
+        0.975543718505138,
+        0.03845645056575843,
+        -0.21641523674420762,
+        2.401918313144189
+      ],
+      [
+        -0.037286837993739524,
+        0.9992595743436601,
+        0.009486558646621793,
+        -0.07922621314996109
+      ],
+      [
+        0.2166198167241323,
+        -0.0011851128260844416,
+        0.9762553203491353,
+        1.4128679358735163
+      ]
+    ],
+    "frame_00096.png": [
+      [
+        0.9683637196799716,
+        0.07141551859492365,
+        -0.23910568816192462,
+        2.465628893308886
+      ],
+      [
+        -0.06340028009784668,
+        0.9971432812659419,
+        0.04105704701638056,
+        -0.12434575818312354
+      ],
+      [
+        0.24135474076778357,
+        -0.024598787165403355,
+        0.9701251407828307,
+        1.5022311205807934
+      ]
+    ],
+    "frame_00095.png": [
+      [
+        0.9672208693714911,
+        0.09413661163779799,
+        -0.23584335522039063,
+        2.5700598578513034
+      ],
+      [
+        -0.08571378553389525,
+        0.9952693782295856,
+        0.04573851471072883,
+        -0.1775304119683371
+      ],
+      [
+        0.23903333830599105,
+        -0.02402421919331704,
+        0.970714118610853,
+        1.5259829100501854
+      ]
+    ],
+    "frame_00094.png": [
+      [
+        0.9729855000373733,
+        0.055698122612035376,
+        -0.2240467269444423,
+        2.696375374542137
+      ],
+      [
+        -0.05325991662290026,
+        0.9984373951957562,
+        0.016915943841093684,
+        -0.12406940719478235
+      ],
+      [
+        0.22463881676670336,
+        -0.004526258080135969,
+        0.9744315855869243,
+        1.5220523728393371
+      ]
+    ],
+    "frame_00093.png": [
+      [
+        0.9804814611190458,
+        0.039934553119763586,
+        -0.19251320959608448,
+        2.836771475368922
+      ],
+      [
+        -0.03872102038792967,
+        0.9991993847446081,
+        0.01006340430044134,
+        -0.08964479418413486
+      ],
+      [
+        0.19276095813721905,
+        -0.00241267343861265,
+        0.9812427793491781,
+        1.464906031802077
+      ]
+    ],
+    "frame_00061.png": [
+      [
+        0.9650286187412626,
+        0.2489319752543946,
+        -0.08217442854243905,
+        3.9696463397100317
+      ],
+      [
+        -0.2529261247775014,
+        0.9665621767064855,
+        -0.04226031194225238,
+        -1.0221583862912933
+      ],
+      [
+        0.06890675159493968,
+        0.0615664702282515,
+        0.9957215621489107,
+        1.2148383590052378
+      ]
+    ],
+    "frame_00065.png": [
+      [
+        0.9722222659904773,
+        0.2255517847017815,
+        -0.06253205522116387,
+        4.006688482432799
+      ],
+      [
+        -0.23002934674350306,
+        0.9701157635434063,
+        -0.07721337294375247,
+        -0.9472294995371333
+      ],
+      [
+        0.043247718426510214,
+        0.08945276822119583,
+        0.9950516755970347,
+        1.0912690787644461
+      ]
+    ],
+    "frame_00062.png": [
+      [
+        0.9675734681876869,
+        0.24227289560965237,
+        -0.07145227576617638,
+        3.990583845469274
+      ],
+      [
+        -0.2466935498190741,
+        0.9671537461736557,
+        -0.061285591617671914,
+        -1.0095221306840323
+      ],
+      [
+        0.05425749843952659,
+        0.0769251279828545,
+        0.995559465098849,
+        1.1443155690733928
+      ]
+    ],
+    "frame_00060.png": [
+      [
+        0.9577213280597195,
+        0.2667058093086414,
+        -0.10787895559630536,
+        3.9169891716417
+      ],
+      [
+        -0.2717426368011874,
+        0.961741390249623,
+        -0.03477696975097587,
+        -1.0894026223305064
+      ],
+      [
+        0.09447643687113191,
+        0.06262195750489553,
+        0.9935555813915948,
+        1.3251936678488356
+      ]
+    ],
+    "frame_00064.png": [
+      [
+        0.9705004926247925,
+        0.2369323248384485,
+        -0.04463034014751501,
+        4.028395456681253
+      ],
+      [
+        -0.23918446284665157,
+        0.9694365809606159,
+        -0.05462149968785122,
+        -0.9656022581063419
+      ],
+      [
+        0.030324685452511085,
+        0.06368507628981128,
+        0.997509210238265,
+        1.0457306743449442
+      ]
+    ],
+    "frame_00057.png": [
+      [
+        0.9787941115577737,
+        0.16788760502236336,
+        -0.11737052125505482,
+        4.005354469212705
+      ],
+      [
+        -0.1757076022509055,
+        0.9826287892504517,
+        -0.05972856140431327,
+        -0.708804910062288
+      ],
+      [
+        0.1053039680689476,
+        0.07908485705902336,
+        0.9912904012916134,
+        1.33214971102775
+      ]
+    ],
+    "frame_00044.png": [
+      [
+        0.7874560854710437,
+        -0.12274820671876757,
+        -0.6040246610875644,
+        2.758990963771895
+      ],
+      [
+        -0.009915102845485614,
+        0.9773202509629689,
+        -0.21153443642405578,
+        -0.08974582547052276
+      ],
+      [
+        0.6162910060922386,
+        0.17256304588470311,
+        0.7683797179811621,
+        2.868426891744762
+      ]
+    ],
+    "frame_00043.png": [
+      [
+        0.6976676944345925,
+        -0.04094786530380476,
+        -0.7152503481085358,
+        2.350106430186026
+      ],
+      [
+        -0.1021749688853166,
+        0.9824726458711815,
+        -0.15590951173088993,
+        -0.40670255276467704
+      ],
+      [
+        0.7090980636524152,
+        0.18185371165291456,
+        0.6812555788266648,
+        3.1299802926517475
+      ]
+    ],
+    "frame_00052.png": [
+      [
+        0.6011971162376136,
+        -0.04667095799825799,
+        -0.7977367041243008,
+        1.7879356228427066
+      ],
+      [
+        -0.10012144054123343,
+        0.9860269490147912,
+        -0.13314110169489646,
+        -0.45320740716972197
+      ],
+      [
+        0.7928037112498437,
+        0.1599145943812113,
+        0.5881237947340399,
+        3.8221082748687523
+      ]
+    ],
+    "frame_00045.png": [
+      [
+        0.7968111877472421,
+        -0.0713003771522418,
+        -0.6000068227101899,
+        2.766642773524636
+      ],
+      [
+        -0.035852118234181954,
+        0.9856846836816421,
+        -0.16474322436307792,
+        -0.17242163266160745
+      ],
+      [
+        0.6031637892802845,
+        0.1527807598271761,
+        0.7828483139968301,
+        2.8851092647268266
+      ]
+    ],
+    "frame_00040.png": [
+      [
+        0.9315206073673822,
+        0.05118227760950918,
+        -0.3600690663034059,
+        3.4685052801527263
+      ],
+      [
+        -0.10754815856704976,
+        0.9845355983781707,
+        -0.13828611323981144,
+        -0.36791580516487393
+      ],
+      [
+        0.3474230154131129,
+        0.167541129233512,
+        0.9226197582842129,
+        1.6965269511367003
+      ]
+    ],
+    "frame_00041.png": [
+      [
+        0.897879017220268,
+        0.07657118101837565,
+        -0.4335321495264415,
+        3.276450820643924
+      ],
+      [
+        -0.14211860335119633,
+        0.9824487553697281,
+        -0.12081699240577626,
+        -0.4981467042975458
+      ],
+      [
+        0.4166720209194169,
+        0.17009202600334683,
+        0.8930023122439302,
+        1.9789546063786194
+      ]
+    ],
+    "frame_00037.png": [
+      [
+        0.976813236795486,
+        0.02238299846966136,
+        -0.21291994223330224,
+        3.6618072091179643
+      ],
+      [
+        -0.051899938841497996,
+        0.9896119300741911,
+        -0.13406947528458127,
+        -0.13712114867170855
+      ],
+      [
+        0.2077072381246604,
+        0.1420113700882479,
+        0.9678277088388637,
+        1.1072981362191094
+      ]
+    ],
+    "frame_00036.png": [
+      [
+        0.9830008360597172,
+        0.03430719263683226,
+        -0.18036732752712226,
+        3.6851113793478087
+      ],
+      [
+        -0.059682576370146644,
+        0.9887432460703109,
+        -0.1372034381062158,
+        -0.16481645781442414
+      ],
+      [
+        0.17362991212264817,
+        0.14563588116849455,
+        0.9739829791801075,
+        0.9552910182332709
+      ]
+    ],
+    "frame_00035.png": [
+      [
+        0.9863492476429551,
+        0.05953730951540472,
+        -0.15352677437451556,
+        3.7057172757101253
+      ],
+      [
+        -0.08022804306152255,
+        0.9879567091544036,
+        -0.1323064697712083,
+        -0.2390599748473697
+      ],
+      [
+        0.14380063553647804,
+        0.14281753958274196,
+        0.9792469186098248,
+        0.8250733277870459
+      ]
+    ],
+    "frame_00034.png": [
+      [
+        0.9884161179260047,
+        0.08519405796707727,
+        -0.12560075760595046,
+        3.725751114850451
+      ],
+      [
+        -0.10068037439759805,
+        0.9873358651872319,
+        -0.12260241239934702,
+        -0.3151142827098862
+      ],
+      [
+        0.11356513565018943,
+        0.1338277318125147,
+        0.9844760526100529,
+        0.699618184292783
+      ]
+    ],
+    "frame_00024.png": [
+      [
+        0.8607394569917257,
+        0.04180262760158809,
+        -0.5073264506244398,
+        3.099658240821633
+      ],
+      [
+        -0.08089470922263406,
+        0.9951904034846256,
+        -0.05524587615282797,
+        -0.2003816095769171
+      ],
+      [
+        0.5025769923080191,
+        0.08859233114503234,
+        0.8599812589033056,
+        2.011321207640577
+      ]
+    ],
+    "frame_00025.png": [
+      [
+        0.8581917083239572,
+        0.04094786991500981,
+        -0.5116935251822436,
+        3.118319769618888
+      ],
+      [
+        -0.08954220740550839,
+        0.9934723322644727,
+        -0.0706747346506374,
+        -0.23793388356322284
+      ],
+      [
+        0.5054593800266811,
+        0.10647063902509707,
+        0.8562562806593774,
+        2.0276843464850827
+      ]
+    ],
+    "frame_00023.png": [
+      [
+        0.8709923370426507,
+        0.039375133006076445,
+        -0.48971619098589697,
+        3.143378787130883
+      ],
+      [
+        -0.06954311040932544,
+        0.9966277101658872,
+        -0.04355414014874684,
+        -0.15696318164454534
+      ],
+      [
+        0.48634977599211254,
+        0.07199170945500669,
+        0.870793367660875,
+        1.955450802645286
+      ]
+    ],
+    "frame_00017.png": [
+      [
+        0.8936341437177955,
+        0.028566916598151297,
+        -0.44788608870764973,
+        3.230359746021682
+      ],
+      [
+        -0.06674457525980865,
+        0.9953335880866698,
+        -0.06968651304164385,
+        -0.15452416403222016
+      ],
+      [
+        0.4438053389214129,
+        0.09216821416621744,
+        0.8913707654182181,
+        1.7862757254150208
+      ]
+    ],
+    "frame_00021.png": [
+      [
+        0.8749851605977936,
+        0.0433059911405054,
+        -0.4822090416665698,
+        3.156813032166975
+      ],
+      [
+        -0.0725707803803773,
+        0.9964704425574442,
+        -0.04219169283584578,
+        -0.16085019500835743
+      ],
+      [
+        0.47867990407853583,
+        0.07191139159208215,
+        0.875039599784292,
+        1.9227169872880085
+      ]
+    ],
+    "frame_00020.png": [
+      [
+        0.8737646141543137,
+        0.040210726862686785,
+        -0.4846839140067861,
+        3.1488213499565827
+      ],
+      [
+        -0.07426623929781952,
+        0.995920184680175,
+        -0.051259257185069795,
+        -0.17164174557416464
+      ],
+      [
+        0.4806453211592955,
+        0.080784176617581,
+        0.8731861153590895,
+        1.928857681308645
+      ]
+    ],
+    "frame_00015.png": [
+      [
+        0.8963569195107918,
+        0.04111976593289822,
+        -0.4414220629904531,
+        3.2390576293428692
+      ],
+      [
+        -0.0659298726636931,
+        0.9969813138300316,
+        -0.04100624055303269,
+        -0.1462088936296709
+      ],
+      [
+        0.43840338130045614,
+        0.06585912786674017,
+        0.896362120206426,
+        1.7634003898553186
+      ]
+    ],
+    "frame_00014.png": [
+      [
+        0.9008151831324883,
+        0.035397565444281215,
+        -0.432757458859578,
+        3.2504035346705167
+      ],
+      [
+        -0.04332009527221874,
+        0.999025439566191,
+        -0.008458158498435531,
+        -0.05993251148367077
+      ],
+      [
+        0.4320363123437512,
+        0.026366331944292012,
+        0.9014707102042839,
+        1.7444521295157533
+      ]
+    ],
+    "frame_00016.png": [
+      [
+        0.8977928599241729,
+        0.04197634156712574,
+        -0.4384130100918704,
+        3.2451162458436014
+      ],
+      [
+        -0.07320399530544414,
+        0.995823320230983,
+        -0.05456271579990919,
+        -0.17538752483626543
+      ],
+      [
+        0.43429155614689885,
+        0.08107960059584125,
+        0.8971159025603792,
+        1.7496540873297057
+      ]
+    ],
+    "frame_00022.png": [
+      [
+        0.8742391862956569,
+        0.03475571004716218,
+        -0.48424981751594437,
+        3.1516796627583044
+      ],
+      [
+        -0.06528558316888004,
+        0.9967909198327245,
+        -0.04632121295184651,
+        -0.13678668135042785
+      ],
+      [
+        0.4810858943841599,
+        0.07211035125520229,
+        0.8737027294603379,
+        1.9334233993693597
+      ]
+    ],
+    "frame_00026.png": [
+      [
+        0.8961848427010781,
+        0.08231902435938156,
+        -0.43597741448538757,
+        3.2701520138785463
+      ],
+      [
+        -0.1176248628319098,
+        0.9915578363409044,
+        -0.05456600438660047,
+        -0.337882116280635
+      ],
+      [
+        0.4278050015563379,
+        0.10018300963468627,
+        0.8983018675389237,
+        1.759994691241955
+      ]
+    ],
+    "frame_00013.png": [
+      [
+        0.9082608600805729,
+        0.013748352869547325,
+        -0.41817842225427204,
+        3.284543718589013
+      ],
+      [
+        -0.011052895900894824,
+        0.9998995983409247,
+        0.008867171469041566,
+        0.06165573901214812
+      ],
+      [
+        0.4182583454491994,
+        -0.0034316222157767026,
+        0.9083216282964236,
+        1.694800327691132
+      ]
+    ],
+    "frame_00027.png": [
+      [
+        0.9110701218068096,
+        0.08808590968065831,
+        -0.40273081042633935,
+        3.3263515298394446
+      ],
+      [
+        -0.1232120602308419,
+        0.9904351589756974,
+        -0.06210462203778673,
+        -0.3640414053080174
+      ],
+      [
+        0.393408212121451,
+        0.10620295843579812,
+        0.9132091273387972,
+        1.657398909654092
+      ]
+    ],
+    "frame_00012.png": [
+      [
+        0.9230724459429718,
+        -0.007768316839287299,
+        -0.384547672980014,
+        3.343737551627596
+      ],
+      [
+        0.021158054422028647,
+        0.9993077233396023,
+        0.030600830166768938,
+        0.1793977175066339
+      ],
+      [
+        0.384043742656919,
+        -0.03638306374270049,
+        0.9225977869032425,
+        1.5733049477599008
+      ]
+    ],
+    "frame_00011.png": [
+      [
+        0.9406654943451295,
+        -0.05317287677677274,
+        -0.3351433617479473,
+        3.4140577417566464
+      ],
+      [
+        0.06950638074913802,
+        0.996897985929044,
+        0.036922468576349524,
+        0.3634831561608554
+      ],
+      [
+        0.33214046845211315,
+        -0.05802629426301324,
+        0.9414433909643813,
+        1.3840694114729146
+      ]
+    ],
+    "frame_00007.png": [
+      [
+        0.9298192611161171,
+        -0.0937650608855856,
+        -0.35587112135519,
+        3.3836586178985213
+      ],
+      [
+        0.10096747883575817,
+        0.9948883182570943,
+        0.0016740409556664365,
+        0.4819759586950158
+      ],
+      [
+        0.3538950548891983,
+        -0.03748796543816355,
+        0.9345335427753668,
+        1.4661439496694768
+      ]
+    ],
+    "frame_00006.png": [
+      [
+        0.9228353235431064,
+        -0.09214485210819708,
+        -0.3740110851980844,
+        3.3562492418885546
+      ],
+      [
+        0.09728535647958579,
+        0.9952431770166432,
+        -0.005155387129834927,
+        0.46446482197585365
+      ],
+      [
+        0.3727070230566231,
+        -0.0316282284008612,
+        0.9274099040513276,
+        1.538334835213149
+      ]
+    ],
+    "frame_00005.png": [
+      [
+        0.9138770060133151,
+        -0.09883571223866103,
+        -0.39377699255595894,
+        3.317923223546456
+      ],
+      [
+        0.10218691036589964,
+        0.9946866105959542,
+        -0.012505280924638257,
+        0.4856871690312261
+      ],
+      [
+        0.39292067040308626,
+        -0.02881056555170547,
+        0.9191209376804448,
+        1.6138157390527363
+      ]
+    ],
+    "frame_00004.png": [
+      [
+        0.8998340352886636,
+        -0.11696431725356922,
+        -0.4202595119988678,
+        3.2627885021372367
+      ],
+      [
+        0.11576344040098534,
+        0.9928688814155082,
+        -0.028464191245229382,
+        0.5283475887743899
+      ],
+      [
+        0.4205918862777165,
+        -0.023037638900805107,
+        0.9069574038460839,
+        1.7219593203629209
+      ]
+    ],
+    "frame_00010.png": [
+      [
+        0.9469158465734527,
+        -0.06728539567630124,
+        -0.3143613446923221,
+        3.44979998914685
+      ],
+      [
+        0.08013537945189089,
+        0.9963873298494781,
+        0.02811778575081471,
+        0.4092484309139531
+      ],
+      [
+        0.31133374450608914,
+        -0.05181664253992957,
+        0.9488868926735717,
+        1.3039774126907173
+      ]
+    ],
+    "frame_00003.png": [
+      [
+        0.8819178876779612,
+        -0.13313809345524236,
+        -0.4522113305355652,
+        3.186230445127436
+      ],
+      [
+        0.124420338480006,
+        0.9910129718965894,
+        -0.04912096197358491,
+        0.5602095013058529
+      ],
+      [
+        0.454687165825212,
+        -0.012943631785275442,
+        0.8905571534887827,
+        1.8468966741013295
+      ]
+    ],
+    "frame_00002.png": [
+      [
+        0.8594213099936164,
+        -0.1543346145261742,
+        -0.48741751988199344,
+        3.091331461288449
+      ],
+      [
+        0.140700004640314,
+        0.9879338034339054,
+        -0.06473259400667672,
+        0.6141681184448157
+      ],
+      [
+        0.4915267242206388,
+        -0.012947076568663774,
+        0.8707662445141366,
+        1.9822572995533276
+      ]
+    ],
+    "frame_00161.png": [
+      [
+        0.9445145378849469,
+        0.08637796236225176,
+        0.31690871768086587,
+        -3.0089580340614916
+      ],
+      [
+        -0.09602222836609631,
+        0.9952675087317182,
+        0.014910322684919769,
+        0.21443864610058871
+      ],
+      [
+        -0.31412102664991176,
+        -0.04451329780082128,
+        0.9483388355093874,
+        0.9417863895471404
+      ]
+    ],
+    "frame_00001.png": [
+      [
+        0.8242132252736392,
+        -0.15153645535683327,
+        -0.5456274021545399,
+        2.939470960773253
+      ],
+      [
+        0.13924152722693753,
+        0.988180942078273,
+        -0.06411101940233666,
+        0.6086135325853802
+      ],
+      [
+        0.5488937569143372,
+        -0.023132842695683796,
+        0.8355719688987187,
+        2.1843008570764475
+      ]
+    ],
+    "frame_00160.png": [
+      [
+        0.9733280049041391,
+        0.09786012051777311,
+        0.2074993775450305,
+        -3.007464097603277
+      ],
+      [
+        -0.1007295218655747,
+        0.994908434049689,
+        0.003281963060194756,
+        0.2257825473520268
+      ],
+      [
+        -0.20612170747900593,
+        -0.02409573964506373,
+        0.9782296443253478,
+        0.5888784674707964
+      ]
+    ],
+    "frame_00000.png": [
+      [
+        0.8219778806488682,
+        -0.11871406289430884,
+        -0.5570092772971748,
+        2.924213231815641
+      ],
+      [
+        0.11724446101460752,
+        0.9923572594646153,
+        -0.03848124152457283,
+        0.5302029320931009
+      ],
+      [
+        0.5573204644415896,
+        -0.033675523143737715,
+        0.829614283300141,
+        2.206461432583329
+      ]
+    ],
+    "frame_00157.png": [
+      [
+        0.9898814773524637,
+        0.11002799237345257,
+        0.08960190672508822,
+        -2.796875785589315
+      ],
+      [
+        -0.11033872344713891,
+        0.9938929201772518,
+        -0.0014930939657661403,
+        0.21782888590373226
+      ],
+      [
+        -0.08921898285992583,
+        -0.008408573945817207,
+        0.9959765403771507,
+        0.30879095926982386
+      ]
+    ],
+    "frame_00032.png": [
+      [
+        0.9869559740769902,
+        0.160047715621799,
+        -0.01739637772592815,
+        3.76639503191898
+      ],
+      [
+        -0.16095025736855448,
+        0.9833449226109162,
+        -0.08442616791213067,
+        -0.523740926954498
+      ],
+      [
+        0.003594424395574139,
+        0.08612486226157318,
+        0.9962778669696971,
+        0.2793308379269328
+      ]
+    ],
+    "frame_00031.png": [
+      [
+        0.9894243078561616,
+        0.14437550795278895,
+        -0.01397325039958996,
+        3.773466678979444
+      ],
+      [
+        -0.14504626774373722,
+        0.9854989926413159,
+        -0.0880529142990943,
+        -0.46395416644930476
+      ],
+      [
+        0.0010579399640656389,
+        0.0891484616038085,
+        0.9960177872692368,
+        0.2748279873984968
+      ]
+    ],
+    "frame_00033.png": [
+      [
+        0.990722475252419,
+        0.12652105685238263,
+        -0.04961249038978334,
+        3.757093681674208
+      ],
+      [
+        -0.131284742325313,
+        0.9853543719771816,
+        -0.10881671773229683,
+        -0.425986770991097
+      ],
+      [
+        0.03511827817955132,
+        0.11432053095752466,
+        0.9928230067536173,
+        0.39279868898965625
+      ]
+    ],
+    "frame_00046.png": [
+      [
+        0.6771134578389384,
+        -0.02929938437943698,
+        -0.7352951184989481,
+        2.189863844146545
+      ],
+      [
+        -0.09528929110392689,
+        0.9873033725945702,
+        -0.1270905246833862,
+        -0.3870684371690569
+      ],
+      [
+        0.7296830244800184,
+        0.15612045522087528,
+        0.6657244829862572,
+        3.3333065144561504
+      ]
+    ],
+    "frame_00051.png": [
+      [
+        0.5214580797116477,
+        -0.11688396950238841,
+        -0.8452334640658791,
+        1.4458097392354325
+      ],
+      [
+        -0.0858767796568444,
+        0.9783548606185474,
+        -0.18827359193427162,
+        -0.4413210619084368
+      ],
+      [
+        0.8489444327040555,
+        0.17076271366263646,
+        0.5001334280003304,
+        3.924936976755736
+      ]
+    ],
+    "frame_00050.png": [
+      [
+        0.4168971523404492,
+        -0.12798065141395912,
+        -0.899898726098711,
+        0.9792864284692343
+      ],
+      [
+        -0.07450100109470818,
+        0.9818957333268947,
+        -0.17415616472099382,
+        -0.3727793183833816
+      ],
+      [
+        0.9058953389913817,
+        0.13964856511292312,
+        0.39981484846812676,
+        4.033228578300415
+      ]
+    ],
+    "frame_00067.png": [
+      [
+        0.9136836237606012,
+        0.23983926903046018,
+        -0.32811485900920523,
+        3.4957814017659046
+      ],
+      [
+        -0.28161050897203466,
+        0.9557026231369137,
+        -0.08560383966700261,
+        -1.1711262046467337
+      ],
+      [
+        0.2930490691133615,
+        0.1706154188816381,
+        0.9407510945683962,
+        2.054546275866456
+      ]
+    ],
+    "frame_00066.png": [
+      [
+        0.9466567120338143,
+        0.25896998221974243,
+        -0.19176970008433117,
+        3.7544036746428695
+      ],
+      [
+        -0.2743584017633951,
+        0.9598694811174334,
+        -0.05812096524649784,
+        -1.1064100691202745
+      ],
+      [
+        0.16902229717751296,
+        0.10763423028226393,
+        0.9797174774027363,
+        1.5829081151877706
+      ]
+    ],
+    "frame_00030.png": [
+      [
+        0.9919838558675569,
+        0.11336268228174805,
+        -0.055829490092795336,
+        3.7633277055255405
+      ],
+      [
+        -0.11833709873563832,
+        0.9883435536925613,
+        -0.09577761187872125,
+        -0.36348469162426145
+      ],
+      [
+        0.04432110965404493,
+        0.1016165446187117,
+        0.9938358602399028,
+        0.4385653708005732
+      ]
+    ],
+    "frame_00042.png": [
+      [
+        0.7455336550436511,
+        -0.0031496549175519042,
+        -0.666460538119966,
+        2.530581345027399
+      ],
+      [
+        -0.11418006298444977,
+        0.9846006169985556,
+        -0.1323802788293283,
+        -0.4204555300239696
+      ],
+      [
+        0.6566144092343096,
+        0.1747904593505148,
+        0.7336932689523018,
+        2.8770439147909856
+      ]
+    ],
+    "frame_00140.png": [
+      [
+        0.923705076934388,
+        0.10300674786215314,
+        -0.36899666765500655,
+        -1.4726954387960034
+      ],
+      [
+        -0.11811464385320836,
+        0.9928271763206551,
+        -0.018523737921506276,
+        0.10031464129277323
+      ],
+      [
+        0.36444184961810616,
+        0.060694380744989174,
+        0.9292461086240372,
+        -0.3485607166210054
+      ]
+    ],
+    "frame_00141.png": [
+      [
+        0.9130593175087988,
+        0.09788308368736479,
+        -0.39590603006044117,
+        -1.5240395851737303
+      ],
+      [
+        -0.12164022111520167,
+        0.9919468525683925,
+        -0.035285950273509656,
+        0.11208344272766911
+      ],
+      [
+        0.38926384280769183,
+        0.08037626271177387,
+        0.9176128361542664,
+        -0.42013832639480025
+      ]
+    ],
+    "frame_00142.png": [
+      [
+        0.8929238282274985,
+        0.07734067832045048,
+        -0.4435148886570566,
+        -1.5634938951582742
+      ],
+      [
+        -0.10829807565467418,
+        0.993105954922395,
+        -0.044856316246125745,
+        0.09093206377758646
+      ],
+      [
+        0.4369880590966339,
+        0.08808508258843026,
+        0.8951438177367624,
+        -0.5461420032363774
+      ]
+    ],
+    "frame_00143.png": [
+      [
+        0.8661069593599775,
+        0.06779987346242586,
+        -0.49523924734081126,
+        -1.5848111550122654
+      ],
+      [
+        -0.10659815812218518,
+        0.9930200332364902,
+        -0.05047817623446233,
+        0.10263306657015224
+      ],
+      [
+        0.4883600798930763,
+        0.09651109132881502,
+        0.8672889032020122,
+        -0.6951358396322596
+      ]
+    ],
+    "frame_00144.png": [
+      [
+        0.8647146689566125,
+        0.06374139104285922,
+        -0.49820234479494113,
+        -1.6350418440747663
+      ],
+      [
+        -0.10283987368980654,
+        0.9933689290619535,
+        -0.05140166489300048,
+        0.10507229599833207
+      ],
+      [
+        0.491622316082906,
+        0.09568283985244684,
+        0.865535841249252,
+        -0.7469548940706336
+      ]
+    ],
+    "frame_00145.png": [
+      [
+        0.8798525733650417,
+        0.05976254236409743,
+        -0.47147416437498807,
+        -1.7205137654936007
+      ],
+      [
+        -0.0904032181107225,
+        0.9949943246780258,
+        -0.04258581939735756,
+        0.0826718147949836
+      ],
+      [
+        0.46656908094958344,
+        0.08009202450118662,
+        0.8808510432037657,
+        -0.7341798815988592
+      ]
+    ],
+    "frame_00146.png": [
+      [
+        0.9038166081060853,
+        0.05931476233110057,
+        -0.423789213974608,
+        -1.8349053731334932
+      ],
+      [
+        -0.0775123185692471,
+        0.9966571059808129,
+        -0.025815762006383525,
+        0.07553416159488732
+      ],
+      [
+        0.42084127575801134,
+        0.056181599012094144,
+        0.9053928697260729,
+        -0.6802080518767484
+      ]
+    ],
+    "frame_00147.png": [
+      [
+        0.9185706158287745,
+        0.07611714185161352,
+        -0.3878584850848144,
+        -1.9457276976164546
+      ],
+      [
+        -0.07873183326430509,
+        0.9968536493354974,
+        0.009170618154891532,
+        0.0890700721641752
+      ],
+      [
+        0.38733618752549764,
+        0.022112949211774317,
+        0.9216733126820859,
+        -0.631541267183087
+      ]
+    ],
+    "frame_00150.png": [
+      [
+        0.9387548227683579,
+        0.09078380733867542,
+        -0.33241191773798273,
+        -2.1976513768439614
+      ],
+      [
+        -0.10535140303196139,
+        0.9940944181203872,
+        -0.02602632784481634,
+        0.16540382460996314
+      ],
+      [
+        0.32808606280722497,
+        0.05945240270151314,
+        0.9427751307733306,
+        -0.6233874767822329
+      ]
+    ],
+    "frame_00151.png": [
+      [
+        0.9510019055154766,
+        0.07934771058262151,
+        -0.29882991237697265,
+        -2.2900942523436365
+      ],
+      [
+        -0.0952788824475,
+        0.9946823739776622,
+        -0.03910127181713674,
+        0.14996747242383826
+      ],
+      [
+        0.29413825025910534,
+        0.06565756409933796,
+        0.9535049942244944,
+        -0.5807182480332522
+      ]
+    ],
+    "frame_00152.png": [
+      [
+        0.9653785578157285,
+        0.07787856861043231,
+        -0.24895615810984542,
+        -2.385933294375094
+      ],
+      [
+        -0.09129460394281703,
+        0.9949042933399983,
+        -0.04278717546838962,
+        0.14564236509757206
+      ],
+      [
+        0.24435534657655508,
+        0.06403417560044616,
+        0.967569164946167,
+        -0.49014948799257896
+      ]
+    ],
+    "frame_00153.png": [
+      [
+        0.9842555626446171,
+        0.07348433008526578,
+        -0.16075148719389196,
+        -2.4994996965832668
+      ],
+      [
+        -0.08278345587707567,
+        0.9952137506133588,
+        -0.05192773847511053,
+        0.12596990461106145
+      ],
+      [
+        0.15616621541222217,
+        0.06441772909697228,
+        0.9856279568588812,
+        -0.29031710285296397
+      ]
+    ],
+    "frame_00154.png": [
+      [
+        0.9941088069665089,
+        0.09212855716555005,
+        -0.0570964873369477,
+        -2.5940706402487033
+      ],
+      [
+        -0.09278835931936324,
+        0.9956450970800905,
+        -0.009008941957736494,
+        0.16914402879409124
+      ],
+      [
+        0.05601785685337301,
+        0.014253757924530128,
+        0.9983280172861944,
+        -0.04275246450205939
+      ]
+    ],
+    "frame_00155.png": [
+      [
+        0.9936889986768109,
+        0.11188239882419364,
+        0.008031359911056943,
+        -2.661727501323392
+      ],
+      [
+        -0.11195194043458791,
+        0.9936746170236526,
+        0.008804459996385298,
+        0.22302156656894254
+      ],
+      [
+        -0.006995494379051387,
+        -0.009648021364069528,
+        0.9999289868496418,
+        0.1131868368189661
+      ]
+    ],
+    "frame_00156.png": [
+      [
+        0.9921232915508156,
+        0.11200055078739482,
+        0.056100365290215046,
+        -2.7282765631170873
+      ],
+      [
+        -0.11168961994667229,
+        0.993705428505884,
+        -0.008657375705462185,
+        0.2191756302384527
+      ],
+      [
+        -0.056716868377434934,
+        0.002323355602961604,
+        0.9983875995124333,
+        0.2270573182213776
+      ]
+    ],
+    "frame_00008.png": [
+      [
+        0.9328113365796851,
+        -0.0839278378287041,
+        -0.3504556011620022,
+        3.3909635907294553
+      ],
+      [
+        0.09095281723577887,
+        0.9958486880996796,
+        0.0036021447808263565,
+        0.4431435546933037
+      ],
+      [
+        0.3486984304313638,
+        -0.03523504572929877,
+        0.9365724190724162,
+        1.446459590742887
+      ]
+    ],
+    "frame_00009.png": [
+      [
+        0.9408333068467429,
+        -0.08191964680809934,
+        -0.32881888661489433,
+        3.426033508318377
+      ],
+      [
+        0.0908628499092194,
+        0.9957923541736992,
+        0.0118966329512466,
+        0.44380750738912944
+      ],
+      [
+        0.32646076522944856,
+        -0.041070169661669056,
+        0.944318066082485,
+        1.3632788014465906
+      ]
+    ],
+    "frame_00018.png": [
+      [
+        0.8861314947940544,
+        0.028009278211678458,
+        -0.4625866991906658,
+        3.200505938301351
+      ],
+      [
+        -0.06197537322969363,
+        0.996368192723697,
+        -0.05839073249715171,
+        -0.11968632065163107
+      ],
+      [
+        0.4592711911791278,
+        0.08041085040325435,
+        0.8846491214545632,
+        1.8414050845333383
+      ]
+    ],
+    "frame_00019.png": [
+      [
+        0.8817064212583509,
+        0.009192795469629558,
+        -0.47170889245724984,
+        3.1799608686442133
+      ],
+      [
+        -0.047233073340462034,
+        0.9965071095127077,
+        -0.06886666445707089,
+        -0.07618562864151429
+      ],
+      [
+        0.4694281877929853,
+        0.08300044097522503,
+        0.8790609212695739,
+        1.885467073735227
+      ]
+    ],
+    "frame_00028.png": [
+      [
+        0.9414907582309919,
+        0.10728778944184325,
+        -0.3195066234091472,
+        3.4690947040559563
+      ],
+      [
+        -0.13561397486673188,
+        0.9884459196632075,
+        -0.0677016522841306,
+        -0.4150928175901405
+      ],
+      [
+        0.30855145759901587,
+        0.10707004313923955,
+        0.9451624219549167,
+        1.3825816109333995
+      ]
+    ],
+    "frame_00029.png": [
+      [
+        0.9735076086395843,
+        0.08898382048624105,
+        -0.21062956965371787,
+        3.628722686289284
+      ],
+      [
+        -0.10779227820878139,
+        0.990985946991647,
+        -0.0795467008972048,
+        -0.3165477784430261
+      ],
+      [
+        0.20165257419482308,
+        0.10014355973671556,
+        0.9743241281852053,
+        1.0120857527113354
+      ]
+    ],
+    "frame_00038.png": [
+      [
+        0.9636030102065769,
+        0.016629592249841372,
+        -0.2668195933255797,
+        3.604207924415468
+      ],
+      [
+        -0.05497821763810462,
+        0.9890570132411782,
+        -0.13690734145317784,
+        -0.1539209961066412
+      ],
+      [
+        0.2616230767844475,
+        0.1465935920156261,
+        0.9539725805670702,
+        1.328889414199101
+      ]
+    ],
+    "frame_00039.png": [
+      [
+        0.9516064803603996,
+        0.036386467272439105,
+        -0.3051575519883524,
+        3.564943198836373
+      ],
+      [
+        -0.08446953811748499,
+        0.9856897571911367,
+        -0.14587871571513294,
+        -0.27640616794132594
+      ],
+      [
+        0.2954826622093267,
+        0.16459564869069154,
+        0.9410623086521845,
+        1.4748095809901292
+      ]
+    ],
+    "frame_00048.png": [
+      [
+        0.32643116340565237,
+        -0.12169489522121196,
+        -0.9373542809603687,
+        0.5951283723056242
+      ],
+      [
+        -0.06010973510994763,
+        0.9869974924435492,
+        -0.1490730346345645,
+        -0.28489040327332393
+      ],
+      [
+        0.9433077521692713,
+        0.10500620166087515,
+        0.3148716918208295,
+        4.04275994514223
+      ]
+    ],
+    "frame_00049.png": [
+      [
+        0.36410410468795984,
+        -0.12385555428836048,
+        -0.9230861295790888,
+        0.7525840281709684
+      ],
+      [
+        -0.07906572158515404,
+        0.9834298445739633,
+        -0.16313905869364703,
+        -0.37468126662182244
+      ],
+      [
+        0.9279961274809277,
+        0.13238407182570455,
+        0.348278114309884,
+        4.039573492220358
+      ]
+    ],
+    "frame_00058.png": [
+      [
+        0.9701990797307051,
+        0.2213084689811877,
+        -0.09867272797939493,
+        3.9682002392628455
+      ],
+      [
+        -0.22531168802059506,
+        0.9737830859809552,
+        -0.031323229378810616,
+        -0.8795609911543876
+      ],
+      [
+        0.08915373761656341,
+        0.05262188722015032,
+        0.9946268385954538,
+        1.2715304695672063
+      ]
+    ],
+    "frame_00059.png": [
+      [
+        0.9600501222107103,
+        0.25576281671626133,
+        -0.11353036786941366,
+        3.9110311220167877
+      ],
+      [
+        -0.2627757830139592,
+        0.9634770394085844,
+        -0.05158374156524269,
+        -1.0700245719038768
+      ],
+      [
+        0.09619069967829998,
+        0.07935600870654495,
+        0.992194523859896,
+        1.3194067809151013
+      ]
+    ],
+    "frame_00068.png": [
+      [
+        0.867244227793269,
+        0.21153932058956149,
+        -0.4507089584241288,
+        3.22551956568735
+      ],
+      [
+        -0.26333831334271074,
+        0.9631540477809541,
+        -0.0546554020109604,
+        -1.0788594974060495
+      ],
+      [
+        0.4225403910693895,
+        0.16608851883158612,
+        0.890996196303473,
+        2.5584333400179626
+      ]
+    ],
+    "frame_00069.png": [
+      [
+        0.8919071431473444,
+        0.14554529639896407,
+        -0.4281567641634081,
+        3.3415674954362227
+      ],
+      [
+        -0.2221753523168623,
+        0.9656777447981975,
+        -0.13455335753650147,
+        -0.9774000897577256
+      ],
+      [
+        0.3938778501332877,
+        0.2151349806461171,
+        0.8936314560694326,
+        2.423905203213479
+      ]
+    ],
+    "frame_00078.png": [
+      [
+        0.7929356559356424,
+        0.08299562561917755,
+        -0.6036263510434199,
+        2.7512902330466873
+      ],
+      [
+        -0.15730240860326716,
+        0.9849800488786198,
+        -0.0712057270076124,
+        -0.6553377189064779
+      ],
+      [
+        0.5886501488945055,
+        0.15141343876668661,
+        0.7940812129545212,
+        3.100263040563899
+      ]
+    ],
+    "frame_00079.png": [
+      [
+        0.7970470010725617,
+        0.10406099667149345,
+        -0.5948843476281515,
+        2.7532465438449347
+      ],
+      [
+        -0.1653021079401683,
+        0.9850164007236137,
+        -0.049172181322716876,
+        -0.660836576337099
+      ],
+      [
+        0.5808539327505434,
+        0.137528176303013,
+        0.8023058703081977,
+        3.0609599489243475
+      ]
+    ],
+    "frame_00088.png": [
+      [
+        0.9814105380356067,
+        0.038311403915372286,
+        -0.1880574171967012,
+        3.2972622780244385
+      ],
+      [
+        -0.03838057174736195,
+        0.9992578279012706,
+        0.0032749183776477142,
+        -0.092518422731635
+      ],
+      [
+        0.18804331294945462,
+        0.00400371178631163,
+        0.9821525761035939,
+        1.5459241262043482
+      ]
+    ],
+    "frame_00089.png": [
+      [
+        0.9782295879138543,
+        0.03831723047367406,
+        -0.20395750336459328,
+        3.1816050713425352
+      ],
+      [
+        -0.034972558730976384,
+        0.9991885428765735,
+        0.019979387377946977,
+        -0.06612825917815794
+      ],
+      [
+        0.20455755538649545,
+        -0.012411512116458783,
+        0.9787758481395441,
+        1.592779010903298
+      ]
+    ],
+    "frame_00098.png": [
+      [
+        0.976361836249127,
+        0.029234527498153844,
+        -0.21415626798717,
+        2.309833640882573
+      ],
+      [
+        -0.03338391134644439,
+        0.9993179612928876,
+        -0.015783747990878588,
+        -0.09116733866500319
+      ],
+      [
+        0.21354877470836872,
+        0.022560023036036762,
+        0.9766718825589114,
+        1.3784326342808952
+      ]
+    ],
+    "frame_00099.png": [
+      [
+        0.9780854913488614,
+        0.06022111149696809,
+        -0.19930426323319375,
+        2.2392489029208176
+      ],
+      [
+        -0.05936648939627733,
+        0.9981834565512855,
+        0.010266791323951452,
+        -0.1300805065931603
+      ],
+      [
+        0.19956049596455241,
+        0.0017901947932029844,
+        0.9798838725343857,
+        1.311511281921655
+      ]
+    ],
+    "frame_00108.png": [
+      [
+        0.9847003209503025,
+        0.017320413722298634,
+        -0.17339342890911355,
+        1.3106716487276178
+      ],
+      [
+        -0.014230636934487218,
+        0.9997173126157157,
+        0.019046885016981055,
+        -0.007813191085145605
+      ],
+      [
+        0.1736743127028583,
+        -0.01628797485569334,
+        0.9846684391115063,
+        0.9313044579474057
+      ]
+    ],
+    "frame_00109.png": [
+      [
+        0.9851615156220156,
+        0.03203944721105674,
+        -0.16861275740507628,
+        1.1995196103264556
+      ],
+      [
+        -0.026690765505413657,
+        0.9990689781608482,
+        0.03389365594582055,
+        -0.013262979106077304
+      ],
+      [
+        0.16954170924603837,
+        -0.02889032189243562,
+        0.985099466108313,
+        0.8876005238468254
+      ]
+    ],
+    "frame_00118.png": [
+      [
+        0.9959674868266397,
+        -0.01662581353288089,
+        -0.08816091826085433,
+        0.205524526017115
+      ],
+      [
+        0.017029860082735798,
+        0.9998476349977882,
+        0.003832839012029047,
+        -0.015978408949490232
+      ],
+      [
+        0.08808376155563298,
+        -0.005318751140969526,
+        0.9960988715165332,
+        0.457784021525037
+      ]
+    ],
+    "frame_00119.png": [
+      [
+        0.9953762208847104,
+        0.019629524605267346,
+        -0.09402585102536098,
+        0.09952272612336821
+      ],
+      [
+        -0.016820555655582825,
+        0.9993909506643691,
+        0.03057444419128291,
+        -0.006371384334771443
+      ],
+      [
+        0.09456874644780702,
+        -0.028851507654534047,
+        0.9951001671697934,
+        0.42022655446229
+      ]
+    ],
+    "frame_00128.png": [
+      [
+        0.9999268954163639,
+        0.01138603916432023,
+        0.00406963575035007,
+        -0.7865722736015373
+      ],
+      [
+        -0.011348714356342571,
+        0.999894375644297,
+        -0.009079880911102343,
+        -0.026118612641423213
+      ],
+      [
+        -0.004172589777357168,
+        0.00903303199652379,
+        0.9999504956884114,
+        0.235821844399903
+      ]
+    ],
+    "frame_00129.png": [
+      [
+        0.9986150751154912,
+        0.03502314401910437,
+        -0.039259535594540006,
+        -0.8773138166305734
+      ],
+      [
+        -0.034950223218291825,
+        0.999385820422457,
+        0.0025424074268136834,
+        -0.006128240213420166
+      ],
+      [
+        0.03932446629101855,
+        -0.0011667568510260818,
+        0.9992258128318029,
+        0.19834600430518706
+      ]
+    ],
+    "frame_00138.png": [
+      [
+        0.9396384022420793,
+        0.09918740314662663,
+        -0.3274775291359407,
+        -1.373203641548251
+      ],
+      [
+        -0.11376875211466067,
+        0.993176795872749,
+        -0.025622708330947798,
+        0.07835041562401536
+      ],
+      [
+        0.3227016332066282,
+        0.061332790552595016,
+        0.944511484699263,
+        -0.2575513344535707
+      ]
+    ],
+    "frame_00139.png": [
+      [
+        0.9333532571613656,
+        0.0937068366972282,
+        -0.34651223081223087,
+        -1.4236808659063895
+      ],
+      [
+        -0.10638349524567782,
+        0.9941676323503462,
+        -0.01769945553455388,
+        0.08302107343079317
+      ],
+      [
+        0.34283268409762596,
+        0.0533830267323408,
+        0.9378784586348657,
+        -0.3007724471015765
+      ]
+    ],
+    "frame_00148.png": [
+      [
+        0.929401800912636,
+        0.08341783556044396,
+        -0.35951878556030925,
+        -2.0405709849753997
+      ],
+      [
+        -0.08840070377599035,
+        0.996081626576646,
+        0.0025901290185686415,
+        0.10752657336452946
+      ],
+      [
+        0.3583261196623245,
+        0.02937444308976691,
+        0.9331342529673357,
+        -0.6015324958045439
+      ]
+    ],
+    "frame_00149.png": [
+      [
+        0.9326197966288596,
+        0.08409239104809528,
+        -0.3509256113534016,
+        -2.117815587268692
+      ],
+      [
+        -0.09017154658165492,
+        0.995925760342143,
+        -0.0009859381302928273,
+        0.12163698112249245
+      ],
+      [
+        0.34941294641586607,
+        0.03256301052941131,
+        0.936402821024288,
+        -0.6202878213813273
+      ]
+    ],
+    "frame_00158.png": [
+      [
+        0.9884410085660851,
+        0.10472606172834427,
+        0.10962127795155249,
+        -2.8879372621283506
+      ],
+      [
+        -0.10367144558113638,
+        0.9944940342743244,
+        -0.015292062120471048,
+        0.21402532241672753
+      ],
+      [
+        -0.11061918439392862,
+        0.0037507049537246137,
+        0.9938557884604647,
+        0.3242710398455988
+      ]
+    ],
+    "frame_00159.png": [
+      [
+        0.9848476040608767,
+        0.09332923556782827,
+        0.14616720071163528,
+        -2.954505973595827
+      ],
+      [
+        -0.09417587858952323,
+        0.9955549316770339,
+        -0.0011322126248117974,
+        0.1970147788444181
+      ],
+      [
+        -0.1456231460566693,
+        -0.012650367657156044,
+        0.9892592519308054,
+        0.41680815426411166
+      ]
+    ],
+    "frame_00168.png": [
+      [
+        0.734893745708181,
+        0.06404995946574978,
+        0.6751509351333488,
+        -2.898160632550058
+      ],
+      [
+        -0.07554258518182032,
+        0.9970659442415316,
+        -0.012362065272047485,
+        0.19517288525764728
+      ],
+      [
+        -0.673961794423873,
+        -0.04191784257543262,
+        0.737576026000557,
+        2.148673292820556
+      ]
+    ],
+    "frame_00169.png": [
+      [
+        0.6967499097792346,
+        0.05043037583003223,
+        0.7155391955834915,
+        -2.840100493408466
+      ],
+      [
+        -0.072611374821447,
+        0.9973602250940145,
+        0.0004118822116129586,
+        0.18486649029630997
+      ],
+      [
+        -0.7136295617960118,
+        -0.052243263623730586,
+        0.6985724657734325,
+        2.33042038673812
+      ]
+    ],
+    "frame_00178.png": [
+      [
+        0.5076198562751142,
+        0.04029973424433168,
+        0.860638142853934,
+        -2.801879655934823
+      ],
+      [
+        -0.08505174685318431,
+        0.9963703543712936,
+        0.003509599299713749,
+        0.2707977264258252
+      ],
+      [
+        -0.8573728954617437,
+        -0.07498031975031141,
+        0.5092049388779403,
+        3.055584443995652
+      ]
+    ],
+    "frame_00179.png": [
+      [
+        0.49036650623992595,
+        0.038199611266066455,
+        0.8706787462992138,
+        -2.8000081029969013
+      ],
+      [
+        -0.07464465427438523,
+        0.997208728403397,
+        -0.00171101850878164,
+        0.2328280756013673
+      ],
+      [
+        -0.8683138056868074,
+        -0.06415248783329684,
+        0.49184915691550446,
+        3.110900241878235
+      ]
+    ],
+    "frame_00188.png": [
+      [
+        0.4733899369908966,
+        0.03637483614462415,
+        0.8801016071177281,
+        -3.0710816505475895
+      ],
+      [
+        -0.08434651687976497,
+        0.9964276915378949,
+        0.004185764770412215,
+        0.2832876004907333
+      ],
+      [
+        -0.8768053561914455,
+        -0.0762150039815878,
+        0.47476693284397986,
+        3.2843980467431253
+      ]
+    ],
+    "frame_00189.png": [
+      [
+        0.5593946366830329,
+        0.02520548623752205,
+        0.8285181494172515,
+        -3.4027124563577917
+      ],
+      [
+        -0.05203869148277857,
+        0.9986337517662838,
+        0.004754410789636773,
+        0.14601159866485144
+      ],
+      [
+        -0.8272663507232827,
+        -0.04577459226171777,
+        0.5599420252707022,
+        3.0119417601069824
+      ]
+    ],
+    "frame_00198.png": [
+      [
+        0.5466868904365233,
+        0.05061551391588971,
+        0.8358059066409356,
+        -3.7214994664727503
+      ],
+      [
+        -0.07833273676272241,
+        0.996885424413818,
+        -0.009134163483543678,
+        0.3151413967419292
+      ],
+      [
+        -0.8336650563482362,
+        -0.06047743663807553,
+        0.5489490445219671,
+        3.5775627583012684
+      ]
+    ],
+    "frame_00199.png": [
+      [
+        0.47913455993222775,
+        0.04862292413781669,
+        0.8763936813594896,
+        -3.494775979199585
+      ],
+      [
+        -0.0846479134143365,
+        0.9963702660620626,
+        -0.00900131446031795,
+        0.3582972525660388
+      ],
+      [
+        -0.8736502757014099,
+        -0.06987205561383365,
+        0.4815112580315728,
+        3.9101296486699626
+      ]
+    ],
+    "frame_00208.png": [
+      [
+        0.22076506174214816,
+        0.06001786648382648,
+        0.973478630077063,
+        -2.7252634149751285
+      ],
+      [
+        -0.07546112258637083,
+        0.9961640544081742,
+        -0.04430345001320772,
+        0.41438180517241335
+      ],
+      [
+        -0.9724034175649479,
+        -0.0636791363619016,
+        0.2244472345568378,
+        5.09907835995211
+      ]
+    ],
+    "frame_00209.png": [
+      [
+        0.26307788556456135,
+        -0.0008121414195519407,
+        0.9647742567840387,
+        -3.0037024754244523
+      ],
+      [
+        -0.05428238304362987,
+        0.9984030947956992,
+        0.015642352555634502,
+        0.20305663699364795
+      ],
+      [
+        -0.9632463075548146,
+        -0.05648540279297625,
+        0.2626136901483451,
+        4.993825557072849
+      ]
+    ],
+    "frame_00218.png": [
+      [
+        0.2599581265155839,
+        -0.046512516063547005,
+        0.9644990193400643,
+        -3.769359404277229
+      ],
+      [
+        -0.08654744711241338,
+        0.9936968083219951,
+        0.07124740366500368,
+        0.24336326523359852
+      ],
+      [
+        -0.9617334931553708,
+        -0.1019962694421627,
+        0.2542940210918261,
+        4.7947364686272165
+      ]
+    ],
+    "frame_00219.png": [
+      [
+        0.28250019696586737,
+        -0.08054856188301579,
+        0.9558794735178824,
+        -3.9560960749074345
+      ],
+      [
+        -0.05343672704112509,
+        0.993599683125369,
+        0.09951977640800144,
+        -0.016895726271900127
+      ],
+      [
+        -0.9577777168619963,
+        -0.07919342694784892,
+        0.27638785467324223,
+        4.66975929010129
+      ]
+    ],
+    "frame_00228.png": [
+      [
+        0.2070169956449961,
+        -0.1532716508657518,
+        0.9662565728392257,
+        -4.446941740371328
+      ],
+      [
+        -0.027021586701801215,
+        0.9863791584358452,
+        0.162252857156695,
+        -0.44931335620086
+      ],
+      [
+        -0.977964108424351,
+        -0.05969888478255606,
+        0.20005560674343115,
+        4.575297201815025
+      ]
+    ],
+    "frame_00229.png": [
+      [
+        0.17908512372031749,
+        -0.1551289088015079,
+        0.9715263970248742,
+        -4.415992750109612
+      ],
+      [
+        -0.04960092099544807,
+        0.9848111613909536,
+        0.16639328422807345,
+        -0.35634103927381605
+      ],
+      [
+        -0.9825824479902352,
+        -0.07798716595603766,
+        0.16867049192927475,
+        4.675992163851646
+      ]
+    ],
+    "frame_00238.png": [
+      [
+        -0.10725348035686189,
+        -0.13938985315222063,
+        0.9844120884007582,
+        -3.8655326139643145
+      ],
+      [
+        -0.08002806120917154,
+        0.9881210273677727,
+        0.131195825744413,
+        -0.17138060206045813
+      ],
+      [
+        -0.99100565102851,
+        -0.06470938194620354,
+        -0.11713451889899495,
+        5.427604775662739
+      ]
+    ],
+    "frame_00239.png": [
+      [
+        -0.09936162506420132,
+        -0.14696027996750383,
+        0.9841391891274698,
+        -3.9989161322555065
+      ],
+      [
+        -0.0877263127580993,
+        0.9864761018156483,
+        0.1384521382878249,
+        -0.16219120981951085
+      ],
+      [
+        -0.9911767559393576,
+        -0.07257807284900683,
+        -0.11091015204684829,
+        5.335927972562805
+      ]
+    ]
+  }
+}

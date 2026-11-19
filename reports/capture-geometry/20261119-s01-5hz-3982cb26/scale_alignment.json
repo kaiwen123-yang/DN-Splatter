@@ -1,0 +1,203 @@
+{
+  "scale_m_per_sfm_unit": 1.464990352305482,
+  "fit_range_m": [
+    0.3,
+    6
+  ],
+  "windows": {
+    "3": {
+      "scale": 1.45708988818916,
+      "frames": 183,
+      "tracks": 4176,
+      "observations": 16531,
+      "weighted_median_abs_residual_m": 0.04807338993535648,
+      "absolute_residual_m": {
+        "min": 0.0,
+        "p10": 0.00686047628945663,
+        "p50": 0.03367860795803068,
+        "p90": 0.10680585762071759,
+        "p95": 0.14861249861521886,
+        "max": 19.162143678969848
+      }
+    },
+    "6": {
+      "scale": 1.464990352305482,
+      "frames": 193,
+      "tracks": 9825,
+      "observations": 41817,
+      "weighted_median_abs_residual_m": 0.08480522492239118,
+      "absolute_residual_m": {
+        "min": 0.0,
+        "p10": 0.013390109676135522,
+        "p50": 0.06906176823052679,
+        "p90": 0.2606848920912079,
+        "p95": 0.353116119477692,
+        "max": 19.27775838649698
+      }
+    },
+    "10": {
+      "scale": 1.468660769925118,
+      "frames": 193,
+      "tracks": 11311,
+      "observations": 49024,
+      "weighted_median_abs_residual_m": 0.10163669879640125,
+      "absolute_residual_m": {
+        "min": 0.0,
+        "p10": 0.01610226297005175,
+        "p50": 0.08552696949353589,
+        "p90": 0.3969957288097236,
+        "p95": 0.5817364717598555,
+        "max": 19.33147096000516
+      }
+    }
+  },
+  "early_middle_late": [
+    {
+      "scale": 1.4656643774556282,
+      "frames": 65,
+      "tracks": 2160,
+      "observations": 13498,
+      "weighted_median_abs_residual_m": 0.10687244908749438,
+      "absolute_residual_m": {
+        "min": 0.0,
+        "p10": 0.013670351078219812,
+        "p50": 0.08031235368203715,
+        "p90": 0.2801476814102192,
+        "p95": 0.4159084550050686,
+        "max": 3.764051463346498
+      }
+    },
+    {
+      "scale": 1.4709607122543498,
+      "frames": 64,
+      "tracks": 5539,
+      "observations": 17499,
+      "weighted_median_abs_residual_m": 0.0768309164349934,
+      "absolute_residual_m": {
+        "min": 0.0,
+        "p10": 0.01333560125192932,
+        "p50": 0.07702843018593875,
+        "p90": 0.25605486169805697,
+        "p95": 0.3239021231160802,
+        "max": 9.291287403327166
+      }
+    },
+    {
+      "scale": 1.4555630821177121,
+      "frames": 64,
+      "tracks": 3060,
+      "observations": 10820,
+      "weighted_median_abs_residual_m": 0.0713471407127173,
+      "absolute_residual_m": {
+        "min": 0.0,
+        "p10": 0.00934883935350721,
+        "p50": 0.04422253513283536,
+        "p90": 0.22983544656331042,
+        "p95": 0.32041072781872354,
+        "max": 19.139800531174714
+      }
+    }
+  ],
+  "disjoint_depth_bands": {
+    "0.3-3": {
+      "scale": 1.45708988818916,
+      "frames": 183,
+      "tracks": 4176,
+      "observations": 16531,
+      "weighted_median_abs_residual_m": 0.04807338993535648,
+      "absolute_residual_m": {
+        "min": 0.0,
+        "p10": 0.00686047628945663,
+        "p50": 0.03367860795803068,
+        "p90": 0.10680585762071759,
+        "p95": 0.14861249861521886,
+        "max": 19.162143678969848
+      }
+    },
+    "3-6": {
+      "scale": 1.4712929869798865,
+      "frames": 193,
+      "tracks": 6751,
+      "observations": 25286,
+      "weighted_median_abs_residual_m": 0.11969890512177006,
+      "absolute_residual_m": {
+        "min": 0.0,
+        "p10": 0.02115500619492172,
+        "p50": 0.11433839247879929,
+        "p90": 0.3107490528889745,
+        "p95": 0.4110531821540495,
+        "max": 16.060879492998144
+      }
+    },
+    "6-10": {
+      "scale": 1.5214231219353205,
+      "frames": 193,
+      "tracks": 2140,
+      "observations": 7207,
+      "weighted_median_abs_residual_m": 0.3150245790576873,
+      "absolute_residual_m": {
+        "min": 0.0,
+        "p10": 0.05259936315976699,
+        "p50": 0.3036620015204239,
+        "p90": 0.9702850998157679,
+        "p95": 1.222597145551477,
+        "max": 4.224769704551494
+      }
+    }
+  },
+  "fixed_scale_signed_residual_m_by_time": [
+    {
+      "min": -2.524388847698594,
+      "p10": -0.21487196039866657,
+      "p50": -0.011577879598718255,
+      "p90": 0.16862958030678787,
+      "p95": 0.23161863778276998,
+      "max": 3.764426886662485
+    },
+    {
+      "min": -9.238694076073457,
+      "p10": -0.13649358386544666,
+      "p50": 0.012199262905158825,
+      "p90": 0.22432447223219176,
+      "p95": 0.2922901648015909,
+      "max": 1.6853552348975347
+    },
+    {
+      "min": -19.27775838649698,
+      "p10": -0.17205591417569122,
+      "p50": -0.030562897109021048,
+      "p90": 0.1210466043535348,
+      "p95": 0.18617761994732204,
+      "max": 1.6371307494961065
+    }
+  ],
+  "fixed_scale_signed_residual_m_by_depth": {
+    "3": {
+      "min": -19.27775838649698,
+      "p10": -0.07988210342830526,
+      "p50": -0.022367381807302245,
+      "p90": 0.0611800539754106,
+      "p95": 0.09317505747793264,
+      "max": 2.858768883397176
+    },
+    "6": {
+      "min": -15.977815760926493,
+      "p10": -0.2198399971819034,
+      "p50": 0.015334722760508512,
+      "p90": 0.23408355181342477,
+      "p95": 0.3072753590078745,
+      "max": 3.764426886662485
+    },
+    "10": {
+      "min": -2.8259685297632178,
+      "p10": -0.5036442446387545,
+      "p50": 0.2424653593422148,
+      "p90": 0.7329595028523811,
+      "p95": 0.9674880048141784,
+      "max": 4.384789810050439
+    }
+  },
+  "method": "Train map observations only, track length >=3, reprojection <=2px, positive SfM Z. Round half-resolution corner-centred coordinates after subtracting 0.5. Take median of 5x5 Z_C with >=12 hits, no competing occluder, full local Z spread <=max(5cm,3%). Median of Z_C/Z_sfm; inverse track frequency then normalize each frame to equal total weight.",
+  "fit_and_export_policy": "0.3–6 m fixed for primary fit and initialization before inspecting held-out depth. Overlapping/disjoint windows and thirds use training observations only.",
+  "units": "metric sensor consistency; no external geometric reference"
+}

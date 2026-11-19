@@ -19,6 +19,11 @@ def fetch(reader, db, cid, idx):
     chunk = reader.chunks[chunk_pos]
     reader.bio.seek(chunk.datapos)
     f = io.BytesIO(chunk.decompressor(reader.bio.read(chunk.datasize)))
+    return fetch_from_chunk(f, offset, cid, idx, rec)
+
+
+def fetch_from_chunk(f, offset, cid, idx, rec):
+    """Decode one indexed vendor image from an already decompressed chunk."""
     f.seek(offset)
     h = Header.read(f)
     if (h.get_uint32('conn'), h.get_time('time')) != (cid, rec):
