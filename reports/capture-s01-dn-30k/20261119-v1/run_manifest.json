@@ -1,0 +1,231 @@
+{
+  "run": "capture-s01-dn-30k-20261119-v1",
+  "base_commit": "fb6ec1bae800c0f44b01649dd7d5523ed862ec16",
+  "geometry_commit": "d72f56836028d7a7885f21f02522e4f7cc310429",
+  "identity": {
+    "run": "capture-s01-dn-30k-20261119-v1",
+    "protocol_sha256": "baea4e858e2ba9226d916f35f66dca68b59df4f44b0f6e26cb431f48251226dd",
+    "source": "811f5cdf342d92d12a9d9a4be185d374c430c184",
+    "geometry_manifest_sha256": "2cc67f7af6ad6444131529ee392879c064bc6a76394220784e7b4b79a039b278",
+    "checkpoint_sha256": "38db3f7d952f48f900f0b32d6cce6749e41641045ebc5713cf29618f54aff3bb"
+  },
+  "stage_records": [
+    {
+      "stage": "copy",
+      "cwd": ".local/upstream/dn-splatter",
+      "started_utc": "2026-11-19T11:05:08.159691+00:00",
+      "omp_threads": 1,
+      "blas_threads": 1,
+      "exit_code": 0,
+      "duration_seconds": 4.59,
+      "ended_utc": "2026-11-19T11:05:12.752058+00:00",
+      "resource_samples": 0,
+      "observed_child_pids": [],
+      "process_peak_rss_kib": null,
+      "process_cpu_seconds_last_observed": null,
+      "peak_sampled_gpu_used_mib_device": null,
+      "peak_sampled_gpu_util_pct_device": null,
+      "peak_sampled_cgroup_memory_bytes": null,
+      "peak_interval_mean_cgroup_cores": null
+    },
+    {
+      "stage": "cross_view",
+      "cwd": ".local/upstream/dn-splatter",
+      "started_utc": "2026-11-19T11:05:12.752754+00:00",
+      "omp_threads": 1,
+      "blas_threads": 1,
+      "exit_code": 0,
+      "duration_seconds": 2.89,
+      "ended_utc": "2026-11-19T11:05:15.638459+00:00",
+      "resource_samples": 0,
+      "observed_child_pids": [],
+      "process_peak_rss_kib": null,
+      "process_cpu_seconds_last_observed": null,
+      "peak_sampled_gpu_used_mib_device": null,
+      "peak_sampled_gpu_util_pct_device": null,
+      "peak_sampled_cgroup_memory_bytes": null,
+      "peak_interval_mean_cgroup_cores": null
+    },
+    {
+      "stage": "omnidata",
+      "cwd": ".local/upstream/dn-splatter",
+      "started_utc": "2026-11-19T11:05:15.639204+00:00",
+      "omp_threads": 2,
+      "blas_threads": 1,
+      "exit_code": 0,
+      "duration_seconds": 75.77,
+      "ended_utc": "2026-11-19T11:06:31.404898+00:00",
+      "resource_samples": 5,
+      "observed_child_pids": [],
+      "process_peak_rss_kib": null,
+      "process_cpu_seconds_last_observed": null,
+      "peak_sampled_gpu_used_mib_device": 8451,
+      "peak_sampled_gpu_util_pct_device": 0,
+      "peak_sampled_cgroup_memory_bytes": 50352676864,
+      "peak_interval_mean_cgroup_cores": 1.0388812010590878
+    },
+    {
+      "stage": "manifest",
+      "cwd": ".local/upstream/dn-splatter",
+      "started_utc": "2026-11-19T11:06:31.406037+00:00",
+      "omp_threads": 1,
+      "blas_threads": 1,
+      "exit_code": 0,
+      "duration_seconds": 11.99,
+      "ended_utc": "2026-11-19T11:06:43.395231+00:00",
+      "resource_samples": 1,
+      "observed_child_pids": [],
+      "process_peak_rss_kib": null,
+      "process_cpu_seconds_last_observed": null,
+      "peak_sampled_gpu_used_mib_device": 0,
+      "peak_sampled_gpu_util_pct_device": 0,
+      "peak_sampled_cgroup_memory_bytes": 48324009984,
+      "peak_interval_mean_cgroup_cores": null
+    },
+    {
+      "stage": "reader",
+      "cwd": ".local/upstream/dn-splatter",
+      "started_utc": "2026-11-19T11:06:47.367393+00:00",
+      "omp_threads": 2,
+      "blas_threads": 1,
+      "exit_code": 0,
+      "duration_seconds": 48.53,
+      "ended_utc": "2026-11-19T11:07:35.900721+00:00",
+      "resource_samples": 3,
+      "observed_child_pids": [],
+      "process_peak_rss_kib": null,
+      "process_cpu_seconds_last_observed": null,
+      "peak_sampled_gpu_used_mib_device": 2877,
+      "peak_sampled_gpu_util_pct_device": 0,
+      "peak_sampled_cgroup_memory_bytes": 56790773760,
+      "peak_interval_mean_cgroup_cores": 1.4571003675336067
+    },
+    {
+      "stage": "training",
+      "cwd": ".local/upstream/dn-splatter",
+      "started_utc": "2026-11-19T11:07:35.901249+00:00",
+      "omp_threads": 2,
+      "blas_threads": 1,
+      "exit_code": 0,
+      "duration_seconds": 1436.56,
+      "ended_utc": "2026-11-19T11:31:32.465798+00:00",
+      "resource_samples": 95,
+      "observed_child_pids": [
+        379068
+      ],
+      "process_peak_rss_kib": 9860112,
+      "process_cpu_seconds_last_observed": 1478.9,
+      "peak_sampled_gpu_used_mib_device": 5335,
+      "peak_sampled_gpu_util_pct_device": 48,
+      "peak_sampled_cgroup_memory_bytes": 59290337280,
+      "peak_interval_mean_cgroup_cores": 1.445552981617147
+    },
+    {
+      "stage": "val",
+      "cwd": ".local/upstream/dn-splatter",
+      "started_utc": "2026-11-19T11:31:32.466864+00:00",
+      "omp_threads": 2,
+      "blas_threads": 1,
+      "exit_code": 0,
+      "duration_seconds": 51.51,
+      "ended_utc": "2026-11-19T11:32:23.975210+00:00",
+      "resource_samples": 3,
+      "observed_child_pids": [
+        380798
+      ],
+      "process_peak_rss_kib": 2434744,
+      "process_cpu_seconds_last_observed": 49.27,
+      "peak_sampled_gpu_used_mib_device": 783,
+      "peak_sampled_gpu_util_pct_device": 0,
+      "peak_sampled_cgroup_memory_bytes": 51138072576,
+      "peak_interval_mean_cgroup_cores": 1.1055591291125404
+    },
+    {
+      "stage": "test",
+      "cwd": ".local/upstream/dn-splatter",
+      "started_utc": "2026-11-19T11:32:23.976150+00:00",
+      "omp_threads": 2,
+      "blas_threads": 1,
+      "exit_code": 0,
+      "duration_seconds": 51.77,
+      "ended_utc": "2026-11-19T11:33:15.743064+00:00",
+      "resource_samples": 4,
+      "observed_child_pids": [
+        380932
+      ],
+      "process_peak_rss_kib": 2429044,
+      "process_cpu_seconds_last_observed": 49.81,
+      "peak_sampled_gpu_used_mib_device": 1479,
+      "peak_sampled_gpu_util_pct_device": 0,
+      "peak_sampled_cgroup_memory_bytes": 52280455168,
+      "peak_interval_mean_cgroup_cores": 1.2024028266024622
+    },
+    {
+      "stage": "poisson",
+      "cwd": ".local/upstream/dn-splatter",
+      "started_utc": "2026-11-19T11:33:15.743786+00:00",
+      "omp_threads": 25,
+      "blas_threads": 1,
+      "exit_code": 0,
+      "duration_seconds": 79.58,
+      "ended_utc": "2026-11-19T11:34:35.328438+00:00",
+      "resource_samples": 5,
+      "observed_child_pids": [
+        381072
+      ],
+      "process_peak_rss_kib": 3561188,
+      "process_cpu_seconds_last_observed": 170.29,
+      "peak_sampled_gpu_used_mib_device": 1753,
+      "peak_sampled_gpu_util_pct_device": 4,
+      "peak_sampled_cgroup_memory_bytes": 53783371776,
+      "peak_interval_mean_cgroup_cores": 1.0460772496958204
+    },
+    {
+      "stage": "mesh_validation",
+      "cwd": ".local/upstream/dn-splatter",
+      "started_utc": "2026-11-19T11:34:35.329584+00:00",
+      "omp_threads": 25,
+      "blas_threads": 1,
+      "exit_code": 0,
+      "duration_seconds": 16.7,
+      "ended_utc": "2026-11-19T11:34:52.026732+00:00",
+      "resource_samples": 1,
+      "observed_child_pids": [
+        390473
+      ],
+      "process_peak_rss_kib": 1913228,
+      "process_cpu_seconds_last_observed": 16.34,
+      "peak_sampled_gpu_used_mib_device": 3,
+      "peak_sampled_gpu_util_pct_device": 0,
+      "peak_sampled_cgroup_memory_bytes": 51019530240,
+      "peak_interval_mean_cgroup_cores": null
+    }
+  ],
+  "cpu_budget": 25,
+  "resource_scope": "Device-wide GPU and whole cgroup RAM and CPU, sampled every 15s. Short stages may have no sample; null means unobserved. Includes other activity and filesystem cache.",
+  "actual_cpu_threads": {
+    "image_cache_workers": 2,
+    "blas_threads_per_worker": 1,
+    "poisson_threads": 25
+  },
+  "historical_checkout_matches_patches": {
+    "dn_splatter": true,
+    "gsplat": true
+  },
+  "formal_training": {
+    "checkpoint": "/root/autodl-tmp/DN-Splatter/.local/runs/capture-s01-dn-30k-20261119-v1/training/capture-s01/dn-splatter/2026-11-19_190748/nerfstudio_models/step-000029999.ckpt",
+    "checkpoint_sha256": "fb6636d164d1edd2ca7a0bdd797078baf5cfb06be440953b4d42b6da750b3ab9",
+    "config": "/root/autodl-tmp/DN-Splatter/.local/runs/capture-s01-dn-30k-20261119-v1/training/capture-s01/dn-splatter/2026-11-19_190748/config.yml",
+    "step": 29999,
+    "cumulative_updates": 30000,
+    "final_gaussians": 440882,
+    "training_manifest_sha256": "69e032ed5c2fc7aa7369dae79b575169246f0ed778abedea2a0fe6590d4a3851"
+  },
+  "reader_counts": {
+    "train": 193,
+    "val": 24,
+    "test": 24
+  },
+  "observed_utc": "2026-11-19T11:35:16.998840+00:00",
+  "geometry_reverified_at_publication": true
+}

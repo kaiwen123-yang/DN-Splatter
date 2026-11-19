@@ -3,7 +3,7 @@
   "kind": "training_task_pointer",
   "updated_date": "2026-11-19",
   "timezone": "Asia/Shanghai",
-  "status": "running",
+  "status": "completed",
   "scene": "capture-s01",
   "run_id": "capture-s01-dn-30k-20261119-v1",
   "evidence_geometry_commit": "d72f56836028d7a7885f21f02522e4f7cc310429",
@@ -15,16 +15,28 @@
   "planned_report_directory": "reports/capture-s01-dn-30k/20261119-v1",
   "planned_run_directory": ".local/runs/capture-s01-dn-30k-20261119-v1",
   "geometry_manifest_sha256": "2cc67f7af6ad6444131529ee392879c064bc6a76394220784e7b4b79a039b278",
-  "execution_observed_in_this_review": false,
+  "execution_observed_in_this_review": true,
   "normal_priors_generated": true,
   "training_started": true,
-  "cumulative_updates": 10001,
-  "final_checkpoint": null,
-  "evaluation_completed": false,
-  "poisson_completed": false,
-  "measured_results": null,
-  "note": "Progress snapshot at the latest fully readable checkpoint.",
+  "cumulative_updates": 30000,
+  "final_checkpoint": "/root/autodl-tmp/DN-Splatter/.local/runs/capture-s01-dn-30k-20261119-v1/training/capture-s01/dn-splatter/2026-11-19_190748/nerfstudio_models/step-000029999.ckpt",
+  "evaluation_completed": true,
+  "poisson_completed": true,
+  "measured_results": {
+    "val": {
+      "psnr": 23.24325092633565,
+      "ssim": 0.7793463269869486,
+      "lpips": 0.29774764987329644
+    },
+    "test": {
+      "psnr": 23.350236415863037,
+      "ssim": 0.7793391346931458,
+      "lpips": 0.304057319338123
+    }
+  },
+  "note": "Formal final checkpoint bound to both holdouts and the original train-view Poisson export.",
   "observed_checkpoint": "/root/autodl-tmp/DN-Splatter/.local/runs/capture-s01-dn-30k-20261119-v1/training/capture-s01/dn-splatter/2026-11-19_190748/nerfstudio_models/step-000010000.ckpt",
   "observed_utc": "2026-11-19T11:16:11.412147+00:00",
-  "run_directory": "/root/autodl-tmp/DN-Splatter/.local/runs/capture-s01-dn-30k-20261119-v1"
+  "run_directory": "/root/autodl-tmp/DN-Splatter/.local/runs/capture-s01-dn-30k-20261119-v1",
+  "report": "reports/capture-s01-dn-30k/20261119-v1/overview.md"
 }

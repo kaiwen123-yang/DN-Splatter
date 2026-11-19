@@ -1,0 +1,175 @@
+{
+  "checkpoint": "/root/autodl-tmp/DN-Splatter/.local/runs/capture-s01-dn-30k-20261119-v1/training/capture-s01/dn-splatter/2026-11-19_190748/nerfstudio_models/step-000029999.ckpt",
+  "checkpoint_sha256": "fb6636d164d1edd2ca7a0bdd797078baf5cfb06be440953b4d42b6da750b3ab9",
+  "config": "/root/autodl-tmp/DN-Splatter/.local/runs/capture-s01-dn-30k-20261119-v1/training/capture-s01/dn-splatter/2026-11-19_190748/config.yml",
+  "step": 29999,
+  "cumulative_updates": 30000,
+  "final_gaussians": 440882,
+  "training_manifest_sha256": "69e032ed5c2fc7aa7369dae79b575169246f0ed778abedea2a0fe6590d4a3851",
+  "tensorboard_scalars": {
+    "Train Loss": {
+      "count": 3000,
+      "nonfinite": 0,
+      "first": [
+        0,
+        0.3022947311401367
+      ],
+      "last": [
+        29990,
+        0.10677920281887054
+      ]
+    },
+    "Train Loss Dict/main_loss": {
+      "count": 3000,
+      "nonfinite": 0,
+      "first": [
+        0,
+        0.3022947311401367
+      ],
+      "last": [
+        29990,
+        0.10677920281887054
+      ]
+    },
+    "Train Loss Dict/scale_reg": {
+      "count": 3000,
+      "nonfinite": 0,
+      "first": [
+        0,
+        0.0
+      ],
+      "last": [
+        29990,
+        0.0
+      ]
+    },
+    "Train Metrics Dict/rgb_psnr": {
+      "count": 3000,
+      "nonfinite": 0,
+      "first": [
+        0,
+        13.035329818725586
+      ],
+      "last": [
+        29990,
+        24.317644119262695
+      ]
+    },
+    "Train Metrics Dict/gaussian_count": {
+      "count": 3000,
+      "nonfinite": 0,
+      "first": [
+        0,
+        436361.0
+      ],
+      "last": [
+        29990,
+        440882.0
+      ]
+    },
+    "Eval Loss": {
+      "count": 59,
+      "nonfinite": 0,
+      "first": [
+        500,
+        0.24293319880962372
+      ],
+      "last": [
+        29500,
+        0.1283746361732483
+      ]
+    },
+    "Eval Loss Dict/main_loss": {
+      "count": 59,
+      "nonfinite": 0,
+      "first": [
+        500,
+        0.24293319880962372
+      ],
+      "last": [
+        29500,
+        0.1283746361732483
+      ]
+    },
+    "Eval Loss Dict/scale_reg": {
+      "count": 59,
+      "nonfinite": 0,
+      "first": [
+        500,
+        0.0
+      ],
+      "last": [
+        29500,
+        0.0
+      ]
+    },
+    "Eval Metrics Dict/rgb_psnr": {
+      "count": 59,
+      "nonfinite": 0,
+      "first": [
+        500,
+        14.594305038452148
+      ],
+      "last": [
+        29500,
+        23.263750076293945
+      ]
+    },
+    "Eval Metrics Dict/gaussian_count": {
+      "count": 59,
+      "nonfinite": 0,
+      "first": [
+        500,
+        436361.0
+      ],
+      "last": [
+        29500,
+        442075.0
+      ]
+    },
+    "Eval Images Metrics/rgb_psnr": {
+      "count": 59,
+      "nonfinite": 0,
+      "first": [
+        500,
+        23.706581115722656
+      ],
+      "last": [
+        29500,
+        24.44757080078125
+      ]
+    }
+  },
+  "formal_first_batch": [
+    {
+      "step": 0,
+      "image_idx": 168,
+      "normal_pixels": 921600,
+      "nonfinite_predicted_normal_pixels": 0,
+      "zero_accumulation_pixels": 49896,
+      "losses": {
+        "main_loss": 0.3022947311401367,
+        "scale_reg": 0.0
+      },
+      "gradient_elements_checked": 25745299,
+      "nonfinite_grad_elements": {
+        "means": 0,
+        "scales": 0,
+        "quats": 0,
+        "features_dc": 0,
+        "features_rest": 0,
+        "opacities": 0,
+        "normals": 0
+      }
+    }
+  ],
+  "segments": [
+    {
+      "checkpoint": null,
+      "saved_step": -1,
+      "requested_updates": 30000,
+      "training_manifest_sha256": "69e032ed5c2fc7aa7369dae79b575169246f0ed778abedea2a0fe6590d4a3851"
+    }
+  ],
+  "seed": 42
+}

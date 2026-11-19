@@ -1,0 +1,83 @@
+{
+  "original_exporter": "DepthAndNormalMapsPoisson",
+  "views": 193,
+  "samples": 5000051,
+  "target_samples": 5000000,
+  "poisson_depth": 9,
+  "threads": 25,
+  "seed": 42,
+  "density_low_quantile": 0.01,
+  "depth_range_gate": false,
+  "alpha_gate": false,
+  "edge_filter": false,
+  "outlier_filter": false,
+  "sampled_nonfinite_normals": 0,
+  "sampled_zero_normals": 0,
+  "sampled_norm_length_range": [
+    0.9999998237713854,
+    1.0000002106272736
+  ],
+  "sampled_alpha_zero": 43,
+  "sampled_outside_sensor_range": 570536,
+  "render_z_range_m": [
+    0.03114071674644947,
+    16.633071899414062
+  ],
+  "vertices": 457112,
+  "faces": 911783,
+  "vertex_normals": 457112,
+  "bounds_xyz_m": [
+    [
+      -6.906003952026367,
+      -4.382554054260254,
+      -2.182985305786133
+    ],
+    [
+      11.407970428466797,
+      3.142563819885254,
+      14.393989562988281
+    ]
+  ],
+  "faces_index_range": [
+    0,
+    457111
+  ],
+  "connected_components": 975,
+  "largest_component_faces": 873616,
+  "largest_component_surface_area_m2": 797.2854202102726,
+  "geometry_finite": true,
+  "pcd_path": "/root/autodl-tmp/DN-Splatter/.local/runs/capture-s01-dn-30k-20261119-v1/mesh/DepthAndNormalMapsPoisson_pcd.ply",
+  "mesh_path": "/root/autodl-tmp/DN-Splatter/.local/runs/capture-s01-dn-30k-20261119-v1/mesh/DepthAndNormalMapsPoisson_poisson_mesh.ply",
+  "local_views": [
+    {
+      "object": "table",
+      "train_id": 120,
+      "xyxy": [
+        774,
+        406,
+        1180,
+        598
+      ]
+    },
+    {
+      "object": "pillar",
+      "train_id": 0,
+      "xyxy": [
+        604,
+        284,
+        810,
+        714
+      ]
+    },
+    {
+      "object": "chair_legs",
+      "train_id": 240,
+      "xyxy": [
+        214,
+        440,
+        496,
+        720
+      ]
+    }
+  ]
+}
