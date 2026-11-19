@@ -1,0 +1,40 @@
+{
+  "DepthAndNormalMapsPoisson_poisson_mesh.ply": {
+    "vertices": 772004,
+    "triangles": 1539985,
+    "bounds": [
+      [
+        -5.986835956573486,
+        -4.550132751464844,
+        -1.436558723449707
+      ],
+      [
+        2.2670750617980957,
+        2.0661978721618652,
+        2.086958885192871
+      ]
+    ]
+  },
+  "mesh_cull.ply": {
+    "vertices": 2272775,
+    "triangles": 3938721,
+    "bounds": [
+      [
+        -5.986835956573486,
+        -4.160861492156982,
+        -1.4352443218231201
+      ],
+      [
+        -0.25421142578125,
+        2.049079418182373,
+        2.086958885192871
+      ]
+    ]
+  },
+  "points_entering_poisson_after_filtering": 5000048,
+  "target_samples": 5000000,
+  "sampled_before_filtering": 5000048,
+  "poisson_depth": 9,
+  "poisson_threads": 25,
+  "fscore_threshold_m": 0.05
+}

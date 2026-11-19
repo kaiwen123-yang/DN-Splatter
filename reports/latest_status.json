@@ -1,9 +1,9 @@
 {
   "schema_version": 2,
-  "updated_at": "2026-11-19T04:10:35.841763+00:00",
+  "updated_at": "2026-11-19T04:39:38.552447+00:00",
   "run_id": "vr-room-iphone-30k",
-  "status": "running",
-  "stage": "render-and-faro",
+  "status": "complete",
+  "stage": "publication",
   "failed_stage": null,
   "reason": null,
   "registered_frame_counts": {
@@ -30,8 +30,8 @@
   "last_observed_training_log_step": 29999,
   "checkpoint_step": 29999,
   "rgb_depth_evaluation_complete": true,
-  "poisson_mesh_complete": false,
-  "mesh_evaluation_complete": false,
+  "poisson_mesh_complete": true,
+  "mesh_evaluation_complete": true,
   "metrics": {
     "within_rgb_psnr": 26.97199821472168,
     "within_rgb_psnr_std": 2.4910759925842285,
@@ -98,6 +98,6 @@
     "with_fps": 85.1970443725586,
     "with_fps_std": 3.403625011444092
   },
-  "pipeline_completed": false,
-  "next_action": "Read the project-local workflow status and stage log. Resume with bash scripts/launch_vr_room.sh."
+  "pipeline_completed": true,
+  "next_action": "Inspect the result and both trajectory comparisons."
 }

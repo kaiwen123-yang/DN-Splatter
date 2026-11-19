@@ -1,8 +1,8 @@
 {
   "run_id": "vr-room-iphone-30k",
-  "time_utc": "2026-11-19T04:10:35.841763+00:00",
-  "time_asia_shanghai": "2026-11-19T12:10:35.841763+08:00",
-  "repository_at_report": "b24869ff94b013e7618f4d221a9e57d32f7fdc6c",
+  "time_utc": "2026-11-19T04:39:38.552447+00:00",
+  "time_asia_shanghai": "2026-11-19T12:39:38.552447+08:00",
+  "repository_at_report": "b0fa7360107a392dc9feebf8e6d1f83b44fd1eef",
   "policy_commit": "7f8d6afd360382d628b96af769db086966ca1964",
   "source": "811f5cdf342d92d12a9d9a4be185d374c430c184",
   "patch_sha256": {
@@ -108,6 +108,56 @@
       "exit_code": 0,
       "duration_seconds": 101.42,
       "ended_utc": "2026-11-19T04:09:52.714337+00:00"
+    },
+    {
+      "stage": "render-and-faro",
+      "cwd": ".local/upstream/dn-splatter",
+      "started_utc": "2026-11-19T04:09:52.715297+00:00",
+      "omp_threads": 12,
+      "blas_threads": 1,
+      "exit_code": 0,
+      "duration_seconds": 377.8,
+      "ended_utc": "2026-11-19T04:16:10.516955+00:00"
+    },
+    {
+      "stage": "poisson",
+      "cwd": ".local/upstream/dn-splatter",
+      "started_utc": "2026-11-19T04:16:10.517699+00:00",
+      "omp_threads": 25,
+      "blas_threads": 1,
+      "exit_code": 0,
+      "duration_seconds": 215.24,
+      "ended_utc": "2026-11-19T04:19:45.758088+00:00"
+    },
+    {
+      "stage": "install-mesh-rasterizer",
+      "cwd": ".",
+      "started_utc": "2026-11-19T04:19:45.801578+00:00",
+      "omp_threads": 1,
+      "blas_threads": 1,
+      "exit_code": 0,
+      "duration_seconds": 81.24,
+      "ended_utc": "2026-11-19T04:21:07.037214+00:00"
+    },
+    {
+      "stage": "geometry-evaluation",
+      "cwd": ".local/upstream/dn-splatter",
+      "started_utc": "2026-11-19T04:21:07.037843+00:00",
+      "omp_threads": 25,
+      "blas_threads": 1,
+      "exit_code": 0,
+      "duration_seconds": 1073.86,
+      "ended_utc": "2026-11-19T04:39:00.901190+00:00"
+    },
+    {
+      "stage": "audit-and-previews",
+      "cwd": ".",
+      "started_utc": "2026-11-19T04:39:00.901891+00:00",
+      "omp_threads": 25,
+      "blas_threads": 1,
+      "exit_code": 0,
+      "duration_seconds": 37.6,
+      "ended_utc": "2026-11-19T04:39:38.501259+00:00"
     }
   ],
   "cpu_budget": 25,
@@ -115,7 +165,46 @@
     21
   ],
   "frame_validation_workers": 25,
-  "mesh": null,
+  "mesh": {
+    "DepthAndNormalMapsPoisson_poisson_mesh.ply": {
+      "vertices": 772004,
+      "triangles": 1539985,
+      "bounds": [
+        [
+          -5.986835956573486,
+          -4.550132751464844,
+          -1.436558723449707
+        ],
+        [
+          2.2670750617980957,
+          2.0661978721618652,
+          2.086958885192871
+        ]
+      ]
+    },
+    "mesh_cull.ply": {
+      "vertices": 2272775,
+      "triangles": 3938721,
+      "bounds": [
+        [
+          -5.986835956573486,
+          -4.160861492156982,
+          -1.4352443218231201
+        ],
+        [
+          -0.25421142578125,
+          2.049079418182373,
+          2.086958885192871
+        ]
+      ]
+    },
+    "points_entering_poisson_after_filtering": 5000048,
+    "target_samples": 5000000,
+    "sampled_before_filtering": 5000048,
+    "poisson_depth": 9,
+    "poisson_threads": 25,
+    "fscore_threshold_m": 0.05
+  },
   "peaks_sampled_every_15s": {
     "starting": {
       "samples": 3,
@@ -152,11 +241,39 @@
       "peak_interval_mean_cpu_cores": 1.482
     },
     "render-and-faro": {
+      "samples": 25,
+      "gpu_used_mib_device": 8637,
+      "gpu_util_pct_device": 4,
+      "cgroup_memory_bytes": 64335998976,
+      "peak_interval_mean_cpu_cores": 2.142
+    },
+    "poisson": {
+      "samples": 15,
+      "gpu_used_mib_device": 2628,
+      "gpu_util_pct_device": 38,
+      "cgroup_memory_bytes": 49827835904,
+      "peak_interval_mean_cpu_cores": 24.689
+    },
+    "install-mesh-rasterizer": {
+      "samples": 5,
+      "gpu_used_mib_device": 1330,
+      "gpu_util_pct_device": 30,
+      "cgroup_memory_bytes": 61961629696,
+      "peak_interval_mean_cpu_cores": 18.015
+    },
+    "geometry-evaluation": {
+      "samples": 71,
+      "gpu_used_mib_device": 3290,
+      "gpu_util_pct_device": 100,
+      "cgroup_memory_bytes": 53225172992,
+      "peak_interval_mean_cpu_cores": 3.532
+    },
+    "audit-and-previews": {
       "samples": 3,
-      "gpu_used_mib_device": 879,
+      "gpu_used_mib_device": 3,
       "gpu_util_pct_device": 0,
-      "cgroup_memory_bytes": 40363864064,
-      "peak_interval_mean_cpu_cores": 1.203
+      "cgroup_memory_bytes": 45625507840,
+      "peak_interval_mean_cpu_cores": 1.036
     }
   },
   "resources_scope": "device and whole container; samples can miss transient peaks"
