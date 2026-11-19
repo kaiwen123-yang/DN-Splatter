@@ -1,0 +1,259 @@
+{
+  "device": {
+    "model": "Orbbec Gemini 335",
+    "firmware": "1.3.70",
+    "supported_sdk_field": "1.0.1"
+  },
+  "CameraInfo": "not_present",
+  "association": "SDK stream enum/format/native size, empty ROS frame IDs. Single stored profile applies to the recorded stream; no in-run updates visible.",
+  "missing_fields": "Rectification R, projection P, ROI and binning are not supplied as CameraInfo. K constructed from SDK fx,fy,cx,cy; D is in SDK order.",
+  "cameras": {
+    "RGB": {
+      "topic": "/cam/sensor_2/frameType_2",
+      "profile": "/cam/streamProfileType_2",
+      "frame_id": "",
+      "count": 1,
+      "distinct_calibration_count": 1,
+      "first_header_ns": "2426763600000",
+      "width": 1280,
+      "height": 720,
+      "nominal_fps": 30,
+      "stream_type": 2,
+      "format_enum": 5,
+      "fx": 694.2755737304688,
+      "fy": 694.2152709960938,
+      "cx": 646.4674072265625,
+      "cy": 358.3826904296875,
+      "K": [
+        [
+          694.2755737304688,
+          0,
+          646.4674072265625
+        ],
+        [
+          0,
+          694.2152709960938,
+          358.3826904296875
+        ],
+        [
+          0,
+          0,
+          1
+        ]
+      ],
+      "distortion_model": "Brown-Conrady K6",
+      "distortion_model_enum": 4,
+      "D_sdk_k1_k2_k3_k4_k5_k6_p1_p2": [
+        0.003619363997131586,
+        -0.04637078940868378,
+        0.03155425935983658,
+        0.0,
+        0.0,
+        0.0,
+        0.0002979962155222893,
+        0.0003877193375956267
+      ],
+      "R": null,
+      "P": null,
+      "roi": null,
+      "binning": null,
+      "image_resolution_match": true,
+      "finite_and_plausible": true,
+      "associated_frames": 11041,
+      "recorded_changes": 0
+    },
+    "depth": {
+      "topic": "/cam/sensor_3/frameType_3",
+      "profile": "/cam/streamProfileType_3",
+      "frame_id": "",
+      "count": 1,
+      "distinct_calibration_count": 1,
+      "first_header_ns": "2426763600000",
+      "width": 848,
+      "height": 480,
+      "nominal_fps": 30,
+      "stream_type": 3,
+      "format_enum": 8,
+      "fx": 414.2334289550781,
+      "fy": 414.2334289550781,
+      "cx": 422.6750183105469,
+      "cy": 235.36251831054688,
+      "K": [
+        [
+          414.2334289550781,
+          0,
+          422.6750183105469
+        ],
+        [
+          0,
+          414.2334289550781,
+          235.36251831054688
+        ],
+        [
+          0,
+          0,
+          1
+        ]
+      ],
+      "distortion_model": "Brown-Conrady",
+      "distortion_model_enum": 3,
+      "D_sdk_k1_k2_k3_k4_k5_k6_p1_p2": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "R": null,
+      "P": null,
+      "roi": null,
+      "binning": null,
+      "image_resolution_match": true,
+      "finite_and_plausible": true,
+      "associated_frames": 11068,
+      "recorded_changes": 0
+    }
+  },
+  "static_extrinsics": [
+    {
+      "source_sensor": "depth",
+      "destination_sensor": "color",
+      "static": true,
+      "topic": "/cam/streamProfileType_3",
+      "count": 1,
+      "header_ns": "2426763600000",
+      "R": [
+        [
+          0.9999675750732422,
+          -0.007584353443235159,
+          0.0027173368725925684
+        ],
+        [
+          0.00758380675688386,
+          0.9999712109565735,
+          0.00021145583014003932
+        ],
+        [
+          -0.0027188623789697886,
+          -0.0001908412086777389,
+          0.9999963045120239
+        ]
+      ],
+      "translation_mm": [
+        -13.604243278503418,
+        0.16550984978675842,
+        -1.7640596628189087
+      ],
+      "det_R": 1.0000000383929235,
+      "max_abs_RtR_minus_I": 5.7535421760235295e-08
+    },
+    {
+      "source_sensor": "accel",
+      "destination_sensor": "depth",
+      "static": true,
+      "topic": "/cam/streamProfileType_4",
+      "count": 1,
+      "header_ns": "2426763600000",
+      "R": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "translation_mm": [
+        0.2460000067949295,
+        0.06499999761581421,
+        -16.947999954223633
+      ],
+      "det_R": 1.0,
+      "max_abs_RtR_minus_I": 0.0
+    }
+  ],
+  "relevant_properties": [
+    {
+      "property_id": 85,
+      "field": "hardware_disparity_to_depth",
+      "value": 1
+    },
+    {
+      "property_id": 3004,
+      "field": "sdk_disparity_to_depth",
+      "value": 1
+    },
+    {
+      "property_id": 176,
+      "field": "depth_unit_mm",
+      "value": 1.0
+    },
+    {
+      "property_id": 42,
+      "field": "hardware_d2c",
+      "value": 0
+    },
+    {
+      "property_id": 82,
+      "field": "color_flip",
+      "value": 0
+    },
+    {
+      "property_id": 81,
+      "field": "color_mirror",
+      "value": 0
+    },
+    {
+      "property_id": 115,
+      "field": "color_rotation_deg",
+      "value": 0
+    },
+    {
+      "property_id": 15,
+      "field": "depth_flip",
+      "value": 0
+    },
+    {
+      "property_id": 14,
+      "field": "depth_mirror",
+      "value": 0
+    },
+    {
+      "property_id": 118,
+      "field": "depth_rotation_deg",
+      "value": 0
+    }
+  ],
+  "disparity_calibration": {
+    "zpd": 0.0,
+    "zpps": 0.0,
+    "baseline": 50.512699127197266,
+    "fx": 414.2334289550781,
+    "bitSize": 14,
+    "unit": 1.0,
+    "minDisparity": 0.0,
+    "packMode": 2,
+    "dispOffset": 0.0,
+    "invalidDisp": 0,
+    "dispIntPlace": 8,
+    "isDualCamera": 1
+  },
+  "registration_status": "native unregistered streams",
+  "registration_evidence": "Hardware D2C property 42=0; depth is 848x480 on depth profile, color is 1280x720 on distinct color profile. Depth-to-color transform is nonidentity.",
+  "sources": [
+    "https://github.com/orbbec/OrbbecSDK_v2/blob/f5d59930ccb9a189f200e58fba4e2ae42664792d/src/media/ros/RosbagWriter.cpp",
+    "https://github.com/orbbec/OrbbecSDK_v2/blob/f5d59930ccb9a189f200e58fba4e2ae42664792d/src/media/ros/RosbagReader.cpp",
+    "https://github.com/orbbec/OrbbecSDK_v2/blob/f5d59930ccb9a189f200e58fba4e2ae42664792d/include/libobsensor/h/ObTypes.h"
+  ]
+}

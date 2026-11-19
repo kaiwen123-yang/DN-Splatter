@@ -1,24 +1,16 @@
 {
   "schema_version": 1,
-  "updated_date": "2026-11-19",
-  "timezone": "Asia/Shanghai",
-  "status": "awaiting_local_execution",
-  "kind": "planned_task_pointer_not_a_measured_result",
-  "user_reported_source": {
-    "windows_path": "H:\\capture.bag",
-    "approximate_size_gb": 6,
-    "size_is_user_estimate": true
-  },
-  "source_access_verified": false,
-  "source_format": null,
-  "source_sha256": null,
-  "source_bytes": null,
-  "run_id": null,
-  "report_directory": null,
-  "measured_results": null,
-  "training_readiness": null,
-  "plan": "configs/capture_bag_audit.json",
-  "instructions": "docs/07_local_bag_audit.md",
-  "prompt": "prompts/local_capture_bag_audit.md",
-  "next_action": "Run the read-only audit with Codex on the local Windows computer or its already available WSL that can actually access the specified source. Return compact evidence for subsequent review; do not upload the original recording or start training."
+  "status": "complete",
+  "run_id": "20261119T091841Z-3982cb26",
+  "source_access_verified": true,
+  "source_format": "ROS1 bag v2.0 / Orbbec SDK extended messages",
+  "source_sha256": "3982cb269ea03ddf4234b45f74be27143eb66bcd807e4e471d0f3a9cd6b03b59",
+  "source_bytes": 5919666852,
+  "report_directory": "reports/capture-bag-audit/20261119T091841Z-3982cb26",
+  "summary": "reports/capture-bag-audit/20261119T091841Z-3982cb26/summary.json",
+  "overview": "reports/capture-bag-audit/20261119T091841Z-3982cb26/overview.md",
+  "recommended_input_path": "sensor_rgbd_after_missing_prerequisites",
+  "training_started": false,
+  "package_bytes": 2729019,
+  "finished_at": "2026-11-19T09:29:37.504373+00:00"
 }

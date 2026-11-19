@@ -1,0 +1,1900 @@
+{
+  "mixed_domain_container_range": {
+    "min_record_ns": "2426763600000",
+    "max_record_ns": "1793522355647242000",
+    "physical_cross_topic_regressions": 27006,
+    "interpretation": "Includes epoch-domain properties; min/max subtraction is not capture duration."
+  },
+  "order": "Physical chunk file offset and record offset within chunk. Each message matched index connection/time/offset.",
+  "rate_definition": "(N-1)/(max-min) seconds. Gaps are adjacent intervals > 1.5x same-clock median; descriptive only.",
+  "clocks": "RGB/depth/IMU record and Header.stamp are copied from device capture time. Profiles use first capture time. Property records use host wall time.",
+  "offsets": "system/global/device are separately serialized SDK microseconds converted to integer ns. System is host-side, global is device time mapped to host. Offsets are not transport latency.",
+  "source": "https://github.com/orbbec/OrbbecSDK_v2/blob/f5d59930ccb9a189f200e58fba4e2ae42664792d/src/media/ros/RosbagWriter.cpp",
+  "streams": {
+    "/cam/property": {
+      "scanned_messages": 104,
+      "total_indexed": 104,
+      "clock_domain": "host epoch from property writer",
+      "header_present": 104,
+      "missing_or_zero_header_count": 0,
+      "record": {
+        "first_ns": "1793522355589607000",
+        "last_ns": "1793522355647242000",
+        "duration_ns": 57635000,
+        "zero_count": 0,
+        "duplicate_count": 0,
+        "regressions": 0,
+        "interval_ns": {
+          "min": 17000.0,
+          "p01": 18000.0,
+          "p50": 320000.0,
+          "p95": 833399.9999999993,
+          "p99": 3886200.000000011,
+          "max": 23892000.0
+        },
+        "mean_rate_hz": 1787.1085278042856,
+        "median_interval_rate_hz": 3125.0,
+        "gaps_over_1p5_median": 31,
+        "first_20_gaps_over_1p5_median": [
+          {
+            "after_idx": 0,
+            "start_rel_s": 0.0,
+            "delta_ns": 842000
+          },
+          {
+            "after_idx": 10,
+            "start_rel_s": 0.001072,
+            "delta_ns": 869000
+          },
+          {
+            "after_idx": 12,
+            "start_rel_s": 0.002008,
+            "delta_ns": 689000
+          },
+          {
+            "after_idx": 13,
+            "start_rel_s": 0.002697,
+            "delta_ns": 3942000
+          },
+          {
+            "after_idx": 38,
+            "start_rel_s": 0.007207,
+            "delta_ns": 661000
+          },
+          {
+            "after_idx": 39,
+            "start_rel_s": 0.007868,
+            "delta_ns": 843000
+          },
+          {
+            "after_idx": 41,
+            "start_rel_s": 0.009107,
+            "delta_ns": 587000
+          },
+          {
+            "after_idx": 43,
+            "start_rel_s": 0.010038,
+            "delta_ns": 554000
+          },
+          {
+            "after_idx": 46,
+            "start_rel_s": 0.011317,
+            "delta_ns": 649000
+          },
+          {
+            "after_idx": 47,
+            "start_rel_s": 0.011966,
+            "delta_ns": 682000
+          },
+          {
+            "after_idx": 49,
+            "start_rel_s": 0.013014,
+            "delta_ns": 580000
+          },
+          {
+            "after_idx": 51,
+            "start_rel_s": 0.013944,
+            "delta_ns": 499000
+          },
+          {
+            "after_idx": 52,
+            "start_rel_s": 0.014443,
+            "delta_ns": 493000
+          },
+          {
+            "after_idx": 53,
+            "start_rel_s": 0.014936,
+            "delta_ns": 625000
+          },
+          {
+            "after_idx": 54,
+            "start_rel_s": 0.015561,
+            "delta_ns": 1152000
+          },
+          {
+            "after_idx": 57,
+            "start_rel_s": 0.017367,
+            "delta_ns": 495000
+          },
+          {
+            "after_idx": 58,
+            "start_rel_s": 0.017862,
+            "delta_ns": 23892000
+          },
+          {
+            "after_idx": 63,
+            "start_rel_s": 0.042864,
+            "delta_ns": 709000
+          },
+          {
+            "after_idx": 65,
+            "start_rel_s": 0.043976,
+            "delta_ns": 502000
+          },
+          {
+            "after_idx": 68,
+            "start_rel_s": 0.045014,
+            "delta_ns": 678000
+          }
+        ],
+        "largest_gaps": [
+          {
+            "after_idx": 58,
+            "start_rel_s": 0.017862,
+            "delta_ns": 23892000
+          },
+          {
+            "after_idx": 13,
+            "start_rel_s": 0.002697,
+            "delta_ns": 3942000
+          },
+          {
+            "after_idx": 54,
+            "start_rel_s": 0.015561,
+            "delta_ns": 1152000
+          }
+        ],
+        "first_regressions_after_idx": []
+      },
+      "header": {
+        "first_ns": "1793522355589607000",
+        "last_ns": "1793522355647242000",
+        "duration_ns": 57635000,
+        "zero_count": 0,
+        "duplicate_count": 0,
+        "regressions": 0,
+        "interval_ns": {
+          "min": 17000.0,
+          "p01": 18000.0,
+          "p50": 320000.0,
+          "p95": 833399.9999999993,
+          "p99": 3886200.000000011,
+          "max": 23892000.0
+        },
+        "mean_rate_hz": 1787.1085278042856,
+        "median_interval_rate_hz": 3125.0,
+        "gaps_over_1p5_median": 31,
+        "first_20_gaps_over_1p5_median": [
+          {
+            "after_idx": 0,
+            "start_rel_s": 0.0,
+            "delta_ns": 842000
+          },
+          {
+            "after_idx": 10,
+            "start_rel_s": 0.001072,
+            "delta_ns": 869000
+          },
+          {
+            "after_idx": 12,
+            "start_rel_s": 0.002008,
+            "delta_ns": 689000
+          },
+          {
+            "after_idx": 13,
+            "start_rel_s": 0.002697,
+            "delta_ns": 3942000
+          },
+          {
+            "after_idx": 38,
+            "start_rel_s": 0.007207,
+            "delta_ns": 661000
+          },
+          {
+            "after_idx": 39,
+            "start_rel_s": 0.007868,
+            "delta_ns": 843000
+          },
+          {
+            "after_idx": 41,
+            "start_rel_s": 0.009107,
+            "delta_ns": 587000
+          },
+          {
+            "after_idx": 43,
+            "start_rel_s": 0.010038,
+            "delta_ns": 554000
+          },
+          {
+            "after_idx": 46,
+            "start_rel_s": 0.011317,
+            "delta_ns": 649000
+          },
+          {
+            "after_idx": 47,
+            "start_rel_s": 0.011966,
+            "delta_ns": 682000
+          },
+          {
+            "after_idx": 49,
+            "start_rel_s": 0.013014,
+            "delta_ns": 580000
+          },
+          {
+            "after_idx": 51,
+            "start_rel_s": 0.013944,
+            "delta_ns": 499000
+          },
+          {
+            "after_idx": 52,
+            "start_rel_s": 0.014443,
+            "delta_ns": 493000
+          },
+          {
+            "after_idx": 53,
+            "start_rel_s": 0.014936,
+            "delta_ns": 625000
+          },
+          {
+            "after_idx": 54,
+            "start_rel_s": 0.015561,
+            "delta_ns": 1152000
+          },
+          {
+            "after_idx": 57,
+            "start_rel_s": 0.017367,
+            "delta_ns": 495000
+          },
+          {
+            "after_idx": 58,
+            "start_rel_s": 0.017862,
+            "delta_ns": 23892000
+          },
+          {
+            "after_idx": 63,
+            "start_rel_s": 0.042864,
+            "delta_ns": 709000
+          },
+          {
+            "after_idx": 65,
+            "start_rel_s": 0.043976,
+            "delta_ns": 502000
+          },
+          {
+            "after_idx": 68,
+            "start_rel_s": 0.045014,
+            "delta_ns": 678000
+          }
+        ],
+        "largest_gaps": [
+          {
+            "after_idx": 58,
+            "start_rel_s": 0.017862,
+            "delta_ns": 23892000
+          },
+          {
+            "after_idx": 13,
+            "start_rel_s": 0.002697,
+            "delta_ns": 3942000
+          },
+          {
+            "after_idx": 54,
+            "start_rel_s": 0.015561,
+            "delta_ns": 1152000
+          }
+        ],
+        "first_regressions_after_idx": []
+      },
+      "record_minus_header_ns": {
+        "min": 0.0,
+        "p01": 0.0,
+        "p50": 0.0,
+        "p95": 0.0,
+        "p99": 0.0,
+        "max": 0.0
+      }
+    },
+    "/cam/sensor_3/frameType_3": {
+      "scanned_messages": 11068,
+      "total_indexed": 11068,
+      "clock_domain": "sensor device time",
+      "header_present": 11068,
+      "missing_or_zero_header_count": 0,
+      "record": {
+        "first_ns": "2426763600000",
+        "last_ns": "2796103457000",
+        "duration_ns": 369339857000,
+        "zero_count": 0,
+        "duplicate_count": 0,
+        "regressions": 0,
+        "interval_ns": {
+          "min": 31249000.0,
+          "p01": 32849600.0,
+          "p50": 33373000.0,
+          "p95": 33373000.0,
+          "p99": 33882680.0,
+          "max": 35276000.0
+        },
+        "mean_rate_hz": 29.96427217439465,
+        "median_interval_rate_hz": 29.96434243250532,
+        "gaps_over_1p5_median": 0,
+        "first_20_gaps_over_1p5_median": [],
+        "largest_gaps": [
+          {
+            "after_idx": 10602,
+            "start_rel_s": 353.819103,
+            "delta_ns": 35276000
+          },
+          {
+            "after_idx": 2830,
+            "start_rel_s": 94.440363,
+            "delta_ns": 34801000
+          },
+          {
+            "after_idx": 3042,
+            "start_rel_s": 101.515559,
+            "delta_ns": 34783000
+          }
+        ],
+        "first_regressions_after_idx": []
+      },
+      "header": {
+        "first_ns": "2426763600000",
+        "last_ns": "2796103457000",
+        "duration_ns": 369339857000,
+        "zero_count": 0,
+        "duplicate_count": 0,
+        "regressions": 0,
+        "interval_ns": {
+          "min": 31249000.0,
+          "p01": 32849600.0,
+          "p50": 33373000.0,
+          "p95": 33373000.0,
+          "p99": 33882680.0,
+          "max": 35276000.0
+        },
+        "mean_rate_hz": 29.96427217439465,
+        "median_interval_rate_hz": 29.96434243250532,
+        "gaps_over_1p5_median": 0,
+        "first_20_gaps_over_1p5_median": [],
+        "largest_gaps": [
+          {
+            "after_idx": 10602,
+            "start_rel_s": 353.819103,
+            "delta_ns": 35276000
+          },
+          {
+            "after_idx": 2830,
+            "start_rel_s": 94.440363,
+            "delta_ns": 34801000
+          },
+          {
+            "after_idx": 3042,
+            "start_rel_s": 101.515559,
+            "delta_ns": 34783000
+          }
+        ],
+        "first_regressions_after_idx": []
+      },
+      "record_minus_header_ns": {
+        "min": 0.0,
+        "p01": 0.0,
+        "p50": 0.0,
+        "p95": 0.0,
+        "p99": 0.0,
+        "max": 0.0
+      },
+      "device_ns": {
+        "first_ns": "2426763600000",
+        "last_ns": "2796103457000",
+        "duration_ns": 369339857000,
+        "zero_count": 0,
+        "duplicate_count": 0,
+        "regressions": 0,
+        "interval_ns": {
+          "min": 31249000.0,
+          "p01": 32849600.0,
+          "p50": 33373000.0,
+          "p95": 33373000.0,
+          "p99": 33882680.0,
+          "max": 35276000.0
+        },
+        "mean_rate_hz": 29.96427217439465,
+        "median_interval_rate_hz": 29.96434243250532,
+        "gaps_over_1p5_median": 0,
+        "first_20_gaps_over_1p5_median": [],
+        "largest_gaps": [
+          {
+            "after_idx": 10602,
+            "start_rel_s": 353.819103,
+            "delta_ns": 35276000
+          },
+          {
+            "after_idx": 2830,
+            "start_rel_s": 94.440363,
+            "delta_ns": 34801000
+          },
+          {
+            "after_idx": 3042,
+            "start_rel_s": 101.515559,
+            "delta_ns": 34783000
+          }
+        ],
+        "first_regressions_after_idx": []
+      },
+      "system_ns": {
+        "first_ns": "1793522355867376000",
+        "last_ns": "1793522725202216000",
+        "duration_ns": 369334840000,
+        "zero_count": 0,
+        "duplicate_count": 0,
+        "regressions": 0,
+        "interval_ns": {
+          "min": 30207000.0,
+          "p01": 32968000.0,
+          "p50": 33364000.0,
+          "p95": 33672000.0,
+          "p99": 33815000.0,
+          "max": 36395000.0
+        },
+        "mean_rate_hz": 29.964679205460282,
+        "median_interval_rate_hz": 29.972425368660833,
+        "gaps_over_1p5_median": 0,
+        "first_20_gaps_over_1p5_median": [],
+        "largest_gaps": [
+          {
+            "after_idx": 2508,
+            "start_rel_s": 83.698249,
+            "delta_ns": 36395000
+          },
+          {
+            "after_idx": 5515,
+            "start_rel_s": 184.049929,
+            "delta_ns": 35523000
+          },
+          {
+            "after_idx": 7045,
+            "start_rel_s": 235.10987,
+            "delta_ns": 35337000
+          }
+        ],
+        "first_regressions_after_idx": []
+      },
+      "global_ns": {
+        "first_ns": "1793522355846553000",
+        "last_ns": "1793522725181880000",
+        "duration_ns": 369335327000,
+        "zero_count": 0,
+        "duplicate_count": 0,
+        "regressions": 0,
+        "interval_ns": {
+          "min": 31249000.0,
+          "p01": 32845640.0,
+          "p50": 33373000.0,
+          "p95": 33384000.0,
+          "p99": 33882680.0,
+          "max": 35275000.0
+        },
+        "mean_rate_hz": 29.964639694485548,
+        "median_interval_rate_hz": 29.96434243250532,
+        "gaps_over_1p5_median": 0,
+        "first_20_gaps_over_1p5_median": [],
+        "largest_gaps": [
+          {
+            "after_idx": 10602,
+            "start_rel_s": 353.81515,
+            "delta_ns": 35275000
+          },
+          {
+            "after_idx": 2830,
+            "start_rel_s": 94.439074,
+            "delta_ns": 34802000
+          },
+          {
+            "after_idx": 3042,
+            "start_rel_s": 101.51433,
+            "delta_ns": 34797000
+          }
+        ],
+        "first_regressions_after_idx": []
+      },
+      "header_minus_device_ns": {
+        "min": 0.0,
+        "p01": 0.0,
+        "p50": 0.0,
+        "p95": 0.0,
+        "p99": 0.0,
+        "max": 0.0
+      },
+      "system_minus_global_ns": {
+        "min": 17790000.0,
+        "p01": 18836350.0,
+        "p50": 21757000.0,
+        "p95": 24804650.0,
+        "p99": 27022909.999999996,
+        "max": 28587000.0
+      },
+      "global_minus_device": {
+        "first_offset_ns": "1793519929082953000",
+        "last_minus_first_ns": -4530000,
+        "offset_minus_first_ns": {
+          "min": -4695000.0,
+          "p01": -4574990.0,
+          "p50": -2441000.0,
+          "p95": -295350.00000000035,
+          "p99": 1000.0,
+          "max": 40000.0
+        }
+      },
+      "system_minus_device": {
+        "first_offset_ns": "1793519929103776000",
+        "last_minus_first_ns": -5017000,
+        "offset_minus_first_ns": {
+          "min": -5956000.0,
+          "p01": -5380990.0,
+          "p50": -811500.0,
+          "p95": 2561599.9999999986,
+          "p99": 4144309.9999999995,
+          "max": 5242000.0
+        }
+      },
+      "number_first": 1,
+      "number_last": 11068,
+      "non_unit_number_increments": 0
+    },
+    "/cam/sensor_5/frameType_7": {
+      "scanned_messages": 73082,
+      "total_indexed": 73082,
+      "clock_domain": "sensor device time",
+      "header_present": 73082,
+      "missing_or_zero_header_count": 0,
+      "record": {
+        "first_ns": "2426816769000",
+        "last_ns": "2796116198000",
+        "duration_ns": 369299429000,
+        "zero_count": 0,
+        "duplicate_count": 0,
+        "regressions": 0,
+        "interval_ns": {
+          "min": 5052000.0,
+          "p01": 5053000.0,
+          "p50": 5053000.0,
+          "p95": 5054000.0,
+          "p99": 5054000.0,
+          "max": 5054000.0
+        },
+        "mean_rate_hz": 197.89090981778907,
+        "median_interval_rate_hz": 197.90223629527014,
+        "gaps_over_1p5_median": 0,
+        "first_20_gaps_over_1p5_median": [],
+        "largest_gaps": [
+          {
+            "after_idx": 5178,
+            "start_rel_s": 26.164045,
+            "delta_ns": 5054000
+          },
+          {
+            "after_idx": 5910,
+            "start_rel_s": 29.862839,
+            "delta_ns": 5054000
+          },
+          {
+            "after_idx": 5912,
+            "start_rel_s": 29.872945,
+            "delta_ns": 5054000
+          }
+        ],
+        "first_regressions_after_idx": []
+      },
+      "header": {
+        "first_ns": "2426816769000",
+        "last_ns": "2796116198000",
+        "duration_ns": 369299429000,
+        "zero_count": 0,
+        "duplicate_count": 0,
+        "regressions": 0,
+        "interval_ns": {
+          "min": 5052000.0,
+          "p01": 5053000.0,
+          "p50": 5053000.0,
+          "p95": 5054000.0,
+          "p99": 5054000.0,
+          "max": 5054000.0
+        },
+        "mean_rate_hz": 197.89090981778907,
+        "median_interval_rate_hz": 197.90223629527014,
+        "gaps_over_1p5_median": 0,
+        "first_20_gaps_over_1p5_median": [],
+        "largest_gaps": [
+          {
+            "after_idx": 5178,
+            "start_rel_s": 26.164045,
+            "delta_ns": 5054000
+          },
+          {
+            "after_idx": 5910,
+            "start_rel_s": 29.862839,
+            "delta_ns": 5054000
+          },
+          {
+            "after_idx": 5912,
+            "start_rel_s": 29.872945,
+            "delta_ns": 5054000
+          }
+        ],
+        "first_regressions_after_idx": []
+      },
+      "record_minus_header_ns": {
+        "min": 0.0,
+        "p01": 0.0,
+        "p50": 0.0,
+        "p95": 0.0,
+        "p99": 0.0,
+        "max": 0.0
+      },
+      "device_ns": {
+        "first_ns": "2426816769000",
+        "last_ns": "2796116198000",
+        "duration_ns": 369299429000,
+        "zero_count": 0,
+        "duplicate_count": 0,
+        "regressions": 0,
+        "interval_ns": {
+          "min": 5052000.0,
+          "p01": 5053000.0,
+          "p50": 5053000.0,
+          "p95": 5054000.0,
+          "p99": 5054000.0,
+          "max": 5054000.0
+        },
+        "mean_rate_hz": 197.89090981778907,
+        "median_interval_rate_hz": 197.90223629527014,
+        "gaps_over_1p5_median": 0,
+        "first_20_gaps_over_1p5_median": [],
+        "largest_gaps": [
+          {
+            "after_idx": 5178,
+            "start_rel_s": 26.164045,
+            "delta_ns": 5054000
+          },
+          {
+            "after_idx": 5910,
+            "start_rel_s": 29.862839,
+            "delta_ns": 5054000
+          },
+          {
+            "after_idx": 5912,
+            "start_rel_s": 29.872945,
+            "delta_ns": 5054000
+          }
+        ],
+        "first_regressions_after_idx": []
+      },
+      "system_ns": {
+        "first_ns": "1793522355906557000",
+        "last_ns": "1793522725198691000",
+        "duration_ns": 369292134000,
+        "zero_count": 0,
+        "duplicate_count": 36541,
+        "regressions": 0,
+        "interval_ns": {
+          "min": 0.0,
+          "p01": 0.0,
+          "p50": 0.0,
+          "p95": 12027000.0,
+          "p99": 12128199.999999996,
+          "max": 14799000.0
+        },
+        "mean_rate_hz": 197.89481895652833,
+        "median_interval_rate_hz": null,
+        "gaps_over_1p5_median": 0,
+        "first_20_gaps_over_1p5_median": [],
+        "largest_gaps": [
+          {
+            "after_idx": 22513,
+            "start_rel_s": 113.752094,
+            "delta_ns": 14799000
+          },
+          {
+            "after_idx": 46525,
+            "start_rel_s": 235.092115,
+            "delta_ns": 13103000
+          },
+          {
+            "after_idx": 19045,
+            "start_rel_s": 96.228053,
+            "delta_ns": 13052000
+          }
+        ],
+        "first_regressions_after_idx": []
+      },
+      "global_ns": {
+        "first_ns": "1793522355899722000",
+        "last_ns": "1793522725194621000",
+        "duration_ns": 369294899000,
+        "zero_count": 0,
+        "duplicate_count": 0,
+        "regressions": 0,
+        "interval_ns": {
+          "min": 5036000.0,
+          "p01": 5050000.0,
+          "p50": 5053000.0,
+          "p95": 5055000.0,
+          "p99": 5057000.0,
+          "max": 5072000.0
+        },
+        "mean_rate_hz": 197.89333727027733,
+        "median_interval_rate_hz": 197.90223629527014,
+        "gaps_over_1p5_median": 0,
+        "first_20_gaps_over_1p5_median": [],
+        "largest_gaps": [
+          {
+            "after_idx": 51757,
+            "start_rel_s": 261.53638,
+            "delta_ns": 5072000
+          },
+          {
+            "after_idx": 56451,
+            "start_rel_s": 285.256677,
+            "delta_ns": 5069000
+          },
+          {
+            "after_idx": 46513,
+            "start_rel_s": 235.03674,
+            "delta_ns": 5068000
+          }
+        ],
+        "first_regressions_after_idx": []
+      },
+      "header_minus_device_ns": {
+        "min": 0.0,
+        "p01": 0.0,
+        "p50": 0.0,
+        "p95": 0.0,
+        "p99": 0.0,
+        "max": 0.0
+      },
+      "system_minus_global_ns": {
+        "min": -714000.0,
+        "p01": -243000.0,
+        "p50": 4459500.0,
+        "p95": 8551949.999999996,
+        "p99": 9085000.0,
+        "max": 10651000.0
+      },
+      "global_minus_device": {
+        "first_offset_ns": "1793519929082953000",
+        "last_minus_first_ns": -4530000,
+        "offset_minus_first_ns": {
+          "min": -4696000.0,
+          "p01": -4576000.0,
+          "p50": -2441000.0,
+          "p95": -296000.0,
+          "p99": 2000.0,
+          "max": 41000.0
+        }
+      },
+      "system_minus_device": {
+        "first_offset_ns": "1793519929089788000",
+        "last_minus_first_ns": -7295000,
+        "offset_minus_first_ns": {
+          "min": -11109000.0,
+          "p01": -10343000.0,
+          "p50": -4636000.0,
+          "p95": 93000.0,
+          "p99": 1093190.0000000023,
+          "max": 2511000.0
+        }
+      },
+      "number_first": 1,
+      "number_last": 73082,
+      "non_unit_number_increments": 0
+    },
+    "/cam/sensor_4/frameType_4": {
+      "scanned_messages": 73082,
+      "total_indexed": 73082,
+      "clock_domain": "sensor device time",
+      "header_present": 73082,
+      "missing_or_zero_header_count": 0,
+      "record": {
+        "first_ns": "2426816769000",
+        "last_ns": "2796116198000",
+        "duration_ns": 369299429000,
+        "zero_count": 0,
+        "duplicate_count": 0,
+        "regressions": 0,
+        "interval_ns": {
+          "min": 5052000.0,
+          "p01": 5053000.0,
+          "p50": 5053000.0,
+          "p95": 5054000.0,
+          "p99": 5054000.0,
+          "max": 5054000.0
+        },
+        "mean_rate_hz": 197.89090981778907,
+        "median_interval_rate_hz": 197.90223629527014,
+        "gaps_over_1p5_median": 0,
+        "first_20_gaps_over_1p5_median": [],
+        "largest_gaps": [
+          {
+            "after_idx": 5178,
+            "start_rel_s": 26.164045,
+            "delta_ns": 5054000
+          },
+          {
+            "after_idx": 5910,
+            "start_rel_s": 29.862839,
+            "delta_ns": 5054000
+          },
+          {
+            "after_idx": 5912,
+            "start_rel_s": 29.872945,
+            "delta_ns": 5054000
+          }
+        ],
+        "first_regressions_after_idx": []
+      },
+      "header": {
+        "first_ns": "2426816769000",
+        "last_ns": "2796116198000",
+        "duration_ns": 369299429000,
+        "zero_count": 0,
+        "duplicate_count": 0,
+        "regressions": 0,
+        "interval_ns": {
+          "min": 5052000.0,
+          "p01": 5053000.0,
+          "p50": 5053000.0,
+          "p95": 5054000.0,
+          "p99": 5054000.0,
+          "max": 5054000.0
+        },
+        "mean_rate_hz": 197.89090981778907,
+        "median_interval_rate_hz": 197.90223629527014,
+        "gaps_over_1p5_median": 0,
+        "first_20_gaps_over_1p5_median": [],
+        "largest_gaps": [
+          {
+            "after_idx": 5178,
+            "start_rel_s": 26.164045,
+            "delta_ns": 5054000
+          },
+          {
+            "after_idx": 5910,
+            "start_rel_s": 29.862839,
+            "delta_ns": 5054000
+          },
+          {
+            "after_idx": 5912,
+            "start_rel_s": 29.872945,
+            "delta_ns": 5054000
+          }
+        ],
+        "first_regressions_after_idx": []
+      },
+      "record_minus_header_ns": {
+        "min": 0.0,
+        "p01": 0.0,
+        "p50": 0.0,
+        "p95": 0.0,
+        "p99": 0.0,
+        "max": 0.0
+      },
+      "device_ns": {
+        "first_ns": "2426816769000",
+        "last_ns": "2796116198000",
+        "duration_ns": 369299429000,
+        "zero_count": 0,
+        "duplicate_count": 0,
+        "regressions": 0,
+        "interval_ns": {
+          "min": 5052000.0,
+          "p01": 5053000.0,
+          "p50": 5053000.0,
+          "p95": 5054000.0,
+          "p99": 5054000.0,
+          "max": 5054000.0
+        },
+        "mean_rate_hz": 197.89090981778907,
+        "median_interval_rate_hz": 197.90223629527014,
+        "gaps_over_1p5_median": 0,
+        "first_20_gaps_over_1p5_median": [],
+        "largest_gaps": [
+          {
+            "after_idx": 5178,
+            "start_rel_s": 26.164045,
+            "delta_ns": 5054000
+          },
+          {
+            "after_idx": 5910,
+            "start_rel_s": 29.862839,
+            "delta_ns": 5054000
+          },
+          {
+            "after_idx": 5912,
+            "start_rel_s": 29.872945,
+            "delta_ns": 5054000
+          }
+        ],
+        "first_regressions_after_idx": []
+      },
+      "system_ns": {
+        "first_ns": "1793522355906557000",
+        "last_ns": "1793522725198691000",
+        "duration_ns": 369292134000,
+        "zero_count": 0,
+        "duplicate_count": 36541,
+        "regressions": 0,
+        "interval_ns": {
+          "min": 0.0,
+          "p01": 0.0,
+          "p50": 0.0,
+          "p95": 12027000.0,
+          "p99": 12128199.999999996,
+          "max": 14799000.0
+        },
+        "mean_rate_hz": 197.89481895652833,
+        "median_interval_rate_hz": null,
+        "gaps_over_1p5_median": 0,
+        "first_20_gaps_over_1p5_median": [],
+        "largest_gaps": [
+          {
+            "after_idx": 22513,
+            "start_rel_s": 113.752094,
+            "delta_ns": 14799000
+          },
+          {
+            "after_idx": 46525,
+            "start_rel_s": 235.092115,
+            "delta_ns": 13103000
+          },
+          {
+            "after_idx": 19045,
+            "start_rel_s": 96.228053,
+            "delta_ns": 13052000
+          }
+        ],
+        "first_regressions_after_idx": []
+      },
+      "global_ns": {
+        "first_ns": "1793522355899722000",
+        "last_ns": "1793522725194621000",
+        "duration_ns": 369294899000,
+        "zero_count": 0,
+        "duplicate_count": 0,
+        "regressions": 0,
+        "interval_ns": {
+          "min": 5036000.0,
+          "p01": 5050000.0,
+          "p50": 5053000.0,
+          "p95": 5055000.0,
+          "p99": 5057000.0,
+          "max": 5072000.0
+        },
+        "mean_rate_hz": 197.89333727027733,
+        "median_interval_rate_hz": 197.90223629527014,
+        "gaps_over_1p5_median": 0,
+        "first_20_gaps_over_1p5_median": [],
+        "largest_gaps": [
+          {
+            "after_idx": 51757,
+            "start_rel_s": 261.53638,
+            "delta_ns": 5072000
+          },
+          {
+            "after_idx": 56451,
+            "start_rel_s": 285.256677,
+            "delta_ns": 5069000
+          },
+          {
+            "after_idx": 46513,
+            "start_rel_s": 235.03674,
+            "delta_ns": 5068000
+          }
+        ],
+        "first_regressions_after_idx": []
+      },
+      "header_minus_device_ns": {
+        "min": 0.0,
+        "p01": 0.0,
+        "p50": 0.0,
+        "p95": 0.0,
+        "p99": 0.0,
+        "max": 0.0
+      },
+      "system_minus_global_ns": {
+        "min": -714000.0,
+        "p01": -243000.0,
+        "p50": 4459500.0,
+        "p95": 8551949.999999996,
+        "p99": 9085000.0,
+        "max": 10651000.0
+      },
+      "global_minus_device": {
+        "first_offset_ns": "1793519929082953000",
+        "last_minus_first_ns": -4530000,
+        "offset_minus_first_ns": {
+          "min": -4696000.0,
+          "p01": -4576000.0,
+          "p50": -2441000.0,
+          "p95": -296000.0,
+          "p99": 2000.0,
+          "max": 41000.0
+        }
+      },
+      "system_minus_device": {
+        "first_offset_ns": "1793519929089788000",
+        "last_minus_first_ns": -7295000,
+        "offset_minus_first_ns": {
+          "min": -11109000.0,
+          "p01": -10343000.0,
+          "p50": -4636000.0,
+          "p95": 93000.0,
+          "p99": 1093190.0000000023,
+          "max": 2511000.0
+        }
+      },
+      "number_first": 1,
+      "number_last": 73082,
+      "non_unit_number_increments": 0
+    },
+    "/cam/sensor_2/frameType_2": {
+      "scanned_messages": 11041,
+      "total_indexed": 11041,
+      "clock_domain": "sensor device time",
+      "header_present": 11041,
+      "missing_or_zero_header_count": 0,
+      "record": {
+        "first_ns": "2427228619000",
+        "last_ns": "2796103366000",
+        "duration_ns": 368874747000,
+        "zero_count": 0,
+        "duplicate_count": 0,
+        "regressions": 0,
+        "interval_ns": {
+          "min": 28366000.0,
+          "p01": 32848000.0,
+          "p50": 33367000.0,
+          "p95": 33440149.999999996,
+          "p99": 33937000.0,
+          "max": 64530000.0
+        },
+        "mean_rate_hz": 29.92885820942359,
+        "median_interval_rate_hz": 29.969730572122156,
+        "gaps_over_1p5_median": 13,
+        "first_20_gaps_over_1p5_median": [
+          {
+            "after_idx": 2645,
+            "start_rel_s": 88.275526,
+            "delta_ns": 61729000
+          },
+          {
+            "after_idx": 3170,
+            "start_rel_s": 105.830541,
+            "delta_ns": 60770000
+          },
+          {
+            "after_idx": 4442,
+            "start_rel_s": 148.314474,
+            "delta_ns": 61729000
+          },
+          {
+            "after_idx": 4915,
+            "start_rel_s": 164.130455,
+            "delta_ns": 64530000
+          },
+          {
+            "after_idx": 4946,
+            "start_rel_s": 165.196037,
+            "delta_ns": 64478000
+          },
+          {
+            "after_idx": 4969,
+            "start_rel_s": 165.994896,
+            "delta_ns": 59530000
+          },
+          {
+            "after_idx": 5057,
+            "start_rel_s": 168.96987,
+            "delta_ns": 62404000
+          },
+          {
+            "after_idx": 5075,
+            "start_rel_s": 169.606037,
+            "delta_ns": 61729000
+          },
+          {
+            "after_idx": 5325,
+            "start_rel_s": 177.986281,
+            "delta_ns": 61756000
+          },
+          {
+            "after_idx": 5633,
+            "start_rel_s": 188.294144,
+            "delta_ns": 61756000
+          },
+          {
+            "after_idx": 7829,
+            "start_rel_s": 261.616966,
+            "delta_ns": 61730000
+          },
+          {
+            "after_idx": 8363,
+            "start_rel_s": 279.467381,
+            "delta_ns": 64478000
+          },
+          {
+            "after_idx": 10570,
+            "start_rel_s": 353.15594,
+            "delta_ns": 64115000
+          }
+        ],
+        "largest_gaps": [
+          {
+            "after_idx": 4915,
+            "start_rel_s": 164.130455,
+            "delta_ns": 64530000
+          },
+          {
+            "after_idx": 4946,
+            "start_rel_s": 165.196037,
+            "delta_ns": 64478000
+          },
+          {
+            "after_idx": 8363,
+            "start_rel_s": 279.467381,
+            "delta_ns": 64478000
+          }
+        ],
+        "first_regressions_after_idx": []
+      },
+      "header": {
+        "first_ns": "2427228619000",
+        "last_ns": "2796103366000",
+        "duration_ns": 368874747000,
+        "zero_count": 0,
+        "duplicate_count": 0,
+        "regressions": 0,
+        "interval_ns": {
+          "min": 28366000.0,
+          "p01": 32848000.0,
+          "p50": 33367000.0,
+          "p95": 33440149.999999996,
+          "p99": 33937000.0,
+          "max": 64530000.0
+        },
+        "mean_rate_hz": 29.92885820942359,
+        "median_interval_rate_hz": 29.969730572122156,
+        "gaps_over_1p5_median": 13,
+        "first_20_gaps_over_1p5_median": [
+          {
+            "after_idx": 2645,
+            "start_rel_s": 88.275526,
+            "delta_ns": 61729000
+          },
+          {
+            "after_idx": 3170,
+            "start_rel_s": 105.830541,
+            "delta_ns": 60770000
+          },
+          {
+            "after_idx": 4442,
+            "start_rel_s": 148.314474,
+            "delta_ns": 61729000
+          },
+          {
+            "after_idx": 4915,
+            "start_rel_s": 164.130455,
+            "delta_ns": 64530000
+          },
+          {
+            "after_idx": 4946,
+            "start_rel_s": 165.196037,
+            "delta_ns": 64478000
+          },
+          {
+            "after_idx": 4969,
+            "start_rel_s": 165.994896,
+            "delta_ns": 59530000
+          },
+          {
+            "after_idx": 5057,
+            "start_rel_s": 168.96987,
+            "delta_ns": 62404000
+          },
+          {
+            "after_idx": 5075,
+            "start_rel_s": 169.606037,
+            "delta_ns": 61729000
+          },
+          {
+            "after_idx": 5325,
+            "start_rel_s": 177.986281,
+            "delta_ns": 61756000
+          },
+          {
+            "after_idx": 5633,
+            "start_rel_s": 188.294144,
+            "delta_ns": 61756000
+          },
+          {
+            "after_idx": 7829,
+            "start_rel_s": 261.616966,
+            "delta_ns": 61730000
+          },
+          {
+            "after_idx": 8363,
+            "start_rel_s": 279.467381,
+            "delta_ns": 64478000
+          },
+          {
+            "after_idx": 10570,
+            "start_rel_s": 353.15594,
+            "delta_ns": 64115000
+          }
+        ],
+        "largest_gaps": [
+          {
+            "after_idx": 4915,
+            "start_rel_s": 164.130455,
+            "delta_ns": 64530000
+          },
+          {
+            "after_idx": 4946,
+            "start_rel_s": 165.196037,
+            "delta_ns": 64478000
+          },
+          {
+            "after_idx": 8363,
+            "start_rel_s": 279.467381,
+            "delta_ns": 64478000
+          }
+        ],
+        "first_regressions_after_idx": []
+      },
+      "record_minus_header_ns": {
+        "min": 0.0,
+        "p01": 0.0,
+        "p50": 0.0,
+        "p95": 0.0,
+        "p99": 0.0,
+        "max": 0.0
+      },
+      "device_ns": {
+        "first_ns": "2427228619000",
+        "last_ns": "2796103366000",
+        "duration_ns": 368874747000,
+        "zero_count": 0,
+        "duplicate_count": 0,
+        "regressions": 0,
+        "interval_ns": {
+          "min": 28366000.0,
+          "p01": 32848000.0,
+          "p50": 33367000.0,
+          "p95": 33440149.999999996,
+          "p99": 33937000.0,
+          "max": 64530000.0
+        },
+        "mean_rate_hz": 29.92885820942359,
+        "median_interval_rate_hz": 29.969730572122156,
+        "gaps_over_1p5_median": 13,
+        "first_20_gaps_over_1p5_median": [
+          {
+            "after_idx": 2645,
+            "start_rel_s": 88.275526,
+            "delta_ns": 61729000
+          },
+          {
+            "after_idx": 3170,
+            "start_rel_s": 105.830541,
+            "delta_ns": 60770000
+          },
+          {
+            "after_idx": 4442,
+            "start_rel_s": 148.314474,
+            "delta_ns": 61729000
+          },
+          {
+            "after_idx": 4915,
+            "start_rel_s": 164.130455,
+            "delta_ns": 64530000
+          },
+          {
+            "after_idx": 4946,
+            "start_rel_s": 165.196037,
+            "delta_ns": 64478000
+          },
+          {
+            "after_idx": 4969,
+            "start_rel_s": 165.994896,
+            "delta_ns": 59530000
+          },
+          {
+            "after_idx": 5057,
+            "start_rel_s": 168.96987,
+            "delta_ns": 62404000
+          },
+          {
+            "after_idx": 5075,
+            "start_rel_s": 169.606037,
+            "delta_ns": 61729000
+          },
+          {
+            "after_idx": 5325,
+            "start_rel_s": 177.986281,
+            "delta_ns": 61756000
+          },
+          {
+            "after_idx": 5633,
+            "start_rel_s": 188.294144,
+            "delta_ns": 61756000
+          },
+          {
+            "after_idx": 7829,
+            "start_rel_s": 261.616966,
+            "delta_ns": 61730000
+          },
+          {
+            "after_idx": 8363,
+            "start_rel_s": 279.467381,
+            "delta_ns": 64478000
+          },
+          {
+            "after_idx": 10570,
+            "start_rel_s": 353.15594,
+            "delta_ns": 64115000
+          }
+        ],
+        "largest_gaps": [
+          {
+            "after_idx": 4915,
+            "start_rel_s": 164.130455,
+            "delta_ns": 64530000
+          },
+          {
+            "after_idx": 4946,
+            "start_rel_s": 165.196037,
+            "delta_ns": 64478000
+          },
+          {
+            "after_idx": 8363,
+            "start_rel_s": 279.467381,
+            "delta_ns": 64478000
+          }
+        ],
+        "first_regressions_after_idx": []
+      },
+      "system_ns": {
+        "first_ns": "1793522356331503000",
+        "last_ns": "1793522725200192000",
+        "duration_ns": 368868689000,
+        "zero_count": 0,
+        "duplicate_count": 0,
+        "regressions": 0,
+        "interval_ns": {
+          "min": 31241000.0,
+          "p01": 32760390.0,
+          "p50": 33360000.0,
+          "p95": 33765000.0,
+          "p99": 34047270.00000001,
+          "max": 64867000.0
+        },
+        "mean_rate_hz": 29.929349736702644,
+        "median_interval_rate_hz": 29.976019184652277,
+        "gaps_over_1p5_median": 13,
+        "first_20_gaps_over_1p5_median": [
+          {
+            "after_idx": 2645,
+            "start_rel_s": 88.274029,
+            "delta_ns": 61775000
+          },
+          {
+            "after_idx": 3170,
+            "start_rel_s": 105.829166,
+            "delta_ns": 60789000
+          },
+          {
+            "after_idx": 4442,
+            "start_rel_s": 148.31226,
+            "delta_ns": 62067000
+          },
+          {
+            "after_idx": 4915,
+            "start_rel_s": 164.128081,
+            "delta_ns": 64867000
+          },
+          {
+            "after_idx": 4946,
+            "start_rel_s": 165.193993,
+            "delta_ns": 64135000
+          },
+          {
+            "after_idx": 4969,
+            "start_rel_s": 165.99775,
+            "delta_ns": 64409000
+          },
+          {
+            "after_idx": 5057,
+            "start_rel_s": 168.972571,
+            "delta_ns": 62687000
+          },
+          {
+            "after_idx": 5075,
+            "start_rel_s": 169.603692,
+            "delta_ns": 61804000
+          },
+          {
+            "after_idx": 5325,
+            "start_rel_s": 177.983849,
+            "delta_ns": 61891000
+          },
+          {
+            "after_idx": 5633,
+            "start_rel_s": 188.291549,
+            "delta_ns": 61759000
+          },
+          {
+            "after_idx": 7829,
+            "start_rel_s": 261.613672,
+            "delta_ns": 61787000
+          },
+          {
+            "after_idx": 8363,
+            "start_rel_s": 279.464059,
+            "delta_ns": 64239000
+          },
+          {
+            "after_idx": 10570,
+            "start_rel_s": 353.151822,
+            "delta_ns": 64068000
+          }
+        ],
+        "largest_gaps": [
+          {
+            "after_idx": 4915,
+            "start_rel_s": 164.128081,
+            "delta_ns": 64867000
+          },
+          {
+            "after_idx": 4969,
+            "start_rel_s": 165.99775,
+            "delta_ns": 64409000
+          },
+          {
+            "after_idx": 8363,
+            "start_rel_s": 279.464059,
+            "delta_ns": 64239000
+          }
+        ],
+        "first_regressions_after_idx": []
+      },
+      "global_ns": {
+        "first_ns": "1793522356311572000",
+        "last_ns": "1793522725181789000",
+        "duration_ns": 368870217000,
+        "zero_count": 0,
+        "duplicate_count": 0,
+        "regressions": 0,
+        "interval_ns": {
+          "min": 28364000.0,
+          "p01": 32847000.0,
+          "p50": 33367000.0,
+          "p95": 33436050.0,
+          "p99": 33937000.0,
+          "max": 64529000.0
+        },
+        "mean_rate_hz": 29.929225758012336,
+        "median_interval_rate_hz": 29.969730572122156,
+        "gaps_over_1p5_median": 13,
+        "first_20_gaps_over_1p5_median": [
+          {
+            "after_idx": 2645,
+            "start_rel_s": 88.274498,
+            "delta_ns": 61727000
+          },
+          {
+            "after_idx": 3170,
+            "start_rel_s": 105.829391,
+            "delta_ns": 60770000
+          },
+          {
+            "after_idx": 4442,
+            "start_rel_s": 148.312177,
+            "delta_ns": 61727000
+          },
+          {
+            "after_idx": 4915,
+            "start_rel_s": 164.128014,
+            "delta_ns": 64529000
+          },
+          {
+            "after_idx": 4946,
+            "start_rel_s": 165.193569,
+            "delta_ns": 64477000
+          },
+          {
+            "after_idx": 4969,
+            "start_rel_s": 165.992408,
+            "delta_ns": 59528000
+          },
+          {
+            "after_idx": 5057,
+            "start_rel_s": 168.967305,
+            "delta_ns": 62403000
+          },
+          {
+            "after_idx": 5075,
+            "start_rel_s": 169.603456,
+            "delta_ns": 61728000
+          },
+          {
+            "after_idx": 5325,
+            "start_rel_s": 177.983676,
+            "delta_ns": 61756000
+          },
+          {
+            "after_idx": 5633,
+            "start_rel_s": 188.291442,
+            "delta_ns": 61756000
+          },
+          {
+            "after_idx": 7829,
+            "start_rel_s": 261.614223,
+            "delta_ns": 61729000
+          },
+          {
+            "after_idx": 8363,
+            "start_rel_s": 279.464199,
+            "delta_ns": 64476000
+          },
+          {
+            "after_idx": 10570,
+            "start_rel_s": 353.151989,
+            "delta_ns": 64114000
+          }
+        ],
+        "largest_gaps": [
+          {
+            "after_idx": 4915,
+            "start_rel_s": 164.128014,
+            "delta_ns": 64529000
+          },
+          {
+            "after_idx": 4946,
+            "start_rel_s": 165.193569,
+            "delta_ns": 64477000
+          },
+          {
+            "after_idx": 8363,
+            "start_rel_s": 279.464199,
+            "delta_ns": 64476000
+          }
+        ],
+        "first_regressions_after_idx": []
+      },
+      "header_minus_device_ns": {
+        "min": 0.0,
+        "p01": 0.0,
+        "p50": 0.0,
+        "p95": 0.0,
+        "p99": 0.0,
+        "max": 0.0
+      },
+      "system_minus_global_ns": {
+        "min": 16241000.0,
+        "p01": 17086800.0,
+        "p50": 19608000.0,
+        "p95": 24818000.0,
+        "p99": 25365000.0,
+        "max": 30478000.0
+      },
+      "global_minus_device": {
+        "first_offset_ns": "1793519929082953000",
+        "last_minus_first_ns": -4530000,
+        "offset_minus_first_ns": {
+          "min": -4695000.0,
+          "p01": -4575800.0,
+          "p50": -2441000.0,
+          "p95": -296000.0,
+          "p99": 2000.0,
+          "max": 40000.0
+        }
+      },
+      "system_minus_device": {
+        "first_offset_ns": "1793519929102884000",
+        "last_minus_first_ns": -6058000,
+        "offset_minus_first_ns": {
+          "min": -6612000.0,
+          "p01": -6023600.0,
+          "p50": -2343000.0,
+          "p95": 3347000.0,
+          "p99": 3829000.000000002,
+          "max": 8041000.0
+        }
+      },
+      "number_first": 1,
+      "number_last": 11041,
+      "non_unit_number_increments": 0
+    },
+    "/cam/deviceInfo": {
+      "scanned_messages": 1,
+      "total_indexed": 1,
+      "clock_domain": "static metadata stamped with first capture device time",
+      "header_present": 1,
+      "missing_or_zero_header_count": 0,
+      "record": {
+        "first_ns": "2426763600000",
+        "last_ns": "2426763600000",
+        "duration_ns": 0,
+        "zero_count": 0,
+        "duplicate_count": 0,
+        "regressions": 0,
+        "interval_ns": {},
+        "mean_rate_hz": null,
+        "median_interval_rate_hz": null,
+        "gaps_over_1p5_median": 0,
+        "first_20_gaps_over_1p5_median": [],
+        "largest_gaps": [],
+        "first_regressions_after_idx": []
+      },
+      "header": {
+        "first_ns": "2426763600000",
+        "last_ns": "2426763600000",
+        "duration_ns": 0,
+        "zero_count": 0,
+        "duplicate_count": 0,
+        "regressions": 0,
+        "interval_ns": {},
+        "mean_rate_hz": null,
+        "median_interval_rate_hz": null,
+        "gaps_over_1p5_median": 0,
+        "first_20_gaps_over_1p5_median": [],
+        "largest_gaps": [],
+        "first_regressions_after_idx": []
+      },
+      "record_minus_header_ns": {
+        "min": 0.0,
+        "p01": 0.0,
+        "p50": 0.0,
+        "p95": 0.0,
+        "p99": 0.0,
+        "max": 0.0
+      }
+    },
+    "/cam/streamProfileType_2": {
+      "scanned_messages": 1,
+      "total_indexed": 1,
+      "clock_domain": "static metadata stamped with first capture device time",
+      "header_present": 1,
+      "missing_or_zero_header_count": 0,
+      "record": {
+        "first_ns": "2426763600000",
+        "last_ns": "2426763600000",
+        "duration_ns": 0,
+        "zero_count": 0,
+        "duplicate_count": 0,
+        "regressions": 0,
+        "interval_ns": {},
+        "mean_rate_hz": null,
+        "median_interval_rate_hz": null,
+        "gaps_over_1p5_median": 0,
+        "first_20_gaps_over_1p5_median": [],
+        "largest_gaps": [],
+        "first_regressions_after_idx": []
+      },
+      "header": {
+        "first_ns": "2426763600000",
+        "last_ns": "2426763600000",
+        "duration_ns": 0,
+        "zero_count": 0,
+        "duplicate_count": 0,
+        "regressions": 0,
+        "interval_ns": {},
+        "mean_rate_hz": null,
+        "median_interval_rate_hz": null,
+        "gaps_over_1p5_median": 0,
+        "first_20_gaps_over_1p5_median": [],
+        "largest_gaps": [],
+        "first_regressions_after_idx": []
+      },
+      "record_minus_header_ns": {
+        "min": 0.0,
+        "p01": 0.0,
+        "p50": 0.0,
+        "p95": 0.0,
+        "p99": 0.0,
+        "max": 0.0
+      }
+    },
+    "/cam/disparityParam": {
+      "scanned_messages": 1,
+      "total_indexed": 1,
+      "clock_domain": "static metadata stamped with first capture device time",
+      "header_present": 1,
+      "missing_or_zero_header_count": 0,
+      "record": {
+        "first_ns": "2426763600000",
+        "last_ns": "2426763600000",
+        "duration_ns": 0,
+        "zero_count": 0,
+        "duplicate_count": 0,
+        "regressions": 0,
+        "interval_ns": {},
+        "mean_rate_hz": null,
+        "median_interval_rate_hz": null,
+        "gaps_over_1p5_median": 0,
+        "first_20_gaps_over_1p5_median": [],
+        "largest_gaps": [],
+        "first_regressions_after_idx": []
+      },
+      "header": {
+        "first_ns": "2426763600000",
+        "last_ns": "2426763600000",
+        "duration_ns": 0,
+        "zero_count": 0,
+        "duplicate_count": 0,
+        "regressions": 0,
+        "interval_ns": {},
+        "mean_rate_hz": null,
+        "median_interval_rate_hz": null,
+        "gaps_over_1p5_median": 0,
+        "first_20_gaps_over_1p5_median": [],
+        "largest_gaps": [],
+        "first_regressions_after_idx": []
+      },
+      "record_minus_header_ns": {
+        "min": 0.0,
+        "p01": 0.0,
+        "p50": 0.0,
+        "p95": 0.0,
+        "p99": 0.0,
+        "max": 0.0
+      }
+    },
+    "/cam/streamProfileType_3": {
+      "scanned_messages": 1,
+      "total_indexed": 1,
+      "clock_domain": "static metadata stamped with first capture device time",
+      "header_present": 1,
+      "missing_or_zero_header_count": 0,
+      "record": {
+        "first_ns": "2426763600000",
+        "last_ns": "2426763600000",
+        "duration_ns": 0,
+        "zero_count": 0,
+        "duplicate_count": 0,
+        "regressions": 0,
+        "interval_ns": {},
+        "mean_rate_hz": null,
+        "median_interval_rate_hz": null,
+        "gaps_over_1p5_median": 0,
+        "first_20_gaps_over_1p5_median": [],
+        "largest_gaps": [],
+        "first_regressions_after_idx": []
+      },
+      "header": {
+        "first_ns": "2426763600000",
+        "last_ns": "2426763600000",
+        "duration_ns": 0,
+        "zero_count": 0,
+        "duplicate_count": 0,
+        "regressions": 0,
+        "interval_ns": {},
+        "mean_rate_hz": null,
+        "median_interval_rate_hz": null,
+        "gaps_over_1p5_median": 0,
+        "first_20_gaps_over_1p5_median": [],
+        "largest_gaps": [],
+        "first_regressions_after_idx": []
+      },
+      "record_minus_header_ns": {
+        "min": 0.0,
+        "p01": 0.0,
+        "p50": 0.0,
+        "p95": 0.0,
+        "p99": 0.0,
+        "max": 0.0
+      }
+    },
+    "/cam/streamProfileType_4": {
+      "scanned_messages": 1,
+      "total_indexed": 1,
+      "clock_domain": "static metadata stamped with first capture device time",
+      "header_present": 1,
+      "missing_or_zero_header_count": 0,
+      "record": {
+        "first_ns": "2426763600000",
+        "last_ns": "2426763600000",
+        "duration_ns": 0,
+        "zero_count": 0,
+        "duplicate_count": 0,
+        "regressions": 0,
+        "interval_ns": {},
+        "mean_rate_hz": null,
+        "median_interval_rate_hz": null,
+        "gaps_over_1p5_median": 0,
+        "first_20_gaps_over_1p5_median": [],
+        "largest_gaps": [],
+        "first_regressions_after_idx": []
+      },
+      "header": {
+        "first_ns": "2426763600000",
+        "last_ns": "2426763600000",
+        "duration_ns": 0,
+        "zero_count": 0,
+        "duplicate_count": 0,
+        "regressions": 0,
+        "interval_ns": {},
+        "mean_rate_hz": null,
+        "median_interval_rate_hz": null,
+        "gaps_over_1p5_median": 0,
+        "first_20_gaps_over_1p5_median": [],
+        "largest_gaps": [],
+        "first_regressions_after_idx": []
+      },
+      "record_minus_header_ns": {
+        "min": 0.0,
+        "p01": 0.0,
+        "p50": 0.0,
+        "p95": 0.0,
+        "p99": 0.0,
+        "max": 0.0
+      }
+    },
+    "/cam/streamProfileType_5": {
+      "scanned_messages": 1,
+      "total_indexed": 1,
+      "clock_domain": "static metadata stamped with first capture device time",
+      "header_present": 1,
+      "missing_or_zero_header_count": 0,
+      "record": {
+        "first_ns": "2426763600000",
+        "last_ns": "2426763600000",
+        "duration_ns": 0,
+        "zero_count": 0,
+        "duplicate_count": 0,
+        "regressions": 0,
+        "interval_ns": {},
+        "mean_rate_hz": null,
+        "median_interval_rate_hz": null,
+        "gaps_over_1p5_median": 0,
+        "first_20_gaps_over_1p5_median": [],
+        "largest_gaps": [],
+        "first_regressions_after_idx": []
+      },
+      "header": {
+        "first_ns": "2426763600000",
+        "last_ns": "2426763600000",
+        "duration_ns": 0,
+        "zero_count": 0,
+        "duplicate_count": 0,
+        "regressions": 0,
+        "interval_ns": {},
+        "mean_rate_hz": null,
+        "median_interval_rate_hz": null,
+        "gaps_over_1p5_median": 0,
+        "first_20_gaps_over_1p5_median": [],
+        "largest_gaps": [],
+        "first_regressions_after_idx": []
+      },
+      "record_minus_header_ns": {
+        "min": 0.0,
+        "p01": 0.0,
+        "p50": 0.0,
+        "p95": 0.0,
+        "p99": 0.0,
+        "max": 0.0
+      }
+    }
+  }
+}

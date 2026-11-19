@@ -1,0 +1,686 @@
+{
+  "topic": "/cam/sensor_3/frameType_3",
+  "sampled_frames": 26,
+  "total_frames": 11068,
+  "frames": [
+    {
+      "id": 1,
+      "time_rel_s": 0.465019,
+      "total_pixels": 407040,
+      "zero": 10871,
+      "uint16_max": 25728,
+      "valid_fraction": 0.9100850039308176,
+      "valid_raw": {
+        "min": 1647.0,
+        "p01": 1978.0,
+        "p50": 10462.0,
+        "p95": 28492.0,
+        "p99": 37198.0,
+        "max": 41848.0
+      },
+      "raw_all": {
+        "min": 0.0,
+        "p01": 0.0,
+        "p50": 10887.0,
+        "p95": 65535.0,
+        "p99": 65535.0,
+        "max": 65535.0
+      }
+    },
+    {
+      "id": 2,
+      "time_rel_s": 16.486438,
+      "total_pixels": 407040,
+      "zero": 13143,
+      "uint16_max": 25215,
+      "valid_fraction": 0.9057635613207548,
+      "valid_raw": {
+        "min": 1583.0,
+        "p01": 1674.0,
+        "p50": 5151.0,
+        "p95": 29759.0,
+        "p99": 38261.0,
+        "max": 40580.0
+      },
+      "raw_all": {
+        "min": 0.0,
+        "p01": 0.0,
+        "p50": 5557.0,
+        "p95": 65535.0,
+        "p99": 65535.0,
+        "max": 65535.0
+      }
+    },
+    {
+      "id": 3,
+      "time_rel_s": 32.537623,
+      "total_pixels": 407040,
+      "zero": 11253,
+      "uint16_max": 13067,
+      "valid_fraction": 0.940251572327044,
+      "valid_raw": {
+        "min": 588.0,
+        "p01": 1897.0,
+        "p50": 6287.0,
+        "p95": 26783.0,
+        "p99": 36193.0,
+        "max": 41848.0
+      },
+      "raw_all": {
+        "min": 0.0,
+        "p01": 0.0,
+        "p50": 6347.0,
+        "p95": 32662.0,
+        "p99": 65535.0,
+        "max": 65535.0
+      }
+    },
+    {
+      "id": 4,
+      "time_rel_s": 48.589426,
+      "total_pixels": 407040,
+      "zero": 7182,
+      "uint16_max": 7158,
+      "valid_fraction": 0.9647700471698113,
+      "valid_raw": {
+        "min": 2112.0,
+        "p01": 2313.0,
+        "p50": 13665.0,
+        "p95": 28492.0,
+        "p99": 36193.0,
+        "max": 41848.0
+      },
+      "raw_all": {
+        "min": 0.0,
+        "p01": 0.0,
+        "p50": 13665.0,
+        "p95": 31143.0,
+        "p99": 65535.0,
+        "max": 65535.0
+      }
+    },
+    {
+      "id": 5,
+      "time_rel_s": 64.607578,
+      "total_pixels": 407040,
+      "zero": 9951,
+      "uint16_max": 6798,
+      "valid_fraction": 0.9588517099056604,
+      "valid_raw": {
+        "min": 2092.0,
+        "p01": 2325.0,
+        "p50": 7523.0,
+        "p95": 25753.0,
+        "p99": 34337.0,
+        "max": 40580.0
+      },
+      "raw_all": {
+        "min": 0.0,
+        "p01": 0.0,
+        "p50": 7440.0,
+        "p95": 27899.0,
+        "p99": 65535.0,
+        "max": 65535.0
+      }
+    },
+    {
+      "id": 6,
+      "time_rel_s": 80.658941,
+      "total_pixels": 407040,
+      "zero": 13883,
+      "uint16_max": 8867,
+      "valid_fraction": 0.9441086871069182,
+      "valid_raw": {
+        "min": 272.0,
+        "p01": 1704.0,
+        "p50": 13806.0,
+        "p95": 29112.0,
+        "p99": 37198.0,
+        "max": 41848.0
+      },
+      "raw_all": {
+        "min": 0.0,
+        "p01": 0.0,
+        "p50": 13527.0,
+        "p95": 31884.0,
+        "p99": 65535.0,
+        "max": 65535.0
+      }
+    },
+    {
+      "id": 7,
+      "time_rel_s": 96.678289,
+      "total_pixels": 407040,
+      "zero": 12654,
+      "uint16_max": 25678,
+      "valid_fraction": 0.9058274371069183,
+      "valid_raw": {
+        "min": 254.0,
+        "p01": 2565.0,
+        "p50": 10713.0,
+        "p95": 29112.0,
+        "p99": 38261.0,
+        "max": 41848.0
+      },
+      "raw_all": {
+        "min": 0.0,
+        "p01": 0.0,
+        "p50": 10887.0,
+        "p95": 65535.0,
+        "p99": 65535.0,
+        "max": 65535.0
+      }
+    },
+    {
+      "id": 8,
+      "time_rel_s": 112.731878,
+      "total_pixels": 407040,
+      "zero": 9382,
+      "uint16_max": 4214,
+      "valid_fraction": 0.9665978773584906,
+      "valid_raw": {
+        "min": 1786.0,
+        "p01": 2146.0,
+        "p50": 15755.0,
+        "p95": 27899.0,
+        "p99": 35241.0,
+        "max": 40580.0
+      },
+      "raw_all": {
+        "min": 0.0,
+        "p01": 0.0,
+        "p50": 15392.0,
+        "p95": 28492.0,
+        "p99": 65535.0,
+        "max": 65535.0
+      }
+    },
+    {
+      "id": 9,
+      "time_rel_s": 128.782852,
+      "total_pixels": 407040,
+      "zero": 12785,
+      "uint16_max": 8944,
+      "valid_fraction": 0.9466170400943397,
+      "valid_raw": {
+        "min": 2146.0,
+        "p01": 2305.0,
+        "p50": 10887.0,
+        "p95": 29112.0,
+        "p99": 37198.0,
+        "max": 40580.0
+      },
+      "raw_all": {
+        "min": 0.0,
+        "p01": 0.0,
+        "p50": 10713.0,
+        "p95": 31884.0,
+        "p99": 65535.0,
+        "max": 65535.0
+      }
+    },
+    {
+      "id": 10,
+      "time_rel_s": 144.801422,
+      "total_pixels": 407040,
+      "zero": 12414,
+      "uint16_max": 11009,
+      "valid_fraction": 0.9424552869496855,
+      "valid_raw": {
+        "min": 1222.0,
+        "p01": 1288.0,
+        "p50": 10462.0,
+        "p95": 27329.0,
+        "p99": 36193.0,
+        "max": 41848.0
+      },
+      "raw_all": {
+        "min": 0.0,
+        "p01": 0.0,
+        "p50": 10462.0,
+        "p95": 31143.0,
+        "p99": 65535.0,
+        "max": 65535.0
+      }
+    },
+    {
+      "id": 11,
+      "time_rel_s": 160.856904,
+      "total_pixels": 407040,
+      "zero": 21805,
+      "uint16_max": 174,
+      "valid_fraction": 0.9460028498427673,
+      "valid_raw": {
+        "min": 490.0,
+        "p01": 527.0,
+        "p50": 7696.0,
+        "p95": 18599.0,
+        "p99": 23089.0,
+        "max": 40580.0
+      },
+      "raw_all": {
+        "min": 0.0,
+        "p01": 0.0,
+        "p50": 6469.0,
+        "p95": 18344.0,
+        "p99": 22697.0,
+        "max": 65535.0
+      }
+    },
+    {
+      "id": 12,
+      "time_rel_s": 176.873397,
+      "total_pixels": 407040,
+      "zero": 11269,
+      "uint16_max": 3459,
+      "valid_fraction": 0.9638168238993711,
+      "valid_raw": {
+        "min": 1090.0,
+        "p01": 1179.0,
+        "p50": 10713.0,
+        "p95": 22697.0,
+        "p99": 31884.0,
+        "max": 40580.0
+      },
+      "raw_all": {
+        "min": 0.0,
+        "p01": 0.0,
+        "p50": 10713.0,
+        "p95": 23494.0,
+        "p99": 38261.0,
+        "max": 65535.0
+      }
+    },
+    {
+      "id": 13,
+      "time_rel_s": 192.926678,
+      "total_pixels": 407040,
+      "zero": 16501,
+      "uint16_max": 3619,
+      "valid_fraction": 0.9505699685534591,
+      "valid_raw": {
+        "min": 955.0,
+        "p01": 1343.0,
+        "p50": 6287.0,
+        "p95": 24799.0,
+        "p99": 33478.0,
+        "max": 40580.0
+      },
+      "raw_all": {
+        "min": 0.0,
+        "p01": 0.0,
+        "p50": 5873.0,
+        "p95": 25753.0,
+        "p99": 39386.0,
+        "max": 65535.0
+      }
+    },
+    {
+      "id": 14,
+      "time_rel_s": 208.949026,
+      "total_pixels": 407040,
+      "zero": 24671,
+      "uint16_max": 0,
+      "valid_fraction": 0.9393892492138365,
+      "valid_raw": {
+        "min": 168.0,
+        "p01": 780.0,
+        "p50": 3037.0,
+        "p95": 11957.0,
+        "p99": 18096.0,
+        "max": 29112.0
+      },
+      "raw_all": {
+        "min": 0.0,
+        "p01": 0.0,
+        "p50": 2861.0,
+        "p95": 11544.0,
+        "p99": 17855.0,
+        "max": 29112.0
+      }
+    },
+    {
+      "id": 15,
+      "time_rel_s": 225.0014,
+      "total_pixels": 407040,
+      "zero": 18440,
+      "uint16_max": 343,
+      "valid_fraction": 0.9538546580188679,
+      "valid_raw": {
+        "min": 293.0,
+        "p01": 1712.0,
+        "p50": 3552.0,
+        "p95": 20924.0,
+        "p99": 26783.0,
+        "max": 40580.0
+      },
+      "raw_all": {
+        "min": 0.0,
+        "p01": 0.0,
+        "p50": 3399.0,
+        "p95": 20924.0,
+        "p99": 26783.0,
+        "max": 65535.0
+      }
+    },
+    {
+      "id": 16,
+      "time_rel_s": 241.020385,
+      "total_pixels": 407040,
+      "zero": 21394,
+      "uint16_max": 15795,
+      "valid_fraction": 0.9086355149371069,
+      "valid_raw": {
+        "min": 429.0,
+        "p01": 453.0,
+        "p50": 3590.0,
+        "p95": 25753.0,
+        "p99": 36193.0,
+        "max": 40580.0
+      },
+      "raw_all": {
+        "min": 0.0,
+        "p01": 0.0,
+        "p50": 3515.0,
+        "p95": 35241.0,
+        "p99": 65535.0,
+        "max": 65535.0
+      }
+    },
+    {
+      "id": 17,
+      "time_rel_s": 257.071256,
+      "total_pixels": 407040,
+      "zero": 15837,
+      "uint16_max": 2456,
+      "valid_fraction": 0.9550584709119497,
+      "valid_raw": {
+        "min": 375.0,
+        "p01": 434.0,
+        "p50": 7523.0,
+        "p95": 21599.0,
+        "p99": 27899.0,
+        "max": 40580.0
+      },
+      "raw_all": {
+        "min": 0.0,
+        "p01": 0.0,
+        "p50": 6258.0,
+        "p95": 21953.0,
+        "p99": 31884.0,
+        "max": 65535.0
+      }
+    },
+    {
+      "id": 18,
+      "time_rel_s": 273.123785,
+      "total_pixels": 407040,
+      "zero": 13740,
+      "uint16_max": 290,
+      "valid_fraction": 0.965531643081761,
+      "valid_raw": {
+        "min": 1140.0,
+        "p01": 1301.0,
+        "p50": 3859.0,
+        "p95": 19408.0,
+        "p99": 22697.0,
+        "max": 40580.0
+      },
+      "raw_all": {
+        "min": 0.0,
+        "p01": 0.0,
+        "p50": 3649.0,
+        "p95": 19408.0,
+        "p99": 22697.0,
+        "max": 65535.0
+      }
+    },
+    {
+      "id": 19,
+      "time_rel_s": 289.144293,
+      "total_pixels": 407040,
+      "zero": 8448,
+      "uint16_max": 0,
+      "valid_fraction": 0.9792452830188679,
+      "valid_raw": {
+        "min": 933.0,
+        "p01": 1197.0,
+        "p50": 4278.0,
+        "p95": 7877.0,
+        "p99": 18861.0,
+        "max": 40580.0
+      },
+      "raw_all": {
+        "min": 0.0,
+        "p01": 0.0,
+        "p50": 4251.0,
+        "p95": 7786.0,
+        "p99": 18861.0,
+        "max": 40580.0
+      }
+    },
+    {
+      "id": 20,
+      "time_rel_s": 305.196875,
+      "total_pixels": 407040,
+      "zero": 33409,
+      "uint16_max": 5359,
+      "valid_fraction": 0.9047562893081761,
+      "valid_raw": {
+        "min": 205.0,
+        "p01": 711.0,
+        "p50": 1283.0,
+        "p95": 21599.0,
+        "p99": 33478.0,
+        "max": 41848.0
+      },
+      "raw_all": {
+        "min": 0.0,
+        "p01": 0.0,
+        "p50": 1226.0,
+        "p95": 22697.0,
+        "p99": 65535.0,
+        "max": 65535.0
+      }
+    },
+    {
+      "id": 21,
+      "time_rel_s": 321.214641,
+      "total_pixels": 407040,
+      "zero": 15476,
+      "uint16_max": 1533,
+      "valid_fraction": 0.9582129520440251,
+      "valid_raw": {
+        "min": 786.0,
+        "p01": 879.0,
+        "p50": 2289.0,
+        "p95": 22697.0,
+        "p99": 29112.0,
+        "max": 40580.0
+      },
+      "raw_all": {
+        "min": 0.0,
+        "p01": 0.0,
+        "p50": 2146.0,
+        "p95": 22697.0,
+        "p99": 30435.0,
+        "max": 65535.0
+      }
+    },
+    {
+      "id": 22,
+      "time_rel_s": 337.266445,
+      "total_pixels": 407040,
+      "zero": 22203,
+      "uint16_max": 915,
+      "valid_fraction": 0.9432045990566038,
+      "valid_raw": {
+        "min": 880.0,
+        "p01": 942.0,
+        "p50": 3730.0,
+        "p95": 23494.0,
+        "p99": 29759.0,
+        "max": 40580.0
+      },
+      "raw_all": {
+        "min": 0.0,
+        "p01": 0.0,
+        "p50": 3590.0,
+        "p95": 23089.0,
+        "p99": 30435.0,
+        "max": 65535.0
+      }
+    },
+    {
+      "id": 23,
+      "time_rel_s": 353.287189,
+      "total_pixels": 407040,
+      "zero": 52595,
+      "uint16_max": 930,
+      "valid_fraction": 0.8685018671383647,
+      "valid_raw": {
+        "min": 170.0,
+        "p01": 187.0,
+        "p50": 10887.0,
+        "p95": 21953.0,
+        "p99": 26783.0,
+        "max": 40580.0
+      },
+      "raw_all": {
+        "min": 0.0,
+        "p01": 0.0,
+        "p50": 10222.0,
+        "p95": 21953.0,
+        "p99": 27329.0,
+        "max": 65535.0
+      }
+    },
+    {
+      "id": 24,
+      "time_rel_s": 369.339766,
+      "total_pixels": 407040,
+      "zero": 27827,
+      "uint16_max": 6243,
+      "valid_fraction": 0.9162981525157232,
+      "valid_raw": {
+        "min": 711.0,
+        "p01": 770.0,
+        "p50": 2317.0,
+        "p95": 24348.0,
+        "p99": 34337.0,
+        "max": 40580.0
+      },
+      "raw_all": {
+        "min": 0.0,
+        "p01": 0.0,
+        "p50": 2174.0,
+        "p95": 26258.0,
+        "p99": 65535.0,
+        "max": 65535.0
+      }
+    },
+    {
+      "id": 25,
+      "time_rel_s": 106.29556,
+      "total_pixels": 407040,
+      "zero": 11009,
+      "uint16_max": 14117,
+      "valid_fraction": 0.9382714229559749,
+      "valid_raw": {
+        "min": 186.0,
+        "p01": 2041.0,
+        "p50": 14096.0,
+        "p95": 29759.0,
+        "p99": 37198.0,
+        "max": 41848.0
+      },
+      "raw_all": {
+        "min": 0.0,
+        "p01": 0.0,
+        "p50": 14096.0,
+        "p95": 36193.0,
+        "p99": 65535.0,
+        "max": 65535.0
+      }
+    },
+    {
+      "id": 26,
+      "time_rel_s": 164.660004,
+      "total_pixels": 407040,
+      "zero": 10926,
+      "uint16_max": 197,
+      "valid_fraction": 0.972673447327044,
+      "valid_raw": {
+        "min": 1360.0,
+        "p01": 1672.0,
+        "p50": 6696.0,
+        "p95": 19987.0,
+        "p99": 25753.0,
+        "max": 40580.0
+      },
+      "raw_all": {
+        "min": 0.0,
+        "p01": 0.0,
+        "p50": 6629.0,
+        "p95": 19987.0,
+        "p99": 25753.0,
+        "max": 65535.0
+      }
+    }
+  ],
+  "transport": "LZ4 bag chunks; uncompressed mono16 Image bytes, SDK Y16, little-endian uint16 with recorded row stride. No compressedDepth transport.",
+  "sample_pixels": 10583040,
+  "zero_count": 439068,
+  "zero_fraction": 0.04148789005805515,
+  "nan_count": 0,
+  "inf_count": 0,
+  "nan_fraction": 0,
+  "inf_fraction": 0,
+  "uint16_max_count": 192108,
+  "valid_fraction": 0.9403596698113208,
+  "validity": "0 or 65535 excluded (no measurement / invalid in SDK coordinate utilities); validity measures presence, not physical accuracy.",
+  "raw_all": {
+    "min": 0.0,
+    "p01": 0.0,
+    "p50": 5797.0,
+    "p95": 27329.0,
+    "p99": 65535.0,
+    "max": 65535.0
+  },
+  "raw_valid": {
+    "min": 168.0,
+    "p01": 467.0,
+    "p50": 6143.0,
+    "p95": 24799.0,
+    "p99": 34337.0,
+    "max": 41848.0
+  },
+  "range_valid_metres": {
+    "min": 0.168,
+    "p01": 0.467,
+    "p50": 6.143,
+    "p95": 24.799,
+    "p99": 34.337,
+    "max": 41.848
+  },
+  "quantile_method": "inverse empirical CDF, pooled sampled pixels",
+  "metres_per_unit": 0.001,
+  "interpretation": "optical-axis Z",
+  "unit_evidence": "Gemini 335 recording: property 176 float=1.0, SDK G330 uses it for depthUnit; disparityParam.unit=1 agrees; hardware disparity-to-depth property 85=true, frame type DEPTH, format Y16. SDK depth value scale is millimetres per count and its XYZ routine assigns depth to Z. Serialized image.depth_units stays at its zero default. This is a recorded configuration, not accuracy against a reference.",
+  "sources": [
+    "https://github.com/orbbec/OrbbecSDK_v2/blob/f5d59930ccb9a189f200e58fba4e2ae42664792d/include/libobsensor/h/Frame.h",
+    "https://github.com/orbbec/OrbbecSDK_v2/blob/f5d59930ccb9a189f200e58fba4e2ae42664792d/include/libobsensor/h/ObTypes.h",
+    "https://github.com/orbbec/OrbbecSDK_v2/blob/f5d59930ccb9a189f200e58fba4e2ae42664792d/src/device/gemini330/G330Device.cpp",
+    "https://github.com/orbbec/OrbbecSDK_v2/blob/f5d59930ccb9a189f200e58fba4e2ae42664792d/src/media/playback/PlaybackDevice.cpp",
+    "https://github.com/orbbec/OrbbecSDK_v2/blob/f5d59930ccb9a189f200e58fba4e2ae42664792d/src/shared/utils/CoordinateUtil.cpp"
+  ],
+  "registration": "native depth; hardware D2C off, differing intrinsics/extrinsic; no registered depth stream",
+  "geometric_check": {
+    "performed": false,
+    "reason": "No dynamic camera/world pose; no multi-view projection or registration residual computed."
+  },
+  "visual_review": {
+    "scene": "桌面、箱体和地面轮廓可辨，背景远处、围网及细结构附近可见空洞；单看深度联系表无法量出与彩色图的像素配准误差。",
+    "range": "较远的厅壁及顶棚贡献长尾。部分有效码超过 25 m，统一色标在 25 m 处截断；有效码比例及距离分位数均用原数值计算。没有独立距离真值。"
+  }
+}

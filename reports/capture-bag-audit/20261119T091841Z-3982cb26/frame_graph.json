@@ -1,0 +1,76 @@
+{
+  "tf_messages": 0,
+  "tf_static_messages": 0,
+  "dynamic_transform_messages": 0,
+  "edges": [
+    {
+      "source_sensor": "depth",
+      "destination_sensor": "color",
+      "static": true,
+      "topic": "/cam/streamProfileType_3",
+      "count": 1,
+      "header_ns": "2426763600000",
+      "R": [
+        [
+          0.9999675750732422,
+          -0.007584353443235159,
+          0.0027173368725925684
+        ],
+        [
+          0.00758380675688386,
+          0.9999712109565735,
+          0.00021145583014003932
+        ],
+        [
+          -0.0027188623789697886,
+          -0.0001908412086777389,
+          0.9999963045120239
+        ]
+      ],
+      "translation_mm": [
+        -13.604243278503418,
+        0.16550984978675842,
+        -1.7640596628189087
+      ],
+      "det_R": 1.0000000383929235,
+      "max_abs_RtR_minus_I": 5.7535421760235295e-08
+    },
+    {
+      "source_sensor": "accel",
+      "destination_sensor": "depth",
+      "static": true,
+      "topic": "/cam/streamProfileType_4",
+      "count": 1,
+      "header_ns": "2426763600000",
+      "R": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "translation_mm": [
+        0.2460000067949295,
+        0.06499999761581421,
+        -16.947999954223633
+      ],
+      "det_R": 1.0,
+      "max_abs_RtR_minus_I": 0.0
+    }
+  ],
+  "convention": "p_destination = R @ p_source + t (t in mm); aliases denote SDK sensor roles, not ROS frame_ids. Optical x right, y down, z forward.",
+  "gyro": "SDK playback binds gyro to accel as colocated when accel and gyro exist. Gyro profile has a zero rotation block, not a calibrated independent rotation.",
+  "diagnostics": "No world/body dynamic edge, TF cycles or competing TF parents. Color and gyro zero rotation placeholders not used as edges.",
+  "camera_chain": "accel -> depth -> color is a static mount chain only. World -> camera missing.",
+  "source": "https://github.com/orbbec/OrbbecSDK_v2/blob/f5d59930ccb9a189f200e58fba4e2ae42664792d/src/media/ros/RosbagReader.cpp"
+}

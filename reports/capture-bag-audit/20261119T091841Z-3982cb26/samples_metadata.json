@@ -1,0 +1,1948 @@
+{
+  "uniform_count": 24,
+  "extra_count": 2,
+  "original_value_pairs": 4,
+  "origin": "first depth header",
+  "selection": "Nearest unique accepted RGB frame to 24 equally spaced device times from first to last accepted RGB, plus worst pair offset and largest RGB interval. Pair offsets retained unmodified.",
+  "public_rgb_preview_masks": {
+    "f2a7261158cd5637b66877b0b7d4ec302e5d2e1cdaf72e44d212f5149adb620d": {
+      "xywh_at_296x167": [
+        0,
+        0,
+        76,
+        72
+      ],
+      "reason": "Mask the incidental face at upper left of public RGB preview #23. Metrics use original pixels. No full-resolution example exported for this cell."
+    }
+  },
+  "preview_transforms": "Full RGB resized 1280x720 to 296x167, depth colorized on native 848x480 then resized to 296x168 (INTER_AREA); pasted without cropping. Depth: Turbo with sqrt(min(Z,25m)/25m); invalid black. Cells row-major. Designated RGB preview masks applied after metrics, before sheet export.",
+  "samples": [
+    {
+      "id": 1,
+      "preview_cell": 0,
+      "reason": [
+        "uniform"
+      ],
+      "time_rel_first_depth_s": 0.465019,
+      "rgb": {
+        "connection_id": 4,
+        "index_zero_based": 0,
+        "vendor_frame_number": 1,
+        "seq": 0,
+        "frame_id": "",
+        "record_ns": "2427228619000",
+        "header_ns": "2427228619000",
+        "device_ns": "2427228619000",
+        "system_ns": "1793522356331503000",
+        "global_ns": "1793522356311572000",
+        "format": {
+          "height": 720,
+          "width": 1280,
+          "encoding": "mjpg",
+          "step": 1280,
+          "is_bigendian": 0,
+          "pixel_bit_size": 0,
+          "serialized_depth_units": 0.0
+        },
+        "payload_bytes": 154825,
+        "topic": "/cam/sensor_2/frameType_2",
+        "decoded_shape": [
+          720,
+          1280,
+          3
+        ],
+        "decoded_dtype": "uint8",
+        "calibration": "/cam/streamProfileType_2"
+      },
+      "depth": {
+        "connection_id": 1,
+        "index_zero_based": 14,
+        "vendor_frame_number": 15,
+        "seq": 0,
+        "frame_id": "",
+        "record_ns": "2427228698000",
+        "header_ns": "2427228698000",
+        "device_ns": "2427228698000",
+        "system_ns": "1793522356334175000",
+        "global_ns": "1793522356311652000",
+        "format": {
+          "height": 480,
+          "width": 848,
+          "encoding": "mono16",
+          "step": 1696,
+          "is_bigendian": 0,
+          "pixel_bit_size": 16,
+          "serialized_depth_units": 0.0
+        },
+        "payload_bytes": 814080,
+        "topic": "/cam/sensor_3/frameType_3",
+        "decoded_shape": [
+          480,
+          848
+        ],
+        "decoded_dtype": "<u2",
+        "calibration": "/cam/streamProfileType_3"
+      },
+      "pose": null,
+      "pose_status": "missing world-camera trajectory",
+      "clock": "device/header",
+      "depth_minus_rgb_ns": 79000,
+      "metres_per_depth_unit": 0.001,
+      "native_grids": true,
+      "rgb_file": "samples/pair_01_rgb.jpg",
+      "depth_file": "samples/pair_01_depth.npz",
+      "rgb_payload_sha256": "96de7a8527c95fde1fb6ed4a72163ef4286ec1d9952c8374911e1f1034861138",
+      "depth_pixels_sha256": "9697850ce28729c396947453bc6a7cec5fe344590f70726832261a5966849ec1",
+      "returned_transform": "none; original JPEG payload; original numeric depth array, NPZ key depth; exact read-back passed"
+    },
+    {
+      "id": 2,
+      "preview_cell": 1,
+      "reason": [
+        "uniform"
+      ],
+      "time_rel_first_depth_s": 16.486438,
+      "rgb": {
+        "connection_id": 4,
+        "index_zero_based": 480,
+        "vendor_frame_number": 481,
+        "seq": 0,
+        "frame_id": "",
+        "record_ns": "2443250038000",
+        "header_ns": "2443250038000",
+        "device_ns": "2443250038000",
+        "system_ns": "1793522372351023000",
+        "global_ns": "1793522372332692000",
+        "format": {
+          "height": 720,
+          "width": 1280,
+          "encoding": "mjpg",
+          "step": 1280,
+          "is_bigendian": 0,
+          "pixel_bit_size": 0,
+          "serialized_depth_units": 0.0
+        },
+        "payload_bytes": 128359,
+        "topic": "/cam/sensor_2/frameType_2",
+        "decoded_shape": [
+          720,
+          1280,
+          3
+        ],
+        "decoded_dtype": "uint8",
+        "calibration": "/cam/streamProfileType_2"
+      },
+      "depth": {
+        "connection_id": 1,
+        "index_zero_based": 494,
+        "vendor_frame_number": 495,
+        "seq": 0,
+        "frame_id": "",
+        "record_ns": "2443250119000",
+        "header_ns": "2443250119000",
+        "device_ns": "2443250119000",
+        "system_ns": "1793522372353032000",
+        "global_ns": "1793522372332773000",
+        "format": {
+          "height": 480,
+          "width": 848,
+          "encoding": "mono16",
+          "step": 1696,
+          "is_bigendian": 0,
+          "pixel_bit_size": 16,
+          "serialized_depth_units": 0.0
+        },
+        "payload_bytes": 814080,
+        "topic": "/cam/sensor_3/frameType_3",
+        "decoded_shape": [
+          480,
+          848
+        ],
+        "decoded_dtype": "<u2",
+        "calibration": "/cam/streamProfileType_3"
+      },
+      "pose": null,
+      "pose_status": "missing world-camera trajectory",
+      "clock": "device/header",
+      "depth_minus_rgb_ns": 81000,
+      "metres_per_depth_unit": 0.001,
+      "native_grids": true
+    },
+    {
+      "id": 3,
+      "preview_cell": 2,
+      "reason": [
+        "uniform"
+      ],
+      "time_rel_first_depth_s": 32.537623,
+      "rgb": {
+        "connection_id": 4,
+        "index_zero_based": 961,
+        "vendor_frame_number": 962,
+        "seq": 0,
+        "frame_id": "",
+        "record_ns": "2459301223000",
+        "header_ns": "2459301223000",
+        "device_ns": "2459301223000",
+        "system_ns": "1793522388403315000",
+        "global_ns": "1793522388383377000",
+        "format": {
+          "height": 720,
+          "width": 1280,
+          "encoding": "mjpg",
+          "step": 1280,
+          "is_bigendian": 0,
+          "pixel_bit_size": 0,
+          "serialized_depth_units": 0.0
+        },
+        "payload_bytes": 127177,
+        "topic": "/cam/sensor_2/frameType_2",
+        "decoded_shape": [
+          720,
+          1280,
+          3
+        ],
+        "decoded_dtype": "uint8",
+        "calibration": "/cam/streamProfileType_2"
+      },
+      "depth": {
+        "connection_id": 1,
+        "index_zero_based": 975,
+        "vendor_frame_number": 976,
+        "seq": 0,
+        "frame_id": "",
+        "record_ns": "2459301320000",
+        "header_ns": "2459301320000",
+        "device_ns": "2459301320000",
+        "system_ns": "1793522388405395000",
+        "global_ns": "1793522388383475000",
+        "format": {
+          "height": 480,
+          "width": 848,
+          "encoding": "mono16",
+          "step": 1696,
+          "is_bigendian": 0,
+          "pixel_bit_size": 16,
+          "serialized_depth_units": 0.0
+        },
+        "payload_bytes": 814080,
+        "topic": "/cam/sensor_3/frameType_3",
+        "decoded_shape": [
+          480,
+          848
+        ],
+        "decoded_dtype": "<u2",
+        "calibration": "/cam/streamProfileType_3"
+      },
+      "pose": null,
+      "pose_status": "missing world-camera trajectory",
+      "clock": "device/header",
+      "depth_minus_rgb_ns": 97000,
+      "metres_per_depth_unit": 0.001,
+      "native_grids": true
+    },
+    {
+      "id": 4,
+      "preview_cell": 3,
+      "reason": [
+        "uniform"
+      ],
+      "time_rel_first_depth_s": 48.589426,
+      "rgb": {
+        "connection_id": 4,
+        "index_zero_based": 1442,
+        "vendor_frame_number": 1443,
+        "seq": 0,
+        "frame_id": "",
+        "record_ns": "2475353026000",
+        "header_ns": "2475353026000",
+        "device_ns": "2475353026000",
+        "system_ns": "1793522404454905000",
+        "global_ns": "1793522404435078000",
+        "format": {
+          "height": 720,
+          "width": 1280,
+          "encoding": "mjpg",
+          "step": 1280,
+          "is_bigendian": 0,
+          "pixel_bit_size": 0,
+          "serialized_depth_units": 0.0
+        },
+        "payload_bytes": 153453,
+        "topic": "/cam/sensor_2/frameType_2",
+        "decoded_shape": [
+          720,
+          1280,
+          3
+        ],
+        "decoded_dtype": "uint8",
+        "calibration": "/cam/streamProfileType_2"
+      },
+      "depth": {
+        "connection_id": 1,
+        "index_zero_based": 1456,
+        "vendor_frame_number": 1457,
+        "seq": 0,
+        "frame_id": "",
+        "record_ns": "2475353118000",
+        "header_ns": "2475353118000",
+        "device_ns": "2475353118000",
+        "system_ns": "1793522404457689000",
+        "global_ns": "1793522404435171000",
+        "format": {
+          "height": 480,
+          "width": 848,
+          "encoding": "mono16",
+          "step": 1696,
+          "is_bigendian": 0,
+          "pixel_bit_size": 16,
+          "serialized_depth_units": 0.0
+        },
+        "payload_bytes": 814080,
+        "topic": "/cam/sensor_3/frameType_3",
+        "decoded_shape": [
+          480,
+          848
+        ],
+        "decoded_dtype": "<u2",
+        "calibration": "/cam/streamProfileType_3"
+      },
+      "pose": null,
+      "pose_status": "missing world-camera trajectory",
+      "clock": "device/header",
+      "depth_minus_rgb_ns": 92000,
+      "metres_per_depth_unit": 0.001,
+      "native_grids": true
+    },
+    {
+      "id": 5,
+      "preview_cell": 4,
+      "reason": [
+        "uniform"
+      ],
+      "time_rel_first_depth_s": 64.607578,
+      "rgb": {
+        "connection_id": 4,
+        "index_zero_based": 1922,
+        "vendor_frame_number": 1923,
+        "seq": 0,
+        "frame_id": "",
+        "record_ns": "2491371178000",
+        "header_ns": "2491371178000",
+        "device_ns": "2491371178000",
+        "system_ns": "1793522420473060000",
+        "global_ns": "1793522420453550000",
+        "format": {
+          "height": 720,
+          "width": 1280,
+          "encoding": "mjpg",
+          "step": 1280,
+          "is_bigendian": 0,
+          "pixel_bit_size": 0,
+          "serialized_depth_units": 0.0
+        },
+        "payload_bytes": 191212,
+        "topic": "/cam/sensor_2/frameType_2",
+        "decoded_shape": [
+          720,
+          1280,
+          3
+        ],
+        "decoded_dtype": "uint8",
+        "calibration": "/cam/streamProfileType_2"
+      },
+      "depth": {
+        "connection_id": 1,
+        "index_zero_based": 1936,
+        "vendor_frame_number": 1937,
+        "seq": 0,
+        "frame_id": "",
+        "record_ns": "2491371259000",
+        "header_ns": "2491371259000",
+        "device_ns": "2491371259000",
+        "system_ns": "1793522420476589000",
+        "global_ns": "1793522420453632000",
+        "format": {
+          "height": 480,
+          "width": 848,
+          "encoding": "mono16",
+          "step": 1696,
+          "is_bigendian": 0,
+          "pixel_bit_size": 16,
+          "serialized_depth_units": 0.0
+        },
+        "payload_bytes": 814080,
+        "topic": "/cam/sensor_3/frameType_3",
+        "decoded_shape": [
+          480,
+          848
+        ],
+        "decoded_dtype": "<u2",
+        "calibration": "/cam/streamProfileType_3"
+      },
+      "pose": null,
+      "pose_status": "missing world-camera trajectory",
+      "clock": "device/header",
+      "depth_minus_rgb_ns": 81000,
+      "metres_per_depth_unit": 0.001,
+      "native_grids": true
+    },
+    {
+      "id": 6,
+      "preview_cell": 5,
+      "reason": [
+        "uniform"
+      ],
+      "time_rel_first_depth_s": 80.658941,
+      "rgb": {
+        "connection_id": 4,
+        "index_zero_based": 2403,
+        "vendor_frame_number": 2404,
+        "seq": 0,
+        "frame_id": "",
+        "record_ns": "2507422541000",
+        "header_ns": "2507422541000",
+        "device_ns": "2507422541000",
+        "system_ns": "1793522436523961000",
+        "global_ns": "1793522436504867000",
+        "format": {
+          "height": 720,
+          "width": 1280,
+          "encoding": "mjpg",
+          "step": 1280,
+          "is_bigendian": 0,
+          "pixel_bit_size": 0,
+          "serialized_depth_units": 0.0
+        },
+        "payload_bytes": 182937,
+        "topic": "/cam/sensor_2/frameType_2",
+        "decoded_shape": [
+          720,
+          1280,
+          3
+        ],
+        "decoded_dtype": "uint8",
+        "calibration": "/cam/streamProfileType_2"
+      },
+      "depth": {
+        "connection_id": 1,
+        "index_zero_based": 2417,
+        "vendor_frame_number": 2418,
+        "seq": 0,
+        "frame_id": "",
+        "record_ns": "2507422618000",
+        "header_ns": "2507422618000",
+        "device_ns": "2507422618000",
+        "system_ns": "1793522436528701000",
+        "global_ns": "1793522436504945000",
+        "format": {
+          "height": 480,
+          "width": 848,
+          "encoding": "mono16",
+          "step": 1696,
+          "is_bigendian": 0,
+          "pixel_bit_size": 16,
+          "serialized_depth_units": 0.0
+        },
+        "payload_bytes": 814080,
+        "topic": "/cam/sensor_3/frameType_3",
+        "decoded_shape": [
+          480,
+          848
+        ],
+        "decoded_dtype": "<u2",
+        "calibration": "/cam/streamProfileType_3"
+      },
+      "pose": null,
+      "pose_status": "missing world-camera trajectory",
+      "clock": "device/header",
+      "depth_minus_rgb_ns": 77000,
+      "metres_per_depth_unit": 0.001,
+      "native_grids": true
+    },
+    {
+      "id": 7,
+      "preview_cell": 6,
+      "reason": [
+        "uniform"
+      ],
+      "time_rel_first_depth_s": 96.678289,
+      "rgb": {
+        "connection_id": 4,
+        "index_zero_based": 2882,
+        "vendor_frame_number": 2883,
+        "seq": 0,
+        "frame_id": "",
+        "record_ns": "2523441889000",
+        "header_ns": "2523441889000",
+        "device_ns": "2523441889000",
+        "system_ns": "1793522452548111000",
+        "global_ns": "1793522452523512000",
+        "format": {
+          "height": 720,
+          "width": 1280,
+          "encoding": "mjpg",
+          "step": 1280,
+          "is_bigendian": 0,
+          "pixel_bit_size": 0,
+          "serialized_depth_units": 0.0
+        },
+        "payload_bytes": 149370,
+        "topic": "/cam/sensor_2/frameType_2",
+        "decoded_shape": [
+          720,
+          1280,
+          3
+        ],
+        "decoded_dtype": "uint8",
+        "calibration": "/cam/streamProfileType_2"
+      },
+      "depth": {
+        "connection_id": 1,
+        "index_zero_based": 2897,
+        "vendor_frame_number": 2898,
+        "seq": 0,
+        "frame_id": "",
+        "record_ns": "2523441982000",
+        "header_ns": "2523441982000",
+        "device_ns": "2523441982000",
+        "system_ns": "1793522452547713000",
+        "global_ns": "1793522452523605000",
+        "format": {
+          "height": 480,
+          "width": 848,
+          "encoding": "mono16",
+          "step": 1696,
+          "is_bigendian": 0,
+          "pixel_bit_size": 16,
+          "serialized_depth_units": 0.0
+        },
+        "payload_bytes": 814080,
+        "topic": "/cam/sensor_3/frameType_3",
+        "decoded_shape": [
+          480,
+          848
+        ],
+        "decoded_dtype": "<u2",
+        "calibration": "/cam/streamProfileType_3"
+      },
+      "pose": null,
+      "pose_status": "missing world-camera trajectory",
+      "clock": "device/header",
+      "depth_minus_rgb_ns": 93000,
+      "metres_per_depth_unit": 0.001,
+      "native_grids": true
+    },
+    {
+      "id": 8,
+      "preview_cell": 7,
+      "reason": [
+        "uniform"
+      ],
+      "time_rel_first_depth_s": 112.731878,
+      "rgb": {
+        "connection_id": 4,
+        "index_zero_based": 3362,
+        "vendor_frame_number": 3363,
+        "seq": 0,
+        "frame_id": "",
+        "record_ns": "2539495478000",
+        "header_ns": "2539495478000",
+        "device_ns": "2539495478000",
+        "system_ns": "1793522468596754000",
+        "global_ns": "1793522468576541000",
+        "format": {
+          "height": 720,
+          "width": 1280,
+          "encoding": "mjpg",
+          "step": 1280,
+          "is_bigendian": 0,
+          "pixel_bit_size": 0,
+          "serialized_depth_units": 0.0
+        },
+        "payload_bytes": 157042,
+        "topic": "/cam/sensor_2/frameType_2",
+        "decoded_shape": [
+          720,
+          1280,
+          3
+        ],
+        "decoded_dtype": "uint8",
+        "calibration": "/cam/streamProfileType_2"
+      },
+      "depth": {
+        "connection_id": 1,
+        "index_zero_based": 3378,
+        "vendor_frame_number": 3379,
+        "seq": 0,
+        "frame_id": "",
+        "record_ns": "2539495575000",
+        "header_ns": "2539495575000",
+        "device_ns": "2539495575000",
+        "system_ns": "1793522468599920000",
+        "global_ns": "1793522468576638000",
+        "format": {
+          "height": 480,
+          "width": 848,
+          "encoding": "mono16",
+          "step": 1696,
+          "is_bigendian": 0,
+          "pixel_bit_size": 16,
+          "serialized_depth_units": 0.0
+        },
+        "payload_bytes": 814080,
+        "topic": "/cam/sensor_3/frameType_3",
+        "decoded_shape": [
+          480,
+          848
+        ],
+        "decoded_dtype": "<u2",
+        "calibration": "/cam/streamProfileType_3"
+      },
+      "pose": null,
+      "pose_status": "missing world-camera trajectory",
+      "clock": "device/header",
+      "depth_minus_rgb_ns": 97000,
+      "metres_per_depth_unit": 0.001,
+      "native_grids": true
+    },
+    {
+      "id": 9,
+      "preview_cell": 8,
+      "reason": [
+        "uniform"
+      ],
+      "time_rel_first_depth_s": 128.782852,
+      "rgb": {
+        "connection_id": 4,
+        "index_zero_based": 3843,
+        "vendor_frame_number": 3844,
+        "seq": 0,
+        "frame_id": "",
+        "record_ns": "2555546452000",
+        "header_ns": "2555546452000",
+        "device_ns": "2555546452000",
+        "system_ns": "1793522484647608000",
+        "global_ns": "1793522484627675000",
+        "format": {
+          "height": 720,
+          "width": 1280,
+          "encoding": "mjpg",
+          "step": 1280,
+          "is_bigendian": 0,
+          "pixel_bit_size": 0,
+          "serialized_depth_units": 0.0
+        },
+        "payload_bytes": 168933,
+        "topic": "/cam/sensor_2/frameType_2",
+        "decoded_shape": [
+          720,
+          1280,
+          3
+        ],
+        "decoded_dtype": "uint8",
+        "calibration": "/cam/streamProfileType_2"
+      },
+      "depth": {
+        "connection_id": 1,
+        "index_zero_based": 3859,
+        "vendor_frame_number": 3860,
+        "seq": 0,
+        "frame_id": "",
+        "record_ns": "2555546546000",
+        "header_ns": "2555546546000",
+        "device_ns": "2555546546000",
+        "system_ns": "1793522484652181000",
+        "global_ns": "1793522484627768000",
+        "format": {
+          "height": 480,
+          "width": 848,
+          "encoding": "mono16",
+          "step": 1696,
+          "is_bigendian": 0,
+          "pixel_bit_size": 16,
+          "serialized_depth_units": 0.0
+        },
+        "payload_bytes": 814080,
+        "topic": "/cam/sensor_3/frameType_3",
+        "decoded_shape": [
+          480,
+          848
+        ],
+        "decoded_dtype": "<u2",
+        "calibration": "/cam/streamProfileType_3"
+      },
+      "pose": null,
+      "pose_status": "missing world-camera trajectory",
+      "clock": "device/header",
+      "depth_minus_rgb_ns": 94000,
+      "metres_per_depth_unit": 0.001,
+      "native_grids": true
+    },
+    {
+      "id": 10,
+      "preview_cell": 9,
+      "reason": [
+        "uniform"
+      ],
+      "time_rel_first_depth_s": 144.801422,
+      "rgb": {
+        "connection_id": 4,
+        "index_zero_based": 4323,
+        "vendor_frame_number": 4324,
+        "seq": 0,
+        "frame_id": "",
+        "record_ns": "2571565022000",
+        "header_ns": "2571565022000",
+        "device_ns": "2571565022000",
+        "system_ns": "1793522500671015000",
+        "global_ns": "1793522500645771000",
+        "format": {
+          "height": 720,
+          "width": 1280,
+          "encoding": "mjpg",
+          "step": 1280,
+          "is_bigendian": 0,
+          "pixel_bit_size": 0,
+          "serialized_depth_units": 0.0
+        },
+        "payload_bytes": 160488,
+        "topic": "/cam/sensor_2/frameType_2",
+        "decoded_shape": [
+          720,
+          1280,
+          3
+        ],
+        "decoded_dtype": "uint8",
+        "calibration": "/cam/streamProfileType_2"
+      },
+      "depth": {
+        "connection_id": 1,
+        "index_zero_based": 4339,
+        "vendor_frame_number": 4340,
+        "seq": 0,
+        "frame_id": "",
+        "record_ns": "2571564142000",
+        "header_ns": "2571564142000",
+        "device_ns": "2571564142000",
+        "system_ns": "1793522500671138000",
+        "global_ns": "1793522500644891000",
+        "format": {
+          "height": 480,
+          "width": 848,
+          "encoding": "mono16",
+          "step": 1696,
+          "is_bigendian": 0,
+          "pixel_bit_size": 16,
+          "serialized_depth_units": 0.0
+        },
+        "payload_bytes": 814080,
+        "topic": "/cam/sensor_3/frameType_3",
+        "decoded_shape": [
+          480,
+          848
+        ],
+        "decoded_dtype": "<u2",
+        "calibration": "/cam/streamProfileType_3"
+      },
+      "pose": null,
+      "pose_status": "missing world-camera trajectory",
+      "clock": "device/header",
+      "depth_minus_rgb_ns": -880000,
+      "metres_per_depth_unit": 0.001,
+      "native_grids": true
+    },
+    {
+      "id": 11,
+      "preview_cell": 10,
+      "reason": [
+        "uniform"
+      ],
+      "time_rel_first_depth_s": 160.856904,
+      "rgb": {
+        "connection_id": 4,
+        "index_zero_based": 4803,
+        "vendor_frame_number": 4804,
+        "seq": 0,
+        "frame_id": "",
+        "record_ns": "2587620504000",
+        "header_ns": "2587620504000",
+        "device_ns": "2587620504000",
+        "system_ns": "1793522516721110000",
+        "global_ns": "1793522516701861000",
+        "format": {
+          "height": 720,
+          "width": 1280,
+          "encoding": "mjpg",
+          "step": 1280,
+          "is_bigendian": 0,
+          "pixel_bit_size": 0,
+          "serialized_depth_units": 0.0
+        },
+        "payload_bytes": 187385,
+        "topic": "/cam/sensor_2/frameType_2",
+        "decoded_shape": [
+          720,
+          1280,
+          3
+        ],
+        "decoded_dtype": "uint8",
+        "calibration": "/cam/streamProfileType_2"
+      },
+      "depth": {
+        "connection_id": 1,
+        "index_zero_based": 4820,
+        "vendor_frame_number": 4821,
+        "seq": 0,
+        "frame_id": "",
+        "record_ns": "2587620603000",
+        "header_ns": "2587620603000",
+        "device_ns": "2587620603000",
+        "system_ns": "1793522516723001000",
+        "global_ns": "1793522516701961000",
+        "format": {
+          "height": 480,
+          "width": 848,
+          "encoding": "mono16",
+          "step": 1696,
+          "is_bigendian": 0,
+          "pixel_bit_size": 16,
+          "serialized_depth_units": 0.0
+        },
+        "payload_bytes": 814080,
+        "topic": "/cam/sensor_3/frameType_3",
+        "decoded_shape": [
+          480,
+          848
+        ],
+        "decoded_dtype": "<u2",
+        "calibration": "/cam/streamProfileType_3"
+      },
+      "pose": null,
+      "pose_status": "missing world-camera trajectory",
+      "clock": "device/header",
+      "depth_minus_rgb_ns": 99000,
+      "metres_per_depth_unit": 0.001,
+      "native_grids": true
+    },
+    {
+      "id": 12,
+      "preview_cell": 11,
+      "reason": [
+        "uniform"
+      ],
+      "time_rel_first_depth_s": 176.873397,
+      "rgb": {
+        "connection_id": 4,
+        "index_zero_based": 5278,
+        "vendor_frame_number": 5279,
+        "seq": 0,
+        "frame_id": "",
+        "record_ns": "2603636997000",
+        "header_ns": "2603636997000",
+        "device_ns": "2603636997000",
+        "system_ns": "1793522532737409000",
+        "global_ns": "1793522532717376000",
+        "format": {
+          "height": 720,
+          "width": 1280,
+          "encoding": "mjpg",
+          "step": 1280,
+          "is_bigendian": 0,
+          "pixel_bit_size": 0,
+          "serialized_depth_units": 0.0
+        },
+        "payload_bytes": 173661,
+        "topic": "/cam/sensor_2/frameType_2",
+        "decoded_shape": [
+          720,
+          1280,
+          3
+        ],
+        "decoded_dtype": "uint8",
+        "calibration": "/cam/streamProfileType_2"
+      },
+      "depth": {
+        "connection_id": 1,
+        "index_zero_based": 5300,
+        "vendor_frame_number": 5301,
+        "seq": 0,
+        "frame_id": "",
+        "record_ns": "2603637089000",
+        "header_ns": "2603637089000",
+        "device_ns": "2603637089000",
+        "system_ns": "1793522532742019000",
+        "global_ns": "1793522532717469000",
+        "format": {
+          "height": 480,
+          "width": 848,
+          "encoding": "mono16",
+          "step": 1696,
+          "is_bigendian": 0,
+          "pixel_bit_size": 16,
+          "serialized_depth_units": 0.0
+        },
+        "payload_bytes": 814080,
+        "topic": "/cam/sensor_3/frameType_3",
+        "decoded_shape": [
+          480,
+          848
+        ],
+        "decoded_dtype": "<u2",
+        "calibration": "/cam/streamProfileType_3"
+      },
+      "pose": null,
+      "pose_status": "missing world-camera trajectory",
+      "clock": "device/header",
+      "depth_minus_rgb_ns": 92000,
+      "metres_per_depth_unit": 0.001,
+      "native_grids": true
+    },
+    {
+      "id": 13,
+      "preview_cell": 12,
+      "reason": [
+        "uniform"
+      ],
+      "time_rel_first_depth_s": 192.926678,
+      "rgb": {
+        "connection_id": 4,
+        "index_zero_based": 5757,
+        "vendor_frame_number": 5758,
+        "seq": 0,
+        "frame_id": "",
+        "record_ns": "2619690278000",
+        "header_ns": "2619690278000",
+        "device_ns": "2619690278000",
+        "system_ns": "1793522548790567000",
+        "global_ns": "1793522548771075000",
+        "format": {
+          "height": 720,
+          "width": 1280,
+          "encoding": "mjpg",
+          "step": 1280,
+          "is_bigendian": 0,
+          "pixel_bit_size": 0,
+          "serialized_depth_units": 0.0
+        },
+        "payload_bytes": 195514,
+        "topic": "/cam/sensor_2/frameType_2",
+        "decoded_shape": [
+          720,
+          1280,
+          3
+        ],
+        "decoded_dtype": "uint8",
+        "calibration": "/cam/streamProfileType_2"
+      },
+      "depth": {
+        "connection_id": 1,
+        "index_zero_based": 5781,
+        "vendor_frame_number": 5782,
+        "seq": 0,
+        "frame_id": "",
+        "record_ns": "2619690363000",
+        "header_ns": "2619690363000",
+        "device_ns": "2619690363000",
+        "system_ns": "1793522548794199000",
+        "global_ns": "1793522548771160000",
+        "format": {
+          "height": 480,
+          "width": 848,
+          "encoding": "mono16",
+          "step": 1696,
+          "is_bigendian": 0,
+          "pixel_bit_size": 16,
+          "serialized_depth_units": 0.0
+        },
+        "payload_bytes": 814080,
+        "topic": "/cam/sensor_3/frameType_3",
+        "decoded_shape": [
+          480,
+          848
+        ],
+        "decoded_dtype": "<u2",
+        "calibration": "/cam/streamProfileType_3"
+      },
+      "pose": null,
+      "pose_status": "missing world-camera trajectory",
+      "clock": "device/header",
+      "depth_minus_rgb_ns": 85000,
+      "metres_per_depth_unit": 0.001,
+      "native_grids": true,
+      "rgb_file": "samples/pair_13_rgb.jpg",
+      "depth_file": "samples/pair_13_depth.npz",
+      "rgb_payload_sha256": "9d8274d66bfda35e9066e91d3b0612203c2c6a03463c090843378f75e9d3f90b",
+      "depth_pixels_sha256": "64883ffd8dd088f707c2d48b7ec282838f9b72b10c327b17043c9a79dc778e42",
+      "returned_transform": "none; original JPEG payload; original numeric depth array, NPZ key depth; exact read-back passed"
+    },
+    {
+      "id": 14,
+      "preview_cell": 13,
+      "reason": [
+        "uniform"
+      ],
+      "time_rel_first_depth_s": 208.949026,
+      "rgb": {
+        "connection_id": 4,
+        "index_zero_based": 6237,
+        "vendor_frame_number": 6238,
+        "seq": 0,
+        "frame_id": "",
+        "record_ns": "2635712626000",
+        "header_ns": "2635712626000",
+        "device_ns": "2635712626000",
+        "system_ns": "1793522564812027000",
+        "global_ns": "1793522564793248000",
+        "format": {
+          "height": 720,
+          "width": 1280,
+          "encoding": "mjpg",
+          "step": 1280,
+          "is_bigendian": 0,
+          "pixel_bit_size": 0,
+          "serialized_depth_units": 0.0
+        },
+        "payload_bytes": 134391,
+        "topic": "/cam/sensor_2/frameType_2",
+        "decoded_shape": [
+          720,
+          1280,
+          3
+        ],
+        "decoded_dtype": "uint8",
+        "calibration": "/cam/streamProfileType_2"
+      },
+      "depth": {
+        "connection_id": 1,
+        "index_zero_based": 6261,
+        "vendor_frame_number": 6262,
+        "seq": 0,
+        "frame_id": "",
+        "record_ns": "2635712891000",
+        "header_ns": "2635712891000",
+        "device_ns": "2635712891000",
+        "system_ns": "1793522564813131000",
+        "global_ns": "1793522564793513000",
+        "format": {
+          "height": 480,
+          "width": 848,
+          "encoding": "mono16",
+          "step": 1696,
+          "is_bigendian": 0,
+          "pixel_bit_size": 16,
+          "serialized_depth_units": 0.0
+        },
+        "payload_bytes": 814080,
+        "topic": "/cam/sensor_3/frameType_3",
+        "decoded_shape": [
+          480,
+          848
+        ],
+        "decoded_dtype": "<u2",
+        "calibration": "/cam/streamProfileType_3"
+      },
+      "pose": null,
+      "pose_status": "missing world-camera trajectory",
+      "clock": "device/header",
+      "depth_minus_rgb_ns": 265000,
+      "metres_per_depth_unit": 0.001,
+      "native_grids": true
+    },
+    {
+      "id": 15,
+      "preview_cell": 14,
+      "reason": [
+        "uniform"
+      ],
+      "time_rel_first_depth_s": 225.0014,
+      "rgb": {
+        "connection_id": 4,
+        "index_zero_based": 6718,
+        "vendor_frame_number": 6719,
+        "seq": 0,
+        "frame_id": "",
+        "record_ns": "2651765000000",
+        "header_ns": "2651765000000",
+        "device_ns": "2651765000000",
+        "system_ns": "1793522580863467000",
+        "global_ns": "1793522580844810000",
+        "format": {
+          "height": 720,
+          "width": 1280,
+          "encoding": "mjpg",
+          "step": 1280,
+          "is_bigendian": 0,
+          "pixel_bit_size": 0,
+          "serialized_depth_units": 0.0
+        },
+        "payload_bytes": 118372,
+        "topic": "/cam/sensor_2/frameType_2",
+        "decoded_shape": [
+          720,
+          1280,
+          3
+        ],
+        "decoded_dtype": "uint8",
+        "calibration": "/cam/streamProfileType_2"
+      },
+      "depth": {
+        "connection_id": 1,
+        "index_zero_based": 6742,
+        "vendor_frame_number": 6743,
+        "seq": 0,
+        "frame_id": "",
+        "record_ns": "2651765096000",
+        "header_ns": "2651765096000",
+        "device_ns": "2651765096000",
+        "system_ns": "1793522580865381000",
+        "global_ns": "1793522580844905000",
+        "format": {
+          "height": 480,
+          "width": 848,
+          "encoding": "mono16",
+          "step": 1696,
+          "is_bigendian": 0,
+          "pixel_bit_size": 16,
+          "serialized_depth_units": 0.0
+        },
+        "payload_bytes": 814080,
+        "topic": "/cam/sensor_3/frameType_3",
+        "decoded_shape": [
+          480,
+          848
+        ],
+        "decoded_dtype": "<u2",
+        "calibration": "/cam/streamProfileType_3"
+      },
+      "pose": null,
+      "pose_status": "missing world-camera trajectory",
+      "clock": "device/header",
+      "depth_minus_rgb_ns": 96000,
+      "metres_per_depth_unit": 0.001,
+      "native_grids": true
+    },
+    {
+      "id": 16,
+      "preview_cell": 15,
+      "reason": [
+        "uniform"
+      ],
+      "time_rel_first_depth_s": 241.020385,
+      "rgb": {
+        "connection_id": 4,
+        "index_zero_based": 7198,
+        "vendor_frame_number": 7199,
+        "seq": 0,
+        "frame_id": "",
+        "record_ns": "2667783985000",
+        "header_ns": "2667783985000",
+        "device_ns": "2667783985000",
+        "system_ns": "1793522596883792000",
+        "global_ns": "1793522596864361000",
+        "format": {
+          "height": 720,
+          "width": 1280,
+          "encoding": "mjpg",
+          "step": 1280,
+          "is_bigendian": 0,
+          "pixel_bit_size": 0,
+          "serialized_depth_units": 0.0
+        },
+        "payload_bytes": 115029,
+        "topic": "/cam/sensor_2/frameType_2",
+        "decoded_shape": [
+          720,
+          1280,
+          3
+        ],
+        "decoded_dtype": "uint8",
+        "calibration": "/cam/streamProfileType_2"
+      },
+      "depth": {
+        "connection_id": 1,
+        "index_zero_based": 7222,
+        "vendor_frame_number": 7223,
+        "seq": 0,
+        "frame_id": "",
+        "record_ns": "2667784060000",
+        "header_ns": "2667784060000",
+        "device_ns": "2667784060000",
+        "system_ns": "1793522596884202000",
+        "global_ns": "1793522596864436000",
+        "format": {
+          "height": 480,
+          "width": 848,
+          "encoding": "mono16",
+          "step": 1696,
+          "is_bigendian": 0,
+          "pixel_bit_size": 16,
+          "serialized_depth_units": 0.0
+        },
+        "payload_bytes": 814080,
+        "topic": "/cam/sensor_3/frameType_3",
+        "decoded_shape": [
+          480,
+          848
+        ],
+        "decoded_dtype": "<u2",
+        "calibration": "/cam/streamProfileType_3"
+      },
+      "pose": null,
+      "pose_status": "missing world-camera trajectory",
+      "clock": "device/header",
+      "depth_minus_rgb_ns": 75000,
+      "metres_per_depth_unit": 0.001,
+      "native_grids": true
+    },
+    {
+      "id": 17,
+      "preview_cell": 16,
+      "reason": [
+        "uniform"
+      ],
+      "time_rel_first_depth_s": 257.071256,
+      "rgb": {
+        "connection_id": 4,
+        "index_zero_based": 7679,
+        "vendor_frame_number": 7680,
+        "seq": 0,
+        "frame_id": "",
+        "record_ns": "2683834856000",
+        "header_ns": "2683834856000",
+        "device_ns": "2683834856000",
+        "system_ns": "1793522612934557000",
+        "global_ns": "1793522612914687000",
+        "format": {
+          "height": 720,
+          "width": 1280,
+          "encoding": "mjpg",
+          "step": 1280,
+          "is_bigendian": 0,
+          "pixel_bit_size": 0,
+          "serialized_depth_units": 0.0
+        },
+        "payload_bytes": 139107,
+        "topic": "/cam/sensor_2/frameType_2",
+        "decoded_shape": [
+          720,
+          1280,
+          3
+        ],
+        "decoded_dtype": "uint8",
+        "calibration": "/cam/streamProfileType_2"
+      },
+      "depth": {
+        "connection_id": 1,
+        "index_zero_based": 7703,
+        "vendor_frame_number": 7704,
+        "seq": 0,
+        "frame_id": "",
+        "record_ns": "2683834952000",
+        "header_ns": "2683834952000",
+        "device_ns": "2683834952000",
+        "system_ns": "1793522612936701000",
+        "global_ns": "1793522612914782000",
+        "format": {
+          "height": 480,
+          "width": 848,
+          "encoding": "mono16",
+          "step": 1696,
+          "is_bigendian": 0,
+          "pixel_bit_size": 16,
+          "serialized_depth_units": 0.0
+        },
+        "payload_bytes": 814080,
+        "topic": "/cam/sensor_3/frameType_3",
+        "decoded_shape": [
+          480,
+          848
+        ],
+        "decoded_dtype": "<u2",
+        "calibration": "/cam/streamProfileType_3"
+      },
+      "pose": null,
+      "pose_status": "missing world-camera trajectory",
+      "clock": "device/header",
+      "depth_minus_rgb_ns": 96000,
+      "metres_per_depth_unit": 0.001,
+      "native_grids": true
+    },
+    {
+      "id": 18,
+      "preview_cell": 17,
+      "reason": [
+        "uniform"
+      ],
+      "time_rel_first_depth_s": 273.123785,
+      "rgb": {
+        "connection_id": 4,
+        "index_zero_based": 8159,
+        "vendor_frame_number": 8160,
+        "seq": 0,
+        "frame_id": "",
+        "record_ns": "2699887385000",
+        "header_ns": "2699887385000",
+        "device_ns": "2699887385000",
+        "system_ns": "1793522628987094000",
+        "global_ns": "1793522628967238000",
+        "format": {
+          "height": 720,
+          "width": 1280,
+          "encoding": "mjpg",
+          "step": 1280,
+          "is_bigendian": 0,
+          "pixel_bit_size": 0,
+          "serialized_depth_units": 0.0
+        },
+        "payload_bytes": 105782,
+        "topic": "/cam/sensor_2/frameType_2",
+        "decoded_shape": [
+          720,
+          1280,
+          3
+        ],
+        "decoded_dtype": "uint8",
+        "calibration": "/cam/streamProfileType_2"
+      },
+      "depth": {
+        "connection_id": 1,
+        "index_zero_based": 8184,
+        "vendor_frame_number": 8185,
+        "seq": 0,
+        "frame_id": "",
+        "record_ns": "2699887461000",
+        "header_ns": "2699887461000",
+        "device_ns": "2699887461000",
+        "system_ns": "1793522628988982000",
+        "global_ns": "1793522628967313000",
+        "format": {
+          "height": 480,
+          "width": 848,
+          "encoding": "mono16",
+          "step": 1696,
+          "is_bigendian": 0,
+          "pixel_bit_size": 16,
+          "serialized_depth_units": 0.0
+        },
+        "payload_bytes": 814080,
+        "topic": "/cam/sensor_3/frameType_3",
+        "decoded_shape": [
+          480,
+          848
+        ],
+        "decoded_dtype": "<u2",
+        "calibration": "/cam/streamProfileType_3"
+      },
+      "pose": null,
+      "pose_status": "missing world-camera trajectory",
+      "clock": "device/header",
+      "depth_minus_rgb_ns": 76000,
+      "metres_per_depth_unit": 0.001,
+      "native_grids": true
+    },
+    {
+      "id": 19,
+      "preview_cell": 18,
+      "reason": [
+        "uniform"
+      ],
+      "time_rel_first_depth_s": 289.144293,
+      "rgb": {
+        "connection_id": 4,
+        "index_zero_based": 8638,
+        "vendor_frame_number": 8639,
+        "seq": 0,
+        "frame_id": "",
+        "record_ns": "2715907893000",
+        "header_ns": "2715907893000",
+        "device_ns": "2715907893000",
+        "system_ns": "1793522645005852000",
+        "global_ns": "1793522644987336000",
+        "format": {
+          "height": 720,
+          "width": 1280,
+          "encoding": "mjpg",
+          "step": 1280,
+          "is_bigendian": 0,
+          "pixel_bit_size": 0,
+          "serialized_depth_units": 0.0
+        },
+        "payload_bytes": 170798,
+        "topic": "/cam/sensor_2/frameType_2",
+        "decoded_shape": [
+          720,
+          1280,
+          3
+        ],
+        "decoded_dtype": "uint8",
+        "calibration": "/cam/streamProfileType_2"
+      },
+      "depth": {
+        "connection_id": 1,
+        "index_zero_based": 8664,
+        "vendor_frame_number": 8665,
+        "seq": 0,
+        "frame_id": "",
+        "record_ns": "2715907971000",
+        "header_ns": "2715907971000",
+        "device_ns": "2715907971000",
+        "system_ns": "1793522645007420000",
+        "global_ns": "1793522644987414000",
+        "format": {
+          "height": 480,
+          "width": 848,
+          "encoding": "mono16",
+          "step": 1696,
+          "is_bigendian": 0,
+          "pixel_bit_size": 16,
+          "serialized_depth_units": 0.0
+        },
+        "payload_bytes": 814080,
+        "topic": "/cam/sensor_3/frameType_3",
+        "decoded_shape": [
+          480,
+          848
+        ],
+        "decoded_dtype": "<u2",
+        "calibration": "/cam/streamProfileType_3"
+      },
+      "pose": null,
+      "pose_status": "missing world-camera trajectory",
+      "clock": "device/header",
+      "depth_minus_rgb_ns": 78000,
+      "metres_per_depth_unit": 0.001,
+      "native_grids": true
+    },
+    {
+      "id": 20,
+      "preview_cell": 19,
+      "reason": [
+        "uniform"
+      ],
+      "time_rel_first_depth_s": 305.196875,
+      "rgb": {
+        "connection_id": 4,
+        "index_zero_based": 9119,
+        "vendor_frame_number": 9120,
+        "seq": 0,
+        "frame_id": "",
+        "record_ns": "2731960475000",
+        "header_ns": "2731960475000",
+        "device_ns": "2731960475000",
+        "system_ns": "1793522661058309000",
+        "global_ns": "1793522661040105000",
+        "format": {
+          "height": 720,
+          "width": 1280,
+          "encoding": "mjpg",
+          "step": 1280,
+          "is_bigendian": 0,
+          "pixel_bit_size": 0,
+          "serialized_depth_units": 0.0
+        },
+        "payload_bytes": 103811,
+        "topic": "/cam/sensor_2/frameType_2",
+        "decoded_shape": [
+          720,
+          1280,
+          3
+        ],
+        "decoded_dtype": "uint8",
+        "calibration": "/cam/streamProfileType_2"
+      },
+      "depth": {
+        "connection_id": 1,
+        "index_zero_based": 9145,
+        "vendor_frame_number": 9146,
+        "seq": 0,
+        "frame_id": "",
+        "record_ns": "2731960563000",
+        "header_ns": "2731960563000",
+        "device_ns": "2731960563000",
+        "system_ns": "1793522661059794000",
+        "global_ns": "1793522661040192000",
+        "format": {
+          "height": 480,
+          "width": 848,
+          "encoding": "mono16",
+          "step": 1696,
+          "is_bigendian": 0,
+          "pixel_bit_size": 16,
+          "serialized_depth_units": 0.0
+        },
+        "payload_bytes": 814080,
+        "topic": "/cam/sensor_3/frameType_3",
+        "decoded_shape": [
+          480,
+          848
+        ],
+        "decoded_dtype": "<u2",
+        "calibration": "/cam/streamProfileType_3"
+      },
+      "pose": null,
+      "pose_status": "missing world-camera trajectory",
+      "clock": "device/header",
+      "depth_minus_rgb_ns": 88000,
+      "metres_per_depth_unit": 0.001,
+      "native_grids": true
+    },
+    {
+      "id": 21,
+      "preview_cell": 20,
+      "reason": [
+        "uniform"
+      ],
+      "time_rel_first_depth_s": 321.214641,
+      "rgb": {
+        "connection_id": 4,
+        "index_zero_based": 9599,
+        "vendor_frame_number": 9600,
+        "seq": 0,
+        "frame_id": "",
+        "record_ns": "2747978241000",
+        "header_ns": "2747978241000",
+        "device_ns": "2747978241000",
+        "system_ns": "1793522677077237000",
+        "global_ns": "1793522677057509000",
+        "format": {
+          "height": 720,
+          "width": 1280,
+          "encoding": "mjpg",
+          "step": 1280,
+          "is_bigendian": 0,
+          "pixel_bit_size": 0,
+          "serialized_depth_units": 0.0
+        },
+        "payload_bytes": 129967,
+        "topic": "/cam/sensor_2/frameType_2",
+        "decoded_shape": [
+          720,
+          1280,
+          3
+        ],
+        "decoded_dtype": "uint8",
+        "calibration": "/cam/streamProfileType_2"
+      },
+      "depth": {
+        "connection_id": 1,
+        "index_zero_based": 9625,
+        "vendor_frame_number": 9626,
+        "seq": 0,
+        "frame_id": "",
+        "record_ns": "2747978317000",
+        "header_ns": "2747978317000",
+        "device_ns": "2747978317000",
+        "system_ns": "1793522677078853000",
+        "global_ns": "1793522677057585000",
+        "format": {
+          "height": 480,
+          "width": 848,
+          "encoding": "mono16",
+          "step": 1696,
+          "is_bigendian": 0,
+          "pixel_bit_size": 16,
+          "serialized_depth_units": 0.0
+        },
+        "payload_bytes": 814080,
+        "topic": "/cam/sensor_3/frameType_3",
+        "decoded_shape": [
+          480,
+          848
+        ],
+        "decoded_dtype": "<u2",
+        "calibration": "/cam/streamProfileType_3"
+      },
+      "pose": null,
+      "pose_status": "missing world-camera trajectory",
+      "clock": "device/header",
+      "depth_minus_rgb_ns": 76000,
+      "metres_per_depth_unit": 0.001,
+      "native_grids": true
+    },
+    {
+      "id": 22,
+      "preview_cell": 21,
+      "reason": [
+        "uniform"
+      ],
+      "time_rel_first_depth_s": 337.266445,
+      "rgb": {
+        "connection_id": 4,
+        "index_zero_based": 10080,
+        "vendor_frame_number": 10081,
+        "seq": 0,
+        "frame_id": "",
+        "record_ns": "2764030045000",
+        "header_ns": "2764030045000",
+        "device_ns": "2764030045000",
+        "system_ns": "1793522693128768000",
+        "global_ns": "1793522693109418000",
+        "format": {
+          "height": 720,
+          "width": 1280,
+          "encoding": "mjpg",
+          "step": 1280,
+          "is_bigendian": 0,
+          "pixel_bit_size": 0,
+          "serialized_depth_units": 0.0
+        },
+        "payload_bytes": 155252,
+        "topic": "/cam/sensor_2/frameType_2",
+        "decoded_shape": [
+          720,
+          1280,
+          3
+        ],
+        "decoded_dtype": "uint8",
+        "calibration": "/cam/streamProfileType_2"
+      },
+      "depth": {
+        "connection_id": 1,
+        "index_zero_based": 10106,
+        "vendor_frame_number": 10107,
+        "seq": 0,
+        "frame_id": "",
+        "record_ns": "2764030134000",
+        "header_ns": "2764030134000",
+        "device_ns": "2764030134000",
+        "system_ns": "1793522693130901000",
+        "global_ns": "1793522693109508000",
+        "format": {
+          "height": 480,
+          "width": 848,
+          "encoding": "mono16",
+          "step": 1696,
+          "is_bigendian": 0,
+          "pixel_bit_size": 16,
+          "serialized_depth_units": 0.0
+        },
+        "payload_bytes": 814080,
+        "topic": "/cam/sensor_3/frameType_3",
+        "decoded_shape": [
+          480,
+          848
+        ],
+        "decoded_dtype": "<u2",
+        "calibration": "/cam/streamProfileType_3"
+      },
+      "pose": null,
+      "pose_status": "missing world-camera trajectory",
+      "clock": "device/header",
+      "depth_minus_rgb_ns": 89000,
+      "metres_per_depth_unit": 0.001,
+      "native_grids": true
+    },
+    {
+      "id": 23,
+      "preview_cell": 22,
+      "reason": [
+        "uniform"
+      ],
+      "time_rel_first_depth_s": 353.287189,
+      "rgb": {
+        "connection_id": 4,
+        "index_zero_based": 10560,
+        "vendor_frame_number": 10561,
+        "seq": 0,
+        "frame_id": "",
+        "record_ns": "2780050789000",
+        "header_ns": "2780050789000",
+        "device_ns": "2780050789000",
+        "system_ns": "1793522709149535000",
+        "global_ns": "1793522709129793000",
+        "format": {
+          "height": 720,
+          "width": 1280,
+          "encoding": "mjpg",
+          "step": 1280,
+          "is_bigendian": 0,
+          "pixel_bit_size": 0,
+          "serialized_depth_units": 0.0
+        },
+        "payload_bytes": 113507,
+        "topic": "/cam/sensor_2/frameType_2",
+        "decoded_shape": [
+          720,
+          1280,
+          3
+        ],
+        "decoded_dtype": "uint8",
+        "calibration": "/cam/streamProfileType_2"
+      },
+      "depth": {
+        "connection_id": 1,
+        "index_zero_based": 10586,
+        "vendor_frame_number": 10587,
+        "seq": 0,
+        "frame_id": "",
+        "record_ns": "2780050879000",
+        "header_ns": "2780050879000",
+        "device_ns": "2780050879000",
+        "system_ns": "1793522709149935000",
+        "global_ns": "1793522709129884000",
+        "format": {
+          "height": 480,
+          "width": 848,
+          "encoding": "mono16",
+          "step": 1696,
+          "is_bigendian": 0,
+          "pixel_bit_size": 16,
+          "serialized_depth_units": 0.0
+        },
+        "payload_bytes": 814080,
+        "topic": "/cam/sensor_3/frameType_3",
+        "decoded_shape": [
+          480,
+          848
+        ],
+        "decoded_dtype": "<u2",
+        "calibration": "/cam/streamProfileType_3"
+      },
+      "pose": null,
+      "pose_status": "missing world-camera trajectory",
+      "clock": "device/header",
+      "depth_minus_rgb_ns": 90000,
+      "metres_per_depth_unit": 0.001,
+      "native_grids": true,
+      "rgb_preview_mask": {
+        "xywh_at_296x167": [
+          0,
+          0,
+          76,
+          72
+        ],
+        "reason": "Mask the incidental face at upper left of public RGB preview #23. Metrics use original pixels. No full-resolution example exported for this cell."
+      }
+    },
+    {
+      "id": 24,
+      "preview_cell": 23,
+      "reason": [
+        "uniform"
+      ],
+      "time_rel_first_depth_s": 369.339766,
+      "rgb": {
+        "connection_id": 4,
+        "index_zero_based": 11040,
+        "vendor_frame_number": 11041,
+        "seq": 0,
+        "frame_id": "",
+        "record_ns": "2796103366000",
+        "header_ns": "2796103366000",
+        "device_ns": "2796103366000",
+        "system_ns": "1793522725200192000",
+        "global_ns": "1793522725181789000",
+        "format": {
+          "height": 720,
+          "width": 1280,
+          "encoding": "mjpg",
+          "step": 1280,
+          "is_bigendian": 0,
+          "pixel_bit_size": 0,
+          "serialized_depth_units": 0.0
+        },
+        "payload_bytes": 138361,
+        "topic": "/cam/sensor_2/frameType_2",
+        "decoded_shape": [
+          720,
+          1280,
+          3
+        ],
+        "decoded_dtype": "uint8",
+        "calibration": "/cam/streamProfileType_2"
+      },
+      "depth": {
+        "connection_id": 1,
+        "index_zero_based": 11067,
+        "vendor_frame_number": 11068,
+        "seq": 0,
+        "frame_id": "",
+        "record_ns": "2796103457000",
+        "header_ns": "2796103457000",
+        "device_ns": "2796103457000",
+        "system_ns": "1793522725202216000",
+        "global_ns": "1793522725181880000",
+        "format": {
+          "height": 480,
+          "width": 848,
+          "encoding": "mono16",
+          "step": 1696,
+          "is_bigendian": 0,
+          "pixel_bit_size": 16,
+          "serialized_depth_units": 0.0
+        },
+        "payload_bytes": 814080,
+        "topic": "/cam/sensor_3/frameType_3",
+        "decoded_shape": [
+          480,
+          848
+        ],
+        "decoded_dtype": "<u2",
+        "calibration": "/cam/streamProfileType_3"
+      },
+      "pose": null,
+      "pose_status": "missing world-camera trajectory",
+      "clock": "device/header",
+      "depth_minus_rgb_ns": 91000,
+      "metres_per_depth_unit": 0.001,
+      "native_grids": true,
+      "rgb_file": "samples/pair_24_rgb.jpg",
+      "depth_file": "samples/pair_24_depth.npz",
+      "rgb_payload_sha256": "6dab421fd310c3462062824c5eadc8f88e2ff1ef86b8a776e50a215ddd13f887",
+      "depth_pixels_sha256": "5a760e32b152c93ee8eadf4aeff274734cdea1e94f7e70d14f2c7becd84ef7ce",
+      "returned_transform": "none; original JPEG payload; original numeric depth array, NPZ key depth; exact read-back passed"
+    },
+    {
+      "id": 25,
+      "preview_cell": 24,
+      "reason": [
+        "largest absolute RGB-D offset"
+      ],
+      "time_rel_first_depth_s": 106.29556,
+      "rgb": {
+        "connection_id": 4,
+        "index_zero_based": 3170,
+        "vendor_frame_number": 3171,
+        "seq": 0,
+        "frame_id": "",
+        "record_ns": "2533059160000",
+        "header_ns": "2533059160000",
+        "device_ns": "2533059160000",
+        "system_ns": "1793522462160669000",
+        "global_ns": "1793522462140963000",
+        "format": {
+          "height": 720,
+          "width": 1280,
+          "encoding": "mjpg",
+          "step": 1280,
+          "is_bigendian": 0,
+          "pixel_bit_size": 0,
+          "serialized_depth_units": 0.0
+        },
+        "payload_bytes": 157504,
+        "topic": "/cam/sensor_2/frameType_2",
+        "decoded_shape": [
+          720,
+          1280,
+          3
+        ],
+        "decoded_dtype": "uint8",
+        "calibration": "/cam/streamProfileType_2"
+      },
+      "depth": {
+        "connection_id": 1,
+        "index_zero_based": 3185,
+        "vendor_frame_number": 3186,
+        "seq": 0,
+        "frame_id": "",
+        "record_ns": "2533053281000",
+        "header_ns": "2533053281000",
+        "device_ns": "2533053281000",
+        "system_ns": "1793522462159042000",
+        "global_ns": "1793522462135084000",
+        "format": {
+          "height": 480,
+          "width": 848,
+          "encoding": "mono16",
+          "step": 1696,
+          "is_bigendian": 0,
+          "pixel_bit_size": 16,
+          "serialized_depth_units": 0.0
+        },
+        "payload_bytes": 814080,
+        "topic": "/cam/sensor_3/frameType_3",
+        "decoded_shape": [
+          480,
+          848
+        ],
+        "decoded_dtype": "<u2",
+        "calibration": "/cam/streamProfileType_3"
+      },
+      "pose": null,
+      "pose_status": "missing world-camera trajectory",
+      "clock": "device/header",
+      "depth_minus_rgb_ns": -5879000,
+      "metres_per_depth_unit": 0.001,
+      "native_grids": true,
+      "rgb_file": "samples/pair_25_rgb.jpg",
+      "depth_file": "samples/pair_25_depth.npz",
+      "rgb_payload_sha256": "c39320f138fb7bac259a91a0b238285b75e64de039c65154a442ae37d10a45ce",
+      "depth_pixels_sha256": "e874562920daeba885d0bce6c4d983b7cf907843e32f74a00877d762cd303eb3",
+      "returned_transform": "none; original JPEG payload; original numeric depth array, NPZ key depth; exact read-back passed"
+    },
+    {
+      "id": 26,
+      "preview_cell": 25,
+      "reason": [
+        "after longest RGB header interval"
+      ],
+      "time_rel_first_depth_s": 164.660004,
+      "rgb": {
+        "connection_id": 4,
+        "index_zero_based": 4916,
+        "vendor_frame_number": 4917,
+        "seq": 0,
+        "frame_id": "",
+        "record_ns": "2591423604000",
+        "header_ns": "2591423604000",
+        "device_ns": "2591423604000",
+        "system_ns": "1793522520524451000",
+        "global_ns": "1793522520504115000",
+        "format": {
+          "height": 720,
+          "width": 1280,
+          "encoding": "mjpg",
+          "step": 1280,
+          "is_bigendian": 0,
+          "pixel_bit_size": 0,
+          "serialized_depth_units": 0.0
+        },
+        "payload_bytes": 218096,
+        "topic": "/cam/sensor_2/frameType_2",
+        "decoded_shape": [
+          720,
+          1280,
+          3
+        ],
+        "decoded_dtype": "uint8",
+        "calibration": "/cam/streamProfileType_2"
+      },
+      "depth": {
+        "connection_id": 1,
+        "index_zero_based": 4934,
+        "vendor_frame_number": 4935,
+        "seq": 0,
+        "frame_id": "",
+        "record_ns": "2591423691000",
+        "header_ns": "2591423691000",
+        "device_ns": "2591423691000",
+        "system_ns": "1793522520527676000",
+        "global_ns": "1793522520504201000",
+        "format": {
+          "height": 480,
+          "width": 848,
+          "encoding": "mono16",
+          "step": 1696,
+          "is_bigendian": 0,
+          "pixel_bit_size": 16,
+          "serialized_depth_units": 0.0
+        },
+        "payload_bytes": 814080,
+        "topic": "/cam/sensor_3/frameType_3",
+        "decoded_shape": [
+          480,
+          848
+        ],
+        "decoded_dtype": "<u2",
+        "calibration": "/cam/streamProfileType_3"
+      },
+      "pose": null,
+      "pose_status": "missing world-camera trajectory",
+      "clock": "device/header",
+      "depth_minus_rgb_ns": 87000,
+      "metres_per_depth_unit": 0.001,
+      "native_grids": true
+    }
+  ]
+}

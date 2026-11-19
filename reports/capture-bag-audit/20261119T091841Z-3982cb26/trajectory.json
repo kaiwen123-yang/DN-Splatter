@@ -1,0 +1,48 @@
+{
+  "status": "no_usable_camera_poses",
+  "pose_topic": null,
+  "pose_count": 0,
+  "rgb_pose_coverage": 0.0,
+  "rgb_frames": 11041,
+  "interpolated_frames": 0,
+  "imu": {
+    "/cam/sensor_4/frameType_4": {
+      "zero_orientation": 73082,
+      "zero_covariances": 73082,
+      "nonfinite": 0,
+      "vector_norm_raw": {
+        "min": 7.486484774952689,
+        "p01": 8.710045813002044,
+        "p50": 9.8476491083671,
+        "p95": 10.776935704774736,
+        "p99": 11.333430301285526,
+        "max": 14.583030966309183
+      },
+      "count": 73082
+    },
+    "/cam/sensor_5/frameType_7": {
+      "zero_orientation": 73082,
+      "zero_covariances": 73082,
+      "nonfinite": 0,
+      "vector_norm_raw": {
+        "min": 0.002713252275828745,
+        "p01": 0.034229382540394634,
+        "p50": 0.32511184492669915,
+        "p95": 0.8331500846800844,
+        "p99": 1.2252751209396058,
+        "max": 6.346153406303701
+      },
+      "count": 73082
+    }
+  },
+  "interpretation": "All recorded IMU orientations are zero quaternions and all covariance matrices are zero. SDK stores accelerometer/gyro vectors separately. No position or world reference.",
+  "direction": null,
+  "scale": null,
+  "path_length": null,
+  "translation_extent": null,
+  "rotation_change": null,
+  "resets_jumps": null,
+  "interpolation": "none; no dynamic edges",
+  "covariance": "unspecified",
+  "geometry_check": "Not performed: dynamic camera poses absent."
+}

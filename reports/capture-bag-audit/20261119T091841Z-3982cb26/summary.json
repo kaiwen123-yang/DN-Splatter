@@ -1,0 +1,183 @@
+{
+  "schema_version": 1,
+  "started_at": "2026-11-19T09:18:41.407019+00:00",
+  "run_id": "20261119T091841Z-3982cb26",
+  "training_started": false,
+  "source_unchanged": true,
+  "integrity_scope": "size and mtime_ns stable across scan/sample export; a streaming SHA-256 was computed once.",
+  "source": {
+    "path": "H:\\capture.bag\\capture.bag",
+    "requested_path": "H:\\capture.bag",
+    "format": "ROS1 bag v2.0 / Orbbec SDK extended messages",
+    "magic": "#ROSBAG V2.0",
+    "sha256": "3982cb269ea03ddf4234b45f74be27143eb66bcd807e4e471d0f3a9cd6b03b59",
+    "bytes": 5919666852,
+    "before": {
+      "bytes": 5919666852,
+      "mtime_ns": "1795077825911546600",
+      "mtime_utc": "2026-11-19T08:43:45.911547+00:00"
+    },
+    "after": {
+      "bytes": 5919666852,
+      "mtime_ns": "1795077825911546600",
+      "mtime_utc": "2026-11-19T08:43:45.911547+00:00"
+    },
+    "sensor_duration_ns": 369352598000,
+    "first_device_ns": "2426763600000",
+    "last_device_ns": "2796116198000",
+    "duration_basis": "Dynamic color/depth/IMU device timestamps. The epoch-stamped property topic must not extend sensor duration."
+  },
+  "reader_environment": {
+    "os": "Windows-11-10.0.26200-SP0",
+    "python": "3.12.10",
+    "interpreter": ".local/venv/bag-audit/Scripts/python.exe",
+    "logical_cpus": 24,
+    "output_volume_free_bytes_at_scan": 137453465600,
+    "pixel_workers": 1,
+    "opencv_threads": 1,
+    "dependencies": {
+      "rosbags": "0.11.9",
+      "lz4": "4.4.5",
+      "numpy": "2.4.5",
+      "opencv-python-headless": "4.13.0.92",
+      "Pillow": "12.2.0",
+      "matplotlib": "3.10.9",
+      "apsw": "3.54.1.0",
+      "backports.zstd": "1.8.0",
+      "ruamel.yaml": "0.19.1"
+    },
+    "os_visible_ram_kib": 32961912,
+    "available_ram_kib_at_inventory": 8803564,
+    "ram_source": "Win32_OperatingSystem.TotalVisibleMemorySize / FreePhysicalMemory"
+  },
+  "scan_coverage": {
+    "connection_count": 11,
+    "indexed_messages": 168383,
+    "scanned_messages": 168383,
+    "wire_decoded": 168383,
+    "read_errors": 0,
+    "scan_order": "physical; validated against bag index",
+    "image_pairs_sampled": 26,
+    "numeric_pairs": 4
+  },
+  "selected_streams": {
+    "rgb": "/cam/sensor_2/frameType_2",
+    "depth": "/cam/sensor_3/frameType_3",
+    "imu": [
+      "/cam/sensor_4/frameType_4",
+      "/cam/sensor_5/frameType_7"
+    ],
+    "pose": null,
+    "association_clock": "device/header",
+    "profiles": {
+      "RGB": "/cam/streamProfileType_2",
+      "depth": "/cam/streamProfileType_3"
+    }
+  },
+  "readiness_checks": {
+    "readable_stable_recording": {
+      "status": "confirmed",
+      "evidence": "topic_inventory.json",
+      "detail": "All indexed messages matched physical records. Source size/mtime stable."
+    },
+    "usable_color_images": {
+      "status": "confirmed",
+      "evidence": "image_quality.json",
+      "detail": "All JPEG message envelopes checked; 26 selected payloads decoded at native 1280x720."
+    },
+    "multiview_coverage": {
+      "status": "confirmed",
+      "evidence": "previews/rgb.jpg",
+      "detail": "Multiple visual views of the same scene, changing foreground occlusion and side visibility. Metric baseline and reconstruction coverage unknown."
+    },
+    "sufficient_static_scene_content": {
+      "status": "confirmed",
+      "evidence": "image_quality.json",
+      "detail": "Tables and boxes recur as static background in the proposed segment. One sampled late frame includes a person. Quantitative static-scene coverage unknown."
+    },
+    "camera_intrinsics": {
+      "status": "confirmed",
+      "evidence": "calibration.json",
+      "detail": "One matching profile for each native image grid; intrinsics/distortion present."
+    },
+    "usable_per_frame_camera_poses": {
+      "status": "missing",
+      "evidence": "trajectory.json",
+      "detail": "0 / 11041 RGB poses. No TF, pose, odometry or world reference. IMU orientation all zero."
+    },
+    "pose_frame_and_scale_consistency": {
+      "status": "unknown",
+      "evidence": "frame_graph.json",
+      "detail": "Local sensor transformations available in mm. World pose direction, scale and drift cannot be checked."
+    },
+    "sensor_depth_present": {
+      "status": "confirmed",
+      "evidence": "topic_inventory.json",
+      "detail": "11068 native depth frames; DEPTH/Y16 with disparity-to-depth enabled."
+    },
+    "depth_encoding_decoded": {
+      "status": "confirmed",
+      "evidence": "depth_quality.json",
+      "detail": "26 native uint16 samples decoded with stride and endianness; four NPZ arrays compared against original pixels."
+    },
+    "depth_unit_confirmed": {
+      "status": "confirmed",
+      "evidence": "depth_quality.json",
+      "detail": "Property 176=1.0 mm/count; matching SDK and disparityParam.unit=1. Optical-axis Z."
+    },
+    "rgb_depth_registration": {
+      "status": "missing",
+      "evidence": "calibration.json",
+      "detail": "Native unregistered grids, hardware D2C disabled. Static depth-to-color calibration available, registration residual not measured."
+    },
+    "temporal_association": {
+      "status": "confirmed",
+      "evidence": "sync.json",
+      "detail": "11041 injective header/device matches within 10 ms. This measures frame time proximity."
+    },
+    "dataset_conversion_requirements": {
+      "status": "missing",
+      "evidence": "overview.md",
+      "detail": "Need metric camera trajectory and validated RGB-grid depth. Fixed splits and conversion remain future work."
+    }
+  },
+  "recommended_input_path": "sensor_rgbd_after_missing_prerequisites",
+  "blocking_missing_items": [
+    "逐帧 RGB 光心的世界位姿及其尺度/方向验证",
+    "配准到 RGB 网格并核对过遮挡与边缘的深度"
+  ],
+  "nonblocking_limitations": [
+    "仅 26 个图像时刻做像素分析",
+    "末段有人体与大角度横滚",
+    "无独立几何或测距真值，远距离精度未知"
+  ],
+  "unresolved_questions": [
+    "候选片段的连续重叠、平移基线和定位漂移是否足够？",
+    "在实际 RGB 网格上，近物边缘和遮挡区域的配准误差有多大？"
+  ],
+  "next_action": "后续审阅后，先在候选静态片段恢复米制 RGB 相机轨迹，并用原生标定核验 D2C、遮挡、轴向与尺度；据此决定转换。",
+  "audit_status": "complete",
+  "finished_at": "2026-11-19T09:29:37.504373+00:00",
+  "report_files": [
+    "overview.md",
+    "summary.json",
+    "topic_inventory.json",
+    "timing.json",
+    "sync.json",
+    "calibration.json",
+    "frame_graph.json",
+    "trajectory.json",
+    "image_quality.json",
+    "depth_quality.json",
+    "samples_metadata.json",
+    "artifact_manifest.json",
+    "execution.md"
+  ],
+  "script_hash_basis": "UTF-8 source bytes, LF line endings as stored in Git",
+  "report_script_sha256": {
+    "capture_bag_metrics.py": "9804e2f95e1e0b27f3af4a047c5a4dd5ffb41bb6ed77a7cfa55db461b94ad407",
+    "capture_bag_report.py": "4c51a18101b5bf8739f1a90b9f4f05b0494c37460a2ae32e5577384310b4256f",
+    "capture_bag_samples.py": "06b0e97f601d6b918b9ca1f5fce7bef29360e405e427342e567c6bf1d6f96601",
+    "capture_bag_scan.py": "8b5c972573718624e890c169f1764907927449c72c2fd23cf8046a3c41728f6f"
+  }
+}

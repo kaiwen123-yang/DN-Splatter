@@ -1,0 +1,136 @@
+{
+  "files": [
+    {
+      "path": ".gitattributes",
+      "bytes": 102,
+      "sha256": "5ef9fe21b3182bd9f848ad65b93fb05071ef13bbbf61a0b2696e98b9a9a81dae"
+    },
+    {
+      "path": "calibration.json",
+      "bytes": 6176,
+      "sha256": "b279b092495d8e690a35681998ce99aaf8e468699a602510c0358dedc1472973"
+    },
+    {
+      "path": "depth_quality.json",
+      "bytes": 16233,
+      "sha256": "9730cff92af911ada2c4bc19d07bbb45f7dcec70f60ce74150b1953566511046"
+    },
+    {
+      "path": "execution.md",
+      "bytes": 2856,
+      "sha256": "df86b0b864f9c428e4b068e3f40bdff27d14d0bbf21c88a3625677fc3a77f1ea"
+    },
+    {
+      "path": "frame_graph.json",
+      "bytes": 2162,
+      "sha256": "99de65c5543d671a426f3fdce69cae8b6f28a35942ad89a21aea9d110d9d44d3"
+    },
+    {
+      "path": "image_quality.json",
+      "bytes": 14084,
+      "sha256": "3201823f8743b523f0a82bbcf542de42bc9ef6c75b7bcbdb42601bf70d54899d"
+    },
+    {
+      "path": "overview.md",
+      "bytes": 7171,
+      "sha256": "dd14335f0d7c3f5dac0a052dfdf5c5b71d15911292b2038c2eee5ae75da5fbf9"
+    },
+    {
+      "path": "previews/depth.jpg",
+      "bytes": 416544,
+      "sha256": "c4cadaf6961874a4da992a54948d083ea7ee9680adf2ead9f416832f8a1123c8"
+    },
+    {
+      "path": "previews/rgb.jpg",
+      "bytes": 406748,
+      "sha256": "760743b14a9bbe573a9f7d7a818f36228201ab94a5026476a3317b1515bb1e52"
+    },
+    {
+      "path": "previews/timing.png",
+      "bytes": 55211,
+      "sha256": "439c20f36fd91ed1de44c870c0e76a3b59736ce79d9559cc8bd56cf5ea59ea10"
+    },
+    {
+      "path": "samples/pair_01_depth.npz",
+      "bytes": 229359,
+      "sha256": "48d5d34e0d017916b5be9da4f1c9f361ca460cf17bfd7d2c72bb17b00599dc4e"
+    },
+    {
+      "path": "samples/pair_01_rgb.jpg",
+      "bytes": 154825,
+      "sha256": "96de7a8527c95fde1fb6ed4a72163ef4286ec1d9952c8374911e1f1034861138"
+    },
+    {
+      "path": "samples/pair_13_depth.npz",
+      "bytes": 262320,
+      "sha256": "8a8f563fc074cf3c898eda15579033e3d641d7643cabc7d244af0b2e2f461a2b"
+    },
+    {
+      "path": "samples/pair_13_rgb.jpg",
+      "bytes": 195514,
+      "sha256": "9d8274d66bfda35e9066e91d3b0612203c2c6a03463c090843378f75e9d3f90b"
+    },
+    {
+      "path": "samples/pair_24_depth.npz",
+      "bytes": 300077,
+      "sha256": "a9f05d660242663c6e92a1c4f9cd37f20b411d983384836a10db8912f75014f7"
+    },
+    {
+      "path": "samples/pair_24_rgb.jpg",
+      "bytes": 138361,
+      "sha256": "6dab421fd310c3462062824c5eadc8f88e2ff1ef86b8a776e50a215ddd13f887"
+    },
+    {
+      "path": "samples/pair_25_depth.npz",
+      "bytes": 227478,
+      "sha256": "2e5c43687eb364341182ad1dd82ff69704f403d53c9f57d84068745b6c1b06b0"
+    },
+    {
+      "path": "samples/pair_25_rgb.jpg",
+      "bytes": 157504,
+      "sha256": "c39320f138fb7bac259a91a0b238285b75e64de039c65154a442ae37d10a45ce"
+    },
+    {
+      "path": "samples_metadata.json",
+      "bytes": 55805,
+      "sha256": "44747ddc2afb6d322626f1850f8060f252abf684eff4e0337425059b3bf4e834"
+    },
+    {
+      "path": "summary.json",
+      "bytes": 7206,
+      "sha256": "2b8b787473a3f651a12634ca775acae647e1044547c6c1035c97b70a1baf54dc"
+    },
+    {
+      "path": "sync.json",
+      "bytes": 4703,
+      "sha256": "a71bba49d29e421b82e492e6907801ccf87df83c3b56a0e526cad4bfd6f3f135"
+    },
+    {
+      "path": "timing.json",
+      "bytes": 52199,
+      "sha256": "845e3b2bfaafcb083331e6772278a62c3dc99d11bc163ea278e745caff0ffc69"
+    },
+    {
+      "path": "topic_inventory.json",
+      "bytes": 10865,
+      "sha256": "c76322f68779ef9e8cc95a7ecc07ba6071d02d1ed965431fa66475a0e5c362e3"
+    },
+    {
+      "path": "trajectory.json",
+      "bytes": 1446,
+      "sha256": "036dbd287cabcc542a0be1a776d5d7f52c4e33d557f8f7ea90ffcf883933a87a"
+    }
+  ],
+  "bytes_excluding_manifest": 2724949,
+  "total_bytes_including_manifest": 2729019,
+  "self_hash_excluded": true,
+  "original_bag_included": false,
+  "source_unchanged": true,
+  "local_only": [
+    "source bag",
+    "per-message timestamp table"
+  ],
+  "omissions": [
+    "World trajectory and geometric residuals: no recorded dynamic pose."
+  ]
+}

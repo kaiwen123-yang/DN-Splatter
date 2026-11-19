@@ -1,0 +1,356 @@
+{
+  "compression_chunks": {
+    "lz4": 11072
+  },
+  "total_payload_bytes": 10727606614,
+  "byte_definition": "Serialized message sizes before bag compression, excluding record headers.",
+  "definition_source": "Embedded definitions plus SDK serializers; ROS names/MD5 alone omit vendor fields. Image adds depth_units and pixel_bit_size omitted from definition text. IMU transmits linear_acceleration_covariance; OBProperty.propertyId uses uint32 on wire.",
+  "sources": [
+    "https://github.com/orbbec/OrbbecSDK_v2/blob/f5d59930ccb9a189f200e58fba4e2ae42664792d/3rdparty/rosbag/src/msgs/sensor_msgs/Image.h",
+    "https://github.com/orbbec/OrbbecSDK_v2/blob/f5d59930ccb9a189f200e58fba4e2ae42664792d/3rdparty/rosbag/src/msgs/sensor_msgs/Imu.h",
+    "https://github.com/orbbec/OrbbecSDK_v2/blob/f5d59930ccb9a189f200e58fba4e2ae42664792d/3rdparty/rosbag/src/msgs/custom_msg/OBProperty.h"
+  ],
+  "role_evidence": "Image payloads and encodings match SDK stream enums 2 (color MJPG), 3 (depth Y16). IMU fields and profile enums 4/5 identify accelerometer/gyro. Other roles follow vendor typed fields.",
+  "roles_not_present": [
+    "CameraInfo",
+    "TF",
+    "TF-static",
+    "odometry",
+    "pose",
+    "path",
+    "GNSS",
+    "IR image",
+    "confidence image",
+    "point cloud",
+    "registered RGB-grid depth"
+  ],
+  "connections": [
+    {
+      "topic": "/cam/property",
+      "connection_id": 0,
+      "type": "custom_msg/OBProperty",
+      "md5": "0123456789abcdef0123456789abcdef",
+      "definition_sha256": "7031d688bc19f23e5120ce5111fa26e82b40483fbd2015e58555ebfe0fe26b05",
+      "expected": 104,
+      "scanned": 104,
+      "payload_bytes": 29460,
+      "frame_ids": {
+        "": 104
+      },
+      "role": "device properties",
+      "decoded_wire_messages": 104,
+      "wire_errors": 0,
+      "header_seq_range": [
+        0,
+        0
+      ],
+      "payload_fraction": 2.7461857113173223e-06,
+      "first_record_ns": "1793522355589607000",
+      "last_record_ns": "1793522355647242000",
+      "duration_ns": 57635000,
+      "rate_hz": 1787.1085278042856,
+      "median_rate_hz": 3125.0,
+      "image_format_segments": null
+    },
+    {
+      "topic": "/cam/sensor_3/frameType_3",
+      "connection_id": 1,
+      "type": "sensor_msgs/Image",
+      "md5": "060021388200f6f0f447d0fcd9c64743",
+      "definition_sha256": "75782a8bde06b2ebc5cf524eddefa7ff7648c470e12cae14cf00e339061ccf87",
+      "expected": 11068,
+      "scanned": 11068,
+      "payload_bytes": 9012406768,
+      "frame_ids": {
+        "": 11068
+      },
+      "role": "depth",
+      "decoded_wire_messages": 11068,
+      "wire_errors": 0,
+      "header_seq_range": [
+        0,
+        0
+      ],
+      "payload_fraction": 0.8401134654060125,
+      "first_record_ns": "2426763600000",
+      "last_record_ns": "2796103457000",
+      "duration_ns": 369339857000,
+      "rate_hz": 29.96427217439465,
+      "median_rate_hz": 29.96434243250532,
+      "image_format_segments": [
+        {
+          "first_idx": 0,
+          "first_header_ns": "2426763600000",
+          "format": {
+            "height": 480,
+            "width": 848,
+            "encoding": "mono16",
+            "step": 1696,
+            "is_bigendian": 0,
+            "pixel_bit_size": 16,
+            "serialized_depth_units": 0.0
+          },
+          "last_idx": 11067
+        }
+      ]
+    },
+    {
+      "topic": "/cam/sensor_5/frameType_7",
+      "connection_id": 2,
+      "type": "sensor_msgs/Imu",
+      "md5": "6a62c6daae103f4ff57a132d6f95cec2",
+      "definition_sha256": "fb8df5cb3f5cd704db298a6c0717993b84dcf59bf967127a2ec85319a85ad69f",
+      "expected": 73082,
+      "scanned": 73082,
+      "payload_bytes": 27186504,
+      "frame_ids": {
+        "": 73082
+      },
+      "role": "gyroscope",
+      "decoded_wire_messages": 73082,
+      "wire_errors": 0,
+      "header_seq_range": [
+        0,
+        0
+      ],
+      "payload_fraction": 0.002534256239832696,
+      "first_record_ns": "2426816769000",
+      "last_record_ns": "2796116198000",
+      "duration_ns": 369299429000,
+      "rate_hz": 197.89090981778907,
+      "median_rate_hz": 197.90223629527014,
+      "image_format_segments": null
+    },
+    {
+      "topic": "/cam/sensor_4/frameType_4",
+      "connection_id": 3,
+      "type": "sensor_msgs/Imu",
+      "md5": "6a62c6daae103f4ff57a132d6f95cec2",
+      "definition_sha256": "fb8df5cb3f5cd704db298a6c0717993b84dcf59bf967127a2ec85319a85ad69f",
+      "expected": 73082,
+      "scanned": 73082,
+      "payload_bytes": 27186504,
+      "frame_ids": {
+        "": 73082
+      },
+      "role": "accelerometer",
+      "decoded_wire_messages": 73082,
+      "wire_errors": 0,
+      "header_seq_range": [
+        0,
+        0
+      ],
+      "payload_fraction": 0.002534256239832696,
+      "first_record_ns": "2426816769000",
+      "last_record_ns": "2796116198000",
+      "duration_ns": 369299429000,
+      "rate_hz": 197.89090981778907,
+      "median_rate_hz": 197.90223629527014,
+      "image_format_segments": null
+    },
+    {
+      "topic": "/cam/sensor_2/frameType_2",
+      "connection_id": 4,
+      "type": "sensor_msgs/Image",
+      "md5": "060021388200f6f0f447d0fcd9c64743",
+      "definition_sha256": "75782a8bde06b2ebc5cf524eddefa7ff7648c470e12cae14cf00e339061ccf87",
+      "expected": 11041,
+      "scanned": 11041,
+      "payload_bytes": 1660796355,
+      "frame_ids": {
+        "": 11041
+      },
+      "role": "RGB",
+      "decoded_wire_messages": 11041,
+      "wire_errors": 0,
+      "header_seq_range": [
+        0,
+        0
+      ],
+      "payload_fraction": 0.15481518056717214,
+      "first_record_ns": "2427228619000",
+      "last_record_ns": "2796103366000",
+      "duration_ns": 368874747000,
+      "rate_hz": 29.92885820942359,
+      "median_rate_hz": 29.969730572122156,
+      "image_format_segments": [
+        {
+          "first_idx": 0,
+          "first_header_ns": "2427228619000",
+          "format": {
+            "height": 720,
+            "width": 1280,
+            "encoding": "mjpg",
+            "step": 1280,
+            "is_bigendian": 0,
+            "pixel_bit_size": 0,
+            "serialized_depth_units": 0.0
+          },
+          "last_idx": 11040
+        }
+      ]
+    },
+    {
+      "topic": "/cam/deviceInfo",
+      "connection_id": 5,
+      "type": "custom_msg/OBDeviceInfo",
+      "md5": "afef5328bb4abebd1a309e1ea8b26b3a",
+      "definition_sha256": "02aa66f98c5daf2ede1aa1c6be639fe2fada086e27998302e9d7a732b54798a5",
+      "expected": 1,
+      "scanned": 1,
+      "payload_bytes": 142,
+      "frame_ids": {
+        "": 1
+      },
+      "role": "device identity",
+      "decoded_wire_messages": 1,
+      "wire_errors": 0,
+      "header_seq_range": [
+        0,
+        0
+      ],
+      "payload_fraction": 1.3236876137374736e-08,
+      "first_record_ns": "2426763600000",
+      "last_record_ns": "2426763600000",
+      "duration_ns": 0,
+      "rate_hz": null,
+      "median_rate_hz": null,
+      "image_format_segments": null
+    },
+    {
+      "topic": "/cam/streamProfileType_2",
+      "connection_id": 6,
+      "type": "custom_msg/OBStreamProfileInfo",
+      "md5": "0123456789abcdef0123456789abcdef",
+      "definition_sha256": "dfeb6229dc9591809946f47ce0d57dd0f7b19ba13e9dffeac6872aee838719ef",
+      "expected": 1,
+      "scanned": 1,
+      "payload_bytes": 121,
+      "frame_ids": {
+        "": 1
+      },
+      "role": "color profile",
+      "decoded_wire_messages": 1,
+      "wire_errors": 0,
+      "header_seq_range": [
+        0,
+        0
+      ],
+      "payload_fraction": 1.127930994804467e-08,
+      "first_record_ns": "2426763600000",
+      "last_record_ns": "2426763600000",
+      "duration_ns": 0,
+      "rate_hz": null,
+      "median_rate_hz": null,
+      "image_format_segments": null
+    },
+    {
+      "topic": "/cam/disparityParam",
+      "connection_id": 7,
+      "type": "custom_msg/OBDisparityParam",
+      "md5": "abcdef0123456789abcdef0123456789",
+      "definition_sha256": "ada2ff736e470b47751753e7968f2161a10a8564159b0c58d3cb50eafa8c4912",
+      "expected": 1,
+      "scanned": 1,
+      "payload_bytes": 67,
+      "frame_ids": {
+        "": 1
+      },
+      "role": "stereo disparity-to-depth calibration",
+      "decoded_wire_messages": 1,
+      "wire_errors": 0,
+      "header_seq_range": [
+        0,
+        0
+      ],
+      "payload_fraction": 6.245568318338784e-09,
+      "first_record_ns": "2426763600000",
+      "last_record_ns": "2426763600000",
+      "duration_ns": 0,
+      "rate_hz": null,
+      "median_rate_hz": null,
+      "image_format_segments": null
+    },
+    {
+      "topic": "/cam/streamProfileType_3",
+      "connection_id": 8,
+      "type": "custom_msg/OBStreamProfileInfo",
+      "md5": "0123456789abcdef0123456789abcdef",
+      "definition_sha256": "dfeb6229dc9591809946f47ce0d57dd0f7b19ba13e9dffeac6872aee838719ef",
+      "expected": 1,
+      "scanned": 1,
+      "payload_bytes": 121,
+      "frame_ids": {
+        "": 1
+      },
+      "role": "depth profile",
+      "decoded_wire_messages": 1,
+      "wire_errors": 0,
+      "header_seq_range": [
+        0,
+        0
+      ],
+      "payload_fraction": 1.127930994804467e-08,
+      "first_record_ns": "2426763600000",
+      "last_record_ns": "2426763600000",
+      "duration_ns": 0,
+      "rate_hz": null,
+      "median_rate_hz": null,
+      "image_format_segments": null
+    },
+    {
+      "topic": "/cam/streamProfileType_4",
+      "connection_id": 9,
+      "type": "custom_msg/OBImuStreamProfileInfo",
+      "md5": "0123456789abcdef0123456789abcdef",
+      "definition_sha256": "467a4828d8695816eab12a6f7e677fb28fcdaba618427deb3da5a17079e7c24f",
+      "expected": 1,
+      "scanned": 1,
+      "payload_bytes": 286,
+      "frame_ids": {
+        "": 1
+      },
+      "role": "accel profile",
+      "decoded_wire_messages": 1,
+      "wire_errors": 0,
+      "header_seq_range": [
+        0,
+        0
+      ],
+      "payload_fraction": 2.6660187149923765e-08,
+      "first_record_ns": "2426763600000",
+      "last_record_ns": "2426763600000",
+      "duration_ns": 0,
+      "rate_hz": null,
+      "median_rate_hz": null,
+      "image_format_segments": null
+    },
+    {
+      "topic": "/cam/streamProfileType_5",
+      "connection_id": 10,
+      "type": "custom_msg/OBImuStreamProfileInfo",
+      "md5": "0123456789abcdef0123456789abcdef",
+      "definition_sha256": "467a4828d8695816eab12a6f7e677fb28fcdaba618427deb3da5a17079e7c24f",
+      "expected": 1,
+      "scanned": 1,
+      "payload_bytes": 286,
+      "frame_ids": {
+        "": 1
+      },
+      "role": "gyro profile",
+      "decoded_wire_messages": 1,
+      "wire_errors": 0,
+      "header_seq_range": [
+        0,
+        0
+      ],
+      "payload_fraction": 2.6660187149923765e-08,
+      "first_record_ns": "2426763600000",
+      "last_record_ns": "2426763600000",
+      "duration_ns": 0,
+      "rate_hz": null,
+      "median_rate_hz": null,
+      "image_format_segments": null
+    }
+  ]
+}

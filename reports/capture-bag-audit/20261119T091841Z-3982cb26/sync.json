@@ -1,0 +1,174 @@
+{
+  "rgb_topic": "/cam/sensor_2/frameType_2",
+  "depth_topic": "/cam/sensor_3/frameType_3",
+  "timestamp_source": "header/device (also exactly equal to record time across dynamic streams)",
+  "clock_evidence": "Device timestamp_usec agrees with header and record on all image/IMU rows. One Gemini 335. No clock shift fitted or applied.",
+  "algorithm": "Nearest depth for every RGB; earlier wins ties. Verified the resulting mapping is injective BEFORE applying tolerances.",
+  "nearest_with_reuse_allowed": {
+    "attempted": 11041,
+    "reused": 0,
+    "signed_ns": {
+      "min": -5879000.0,
+      "p01": -890000.0,
+      "p50": 86000.0,
+      "p95": 462000.0,
+      "p99": 781600.0000000003,
+      "max": 5667000.0
+    },
+    "absolute_ns": {
+      "min": 0.0,
+      "p01": 11400.000000000005,
+      "p50": 90000.0,
+      "p95": 873000.0,
+      "p99": 925000.0000000019,
+      "max": 5879000.0
+    }
+  },
+  "sign": "depth minus RGB",
+  "selected_tolerance_ms": 10,
+  "rationale": "Diagnostic window below half of the ~33.37 ms frame interval; acquisition/exposure alignment accuracy is not implied.",
+  "overlap_duration_ns": 368874747000,
+  "thresholds": [
+    {
+      "tolerance_ms": 5,
+      "candidate_rgb": 11041,
+      "accepted_unique_pairs": 11028,
+      "reused": 0,
+      "unmatched_rgb": 13,
+      "unmatched_depth": 40,
+      "rgb_fraction": 0.9988225704193461,
+      "depth_fraction": 0.996385977593061,
+      "signed_ns": {
+        "min": -4924000.0,
+        "p01": -890000.0,
+        "p50": 86000.0,
+        "p95": 458000.0,
+        "p99": 756459.9999999991,
+        "max": 4121000.0
+      },
+      "absolute_ns": {
+        "min": 0.0,
+        "p01": 11269.999999999996,
+        "p50": 90000.0,
+        "p95": 872000.0,
+        "p99": 892000.0,
+        "max": 4924000.0
+      }
+    },
+    {
+      "tolerance_ms": 10,
+      "candidate_rgb": 11041,
+      "accepted_unique_pairs": 11041,
+      "reused": 0,
+      "unmatched_rgb": 0,
+      "unmatched_depth": 27,
+      "rgb_fraction": 1.0,
+      "depth_fraction": 0.9975605348753163,
+      "signed_ns": {
+        "min": -5879000.0,
+        "p01": -890000.0,
+        "p50": 86000.0,
+        "p95": 462000.0,
+        "p99": 781600.0000000003,
+        "max": 5667000.0
+      },
+      "absolute_ns": {
+        "min": 0.0,
+        "p01": 11400.000000000005,
+        "p50": 90000.0,
+        "p95": 873000.0,
+        "p99": 925000.0000000019,
+        "max": 5879000.0
+      }
+    },
+    {
+      "tolerance_ms": 20,
+      "candidate_rgb": 11041,
+      "accepted_unique_pairs": 11041,
+      "reused": 0,
+      "unmatched_rgb": 0,
+      "unmatched_depth": 27,
+      "rgb_fraction": 1.0,
+      "depth_fraction": 0.9975605348753163,
+      "signed_ns": {
+        "min": -5879000.0,
+        "p01": -890000.0,
+        "p50": 86000.0,
+        "p95": 462000.0,
+        "p99": 781600.0000000003,
+        "max": 5667000.0
+      },
+      "absolute_ns": {
+        "min": 0.0,
+        "p01": 11400.000000000005,
+        "p50": 90000.0,
+        "p95": 873000.0,
+        "p99": 925000.0000000019,
+        "max": 5879000.0
+      }
+    },
+    {
+      "tolerance_ms": 33,
+      "candidate_rgb": 11041,
+      "accepted_unique_pairs": 11041,
+      "reused": 0,
+      "unmatched_rgb": 0,
+      "unmatched_depth": 27,
+      "rgb_fraction": 1.0,
+      "depth_fraction": 0.9975605348753163,
+      "signed_ns": {
+        "min": -5879000.0,
+        "p01": -890000.0,
+        "p50": 86000.0,
+        "p95": 462000.0,
+        "p99": 781600.0000000003,
+        "max": 5667000.0
+      },
+      "absolute_ns": {
+        "min": 0.0,
+        "p01": 11400.000000000005,
+        "p50": 90000.0,
+        "p95": 873000.0,
+        "p99": 925000.0000000019,
+        "max": 5879000.0
+      }
+    }
+  ],
+  "unmatched_depth_at_10ms": {
+    "before_first_pair": 14,
+    "after_last_pair": 0,
+    "internal": 13
+  },
+  "calibration_association": "Matching stream type and native resolution, one static profile per stream stamped at start. See calibration.json.",
+  "camera_pose_association": {
+    "source": null,
+    "matched": 0,
+    "total_rgb": 11041
+  },
+  "clock_resets": "none observed on header/device streams",
+  "gap_details": "timing.json",
+  "imu_at_rgb": {
+    "/cam/sensor_4/frameType_4": {
+      "rgb_bracketed": 11041,
+      "absolute_nearest_ns": {
+        "min": 0.0,
+        "p01": 29000.0,
+        "p50": 1274000.0,
+        "p95": 2408000.0,
+        "p99": 2503000.0,
+        "max": 2526000.0
+      }
+    },
+    "/cam/sensor_5/frameType_7": {
+      "rgb_bracketed": 11041,
+      "absolute_nearest_ns": {
+        "min": 0.0,
+        "p01": 29000.0,
+        "p50": 1274000.0,
+        "p95": 2408000.0,
+        "p99": 2503000.0,
+        "max": 2526000.0
+      }
+    }
+  }
+}
