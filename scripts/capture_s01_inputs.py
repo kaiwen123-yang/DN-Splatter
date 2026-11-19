@@ -14,7 +14,8 @@ import numpy as np
 from capture_rectify import files, read, save, sha, verify
 from vr_room_run import ROOT, RUN, SRC, SCENE, STATE, CPU
 
-PROTOCOL = ROOT / "configs/capture_s01_train_protocol.json"
+FULL = os.environ.get("DN_CAPTURE_PROTOCOL") == "capture_full_test_protocol"
+PROTOCOL = ROOT / "configs" / ("capture_full_test_protocol.json" if FULL else "capture_s01_train_protocol.json")
 P = read(PROTOCOL)
 GEO = ROOT / P["paths"]["geometry_dataset"]
 GEO_RUN = ROOT / P["paths"]["geometry_run"]
@@ -39,12 +40,13 @@ def prepare():
     REPORT.mkdir(parents=True, exist_ok=True)
     verify(GEO)
     manifest = GEO / "manifest.json"
-    ensure(sha(manifest) == P["input"]["geometry_manifest_sha256"], "geometry manifest")
+    expected_hash = read(STATE / "dataset.done.json")["output_sha256"] if FULL else P["input"]["geometry_manifest_sha256"]
+    ensure(sha(manifest) == expected_hash, "geometry manifest")
     members = read(manifest)["files"]
     ensure(
-        len(members) + 1 == 488
+        FULL or (len(members) + 1 == 488
         and sum(f["bytes"] for f in members) + manifest.stat().st_size
-        == P["input"]["geometry_bytes_including_manifest"],
+        == P["input"]["geometry_bytes_including_manifest"]),
         "geometry inventory",
     )
     if not SCENE.exists():
@@ -62,8 +64,8 @@ def prepare():
             geometry=str(GEO),
             copy=str(SCENE),
             geometry_manifest_sha256=sha(manifest),
-            geometry_files=488,
-            geometry_bytes=P["input"]["geometry_bytes_including_manifest"],
+            geometry_files=len(members)+1,
+            geometry_bytes=sum(f["bytes"] for f in members)+manifest.stat().st_size,
             train_depth_coverage=read(GEO / "geometry.json")["depth_positive_fraction"],
             geometry_preserved=True,
             shared_inodes=0,
@@ -102,7 +104,7 @@ def normal_manifest():
     out = SCENE / "normals_from_pretrain"
     stems = {p.stem for p in (SCENE / "images").glob("*.png")}
     ensure(
-        len(stems) == 241
+        len(stems) == (len(read(SCENE / "transforms.json")["frames"]) if FULL else 241)
         and all({p.stem for p in out.glob("*." + ext)} == stems for ext in ("png", "npy")),
         "normal frame sets",
     )
@@ -122,13 +124,13 @@ def normal_manifest():
     )
     info = dict(
         model="Omnidata DPT Hybrid low",
-        source=P["source"]["commit"],
+        source=P["source"]["upstream_commit" if FULL else "commit"],
         source_script_sha256=sha(SRC / "dn_splatter/scripts/normals_from_pretrain.py"),
         environment_sha256=sha(REPORT / "environment.json"),
         command=normal_command,
         internal_hw=[384, 384],
         output_hw=[720, 1280],
-        count_per_format=241,
+        count_per_format=len(stems),
         png_rgb_uint8_range=[png_lo, png_hi],
         npy_chw_float_encoded_01_range=[lo, hi],
         checkpoint=str(WEIGHT.resolve()),

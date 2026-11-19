@@ -31,7 +31,7 @@ def main():
     a=ap.parse_args()
     s=a.run/"sfm"
     maplog=json.loads((s/a.map).read_text())
-    model=Path(max(maplog["components"],key=lambda r:len(r["registered"]))["model"])
+    model=Path(max(maplog["components"],key=lambda r:len(r.get("registered_primary",r["registered"])))["model"])
     fingerprint={p.name:digest(p) for p in model.glob("*.bin")}
     rec=pc.Reconstruction(str(model))
     camera=next(iter(rec.cameras.values()))
@@ -60,6 +60,8 @@ def main():
         angles.append(float(np.degrees(np.arccos(np.clip(l@r/(np.linalg.norm(l)*np.linalg.norm(r)),-1,1)))))
         for e in track:
             im=rec.images[e.image_id]
+            if im.name.startswith("aux_"):
+                continue
             uv=im.points2D[e.point2D_idx].xy
             pc3=im.cam_from_world()*pt.xyz
             pred=camera.img_from_cam(pc3)
@@ -79,14 +81,18 @@ def main():
         return tree,ids
     quality=[]
     lookup={r["id"]+".png":int(r["actual_rgb_timestamp_ns"]) for r in json.loads((a.run/"transfer/selection.json").read_text())}
-    for qid,name in query.execute("select image_id,name from images order by name"):
+    primary=[n for n in train_names if n in lookup]
+    def estimate(qid,name,limit):
         desc=blob(query,"descriptors",qid,np.uint8).astype(np.float32)
         uv=blob(query,"keypoints",qid,np.float32)[:,:2]
-        neighbors=sorted(train_names,key=lambda n:abs(lookup[n]-lookup[name]))[:4]
+        neighbors=sorted(primary,key=lambda n:abs(lookup[n]-lookup[name]))[:limit]
         candidates=[]
         for n in neighbors:
             tree,ids=index(n)
-            for m,k in tree.knnMatch(desc,k=2):
+            for match in tree.knnMatch(desc,k=2) if len(desc) else ():
+                if len(match)!=2:
+                    continue
+                m,k=match
                 if m.distance < .75*k.distance:
                     candidates.append((m.distance/max(k.distance,1),m.queryIdx,int(ids[m.trainIdx])))
         indices=[]; used_2d=set(); used_3d=set()
@@ -109,6 +115,13 @@ def main():
                 err=np.linalg.norm(q[:,:2]/q[:,2:]-u[inliers],axis=1)
                 out.update(registered=True,inliers=int(inliers.sum()),inlier_reprojection_px=stats(err))
                 poses[name]=rigid.matrix().tolist()
+        return out
+    for qid,name in query.execute("select image_id,name from images order by name"):
+        out=estimate(qid,name,4)
+        if not out["registered"] and a.map.startswith("map_full"):
+            retry=estimate(qid,name,24)
+            retry["first_attempt"]=out
+            out=retry
         quality.append(out)
     assert fingerprint=={p.name:digest(p) for p in model.glob("*.bin")}
     # Verified image-match graph connectivity, independently of mapper submodel count.

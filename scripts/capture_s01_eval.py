@@ -9,7 +9,7 @@ import torch
 from nerfstudio.utils.eval_utils import eval_setup
 from capture_rectify import imwrite, read, save, sha
 from capture_s01_diagnostic import panel
-from capture_s01_inputs import REPORT, ensure
+from capture_s01_inputs import FULL, REPORT, ensure
 from vr_room_checkpoint import numpy_scalar_scope
 from vr_room_run import RUN, SCENE
 
@@ -60,7 +60,7 @@ def evaluate(split):
     ds = pipe.datamanager.eval_dataset
     names = [p.relative_to(SCENE).as_posix() for p in ds.image_filenames]
     ensure(
-        names == read(SCENE / "transforms.json")[split + "_filenames"] and len(names) == 24,
+        names == read(SCENE / "transforms.json")[split + "_filenames"] and (FULL or len(names) == 24),
         "split membership",
     )
     root = RUN / "renders" / split
@@ -89,7 +89,7 @@ def evaluate(split):
                 id=stem,
                 reference_pixels=nref,
                 invalid_prediction_pixels=nref - nvalid,
-                valid_prediction_coverage=nvalid / nref,
+                valid_prediction_coverage=nvalid / nref if nref else None,
                 reference_alpha_zero=int((support & (a == 0)).sum()),
                 rgb=metrics,
                 depth_full_reference=stats if nvalid == nref else None,
@@ -109,7 +109,7 @@ def evaluate(split):
             imwrite(root / "normal" / (stem + ".png"), normal_img)
             np.save(root / "depth" / (stem + ".npy"), z)
             np.save(root / "accumulation" / (stem + ".npy"), a.astype(np.float32))
-            if i in {0, len(names) // 2, len(names) - 1} or int(stem[-5:]) in {149, 179, 239}:
+            if not FULL and (i in {0, len(names) // 2, len(names) - 1} or int(stem[-5:]) in {149, 179, 239}):
                 panels = [
                     panel(cv2.imread(str(SCENE / name)), stem + " reference"),
                     panel(rgb_img, "Rendered RGB"),
@@ -130,7 +130,7 @@ def evaluate(split):
         ),
         "full render coverage",
     )
-    conditional = depth_stats(np.concatenate(diffs), np.concatenate(refs))
+    conditional = depth_stats(np.concatenate(diffs), np.concatenate(refs)) if rows else None
     nref = sum(r["reference_pixels"] for r in rows)
     invalid = sum(r["invalid_prediction_pixels"] for r in rows)
     all_valid_frames = [
@@ -164,7 +164,8 @@ def evaluate(split):
             finite_positive_conditional_pooled=conditional,
             reference_pixels=nref,
             invalid_prediction_pixels=invalid,
-            valid_prediction_coverage=1 - invalid / nref,
+            valid_prediction_coverage=1 - invalid / nref if nref else None,
+            frames_with_reference=sum(r["reference_pixels"]>0 for r in rows),
             reference_alpha_zero=sum(r["reference_alpha_zero"] for r in rows),
             renders=str(root),
         ),

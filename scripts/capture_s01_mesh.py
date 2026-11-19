@@ -12,7 +12,7 @@ import torch
 from dn_splatter import export_mesh as exporter
 from capture_rectify import imwrite, read, save, sha
 from capture_s01_eval import final_setup
-from capture_s01_inputs import REPORT, ensure
+from capture_s01_inputs import FULL, REPORT, ensure
 from vr_room_run import CPU, RUN, SCENE
 
 MESH = RUN / "mesh"
@@ -25,7 +25,7 @@ def export():
     ds = pipe.datamanager.train_dataset
     names = [p.relative_to(SCENE).as_posix() for p in ds.image_filenames]
     ensure(
-        names == read(SCENE / "transforms.json")["train_filenames"] and len(names) == 193,
+        names == read(SCENE / "transforms.json")["train_filenames"] and (FULL or len(names) == 193),
         "mesh camera split",
     )
     original_render = pipe.model.get_outputs_for_camera
@@ -100,7 +100,7 @@ def export():
         pipe.model, "get_outputs_for_camera", watch_render
     ), patch.object(exporter, "pick_indices_at_random", sample):
         model.main()
-    ensure(len(rows) == 193 and (MESH / (PREFIX + "poisson_mesh.ply")).is_file(), "raw mesh export")
+    ensure(len(rows) == len(names) and (MESH / (PREFIX + "poisson_mesh.ply")).is_file(), "raw mesh export")
 
 
 def shaded(scene, ray, mesh):
@@ -163,6 +163,9 @@ def previews(mesh):
     ]
     records = []
     for fid, label, (x0, y0, x1, y1) in crops:
+        if FULL and f"frame_{fid:05d}" not in frames:
+            records.append(dict(object=label,train_id=fid,status="missing pose"))
+            continue
         f = frames[f"frame_{fid:05d}"]
         ensure(f["file_path"] in meta["train_filenames"], "preview pose")
         x0, y0, x1, y1 = [n * 2 for n in (x0, y0, x1, y1)]

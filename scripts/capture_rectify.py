@@ -1,5 +1,6 @@
 """Build pinhole RGB and color-axis Z on two grids from a verified native packet."""
 import argparse
+from concurrent.futures import ThreadPoolExecutor
 import hashlib
 import json
 from pathlib import Path
@@ -133,6 +134,7 @@ def main():
     p.add_argument("packet",type=Path)
     p.add_argument("out",type=Path)
     p.add_argument("--all",action="store_true")
+    p.add_argument("--workers",type=int,default=1)
     a=p.parse_args()
     verify(a.packet)
     rows=[r for r in read(a.packet/"selection.json") if not r["drop_reason"]]
@@ -143,10 +145,9 @@ def main():
     rays,t,grids=grid_setup(read(a.packet/"calibration.json"))
     save(a.out/"grids.json",{k:v[-1] for k,v in grids.items()})
     checks=[]
-    done=0
-    for i,row in enumerate(rows):
-        if not a.all and i not in samples:
-            continue
+    def process(item):
+        i,row=item
+        reports=[]
         stem=row["id"]
         rgb=cv2.imread(str(a.packet/row["rgb"]["file"]), cv2.IMREAD_COLOR|cv2.IMREAD_IGNORE_ORIENTATION)
         with np.load(a.packet/row["depth"]["file"],allow_pickle=False) as archive:
@@ -160,9 +161,15 @@ def main():
             imwrite(root/"coverage"/(stem+".png"),np.uint8(z>0)*255)
             imwrite(root/"occlusion"/(stem+".png"),np.uint8(occ)*255)
             if i in samples:
-                checks.append(dict(id=stem,relative_s=row["relative_s"],grid=size,
+                reports.append(dict(id=stem,relative_s=row["relative_s"],grid=size,
                                    **diagnostic(im,z,occ,counts,a.out/"checks"/(stem+"_"+size+".jpg"))))
-        done+=1
+        return reports
+    jobs=[(i,row) for i,row in enumerate(rows) if a.all or i in samples]
+    with ThreadPoolExecutor(max_workers=a.workers) as pool:
+        for done,items in enumerate(pool.map(process,jobs),1):
+            checks.extend(items)
+            if done%100==0:
+                print("rectified",done,"of",len(jobs),flush=True)
     save(a.out/"registration.json",dict(frame_count=done,checked_frames=len(samples),grids=read(a.out/"grids.json"),
         metric="Nearest positive color-axis Z in metres. Raw 0/65535 excluded. Rounded single-pixel projection; holes zero.",
         rgb="Bilinear inverse map with all Brown coefficients, no crop; both grids use the recorded color optical axes.",

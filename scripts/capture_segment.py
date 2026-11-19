@@ -32,9 +32,19 @@ def digest(data):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--run", required=True)
+    parser.add_argument("--full", action="store_true")
     args = parser.parse_args()
     protocol = read(Path("configs/capture_geometry_protocol.json"))
     src, segment = protocol["source"], protocol["segment"]
+    if args.full:
+        full = read(Path("configs/capture_full_test_protocol.json"))
+        capture = full["capture"]
+        assert args.run == capture["geometry_run_id"] and src["sha256"] == capture["source_bag_sha256"]
+        segment = dict(rgb_start_timestamp_ns=capture["first_rgb_device_timestamp_ns"],
+                       rgb_end_timestamp_ns=capture["last_rgb_device_timestamp_ns"],
+                       first_depth_device_timestamp_ns=capture["first_depth_device_timestamp_ns"],
+                       sampling=dict(target_period_ns=full["selection"]["target_interval_ns"],
+                                     max_rgb_depth_offset_ns=full["selection"]["synchronization_tolerance_ms"]*1000000))
     source = Path(src["resolved_windows_file"])
     audit = Path(src["audit_directory"])
     previous = Path(".local/bag-audit") / src["audit_run_id"]
@@ -45,7 +55,7 @@ def main():
             Path(fp["path"]) == Path(scan["source"]) == source and
             scan["run_id"] == src["audit_run_id"] and scan["sha256"] == fp["sha256"] == src["sha256"]):
         raise ValueError("Audit source identity mismatch")
-    run = Path(".local/capture-geometry") / args.run
+    run = Path(full["paths"]["local_extraction"]) if args.full else Path(".local/capture-geometry") / args.run
     packet = run / "transfer"
     packet.mkdir(parents=True, exist_ok=False)
     for folder in ("rgb", "depth"):
@@ -53,7 +63,8 @@ def main():
     cv2.setNumThreads(1)
     ref = read(audit/"samples_metadata.json")["samples"]
     start, end = [int(segment[k]) for k in ("rgb_start_timestamp_ns", "rgb_end_timestamp_ns")]
-    assert [int(ref[i]["rgb"]["device_ns"]) for i in (0, 3)] == [start, end]
+    if not args.full:
+        assert [int(ref[i]["rgb"]["device_ns"]) for i in (0, 3)] == [start, end]
     index = previous/"times.sqlite"
     selected, chunks = [], defaultdict(list)
     with closing(sqlite3.connect(index.resolve().as_uri()+"?mode=ro", uri=True)) as db:
@@ -72,6 +83,11 @@ def main():
         targets = np.arange(start, end+1, int(segment["sampling"]["target_period_ns"]))
         in_window = np.flatnonzero((rgb>=start) & (rgb<=end))
         picks = in_window[nearest(targets, rgb[in_window])]
+        if args.full:
+            assert (start,end)==(rgb[0],rgb[-1]) and len(targets)==full["selection"]["expected_regular_grid_targets"]
+            if picks[-1] != len(rgb)-1:
+                targets=np.append(targets,end)
+                picks=np.append(picks,len(rgb)-1)
         used = set()
         for n, (target, i) in enumerate(zip(targets, picks)):
             j = association[i]
@@ -81,6 +97,11 @@ def main():
                        rgb_vendor_frame_number=streams[0][i]["number"], depth_minus_rgb_ns=dt,
                        relative_s=float((rgb[i]-dep[0])/1e9), id=f"frame_{n:05d}", drop_reason=None)
             selected.append(row)
+            row.update(depth_zero_based_index=int(j), actual_depth_timestamp_ns=str(dep[j]))
+            if args.full:
+                row["requested_split"] = ("train" if n%10<8 else "val" if n%10==8 else "test")
+                row["annotation"] = ("late dynamic interval" if 351<=row["relative_s"]<=355
+                                     else "endpoint camera roll" if n==len(targets)-1 else None)
             if i in used or abs(dt)>int(segment["sampling"]["max_rgb_depth_offset_ns"]):
                 row["drop_reason"] = "duplicate RGB" if i in used else "outside association tolerance"
                 continue
@@ -103,6 +124,9 @@ def main():
                     dest.write_bytes(data)
                     row["rgb_payload_sha256"] = digest(data)
                     image = cv2.imread(str(dest), cv2.IMREAD_COLOR | cv2.IMREAD_IGNORE_ORIENTATION)
+                    if args.full and (image is None or image.shape != (720,1280,3)):
+                        row["drop_reason"]="RGB decode failure"
+                        continue
                     assert image is not None and image.shape == (720,1280,3)
                     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
                     row["gray_mean"] = float(gray.mean())

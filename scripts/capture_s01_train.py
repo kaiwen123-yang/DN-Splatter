@@ -18,7 +18,7 @@ from nerfstudio.engine.optimizers import Optimizers
 from nerfstudio.scripts.train import main as ns_train
 
 from capture_rectify import files, read, save, sha
-from capture_s01_inputs import P, REPORT, ensure
+from capture_s01_inputs import FULL, P, REPORT, ensure
 from vr_room_run import RUN, SCENE, STATE, latest_checkpoint
 from vr_room_checkpoint import numpy_scalar_scope
 
@@ -26,14 +26,17 @@ from vr_room_checkpoint import numpy_scalar_scope
 def config():
     cfg = copy.deepcopy(dn_splatter.config)
     cfg.output_dir = RUN / "training"
-    cfg.experiment_name = "capture-s01"
+    cfg.experiment_name = "capture-full" if FULL else "capture-s01"
     cfg.machine.seed = P["training"]["seed"]
     cfg.steps_per_save = 5000
     cfg.save_only_latest_checkpoint = False
     cfg.vis = "tensorboard"
     cfg.viewer.quit_on_train_completion = True
     cfg.pipeline.skip_point_metrics = True
-    cfg.pipeline.datamanager.dataparser = NormalNerfstudioConfig(data=SCENE, **P["parser"]["settings"])
+    parser_settings = dict(P["parser"]["settings"])
+    if FULL:
+        parser_settings["scene_scale"] = read(SCENE / "geometry.json")["parser_settings"]["scene_scale"]
+    cfg.pipeline.datamanager.dataparser = NormalNerfstudioConfig(data=SCENE, **parser_settings)
     cfg.pipeline.datamanager.camera_res_scale_factor = 1.0
     for key, value in P["training"]["pipeline"]["model"].items():
         if key == "camera_optimizer":
@@ -57,13 +60,15 @@ def check_dataset(data, split, items):
     frames = {f["file_path"]: f for f in meta["frames"]}
     names = [p.relative_to(SCENE).as_posix() for p in data.image_filenames]
     ensure(
-        names == meta[split + "_filenames"] and len(names) == P["input"]["frame_counts"][split], split
+        names == meta[split + "_filenames"] and (FULL or len(names) == P["input"]["frame_counts"][split]), split
     )
     outputs = data._dataparser_outputs
     normals = outputs.metadata["points3D_normals"]
     lengths = normals.norm(dim=-1)
+    geometry = read(SCENE / "geometry.json")
+    box = geometry["parser_settings"]["scene_scale"] if FULL else 15
     ensure(
-        outputs.metadata["points3D_xyz"].shape == normals.shape == (436361, 3)
+        outputs.metadata["points3D_xyz"].shape == normals.shape == (geometry["init_points"] if FULL else 436361, 3)
         and torch.isfinite(lengths).all()
         and lengths.min() > 0,
         "point normals",
@@ -72,7 +77,7 @@ def check_dataset(data, split, items):
         outputs.dataparser_scale == data.depth_unit_scale_factor == 1
         and np.allclose(outputs.dataparser_transform, np.eye(4)[:3])
         and not torch.any(data.cameras.distortion_params)
-        and np.allclose(outputs.scene_box.aabb, [[-15] * 3, [15] * 3]),
+        and np.allclose(outputs.scene_box.aabb, [[-box] * 3, [box] * 3]),
         "metric reader",
     )
     for i, (name, item) in enumerate(zip(names, items, strict=True)):
@@ -129,7 +134,7 @@ def reader():
             splits=checked,
             dataparser_scale=1,
             depth_unit_scale_factor=1,
-            scene_scale=15,
+            scene_scale=cfg.pipeline.datamanager.dataparser.scene_scale,
             dataparser_transform=np.eye(4)[:3].tolist(),
             point_normal_radius_m=0.1,
             max_nn=30,

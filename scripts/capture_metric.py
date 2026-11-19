@@ -17,6 +17,8 @@ def median(values,weights):
 
 
 def fit(samples):
+    if not len(samples):
+        return None
     # Repeated tracks and very textured frames cannot dictate the scale by observation count.
     frame,point,zm,zsfm=samples.T
     _,f=np.unique(frame,return_inverse=True)
@@ -135,6 +137,8 @@ def main():
          units="metric sensor consistency; no external geometric reference"))
     poses={}
     for name,mat in pose["poses_w2c_sfm_units"].items():
+        if name.startswith("aux_"):
+            continue
         w2c=np.eye(4);w2c[:3]=mat
         c2w=np.linalg.inv(w2c)
         c2w[:3,3]*=scale
@@ -149,7 +153,7 @@ def main():
     queries=[e["id"] for e in entries if e["split"]!="train"]
     train_names=[e["id"] for e in entries if e["split"]=="train" and e["id"] in poses]
     checks=[]
-    for j,qi in enumerate(np.linspace(0,len(queries)-1,9).round().astype(int)):
+    for qi in np.linspace(0,len(queries)-1,9).round().astype(int) if queries else ():
         dst=queries[qi]; index=int(dst.split("_")[-1])
         if dst not in poses:
             checks.append(dict(target=dst,status="missing pose"));continue

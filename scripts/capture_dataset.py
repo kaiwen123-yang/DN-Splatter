@@ -11,11 +11,11 @@ import open3d as o3d
 from capture_rectify import describe, edges, files, read, save, sha
 
 
-def export(run,out):
+def export(run,out,full=False):
     poses=read(run/"metric/poses.json")
     splits=read(run/"transfer/splits.json")
     proof=read(run/"metric/cross_view.json")
-    if not proof["pairs"] or {e["id"] for e in splits["entries"]}!=set(poses["poses"]):
+    if not full and (not proof["pairs"] or {e["id"] for e in splits["entries"]}!=set(poses["poses"])):
         raise ValueError("Incomplete geometry or frozen splits")
     stage=out.with_name(out.name+".building")
     if out.exists():
@@ -31,11 +31,13 @@ def export(run,out):
     xyz=[]; colors=[]; coverage={}
     for entry in splits["entries"]:
         stem=entry["id"]; image=f"images/{stem}.png"; path=f"depth/{stem}.npy"
+        if full and stem not in poses["poses"]:
+            continue
         os.link(run/"rect/1280"/image,stage/image)
         z=np.load(run/"rect/1280"/path)
         z[(z<.3)|(z>6)]=0
         coverage[stem]=float(np.count_nonzero(z)/z.size)
-        assert z.dtype==np.float32 and np.isfinite(z).all() and coverage[stem]>0
+        assert z.dtype==np.float32 and np.isfinite(z).all() and (full or coverage[stem]>0)
         np.save(stage/path,z,allow_pickle=False)
         c2w=np.array(poses["poses"][stem])
         cgl=c2w@np.diag([1,-1,-1,1])
@@ -67,11 +69,14 @@ def export(run,out):
         world=(obs["xyz"]*poses["scale"])@origin[:3,:3].T+origin[:3,3]
         np.savez_compressed(run/"metric/sparse_world_metres.npz",xyz=world,point_ids=obs["point_ids"])
     for split,ids in splits["splits"].items():
-        meta[split+"_filenames"]=[f"images/{i}.png" for i in ids]
+        meta[split+"_filenames"]=[f"images/{i}.png" for i in ids if i in coverage]
     save(stage/"transforms.json",meta)
     for actual,filename in (("selection.json","source_frames.json"),("splits.json","splits.json")):
         shutil.copyfile(run/"transfer"/actual,stage/filename)
     scene_scale=int(np.ceil(np.abs(pts).max()))
+    if full:
+        centers=[np.array(poses["poses"][i])[:3,3] for i in splits["splits"]["train"] if i in coverage]
+        scene_scale=max(15,int(np.ceil(1.1*max(np.abs(centers).max(),np.abs(pts).max()))))
     settings=dict(depth_unit_scale_factor=1.,auto_scale_poses=False,scale_factor=1.,orientation_method="none",
                   center_method="none",downscale_factor=1,scene_scale=scene_scale,normal_format="opengl")
     save(stage/"geometry.json",dict(state="geometry_prepared_pending_normals_and_training",
@@ -124,5 +129,9 @@ if __name__=="__main__":
     p.add_argument("stage",choices=["export","validate"])
     p.add_argument("run",type=Path)
     p.add_argument("dataset",type=Path)
+    p.add_argument("--full",action="store_true")
     args=p.parse_args()
-    (export if args.stage=="export" else validate)(args.run.resolve(),args.dataset.resolve())
+    if args.stage=="export":
+        export(args.run.resolve(),args.dataset.resolve(),args.full)
+    else:
+        validate(args.run.resolve(),args.dataset.resolve())
