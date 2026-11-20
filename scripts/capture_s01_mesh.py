@@ -64,6 +64,10 @@ def export():
             render_z_min_m=float(finite_z.min()),
             render_z_max_m=float(finite_z.max()),
         )
+        if os.environ.get("DN_CAPTURE_VARIANT") == "metric3d":
+            provenance = MESH / "source_pixels"
+            provenance.mkdir(exist_ok=True)
+            np.save(provenance / (row["id"] + ".npy"), indices.detach().cpu().numpy().reshape(-1).astype(np.int32))
         rows.append(row)
         current.clear()
         if len(rows) == len(names):

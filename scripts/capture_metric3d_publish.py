@@ -1,6 +1,7 @@
 """Publish the scoped B1 evidence and seal the remote commit for the Windows receiver."""
 from datetime import datetime, timezone
 from pathlib import Path
+import os
 import re
 import subprocess
 import time
@@ -68,12 +69,21 @@ def deliver(mode):
     else:
         demand(mode == "running", mode)
         latest.update(status="running", observed_stage=current["stage"], note="实测运行中，终点指标待正式产物。")
-    for key in ("prior_progress.json",):
-        if (STATE/key).is_file():
-            latest["actual_inferred_frames"] = read(STATE/key)["completed"]
+    if (STATE/"prior_progress.json").is_file():
+        latest["actual_inferred_frames"] = read(STATE/"prior_progress.json")["completed"]
+    if (STATE/"prior_identity.json").is_file():
+        latest["actual_weights_sha256"] = read(STATE/"prior_identity.json")["weight"]["sha256"]
     if (REPORT/"normal_prior.json").exists():
         prior = read(REPORT/"normal_prior.json")
         latest.update(actual_inferred_frames=prior["completed"], actual_weights_sha256=prior["weight"]["sha256"])
+    if mode=="running":
+        if not (RUN/"training").exists():
+            latest["actual_updates"] = 0
+        write(REPORT/"handoff_running.json", dict(observed_utc=utc, run_id=RUN.name, stage=current,
+              tmux="dn-capture-metric3d", actual_inferred_frames=latest["actual_inferred_frames"],
+              weight=read(STATE/"prior_identity.json")["weight"] if (STATE/"prior_identity.json").is_file() else None,
+              cpu_budget=int(os.environ["DN_CPU_BUDGET"]), actual_updates=latest.get("actual_updates"),
+              recovery=latest["recovery_command"], result_receiver="python scripts/capture_metric3d_receive.py"))
     write(pointer, latest)
     files = [p for p in REPORT.rglob("*") if p.is_file()] + [pointer]
     for p in files:

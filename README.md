@@ -19,7 +19,7 @@
 - 2026-11-19：capture-s01已完整完成，结果提交 `ee3e87b`。241帧、193/24/24；累计30k、step29999、440882高斯；Test PSNR23.3502、SSIM0.77934、LPIPS0.30406，同采集深度等权帧MAE0.19838m。原始Poisson已交付；桌沿/椅腿细节和末段238/239仍有明显失败。见[完整结果](reports/capture-s01-dn-30k/20261119-v1/overview.md)与[效果复核](reports/capture-s01-review/2026-11-19/overview.md)。
 - 2026-11-20：capture-full已完整结束，结果提交 `e26ae72`。1846主帧零缺口，1478 train /184 val /184 test；30k、step29999、172425高斯；Test PSNR15.8256、SSIM0.63841、LPIPS0.43844，合并参考像素深度MAE约0.492m；原始Poisson和全程视频完成。见[完整结果](reports/capture-full-dn-30k/20261119-v1/overview.md)。
 - 2026-11-20：[全程效果复核](reports/capture-full-review/2026-11-20/overview.md)发现旧同源48张留出中47张PSNR下降，旧239深度反而改善；训练容量/调度和原始网格额外遮挡面需分别解释。
-- 当前下一步：用户所说“metrics”暂按 **Metric3D v2**，执行[完整法线替换对照](docs/11_capture_metric3d_plan.md)。固定ViT-Large、原几何/传感器深度/训练配置，完整30k和全部评价；旧/新模型采用同一网格导出方案比较。[本轮状态](reports/capture-full-metric3d-30k/latest.json)是计划未启动，不能当作实测结果。
+- 2026-11-20 已启动 **Metric3D v2 ViT-Large** 完整法线替换对照。B1 沿用 B0 的几何、传感器深度和 30k 训练配置，两组按相同规则评价和导出网格。最近一次核验的进度与结果见[本轮状态](reports/capture-full-metric3d-30k/latest.json)。
 - 目标不是仅安装成功，而是尽可能在一个持续执行的任务中完成上述完整流程。
 - 原论文历史实现与论文公式存在待核实差异，首轮结果应标记为“固定历史官方实现的单场景基线”，不能提前称完整论文复现成功。
 

@@ -96,6 +96,10 @@ def raw_sources(label, cloud, meta, frames):
         safe=residual<.1
         source_view[start:end]=i
         source_pixel[start+ids[safe]]=y[safe]*meta["w"]+x[safe]
+        if label=="B1":
+            recorded=np.load(run/"mesh/source_pixels"/(stem+".npy"))
+            demand(len(recorded)==end-start,"recorded B1 sampling")
+            source_pixel[start:end]=recorded
         if len(ids):
             max_offset=max(max_offset,float(residual.max()))
         start=end
@@ -103,7 +107,8 @@ def raw_sources(label, cloud, meta, frames):
     np.savez_compressed(WORK/(label+"_raw_sources.npz"),view=source_view,pixel=source_pixel)
     return lookup,dict(ordered_views=len(rows),point_count=start,unresolved_pixels=int((source_pixel<0).sum()),
                        maximum_reprojected_center_offset_px=max_offset,
-                       method="Known legacy per-view PLY blocks, pixel recovered only within 0.1 pixel of the native center.")
+                       method=("Original sampled indices captured during B1 export" if label=="B1" else
+                               "Known B0 legacy per-view PLY blocks, pixel recovered within 0.1 pixel of the native center."))
 
 
 def geometry(meta,frames):
