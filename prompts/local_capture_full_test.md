@@ -1,5 +1,7 @@
 # 本地 Codex：整段 capture 的首次完整测试，持续接续 AutoDL 到最终交付
 
+> 历史阶段已完成：完整结果固定在 `e26ae72a75997dcfd3a907aa26b6c5c0677597a5`。当前执行 `docs/11_capture_metric3d_plan.md` 与 `prompts/autodl_capture_metric3d.md`，不重新启动本文的提取/建图/训练。以下保留原执行协议。
+
 请实际执行这项任务，不只返回计划。用户已明确要求停止反复小规模验证和零碎修复，直接根据完整测试效果判断后续问题。capture-s01 已完成，冻结结果提交为 ee3e87bf8a63486ed96df1c0d37b6a72d30fca88；不重跑s01。
 
 用户仓库：https://github.com/kaiwen123-yang/DN-Splatter.git

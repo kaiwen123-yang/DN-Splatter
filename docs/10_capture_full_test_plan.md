@@ -1,5 +1,7 @@
 # capture-full：整段采集的第一次完整测试
 
+> 历史阶段已完成：完整结果固定在 `e26ae72a75997dcfd3a907aa26b6c5c0677597a5`。当前执行 `docs/11_capture_metric3d_plan.md` 与 `prompts/autodl_capture_metric3d.md`，不重新启动本文的提取/建图/训练。以下保留原执行协议。
+
 更新：2026-11-19，北京时间。依据是已完成的 capture-s01 提交 `ee3e87bf8a63486ed96df1c0d37b6a72d30fca88`。本文件是下一轮执行方案，实际全程结果尚未生成。
 
 ## 1. 本轮直接做到完整结果

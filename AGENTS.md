@@ -10,15 +10,19 @@
 
 ## 开始前读取
 
-**当前阶段（2026-11-19）：capture-s01已实际完成30k、val/test与原始Poisson，结果冻结在 `ee3e87bf8a63486ed96df1c0d37b6a72d30fca88`。下一轮直接做原包完整约369秒的第一次全程测试。** 用户最新要求是不再反复小规模验证和零碎修复，按完整测试效果决定后续。先读 `reports/capture-s01-review/2026-11-19/overview.md`、`docs/10_capture_full_test_plan.md`、`configs/capture_full_test_protocol.json`。本地执行 `prompts/local_capture_full_test.md`，同一任务接续 `prompts/autodl_capture_full_test.md` 到最终回传。
+**当前阶段（2026-11-20）：capture-full 已完整结束，结果冻结在 `e26ae72a75997dcfd3a907aa26b6c5c0677597a5`。** 1846 主帧，1478 train / 184 val / 184 test 全部定位和评价，累计30k与原始Poisson完成。原始状态与结果保留，不能再次按旧计划从H盘提取或重做全局几何。
 
-本轮覆盖首张至末张RGB，5Hz均匀主帧加唯一末帧，预计最多1846对；求解前按原候选序号冻结8/1/1，预计1478/184/184。缺失后不重编号，旧s01的24val/24test保持源身份与留出身份。完成全局训练地图、米制数据、Omnidata、从头30k、全部可定位留出评估、全时间轨迹对照视频和原始Poisson。原生约30Hz的11k帧不是本轮DN训练集合；必要原生辅助帧仅用于训练侧位姿桥接。
+用户补充“考虑跑一下 metrics”，本轮**暂按 Metric3D v2**解释。下一任务是一次完整的法线替换对照：先读 `reports/capture-full-review/2026-11-20/overview.md`、`docs/11_capture_metric3d_plan.md`、`docs/12_metric3d_normal_adapter.md`、`docs/13_capture_supported_mesh.md`、`configs/capture_metric3d_protocol.json`。服务器执行 `prompts/autodl_capture_metric3d.md`；本地Codex以 `prompts/local_capture_metric3d.md` 复用现有授权连接接续，不再读bag或索要样例。
 
-**旧docs/08的几何审阅停止点、docs/09的s01结束后暂不扩全包，都是已经完成的历史阶段。此次全程任务不再在提取、传输、几何、法线或短训练后等待用户确认。** 不再启动s01短训练、重跑VR Room、重新安装已工作的Blackwell环境或提前扫参数。实际执行阻塞最小修复后继续；结果不够好本身不是暂停条件。
+B0为现有Omnidata全程30k；B1固定Metric3Dv2 ViT-Large，在同一1846图几何/1478训练图、原传感器0.3–6m Z、K/c2w、2001906点初始化、scene_scale21、同seed/损失/采样/增密/学习率调度上，从头训练完整30k。**唯一训练方法变动是法线先验。** Metric3D深度保存并独立评价，但不替换/补洞传感器监督。训练只用train先验，辅助图和val/test不参与训练或网格筛选。
 
-全局地图只用训练侧图像；固定地图定位val/test。正式全局求解和一次有界断口桥接后，有可训练统一地图就继续全链。无法定位的帧保留requested分母与时间缺口，不造位姿、不隐藏失败、不反复等审查。有缺口则交付 `completed_with_coverage_gaps`，不得把最大分量写成全包成功。
+当前已知历史采样器首遍随机、之后顺序遍历；本轮保持此行为以隔离法线变量，不同时修shuffle、改cull、扩深度范围或延长240k。抽取B0已有训练日志和中间checkpoint，B1记录实际高斯增删原因。不能从checkpoint字节数伪造计数。法线按docs/12通过PNG RGB和历史reader完成唯一坐标变换，不用可视化颜色猜坐标。
 
-原bag只读留H盘，使用现成索引提取全程紧凑包并通过已有授权连接传AutoDL。s01原始几何、法线、checkpoint和网格全部封存，可按身份复用相同像素的原值/法线；全程使用新位姿、训练侧新尺度、新初始化和独立run，不能从s01 checkpoint冒充从头训练。原基准第二轮A/B计划保留，本轮不自动启动。
+完整任务包括全量先验、B1正式30k、全部val/test与配对/分时段评价、全程reference/B0/B1视频、B1原始Poisson，以及B0/B1同参数sensor-supported完整网格导出。原始模型与原始网格保留。支持筛选用训练深度，阈值预先固定；覆盖下降和无命中必须公开，不能只凭命中像素MAE变小称成功。
+
+**用户明确不希望反复小规模验证和零碎修复。** 一次正式输入转换核验和首个正式batch检查后持续完成整轮；没有独立smoke训练、参数搜索或中间人工审阅门槛。真实执行错误最小修复后继续；指标不够好仍完成和交付。只有实际访问/身份/运行容量阻塞无法处理才报告真实原因和恢复入口。旧docs/08/09/10与提示词都是已完成历史阶段，不自动启动。
+
+全部现成输入在AutoDL；B1使用新run及输入副本，不可写共享文件覆盖B0。先验推理、DN训练和大点云网格顺序执行；训练进程峰RSS约79GiB，不能因96GB显存富余同时复制两份全图缓存。允许全部已分配CPU/GPU，不人为限额；按实际资源调整数值等价的分块/缓存，而非缩短数据或改方法。原bag、s01、VR及full产物全部保留。
 
 首轮 docs/00、01、02、03、05 和 `configs/vr_room_protocol.json` 继续作为实现/协议依据；已有环境与 VR Room checkpoint 不从头重做。先检查本项目工作区和远端，保留用户已有未提交修改。计划与已执行记录分开，第二轮未运行的指标不得填入完成状态。
 
@@ -67,7 +71,7 @@
 
 Nerfstudio 1.1.3 的恢复训练会把 max_num_iterations 作为本次追加步数。累计目标是 30,000，零基最后 step=29,999；从 checkpoint 读取实际 saved_step，使用 `remaining=30000-(saved_step+1)`，保留原 30,000 步调度和原数据配置。不要从中间 checkpoint 再盲目加 30,000。不要用未经核实的 `--load-config` 覆盖规则丢失参数。
 
-正式训练阶段每5,000步保存checkpoint，保留必要中间点；必要检查充分后进入该阶段完整训练，不堆叠无关smoke tests。**当前docs/10阶段直接执行完整时间范围的30k、全部可定位留出、轨迹视频和Poisson；无新增小训练或阶段审阅门槛。**
+正式训练阶段每5,000步保存checkpoint，保留必要中间点；必要检查充分后进入该阶段完整训练，不堆叠无关smoke tests。**当前docs/11阶段直接完成Metric3Dv2法线对照的全程30k、全部留出、对照视频与两模型网格；无新增小训练或阶段审阅门槛。**
 
 ## 证据与推送
 

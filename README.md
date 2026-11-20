@@ -17,19 +17,21 @@
 - 已对四组回传原数值样例执行同帧D2C并核对SDK/DN接口，见 [数据复核](reports/capture-bag-review/2026-11-19/overview.md)。
 - 2026-11-19：首段几何回传 `d72f568`：241对唯一RGB-D，193张训练图单一地图，48张留出图固定地图定位，统一尺度1.46499035 m/SfM单位，436361点训练初始化；历史读取器逐帧通过。见 [首段几何结果](reports/capture-geometry/20261119-s01-5hz-3982cb26/overview.md)。
 - 2026-11-19：capture-s01已完整完成，结果提交 `ee3e87b`。241帧、193/24/24；累计30k、step29999、440882高斯；Test PSNR23.3502、SSIM0.77934、LPIPS0.30406，同采集深度等权帧MAE0.19838m。原始Poisson已交付；桌沿/椅腿细节和末段238/239仍有明显失败。见[完整结果](reports/capture-s01-dn-30k/20261119-v1/overview.md)与[效果复核](reports/capture-s01-review/2026-11-19/overview.md)。
-- 当前下一步：按用户要求，直接执行[整段约369秒的首次完整测试](docs/10_capture_full_test_plan.md)，全程5Hz、预计最多1846对、从头30k、完整评估/轨迹视频/原始Poisson。无新增s01小实验或中间审阅门槛；[全程状态入口](reports/capture-full-dn-30k/latest.json)目前是计划未运行，不能把s01结果当作全程结果。
+- 2026-11-20：capture-full已完整结束，结果提交 `e26ae72`。1846主帧零缺口，1478 train /184 val /184 test；30k、step29999、172425高斯；Test PSNR15.8256、SSIM0.63841、LPIPS0.43844，合并参考像素深度MAE约0.492m；原始Poisson和全程视频完成。见[完整结果](reports/capture-full-dn-30k/20261119-v1/overview.md)。
+- 2026-11-20：[全程效果复核](reports/capture-full-review/2026-11-20/overview.md)发现旧同源48张留出中47张PSNR下降，旧239深度反而改善；训练容量/调度和原始网格额外遮挡面需分别解释。
+- 当前下一步：用户所说“metrics”暂按 **Metric3D v2**，执行[完整法线替换对照](docs/11_capture_metric3d_plan.md)。固定ViT-Large、原几何/传感器深度/训练配置，完整30k和全部评价；旧/新模型采用同一网格导出方案比较。[本轮状态](reports/capture-full-metric3d-30k/latest.json)是计划未启动，不能当作实测结果。
 - 目标不是仅安装成功，而是尽可能在一个持续执行的任务中完成上述完整流程。
 - 原论文历史实现与论文公式存在待核实差异，首轮结果应标记为“固定历史官方实现的单场景基线”，不能提前称完整论文复现成功。
 
 ## 从这里开始
 
-**当前执行 [本地Codex全程协调提示词](prompts/local_capture_full_test.md)。** 它从H盘原包提取完整时间范围的5Hz紧凑输入，复用已有授权连接传到AutoDL，并接续[服务器完整测试提示词](prompts/autodl_capture_full_test.md)到最终结果。先读[本次复核](reports/capture-s01-review/2026-11-19/overview.md)、[docs/10计划](docs/10_capture_full_test_plan.md)和[机器可读协议](configs/capture_full_test_protocol.json)。
+**当前执行 [本地Codex Metric3D协调提示词](prompts/local_capture_metric3d.md)，或在AutoDL直接执行[服务器提示词](prompts/autodl_capture_metric3d.md)。** 所需全程数据已在AutoDL，不重新提取/上传bag或重做位姿。先读[本次复核](reports/capture-full-review/2026-11-20/overview.md)、[docs/11计划](docs/11_capture_metric3d_plan.md)、[机器协议](configs/capture_metric3d_protocol.json)和[法线接入约定](docs/12_metric3d_normal_adapter.md)。
 
-当前主线：全程冻结选帧/划分 → 统一训练地图与米制输入 → Omnidata → 从头累计30k → 全部可定位val/test与完整轨迹视频 → 原始Poisson → 报告和代码推送。不再截取另一个短片段；个别定位失败保留分母和时间缺口，继续可用地图的完整输出，不反复等待审阅。
+当前主线：固定ViT-Large全量先验 → 从相同初始化完整30k，仅替换法线 → 全部val/test和B0/B1逐帧/分时段比较 → 全程视频 → B1原始Poisson → B0/B1同参数[支持约束网格](docs/13_capture_supported_mesh.md) → 报告推送。Metric3D深度只作诊断，训练仍使用原米制传感器Z。
 
-复用现有Blackwell环境，允许全部已分配CPU/GPU。原bag只读留H盘；s01与VR结果封存；新增全程数据和run独立管理。固定5Hz预计1845均匀目标加末帧，最多1846对，预计1478/184/184；实际以清单为准。30k和原始网格方法保持，待完整效果出来后再决定延长训练、位姿处理或网格改进。
+复用已有Blackwell训练环境；推理依赖需要时单独隔离，不照装旧Torch requirements。全部CPU/GPU授权继续，按实测主存顺序安排阶段。B0、s01、VR的原始输入和结果保留。本轮不同时修训练采样、延长240k、加深度补洞或扫参数，无新增小训练和阶段审阅门槛。
 
-[首段提取](prompts/local_capture_geometry.md)、[首段几何](prompts/autodl_capture_geometry.md)、[s01训练](prompts/autodl_capture_s01_train.md)及docs/08/09作为历史重放依据保留，其原来的阶段停止点不再是当前任务门槛。[基准第二轮](prompts/autodl_round2.md)仍保留，不自动与本轮并行启动。
+[首段提取](prompts/local_capture_geometry.md)、[首段几何](prompts/autodl_capture_geometry.md)、[s01训练](prompts/autodl_capture_s01_train.md)、[全程初测](prompts/autodl_capture_full_test.md)及docs/08/09/10保留为历史重放依据；其停止点不适用于当前任务。[基准第二轮](prompts/autodl_round2.md)仍保留，不自动并行启动。
 
 [首轮启动提示词](prompts/autodl_first_run.md) 作为历史执行入口保留；无需重复安装或重新训练已经完成的 VR Room。
 
@@ -42,7 +44,7 @@
 5. [源码与协议审计](docs/03_source_audit.md)：当前 main 与历史候选的差异。
 6. [结果交付约定](docs/05_result_contract.md)：哪些证据进 Git，哪些大文件保留并登记。
 
-机器可读计划：当前 [全程完整测试协议](configs/capture_full_test_protocol.json)；已执行的 [s01训练协议](configs/capture_s01_train_protocol.json)、[首段几何协议](configs/capture_geometry_protocol.json)和[bag审计协议](configs/capture_bag_audit.json)保留原计划快照；[基准第二轮协议](configs/round2_protocol.json)保留待后续安排。[首轮协议](configs/vr_room_protocol.json) 保留原计划字段，VR实际完成情况以 `reports/vr-room-iphone-30k/` 和 `reports/latest_status.json` 为准，不能作为capture的完成标记。
+机器可读计划：当前 [Metric3D完整对照协议](configs/capture_metric3d_protocol.json)；已执行的 [全程初测协议](configs/capture_full_test_protocol.json)、 [s01训练协议](configs/capture_s01_train_protocol.json)、[首段几何协议](configs/capture_geometry_protocol.json)和[bag审计协议](configs/capture_bag_audit.json)保留原计划快照；[基准第二轮协议](configs/round2_protocol.json)保留待后续安排。[首轮协议](configs/vr_room_protocol.json) 保留原计划字段，VR实际完成情况以 `reports/vr-room-iphone-30k/` 和 `reports/latest_status.json` 为准，不能作为capture的完成标记。
 
 ## GitHub：优先 AutoDL 官方学术加速
 

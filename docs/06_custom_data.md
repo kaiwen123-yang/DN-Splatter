@@ -1,10 +1,10 @@
 # 自有数据接入：复用已验证环境，为新场景重新优化
 
-更新日期：2026-11-19（Asia/Shanghai）。VR基线提交 `c747cc92d70055d5d5ceb70699e85b77faad87da`；自采s01完整结果 `ee3e87bf8a63486ed96df1c0d37b6a72d30fca88`；固定历史源码 `811f5cdf342d92d12a9d9a4be185d374c430c184`。
+更新日期：2026-11-20（Asia/Shanghai）。自采s01结果 `ee3e87bf8a63486ed96df1c0d37b6a72d30fca88`；完整capture-full结果 `e26ae72a75997dcfd3a907aa26b6c5c0677597a5`；固定历史源码 `811f5cdf342d92d12a9d9a4be185d374c430c184`。
 
-**当前已实际完成自有数据s01的完整30k、留出评估和原始Poisson，接入链路可用。下一轮直接覆盖整段约369秒。** 现有结果支持开始全程测试，尚不证明薄结构达到所需精度；见[效果复核](../reports/capture-s01-review/2026-11-19/overview.md)。当前入口为[docs/10](10_capture_full_test_plan.md)、[全程协议](../configs/capture_full_test_protocol.json)、[本地协调提示词](../prompts/local_capture_full_test.md)与[AutoDL提示词](../prompts/autodl_capture_full_test.md)。不再重复索取样例或开展新的首段小实验。
+**自有数据已经完成首段和全程的完整30k、留出评估与原始Poisson，接入链路可用；全程质量仍有明显退化和网格伪面。** 见[全程复核](../reports/capture-full-review/2026-11-20/overview.md)。当前下一轮为[Metric3D v2法线完整对照](11_capture_metric3d_plan.md)、[协议](../configs/capture_metric3d_protocol.json)与[AutoDL提示词](../prompts/autodl_capture_metric3d.md)。全部输入已经在AutoDL，无需重提取、上传、SfM或D2C。
 
-以下通用接入说明供后续新数据参考；当前全程测试以docs/10为准。原bag仍需要配准与位姿转换，现有工具已经完成过首段，现在在同一正式全程任务内扩展这些准备工作，接着直接训练和交付结果。
+下文为首次/新场景接入的通用说明及历史Omnidata路线，保留作实现参考。**当前capture-full只按docs/11替换法线，其余几何、传感器深度和划分冻结；下文提及首次准备或扩段的动作不重做。**
 
 ## 1. 现在能否直接处理
 
@@ -26,7 +26,7 @@ DN-Splatter 为每个场景优化一套高斯位置、尺度、方向、颜色�
 | 背景静态，少量行人或机械臂运动 | 静态区域可作为目标；必要时剔除受影响帧或提供一致掩膜 | 明确哪些表面属于重建目标，验证掩膜和有效深度 |
 | 重建主体持续移动、形变或被操作 | 当前固定静态场景模型不适合直接描述整个过程 | 单独设计静态片段、物体坐标系或动态重建方法；不能宣称现有方法已支持动态场景 |
 
-RGB-only 路径在历史源码中存在；当前完整运行证据来自 MuSHRoom 的sensor RGB-D基线和自采s01的normal-nerfstudio RGB-D分支。不要把它写成已经验证的 RGB-only 完整流程。COLMAP 的尺度未必是米；将单目深度对齐至 SfM 可以统一重建尺度，并不自动取得物理尺度。[S1][S3][S5]
+RGB-only 路径在历史源码中存在；当前完整运行证据来自 MuSHRoom 的sensor RGB-D基线以及自采s01/full的normal-nerfstudio RGB-D分支。不要把它写成已经验证的 RGB-only 完整流程。COLMAP 的尺度未必是米；将单目深度对齐至 SfM 可以统一重建尺度，并不自动取得物理尺度。[S1][S3][S5]
 
 ## 3. 当前输入和需要核实的内容
 
@@ -141,7 +141,7 @@ python dn_splatter/scripts/normals_from_pretrain.py \
 
 首个自有场景完成后，交付完整 30k checkpoint 清单、实际配置、留出评价、RGB/深度/法线代表图、Poisson 网格和产物哈希；存在独立几何真值时再报告相应几何指标。所有真实运行结论写入新的 run 目录，不覆盖首轮基准数据。
 
-**当前直接执行docs/10的完整采集测试。** 已有真实bag身份、标定、解析代码、服务器环境和成功s01结果，不再要求用户重复上传或提供样例。全文多场景复现仍是后续独立范围。
+**当前执行docs/11的Metric3D v2完整对照。** full全部几何、深度和30k结果已存在，不再要求用户上传、重提取或提供样例。全文多场景复现仍是后续独立范围。
 
 ## 来源
 

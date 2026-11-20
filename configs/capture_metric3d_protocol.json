@@ -1,0 +1,269 @@
+{
+  "schema_version": 1,
+  "kind": "capture_full_metric3d_normal_comparison",
+  "date": "2026-11-20",
+  "timezone": "Asia/Shanghai",
+  "status": "planned_not_started_here",
+  "user_term": "metrics",
+  "working_interpretation": "Metric3D v2; exact name not explicitly confirmed by user",
+  "baseline": {
+    "label": "B0",
+    "results_commit": "e26ae72a75997dcfd3a907aa26b6c5c0677597a5",
+    "run_id": "capture-full-dn-30k-20261119-v1",
+    "checkpoint_sha256": "b89ad55fb5781582a6306a8c1f006ae5afe1e7f7ee5704c1594c8b7bbe6b8094",
+    "configuration": "reports/capture-full-dn-30k/20261119-v1/config.yml",
+    "configuration_sha256": "4f9fb5818ebd81d54df87abb50a6a6390660019434898d8cb121e6ff14961387",
+    "geometry_dir": ".local/data/custom/capture-full/20261119-full-5hz-3982cb26",
+    "geometry_manifest_sha256": "05873700af32712450b319f9f44f0f4cffa0735f974390be0dbd84b57f803802",
+    "training_inputs": ".local/runs/capture-full-dn-30k-20261119-v1/inputs",
+    "training_input_manifest_sha256": "4982f0a5a67fb0e1d90fc0c23bbf81b238f949e8bcb63412f8b6fc8a559e286a"
+  },
+  "trial": {
+    "label": "B1",
+    "run_id": "capture-full-metric3d-30k-20261120-v1",
+    "run_directory": ".local/runs/capture-full-metric3d-30k-20261120-v1",
+    "report_directory": "reports/capture-full-metric3d-30k/20261120-v1",
+    "new_formal_trainings": 1,
+    "single_training_change": "Omnidata normal prior replaced with Metric3Dv2 ViT-Large",
+    "from_identical_initialization": true,
+    "not_a_baseline_checkpoint_resume": true
+  },
+  "frozen_data": {
+    "primary_frames": 1846,
+    "train": 1478,
+    "val": 184,
+    "test": 184,
+    "pose_only_auxiliary_frames": 100,
+    "auxiliaries_in_inference_training_or_export": false,
+    "rgb_wh": [
+      1280,
+      720
+    ],
+    "sensor_depth_m": [
+      0.3,
+      6.0
+    ],
+    "depth_type": "color optical-axis Z",
+    "depth_unit_scale_factor": 1.0,
+    "initialization_points": 2001906,
+    "scene_scale": 21,
+    "geometry_rgb_depth_k_c2w_split_init_hashes_must_match_B0": true,
+    "reextract_bag": false,
+    "redo_geometry": false
+  },
+  "prior": {
+    "repository": "https://github.com/YvanYin/Metric3D",
+    "commit": "eb5b6fac0dc155e4e52f576e304fbf11655ff339",
+    "hub_entry": "metric3d_vit_large",
+    "config": "mono/configs/HourglassDecoder/vit.raft5.large.py",
+    "raft_iterations": 8,
+    "weight_filename": "metric_depth_vit_large_800k.pth",
+    "official_weight_url": "https://huggingface.co/JUGGHM/Metric3D/resolve/main/metric_depth_vit_large_800k.pth",
+    "expected_weight_sha256": null,
+    "weight_hash_policy": "Record actual SHA256 and bytes before full inference; pin artifact for both resume and report; do not invent checksum or silently switch backbone.",
+    "frames_to_infer": 1846,
+    "canvas_hw": [
+      616,
+      1064
+    ],
+    "resize": "aspect-preserving min scale; cv2 INTER_LINEAR; positive int truncation",
+    "resized_hw_for_baseline": [
+      598,
+      1064
+    ],
+    "padding_top_bottom_left_right": [
+      9,
+      9,
+      0,
+      0
+    ],
+    "mean_rgb": [
+      123.675,
+      116.28,
+      103.53
+    ],
+    "std_rgb": [
+      58.395,
+      57.12,
+      57.375
+    ],
+    "normal_postprocess": "unpad, bilinear restore H720/W1280 with align_corners=false antialias=false, per-pixel L2 normalize",
+    "normal_raw_frame": "OpenCV camera XYZ; x right,y down,z forward; toward-camera normal",
+    "training_png": "raw CV XYZ; clip((n+1)/2,0,1)*255 uint8 truncation; PIL RGB",
+    "normal_format_retained": "opengl",
+    "loader_applies_matrix_once": [
+      [
+        1,
+        0,
+        0
+      ],
+      [
+        0,
+        -1,
+        0
+      ],
+      [
+        0,
+        0,
+        -1
+      ]
+    ],
+    "training_float_npy": false,
+    "kappa_used_for_weight_or_filter": false,
+    "save_raw_signed_float32_normal": true,
+    "save_kappa": true,
+    "save_metric_depth": true,
+    "depth_decanonical_factor": "resized_fx/1000 applied exactly once; use true rectified K; no SfM scale or per-frame fitted scale",
+    "depth_training_use": "none; sensor reference unchanged; no holes filled",
+    "heldout_priors_used_in_training_or_mesh_selection": false,
+    "integration_spec": "docs/12_metric3d_normal_adapter.md"
+  },
+  "training": {
+    "dn_commit": "811f5cdf342d92d12a9d9a4be185d374c430c184",
+    "all_core_parameters_from_baseline_config": true,
+    "seed": 42,
+    "total_updates": 30000,
+    "final_step_zero_based": 29999,
+    "checkpoint_interval": 5000,
+    "depth_loss_type": "EdgeAwareLogL1",
+    "sensor_depth_lambda": 0.2,
+    "mono_depth_lambda": 0,
+    "normal_lambda": 0.1,
+    "normal_supervision": "mono",
+    "use_normal_tv_loss": true,
+    "use_depth_smooth_loss": false,
+    "two_d_gaussians": true,
+    "num_downscales": 0,
+    "camera_optimizer": "off",
+    "skip_point_metrics": true,
+    "warmup_length": 500,
+    "refine_every": 100,
+    "reset_alpha_every": 30,
+    "stop_split_at": 15000,
+    "stop_screen_size_at": 4000,
+    "continue_cull_post_densification": true,
+    "sampler": "preserve baseline actual behavior: first pass random, subsequent passes sequential",
+    "shuffle_patch_this_trial": false,
+    "longer_budget_this_trial": false,
+    "configuration_semantic_diff_required": true,
+    "formal_first_batch_check_only": true,
+    "separate_smoke_training": false,
+    "resume": "remaining = 30000 - (saved_step + 1); original optimizer/scheduler"
+  },
+  "diagnostics": {
+    "baseline_existing_logs_and_intermediate_checkpoints": true,
+    "baseline_missing_cull_reasons": "unavailable; never infer counts from checkpoint bytes",
+    "record_B1_sample_frame_and_gaussian_counts": true,
+    "record_cull_reasons_and_union_without_rng_or_training_change": true,
+    "metric3d_depth_against_sensor_heldout": true,
+    "no_test_scale_fit": true,
+    "export_existing_s01_and_full_metric_camera_poses": true,
+    "redo_pose_solve": false
+  },
+  "evaluation": {
+    "val_frames": 184,
+    "test_frames": 184,
+    "rgb": "PSNR/SSIM/LPIPS per-frame and equally weighted means",
+    "depth": "MAE/RMSE/AbsRel/P50/P95; both equal-frame and pooled reference-pixel aggregation; 0.3-6m sensor reference",
+    "paired_B1_minus_B0": true,
+    "time_bins_seconds": 30,
+    "same_s01_heldout_source_frames": 48,
+    "timeline_positions": 1846,
+    "video_columns": [
+      "reference RGB",
+      "B0 RGB",
+      "B1 RGB"
+    ],
+    "independent_geometric_ground_truth": false,
+    "raw_metric3d_depth_separate_from_DN_depth": true,
+    "no_hyperparameter_selection_using_val_or_test": true
+  },
+  "raw_mesh": {
+    "models": [
+      "B0 existing",
+      "B1 new"
+    ],
+    "primary_train_only": true,
+    "target_samples": 5000000,
+    "poisson_depth": 9,
+    "new_filters": false
+  },
+  "supported_mesh": {
+    "models": [
+      "B0",
+      "B1"
+    ],
+    "spec": "docs/13_capture_supported_mesh.md",
+    "primary_training_views": 1478,
+    "alpha_min_inclusive": 0.5,
+    "prediction_and_sensor_z_m_inclusive": [
+      0.3,
+      6.0
+    ],
+    "surface_tolerance": "tau(d)=max(0.05m,0.03*d)",
+    "require_prediction_sensor_agreement_before_sampling": true,
+    "max_samples_per_view": 25907,
+    "max_total_sampled_points": 38290546,
+    "seed": 42,
+    "randomness": "fixed priority for every H*W pixel of every view, independent of mask; B0/B1 same priorities",
+    "point_z": "model prediction, not substituted sensor depth",
+    "voxel_size_m": 0.01,
+    "voxel_origin_world": [
+      0,
+      0,
+      0
+    ],
+    "voxel_aggregation": "equal average XYZ/RGB/unit normals; normalize result; only nonfinite/zero normal is invalid",
+    "actual_voxel_fusion_required": true,
+    "poisson_depth": 11,
+    "poisson_scale": 1.1,
+    "density_trim_quantile": 0.01,
+    "save_before_support_crop": true,
+    "crop_query": "triangle centroid",
+    "projection": "OpenCV camera; frozen NS pixel-boundary K; 0<=u<W,0<=v<H; floor(u),floor(v); no added half pixel",
+    "crop_votes": {
+      "S": "abs(z-sensorZ)<=tau(sensorZ)",
+      "C": "z<sensorZ-tau(sensorZ)",
+      "occluded_or_invalid": "no vote",
+      "each_primary_train_source": "at most one vote"
+    },
+    "keep_face_if": "S>=2 and S>C",
+    "smooth_fill_or_extra_sweep": false,
+    "save_source_frame_and_pixel_provenance": true,
+    "all_reference_pixel_denominators_required": true,
+    "mesh_hit_coverage": true,
+    "hit_conditioned_and_common_hit_accuracy": true,
+    "correct_coverage_abs_error_m": [
+      0.05,
+      0.1,
+      0.2
+    ],
+    "correct_coverage_tau": true,
+    "foreground_conflict_fraction": true,
+    "miss_is_never_accurate": true,
+    "no_threshold_tuning_after_viewing_results": true
+  },
+  "execution": {
+    "all_allocated_cpu_and_gpu_authorized": true,
+    "max_concurrent_formal_trainings": 1,
+    "sequential_prior_train_mesh_stages": true,
+    "training_environment": ".local/conda/dn-splatter-bw",
+    "inference_environment_if_dependencies_needed": ".local/conda/metric3d-bw",
+    "no_training_env_downgrade": true,
+    "autodl_official_github_acceleration_first": true,
+    "intermediate_human_approval": false,
+    "no_auto_shutdown_or_training_deadline": true,
+    "preserve_all_original_results": true,
+    "large_artifacts_in_normal_git": false,
+    "push_small_code_reports_and_manifest_to_user_main": true,
+    "true_blocker_policy": "record actual access/identity/runtime/resource error and recovery entry; quality shortfall alone is not a stop"
+  },
+  "planned_not_observed": {
+    "metric3d_frames_completed": null,
+    "weight_sha256": null,
+    "B1_updates": null,
+    "B1_metrics": null,
+    "B1_checkpoint_sha256": null,
+    "mesh_outputs": null
+  }
+}

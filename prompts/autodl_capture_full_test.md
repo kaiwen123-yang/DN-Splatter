@@ -1,5 +1,7 @@
 # AutoDL Codex：capture-full 全程30k、完整评估与原始Poisson
 
+> 历史阶段已完成：完整结果固定在 `e26ae72a75997dcfd3a907aa26b6c5c0677597a5`。当前执行 `docs/11_capture_metric3d_plan.md` 与 `prompts/autodl_capture_metric3d.md`，不重新启动本文的提取/建图/训练。以下保留原执行协议。
+
 请在现有 /root/autodl-tmp/DN-Splatter 中实际持续执行到最终交付。用户要求停止小规模验证与零碎修复，直接完成整段采集的第一次完整测试，再据完整结果决定改进。s01已完成，结果commit为ee3e87bf8a63486ed96df1c0d37b6a72d30fca88；本轮不是重跑s01。
 
 先核对远端、未提交修改与本项目活跃进程，用项目子shell的AutoDL官方学术加速更新main。阅读AGENTS.md、docs/10_capture_full_test_plan.md、configs/capture_full_test_protocol.json、reports/capture-s01-review/2026-11-19/overview.md；遵循本轮入口。旧阶段的geometry_pending_review或“不自动扩全包”不再约束本轮，禁止加回中间审阅停点。

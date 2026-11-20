@@ -1,0 +1,212 @@
+{
+  "schema_version": 1,
+  "review_date": "2026-11-20",
+  "timezone": "Asia/Shanghai",
+  "evidence_commit": "e26ae72a75997dcfd3a907aa26b6c5c0677597a5",
+  "upstream_commit": "811f5cdf342d92d12a9d9a4be185d374c430c184",
+  "scope": {
+    "committed_source_json_and_representative_images_reviewed": true,
+    "raw_server_ply_accessed": false,
+    "complete_video_watched": false,
+    "new_mesh_export_run": false,
+    "viewed_images": [
+      "mesh_global.jpg",
+      "mesh_table.jpg",
+      "mesh_pillar.jpg",
+      "mesh_chair_legs.jpg",
+      "frame_01409_timeline.jpg"
+    ]
+  },
+  "source_sha256": {
+    "reports/capture-full-dn-30k/20261119-v1/mesh_validation.json": "1bcf278c8b9d0a4654b9673cb4eb06c4a2fc19b630c412f17250b4c4be77e56b",
+    "scripts/capture_s01_mesh.py": "b9b8ee6209a761c80c22b3261f92a946aaab7c2308b989704027b7b9e5a8b431",
+    "reports/capture-s01-dn-30k/20261119-v1/mesh_validation.json": "af5d8ced771c5b8ccd4b50e860265a334934832f2c001f7c1e449446a6199e1c"
+  },
+  "measured_mesh_summary": {
+    "views": 1478,
+    "samples": 5000074,
+    "target_samples": 5000000,
+    "poisson_depth": 9,
+    "sampled_alpha_zero": 120332,
+    "sampled_outside_sensor_range": 820197,
+    "render_z_range_m": [
+      0.01360857393592596,
+      18.448396682739258
+    ],
+    "vertices": 1044849,
+    "faces": 2102867,
+    "connected_components": 2588,
+    "largest_component_faces": 2035931,
+    "largest_component_face_fraction": 0.9681691709461416,
+    "nominal_depth9_cell_m": 0.07751536257565023,
+    "bounds_xyz_m": [
+      [
+        -14.896265983581543,
+        -14.047198295593262,
+        -10.927849769592285
+      ],
+      [
+        19.675586700439453,
+        3.3399887084960938,
+        20.89749526977539
+      ]
+    ]
+  },
+  "derived": {
+    "alpha_zero_sample_fraction": 0.024066043822551425,
+    "outside_sensor_range_sample_fraction": 0.16403697225281066,
+    "full_samples_per_view": 3383,
+    "s01_samples_per_view": 25907,
+    "samples_per_view_fraction_vs_s01": 0.1305824680588258,
+    "raw_pcd_max_axis_extent_m": 36.079877853393555,
+    "nominal_depth11_cell_m_if_same_bounds": 0.019378840643912557,
+    "target_samples_if_25907_per_view": 38290546
+  },
+  "local_comparisons": [
+    {
+      "object": "table",
+      "train_id": 120,
+      "crop_xyxy": [
+        774,
+        406,
+        1180,
+        598
+      ],
+      "metrics": {
+        "Sensor Z": {
+          "reference_pixels": 24129,
+          "matched_pixels": 24129,
+          "MAE_m": 0.0
+        },
+        "Model Z": {
+          "reference_pixels": 24129,
+          "matched_pixels": 24129,
+          "MAE_m": 0.36250895261764526
+        },
+        "Sample cloud Z": {
+          "reference_pixels": 24129,
+          "matched_pixels": 20528,
+          "MAE_m": 0.8464135109884425
+        },
+        "Mesh Z": {
+          "reference_pixels": 24129,
+          "matched_pixels": 24129,
+          "MAE_m": 3.5894055366516113
+        }
+      },
+      "pcd_reference_coverage": 0.8507604956691118
+    },
+    {
+      "object": "pillar",
+      "train_id": 0,
+      "crop_xyxy": [
+        604,
+        284,
+        810,
+        714
+      ],
+      "metrics": {
+        "Sensor Z": {
+          "reference_pixels": 24902,
+          "matched_pixels": 24902,
+          "MAE_m": 0.0
+        },
+        "Model Z": {
+          "reference_pixels": 24902,
+          "matched_pixels": 24902,
+          "MAE_m": 0.09705238789319992
+        },
+        "Sample cloud Z": {
+          "reference_pixels": 24902,
+          "matched_pixels": 20670,
+          "MAE_m": 0.5083457219871739
+        },
+        "Mesh Z": {
+          "reference_pixels": 24902,
+          "matched_pixels": 24902,
+          "MAE_m": 2.24188232421875
+        }
+      },
+      "pcd_reference_coverage": 0.8300538109388804
+    },
+    {
+      "object": "chair_legs",
+      "train_id": 240,
+      "crop_xyxy": [
+        214,
+        440,
+        496,
+        720
+      ],
+      "metrics": {
+        "Sensor Z": {
+          "reference_pixels": 24695,
+          "matched_pixels": 24695,
+          "MAE_m": 0.0
+        },
+        "Model Z": {
+          "reference_pixels": 24695,
+          "matched_pixels": 24695,
+          "MAE_m": 0.17246614396572113
+        },
+        "Sample cloud Z": {
+          "reference_pixels": 24695,
+          "matched_pixels": 15711,
+          "MAE_m": 0.6817067972445411
+        },
+        "Mesh Z": {
+          "reference_pixels": 24695,
+          "matched_pixels": 24695,
+          "MAE_m": 3.3259119987487793
+        }
+      },
+      "pcd_reference_coverage": 0.6362016602551124
+    }
+  ],
+  "interpretation": {
+    "model_vs_mesh_same_reference_support": true,
+    "pcd_metric_same_support_as_model": false,
+    "pcd_projection": "All fused training-view samples projected to target crop; per-pixel nearest positive Z with rounded pixel mapping. Not only the target view samples.",
+    "sampling_changes_depth_values_demonstrated": false,
+    "observed_visual_failure": "Large near-front occluding polygonal surfaces in table and chair views; pillar also obstructed. Quantization color alone is not an exact depth measurement.",
+    "coordinate_axis_or_z_vs_range_bug_established": false,
+    "normal_unit_length_implies_geometry_correct": false,
+    "alpha_zero_points_proven_sole_cause": false,
+    "independent_geometry_ground_truth": false
+  },
+  "recommended_next_export": {
+    "status": "proposed_not_executed",
+    "method_label": "sensor-supported derived Poisson; method adaptation",
+    "same_export_on_current_and_next_final_checkpoints": true,
+    "views": "all primary registered train; no pose-only auxiliary or heldout geometry",
+    "candidate_rules": {
+      "finite_prediction_and_nonzero_normal": true,
+      "alpha_min": 0.5,
+      "predicted_depth_range_m": [
+        0.3,
+        6
+      ],
+      "valid_training_sensor_reference_required": true,
+      "prediction_sensor_tolerance": "max(0.05 m, 0.03 * reference Z)"
+    },
+    "samples_per_view_max": 25907,
+    "voxel_fusion_m": 0.01,
+    "actual_voxel_operation_required_not_ignored_legacy_flag": true,
+    "poisson_depth": 11,
+    "retain_before_and_after_training_support_culling": true,
+    "support_culling": "Freeze train-only visibility/support rules before export; recommended conservative two-view positive support and removal for at least two clear foreground/free-space contradictions, with coverage and removal fractions. No test-based threshold tuning.",
+    "recover_entire_distant_hall_guaranteed": false,
+    "sampling_and_fusion": "stream/chunk and fuse before Poisson; do not retain all 38.29M samples plus full image caches and model duplicates",
+    "parallel_resource_policy": "Only co-run GPU training and CPU Poisson if actual RAM/GPU peak budgets fit; otherwise sequence, no kill/deadline.",
+    "required_reporting": [
+      "full-reference coverage plus conditional depth errors",
+      "common support model/PCD/mesh metrics",
+      "signed depth residuals and false-foreground/near-zero mesh hits",
+      "point source frame and pixel provenance",
+      "candidate removal counts per filter per view",
+      "complete full-scene and fixed bad-case previews",
+      "pre/post culling face counts and missing coverage",
+      "input/checkpoint/PCD/mesh identity and SHA256"
+    ]
+  }
+}
