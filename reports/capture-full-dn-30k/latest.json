@@ -3,7 +3,7 @@
   "kind": "full_capture_execution",
   "updated_date": "2026-11-19",
   "timezone": "Asia/Shanghai",
-  "status": "running",
+  "status": "completed",
   "scene": "capture-full",
   "run_id": "capture-full-dn-30k-20261119-v1",
   "geometry_run_id": "20261119-full-5hz-3982cb26",
@@ -16,7 +16,7 @@
   "local_prompt": "prompts/local_capture_full_test.md",
   "server_prompt": "prompts/autodl_capture_full_test.md",
   "intended_report_directory": "reports/capture-full-dn-30k/20261119-v1",
-  "completed_overview": null,
+  "completed_overview": "reports/capture-full-dn-30k/20261119-v1/overview.md",
   "source_bag_sha256": "3982cb269ea03ddf4234b45f74be27143eb66bcd807e4e471d0f3a9cd6b03b59",
   "scope": "Entire recorded RGB timeline, 0.465019-369.339766 seconds relative to the first depth timestamp; frozen 5 Hz targets plus a unique final RGB endpoint when needed.",
   "expected_regular_grid_targets": 1845,
@@ -35,28 +35,40 @@
     "total": 1846
   },
   "actual_pose_available": {
-    "train": null,
-    "val": null,
-    "test": null,
-    "total": null
+    "train": 1478,
+    "val": 184,
+    "test": 184,
+    "total": 1846
   },
-  "actual_updates": 0,
-  "actual_final_step": null,
-  "actual_checkpoint_sha256": null,
-  "actual_metrics": null,
-  "actual_mesh_sha256": null,
+  "actual_updates": 30000,
+  "actual_final_step": 29999,
+  "actual_checkpoint_sha256": "b89ad55fb5781582a6306a8c1f006ae5afe1e7f7ee5704c1594c8b7bbe6b8094",
+  "actual_metrics": {
+    "val": {
+      "psnr": 15.785021263620127,
+      "ssim": 0.6380456729751566,
+      "lpips": 0.4378004632080379
+    },
+    "test": {
+      "psnr": 15.825631610725237,
+      "ssim": 0.6384122080129125,
+      "lpips": 0.43844025241939916
+    }
+  },
+  "actual_mesh_sha256": "51f478e8822c7edd63e4d6f21aee469a82c1c4091308eb102b4e64e62bf411ba",
   "target_updates": 30000,
   "target_final_step_zero_based": 29999,
   "intermediate_human_review_required": false,
   "separate_smoke_training": false,
   "source_archive_unchanged": "reports/capture-s01-dn-30k/20261119-v1",
-  "note": "Live handoff snapshot. Geometry/30k/evaluation/Poisson completion is recorded in the final verified report.",
+  "note": "Final available-view evaluations and raw Poisson bound to the same checkpoint.",
   "actual_selected": {
     "train": 1478,
     "val": 184,
     "test": 184,
     "total": 1846
   },
-  "observed_stage": "match",
-  "observed_utc": "2026-11-19T12:25:03.479814+00:00"
+  "observed_stage": "report_complete",
+  "observed_utc": "2026-11-20T06:47:52.513871+00:00",
+  "computation_finished_at_beijing": "2026-11-20T14:47:52.513889+08:00"
 }

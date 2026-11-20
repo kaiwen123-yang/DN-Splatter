@@ -1,0 +1,30 @@
+{
+  "model": "Omnidata DPT Hybrid low",
+  "source": "811f5cdf342d92d12a9d9a4be185d374c430c184",
+  "source_script_sha256": "7413e69fcb464574521a4dbd2b434586ca01ad32c16a9feaf971a6e5fe2baee1",
+  "environment_sha256": "7069224fc0d12cac2d88331aac8e49daff982923630f236794aac216368d0c77",
+  "command": "/root/autodl-tmp/DN-Splatter/.local/conda/dn-splatter-bw/bin/python dn_splatter/scripts/normals_from_pretrain.py --data-dir /root/autodl-tmp/DN-Splatter/.local/runs/capture-full-dn-30k-20261119-v1/inputs --save-path /root/autodl-tmp/DN-Splatter/.local/runs/capture-full-dn-30k-20261119-v1/inputs/normals_from_pretrain --resolution low --model-type omnidata",
+  "internal_hw": [
+    384,
+    384
+  ],
+  "output_hw": [
+    720,
+    1280
+  ],
+  "count_per_format": 1846,
+  "png_rgb_uint8_range": [
+    0,
+    255
+  ],
+  "npy_chw_float_encoded_01_range": [
+    0.0,
+    1.0
+  ],
+  "checkpoint": "/root/autodl-tmp/DN-Splatter/.local/data/downloads/omnidata_dpt_normal_v2.ckpt",
+  "checkpoint_sha256": "38db3f7d952f48f900f0b32d6cce6749e41641045ebc5713cf29618f54aff3bb",
+  "protocol_sha256": "71e6342ba923c7474b599b7cd09d33472a4786019e04e71c56e24ed223a7fa4c",
+  "geometry_manifest_sha256": "05873700af32712450b319f9f44f0f4cffa0735f974390be0dbd84b57f803802",
+  "training_manifest_sha256": "4982f0a5a67fb0e1d90fc0c23bbf81b238f949e8bcb63412f8b6fc8a559e286a",
+  "training_manifest": "/root/autodl-tmp/DN-Splatter/.local/runs/capture-full-dn-30k-20261119-v1/inputs/training_manifest.json"
+}

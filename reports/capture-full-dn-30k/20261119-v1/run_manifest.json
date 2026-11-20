@@ -1,0 +1,480 @@
+{
+  "status": "completed",
+  "identity": {
+    "run": "capture-full-dn-30k-20261119-v1",
+    "bag": "3982cb269ea03ddf4234b45f74be27143eb66bcd807e4e471d0f3a9cd6b03b59",
+    "protocol_sha256": "71e6342ba923c7474b599b7cd09d33472a4786019e04e71c56e24ed223a7fa4c",
+    "packet_sha256": "99db85bab5c06622fa6cadbd97fb6298304bde4613fafbe4f4f15fad298b5216",
+    "upstream": "811f5cdf342d92d12a9d9a4be185d374c430c184",
+    "selection_sha256": "7d9eff8bf784b8405a44ed8bc2f440c50edfa9dd80e764de3e1ab4863a0f6e2e",
+    "split_sha256": "114c3b82bec6b71ef3acca8cdb9ad4c138a6b8557d8f5e5ef3f47530147f69a4",
+    "weight_sha256": "38db3f7d952f48f900f0b32d6cce6749e41641045ebc5713cf29618f54aff3bb",
+    "patches": {
+      "dn-811f5cd-omnidata-checkpoint.patch": "ac01ecff32811ed1b618c5e423627d93b637e57272a182c5b27cf317789fa94c",
+      "dn-811f5cd-poisson-threads.patch": "800b17f3720661483baca78dbb840f488bce87309b75f30b791959051334b415",
+      "gsplat-1.0.0-build-jobs.patch": "d1962b4e59abade4cdbe10cf67fd7571a89575440b594960ff9dffa3e06fcf5e",
+      "omnidata-tools-0.0.23-backbone.patch": "9c69452a37676d15e1829fbc18970b1c75dcd65da4c7515f2124b4cbd477eec4"
+    }
+  },
+  "run": "/root/autodl-tmp/DN-Splatter/.local/runs/capture-full-dn-30k-20261119-v1",
+  "geometry": "/root/autodl-tmp/DN-Splatter/.local/data/custom/capture-full/20261119-full-5hz-3982cb26",
+  "observed_utc": "2026-11-20T06:47:52.508594+00:00",
+  "stages": [
+    {
+      "stage": "rectify",
+      "cwd": ".local/upstream/dn-splatter",
+      "started_utc": "2026-11-19T12:18:55.327641+00:00",
+      "omp_threads": 1,
+      "blas_threads": 1,
+      "exit_code": 0,
+      "duration_seconds": 21.16,
+      "ended_utc": "2026-11-19T12:19:16.485476+00:00",
+      "resource_samples": 1,
+      "observed_child_pids": [
+        393611
+      ],
+      "process_peak_rss_kib": 1283664,
+      "process_cpu_seconds_last_observed": 363.99,
+      "peak_sampled_gpu_used_mib_device": 0,
+      "peak_sampled_gpu_util_pct_device": 0,
+      "peak_sampled_cgroup_memory_bytes": 58084958208,
+      "peak_interval_mean_cgroup_cores": null
+    },
+    {
+      "stage": "features",
+      "cwd": ".local/upstream/dn-splatter",
+      "started_utc": "2026-11-19T12:19:16.486336+00:00",
+      "omp_threads": 1,
+      "blas_threads": 1,
+      "exit_code": 0,
+      "duration_seconds": 45.91,
+      "ended_utc": "2026-11-19T12:20:02.399486+00:00",
+      "resource_samples": 3,
+      "observed_child_pids": [
+        393661
+      ],
+      "process_peak_rss_kib": 263584,
+      "process_cpu_seconds_last_observed": 108.17,
+      "peak_sampled_gpu_used_mib_device": 1347,
+      "peak_sampled_gpu_util_pct_device": 33,
+      "peak_sampled_cgroup_memory_bytes": 60361355264,
+      "peak_interval_mean_cgroup_cores": 2.5594653337526276
+    },
+    {
+      "stage": "match",
+      "cwd": ".local/upstream/dn-splatter",
+      "started_utc": "2026-11-19T12:20:02.401409+00:00",
+      "omp_threads": 1,
+      "blas_threads": 1,
+      "exit_code": 0,
+      "duration_seconds": 2792.56,
+      "ended_utc": "2026-11-19T13:06:34.963021+00:00",
+      "resource_samples": 185,
+      "observed_child_pids": [
+        393746
+      ],
+      "process_peak_rss_kib": 570776,
+      "process_cpu_seconds_last_observed": 65445.3,
+      "peak_sampled_gpu_used_mib_device": 3791,
+      "peak_sampled_gpu_util_pct_device": 91,
+      "peak_sampled_cgroup_memory_bytes": 62120910848,
+      "peak_interval_mean_cgroup_cores": 24.76257097652933
+    },
+    {
+      "stage": "map",
+      "cwd": ".local/upstream/dn-splatter",
+      "started_utc": "2026-11-19T13:06:35.116987+00:00",
+      "omp_threads": 1,
+      "blas_threads": 1,
+      "exit_code": 0,
+      "duration_seconds": 6942.5,
+      "ended_utc": "2026-11-19T15:02:17.618183+00:00",
+      "resource_samples": 460,
+      "observed_child_pids": [
+        396157
+      ],
+      "process_peak_rss_kib": 4346104,
+      "process_cpu_seconds_last_observed": 64620.72,
+      "peak_sampled_gpu_used_mib_device": 0,
+      "peak_sampled_gpu_util_pct_device": 0,
+      "peak_sampled_cgroup_memory_bytes": 65585528832,
+      "peak_interval_mean_cgroup_cores": 16.619290450583712
+    },
+    {
+      "stage": "bridge_features",
+      "cwd": ".local/upstream/dn-splatter",
+      "started_utc": "2026-11-20T03:19:16.921707+00:00",
+      "omp_threads": 1,
+      "blas_threads": 1,
+      "exit_code": 0,
+      "duration_seconds": 3.7,
+      "ended_utc": "2026-11-20T03:19:20.626197+00:00",
+      "resource_samples": 0,
+      "observed_child_pids": [
+        435061
+      ],
+      "process_peak_rss_kib": 226484,
+      "process_cpu_seconds_last_observed": 4.63,
+      "peak_sampled_gpu_used_mib_device": null,
+      "peak_sampled_gpu_util_pct_device": null,
+      "peak_sampled_cgroup_memory_bytes": null,
+      "peak_interval_mean_cgroup_cores": null
+    },
+    {
+      "stage": "bridge_match",
+      "cwd": ".local/upstream/dn-splatter",
+      "started_utc": "2026-11-20T03:19:20.627605+00:00",
+      "omp_threads": 1,
+      "blas_threads": 1,
+      "exit_code": 0,
+      "duration_seconds": 642.21,
+      "ended_utc": "2026-11-20T03:30:02.838891+00:00",
+      "resource_samples": 43,
+      "observed_child_pids": [
+        435095
+      ],
+      "process_peak_rss_kib": 464128,
+      "process_cpu_seconds_last_observed": 8416.95,
+      "peak_sampled_gpu_used_mib_device": 6510,
+      "peak_sampled_gpu_util_pct_device": 100,
+      "peak_sampled_cgroup_memory_bytes": 11716214784,
+      "peak_interval_mean_cgroup_cores": 24.211334074391676
+    },
+    {
+      "stage": "bridge_map",
+      "cwd": ".local/upstream/dn-splatter",
+      "started_utc": "2026-11-20T03:30:02.977203+00:00",
+      "omp_threads": 1,
+      "blas_threads": 1,
+      "exit_code": 0,
+      "duration_seconds": 7061.7,
+      "ended_utc": "2026-11-20T05:27:44.680773+00:00",
+      "resource_samples": 468,
+      "observed_child_pids": [
+        444013
+      ],
+      "process_peak_rss_kib": 4634764,
+      "process_cpu_seconds_last_observed": 57121.63,
+      "peak_sampled_gpu_used_mib_device": 2077,
+      "peak_sampled_gpu_util_pct_device": 96,
+      "peak_sampled_cgroup_memory_bytes": 33524547584,
+      "peak_interval_mean_cgroup_cores": 17.89527263433071
+    },
+    {
+      "stage": "queries",
+      "cwd": ".local/upstream/dn-splatter",
+      "started_utc": "2026-11-20T05:27:44.684240+00:00",
+      "omp_threads": 1,
+      "blas_threads": 1,
+      "exit_code": 0,
+      "duration_seconds": 13.49,
+      "ended_utc": "2026-11-20T05:27:58.177540+00:00",
+      "resource_samples": 1,
+      "observed_child_pids": [
+        482263
+      ],
+      "process_peak_rss_kib": 240868,
+      "process_cpu_seconds_last_observed": 33.2,
+      "peak_sampled_gpu_used_mib_device": 2841,
+      "peak_sampled_gpu_util_pct_device": 87,
+      "peak_sampled_cgroup_memory_bytes": 29744779264,
+      "peak_interval_mean_cgroup_cores": null
+    },
+    {
+      "stage": "localize",
+      "cwd": ".local/upstream/dn-splatter",
+      "started_utc": "2026-11-20T05:27:58.179754+00:00",
+      "omp_threads": 1,
+      "blas_threads": 1,
+      "exit_code": 0,
+      "duration_seconds": 261.54,
+      "ended_utc": "2026-11-20T05:32:19.717061+00:00",
+      "resource_samples": 17,
+      "observed_child_pids": [
+        482311
+      ],
+      "process_peak_rss_kib": 1999980,
+      "process_cpu_seconds_last_observed": 261.04,
+      "peak_sampled_gpu_used_mib_device": 1498,
+      "peak_sampled_gpu_util_pct_device": 75,
+      "peak_sampled_cgroup_memory_bytes": 32203137024,
+      "peak_interval_mean_cgroup_cores": 3.374053802899165
+    },
+    {
+      "stage": "metric",
+      "cwd": ".local/upstream/dn-splatter",
+      "started_utc": "2026-11-20T05:32:19.722580+00:00",
+      "omp_threads": 1,
+      "blas_threads": 1,
+      "exit_code": 0,
+      "duration_seconds": 100.09,
+      "ended_utc": "2026-11-20T05:33:59.815887+00:00",
+      "resource_samples": 7,
+      "observed_child_pids": [
+        482662
+      ],
+      "process_peak_rss_kib": 378296,
+      "process_cpu_seconds_last_observed": 98.04,
+      "peak_sampled_gpu_used_mib_device": 1498,
+      "peak_sampled_gpu_util_pct_device": 60,
+      "peak_sampled_cgroup_memory_bytes": 32225660928,
+      "peak_interval_mean_cgroup_cores": 3.392288284171129
+    },
+    {
+      "stage": "dataset",
+      "cwd": ".local/upstream/dn-splatter",
+      "started_utc": "2026-11-20T05:33:59.820002+00:00",
+      "omp_threads": 4,
+      "blas_threads": 1,
+      "exit_code": 0,
+      "duration_seconds": 44.55,
+      "ended_utc": "2026-11-20T05:34:44.367119+00:00",
+      "resource_samples": 3,
+      "observed_child_pids": [
+        482797
+      ],
+      "process_peak_rss_kib": 1701888,
+      "process_cpu_seconds_last_observed": 38.9,
+      "peak_sampled_gpu_used_mib_device": 1498,
+      "peak_sampled_gpu_util_pct_device": 52,
+      "peak_sampled_cgroup_memory_bytes": 48366776320,
+      "peak_interval_mean_cgroup_cores": 3.3033115887897124
+    },
+    {
+      "stage": "copy",
+      "cwd": ".local/upstream/dn-splatter",
+      "started_utc": "2026-11-20T05:34:44.370126+00:00",
+      "omp_threads": 1,
+      "blas_threads": 1,
+      "exit_code": 0,
+      "duration_seconds": 29.94,
+      "ended_utc": "2026-11-20T05:35:14.314150+00:00",
+      "resource_samples": 2,
+      "observed_child_pids": [
+        482875
+      ],
+      "process_peak_rss_kib": 100764,
+      "process_cpu_seconds_last_observed": 25.14,
+      "peak_sampled_gpu_used_mib_device": 1498,
+      "peak_sampled_gpu_util_pct_device": 46,
+      "peak_sampled_cgroup_memory_bytes": 56245723136,
+      "peak_interval_mean_cgroup_cores": 3.1766677437687414
+    },
+    {
+      "stage": "omnidata",
+      "cwd": ".local/upstream/dn-splatter",
+      "started_utc": "2026-11-20T05:35:14.348532+00:00",
+      "omp_threads": 2,
+      "blas_threads": 1,
+      "exit_code": 0,
+      "duration_seconds": 530.21,
+      "ended_utc": "2026-11-20T05:44:04.560137+00:00",
+      "resource_samples": 35,
+      "observed_child_pids": [
+        482919
+      ],
+      "process_peak_rss_kib": 3073488,
+      "process_cpu_seconds_last_observed": 539.75,
+      "peak_sampled_gpu_used_mib_device": 9945,
+      "peak_sampled_gpu_util_pct_device": 100,
+      "peak_sampled_cgroup_memory_bytes": 75024060416,
+      "peak_interval_mean_cgroup_cores": 3.421838587697313
+    },
+    {
+      "stage": "manifest",
+      "cwd": ".local/upstream/dn-splatter",
+      "started_utc": "2026-11-20T05:44:04.593300+00:00",
+      "omp_threads": 1,
+      "blas_threads": 1,
+      "exit_code": 0,
+      "duration_seconds": 78.89,
+      "ended_utc": "2026-11-20T05:45:23.485325+00:00",
+      "resource_samples": 5,
+      "observed_child_pids": [
+        483638
+      ],
+      "process_peak_rss_kib": 128848,
+      "process_cpu_seconds_last_observed": 77.03,
+      "peak_sampled_gpu_used_mib_device": 1498,
+      "peak_sampled_gpu_util_pct_device": 69,
+      "peak_sampled_cgroup_memory_bytes": 72824193024,
+      "peak_interval_mean_cgroup_cores": 3.3486665303117453
+    },
+    {
+      "stage": "reader",
+      "cwd": ".local/upstream/dn-splatter",
+      "started_utc": "2026-11-20T05:45:23.490437+00:00",
+      "omp_threads": 2,
+      "blas_threads": 1,
+      "exit_code": 0,
+      "duration_seconds": 306.77,
+      "ended_utc": "2026-11-20T05:50:30.255963+00:00",
+      "resource_samples": 20,
+      "observed_child_pids": [
+        483745
+      ],
+      "process_peak_rss_kib": 80444904,
+      "process_cpu_seconds_last_observed": 369.15,
+      "peak_sampled_gpu_used_mib_device": 2105,
+      "peak_sampled_gpu_util_pct_device": 69,
+      "peak_sampled_cgroup_memory_bytes": 126734659584,
+      "peak_interval_mean_cgroup_cores": 4.372902967333506
+    },
+    {
+      "stage": "training",
+      "cwd": ".local/upstream/dn-splatter",
+      "started_utc": "2026-11-20T05:50:30.257625+00:00",
+      "omp_threads": 2,
+      "blas_threads": 1,
+      "exit_code": 0,
+      "duration_seconds": 2022.78,
+      "ended_utc": "2026-11-20T06:24:13.038969+00:00",
+      "resource_samples": 133,
+      "observed_child_pids": [
+        484245
+      ],
+      "process_peak_rss_kib": 83169964,
+      "process_cpu_seconds_last_observed": 2158.68,
+      "peak_sampled_gpu_used_mib_device": 6883,
+      "peak_sampled_gpu_util_pct_device": 99,
+      "peak_sampled_cgroup_memory_bytes": 126684094464,
+      "peak_interval_mean_cgroup_cores": 4.360733291088443
+    },
+    {
+      "stage": "val",
+      "cwd": ".local/upstream/dn-splatter",
+      "started_utc": "2026-11-20T06:24:13.041198+00:00",
+      "omp_threads": 2,
+      "blas_threads": 1,
+      "exit_code": 0,
+      "duration_seconds": 207.24,
+      "ended_utc": "2026-11-20T06:27:40.277186+00:00",
+      "resource_samples": 13,
+      "observed_child_pids": [
+        487041
+      ],
+      "process_peak_rss_kib": 3694400,
+      "process_cpu_seconds_last_observed": 208.47,
+      "peak_sampled_gpu_used_mib_device": 2823,
+      "peak_sampled_gpu_util_pct_device": 82,
+      "peak_sampled_cgroup_memory_bytes": 46074957824,
+      "peak_interval_mean_cgroup_cores": 3.410820055922853
+    },
+    {
+      "stage": "test",
+      "cwd": ".local/upstream/dn-splatter",
+      "started_utc": "2026-11-20T06:27:40.278981+00:00",
+      "omp_threads": 2,
+      "blas_threads": 1,
+      "exit_code": 0,
+      "duration_seconds": 206.11,
+      "ended_utc": "2026-11-20T06:31:06.387784+00:00",
+      "resource_samples": 14,
+      "observed_child_pids": [
+        487408
+      ],
+      "process_peak_rss_kib": 3646164,
+      "process_cpu_seconds_last_observed": 208.01,
+      "peak_sampled_gpu_used_mib_device": 2823,
+      "peak_sampled_gpu_util_pct_device": 82,
+      "peak_sampled_cgroup_memory_bytes": 48424448000,
+      "peak_interval_mean_cgroup_cores": 3.5261293052193947
+    },
+    {
+      "stage": "video",
+      "cwd": ".local/upstream/dn-splatter",
+      "started_utc": "2026-11-20T06:31:06.388498+00:00",
+      "omp_threads": 2,
+      "blas_threads": 1,
+      "exit_code": 0,
+      "duration_seconds": 347.03,
+      "ended_utc": "2026-11-20T06:36:53.416781+00:00",
+      "resource_samples": 23,
+      "observed_child_pids": [
+        487770
+      ],
+      "process_peak_rss_kib": 2323672,
+      "process_cpu_seconds_last_observed": 307.19,
+      "peak_sampled_gpu_used_mib_device": 2815,
+      "peak_sampled_gpu_util_pct_device": 79,
+      "peak_sampled_cgroup_memory_bytes": 52701908992,
+      "peak_interval_mean_cgroup_cores": 13.806426290313196
+    },
+    {
+      "stage": "poisson",
+      "cwd": ".local/upstream/dn-splatter",
+      "started_utc": "2026-11-20T06:36:53.417579+00:00",
+      "omp_threads": 25,
+      "blas_threads": 1,
+      "exit_code": 0,
+      "duration_seconds": 552.53,
+      "ended_utc": "2026-11-20T06:46:05.950098+00:00",
+      "resource_samples": 37,
+      "observed_child_pids": [
+        488346
+      ],
+      "process_peak_rss_kib": 8361964,
+      "process_cpu_seconds_last_observed": 5714.67,
+      "peak_sampled_gpu_used_mib_device": 3001,
+      "peak_sampled_gpu_util_pct_device": 73,
+      "peak_sampled_cgroup_memory_bytes": 61204320256,
+      "peak_interval_mean_cgroup_cores": 24.421916909344887
+    },
+    {
+      "stage": "mesh_validation",
+      "cwd": ".local/upstream/dn-splatter",
+      "started_utc": "2026-11-20T06:46:06.094737+00:00",
+      "omp_threads": 25,
+      "blas_threads": 1,
+      "exit_code": 0,
+      "duration_seconds": 24.19,
+      "ended_utc": "2026-11-20T06:46:30.283458+00:00",
+      "resource_samples": 1,
+      "observed_child_pids": [
+        498401
+      ],
+      "process_peak_rss_kib": 2941904,
+      "process_cpu_seconds_last_observed": 28.11,
+      "peak_sampled_gpu_used_mib_device": 1498,
+      "peak_sampled_gpu_util_pct_device": 35,
+      "peak_sampled_cgroup_memory_bytes": 55025901568,
+      "peak_interval_mean_cgroup_cores": null
+    }
+  ],
+  "cpu_budget": 25,
+  "training": {
+    "checkpoint": "/root/autodl-tmp/DN-Splatter/.local/runs/capture-full-dn-30k-20261119-v1/training/capture-full/dn-splatter/2026-11-20_135109/nerfstudio_models/step-000029999.ckpt",
+    "checkpoint_sha256": "b89ad55fb5781582a6306a8c1f006ae5afe1e7f7ee5704c1594c8b7bbe6b8094",
+    "config": "/root/autodl-tmp/DN-Splatter/.local/runs/capture-full-dn-30k-20261119-v1/training/capture-full/dn-splatter/2026-11-20_135109/config.yml",
+    "step": 29999,
+    "cumulative_updates": 30000,
+    "final_gaussians": 172425,
+    "training_manifest_sha256": "4982f0a5a67fb0e1d90fc0c23bbf81b238f949e8bcb63412f8b6fc8a559e286a"
+  },
+  "counts": {
+    "train": {
+      "requested": 1478,
+      "selected": 1478,
+      "posed": 1478,
+      "evaluated": 0
+    },
+    "val": {
+      "requested": 184,
+      "selected": 184,
+      "posed": 184,
+      "evaluated": 184
+    },
+    "test": {
+      "requested": 184,
+      "selected": 184,
+      "posed": 184,
+      "evaluated": 184
+    }
+  },
+  "code_commit": "1e05617f3cb553426be30f9bab2ff0c2a4a20a01",
+  "init_points": 2001906,
+  "scene_scale": 21,
+  "checkpoint_sha256": "b89ad55fb5781582a6306a8c1f006ae5afe1e7f7ee5704c1594c8b7bbe6b8094",
+  "video": "/root/autodl-tmp/DN-Splatter/.local/runs/capture-full-dn-30k-20261119-v1/video/reference_render.mp4",
+  "mesh": "/root/autodl-tmp/DN-Splatter/.local/runs/capture-full-dn-30k-20261119-v1/mesh/DepthAndNormalMapsPoisson_poisson_mesh.ply"
+}

@@ -1,0 +1,203 @@
+{
+  "scale_m_per_sfm_unit": 1.4541853336739408,
+  "fit_range_m": [
+    0.3,
+    6
+  ],
+  "windows": {
+    "3": {
+      "scale": 1.4509294454194548,
+      "frames": 1432,
+      "tracks": 67841,
+      "observations": 303326,
+      "weighted_median_abs_residual_m": 0.033323566941513505,
+      "absolute_residual_m": {
+        "min": 0.0,
+        "p10": 0.003820985856073489,
+        "p50": 0.0207236144673123,
+        "p90": 0.07437403688562072,
+        "p95": 0.10541007747865827,
+        "max": 79.38182425752083
+      }
+    },
+    "6": {
+      "scale": 1.4541853336739408,
+      "frames": 1477,
+      "tracks": 106540,
+      "observations": 505321,
+      "weighted_median_abs_residual_m": 0.05903713237262753,
+      "absolute_residual_m": {
+        "min": 0.0,
+        "p10": 0.006223745690987492,
+        "p50": 0.03803730385388837,
+        "p90": 0.22949940142151526,
+        "p95": 0.3305528379615801,
+        "max": 79.564591791362
+      }
+    },
+    "10": {
+      "scale": 1.4565708495359841,
+      "frames": 1477,
+      "tracks": 127319,
+      "observations": 599887,
+      "weighted_median_abs_residual_m": 0.07727865240469933,
+      "absolute_residual_m": {
+        "min": 0.0,
+        "p10": 0.007765423445630404,
+        "p50": 0.051637945677484254,
+        "p90": 0.41857994444449287,
+        "p95": 0.6573368414107744,
+        "max": 79.69850143965658
+      }
+    }
+  },
+  "early_middle_late": [
+    {
+      "scale": 1.4677398207714107,
+      "frames": 494,
+      "tracks": 30945,
+      "observations": 121542,
+      "weighted_median_abs_residual_m": 0.0872319040619165,
+      "absolute_residual_m": {
+        "min": 0.0,
+        "p10": 0.012814309528577806,
+        "p50": 0.07032451619160951,
+        "p90": 0.2614737279822657,
+        "p95": 0.35832333356806384,
+        "max": 73.15928323043433
+      }
+    },
+    {
+      "scale": 1.4555439481867227,
+      "frames": 490,
+      "tracks": 42558,
+      "observations": 170191,
+      "weighted_median_abs_residual_m": 0.055412004646738566,
+      "absolute_residual_m": {
+        "min": 0.0,
+        "p10": 0.006162643940172519,
+        "p50": 0.039998146402870915,
+        "p90": 0.2506558811119972,
+        "p95": 0.3597451723998777,
+        "max": 33.039427298876554
+      }
+    },
+    {
+      "scale": 1.4436736762194757,
+      "frames": 493,
+      "tracks": 53672,
+      "observations": 213588,
+      "weighted_median_abs_residual_m": 0.03552758685578805,
+      "absolute_residual_m": {
+        "min": 0.0,
+        "p10": 0.003206805985022776,
+        "p50": 0.02236287700682127,
+        "p90": 0.18442736533743878,
+        "p95": 0.2779544400516253,
+        "max": 78.97452556077539
+      }
+    }
+  ],
+  "disjoint_depth_bands": {
+    "0.3-3": {
+      "scale": 1.4509294454194548,
+      "frames": 1432,
+      "tracks": 67841,
+      "observations": 303326,
+      "weighted_median_abs_residual_m": 0.033323566941513505,
+      "absolute_residual_m": {
+        "min": 0.0,
+        "p10": 0.003820985856073489,
+        "p50": 0.0207236144673123,
+        "p90": 0.07437403688562072,
+        "p95": 0.10541007747865827,
+        "max": 79.38182425752083
+      }
+    },
+    "3-6": {
+      "scale": 1.4726436521944641,
+      "frames": 1448,
+      "tracks": 51933,
+      "observations": 201995,
+      "weighted_median_abs_residual_m": 0.12322045245062974,
+      "absolute_residual_m": {
+        "min": 0.0,
+        "p10": 0.020005106249880812,
+        "p50": 0.1110965215216293,
+        "p90": 0.3361575146358103,
+        "p95": 0.4415504332714809,
+        "max": 46.77326213361218
+      }
+    },
+    "6-10": {
+      "scale": 1.5113783055833439,
+      "frames": 1360,
+      "tracks": 31123,
+      "observations": 94566,
+      "weighted_median_abs_residual_m": 0.3779146733150007,
+      "absolute_residual_m": {
+        "min": 0.0,
+        "p10": 0.066704453239391,
+        "p50": 0.35881575426359325,
+        "p90": 1.0601364981475356,
+        "p95": 1.3568109614147588,
+        "max": 31.7915829875543
+      }
+    }
+  },
+  "fixed_scale_signed_residual_m_by_time": [
+    {
+      "min": -72.4637181678048,
+      "p10": -0.12759285988012953,
+      "p50": 0.016497643047731048,
+      "p90": 0.22170841119512114,
+      "p95": 0.2950213244297193,
+      "max": 3.9866105040621784
+    },
+    {
+      "min": -33.006878442120914,
+      "p10": -0.092379545458805,
+      "p50": -0.0034557460970254805,
+      "p90": 0.18697513908393937,
+      "p95": 0.3001710581774,
+      "max": 3.3723100607025307
+    },
+    {
+      "min": -79.564591791362,
+      "p10": -0.07731662515554173,
+      "p50": -0.012065668601139945,
+      "p90": 0.10633890992849002,
+      "p95": 0.19475313876593195,
+      "max": 4.235589790277629
+    }
+  ],
+  "fixed_scale_signed_residual_m_by_depth": {
+    "3": {
+      "min": -79.564591791362,
+      "p10": -0.05527587516168131,
+      "p50": -0.012050444346207279,
+      "p90": 0.039331293620003316,
+      "p95": 0.06847706174606283,
+      "max": 2.7950128996762382
+    },
+    "6": {
+      "min": -46.12901394894642,
+      "p10": -0.1890055449830675,
+      "p50": 0.04986482808405057,
+      "p90": 0.28565771681642077,
+      "p95": 0.36966775176763633,
+      "max": 4.235589790277629
+    },
+    "10": {
+      "min": -30.352319763864536,
+      "p10": -0.47407751221164407,
+      "p50": 0.2659887159220653,
+      "p90": 0.9439398796399803,
+      "p95": 1.3392018580045857,
+      "max": 8.650982092404814
+    }
+  },
+  "method": "Train map observations only, track length >=3, reprojection <=2px, positive SfM Z. Round half-resolution corner-centred coordinates after subtracting 0.5. Take median of 5x5 Z_C with >=12 hits, no competing occluder, full local Z spread <=max(5cm,3%). Median of Z_C/Z_sfm; inverse track frequency then normalize each frame to equal total weight.",
+  "fit_and_export_policy": "0.3–6 m fixed for primary fit and initialization before inspecting held-out depth. Overlapping/disjoint windows and thirds use training observations only.",
+  "units": "metric sensor consistency; no external geometric reference"
+}

@@ -1,0 +1,37 @@
+{
+  "path": "/root/autodl-tmp/DN-Splatter/.local/runs/capture-full-dn-30k-20261119-v1/video/reference_render.mp4",
+  "bytes": 358392465,
+  "sha256": "b3a2da536b7d215797bbc92638cbffdbdb83d4232f085951848dc630ce5e230d",
+  "frames": 1846,
+  "gaps": [],
+  "source_time_s": [
+    0.465019,
+    369.339766
+  ],
+  "duration_s": 368.92,
+  "checkpoint_sha256": "b89ad55fb5781582a6306a8c1f006ae5afe1e7f7ee5704c1594c8b7bbe6b8094",
+  "step": 29999,
+  "previews": [
+    "frame_00000",
+    "frame_00073",
+    "frame_00223",
+    "frame_00238",
+    "frame_00239",
+    "frame_00373",
+    "frame_00523",
+    "frame_00673",
+    "frame_00823",
+    "frame_00923",
+    "frame_00939",
+    "frame_00973",
+    "frame_01123",
+    "frame_01273",
+    "frame_01409",
+    "frame_01423",
+    "frame_01573",
+    "frame_01723",
+    "frame_01764",
+    "frame_01845"
+  ],
+  "timing": "Consecutive device timestamps set frame durations; concat image timestamps are quantized to 1/25 s."
+}

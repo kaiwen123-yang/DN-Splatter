@@ -1,0 +1,77 @@
+{
+  "versions": {
+    "torch": "2.7.1+cu128",
+    "nerfstudio": "1.1.3",
+    "gsplat": "1.0.0",
+    "open3d": "0.18.0",
+    "python": "3.10.22"
+  },
+  "python": "/root/autodl-tmp/DN-Splatter/.local/conda/dn-splatter-bw/bin/python",
+  "import_paths": {
+    "torch": "/root/autodl-tmp/DN-Splatter/.local/conda/dn-splatter-bw/lib/python3.10/site-packages/torch/__init__.py",
+    "gsplat": "/root/autodl-tmp/DN-Splatter/.local/conda/dn-splatter-bw/lib/python3.10/site-packages/gsplat/__init__.py",
+    "nerfstudio": "/root/autodl-tmp/DN-Splatter/.local/conda/dn-splatter-bw/lib/python3.10/site-packages/nerfstudio/__init__.py",
+    "dn_splatter": "/root/autodl-tmp/DN-Splatter/.local/upstream/dn-splatter/dn_splatter/__init__.py",
+    "open3d": "/root/autodl-tmp/DN-Splatter/.local/conda/dn-splatter-bw/lib/python3.10/site-packages/open3d/__init__.py"
+  },
+  "cpu_budget": 25,
+  "expected_cache_device": "cpu",
+  "base_float32_rgb_z_normal_bytes": 42887577600,
+  "affinity": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24
+  ],
+  "memory_limit_bytes": 128849018880,
+  "gpu": "NVIDIA RTX PRO 6000 Blackwell Server Edition, 595.71.05, 97887 MiB, 95755 MiB",
+  "disk_free_bytes": 405005950976,
+  "patches": [
+    {
+      "path": "README.md",
+      "bytes": 2083,
+      "sha256": "b6098ea29bc33c260dd409c147d9984b098447bee12c0fefbe03467ad787dfec"
+    },
+    {
+      "path": "dn-811f5cd-omnidata-checkpoint.patch",
+      "bytes": 1162,
+      "sha256": "ac01ecff32811ed1b618c5e423627d93b637e57272a182c5b27cf317789fa94c"
+    },
+    {
+      "path": "dn-811f5cd-poisson-threads.patch",
+      "bytes": 1219,
+      "sha256": "800b17f3720661483baca78dbb840f488bce87309b75f30b791959051334b415"
+    },
+    {
+      "path": "gsplat-1.0.0-build-jobs.patch",
+      "bytes": 1196,
+      "sha256": "d1962b4e59abade4cdbe10cf67fd7571a89575440b594960ff9dffa3e06fcf5e"
+    },
+    {
+      "path": "omnidata-tools-0.0.23-backbone.patch",
+      "bytes": 621,
+      "sha256": "9c69452a37676d15e1829fbc18970b1c75dcd65da4c7515f2124b4cbd477eec4"
+    }
+  ]
+}
