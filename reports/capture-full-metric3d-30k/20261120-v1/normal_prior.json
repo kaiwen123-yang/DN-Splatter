@@ -1,0 +1,68 @@
+{
+  "weight": {
+    "path": ".local/data/downloads/metric_depth_vit_large_800k.pth",
+    "bytes": 1647972663,
+    "sha256": "15328ffc42b528b95f188687418f6f03b3f123eb34ccdbd686c112abbea6d972"
+  },
+  "weight_url": "https://huggingface.co/JUGGHM/Metric3D/resolve/80d2d1410afb4b23cd9d18c6be9144483d4b70b6/metric_depth_vit_large_800k.pth",
+  "hf_revision": "80d2d1410afb4b23cd9d18c6be9144483d4b70b6",
+  "source_commit": "eb5b6fac0dc155e4e52f576e304fbf11655ff339",
+  "model": "metric3d_vit_large",
+  "raft_iterations": 8,
+  "dtype": "torch.float32",
+  "autocast": false,
+  "tf32_matmul": false,
+  "tf32_cudnn": true,
+  "packages": {
+    "torch": "2.7.1+cu128",
+    "torchvision": "0.22.1+cu128",
+    "mmengine": "0.10.7",
+    "opencv-python": "4.8.0.76"
+  },
+  "missing_keys": [
+    "depth_model.encoder.mask_token"
+  ],
+  "unexpected_keys": [],
+  "K_fx_fy_cx_cy": [
+    694.2755737304688,
+    694.2152709960938,
+    646.9674072265625,
+    358.8826904296875
+  ],
+  "resize_scale": 0.83125,
+  "resized_hw": [
+    598,
+    1064
+  ],
+  "K_resized": [
+    577.1165706634522,
+    577.066444015503,
+    537.7916572570801,
+    298.32123641967775
+  ],
+  "K_padded": [
+    577.1165706634522,
+    577.066444015503,
+    537.7916572570801,
+    307.32123641967775
+  ],
+  "pad_tblr": [
+    9,
+    9,
+    0,
+    0
+  ],
+  "depth_scale": 0.5771165706634522,
+  "normal": "float32 HWC in CV; PIL RGB truncation; DN reader applies diag(1,-1,-1) once",
+  "interpolation": "OpenCV bilinear RGB, mean pad; torch bilinear align_corners=False, antialias=False",
+  "train_source": "only train PNG normals, sensor Z unchanged",
+  "source_transforms_sha256": "2997ebfa59c5ec86c380a00e6dc1537a937c9821c00bc96ca3553f83f9e67fd5",
+  "completed": 1846,
+  "manifest": {
+    "path": ".local/runs/capture-full-metric3d-30k-20261120-v1/metric3d/manifest.json",
+    "bytes": 2628707,
+    "sha256": "a386237764ee64060fef735204965a46d5317beb340fd6bc491843f88ccf0d1e"
+  },
+  "zero_length": 0,
+  "nonfinite_normal": 0
+}

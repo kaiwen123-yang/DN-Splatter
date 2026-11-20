@@ -3,7 +3,7 @@
   "kind": "full_capture_metric3d_normal_comparison",
   "updated_date": "2026-11-20",
   "timezone": "Asia/Shanghai",
-  "status": "running",
+  "status": "completed",
   "user_term": "metrics",
   "working_interpretation": "User confirmed Metric3D v2 ViT-Large",
   "baseline_results_commit": "e26ae72a75997dcfd3a907aa26b6c5c0677597a5",
@@ -28,17 +28,168 @@
   "target_final_step_zero_based": 29999,
   "intermediate_human_review_required": false,
   "separate_smoke_training": false,
-  "actual_inferred_frames": 900,
+  "actual_inferred_frames": 1846,
   "actual_weights_sha256": "15328ffc42b528b95f188687418f6f03b3f123eb34ccdbd686c112abbea6d972",
-  "actual_updates": 0,
-  "actual_final_step": null,
-  "actual_gaussians": null,
-  "actual_checkpoint_sha256": null,
-  "actual_metrics": null,
-  "actual_meshes": null,
-  "note": "实测运行中，终点指标待正式产物。",
+  "actual_updates": 30000,
+  "actual_final_step": 29999,
+  "actual_gaussians": 171417,
+  "actual_checkpoint_sha256": "51cea461bf2b045d5c3b87bd465ce05c775ae515e7f5b2eec76998b88e2cfc45",
+  "actual_metrics": {
+    "val": {
+      "B0": {
+        "rgb_frame_means": {
+          "psnr": 15.785021263620127,
+          "ssim": 0.6380456729751566,
+          "lpips": 0.4378004632080379
+        },
+        "depth_frame_means": {
+          "MAE_m": 0.5023826074923367,
+          "RMSE_m": 0.7643105568388241,
+          "AbsRel": 0.14175041168058242,
+          "absolute_error_P50_m": 0.3181459253689315,
+          "absolute_error_P95_m": 1.5110258309998161
+        },
+        "depth_pixel_pooled": {
+          "MAE_m": 0.4867971249114274,
+          "RMSE_m": 1.015183216645137,
+          "AbsRel": 0.14229102473867486,
+          "absolute_error_P50_m": 0.09785318374633789,
+          "absolute_error_P95_m": 2.489439304172991
+        },
+        "reference_pixels": 29222080,
+        "invalid_prediction_pixels": 0,
+        "reference_alpha_zero": 6597
+      },
+      "B1": {
+        "rgb_frame_means": {
+          "psnr": 16.940558630487192,
+          "ssim": 0.6658354459897332,
+          "lpips": 0.4097423965678267
+        },
+        "depth_frame_means": {
+          "MAE_m": 0.34645415927641304,
+          "RMSE_m": 0.5937655451699525,
+          "AbsRel": 0.09680024540320865,
+          "absolute_error_P50_m": 0.18083770514425376,
+          "absolute_error_P95_m": 1.1895261847697518
+        },
+        "depth_pixel_pooled": {
+          "MAE_m": 0.31265587458840177,
+          "RMSE_m": 0.694563565057478,
+          "AbsRel": 0.09138945158237848,
+          "absolute_error_P50_m": 0.08254337310791016,
+          "absolute_error_P95_m": 1.4914447247982014
+        },
+        "reference_pixels": 29222080,
+        "invalid_prediction_pixels": 0,
+        "reference_alpha_zero": 10472
+      }
+    },
+    "test": {
+      "B0": {
+        "rgb_frame_means": {
+          "psnr": 15.825631610725237,
+          "ssim": 0.6384122080129125,
+          "lpips": 0.43844025241939916
+        },
+        "depth_frame_means": {
+          "MAE_m": 0.5099896137261889,
+          "RMSE_m": 0.7833448544373458,
+          "AbsRel": 0.14349159722312216,
+          "absolute_error_P50_m": 0.3348123632047487,
+          "absolute_error_P95_m": 1.591827497983594
+        },
+        "depth_pixel_pooled": {
+          "MAE_m": 0.49151931858764364,
+          "RMSE_m": 1.0210514126073098,
+          "AbsRel": 0.14321622266474016,
+          "absolute_error_P50_m": 0.10250401496887207,
+          "absolute_error_P95_m": 2.4792516231536865
+        },
+        "reference_pixels": 29100252,
+        "invalid_prediction_pixels": 0,
+        "reference_alpha_zero": 17362
+      },
+      "B1": {
+        "rgb_frame_means": {
+          "psnr": 16.885062404300857,
+          "ssim": 0.6641069106433702,
+          "lpips": 0.4130333701715521
+        },
+        "depth_frame_means": {
+          "MAE_m": 0.37784707224230885,
+          "RMSE_m": 0.6447428617721281,
+          "AbsRel": 0.11003894213558865,
+          "absolute_error_P50_m": 0.20928717655656132,
+          "absolute_error_P95_m": 1.2597004409737718
+        },
+        "depth_pixel_pooled": {
+          "MAE_m": 0.3364522622077422,
+          "RMSE_m": 0.7851819058947503,
+          "AbsRel": 0.10229734506789526,
+          "absolute_error_P50_m": 0.08222818374633789,
+          "absolute_error_P95_m": 1.675869178771972
+        },
+        "reference_pixels": 29100252,
+        "invalid_prediction_pixels": 0,
+        "reference_alpha_zero": 15954
+      }
+    }
+  },
+  "actual_meshes": {
+    "B0": {
+      "path": ".local/runs/capture-full-metric3d-30k-20261120-v1/supported/B0/supported.ply",
+      "bytes": 418559441,
+      "sha256": "71c741f6597131ff7f99e62ecfa8917d4d56fe8298d201618dca5c44d14c0823"
+    },
+    "B1": {
+      "path": ".local/runs/capture-full-metric3d-30k-20261120-v1/supported/B1/supported.ply",
+      "bytes": 421785927,
+      "sha256": "91d739d3565421d2e032d25c3127f7d10647fc8ecba19f454e4b7043633a9caf"
+    }
+  },
+  "note": "本次留出集上的各项均值均向改善方向变化。",
   "server_accessed_this_run": true,
-  "observed_utc": "2026-11-20T09:20:43.738029+00:00",
+  "observed_utc": "2026-11-20T11:31:15.918528+00:00",
   "recovery_command": "bash scripts/launch_capture_metric3d.sh",
-  "observed_stage": "prior"
+  "observed_stage": "report_complete",
+  "video": {
+    "path": "/root/autodl-tmp/DN-Splatter/.local/runs/capture-full-metric3d-30k-20261120-v1/video/reference_B0_B1.mp4",
+    "bytes": 442584714,
+    "sha256": "3b4df3347ccb3d15908cd20b57b1ce14828d706afab6f989769b8547fd26ef2d",
+    "frames": 1846,
+    "duration_s": 368.92,
+    "B0_checkpoint_sha256": "b89ad55fb5781582a6306a8c1f006ae5afe1e7f7ee5704c1594c8b7bbe6b8094",
+    "B1_checkpoint_sha256": "51cea461bf2b045d5c3b87bd465ce05c775ae515e7f5b2eec76998b88e2cfc45",
+    "step": 29999,
+    "B0_train_source": "SHA-matched B0 timeline JPEG render panels; B0 heldout uses lossless PNG",
+    "source_duration_s": 368.874747,
+    "previews": [
+      "frame_00000",
+      "frame_00073",
+      "frame_00223",
+      "frame_00238",
+      "frame_00239",
+      "frame_00279",
+      "frame_00373",
+      "frame_00523",
+      "frame_00558",
+      "frame_00673",
+      "frame_00823",
+      "frame_00923",
+      "frame_00938",
+      "frame_00939",
+      "frame_00973",
+      "frame_01123",
+      "frame_01273",
+      "frame_01409",
+      "frame_01423",
+      "frame_01573",
+      "frame_01723",
+      "frame_01764",
+      "frame_01845"
+    ]
+  },
+  "completed_overview": "reports/capture-full-metric3d-30k/20261120-v1/overview.md",
+  "updated_utc": "2026-11-20T11:31:15.839094+00:00"
 }

@@ -1,0 +1,123 @@
+{
+  "index": {
+    "path": "reports/capture-full-metric3d-30k/20261120-v1/artifact_files.jsonl.gz",
+    "bytes": 1196570,
+    "sha256": "aa0b90ac9bc0845e6ab7003965a13d18c2611fa0c6697a2ca7d4a2ce4b13759a"
+  },
+  "file_count": 26278,
+  "total_bytes": 72318898997,
+  "files": [
+    {
+      "path": ".local/data/downloads/metric_depth_vit_large_800k.pth",
+      "bytes": 1647972663,
+      "sha256": "15328ffc42b528b95f188687418f6f03b3f123eb34ccdbd686c112abbea6d972"
+    },
+    {
+      "path": ".local/runs/capture-full-metric3d-30k-20261120-v1/metric3d/manifest.json",
+      "bytes": 2628707,
+      "sha256": "a386237764ee64060fef735204965a46d5317beb340fd6bc491843f88ccf0d1e"
+    },
+    {
+      "path": ".local/runs/capture-full-dn-30k-20261119-v1/training_complete.json",
+      "bytes": 602,
+      "sha256": "2c21a04f6010f0acd9f2ca153481e6f7948cd0e72847588353f598a17ea2ac39"
+    },
+    {
+      "path": ".local/runs/capture-full-dn-30k-20261119-v1/training/capture-full/dn-splatter/2026-11-20_135109/nerfstudio_models/step-000029999.ckpt",
+      "bytes": 143941997,
+      "sha256": "b89ad55fb5781582a6306a8c1f006ae5afe1e7f7ee5704c1594c8b7bbe6b8094"
+    },
+    {
+      "path": ".local/runs/capture-full-dn-30k-20261119-v1/inputs/training_manifest.json",
+      "bytes": 1236027,
+      "sha256": "4982f0a5a67fb0e1d90fc0c23bbf81b238f949e8bcb63412f8b6fc8a559e286a"
+    },
+    {
+      "path": ".local/data/custom/capture-full/20261119-full-5hz-3982cb26/manifest.json",
+      "bytes": 589606,
+      "sha256": "05873700af32712450b319f9f44f0f4cffa0735f974390be0dbd84b57f803802"
+    },
+    {
+      "path": ".local/runs/capture-full-metric3d-30k-20261120-v1/inputs/training_manifest.json",
+      "bytes": 911130,
+      "sha256": "e34a24152ed2d2b4f22c12fe0a2775576398122ffb9dd463350a9c9bd2867252"
+    },
+    {
+      "path": ".local/runs/capture-full-metric3d-30k-20261120-v1/training_complete.json",
+      "bytes": 614,
+      "sha256": "0cdc571210984388c47779b0d21cbef84d63a15848715c95954b3b51f3d2b1e2"
+    },
+    {
+      "path": ".local/runs/capture-full-metric3d-30k-20261120-v1/training/capture-full/dn-splatter/2026-11-20_173253/nerfstudio_models/step-000029999.ckpt",
+      "bytes": 143216237,
+      "sha256": "51cea461bf2b045d5c3b87bd465ce05c775ae515e7f5b2eec76998b88e2cfc45"
+    },
+    {
+      "path": ".local/runs/capture-full-metric3d-30k-20261120-v1/video/reference_B0_B1.mp4",
+      "bytes": 442584714,
+      "sha256": "3b4df3347ccb3d15908cd20b57b1ce14828d706afab6f989769b8547fd26ef2d"
+    },
+    {
+      "path": ".local/runs/capture-full-dn-30k-20261119-v1/mesh/DepthAndNormalMapsPoisson_pcd.ply",
+      "bytes": 255004041,
+      "sha256": "5db921b8439ac825b53bdb6e35481f3b830ce783a6c6da0f83c39f1064f14740"
+    },
+    {
+      "path": ".local/runs/capture-full-dn-30k-20261119-v1/mesh/DepthAndNormalMapsPoisson_poisson_mesh.ply",
+      "bytes": 80624898,
+      "sha256": "51f478e8822c7edd63e4d6f21aee469a82c1c4091308eb102b4e64e62bf411ba"
+    },
+    {
+      "path": ".local/runs/capture-full-metric3d-30k-20261120-v1/supported/B0/fused.ply",
+      "bytes": 502052427,
+      "sha256": "63a87d21a722d187af16a09bc4b0c547f3508c7db1e5aa41c2b0d4d09c0bd4ed"
+    },
+    {
+      "path": ".local/runs/capture-full-metric3d-30k-20261120-v1/supported/B0/before_crop.ply",
+      "bytes": 714177465,
+      "sha256": "a72d87542f2ed2dfb77e74ca49ec2e7453c33c78008201e4b0bbc31a1ee1936b"
+    },
+    {
+      "path": ".local/runs/capture-full-metric3d-30k-20261120-v1/supported/B0/supported.ply",
+      "bytes": 418559441,
+      "sha256": "71c741f6597131ff7f99e62ecfa8917d4d56fe8298d201618dca5c44d14c0823"
+    },
+    {
+      "path": ".local/runs/capture-full-metric3d-30k-20261120-v1/supported/B0/face_votes.npz",
+      "bytes": 28959382,
+      "sha256": "a68c7ae4f1ba79c28ffd047b9f813f0c8662679ff1f0d3405786af56aef0b935"
+    },
+    {
+      "path": ".local/runs/capture-full-metric3d-30k-20261120-v1/mesh/DepthAndNormalMapsPoisson_pcd.ply",
+      "bytes": 255004041,
+      "sha256": "98dd66042ffbb57b2053478e5ec439331f3b85998aba7062580bb81f1c9438fa"
+    },
+    {
+      "path": ".local/runs/capture-full-metric3d-30k-20261120-v1/mesh/DepthAndNormalMapsPoisson_poisson_mesh.ply",
+      "bytes": 72810376,
+      "sha256": "8c9119d8a04dbaa93ca84c16adde8a862bc1ff1d5028fe992e719c8654ef74b0"
+    },
+    {
+      "path": ".local/runs/capture-full-metric3d-30k-20261120-v1/supported/B1/fused.ply",
+      "bytes": 563899006,
+      "sha256": "bd545b7bb100daa675ffceb003854616d66a881a3e203aa7ee0bb06503d4cb74"
+    },
+    {
+      "path": ".local/runs/capture-full-metric3d-30k-20261120-v1/supported/B1/before_crop.ply",
+      "bytes": 704017772,
+      "sha256": "f9d76757346c7fed90c84f93705554531e3503a8d9afb226b47bb64823dd5ee4"
+    },
+    {
+      "path": ".local/runs/capture-full-metric3d-30k-20261120-v1/supported/B1/supported.ply",
+      "bytes": 421785927,
+      "sha256": "91d739d3565421d2e032d25c3127f7d10647fc8ecba19f454e4b7043633a9caf"
+    },
+    {
+      "path": ".local/runs/capture-full-metric3d-30k-20261120-v1/supported/B1/face_votes.npz",
+      "bytes": 28570061,
+      "sha256": "e1c9559673ca99179ba13472cf0e85fabb8189aec57e50b172bf032fe327d8a1"
+    }
+  ],
+  "root": "/root/autodl-tmp/DN-Splatter",
+  "run": "/root/autodl-tmp/DN-Splatter/.local/runs/capture-full-metric3d-30k-20261120-v1"
+}
