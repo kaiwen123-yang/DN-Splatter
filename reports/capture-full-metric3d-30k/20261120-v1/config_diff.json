@@ -1,0 +1,22 @@
+{
+  "baseline_file": "/root/autodl-tmp/DN-Splatter/.local/runs/capture-full-dn-30k-20261119-v1/training/capture-full/dn-splatter/2026-11-20_135109/config.yml",
+  "baseline_sha256": "4f9fb5818ebd81d54df87abb50a6a6390660019434898d8cb121e6ff14961387",
+  "fields": {
+    "output_dir": [
+      "/root/autodl-tmp/DN-Splatter/.local/runs/capture-full-dn-30k-20261119-v1/training",
+      "/root/autodl-tmp/DN-Splatter/.local/runs/capture-full-metric3d-30k-20261120-v1/training"
+    ],
+    "dataparser_data": [
+      "/root/autodl-tmp/DN-Splatter/.local/runs/capture-full-dn-30k-20261119-v1/inputs",
+      "/root/autodl-tmp/DN-Splatter/.local/runs/capture-full-metric3d-30k-20261120-v1/inputs"
+    ],
+    "timestamp": [
+      "2026-11-20_135109",
+      "{timestamp}"
+    ]
+  },
+  "other_configuration_differences": [],
+  "input_content_change": "normal PNG prior only",
+  "sampler": "historical DN next_train, unchanged",
+  "seed": 42
+}

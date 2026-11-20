@@ -1,0 +1,22 @@
+{
+  "observed_utc": "2026-11-20T09:20:43.738029+00:00",
+  "run_id": "capture-full-metric3d-30k-20261120-v1",
+  "stage": {
+    "stage": "prior",
+    "pid": 527571,
+    "updated_utc": "2026-11-20T09:13:50.604839+00:00",
+    "child_pid": 527682,
+    "started_utc": "2026-11-20T09:13:50.604057+00:00"
+  },
+  "tmux": "dn-capture-metric3d",
+  "actual_inferred_frames": 900,
+  "weight": {
+    "path": ".local/data/downloads/metric_depth_vit_large_800k.pth",
+    "bytes": 1647972663,
+    "sha256": "15328ffc42b528b95f188687418f6f03b3f123eb34ccdbd686c112abbea6d972"
+  },
+  "cpu_budget": 25,
+  "actual_updates": 0,
+  "recovery": "bash scripts/launch_capture_metric3d.sh",
+  "result_receiver": "python scripts/capture_metric3d_receive.py"
+}
