@@ -20,6 +20,8 @@ P = read(PROTOCOL)
 GEO = ROOT / P["paths"]["geometry_dataset"]
 GEO_RUN = ROOT / P["paths"]["geometry_run"]
 REPORT = ROOT / P["paths"]["report"]
+if os.environ.get("DN_CAPTURE_VARIANT") == "metric3d":
+    REPORT = ROOT / read(ROOT / "configs/capture_metric3d_protocol.json")["trial"]["report_directory"]
 WEIGHT = SRC / "omnidata_ckpt/omnidata_dpt_normal_v2.ckpt"
 
 
