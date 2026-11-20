@@ -27,7 +27,10 @@ def main():
     payload = torch.load(WEIGHT, map_location="cpu", weights_only=False)
     weights = payload["model_state_dict"]
     keys = model.load_state_dict(weights, strict=False)
-    demand(not (set(dict(model.named_parameters())) & set(keys.missing_keys)), "missing learned parameters")
+    # The published checkpoint omits the DINO token used only for a non-None input mask.
+    # The official hub's unmasked RGB inference never reads that token.
+    demand(set(keys.missing_keys) <= {"depth_model.encoder.mask_token"} and not keys.unexpected_keys,
+           "unexpected ViT-Large checkpoint keys")
     del weights, payload
     model.cuda().eval()
     cv2.setNumThreads(1)
