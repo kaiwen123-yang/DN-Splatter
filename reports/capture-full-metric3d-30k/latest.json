@@ -3,9 +3,9 @@
   "kind": "full_capture_metric3d_normal_comparison",
   "updated_date": "2026-11-20",
   "timezone": "Asia/Shanghai",
-  "status": "planned_not_started_here",
+  "status": "blocked",
   "user_term": "metrics",
-  "working_interpretation": "Metric3D v2; exact model name not explicitly confirmed by user",
+  "working_interpretation": "User confirmed Metric3D v2 ViT-Large",
   "baseline_results_commit": "e26ae72a75997dcfd3a907aa26b6c5c0677597a5",
   "baseline_checkpoint_sha256": "b89ad55fb5781582a6306a8c1f006ae5afe1e7f7ee5704c1594c8b7bbe6b8094",
   "scene": "capture-full",
@@ -18,7 +18,12 @@
   "server_accessed_this_review": false,
   "windows_bag_accessed_this_review": false,
   "source_results_reviewed": true,
-  "planned_counts": {"total": 1846, "train": 1478, "val": 184, "test": 184},
+  "planned_counts": {
+    "total": 1846,
+    "train": 1478,
+    "val": 184,
+    "test": 184
+  },
   "target_updates": 30000,
   "target_final_step_zero_based": 29999,
   "intermediate_human_review_required": false,
@@ -31,5 +36,9 @@
   "actual_checkpoint_sha256": null,
   "actual_metrics": null,
   "actual_meshes": null,
-  "note": "Only review and execution instructions are published in this task. No Metric3D inference, new DN training, or mesh adaptation has been run here."
+  "note": "prior exited 1; see logs/prior.log",
+  "server_accessed_this_run": true,
+  "observed_utc": "2026-11-20T09:12:38.306462+00:00",
+  "recovery_command": "bash scripts/launch_capture_metric3d.sh",
+  "observed_stage": "prior"
 }

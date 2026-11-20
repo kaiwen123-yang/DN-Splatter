@@ -1,0 +1,13 @@
+{
+  "stage": "prior",
+  "reason": "prior exited 1; see logs/prior.log",
+  "tail": [
+    "File \"/root/autodl-tmp/DN-Splatter/scripts/capture_metric3d_prior.py\", line 30, in main",
+    "demand(not (set(dict(model.named_parameters())) & set(keys.missing_keys)), \"missing learned parameters\")",
+    "File \"/root/autodl-tmp/DN-Splatter/scripts/capture_metric3d_common.py\", line 28, in demand",
+    "raise ValueError(f\"Metric3D experiment identity or result mismatch: {location}\")",
+    "ValueError: Metric3D experiment identity or result mismatch: missing learned parameters"
+  ],
+  "utc": "2026-11-20T09:12:38.306462+00:00",
+  "recovery": "bash scripts/launch_capture_metric3d.sh"
+}

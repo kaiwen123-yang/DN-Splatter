@@ -1,0 +1,23 @@
+{
+  "checkpoint_sha256": "b89ad55fb5781582a6306a8c1f006ae5afe1e7f7ee5704c1594c8b7bbe6b8094",
+  "configuration_sha256": "4f9fb5818ebd81d54df87abb50a6a6390660019434898d8cb121e6ff14961387",
+  "geometry_manifest_sha256": "05873700af32712450b319f9f44f0f4cffa0735f974390be0dbd84b57f803802",
+  "training_input_manifest_sha256": "4982f0a5a67fb0e1d90fc0c23bbf81b238f949e8bcb63412f8b6fc8a559e286a",
+  "source": "eb5b6fac0dc155e4e52f576e304fbf11655ff339",
+  "unchanged_members": 3697,
+  "members_source": "geometry_source_manifest.json",
+  "point_count": 2001906,
+  "scene_scale": 21,
+  "counts": {
+    "train": 1478,
+    "val": 184,
+    "test": 184
+  },
+  "sharing": "independent inodes with cp --reflink=auto",
+  "init_ply": {
+    "path": ".local/runs/capture-full-metric3d-30k-20261120-v1/inputs/init_train.ply",
+    "bytes": 54051672,
+    "sha256": "39e93dc6ecd039073c00ca9c1bb62f78ec5286a119f05da74bbb5ae0457b5e52"
+  },
+  "b0": "e26ae72a75997dcfd3a907aa26b6c5c0677597a5"
+}
