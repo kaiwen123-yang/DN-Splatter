@@ -62,10 +62,18 @@ def git(*args):
     return subprocess.check_output(["git",*map(str,args)],cwd=ROOT,stderr=subprocess.DEVNULL).decode().strip()
 
 
+def extended_path(path):
+    """Use the native Windows path namespace without changing host-wide long-path policy."""
+    name=os.path.abspath(os.fspath(path))
+    if os.name!="nt" or name.startswith("\\\\?\\"):
+        return Path(name)
+    return Path("\\\\?\\UNC\\"+name[2:] if name.startswith("\\\\") else "\\\\?\\"+name)
+
+
 class Archive:
     def __init__(self,destination,connections):
         self.dest=destination.resolve()
-        self.project=self.dest/"project"; self.ctrl=self.dest/"verification"
+        self.project=extended_path(self.dest/"project"); self.ctrl=self.dest/"verification"
         self.ctrl.mkdir(parents=True,exist_ok=True)
         self.ledger=self.ctrl/"volumes"; self.ledger.mkdir(exist_ok=True)
         self.spool=ROOT/".local/archives"/(ID+"-"+RESULT[:8])/"transport"

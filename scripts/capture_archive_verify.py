@@ -3,6 +3,7 @@ import argparse
 import gzip
 import hashlib
 import json
+import os
 from pathlib import Path, PurePosixPath
 
 
@@ -19,6 +20,9 @@ def sha(path):
 
 def verify(root,metadata_only=False):
     root=root.resolve()
+    if os.name=="nt" and not str(root).startswith("\\\\?\\"):
+        name=str(root)
+        root=Path("\\\\?\\UNC\\"+name[2:] if name.startswith("\\\\") else "\\\\?\\"+name)
     ctrl=root/"verification"
     combined=load(root/"archive_complete.json")
     if combined["status"]!="complete_verified":
