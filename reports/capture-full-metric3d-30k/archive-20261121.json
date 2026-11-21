@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "status": "private_archive_verified_and_public_release_published",
+  "run_id": "capture-full-metric3d-30k-20261120-v1",
+  "frozen_result_commit": "7d4a8a1d7d47379102cc5a17d2bbb7e07231ac42",
+  "disk_verified_utc": "2026-11-21T03:34:35.983322+00:00",
+  "private_archive": {
+    "logical_paths": 60057,
+    "logical_bytes": 139367327981,
+    "distinct_contents": 50212,
+    "unique_payload_bytes": 117186817145,
+    "bytes_read_back_from_private_disk": 117186817145,
+    "frozen_B1_manifest_files": 26278,
+    "frozen_B0_manifest_files": 10754,
+    "source_inventory_sha256": "0d48853ebf43e907b25af7af5ff15eb4e5d2122c27b6ed272359b5d03858fbf7",
+    "frozen_git_tree": "c047346168b3f208d997db3388bc77857127ae29",
+    "source_bundle_cloned_and_fsck_verified": true,
+    "original_recording_bytes": 5919666852,
+    "original_recording_sha256": "3982cb269ea03ddf4234b45f74be27143eb66bcd807e4e471d0f3a9cd6b03b59"
+  },
+  "release": {
+    "url": "https://github.com/kaiwen123-yang/DN-Splatter/releases/tag/capture-full-metric3d-30k-20261120-v1",
+    "tag": "capture-full-metric3d-30k-20261120-v1",
+    "asset_count": 18,
+    "bytes": 2819676644,
+    "all_github_sha256_and_disk_copies_verified": true,
+    "video_frames": 1846,
+    "video_duration_s": 368.92,
+    "video_sha256": "92ea11d322e1d7caf6b552c204de68b1d3dceaa5662490dedf786681e653857e",
+    "redacted_frames": 30,
+    "original_frame_pts_preserved": true
+  },
+  "transport": {
+    "temporary_server_volumes_retired": 483,
+    "bytes_released": 89559715768,
+    "original_training_runs_preserved": [
+      "capture-full-dn-30k-20261119-v1",
+      "capture-full-metric3d-30k-20261120-v1"
+    ]
+  },
+  "quantitative_analysis": "reports/capture-full-quality/2026-11-21/overview.md"
+}

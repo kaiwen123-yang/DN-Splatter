@@ -19,15 +19,16 @@
 - 2026-11-19：capture-s01已完整完成，结果提交 `ee3e87b`。241帧、193/24/24；累计30k、step29999、440882高斯；Test PSNR23.3502、SSIM0.77934、LPIPS0.30406，同采集深度等权帧MAE0.19838m。原始Poisson已交付；桌沿/椅腿细节和末段238/239仍有明显失败。见[完整结果](reports/capture-s01-dn-30k/20261119-v1/overview.md)与[效果复核](reports/capture-s01-review/2026-11-19/overview.md)。
 - 2026-11-20：capture-full已完整结束，结果提交 `e26ae72`。1846主帧零缺口，1478 train /184 val /184 test；30k、step29999、172425高斯；Test PSNR15.8256、SSIM0.63841、LPIPS0.43844，合并参考像素深度MAE约0.492m；原始Poisson和全程视频完成。见[完整结果](reports/capture-full-dn-30k/20261119-v1/overview.md)。
 - 2026-11-20：[全程效果复核](reports/capture-full-review/2026-11-20/overview.md)发现旧同源48张留出中47张PSNR下降，旧239深度反而改善；训练容量/调度和原始网格额外遮挡面需分别解释。
-- 2026-11-20 已启动 **Metric3D v2 ViT-Large** 完整法线替换对照。B1 沿用 B0 的几何、传感器深度和 30k 训练配置，两组按相同规则评价和导出网格。最近一次核验的进度与结果见[本轮状态](reports/capture-full-metric3d-30k/latest.json)。
+- 2026-11-20 完成 **Metric3D v2 ViT-Large** 法线替换对照。184 个测试视角上，B0/B1 的 PSNR 为 15.826 / 16.885 dB，传感器深度 MAE 为 0.492 / 0.336 m。使用同一支持网格流程时，10 cm 正确覆盖率为 58.88% / 59.02%。[完整实验结果](reports/capture-full-metric3d-30k/20261120-v1/overview.md) · [详细指标解读、图与逐帧 Excel](reports/capture-full-quality/2026-11-21/overview.md)。
+- 2026-11-21 已将全程对照与复算材料恢复至私有外置盘，并按 SHA256 读回核验。公开视频、几何和报告共 18 个文件。[GitHub Release](https://github.com/kaiwen123-yang/DN-Splatter/releases/tag/capture-full-metric3d-30k-20261120-v1) · [归档与发布回执](reports/capture-full-metric3d-30k/archive-20261121.json)。
 - 目标不是仅安装成功，而是尽可能在一个持续执行的任务中完成上述完整流程。
 - 原论文历史实现与论文公式存在待核实差异，首轮结果应标记为“固定历史官方实现的单场景基线”，不能提前称完整论文复现成功。
 
 ## 从这里开始
 
-**当前执行 [本地Codex Metric3D协调提示词](prompts/local_capture_metric3d.md)，或在AutoDL直接执行[服务器提示词](prompts/autodl_capture_metric3d.md)。** 所需全程数据已在AutoDL，不重新提取/上传bag或重做位姿。先读[本次复核](reports/capture-full-review/2026-11-20/overview.md)、[docs/11计划](docs/11_capture_metric3d_plan.md)、[机器协议](configs/capture_metric3d_protocol.json)和[法线接入约定](docs/12_metric3d_normal_adapter.md)。
+复查这次运行可使用[本地协调记录](prompts/local_capture_metric3d.md)、[服务器执行约定](prompts/autodl_capture_metric3d.md)、[基线复核](reports/capture-full-review/2026-11-20/overview.md)、[实验计划](docs/11_capture_metric3d_plan.md)、[机器协议](configs/capture_metric3d_protocol.json)和[法线接入约定](docs/12_metric3d_normal_adapter.md)。
 
-当前主线：固定ViT-Large全量先验 → 从相同初始化完整30k，仅替换法线 → 全部val/test和B0/B1逐帧/分时段比较 → 全程视频 → B1原始Poisson → B0/B1同参数[支持约束网格](docs/13_capture_supported_mesh.md) → 报告推送。Metric3D深度只作诊断，训练仍使用原米制传感器Z。
+本轮从 ViT-Large 全量推理和相同初始化出发，完成 30k、全部 val/test 逐帧与分时段比较、全程视频、B1 原始 Poisson 和 B0/B1 同参数[支持约束网格](docs/13_capture_supported_mesh.md)。Metric3D 深度用于诊断，训练沿用原米制传感器 Z。
 
 复用已有Blackwell训练环境；推理依赖需要时单独隔离，不照装旧Torch requirements。全部CPU/GPU授权继续，按实测主存顺序安排阶段。B0、s01、VR的原始输入和结果保留。本轮不同时修训练采样、延长240k、加深度补洞或扫参数，无新增小训练和阶段审阅门槛。
 
