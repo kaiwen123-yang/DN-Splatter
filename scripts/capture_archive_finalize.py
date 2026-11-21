@@ -1,11 +1,11 @@
 """Independently verify GitHub Release assets on the private disk and seal its archival receipt."""
 import argparse
 from concurrent.futures import ThreadPoolExecutor
-from datetime import datetime
 import json
 import os
 from pathlib import Path
 import subprocess
+import tempfile
 import threading
 import time
 
@@ -113,6 +113,22 @@ def finish(dest,ctrl,public):
     check(len(ledger)==priv["volumes"]==catalog["volume_count"],"volume count at handoff")
     source=priv["source_bundle"]
     check(checksum_record(dest/"DN-Splatter.bundle")=={k:source[k] for k in ("bytes","sha256")},"source bundle readback")
+    scratch=ROOT/".local/archives"/(ID+"-"+RESULT[:8])
+    scratch.mkdir(parents=True,exist_ok=True)
+    with tempfile.TemporaryDirectory(prefix="git-restore-",dir=scratch) as tmp:
+        restored=Path(tmp).resolve()
+        check(restored.is_relative_to(scratch.resolve()),"isolated restore location")
+        subprocess.run(["git","clone","--quiet","--bare",dest/"DN-Splatter.bundle",restored],check=True,
+                       stdin=subprocess.DEVNULL)
+        subprocess.run(["git","fsck","--full","--no-dangling"],cwd=restored,check=True,stdin=subprocess.DEVNULL)
+        tree=subprocess.check_output(["git","rev-parse",RESULT+"^{tree}"],cwd=restored,text=True).strip()
+        head=subprocess.check_output(["git","rev-parse","refs/heads/main"],cwd=restored,text=True).strip()
+        check(head==source["head"] and tree==subprocess.check_output(["git","rev-parse",RESULT+"^{tree}"],cwd=ROOT,text=True).strip(),
+              "restored Git history and experiment tree")
+    atomic(ctrl/"source_restore.json",dict(status="cloned_and_fsck_verified",frozen_tree=tree,head=head,utc=utc()))
+    offline=dest/"verify_archive.py"
+    code=subprocess.check_output(["git","show",head+":scripts/capture_archive_verify.py"],cwd=ROOT)
+    offline.write_bytes(code)
     stamp=utc()
     combined=dict(status="complete_verified",verified_utc=stamp,run_id=ID,result_commit=RESULT,
         private_receipt="verification/private_complete.json",public_receipt="verification/public_complete.json",
@@ -122,7 +138,8 @@ def finish(dest,ctrl,public):
         B1_manifest_file_count=priv["b1_files"],B0_manifest_file_count=priv["b0_files"],volumes=priv["volumes"],
         frozen_tracked_files=priv["tracked_files"],source_bundle=source,original_bag=document(ctrl/"original.json"),
         original_video=dict(path=video_rel,**checksum_record(dest/video_rel)),
-        public_release_url=public["url"],public_asset_count=public["asset_count"],public_asset_bytes=public["total_bytes"])
+        public_release_url=public["url"],public_asset_count=public["asset_count"],public_asset_bytes=public["total_bytes"],
+        offline_verifier=checksum_record(offline),restored_git_tree=tree)
     original=combined["original_bag"]
     movie_pub="public-release/reference_B0_B1_public.mp4"
     md=f"""# DN-Splatter 全程 Metric3D v2 对照归档
@@ -150,6 +167,7 @@ def finish(dest,ctrl,public):
 
 公开 Release 共 {public['asset_count']} 个文件、{public['total_bytes']:,} 字节，均在 `public-release/` 保存并与 GitHub 的 SHA256 独立比对。原始彩色视频、带外观参数的完整 checkpoint、第三方预训练权重和原始逐帧数据位于私有归档。公开网格保留几何、法线和拓扑，公开高斯参数保留均值、尺度、四元数和不透明度。[逐文件发布核验](verification/public_complete.json) · [整体验收凭据](archive_complete.json)。
 """
+    md+="\n在归档根目录运行 `python verify_archive.py` 即可离线重验文件字节。使用 `--metadata-only` 可快速检查清单、路径与大小。恢复测试已从本盘 bundle 克隆仓库并通过 `git fsck --full`。[Git 恢复凭据](verification/source_restore.json)。\n"
     (dest/"归档说明.md").write_text(md,encoding="utf-8")
     atomic(dest/"archive_complete.json",combined)
 
