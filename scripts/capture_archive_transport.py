@@ -49,7 +49,15 @@ def atomic(path, data):
     path.parent.mkdir(exist_ok=True, parents=True)
     tmp = path.with_name(path.name + f".{os.getpid()}.{threading.get_ident()}.tmp")
     tmp.write_text(json.dumps(data, ensure_ascii=False, indent=2, allow_nan=False) + "\n", encoding="utf-8")
-    tmp.replace(path)
+    for retry in range(32):
+        try:
+            tmp.replace(path)
+            return
+        except PermissionError as exc:
+            # A Windows reader or scanner can briefly omit FILE_SHARE_DELETE on a live status file.
+            if os.name!="nt" or getattr(exc,"winerror",None) not in (5,32,33) or retry==31:
+                raise
+            time.sleep(min(.5,.025*(retry+1)))
 
 
 def digest(path):

@@ -94,7 +94,11 @@ class Archive:
         self.project.mkdir(exist_ok=True)
 
     def status(self,phase,**kw):
-        atomic(self.state,dict(phase=phase,pid=os.getpid(),utc=utc(),**kw))
+        try:
+            atomic(self.state,dict(phase=phase,pid=os.getpid(),utc=utc(),**kw))
+        except PermissionError:
+            if phase not in ("receiving","reading_back_H_disk") or not self.state.is_file():
+                raise
 
     def get_catalog(self):
         while True:
@@ -172,6 +176,11 @@ class Archive:
         src=Path(source["path"])
         info={k:source[k] for k in ("bytes","sha256")}
         dst=self.dest/"original"/src.name
+        rec=self.ctrl/"original.json"
+        if rec.is_file() and dst.is_file() and dst.stat().st_size==info["bytes"]:
+            previous=document(rec)
+            if all(previous.get(k)==v for k,v in info.items()) and not dst.samefile(src):
+                return  # Full disk readback also checks the independent bag before sealing.
         copy_checked(src,dst,info)
         check(not dst.samefile(src),"Original remains independent from archive")
         atomic(self.ctrl/"original.json",dict(source=str(src),member=str(dst.relative_to(self.dest)),**info))
