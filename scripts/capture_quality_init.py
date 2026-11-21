@@ -145,7 +145,11 @@ def build():
     geom.update(sensor_points=sensor,init_points=len(cloud.points),init_input_count=sum(counts.values()),
                 sfm_points=len(extra),init_from="corrected primary train sensor seeds followed by qualified training SfM tracks")
     write(SCENE/"geometry.json",geom)
-    write(SCENE/"training_manifest.json",dict(files=files(SCENE,["training_manifest.json"])))
+    members=files(SCENE,["training_manifest.json"])
+    inventory={r["path"]:r for r in read(B1/"inputs/training_manifest.json")["files"]}
+    pixel_files=[r for r in members if Path(r["path"]).parts[0] in ("images","depth","normals_from_pretrain")]
+    check(len(pixel_files)==3*1846 and all(r==inventory[r["path"]] for r in pixel_files),"B1 pixel input hashes")
+    write(SCENE/"training_manifest.json",dict(files=members))
     write(GEOM/"initialization.json",dict(sensor_points=sensor,sfm_points=len(extra),total_points=len(cloud.points),
           sensor_samples_per_frame=counts,sfm=stats,ply=record(SCENE/meta["ply_file_path"]),
           input_manifest=record(SCENE/"training_manifest.json")))

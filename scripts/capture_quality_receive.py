@@ -79,6 +79,12 @@ def receive():
     data = subprocess.check_output([*ssh, f"if test -s {marker}; then cat {marker}; fi"],
                                    timeout=40, stderr=subprocess.DEVNULL)
     if not data.strip():
+        pending=shlex.quote(SERVER+"/"+str(RUN/"state/delivery_candidate.json"))
+        raw=subprocess.check_output([*ssh,f"if test -s {pending}; then cat {pending}; fi"],
+                                    timeout=40,stderr=subprocess.DEVNULL)
+        if raw.strip():
+            publish_candidate(json.loads(raw))
+            return False
         atomic(STATE, dict(status="waiting_for_server_delivery", run_id=ID, pid=os.getpid(), utc=utc()))
         return False
     receipt = json.loads(data)
@@ -125,6 +131,33 @@ def receive():
                        local_head=git("rev-parse", "HEAD").decode().strip(),
                        github_main=git("rev-parse", "origin/main").decode().strip()))
     return True
+
+
+def publish_candidate(receipt):
+    """Use the existing local GitHub credential only for an audited, fast-forward report commit."""
+    commit=receipt["commit"]
+    check(receipt["run_id"]==ID and re.fullmatch("[0-9a-f]{40}",commit),"candidate identity")
+    host=(ROOT/".local/transfer/full-host").read_text(encoding="utf-8-sig").strip()
+    check(re.fullmatch("[A-Za-z0-9][A-Za-z0-9_.-]*",host),"invalid project alias")
+    check(git("remote","get-url","origin").decode().strip().removesuffix(".git").lower() in
+          ("https://github.com/kaiwen123-yang/dn-splatter","git@github.com:kaiwen123-yang/dn-splatter"),
+          "unexpected publication destination")
+    git("fetch","-q","origin","main")
+    git("fetch","-q",host+":"+SERVER,"refs/heads/main")
+    git("merge-base","--is-ancestor",commit,"FETCH_HEAD")
+    if subprocess.run(["git","merge-base","--is-ancestor",commit,"origin/main"],cwd=ROOT).returncode==0: return
+    git("merge-base","--is-ancestor","origin/main",commit)
+    paths=git("diff","--name-only","-z","origin/main",commit).split(b"\0")
+    for raw in filter(None,paths):
+        p=PurePosixPath(safe_rel(raw.decode()))
+        check(p.is_relative_to(REPORT),"candidate contains changes outside B2 report")
+        check(p.suffix.lower() in (".md",".json",".gz",".jsonl",".jpg",".yml",".diff"),"unexpected report format")
+        obj=git("show",commit+":"+p.as_posix())
+        check(len(obj)<25*1024**2 and not re.search(rb"BEGIN [A-Z ]*PRIVATE KEY|Bearer [A-Za-z0-9._-]{20,}|sk-[A-Za-z0-9_-]{30,}",obj),
+              "candidate file review")
+    latest=json.loads(git("show",commit+":"+str(REPORT/"latest.json")))
+    check(latest["run_id"]==ID and latest["status"]=="completed" and latest["updates"]==240000,"completed report identity")
+    git("push","origin",commit+":refs/heads/main")
 
 
 if __name__ == "__main__":

@@ -27,7 +27,7 @@ def replacement(fn, before, after, diffs):
     return namespace[fn.__name__]
 
 
-def main():
+def main(recovery_epochs=1):
     cfg=config()
     m=cfg.pipeline.model
     meta=read(SCENE/"transforms.json")
@@ -42,7 +42,7 @@ def main():
     names=[Path(n).stem for n in meta["train_filenames"]]
     interval=m.reset_alpha_every*m.refine_every
     info["densification_candidate_steps"]=[s for s in range(0,m.stop_split_at,m.refine_every)
-                                          if s>m.warmup_length and s%interval>len(names)+m.refine_every]
+                                          if s>m.warmup_length and s%interval>recovery_epochs*len(names)+m.refine_every]
     diff=[]
     with ExitStack() as stack:
         if bad:
