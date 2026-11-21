@@ -189,8 +189,13 @@ def seal_volume(vol, binding):
     record=path.with_suffix(".json")
     if record.exists():
         d=document(record)
-        check(d["catalog_sha256"]==binding and path.stat().st_size==d["bytes"] and digest(path)==d["sha256"],path)
-        return
+        check(d["catalog_sha256"]==binding,path)
+        if path.is_file():
+            check(path.stat().st_size==d["bytes"] and digest(path)==d["sha256"],path)
+            return
+        retirement=OUT/"transport_retirement.json"
+        check(retirement.is_file() and document(retirement)["inventory_sha256"]==binding,
+              "Unexplained missing transport volume: "+path.name)
     tmp=path.with_suffix(".pending")
     # Keep every payload byte exact; duplicate original paths are restored from the inventory.
     with tmp.open("wb") as out, subprocess.Popen([ZSTD,"-q","-7","-T4","--no-progress","-c"],
