@@ -85,7 +85,13 @@ def receive():
         if raw.strip():
             publish_candidate(json.loads(raw))
             return False
-        atomic(STATE, dict(status="waiting_for_server_delivery", run_id=ID, pid=os.getpid(), utc=utc()))
+        current=shlex.quote(SERVER+"/"+str(RUN/"state/current.json"))
+        progress=shlex.quote(SERVER+"/"+str(RUN/"state/training_progress.json"))
+        items=subprocess.check_output([*ssh,f"for f in {current} {progress}; do if test -s \"$f\"; then cat \"$f\"; else echo '{{}}'; fi; echo '---'; done"],
+                                      timeout=40,stderr=subprocess.DEVNULL).split(b"---")
+        stage,training_next=[json.loads(i) for i in items[:2]]
+        atomic(STATE, dict(status="server_stage_failed" if stage.get("stage")=="failed" else "waiting_for_server_delivery",
+                           run_id=ID,pid=os.getpid(),utc=utc(),server=stage,training=training_next))
         return False
     receipt = json.loads(data)
     commit = receipt["commit"]

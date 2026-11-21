@@ -69,7 +69,6 @@ def sensor():
         native=(raw>=300)&(raw<=6000)&live
         pc=rays[live]*(raw[live,None]*.001)+t
         z,inside=zbuffer(project(pc,cam),pc[:,2],cam)
-        target=valid&(z>=.3)&(z<=6.)
         expected=np.load(SCENE/frames[stem]["depth_file_path"],mmap_mode="r")
         # The frozen RGB-grid depth was converted to float32 before range clipping.
         zr=z.astype(np.float32)
