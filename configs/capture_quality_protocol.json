@@ -1,0 +1,367 @@
+{
+  "schema_version": 1,
+  "kind": "capture-full-quality-v2",
+  "date": "2026-11-21",
+  "timezone": "Asia/Shanghai",
+  "status": "planned_not_started",
+  "evidence_commit": "3728dae350a240d317702d57e560554d529679c6",
+  "experiment_label": "B2",
+  "run_id": "capture-full-quality-v2-20261121-v1",
+  "intent": "One complete quality-oriented joint adaptation, not a single-factor ablation or unchanged paper reproduction.",
+  "baseline": {
+    "label": "B1",
+    "result_commit": "7d4a8a1d7d47379102cc5a17d2bbb7e07231ac42",
+    "checkpoint_sha256": "51cea461bf2b045d5c3b87bd465ce05c775ae515e7f5b2eec76998b88e2cfc45",
+    "configuration": "reports/capture-full-metric3d-30k/20261120-v1/config.yml",
+    "original_geometry_manifest_sha256": "05873700af32712450b319f9f44f0f4cffa0735f974390be0dbd84b57f803802",
+    "existing_checkpoint_steps": [
+      5000,
+      10000,
+      15000,
+      20000,
+      25000,
+      29999
+    ],
+    "checkpoint_validation": "All 184 val at original geometry, no new short training"
+  },
+  "data": {
+    "primary_frames": 1846,
+    "train": 1478,
+    "val": 184,
+    "test": 184,
+    "pose_only_auxiliaries": 100,
+    "rgb_wh": [
+      1280,
+      720
+    ],
+    "sensor_Z_m": [
+      0.3,
+      6.0
+    ],
+    "depth_unit_scale_factor": 1.0,
+    "scene_scale": 21,
+    "reextract_bag": false,
+    "automatic_global_sfm_rerun": false,
+    "keep_all_time_positions_and_original_split": true,
+    "heldout_in_map_BA_scale_init_or_fusion": false,
+    "current_test_is_development_comparison": true
+  },
+  "geometry": {
+    "primary_context": [
+      1288,
+      1312
+    ],
+    "primary_candidate_frames": [
+      1294,
+      1306
+    ],
+    "secondary_context": [
+      1510,
+      1518
+    ],
+    "secondary_candidate_frame": 1514,
+    "scope": "Real feature/RGB-D supported local recovery with fixed external training-map anchors, intrinsics and metric scale",
+    "heldout_policy": "Fixed corrected train-map localization only",
+    "manual_flip_or_interpolated_replacement": false,
+    "unresolved_policy": "Keep honest estimates and failure flags, retain full denominators, continue the complete experiment",
+    "rebuild_training_cloud_after_pose_changes": true
+  },
+  "initialization": {
+    "sensor": {
+      "reuse_original_recipe_on_new_train_poses": true,
+      "source_wh": [
+        640,
+        360
+      ],
+      "pixel_stride": 4,
+      "voxel_m": 0.03
+    },
+    "sfm": {
+      "training_only": true,
+      "minimum_primary_train_observations": 3,
+      "median_reprojection_px_max": 1.0,
+      "p95_reprojection_px_max": 2.0,
+      "minimum_max_ray_angle_deg": 1.0,
+      "positive_depth_required": true,
+      "sensor_conflict_tolerance": "max(0.05m, 0.03*reference_Z)",
+      "sensor_support_must_not_be_outvoted_by_conflicts": true,
+      "no_requirement_to_invent_depth_for_unsensed_far_points": true,
+      "reject_only_unresolved_candidate_region_support": true,
+      "deduplicate_voxel_m": 0.03,
+      "prefer_sensor_on_overlap": true,
+      "new_seed_initial_tangential_scale_cap_m": 0.25,
+      "cap_applies_only_once_to_new_SfM_seeds": true,
+      "preserve_orientation_and_flattening_ratio": true,
+      "track_point_source": true,
+      "source": "corrected final training map and final training poses; recompute quality, export changed BA points",
+      "metric_conversion": "Raw SfM units multiply known scale once; already-metric coordinates never rescaled. Record origin/units/scaled flag.",
+      "sensor_consistency_classes": {
+        "support": "abs(Zpoint-Zsensor)<=tau",
+        "free_space_conflict": "Zpoint<Zsensor-tau",
+        "occluded_ignore": "Zpoint>Zsensor+tau",
+        "missing_reference": "ignore",
+        "tau": "max(0.05m,0.03*Zsensor)"
+      },
+      "zero_qualified_seeds": "record zero and continue; do not relax thresholds to meet a point quota"
+    },
+    "actual_point_count": null
+  },
+  "prior": {
+    "repository": "https://github.com/YvanYin/Metric3D",
+    "commit": "eb5b6fac0dc155e4e52f576e304fbf11655ff339",
+    "hub_entry": "metric3d_vit_large",
+    "config": "mono/configs/HourglassDecoder/vit.raft5.large.py",
+    "raft_iterations": 8,
+    "weight_filename": "metric_depth_vit_large_800k.pth",
+    "official_weight_url": "https://huggingface.co/JUGGHM/Metric3D/resolve/main/metric_depth_vit_large_800k.pth",
+    "expected_weight_sha256": "15328ffc42b528b95f188687418f6f03b3f123eb34ccdbd686c112abbea6d972",
+    "weight_hash_policy": "Record actual SHA256 and bytes before full inference; pin artifact for both resume and report; do not invent checksum or silently switch backbone.",
+    "frames_to_infer": 1846,
+    "canvas_hw": [
+      616,
+      1064
+    ],
+    "resize": "aspect-preserving min scale; cv2 INTER_LINEAR; positive int truncation",
+    "resized_hw_for_baseline": [
+      598,
+      1064
+    ],
+    "padding_top_bottom_left_right": [
+      9,
+      9,
+      0,
+      0
+    ],
+    "mean_rgb": [
+      123.675,
+      116.28,
+      103.53
+    ],
+    "std_rgb": [
+      58.395,
+      57.12,
+      57.375
+    ],
+    "normal_postprocess": "unpad, bilinear restore H720/W1280 with align_corners=false antialias=false, per-pixel L2 normalize",
+    "normal_raw_frame": "OpenCV camera XYZ; x right,y down,z forward; toward-camera normal",
+    "training_png": "raw CV XYZ; clip((n+1)/2,0,1)*255 uint8 truncation; PIL RGB",
+    "normal_format_retained": "opengl",
+    "loader_applies_matrix_once": [
+      [
+        1,
+        0,
+        0
+      ],
+      [
+        0,
+        -1,
+        0
+      ],
+      [
+        0,
+        0,
+        -1
+      ]
+    ],
+    "training_float_npy": false,
+    "kappa_used_for_weight_or_filter": false,
+    "save_raw_signed_float32_normal": true,
+    "save_kappa": true,
+    "save_metric_depth": true,
+    "depth_decanonical_factor": "resized_fx/1000 applied exactly once; use true rectified K; no SfM scale or per-frame fitted scale",
+    "depth_training_use": "none; sensor reference unchanged; no holes filled",
+    "heldout_priors_used_in_training_or_mesh_selection": false,
+    "integration_spec": "docs/12_metric3d_normal_adapter.md",
+    "reuse_existing_outputs": true,
+    "new_inference_required_by_default": false
+  },
+  "training": {
+    "dn_commit": "811f5cdf342d92d12a9d9a4be185d374c430c184",
+    "nerfstudio_commit": "9b3cbc79bf239eb3c69e7c288632aab02c4f0bb1",
+    "seed": 42,
+    "start_from_new_initialization": true,
+    "total_updates": 240000,
+    "final_step_zero_based": 239999,
+    "save_every_updates": 10000,
+    "retain_all_30k_nodes": true,
+    "sampler": "new seeded random permutation without replacement each epoch",
+    "save_sampler_remaining_order_rng_epoch": true,
+    "depth_loss_type": "EdgeAwareLogL1",
+    "sensor_depth_lambda": 0.2,
+    "mono_depth_lambda": 0,
+    "normal_lambda": 0.1,
+    "normal_supervision": "mono",
+    "use_normal_tv_loss": true,
+    "use_depth_smooth_loss": false,
+    "two_d_gaussians": true,
+    "num_downscales": 0,
+    "camera_optimizer": "off",
+    "cull_alpha_thresh": 0.005,
+    "reset_alpha_cap": 0.01,
+    "warmup_length": 4000,
+    "refine_every": 800,
+    "reset_alpha_every": 30,
+    "reset_period_steps": 24000,
+    "post_reset_recovery_full_epochs": 3,
+    "refinement_predicate": "step > 4000 and step < 120000 and step % 24000 > 3*1478+800, checked on 800-step callbacks",
+    "first_refinement_step": 5600,
+    "refinement_candidate_count_before_stop": 115,
+    "opacity_reset_steps": [
+      24800,
+      48800,
+      72800,
+      96800
+    ],
+    "first_refinement_after_each_reset": [
+      29600,
+      53600,
+      77600,
+      101600
+    ],
+    "stop_split_at": 120000,
+    "continue_cull_post_densification": false,
+    "reset_after_stop_split": false,
+    "means_scheduler_max_steps": 240000,
+    "means_lr_endpoints": "unchanged from B1",
+    "sh_degree_interval": 1000,
+    "stop_screen_size_at": 4000,
+    "densify_grad_thresh": 0.0008,
+    "densify_size_thresh": 0.01,
+    "n_split_samples": 2,
+    "cull_scale_thresh": 0.5,
+    "world_scale_original_enable_gate": "step > refine_every*reset_alpha_every",
+    "first_actual_world_scale_check_step": 29600,
+    "densify_gradient": "xys_grad_norm / vis_counts * 0.5*max(H,W), keep historical n_visible+1 denominator",
+    "scale_gradient_threshold_with_window": false,
+    "resume": "remaining=240000-(saved_step+1), preserve original optimizer/schedulers",
+    "preserve_train_rng_across_evaluation": true,
+    "separate_smoke_training": false,
+    "parameter_sweep": false
+  },
+  "evaluation": {
+    "full_val_at_updates": [
+      30000,
+      60000,
+      90000,
+      120000,
+      150000,
+      180000,
+      210000,
+      240000
+    ],
+    "rgb_aggregation": "equal per frame",
+    "depth_aggregation": [
+      "all reference pixels pooled",
+      "equal per frame"
+    ],
+    "depth_reference": "same capture valid sensor Z in [0.3,6]m",
+    "do_not_mask_denominators_by_prediction_quality": true,
+    "distance_bins_m": [
+      [
+        0.3,
+        1
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        2,
+        4
+      ],
+      [
+        4,
+        6
+      ]
+    ],
+    "time_bin_seconds": 30,
+    "same_s01_sources": true,
+    "extra_coverage": [
+      0.05,
+      0.1,
+      0.2
+    ],
+    "foreground_tolerance": "max(0.05m,0.03*reference_Z)",
+    "checkpoint_selection": "Among scheduled val nodes noninferior to exact B1 final PSNR/SSIM/LPIPS, smallest pooled depth MAE; tie higher PSNR then earlier. If none, final240k with gate failure. Always report final240k.",
+    "baseline_selection_threshold_source": "reports/capture-full-metric3d-30k/20261120-v1/metrics_val.json",
+    "test_policy": "Only after configuration and val selection frozen; selected and final240k if distinct; existing test is a development comparison",
+    "pose_change_interpretation": "End-to-end comparison, not single-factor isolation"
+  },
+  "meshes": {
+    "training_primary_frames_only": true,
+    "sensor_tsdf": {
+      "native_depth_grid": true,
+      "native_depth_K_undistorted": true,
+      "voxel_m": 0.01,
+      "sdf_trunc_m": 0.04,
+      "Z_m": [
+        0.3,
+        6
+      ],
+      "depth_scale": 1.0,
+      "color": "NoColor permitted",
+      "world_depth_pose": "c2w_RGB_GL @ diag(1,-1,-1,1) @ T_RGB_depth",
+      "ground_truth": false,
+      "calibration_direction": "T_RGB_depth maps original depth-camera coordinates into RGB-camera coordinates; translation metres",
+      "range_definition": "native depth-camera optical Z; RGB-grid references use RGB-camera optical Z; record the difference",
+      "pre_mask": "finite Z in inclusive [0.3,6.0]m; all other values zero",
+      "open3d_depth_trunc": 6.000001,
+      "calibration_translation": "translation_mm*0.001 exactly once; already-metric values are not scaled again"
+    },
+    "model_tsdf": {
+      "source": "selected checkpoint predicted train RGB-grid Z",
+      "alpha_min": 0.5,
+      "voxel_m": 0.01,
+      "sdf_trunc_m": 0.04,
+      "Z_m": [
+        0.3,
+        6
+      ],
+      "depth_scale": 1.0,
+      "sensor_consistency_hard_filter": false,
+      "replace_model_depth_with_sensor": false,
+      "pre_mask": "finite Z in inclusive [0.3,6.0]m; all other values zero",
+      "open3d_depth_trunc": 6.000001
+    },
+    "supported_poisson": {
+      "reuse": "docs/13 and actual B1 implementation/thresholds",
+      "poisson_depth": 11,
+      "fusion_voxel_m": 0.01,
+      "new_model_and_pose_cache_identity_required": true
+    },
+    "comparison": "Complete pipelines; their masks differ, not an isolated TSDF-vs-Poisson operator ablation",
+    "selection": "Val hit>=0.90 priority; highest <=0.10m all-reference correct coverage; tie lower foreground conflict then hit MAE; retain all outputs even if gate fails",
+    "selection_candidates": [
+      "model_tsdf",
+      "supported_poisson"
+    ]
+  },
+  "quality_goals_not_guarantees_or_stopping_gates": {
+    "val_PSNR_delta_dB_min": 2.0,
+    "val_pooled_depth_MAE_relative_reduction_min": 0.25,
+    "val_model_mesh_10cm_correct_coverage_min": 0.7,
+    "val_model_mesh_hit_min": 0.9,
+    "val_model_mesh_foreground_conflict_max": 0.15
+  },
+  "execution": {
+    "plan_file": "docs/14_capture_quality_plan.md",
+    "one_new_formal_training": true,
+    "full_allocated_cpu_gpu": true,
+    "project_environment_isolation": true,
+    "autodl_github_acceleration": "source /etc/network_turbo in project subshell; preserve official URLs",
+    "sequential_memory_intensive_phases": true,
+    "no_artificial_deadline_or_shutdown": true,
+    "do_not_terminate_other_projects": true,
+    "no_midstage_approval_required": true,
+    "preserve_old_runs": true,
+    "public_media_use_existing_redaction": true,
+    "auto_archive_or_delete": false
+  },
+  "planned_not_observed": {
+    "run_started": false,
+    "actual_updates": null,
+    "checkpoint_sha256": null,
+    "metrics": null,
+    "mesh_artifacts": null
+  }
+}

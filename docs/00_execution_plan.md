@@ -1,5 +1,7 @@
 # 首轮执行计划
 
+> 2026-11-21当前任务入口：`docs/14_capture_quality_plan.md`（B2完整质量改进）。本文件保留初始复现计划；VR、s01、full及Metric3D B1均已有完成记录，不从头重做。新状态见`reports/capture-full-quality-v2/latest.json`。
+
 编写日期：2026-11-18（Asia/Shanghai）。目标：使用 AutoDL 实例分配的全部 CPU 和 GPU，持续完成 **Blackwell 环境适配、VR Room 30k、评估和 Poisson 网格**。用户最新授权覆盖此前低负载和其他任务优先的资源策略；独立环境与文件隔离继续执行。本文件是计划，不是运行记录。
 
 2026-11-19 更新：首轮已经执行完成，实际证据见 [结果审查](../reports/review_2026-11-19.md)。后续按 [第二轮计划](04_round2_plan.md) 接续，本文件保留首轮执行顺序，不能因再次读取而重启已完成训练。

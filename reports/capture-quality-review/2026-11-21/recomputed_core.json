@@ -1,0 +1,60 @@
+{
+  "source_commit": "3728dae350a240d317702d57e560554d529679c6",
+  "source_sha256": {
+    "B1_refinement.json": "4611a669a6137912385c72598024266b6a09276191adc1fb50d9f3d00c8a3427",
+    "metric_c2w.json": "ca92295d7dca351c18b2f9e9c52977cfcb239f40bc9a41d32f3f2eb98fbf7745"
+  },
+  "refinement_events": 300,
+  "all_count_identities_pass": true,
+  "first_major_cull": {
+    "step": 1600,
+    "before": 2001906,
+    "split_parents": 20105,
+    "split_children": 40210,
+    "duplicates": 257,
+    "opacity": 1627349,
+    "world_scale": 0,
+    "screen_scale": 0,
+    "parent_replacement": 20105,
+    "cull_union": 1644258,
+    "after": 398115
+  },
+  "first_net_decrease_fraction": 0.8011320211838119,
+  "step14900_count": 365752,
+  "final_refinement_count": 171417,
+  "post_growth_decrease_fraction": 0.5313299722216146,
+  "largest_rotation_edges": [
+    {
+      "from": "frame_01293",
+      "to": "frame_01294",
+      "rotation_deg": 174.8714150937299,
+      "translation_m": 1.9852932362253823
+    },
+    {
+      "from": "frame_01306",
+      "to": "frame_01307",
+      "rotation_deg": 174.23517132591164,
+      "translation_m": 1.6958020098027091
+    },
+    {
+      "from": "frame_00055",
+      "to": "frame_00056",
+      "rotation_deg": 31.90060840027668,
+      "translation_m": 0.07435711237138114
+    },
+    {
+      "from": "frame_01765",
+      "to": "frame_01766",
+      "rotation_deg": 29.940653711347277,
+      "translation_m": 0.0829810517014307
+    },
+    {
+      "from": "frame_01766",
+      "to": "frame_01767",
+      "rotation_deg": 26.90695214240701,
+      "translation_m": 0.1601715392253367
+    }
+  ],
+  "pose_interpretation": "Estimated adjacent poses; visual evidence is separate. Not absolute pose error.",
+  "training_interpretation": "Direct event accounting; not isolated causal attribution or a new training run."
+}

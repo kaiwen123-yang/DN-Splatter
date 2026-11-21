@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "task": "capture-full-quality-v2",
+  "run_id": "capture-full-quality-v2-20261121-v1",
+  "status": "planned_not_started",
+  "date": "2026-11-21",
+  "timezone": "Asia/Shanghai",
+  "evidence_commit": "3728dae350a240d317702d57e560554d529679c6",
+  "plan": "docs/14_capture_quality_plan.md",
+  "protocol": "configs/capture_quality_protocol.json",
+  "actual": {
+    "server_start_time": null,
+    "server_pid": null,
+    "completed_updates": null,
+    "checkpoint_sha256": null,
+    "metrics": null,
+    "meshes": null
+  },
+  "note": "This commit contains an evidence review and execution plan, not a newly started AutoDL job."
+}

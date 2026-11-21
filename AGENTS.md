@@ -10,23 +10,21 @@
 
 ## 开始前读取
 
-**当前阶段（2026-11-20）：capture-full 已完整结束，结果冻结在 `e26ae72a75997dcfd3a907aa26b6c5c0677597a5`。** 1846 主帧，1478 train / 184 val / 184 test 全部定位和评价，累计30k与原始Poisson完成。原始状态与结果保留，不能再次按旧计划从H盘提取或重做全局几何。
+**当前阶段（2026-11-21）：B0和Metric3D B1已全部完成。最新证据冻结在 `3728dae350a240d317702d57e560554d529679c6`。下一任务是一次完整B2质量改进，而不是再做法线替换。** B1 Test PSNR16.885dB、模型深度MAE0.336m；同支持网格10cm正确覆盖仅59.02%。当前新任务状态为planned，不能把计划提交写成已经启动训练。
 
-用户补充“考虑跑一下 metrics”，本轮**暂按 Metric3D v2**解释。下一任务是一次完整的法线替换对照：先读 `reports/capture-full-review/2026-11-20/overview.md`、`docs/11_capture_metric3d_plan.md`、`docs/12_metric3d_normal_adapter.md`、`docs/13_capture_supported_mesh.md`、`configs/capture_metric3d_protocol.json`。服务器执行 `prompts/autodl_capture_metric3d.md`；本地Codex以 `prompts/local_capture_metric3d.md` 复用现有授权连接接续，不再读bag或索要样例。
+先读 `reports/capture-quality-review/2026-11-21/overview.md`、三份专项复核、`docs/14_capture_quality_plan.md`、`configs/capture_quality_protocol.json`。服务器入口 `prompts/autodl_capture_quality.md`；本地协调入口 `prompts/local_capture_quality.md`。复用既有授权连接、数据、独立环境和Metric3D先验，不再次提取bag、重装Blackwell、重做VR Room或全局SfM。
 
-B0为现有Omnidata全程30k；B1固定Metric3Dv2 ViT-Large，在同一1846图几何/1478训练图、原传感器0.3–6m Z、K/c2w、2001906点初始化、scene_scale21、同seed/损失/采样/增密/学习率调度上，从头训练完整30k。**唯一训练方法变动是法线先验。** Metric3D深度保存并独立评价，但不替换/补洞传感器监督。训练只用train先验，辅助图和val/test不参与训练或网格筛选。
+B2明确允许并要求按新协议实施：真实数据支持的局部位姿纠正、重新生成主训练初始化并补充可靠训练SfM种子、每epoch shuffle、降低opacity剔除阈值、充分reset恢复和120k增长期、从头累计240k、停止增长后不再cull/reset。保留原1478/184/184、1280×720、真实sensor Z和B1法线/主损失；所有改动记录。它是联合场景适配，不能冒充单因素消融或论文原样30k。
 
-当前已知历史采样器首遍随机、之后顺序遍历；本轮保持此行为以隔离法线变量，不同时修shuffle、改cull、扩深度范围或延长240k。抽取B0已有训练日志和中间checkpoint，B1记录实际高斯增删原因。不能从checkpoint字节数伪造计数。法线按docs/12通过PNG RGB和历史reader完成唯一坐标变换，不用可视化颜色猜坐标。
+现成B1六checkpoint全184val评价属于同一任务的准备，不新增短训练。B2每累计30k完整val，按协议选模型，始终报告240k最终；然后全test、1846位置全程视频、训练原生sensor TSDF、模型TSDF及相同协议支持Poisson。test已是开发对照，不重新称盲测。辅助图只建图，留出只固定地图定位；留出不参与BA/尺度/初始化/融合。原s01/B0/B1/VR及各自输入、完成标记和评价协议全部保留。
 
-完整任务包括全量先验、B1正式30k、全部val/test与配对/分时段评价、全程reference/B0/B1视频、B1原始Poisson，以及B0/B1同参数sensor-supported完整网格导出。原始模型与原始网格保留。支持筛选用训练深度，阈值预先固定；覆盖下降和无命中必须公开，不能只凭命中像素MAE变小称成功。
+**用户明确不希望反复小规模验证和零碎修复。** 一次静态输入核对、第一正式batch与首个实际细化事件核对后持续整轮；没有独立smoke训练、参数扫描、中间人工审批或完成deadline。真实错误作最小修复继续；指标不好仍完成并如实交付。局部位姿修复未解决的项记录实值和失败标记继续，不用插值造位姿，不删难帧美化分母。
 
-**用户明确不希望反复小规模验证和零碎修复。** 一次正式输入转换核验和首个正式batch检查后持续完成整轮；没有独立smoke训练、参数搜索或中间人工审阅门槛。真实执行错误最小修复后继续；指标不够好仍完成和交付。只有实际访问/身份/运行容量阻塞无法处理才报告真实原因和恢复入口。旧docs/08/09/10与提示词都是已完成历史阶段，不自动启动。
+全部现成输入在AutoDL。新run/input副本独立，不写共享硬链接覆盖B1。旧训练峰RSS约79GiB，预处理、训练、全量评价和大网格顺序执行。允许全部已分配CPU/GPU；按实际容量调整数值等价的缓存/块大小，不悄悄删点、降分辨率或缩短目标。不得结束其他项目进程。
 
-全部现成输入在AutoDL；B1使用新run及输入副本，不可写共享文件覆盖B0。先验推理、DN训练和大点云网格顺序执行；训练进程峰RSS约79GiB，不能因96GB显存富余同时复制两份全图缓存。允许全部已分配CPU/GPU，不人为限额；按实际资源调整数值等价的分块/缓存，而非缩短数据或改方法。原bag、s01、VR及full产物全部保留。
+docs/08/09/10/11/12/13和旧提示词作为已执行历史/接口依据保留，其中“本轮只换法线、不改采样或延长240k”只适用于已完成B1，不再限制明确授权的B2。docs/12法线坐标和docs/13支持网格定义继续沿用。首轮docs/00–05和VR协议保留为实现/对比依据，不再次执行已完成阶段。
 
-首轮 docs/00、01、02、03、05 和 `configs/vr_room_protocol.json` 继续作为实现/协议依据；已有环境与 VR Room checkpoint 不从头重做。先检查本项目工作区和远端，保留用户已有未提交修改。计划与已执行记录分开，第二轮未运行的指标不得填入完成状态。
-
-所有后续场景和审计使用独立 run 目录及身份清单，不用旧 checkpoint、指标文件或完成标记误跳新场景阶段。保留第一轮原始 JSON/PLY；规范化审计指标另存，不静默修改历史实验结论。
+运行前检查远端和本项目未提交修改，计划字段与实测字段分开。后续场景/任务用独立run、输入身份和状态，不能用旧checkpoint或旧完成标记跳过新任务。
 
 ## 隔离边界
 
@@ -69,9 +67,9 @@ B0为现有Omnidata全程30k；B1固定Metric3Dv2 ViT-Large，在同一1846图�
 
 允许对只读环境命令和失效连接设置短命令超时；这不等于给完整实验设置时限。只有实测资源不足等真实阻塞才进入资源等待，不设置“其他 GPU 进程全部退出”或“GPU 必须空闲”的固定门槛。确需等待时可跨多次上下文或会话，留下具体原因、状态、下一步和恢复命令，避免重复启动。
 
-Nerfstudio 1.1.3 的恢复训练会把 max_num_iterations 作为本次追加步数。累计目标是 30,000，零基最后 step=29,999；从 checkpoint 读取实际 saved_step，使用 `remaining=30000-(saved_step+1)`，保留原 30,000 步调度和原数据配置。不要从中间 checkpoint 再盲目加 30,000。不要用未经核实的 `--load-config` 覆盖规则丢失参数。
+Nerfstudio 1.1.3 的恢复训练会把 max_num_iterations 作为本次追加步数。当前B2累计目标240,000，零基最后step239,999；从checkpoint读取实际saved_step，使用 `remaining=240000-(saved_step+1)`，保留原240k优化器/调度以及sampler/RNG状态。历史B0/B1/VR的目标仍为30k，不改写旧记录。不要盲目追加整个目标步数，不用未经核实的load-config覆盖规则丢失参数。
 
-正式训练阶段每5,000步保存checkpoint，保留必要中间点；必要检查充分后进入该阶段完整训练，不堆叠无关smoke tests。**当前docs/11阶段直接完成Metric3Dv2法线对照的全程30k、全部留出、对照视频与两模型网格；无新增小训练或阶段审阅门槛。**
+当前B2每10k更新保存恢复checkpoint，全部30k完整val节点及最终保留，精确以累计更新数定义。按docs/14完成一轮240k、全部留出、对照视频和三类几何输出；无新增小训练或阶段审阅门槛。
 
 ## 证据与推送
 

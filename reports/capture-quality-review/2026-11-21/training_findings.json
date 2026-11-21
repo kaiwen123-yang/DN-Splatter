@@ -1,0 +1,838 @@
+{
+  "schema_version": 1,
+  "reviewed_date": "2026-11-21",
+  "timezone": "Asia/Shanghai",
+  "evidence_commit": "3728dae350a240d317702d57e560554d529679c6",
+  "server_accessed": false,
+  "new_training_started": false,
+  "inputs": [
+    {
+      "file": "B0_tensorboard.csv.gz",
+      "sha256": "66e28dc2d94b0b9cf2555ecd8b41ea8bbd4c0d23a90ba71f0517dfd24ec053a1",
+      "git_blob_sha1": "e8652444d1d344f1136e64e630961dd6fd79675a",
+      "bytes": 240993
+    },
+    {
+      "file": "B0_training_curve.json",
+      "sha256": "d22f0895f2542cf2e11212df54207680095483ec44cda822de450add69b6e025",
+      "git_blob_sha1": "8a1aab87b0cabf015612b0507c45289705c26e34",
+      "bytes": 4714
+    },
+    {
+      "file": "B1_refinement.json",
+      "sha256": "4611a669a6137912385c72598024266b6a09276191adc1fb50d9f3d00c8a3427",
+      "git_blob_sha1": "d8ba81805914d74a35fd0f3565fe3a3d01313511",
+      "bytes": 86411
+    },
+    {
+      "file": "B1_samples.csv.gz",
+      "sha256": "fbc5ccf8fc148407c026a4b6d25a6eb89f3ef7cdad91b35943ab872748921bed",
+      "git_blob_sha1": "de8e5fd99ac1b80683b03ed626c506fe6a8b5eca",
+      "bytes": 222411
+    },
+    {
+      "file": "B1_tensorboard.csv.gz",
+      "sha256": "48ab44ef1c708fd00c41754f365e16f4020633cb2b42a73be9a2e9ecf9659143",
+      "git_blob_sha1": "a8ec43354a4f36597ad76993e7fac5d0d16ca281",
+      "bytes": 242254
+    },
+    {
+      "file": "B1_training_curve.json",
+      "sha256": "c6c21f64ada116e2db6779daa553239ad729470e3bf6957b6aabe8d4d296a9a9",
+      "git_blob_sha1": "2925c1a865bc7745598ff1b6a2feaad0cafc8c94",
+      "bytes": 4727
+    },
+    {
+      "file": "capture_metric3d_train.py",
+      "sha256": "733141a8f0991c4c19ea7e953e45e5af13e862ed048597394d8b224373ddfe28",
+      "git_blob_sha1": "2c5e8108a13db629252d6951b192e47431060eed",
+      "bytes": 6690
+    },
+    {
+      "file": "conditional_adaptations.json",
+      "sha256": "f67009d9a55347597e4aca10a3ad84530c35ad47026d09c4dcb5094a08b2d4f1",
+      "git_blob_sha1": "62bab7cd59e9ac74365a6a8dbe202729ad8ea784",
+      "bytes": 934
+    },
+    {
+      "file": "config.yml",
+      "sha256": "3f090fbd7824b070ef12ee6f8ba5c09a2f4f5254ccf7328f8c8ab1412c8c9634",
+      "git_blob_sha1": "1dca3a50baa967cc40db7314b2f24c9e4b3cff59",
+      "bytes": 8469
+    },
+    {
+      "file": "config_diff.json",
+      "sha256": "c59b18991e0ae8f65a8d11fbc3a32ed52990d87eb6025bb29a9a69dc8f5db92f",
+      "git_blob_sha1": "686f4c1ed7e349a25873c14aa6b8a439dd36d1fb",
+      "bytes": 928
+    },
+    {
+      "file": "training.json",
+      "sha256": "5de5614ee5a9fa83bd121b8efec0ee6fca9f98eb19e714aec87e4df39ea128bb",
+      "git_blob_sha1": "2c1dd7a32bcf36562524b08506577ac47e55bb4c",
+      "bytes": 3680
+    }
+  ],
+  "first_refinement": {
+    "step": 1600,
+    "before": 2001906,
+    "split_parents": 20105,
+    "split_children": 40210,
+    "duplicates": 257,
+    "opacity": 1627349,
+    "world_scale": 0,
+    "screen_scale": 0,
+    "parent_replacement": 20105,
+    "cull_union": 1644258,
+    "after": 398115,
+    "net_removed": 1603791,
+    "net_removed_fraction": 0.8011320211838119,
+    "opacity_parent_overlap": 3196,
+    "removed_excluding_split_parents": 1624153,
+    "views_exposure_histogram_at_first_cull": {
+      "1": 1355,
+      "2": 123
+    },
+    "point_visibility_history_available": false
+  },
+  "accounting_errors": [],
+  "largest_net_drops": [
+    {
+      "step": 1600,
+      "before": 2001906,
+      "split_parents": 20105,
+      "split_children": 40210,
+      "duplicates": 257,
+      "opacity": 1627349,
+      "world_scale": 0,
+      "screen_scale": 0,
+      "parent_replacement": 20105,
+      "cull_union": 1644258,
+      "after": 398115
+    },
+    {
+      "step": 4600,
+      "before": 369021,
+      "split_parents": 16311,
+      "split_children": 32622,
+      "duplicates": 1585,
+      "opacity": 170037,
+      "world_scale": 3814,
+      "screen_scale": 0,
+      "parent_replacement": 16311,
+      "cull_union": 188117,
+      "after": 215111
+    },
+    {
+      "step": 10600,
+      "before": 358385,
+      "split_parents": 8322,
+      "split_children": 16644,
+      "duplicates": 1208,
+      "opacity": 159853,
+      "world_scale": 2188,
+      "screen_scale": 0,
+      "parent_replacement": 8322,
+      "cull_union": 169210,
+      "after": 207027
+    },
+    {
+      "step": 7600,
+      "before": 354435,
+      "split_parents": 12758,
+      "split_children": 25516,
+      "duplicates": 1366,
+      "opacity": 156806,
+      "world_scale": 2300,
+      "screen_scale": 0,
+      "parent_replacement": 12758,
+      "cull_union": 170799,
+      "after": 210518
+    },
+    {
+      "step": 13600,
+      "before": 363743,
+      "split_parents": 11313,
+      "split_children": 22626,
+      "duplicates": 1327,
+      "opacity": 148873,
+      "world_scale": 2250,
+      "screen_scale": 0,
+      "parent_replacement": 11313,
+      "cull_union": 161325,
+      "after": 226371
+    },
+    {
+      "step": 1700,
+      "before": 398115,
+      "split_parents": 12174,
+      "split_children": 24348,
+      "duplicates": 274,
+      "opacity": 40016,
+      "world_scale": 0,
+      "screen_scale": 0,
+      "parent_replacement": 12174,
+      "cull_union": 51083,
+      "after": 371654
+    },
+    {
+      "step": 1800,
+      "before": 371654,
+      "split_parents": 16444,
+      "split_children": 32888,
+      "duplicates": 453,
+      "opacity": 41452,
+      "world_scale": 0,
+      "screen_scale": 0,
+      "parent_replacement": 16444,
+      "cull_union": 56459,
+      "after": 348536
+    },
+    {
+      "step": 15000,
+      "before": 365752,
+      "split_parents": 0,
+      "split_children": 0,
+      "duplicates": 0,
+      "opacity": 15626,
+      "world_scale": 647,
+      "screen_scale": 0,
+      "parent_replacement": 0,
+      "cull_union": 16272,
+      "after": 349480
+    },
+    {
+      "step": 15200,
+      "before": 338881,
+      "split_parents": 0,
+      "split_children": 0,
+      "duplicates": 0,
+      "opacity": 12523,
+      "world_scale": 542,
+      "screen_scale": 0,
+      "parent_replacement": 0,
+      "cull_union": 13065,
+      "after": 325816
+    },
+    {
+      "step": 15100,
+      "before": 349480,
+      "split_parents": 0,
+      "split_children": 0,
+      "duplicates": 0,
+      "opacity": 10132,
+      "world_scale": 467,
+      "screen_scale": 0,
+      "parent_replacement": 0,
+      "cull_union": 10599,
+      "after": 338881
+    },
+    {
+      "step": 2000,
+      "before": 344437,
+      "split_parents": 15813,
+      "split_children": 31626,
+      "duplicates": 1183,
+      "opacity": 26905,
+      "world_scale": 0,
+      "screen_scale": 0,
+      "parent_replacement": 15813,
+      "cull_union": 41387,
+      "after": 335859
+    },
+    {
+      "step": 15400,
+      "before": 318072,
+      "split_parents": 0,
+      "split_children": 0,
+      "duplicates": 0,
+      "opacity": 7808,
+      "world_scale": 560,
+      "screen_scale": 0,
+      "parent_replacement": 0,
+      "cull_union": 8368,
+      "after": 309704
+    }
+  ],
+  "aggregate_reason_masks_overlap": {
+    "all": {
+      "split_parents": 1395347,
+      "split_children": 2790694,
+      "duplicates": 271873,
+      "opacity": 3517395,
+      "world_scale": 57895,
+      "screen_scale": 0,
+      "parent_replacement": 1395347,
+      "cull_union": 4893056
+    },
+    "before_step15000": {
+      "split_parents": 1395347,
+      "split_children": 2790694,
+      "duplicates": 271873,
+      "opacity": 3348370,
+      "world_scale": 32557,
+      "screen_scale": 0,
+      "parent_replacement": 1395347,
+      "cull_union": 4698721
+    },
+    "from_step15000": {
+      "split_parents": 0,
+      "split_children": 0,
+      "duplicates": 0,
+      "opacity": 169025,
+      "world_scale": 25338,
+      "screen_scale": 0,
+      "parent_replacement": 0,
+      "cull_union": 194335
+    }
+  },
+  "post_densification": {
+    "count_after_14900": 365752,
+    "count_final": 171417,
+    "removed": 194335,
+    "fraction_removed": 0.5313299722216146
+  },
+  "sampler": {
+    "actual_log_rows": 30000,
+    "first_pass_unique_frames": 1478,
+    "second_pass_is_sorted_indices": true,
+    "full_exposure_histogram": {
+      "20": 1038,
+      "21": 440
+    },
+    "before_15k_histogram": {
+      "10": 1258,
+      "11": 220
+    }
+  },
+  "scalar_diagnostics": {
+    "B0": {
+      "step_interval_diagnostics": [
+        {
+          "start_inclusive": 0,
+          "end_exclusive": 1600,
+          "Train Loss": {
+            "n": 160,
+            "mean": 0.25126610561273993,
+            "median": 0.21806395798921585
+          },
+          "Train Metrics Dict/rgb_psnr": {
+            "n": 160,
+            "mean": 18.004395109415054,
+            "median": 18.030417442321777
+          },
+          "Train Metrics Dict/gaussian_count": {
+            "n": 160,
+            "mean": 2001906.0,
+            "median": 2001906.0
+          }
+        },
+        {
+          "start_inclusive": 1600,
+          "end_exclusive": 3000,
+          "Train Loss": {
+            "n": 140,
+            "mean": 0.20280883918915477,
+            "median": 0.19971554726362228
+          },
+          "Train Metrics Dict/rgb_psnr": {
+            "n": 140,
+            "mean": 19.389296845027378,
+            "median": 19.121724128723145
+          },
+          "Train Metrics Dict/gaussian_count": {
+            "n": 140,
+            "mean": 368473.17142857146,
+            "median": 357945.0
+          }
+        },
+        {
+          "start_inclusive": 3000,
+          "end_exclusive": 6000,
+          "Train Loss": {
+            "n": 300,
+            "mean": 0.20148184614876907,
+            "median": 0.19496611505746841
+          },
+          "Train Metrics Dict/rgb_psnr": {
+            "n": 300,
+            "mean": 19.652251675923665,
+            "median": 19.371841430664062
+          },
+          "Train Metrics Dict/gaussian_count": {
+            "n": 300,
+            "mean": 322168.7,
+            "median": 363522.0
+          }
+        },
+        {
+          "start_inclusive": 6000,
+          "end_exclusive": 10000,
+          "Train Loss": {
+            "n": 400,
+            "mean": 0.21061892794445158,
+            "median": 0.19139230251312256
+          },
+          "Train Metrics Dict/rgb_psnr": {
+            "n": 400,
+            "mean": 19.60128766775131,
+            "median": 19.521638870239258
+          },
+          "Train Metrics Dict/gaussian_count": {
+            "n": 400,
+            "mean": 327423.4375,
+            "median": 347642.0
+          }
+        },
+        {
+          "start_inclusive": 10000,
+          "end_exclusive": 15000,
+          "Train Loss": {
+            "n": 500,
+            "mean": 0.20953979901969433,
+            "median": 0.18918265402317047
+          },
+          "Train Metrics Dict/rgb_psnr": {
+            "n": 500,
+            "mean": 19.94428782749176,
+            "median": 19.740925788879395
+          },
+          "Train Metrics Dict/gaussian_count": {
+            "n": 500,
+            "mean": 320834.488,
+            "median": 354892.0
+          }
+        },
+        {
+          "start_inclusive": 15000,
+          "end_exclusive": 20000,
+          "Train Loss": {
+            "n": 500,
+            "mean": 0.21521044404804707,
+            "median": 0.18794866651296616
+          },
+          "Train Metrics Dict/rgb_psnr": {
+            "n": 500,
+            "mean": 19.080606176376342,
+            "median": 19.23172092437744
+          },
+          "Train Metrics Dict/gaussian_count": {
+            "n": 500,
+            "mean": 256709.942,
+            "median": 248013.0
+          }
+        },
+        {
+          "start_inclusive": 20000,
+          "end_exclusive": 25000,
+          "Train Loss": {
+            "n": 500,
+            "mean": 0.22451276832818984,
+            "median": 0.20481348037719727
+          },
+          "Train Metrics Dict/rgb_psnr": {
+            "n": 500,
+            "mean": 16.518073903083803,
+            "median": 16.552393913269043
+          },
+          "Train Metrics Dict/gaussian_count": {
+            "n": 500,
+            "mean": 202383.392,
+            "median": 202513.0
+          }
+        },
+        {
+          "start_inclusive": 25000,
+          "end_exclusive": 30000,
+          "Train Loss": {
+            "n": 500,
+            "mean": 0.2486654361486435,
+            "median": 0.23610229045152664
+          },
+          "Train Metrics Dict/rgb_psnr": {
+            "n": 500,
+            "mean": 15.0646597032547,
+            "median": 14.878026962280273
+          },
+          "Train Metrics Dict/gaussian_count": {
+            "n": 500,
+            "mean": 180201.362,
+            "median": 179763.0
+          }
+        }
+      ],
+      "same_training_view_log_diagnostic": {
+        "definition": "Mean each view within logged samples in10k<=step<15k vs25k<=step<30k, then equal mean over intersection. Not fixed-checkpoint evaluation. B1 actual sample IDs; B0 mapping inferred from unchanged seeded sampler.",
+        "intersection_count": 478,
+        "early_psnr": 19.949009389558096,
+        "late_psnr": 15.091087146782975,
+        "paired_delta": -4.857922242775123,
+        "improved": 53,
+        "degraded": 425
+      },
+      "checkpoint_counts": [
+        {
+          "step": 5000,
+          "gaussians": 228417,
+          "path": ".local/runs/capture-full-dn-30k-20261119-v1/training/capture-full/dn-splatter/2026-11-20_135109/nerfstudio_models/step-000005000.ckpt",
+          "bytes": 184256557,
+          "sha256": "2dd99ed0a514e482eec240dc7a4a9b5426f1a1e61141fa4ae1f4b9898ecd1adb"
+        },
+        {
+          "step": 10000,
+          "gaussians": 356577,
+          "path": ".local/runs/capture-full-dn-30k-20261119-v1/training/capture-full/dn-splatter/2026-11-20_135109/nerfstudio_models/step-000010000.ckpt",
+          "bytes": 276531757,
+          "sha256": "3e029f1cef4fdbf2470138e47de1528d472a959ae1309f864b76c7c8b5833aab"
+        },
+        {
+          "step": 15000,
+          "gaussians": 347829,
+          "path": ".local/runs/capture-full-dn-30k-20261119-v1/training/capture-full/dn-splatter/2026-11-20_135109/nerfstudio_models/step-000015000.ckpt",
+          "bytes": 270233453,
+          "sha256": "8e0ba22aac53ae5faaa4c5194ae49859dfac1ea84a599f1817d36477885d6d3d"
+        },
+        {
+          "step": 20000,
+          "gaussians": 217279,
+          "path": ".local/runs/capture-full-dn-30k-20261119-v1/training/capture-full/dn-splatter/2026-11-20_135109/nerfstudio_models/step-000020000.ckpt",
+          "bytes": 176236845,
+          "sha256": "7b9b68fb384483603e1182703e6ed683da7f9389e52b047d68b8b14f98929239"
+        },
+        {
+          "step": 25000,
+          "gaussians": 189294,
+          "path": ".local/runs/capture-full-dn-30k-20261119-v1/training/capture-full/dn-splatter/2026-11-20_135109/nerfstudio_models/step-000025000.ckpt",
+          "bytes": 156087597,
+          "sha256": "46a79af676c5013ac17e9377a459be920d9e28bc67e73a19eb62c872dba384c0"
+        },
+        {
+          "step": 29999,
+          "gaussians": 172425,
+          "path": ".local/runs/capture-full-dn-30k-20261119-v1/training/capture-full/dn-splatter/2026-11-20_135109/nerfstudio_models/step-000029999.ckpt",
+          "bytes": 143941997,
+          "sha256": "b89ad55fb5781582a6306a8c1f006ae5afe1e7f7ee5704c1594c8b7bbe6b8094"
+        }
+      ]
+    },
+    "B1": {
+      "step_interval_diagnostics": [
+        {
+          "start_inclusive": 0,
+          "end_exclusive": 1600,
+          "Train Loss": {
+            "n": 160,
+            "mean": 0.2518380056601018,
+            "median": 0.2187575399875641
+          },
+          "Train Metrics Dict/rgb_psnr": {
+            "n": 160,
+            "mean": 18.000389271974562,
+            "median": 18.016905784606934
+          },
+          "Train Metrics Dict/gaussian_count": {
+            "n": 160,
+            "mean": 2001906.0,
+            "median": 2001906.0
+          }
+        },
+        {
+          "start_inclusive": 1600,
+          "end_exclusive": 3000,
+          "Train Loss": {
+            "n": 140,
+            "mean": 0.20094475198004927,
+            "median": 0.19890259206295013
+          },
+          "Train Metrics Dict/rgb_psnr": {
+            "n": 140,
+            "mean": 19.406372254235404,
+            "median": 19.121383666992188
+          },
+          "Train Metrics Dict/gaussian_count": {
+            "n": 140,
+            "mean": 370169.1785714286,
+            "median": 359805.0
+          }
+        },
+        {
+          "start_inclusive": 3000,
+          "end_exclusive": 6000,
+          "Train Loss": {
+            "n": 300,
+            "mean": 0.19274967494110265,
+            "median": 0.1954878270626068
+          },
+          "Train Metrics Dict/rgb_psnr": {
+            "n": 300,
+            "mean": 19.803072735468547,
+            "median": 19.526994705200195
+          },
+          "Train Metrics Dict/gaussian_count": {
+            "n": 300,
+            "mean": 327674.6533333333,
+            "median": 369021.0
+          }
+        },
+        {
+          "start_inclusive": 6000,
+          "end_exclusive": 10000,
+          "Train Loss": {
+            "n": 400,
+            "mean": 0.2020970323868096,
+            "median": 0.192653588950634
+          },
+          "Train Metrics Dict/rgb_psnr": {
+            "n": 400,
+            "mean": 19.719240336418153,
+            "median": 19.492881774902344
+          },
+          "Train Metrics Dict/gaussian_count": {
+            "n": 400,
+            "mean": 331161.975,
+            "median": 354435.0
+          }
+        },
+        {
+          "start_inclusive": 10000,
+          "end_exclusive": 15000,
+          "Train Loss": {
+            "n": 500,
+            "mean": 0.20767301988601686,
+            "median": 0.19025122374296188
+          },
+          "Train Metrics Dict/rgb_psnr": {
+            "n": 500,
+            "mean": 19.968195219993593,
+            "median": 19.733479499816895
+          },
+          "Train Metrics Dict/gaussian_count": {
+            "n": 500,
+            "mean": 327102.206,
+            "median": 358385.0
+          }
+        },
+        {
+          "start_inclusive": 15000,
+          "end_exclusive": 20000,
+          "Train Loss": {
+            "n": 500,
+            "mean": 0.2124474856555462,
+            "median": 0.186498261988163
+          },
+          "Train Metrics Dict/rgb_psnr": {
+            "n": 500,
+            "mean": 19.326255323410034,
+            "median": 19.265790939331055
+          },
+          "Train Metrics Dict/gaussian_count": {
+            "n": 500,
+            "mean": 258221.194,
+            "median": 249385.0
+          }
+        },
+        {
+          "start_inclusive": 20000,
+          "end_exclusive": 25000,
+          "Train Loss": {
+            "n": 500,
+            "mean": 0.21872415804862977,
+            "median": 0.20356584340333939
+          },
+          "Train Metrics Dict/rgb_psnr": {
+            "n": 500,
+            "mean": 16.86783234500885,
+            "median": 17.116169929504395
+          },
+          "Train Metrics Dict/gaussian_count": {
+            "n": 500,
+            "mean": 202172.808,
+            "median": 202144.0
+          }
+        },
+        {
+          "start_inclusive": 25000,
+          "end_exclusive": 30000,
+          "Train Loss": {
+            "n": 500,
+            "mean": 0.24282906851172448,
+            "median": 0.23190754652023315
+          },
+          "Train Metrics Dict/rgb_psnr": {
+            "n": 500,
+            "mean": 15.185794553756715,
+            "median": 15.066693782806396
+          },
+          "Train Metrics Dict/gaussian_count": {
+            "n": 500,
+            "mean": 179221.268,
+            "median": 178632.0
+          }
+        }
+      ],
+      "same_training_view_log_diagnostic": {
+        "definition": "Mean each view within logged samples in10k<=step<15k vs25k<=step<30k, then equal mean over intersection. Not fixed-checkpoint evaluation. B1 actual sample IDs; B0 mapping inferred from unchanged seeded sampler.",
+        "intersection_count": 478,
+        "early_psnr": 19.968690551973285,
+        "late_psnr": 15.243091323884462,
+        "paired_delta": -4.725599228088826,
+        "improved": 41,
+        "degraded": 437
+      },
+      "checkpoint_counts": [
+        {
+          "step": 5000,
+          "gaussians": 233461,
+          "path": ".local/runs/capture-full-metric3d-30k-20261120-v1/training/capture-full/dn-splatter/2026-11-20_173253/nerfstudio_models/step-000005000.ckpt",
+          "bytes": 187888493,
+          "sha256": "f7454810158c479ebd304638ce0900254c03708353a2730f7a85020261f89a93"
+        },
+        {
+          "step": 10000,
+          "gaussians": 358385,
+          "path": ".local/runs/capture-full-metric3d-30k-20261120-v1/training/capture-full/dn-splatter/2026-11-20_173253/nerfstudio_models/step-000010000.ckpt",
+          "bytes": 277833517,
+          "sha256": "3fb47e3446df9e7079d74f9851dcf0d315c5f85fdf30177b6f6434373a953aa4"
+        },
+        {
+          "step": 15000,
+          "gaussians": 349480,
+          "path": ".local/runs/capture-full-metric3d-30k-20261120-v1/training/capture-full/dn-splatter/2026-11-20_173253/nerfstudio_models/step-000015000.ckpt",
+          "bytes": 271421741,
+          "sha256": "8fbe93a52a83a7d410ad755dac4473de0c5d673bac7c33da622ee0196b5edc26"
+        },
+        {
+          "step": 20000,
+          "gaussians": 217832,
+          "path": ".local/runs/capture-full-metric3d-30k-20261120-v1/training/capture-full/dn-splatter/2026-11-20_173253/nerfstudio_models/step-000020000.ckpt",
+          "bytes": 176635181,
+          "sha256": "7aad35a26d1508ba2217c460b7ab198097bc5ef393bd45f3091a60be5e1c03f2"
+        },
+        {
+          "step": 25000,
+          "gaussians": 188848,
+          "path": ".local/runs/capture-full-metric3d-30k-20261120-v1/training/capture-full/dn-splatter/2026-11-20_173253/nerfstudio_models/step-000025000.ckpt",
+          "bytes": 155767213,
+          "sha256": "50b7462ce359f5b38ee1248ef0b0e8b8bb0d81b2249afbb03f945e40168744c5"
+        },
+        {
+          "step": 29999,
+          "gaussians": 171417,
+          "path": ".local/runs/capture-full-metric3d-30k-20261120-v1/training/capture-full/dn-splatter/2026-11-20_173253/nerfstudio_models/step-000029999.ckpt",
+          "bytes": 143216237,
+          "sha256": "51cea461bf2b045d5c3b87bd465ce05c775ae515e7f5b2eec76998b88e2cfc45"
+        }
+      ]
+    }
+  },
+  "evidence_levels": {
+    "direct": [
+      "All300B1 events exactly balance.",
+      "80.11% net population loss at first cull; opacity dominant; world and screen zero.",
+      "Post15k only cull removes53.13% of14900count.",
+      "B1 samples first pass shuffled then sorted each pass.",
+      "Logged same-view train PSNR deteriorates late on478 shared training views."
+    ],
+    "mechanistic_inference": [
+      "Initial opacity0.1 equals cull threshold0.1; first cull follows1-2 observations per image; premature global pruning is credible.",
+      "Opacity reset followed by repeat large cull in both models.",
+      "Growth termination plus continuous pruning likely limit geometry recovery."
+    ],
+    "not_established": [
+      "No per-point visibility history proves particular deleted points were unseen or correct.",
+      "Same-view in-training logs are not a fixed-checkpoint evaluation.",
+      "No causal partition among sampling, pruning, LR, far seeds and geometry.",
+      "More Gaussians alone do not imply better quality."
+    ]
+  },
+  "proposed_complete_training_not_executed": {
+    "total_updates": 240000,
+    "epochs": 162.38159675236807,
+    "from_initialization": true,
+    "normal_prior": "B1 Metric3Dv2",
+    "initialization": "Retain sensor near geometry and merge reliable train-map SfM seeds for unsupported far background; exact rule in geometry plan.",
+    "sampling": "fresh seeded permutation each complete epoch; persist RNG/permutation",
+    "warmup_length": 4000,
+    "refine_every": 800,
+    "reset_alpha_every": 30,
+    "reset_interval": 24000,
+    "reset_opacity_cap": 0.01,
+    "cull_alpha_thresh": 0.005,
+    "growth_cooldown_condition": "step > warmup_length and step < stop_split_at and step % reset_interval > 3*num_train_data + refine_every; replace old N+refine_every condition, not an unused extra config",
+    "first_candidate_step": 5600,
+    "candidate_count_before_stop": 115,
+    "stop_split_at": 120000,
+    "continue_cull_post_densification": false,
+    "means_scheduler_max_steps": 240000,
+    "means_lr_initial": 0.00016,
+    "means_lr_final": 1.6e-06,
+    "sh_degree_interval": 1000,
+    "stop_screen_size_at": 4000,
+    "world_scale_rule": "Keep0.5 as baseline unless far-seed scale evidence requires a predeclared change; report by seed origin/range.",
+    "evaluation": "Read existing B1 5k/10k/15k/20k/25k/final checkpoints once on all184val, directly continue. New trajectory all184val at every30000completed updates through240000; actual zero-based step=updates-1. Test only final selected model; current test is development comparison, not blind external evaluation.",
+    "separate_short_training": false,
+    "runtime_deadline": false,
+    "status": "engineering hypothesis, not validated optimum; parent execution protocol may supersede",
+    "reset_steps": [
+      24800,
+      48800,
+      72800,
+      96800
+    ],
+    "first_refine_after_each_reset": [
+      29600,
+      53600,
+      77600,
+      101600
+    ],
+    "checkpoint_completed_updates": [
+      30000,
+      60000,
+      90000,
+      120000,
+      150000,
+      180000,
+      210000,
+      240000
+    ],
+    "densify_grad_thresh": 0.0008,
+    "densify_size_thresh": 0.01,
+    "n_split_samples": 2,
+    "densification_statistics": {
+      "formula": "xys_grad_norm / vis_counts * 0.5 * max(H,W)",
+      "visible_mask": "radii > 0",
+      "vis_counts_initial_value": 1,
+      "denominator": "actual visible count + 1",
+      "scale_grad_threshold_with_refine_window": false,
+      "source": "https://github.com/nerfstudio-project/nerfstudio/blob/9b3cbc79bf239eb3c69e7c288632aab02c4f0bb1/nerfstudio/models/splatfacto.py",
+      "reset_statistics_after_callback": "at callback end after warmup; early warmup return does not clear"
+    },
+    "world_scale_gate": "step > refine_every * reset_alpha_every (24000); preserve inherited condition",
+    "first_world_scale_cull_candidate_step": 29600
+  },
+  "sparse_depth_loss_static_analysis": {
+    "loss_file": "https://github.com/maturk/dn-splatter/blob/811f5cdf342d92d12a9d9a4be185d374c430c184/dn_splatter/losses.py",
+    "requires_neighbor_depth_valid": false,
+    "neighbors_used_for": "RGB edge weights only",
+    "loss_reduction": "mean of masked x terms + mean of masked y terms",
+    "coverage_fraction_multiplies_scalar_loss": false,
+    "invalid_sensor_zero_supervised": false,
+    "test_reference_pixels": 29100252,
+    "test_mask_x_terms_lower_bound": 28967772,
+    "test_mask_y_terms_lower_bound": 28864732,
+    "bounds_are_train_measurements": false,
+    "rgb_weight_bounds_for_unit_rgb": [
+      0.36787944117144233,
+      1.0
+    ],
+    "empty_alpha_depth_fallback": "detached per-frame maximum, so no direct depth gradient at alpha zero; actual area not quantified here",
+    "actual_disabled_losses": [
+      "sparse",
+      "sdf",
+      "depth_smooth",
+      "scale_regularization"
+    ],
+    "normal_supervision_enabled": true,
+    "normal_tv_enabled": true
+  }
+}

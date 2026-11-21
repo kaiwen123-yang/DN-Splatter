@@ -21,31 +21,23 @@
 - 2026-11-20：[全程效果复核](reports/capture-full-review/2026-11-20/overview.md)发现旧同源48张留出中47张PSNR下降，旧239深度反而改善；训练容量/调度和原始网格额外遮挡面需分别解释。
 - 2026-11-20 完成 **Metric3D v2 ViT-Large** 法线替换对照。184 个测试视角上，B0/B1 的 PSNR 为 15.826 / 16.885 dB，传感器深度 MAE 为 0.492 / 0.336 m。使用同一支持网格流程时，10 cm 正确覆盖率为 58.88% / 59.02%。[完整实验结果](reports/capture-full-metric3d-30k/20261120-v1/overview.md) · [详细指标解读、图与逐帧 Excel](reports/capture-full-quality/2026-11-21/overview.md)。
 - 2026-11-21 已将全程对照与复算材料恢复至私有外置盘，并按 SHA256 读回核验。公开视频、几何和报告共 18 个文件。[GitHub Release](https://github.com/kaiwen123-yang/DN-Splatter/releases/tag/capture-full-metric3d-30k-20261120-v1) · [归档与发布回执](reports/capture-full-metric3d-30k/archive-20261121.json)。
+- 2026-11-21：新增[质量原因复核](reports/capture-quality-review/2026-11-21/overview.md)和[B2完整质量改进计划](docs/14_capture_quality_plan.md)；计划尚未执行。
 - 目标不是仅安装成功，而是尽可能在一个持续执行的任务中完成上述完整流程。
 - 原论文历史实现与论文公式存在待核实差异，首轮结果应标记为“固定历史官方实现的单场景基线”，不能提前称完整论文复现成功。
 
 ## 从这里开始
 
-复查这次运行可使用[本地协调记录](prompts/local_capture_metric3d.md)、[服务器执行约定](prompts/autodl_capture_metric3d.md)、[基线复核](reports/capture-full-review/2026-11-20/overview.md)、[实验计划](docs/11_capture_metric3d_plan.md)、[机器协议](configs/capture_metric3d_protocol.json)和[法线接入约定](docs/12_metric3d_normal_adapter.md)。
+**当前要执行的是一次完整B2质量改进，方案已提交，服务器尚未因此自动启动。** 新增复核发现：B1 step1600净删80.11%高斯，后半程拟合继续退化；01294–01306局部估计位姿与参考RGB不符。已有B1法线替换及归档全部完成。
 
-本轮从 ViT-Large 全量推理和相同初始化出发，完成 30k、全部 val/test 逐帧与分时段比较、全程视频、B1 原始 Poisson 和 B0/B1 同参数[支持约束网格](docs/13_capture_supported_mesh.md)。Metric3D 深度用于诊断，训练沿用原米制传感器 Z。
+- [质量原因与证据](reports/capture-quality-review/2026-11-21/overview.md)
+- [B2完整执行计划](docs/14_capture_quality_plan.md) · [机器协议](configs/capture_quality_protocol.json) · [真实运行状态](reports/capture-full-quality-v2/latest.json)
+- [本地Codex协调提示词](prompts/local_capture_quality.md) · [AutoDL完整执行提示词](prompts/autodl_capture_quality.md)
 
-复用已有Blackwell训练环境；推理依赖需要时单独隔离，不照装旧Torch requirements。全部CPU/GPU授权继续，按实测主存顺序安排阶段。B0、s01、VR的原始输入和结果保留。本轮不同时修训练采样、延长240k、加深度补洞或扫参数，无新增小训练和阶段审阅门槛。
+整轮包含现成B1六checkpoint全val、局部位姿纠正、可靠初始化补充、从头240k与完整留出/视频、原生sensor TSDF/模型TSDF/支持Poisson。复用已有环境和先验，保持主划分及真实传感器监督，不重复短训练和阶段审批；各实际结果尚待执行填写。
 
-[首段提取](prompts/local_capture_geometry.md)、[首段几何](prompts/autodl_capture_geometry.md)、[s01训练](prompts/autodl_capture_s01_train.md)、[全程初测](prompts/autodl_capture_full_test.md)及docs/08/09/10保留为历史重放依据；其停止点不适用于当前任务。[基准第二轮](prompts/autodl_round2.md)仍保留，不自动并行启动。
+[Metric3D B1计划](docs/11_capture_metric3d_plan.md)、[法线接口](docs/12_metric3d_normal_adapter.md)、[支持网格](docs/13_capture_supported_mesh.md)和旧提示词保留为已完成阶段/接口依据。B1的“只换法线”限制不适用于当前明确记录的B2联合改动。初次VR、s01和full旧入口不自动重跑。
 
-[首轮启动提示词](prompts/autodl_first_run.md) 作为历史执行入口保留；无需重复安装或重新训练已经完成的 VR Room。
-
-读取顺序：
-
-1. [AGENTS.md](AGENTS.md)：本项目执行约束。
-2. [总执行计划](docs/00_execution_plan.md)：阶段、完成条件、持续执行方式。
-3. [环境检查与隔离](docs/01_autodl_isolation.md)：现有环境复用、项目独立前缀、学术加速。
-4. [VR Room 执行手册](docs/02_vr_room_runbook.md)：真实参数、断点续训、评估与网格。
-5. [源码与协议审计](docs/03_source_audit.md)：当前 main 与历史候选的差异。
-6. [结果交付约定](docs/05_result_contract.md)：哪些证据进 Git，哪些大文件保留并登记。
-
-机器可读计划：当前 [Metric3D完整对照协议](configs/capture_metric3d_protocol.json)；已执行的 [全程初测协议](configs/capture_full_test_protocol.json)、 [s01训练协议](configs/capture_s01_train_protocol.json)、[首段几何协议](configs/capture_geometry_protocol.json)和[bag审计协议](configs/capture_bag_audit.json)保留原计划快照；[基准第二轮协议](configs/round2_protocol.json)保留待后续安排。[首轮协议](configs/vr_room_protocol.json) 保留原计划字段，VR实际完成情况以 `reports/vr-room-iphone-30k/` 和 `reports/latest_status.json` 为准，不能作为capture的完成标记。
+读取顺序：AGENTS.md → 本次质量复核 → docs/14 → configs/capture_quality_protocol.json → 对应执行提示词。环境隔离与GitHub网络仍遵循docs/01，历史源码依据见docs/03。原实验数据/指标/协议保持可追溯，不能以计划字段冒充实测完成。
 
 ## GitHub：优先 AutoDL 官方学术加速
 
