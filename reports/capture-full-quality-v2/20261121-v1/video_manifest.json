@@ -1,0 +1,53 @@
+{
+  "video": {
+    "path": ".local/runs/capture-full-quality-v2-20261121-v1/video/reference_B1_B2_public.mp4",
+    "bytes": 484070855,
+    "sha256": "4f6f01184be7dd303617f2c688e7b54aad6a86e89e53aa9d031cb29bc0a61c9c"
+  },
+  "frames": 1846,
+  "duration_s": 368.92,
+  "redacted_frames": [
+    1743,
+    1744,
+    1745,
+    1746,
+    1747,
+    1748,
+    1749,
+    1750,
+    1751,
+    1752,
+    1753,
+    1754,
+    1755,
+    1756,
+    1757,
+    1758,
+    1759,
+    1760,
+    1761,
+    1762,
+    1763,
+    1764,
+    1765,
+    1766,
+    1767,
+    1768,
+    1769,
+    1770,
+    1771,
+    1772
+  ],
+  "all_pts_equal_B1": true,
+  "selected_checkpoint": {
+    "path": ".local/runs/capture-full-quality-v2-20261121-v1/training/capture-full-b2/dn-splatter/quality-v2/nerfstudio_models/step-000209999.ckpt",
+    "bytes": 568111157,
+    "sha256": "6cb4203b6a22df19c686f403de99d3d4f4b54b5b0022148cce7c1e34a96838a9"
+  },
+  "worst_frames": [
+    "frame_00308",
+    "frame_00329",
+    "frame_01108",
+    "frame_01419"
+  ]
+}

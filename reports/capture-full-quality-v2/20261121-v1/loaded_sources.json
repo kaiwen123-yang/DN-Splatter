@@ -1,0 +1,18 @@
+{
+  "model": {
+    "path": "/root/autodl-tmp/DN-Splatter/.local/upstream/dn-splatter/dn_splatter/dn_model.py",
+    "sha256": "00781070b9f17b9739f18a32a324586ed7461409b26a69d2624a3f0083bebc60"
+  },
+  "datamanager": {
+    "path": "/root/autodl-tmp/DN-Splatter/.local/upstream/dn-splatter/dn_splatter/dn_datamanager.py",
+    "sha256": "22e64acbc023d933ecaa92e5fb0098d5302db409b716a817dc4232d149989405"
+  },
+  "trainer": {
+    "path": "/root/autodl-tmp/DN-Splatter/.local/conda/dn-splatter-bw/lib/python3.10/site-packages/nerfstudio/engine/trainer.py",
+    "sha256": "3fe6669b13e8c3bd2820c323aa1e2ed67f7857d0516041a26654df9917e19036"
+  },
+  "optimizers": {
+    "path": "/root/autodl-tmp/DN-Splatter/.local/conda/dn-splatter-bw/lib/python3.10/site-packages/nerfstudio/engine/optimizers.py",
+    "sha256": "1922eb660918f9e48cc6ce56d6a797e2e36b6d2b6ebb4680f906d6c0c33d344d"
+  }
+}

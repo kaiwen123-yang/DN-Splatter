@@ -1,0 +1,8 @@
+{
+  "selected": "supported_poisson",
+  "coverage_gate_passed": true,
+  "eligible": [
+    "model_tsdf",
+    "supported_poisson"
+  ]
+}

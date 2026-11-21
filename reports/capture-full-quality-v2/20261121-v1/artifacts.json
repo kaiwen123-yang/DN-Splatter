@@ -1,0 +1,190 @@
+{
+  "run_id": "capture-full-quality-v2-20261121-v1",
+  "artifacts": [
+    {
+      "path": ".local/runs/capture-full-quality-v2-20261121-v1/delivery/experiment_logs.zip",
+      "bytes": 877305,
+      "sha256": "ab951886832fac9cbadfc03b02a869c48ef42aaca3965e223f6496cd8f768b4f"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v2-20261121-v1/video/reference_B1_B2_public.mp4",
+      "bytes": 484070855,
+      "sha256": "4f6f01184be7dd303617f2c688e7b54aad6a86e89e53aa9d031cb29bc0a61c9c"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v2-20261121-v1/meshes/sensor_tsdf.ply",
+      "bytes": 1507537285,
+      "sha256": "f87865043b3dca5e27e122c4763c212e27763d7901c8b860faf711f9a3702d66"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v2-20261121-v1/meshes/model_tsdf.ply",
+      "bytes": 2029799689,
+      "sha256": "91d9a2de40dff811e2efe4e7ff21560de2c04ab74f1e4b52a5a6a6a8b715c39a"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v2-20261121-v1/meshes/supported/supported.ply",
+      "bytes": 555199888,
+      "sha256": "c0dcf4a342e7de0119e3a1037f4ccd8c6b91955f1b8f44c493e16387d2192fbf"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v2-20261121-v1/geometry/added_tracks.npz",
+      "bytes": 1544368,
+      "sha256": "58d0cd7068d41eb88be9fe6dc76979c9b6d81824eb8ccb72ef2374066fa679de"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v2-20261121-v1/inputs/init_train.ply",
+      "bytes": 55926579,
+      "sha256": "6a7f3c8dffc26f3ef417f5aa1d8962d9a53567d73cb03a8d2c1763c2a7cbf386"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v2-20261121-v1/inputs/transforms.json",
+      "bytes": 1259044,
+      "sha256": "3e173297428839d7de762ce0c4dac5415f1e4cb63d5d8be08a22ee896c3d811e"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v2-20261121-v1/inputs/training_manifest.json",
+      "bytes": 910964,
+      "sha256": "6fa993c6b9e3b6554dec02153516b0fd5f75d97e8b2374a1d6d702e184f63425"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v2-20261121-v1/training/capture-full-b2/dn-splatter/quality-v2/nerfstudio_models/step-000029999.ckpt",
+      "bytes": 714229185,
+      "sha256": "8144fac29cbb70f10c07a779231195125ffd071b9f0069502c9a9b03ebb5ef22"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v2-20261121-v1/training/capture-full-b2/dn-splatter/quality-v2/nerfstudio_models/step-000059999.ckpt",
+      "bytes": 597372609,
+      "sha256": "44dbb5cba337933e384c840249aad8aa8983f658c0506e87d17c4cebd43b81f0"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v2-20261121-v1/training/capture-full-b2/dn-splatter/quality-v2/nerfstudio_models/step-000089999.ckpt",
+      "bytes": 596114113,
+      "sha256": "32ef32023208553097b024e078a7662391334b4bcd87e8d60597a3710f91f7c7"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v2-20261121-v1/training/capture-full-b2/dn-splatter/quality-v2/nerfstudio_models/step-000119999.ckpt",
+      "bytes": 577249601,
+      "sha256": "2cf0429582fe1495cd5f900623694f5a544d6f28483e59c0dc6bbd252c7bb190"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v2-20261121-v1/training/capture-full-b2/dn-splatter/quality-v2/nerfstudio_models/step-000149999.ckpt",
+      "bytes": 568109429,
+      "sha256": "02dd2cfd52b72057fd9ef629035ab8842808a7d457f556dfb750b50c86e7838d"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v2-20261121-v1/training/capture-full-b2/dn-splatter/quality-v2/nerfstudio_models/step-000179999.ckpt",
+      "bytes": 568108213,
+      "sha256": "f59a33cc37f0da4e7ca973b45a66f2665dbd0f5f225ad6c13a069b8d47bc17de"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v2-20261121-v1/training/capture-full-b2/dn-splatter/quality-v2/nerfstudio_models/step-000209999.ckpt",
+      "bytes": 568111157,
+      "sha256": "6cb4203b6a22df19c686f403de99d3d4f4b54b5b0022148cce7c1e34a96838a9"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v2-20261121-v1/training/capture-full-b2/dn-splatter/quality-v2/nerfstudio_models/step-000239999.ckpt",
+      "bytes": 568109877,
+      "sha256": "e05f8153b17b1fd9f17b6abe774ff7144df5b266417f40d034937177b8a1278a"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v2-20261121-v1/training/capture-full-b2/dn-splatter/quality-v2/events.out.tfevents.1795279110.autodl-container-bja8c0fs46-3b3b4908.862271.0",
+      "bytes": 1731300055,
+      "sha256": "f63d35494f4697f87c6c474349051d01c49c673b47c8f248e2b247e7735c07f5"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v2-20261121-v1/state/trainer/samples_000000000.csv",
+      "bytes": 7199047,
+      "sha256": "dde393230f1b60300be596c9bc1735ee11ef4706dbc8caa2e7d2d242fcef3975"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v2-20261121-v1/geometry/pose_01294.jpg",
+      "bytes": 197425,
+      "sha256": "7a7489219e86cbcb38cb576af311db0b849cc5ea6d5e0990befac06ae354a316"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v2-20261121-v1/geometry/pose_01295.jpg",
+      "bytes": 202029,
+      "sha256": "0af23f73c7b9aadcd4e8911e9d3118e4b5e352a0bcb1cd84359fdc5f430ff5d6"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v2-20261121-v1/geometry/pose_01296.jpg",
+      "bytes": 223479,
+      "sha256": "88302a6dddc0a64f3ce4e488dcbbd90ce4a80d7ce9961ed8e5146448d40f2311"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v2-20261121-v1/geometry/pose_01297.jpg",
+      "bytes": 224024,
+      "sha256": "b7ddbfffe5fcb3623c35b55120684d39d28a42251f0d88d065087f46a1cfa8d5"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v2-20261121-v1/geometry/pose_01298.jpg",
+      "bytes": 255764,
+      "sha256": "38bb71c641e8e80f7568d1a5f8c3f996a1b6407e15f8d4ecbba0a916f6325cef"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v2-20261121-v1/geometry/pose_01299.jpg",
+      "bytes": 260343,
+      "sha256": "2d755a14c7e292442f7576aa02459eaf872131ff02afd796975c4ff101c302c7"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v2-20261121-v1/geometry/pose_01300.jpg",
+      "bytes": 295890,
+      "sha256": "f844b34dc1029beee3c7aadf9ffecdc2e2425a9789e3197e2c34abd6f50d0f01"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v2-20261121-v1/geometry/pose_01301.jpg",
+      "bytes": 339109,
+      "sha256": "fc9a1f98900c15e2d2a3a2e8301053dd6d3d42cb34fa45c6933bf5e986dc29cb"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v2-20261121-v1/geometry/pose_01302.jpg",
+      "bytes": 312476,
+      "sha256": "129e26be11ce9ece639a50bf3d745733b676a8937440be5223a19a613652a73d"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v2-20261121-v1/geometry/pose_01303.jpg",
+      "bytes": 325952,
+      "sha256": "2b372a0b63e8a931e429d4a99153b18676ea36ba6a8e80846438c8331c666d6c"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v2-20261121-v1/geometry/pose_01304.jpg",
+      "bytes": 369556,
+      "sha256": "9f9c92b4557781ee77035afe2056a1d75bb4cb5ce7ecdba01336b4c314163096"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v2-20261121-v1/geometry/pose_01305.jpg",
+      "bytes": 349443,
+      "sha256": "46d1c69606bc4c24842b6b8ae183687e07e49506417273a5ac79edddad627d53"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v2-20261121-v1/geometry/pose_01306.jpg",
+      "bytes": 406469,
+      "sha256": "a5a0312a7863acb9374cee0f744ca011e74a034efbfd93df1dc1a7f1cdfab6e9"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v2-20261121-v1/meshes/supported/sample.json",
+      "bytes": 724097,
+      "sha256": "39949850b79f2047a1af5c1c4652592210d72183cfab05cbc821c3aba2ce56c9"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v2-20261121-v1/meshes/supported/fuse.json",
+      "bytes": 472,
+      "sha256": "3b7f38945df16f80d39baf62e1255b9d4307e293baaf313a6dd9e2f1634fb75b"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v2-20261121-v1/meshes/supported/poisson.json",
+      "bytes": 419,
+      "sha256": "80a72187f008b17bfd9fe68f9c3bf88a859110688aaf745a8047973c15843e67"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v2-20261121-v1/meshes/supported/crop.json",
+      "bytes": 3833,
+      "sha256": "6be09c0fa975ddb308f1185c25a2484cf3db884321b0541f039f005c08834ac2"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v2-20261121-v1/meshes/supported/protocol.json",
+      "bytes": 4782,
+      "sha256": "4dde5e6d3c903fd5d247c807dae3d5fcd39c8e9ab616540ef9a720a10b9922a5"
+    }
+  ]
+}

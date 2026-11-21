@@ -1,0 +1,11 @@
+{
+  "step": 0,
+  "frame": "images/frame_01584.png",
+  "loss": {
+    "main_loss": 0.40604501962661743,
+    "scale_reg": 0.0
+  },
+  "normal_nonfinite": 0,
+  "grad_elements": 122209473,
+  "nonfinite_grad": 0
+}

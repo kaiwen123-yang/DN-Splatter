@@ -1,0 +1,93 @@
+{
+  "config": "/root/autodl-tmp/DN-Splatter/.local/runs/capture-full-quality-v2-20261121-v1/training/capture-full-b2/dn-splatter/quality-v2/config.yml",
+  "selected_step": 209999,
+  "final_step": 239999,
+  "noninferiority_gate_passed": true,
+  "baseline": {
+    "psnr": 16.940558630487192,
+    "ssim": 0.6658354459897332,
+    "lpips": 0.4097423965678267
+  },
+  "candidates": [
+    {
+      "step": 29999,
+      "rgb": {
+        "psnr": 23.202737258828204,
+        "ssim": 0.7877713172979977,
+        "lpips": 0.22508110239615906
+      },
+      "depth_MAE_m": 0.1257306523435958,
+      "eligible": true
+    },
+    {
+      "step": 59999,
+      "rgb": {
+        "psnr": 23.56063841736835,
+        "ssim": 0.7932082495611646,
+        "lpips": 0.2169489099279694
+      },
+      "depth_MAE_m": 0.12812287993700763,
+      "eligible": true
+    },
+    {
+      "step": 89999,
+      "rgb": {
+        "psnr": 23.740155095639437,
+        "ssim": 0.7954841793879218,
+        "lpips": 0.21118159580003956
+      },
+      "depth_MAE_m": 0.12615477873243033,
+      "eligible": true
+    },
+    {
+      "step": 119999,
+      "rgb": {
+        "psnr": 23.72801474902941,
+        "ssim": 0.794835125622542,
+        "lpips": 0.21336719782456107
+      },
+      "depth_MAE_m": 0.13176819714701352,
+      "eligible": true
+    },
+    {
+      "step": 149999,
+      "rgb": {
+        "psnr": 24.358091147049613,
+        "ssim": 0.8020992709890656,
+        "lpips": 0.20412831364766412
+      },
+      "depth_MAE_m": 0.12389641217251827,
+      "eligible": true
+    },
+    {
+      "step": 179999,
+      "rgb": {
+        "psnr": 24.45632690968721,
+        "ssim": 0.803418507070645,
+        "lpips": 0.20062878642879103
+      },
+      "depth_MAE_m": 0.12537428790229366,
+      "eligible": true
+    },
+    {
+      "step": 209999,
+      "rgb": {
+        "psnr": 24.644204284833826,
+        "ssim": 0.8045141142995461,
+        "lpips": 0.1990245273741691
+      },
+      "depth_MAE_m": 0.12038714948413506,
+      "eligible": true
+    },
+    {
+      "step": 239999,
+      "rgb": {
+        "psnr": 24.638132209363192,
+        "ssim": 0.80472780375377,
+        "lpips": 0.19782069005558026
+      },
+      "depth_MAE_m": 0.12244986795193105,
+      "eligible": true
+    }
+  ]
+}
