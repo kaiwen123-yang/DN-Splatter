@@ -150,7 +150,7 @@ def public_video():
     target=ASSETS/"reference_B0_B1_public.mp4";tmp=PUB/"public_video.pending.mp4"
     vf=f"drawbox=x=0:y=42:w=iw:h=ih-42:color=0x2d2d2d:t=fill:enable='between(n,{lo},{hi})'"
     run(["ffmpeg","-nostdin","-v","error","-y","-i",src,"-map","0:v:0","-an","-map_metadata","-1","-vf",vf,"-vsync","vfr",
-         "-enc_time_base","1:25","-video_track_timescale","12800","-c:v","libx264","-threads","5","-preset","fast",
+         "-r","25","-enc_time_base","1:25","-video_track_timescale","12800","-c:v","libx264","-threads","5","-preset","fast",
          "-crf","18","-pix_fmt","yuv420p","-movflags","+faststart",tmp])
     after,new_duration,out_pts=movie_probe(tmp)
     check(pts==out_pts and duration==new_duration and
