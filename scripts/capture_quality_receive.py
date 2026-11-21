@@ -1,0 +1,147 @@
+"""Receive the B2 delivery into a sibling of the existing B1 capture-full results."""
+import argparse
+import hashlib
+import io
+import json
+import os
+from pathlib import Path, PurePosixPath
+import re
+import shlex
+import subprocess
+import time
+import zipfile
+
+from capture_archive_transport import ROOT, SERVER, atomic, check, digest, safe_rel, ssh_args, utc
+
+
+def document(path):
+    return json.loads(path.read_text(encoding="utf-8-sig"))
+
+
+PLAN = document(ROOT / "configs/capture_quality_protocol.json")
+ID = PLAN["run_id"]
+RUN = PurePosixPath(".local/runs") / ID
+REPORT = PurePosixPath("reports/capture-full-quality-v2")
+OLD = document(ROOT / "configs/capture_full_test_protocol.json")["paths"]["local_transfer"]
+DEST = ROOT / Path(OLD).parent / ID
+STATE = DEST / "receiver.json"
+
+
+def git(*args):
+    return subprocess.check_output(["git", *args], cwd=ROOT, stderr=subprocess.DEVNULL)
+
+
+def lock_receiver(handle):
+    if os.name == "nt":
+        import msvcrt
+        if not handle.seek(0, 2):
+            handle.write(b"0")
+            handle.flush()
+        handle.seek(0)
+        msvcrt.locking(handle.fileno(), msvcrt.LK_NBLCK, 1)
+    else:
+        import fcntl
+        fcntl.flock(handle, fcntl.LOCK_EX | fcntl.LOCK_NB)
+
+
+def fetch_file(row, ssh):
+    remote = PurePosixPath(safe_rel(row["path"]))
+    check(remote.is_relative_to(RUN) and remote != RUN, "Artifact outside B2 run")
+    size, key = row["bytes"], row["sha256"]
+    check(isinstance(size, int) and size >= 0 and re.fullmatch("[0-9a-f]{64}", key), "Artifact identity")
+    dest = DEST / "artifacts" / remote.relative_to(RUN)
+    check(dest.resolve().is_relative_to((DEST / "artifacts").resolve()), "Local artifact path")
+    if dest.exists():
+        check(dest.stat().st_size == size and digest(dest) == key, "Previously received artifact differs")
+        return
+    dest.parent.mkdir(parents=True, exist_ok=True)
+    part = dest.with_name(dest.name + "." + key[:12] + ".partial")
+    if part.exists() and part.stat().st_size > size:
+        raise ValueError("Partial artifact exceeds declared size")
+    offset = part.stat().st_size if part.exists() else 0
+    atomic(STATE, dict(status="receiving", run_id=ID, utc=utc(), path=str(remote), offset=offset, bytes=size))
+    with part.open("ab") as out:
+        if offset < size:
+            src = shlex.quote(SERVER + "/" + str(remote))
+            subprocess.run([*ssh, f"tail -c +{offset + 1} -- {src}"], check=True,
+                           stdout=out, stderr=subprocess.DEVNULL, stdin=subprocess.DEVNULL)
+    if part.stat().st_size == size and digest(part) != key:
+        # Only this receiver's invalid temporary file is discarded.
+        part.unlink()
+        raise OSError("SHA256 mismatch during receipt")
+    check(part.stat().st_size == size, "Incomplete receipt")
+    part.replace(dest)
+
+
+def receive():
+    ssh = ssh_args()
+    marker = shlex.quote(SERVER + "/" + str(RUN / "state/delivery_ready.json"))
+    data = subprocess.check_output([*ssh, f"if test -s {marker}; then cat {marker}; fi"],
+                                   timeout=40, stderr=subprocess.DEVNULL)
+    if not data.strip():
+        atomic(STATE, dict(status="waiting_for_server_delivery", run_id=ID, pid=os.getpid(), utc=utc()))
+        return False
+    receipt = json.loads(data)
+    commit = receipt["commit"]
+    check(receipt["run_id"] == ID and re.fullmatch("[0-9a-f]{40}", commit), "B2 delivery identity")
+    check(re.fullmatch(r"(?:https://github\.com/|git@github\.com:|ssh://git@github\.com/)kaiwen123-yang/DN-Splatter(?:\.git)?/?",
+                       git("remote", "get-url", "origin").decode().strip(), re.I), "Unexpected remote")
+    git("fetch", "-q", "origin", "main")
+    git("merge-base", "--is-ancestor", commit, "origin/main")
+    git("merge-base", "--is-ancestor", "7359479b407be1b3b8bacd20f9635a3710544a90", commit)
+    subprocess.run([*ssh, f"cd {shlex.quote(SERVER)} && git merge-base --is-ancestor {commit} HEAD"],
+                   check=True, timeout=35, stderr=subprocess.DEVNULL)
+    status = receipt["status"]
+    check(status in ("blocked", "completed"), "Unknown B2 delivery state")
+    rows = receipt.get("artifacts", [])
+    check(len({r["path"] for r in rows}) == len(rows), "Duplicate artifact paths")
+    if status == "completed":
+        extensions = [PurePosixPath(r["path"]).suffix.lower() for r in rows]
+        check(".mp4" in extensions and extensions.count(".ply") >= 3 and ".ckpt" in extensions,
+              "Expected video, three PLY surfaces and checkpoint")
+    with zipfile.ZipFile(io.BytesIO(git("archive", "--format=zip", commit, str(REPORT)))) as archive:
+        for entry in archive.infolist():
+            if entry.is_dir():
+                continue
+            name = PurePosixPath(safe_rel(entry.filename)).relative_to(REPORT)
+            target = DEST / "reports" / name
+            target.parent.mkdir(parents=True, exist_ok=True)
+            content = archive.read(entry)
+            if target.exists():
+                check(hashlib.sha256(content).hexdigest() == digest(target), "Report already exists with different content")
+            else:
+                tmp = target.with_name(target.name + ".part")
+                tmp.write_bytes(content)
+                tmp.replace(target)
+    for row in rows:
+        fetch_file(row, ssh)
+    if git("branch", "--show-current").strip() == b"main":
+        subprocess.run(["git", "merge", "--ff-only", "origin/main"], cwd=ROOT,
+                       stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    atomic(DEST / "server_receipt.json", receipt)
+    atomic(STATE, dict(status="received" if status == "completed" else "server_reported_blocked",
+                       run_id=ID, commit=commit, utc=utc(), pid=os.getpid(), reason=receipt.get("reason"),
+                       verified_files=len(rows), verified_bytes=sum(r["bytes"] for r in rows),
+                       local_head=git("rev-parse", "HEAD").decode().strip(),
+                       github_main=git("rev-parse", "origin/main").decode().strip()))
+    return True
+
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--once", action="store_true")
+    args = parser.parse_args()
+    DEST.mkdir(parents=True, exist_ok=True)
+    with (DEST / "receiver.lock").open("a+b") as handle:
+        lock_receiver(handle)
+        while True:
+            try:
+                if receive() or args.once:
+                    break
+            except (OSError, ValueError, KeyError, subprocess.SubprocessError, zipfile.BadZipFile) as exc:
+                atomic(STATE, dict(status="retrying", run_id=ID, utc=utc(), pid=os.getpid(),
+                                   error_type=type(exc).__name__,
+                                   reason=str(exc) if isinstance(exc, ValueError) else None))
+                if args.once:
+                    raise SystemExit(1) from None
+            time.sleep(60)
