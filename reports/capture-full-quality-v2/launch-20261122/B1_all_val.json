@@ -1,0 +1,264 @@
+{
+  "run_id": "capture-full-quality-v2-20261121-v1",
+  "split": "val",
+  "rows": [
+    {
+      "run_id": "capture-full-quality-v2-20261121-v1",
+      "checkpoint": {
+        "step": 5000,
+        "gaussians": 233461,
+        "path": ".local/runs/capture-full-metric3d-30k-20261120-v1/training/capture-full/dn-splatter/2026-11-20_173253/nerfstudio_models/step-000005000.ckpt",
+        "bytes": 187888493,
+        "sha256": "f7454810158c479ebd304638ce0900254c03708353a2730f7a85020261f89a93"
+      },
+      "split": "val",
+      "frame_count": 184,
+      "config_sha256": "3f090fbd7824b070ef12ee6f8ba5c09a2f4f5254ccf7328f8c8ab1412c8c9634",
+      "membership_sha256": "2997ebfa59c5ec86c380a00e6dc1537a937c9821c00bc96ca3553f83f9e67fd5",
+      "reference_pixels": 29222080,
+      "invalid_prediction_pixels": 0,
+      "depth_pixel_pooled": {
+        "MAE_m": 0.27887128374066583,
+        "RMSE_m": 0.6219136940229677,
+        "AbsRel": 0.09635311775174878,
+        "absolute_error_P50_m": 0.10090517997741699,
+        "absolute_error_P95_m": 1.1637575745582573
+      },
+      "depth_conditional_pooled": {
+        "MAE_m": 0.27887128374066583,
+        "RMSE_m": 0.6219136940229677,
+        "AbsRel": 0.09635311775174878,
+        "absolute_error_P50_m": 0.10090517997741699,
+        "absolute_error_P95_m": 1.1637575745582573
+      },
+      "depth_frame_means": {
+        "MAE_m": 0.2887870073369265,
+        "RMSE_m": 0.5679318376597887,
+        "AbsRel": 0.0927187513369713,
+        "absolute_error_P50_m": 0.13832892088786417,
+        "absolute_error_P95_m": 1.0408776901338406
+      },
+      "rgb_frame_means": {
+        "psnr": 16.431485766949862,
+        "ssim": 0.6162999353331068,
+        "lpips": 0.4911124226839646
+      },
+      "sha256": "829a515c3d9e900da34636791c7cdf77478d818ab99065ed8193c97de3659da7"
+    },
+    {
+      "run_id": "capture-full-quality-v2-20261121-v1",
+      "checkpoint": {
+        "step": 10000,
+        "gaussians": 358385,
+        "path": ".local/runs/capture-full-metric3d-30k-20261120-v1/training/capture-full/dn-splatter/2026-11-20_173253/nerfstudio_models/step-000010000.ckpt",
+        "bytes": 277833517,
+        "sha256": "3fb47e3446df9e7079d74f9851dcf0d315c5f85fdf30177b6f6434373a953aa4"
+      },
+      "split": "val",
+      "frame_count": 184,
+      "config_sha256": "3f090fbd7824b070ef12ee6f8ba5c09a2f4f5254ccf7328f8c8ab1412c8c9634",
+      "membership_sha256": "2997ebfa59c5ec86c380a00e6dc1537a937c9821c00bc96ca3553f83f9e67fd5",
+      "reference_pixels": 29222080,
+      "invalid_prediction_pixels": 0,
+      "depth_pixel_pooled": {
+        "MAE_m": 0.24571676554917327,
+        "RMSE_m": 0.5671816463429251,
+        "AbsRel": 0.07968612333349488,
+        "absolute_error_P50_m": 0.08788061141967773,
+        "absolute_error_P95_m": 0.9925117492675781
+      },
+      "depth_conditional_pooled": {
+        "MAE_m": 0.24571676554917327,
+        "RMSE_m": 0.5671816463429251,
+        "AbsRel": 0.07968612333349488,
+        "absolute_error_P50_m": 0.08788061141967773,
+        "absolute_error_P95_m": 0.9925117492675781
+      },
+      "depth_frame_means": {
+        "MAE_m": 0.27704812470795226,
+        "RMSE_m": 0.5316045695682748,
+        "AbsRel": 0.08382851546995795,
+        "absolute_error_P50_m": 0.1645048259878936,
+        "absolute_error_P95_m": 0.8180879362899319
+      },
+      "rgb_frame_means": {
+        "psnr": 18.15587830543518,
+        "ssim": 0.6699157839883929,
+        "lpips": 0.4331462579252927
+      },
+      "sha256": "6c86da049459f85017f8b5f4e9a49a2efdfaf0941fdcb0f9715f438e5bb66588"
+    },
+    {
+      "run_id": "capture-full-quality-v2-20261121-v1",
+      "checkpoint": {
+        "step": 15000,
+        "gaussians": 349480,
+        "path": ".local/runs/capture-full-metric3d-30k-20261120-v1/training/capture-full/dn-splatter/2026-11-20_173253/nerfstudio_models/step-000015000.ckpt",
+        "bytes": 271421741,
+        "sha256": "8fbe93a52a83a7d410ad755dac4473de0c5d673bac7c33da622ee0196b5edc26"
+      },
+      "split": "val",
+      "frame_count": 184,
+      "config_sha256": "3f090fbd7824b070ef12ee6f8ba5c09a2f4f5254ccf7328f8c8ab1412c8c9634",
+      "membership_sha256": "2997ebfa59c5ec86c380a00e6dc1537a937c9821c00bc96ca3553f83f9e67fd5",
+      "reference_pixels": 29222080,
+      "invalid_prediction_pixels": 0,
+      "depth_pixel_pooled": {
+        "MAE_m": 0.4325969797669343,
+        "RMSE_m": 0.9286571113209092,
+        "AbsRel": 0.13373524187347854,
+        "absolute_error_P50_m": 0.12095814943313599,
+        "absolute_error_P95_m": 2.2191774964332573
+      },
+      "depth_conditional_pooled": {
+        "MAE_m": 0.4325969797669343,
+        "RMSE_m": 0.9286571113209092,
+        "AbsRel": 0.13373524187347854,
+        "absolute_error_P50_m": 0.12095814943313599,
+        "absolute_error_P95_m": 2.2191774964332573
+      },
+      "depth_frame_means": {
+        "MAE_m": 0.4920676201343347,
+        "RMSE_m": 0.7493941478084101,
+        "AbsRel": 0.14175861258100908,
+        "absolute_error_P50_m": 0.32663238609371625,
+        "absolute_error_P95_m": 1.438125414425588
+      },
+      "rgb_frame_means": {
+        "psnr": 17.091148487899613,
+        "ssim": 0.6350247676929702,
+        "lpips": 0.4656718459142291
+      },
+      "sha256": "9b496b09e3d843ad9121c61382d1722847d5b77f43ba9943c3fef94ca9193af9"
+    },
+    {
+      "run_id": "capture-full-quality-v2-20261121-v1",
+      "checkpoint": {
+        "step": 20000,
+        "gaussians": 217832,
+        "path": ".local/runs/capture-full-metric3d-30k-20261120-v1/training/capture-full/dn-splatter/2026-11-20_173253/nerfstudio_models/step-000020000.ckpt",
+        "bytes": 176635181,
+        "sha256": "7aad35a26d1508ba2217c460b7ab198097bc5ef393bd45f3091a60be5e1c03f2"
+      },
+      "split": "val",
+      "frame_count": 184,
+      "config_sha256": "3f090fbd7824b070ef12ee6f8ba5c09a2f4f5254ccf7328f8c8ab1412c8c9634",
+      "membership_sha256": "2997ebfa59c5ec86c380a00e6dc1537a937c9821c00bc96ca3553f83f9e67fd5",
+      "reference_pixels": 29222080,
+      "invalid_prediction_pixels": 0,
+      "depth_pixel_pooled": {
+        "MAE_m": 0.1883518339601212,
+        "RMSE_m": 0.49467432072964995,
+        "AbsRel": 0.06096261996636706,
+        "absolute_error_P50_m": 0.06576395034790039,
+        "absolute_error_P95_m": 0.702834641933439
+      },
+      "depth_conditional_pooled": {
+        "MAE_m": 0.1883518339601212,
+        "RMSE_m": 0.49467432072964995,
+        "AbsRel": 0.06096261996636706,
+        "absolute_error_P50_m": 0.06576395034790039,
+        "absolute_error_P95_m": 0.702834641933439
+      },
+      "depth_frame_means": {
+        "MAE_m": 0.20543036262503914,
+        "RMSE_m": 0.46752247229937693,
+        "AbsRel": 0.062317153817033566,
+        "absolute_error_P50_m": 0.09282307739814986,
+        "absolute_error_P95_m": 0.7254919974214352
+      },
+      "rgb_frame_means": {
+        "psnr": 18.02162277698517,
+        "ssim": 0.6762113797923793,
+        "lpips": 0.4053092296032802
+      },
+      "sha256": "748dd59f793c4a8f9e313ae3b3e921f30dcfea0d9d6761caf901d249ead9786d"
+    },
+    {
+      "run_id": "capture-full-quality-v2-20261121-v1",
+      "checkpoint": {
+        "step": 25000,
+        "gaussians": 188848,
+        "path": ".local/runs/capture-full-metric3d-30k-20261120-v1/training/capture-full/dn-splatter/2026-11-20_173253/nerfstudio_models/step-000025000.ckpt",
+        "bytes": 155767213,
+        "sha256": "50b7462ce359f5b38ee1248ef0b0e8b8bb0d81b2249afbb03f945e40168744c5"
+      },
+      "split": "val",
+      "frame_count": 184,
+      "config_sha256": "3f090fbd7824b070ef12ee6f8ba5c09a2f4f5254ccf7328f8c8ab1412c8c9634",
+      "membership_sha256": "2997ebfa59c5ec86c380a00e6dc1537a937c9821c00bc96ca3553f83f9e67fd5",
+      "reference_pixels": 29222080,
+      "invalid_prediction_pixels": 0,
+      "depth_pixel_pooled": {
+        "MAE_m": 0.20353234224999478,
+        "RMSE_m": 0.5028036779098384,
+        "AbsRel": 0.06439987627933375,
+        "absolute_error_P50_m": 0.07140350341796875,
+        "absolute_error_P95_m": 0.7794189691543565
+      },
+      "depth_conditional_pooled": {
+        "MAE_m": 0.20353234224999478,
+        "RMSE_m": 0.5028036779098384,
+        "AbsRel": 0.06439987627933375,
+        "absolute_error_P50_m": 0.07140350341796875,
+        "absolute_error_P95_m": 0.7794189691543565
+      },
+      "depth_frame_means": {
+        "MAE_m": 0.22844347288642985,
+        "RMSE_m": 0.48663539711590725,
+        "AbsRel": 0.0679428849973556,
+        "absolute_error_P50_m": 0.11200337929894096,
+        "absolute_error_P95_m": 0.7943584533408279
+      },
+      "rgb_frame_means": {
+        "psnr": 18.221498909203902,
+        "ssim": 0.6786351249269817,
+        "lpips": 0.39873034782383754
+      },
+      "sha256": "ef7fa5324e0ca1c9dad9a8d2a32f78b61dd99a1271f34146677673139fac3635"
+    },
+    {
+      "run_id": "capture-full-quality-v2-20261121-v1",
+      "checkpoint": {
+        "step": 29999,
+        "gaussians": 171417,
+        "path": ".local/runs/capture-full-metric3d-30k-20261120-v1/training/capture-full/dn-splatter/2026-11-20_173253/nerfstudio_models/step-000029999.ckpt",
+        "bytes": 143216237,
+        "sha256": "51cea461bf2b045d5c3b87bd465ce05c775ae515e7f5b2eec76998b88e2cfc45"
+      },
+      "split": "val",
+      "frame_count": 184,
+      "config_sha256": "3f090fbd7824b070ef12ee6f8ba5c09a2f4f5254ccf7328f8c8ab1412c8c9634",
+      "membership_sha256": "2997ebfa59c5ec86c380a00e6dc1537a937c9821c00bc96ca3553f83f9e67fd5",
+      "reference_pixels": 29222080,
+      "invalid_prediction_pixels": 0,
+      "depth_pixel_pooled": {
+        "MAE_m": 0.31265587458840177,
+        "RMSE_m": 0.694563565057478,
+        "AbsRel": 0.09138945158237848,
+        "absolute_error_P50_m": 0.08254337310791016,
+        "absolute_error_P95_m": 1.4914447247982014
+      },
+      "depth_conditional_pooled": {
+        "MAE_m": 0.31265587458840177,
+        "RMSE_m": 0.694563565057478,
+        "AbsRel": 0.09138945158237848,
+        "absolute_error_P50_m": 0.08254337310791016,
+        "absolute_error_P95_m": 1.4914447247982014
+      },
+      "depth_frame_means": {
+        "MAE_m": 0.34645415927641304,
+        "RMSE_m": 0.5937655451699525,
+        "AbsRel": 0.09680024540320865,
+        "absolute_error_P50_m": 0.18083770514425376,
+        "absolute_error_P95_m": 1.1895261847697518
+      },
+      "rgb_frame_means": {
+        "psnr": 16.940558630487192,
+        "ssim": 0.6658354459897332,
+        "lpips": 0.4097423965678267
+      },
+      "sha256": "e784138edc670915279d33ec10c5e849aa5b87a592e57cf2a7b8ebf4b5c658b8"
+    }
+  ]
+}

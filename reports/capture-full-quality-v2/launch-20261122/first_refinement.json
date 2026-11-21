@@ -1,0 +1,34 @@
+{
+  "step": 5600,
+  "before": 2071347,
+  "eligible": true,
+  "split_children": 61920,
+  "duplicates": 691,
+  "cull_union": 922955,
+  "masks": {
+    "opacity": 891995,
+    "world": 0,
+    "screen": 0,
+    "parent": 30960
+  },
+  "exclusive_overlap_bits_opacity_world_screen_parent": [
+    1211003,
+    891995,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    30960,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "after": 1211003,
+  "opacity_reset": false
+}

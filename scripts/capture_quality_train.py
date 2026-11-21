@@ -115,6 +115,13 @@ def main():
             from capture_quality_eval import evaluate
             evaluate(canonical,node,"val")
     if saved==TOTAL-1:
+        if not (RUN/"training_complete.json").is_file():
+            with numpy_scalar_scope():
+                ck=torch.load(latest,map_location="cpu",weights_only=True,mmap=True)
+            check(ck["step"]==saved and ck["b2_recovery"]["manifest"]==manifest,"terminal recovery checkpoint")
+            means=next(v for k,v in ck["pipeline"].items() if k.endswith("gauss_params.means"))
+            write(RUN/"training_complete.json",dict(step=saved,updates=saved+1,gaussians=len(means),
+                  config=str(canonical),**record(latest)))
         select(canonical)
         return
     cfg.max_num_iterations=TOTAL-(saved+1)

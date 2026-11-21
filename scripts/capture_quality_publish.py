@@ -76,8 +76,11 @@ def main():
                  ev/"surfaces_val.json",ev/"surfaces_test.json",RUN/"video/video_manifest.json",RUN/"b1_val/curve.json"]:
         shutil.copyfile(path,REPORT/path.name)
     for path in sorted((STATE/"trainer").glob("first_batch_*.json")): shutil.copyfile(path,REPORT/path.name)
-    for path in (STATE/"trainer/refinement.jsonl",STATE/"stages.jsonl"):
-        zipped_report(path,REPORT/(path.name+".gz"))
+    zipped_report(STATE/"trainer/refinement.jsonl",REPORT/"refinement.jsonl.gz")
+    with (STATE/"stages.jsonl").open() as src,gzip.open(REPORT/"stage_timing.jsonl.gz","wt",encoding="utf-8") as dst:
+        for line in src:
+            stage=json.loads(line)
+            print(json.dumps({k:v for k,v in stage.items() if k not in ("command","cwd")}),file=dst)
     for path in [*ev.glob("*/*.json"),*ev.glob("surface_frames*.json"),*(RUN/"b1_val").glob("step*.json")]:
         label=path.parent.name+"_"+path.name+".gz"
         zipped_report(path,REPORT/label)

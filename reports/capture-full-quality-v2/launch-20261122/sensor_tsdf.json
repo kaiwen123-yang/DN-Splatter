@@ -1,0 +1,5977 @@
+{
+  "mesh": {
+    "path": ".local/runs/capture-full-quality-v2-20261121-v1/meshes/sensor_tsdf.ply",
+    "bytes": 1507537285,
+    "sha256": "f87865043b3dca5e27e122c4763c212e27763d7901c8b860faf711f9a3702d66"
+  },
+  "vertices": 22838378,
+  "triangles": 31638067,
+  "voxel_length_m": 0.01,
+  "sdf_trunc_m": 0.04,
+  "depth_scale": 1.0,
+  "depth_trunc": 6.000001,
+  "depth_sampling_stride": 1,
+  "views": [
+    {
+      "id": "frame_00000",
+      "valid": 156910
+    },
+    {
+      "id": "frame_00001",
+      "valid": 159527
+    },
+    {
+      "id": "frame_00002",
+      "valid": 165089
+    },
+    {
+      "id": "frame_00003",
+      "valid": 167061
+    },
+    {
+      "id": "frame_00004",
+      "valid": 164110
+    },
+    {
+      "id": "frame_00005",
+      "valid": 162253
+    },
+    {
+      "id": "frame_00006",
+      "valid": 160168
+    },
+    {
+      "id": "frame_00007",
+      "valid": 159928
+    },
+    {
+      "id": "frame_00010",
+      "valid": 154387
+    },
+    {
+      "id": "frame_00011",
+      "valid": 153014
+    },
+    {
+      "id": "frame_00012",
+      "valid": 162449
+    },
+    {
+      "id": "frame_00013",
+      "valid": 171262
+    },
+    {
+      "id": "frame_00014",
+      "valid": 181636
+    },
+    {
+      "id": "frame_00015",
+      "valid": 196708
+    },
+    {
+      "id": "frame_00016",
+      "valid": 202314
+    },
+    {
+      "id": "frame_00017",
+      "valid": 205625
+    },
+    {
+      "id": "frame_00020",
+      "valid": 201120
+    },
+    {
+      "id": "frame_00021",
+      "valid": 197542
+    },
+    {
+      "id": "frame_00022",
+      "valid": 197457
+    },
+    {
+      "id": "frame_00023",
+      "valid": 197193
+    },
+    {
+      "id": "frame_00024",
+      "valid": 203584
+    },
+    {
+      "id": "frame_00025",
+      "valid": 207922
+    },
+    {
+      "id": "frame_00026",
+      "valid": 208500
+    },
+    {
+      "id": "frame_00027",
+      "valid": 211049
+    },
+    {
+      "id": "frame_00030",
+      "valid": 249742
+    },
+    {
+      "id": "frame_00031",
+      "valid": 249881
+    },
+    {
+      "id": "frame_00032",
+      "valid": 249546
+    },
+    {
+      "id": "frame_00033",
+      "valid": 256573
+    },
+    {
+      "id": "frame_00034",
+      "valid": 249894
+    },
+    {
+      "id": "frame_00035",
+      "valid": 245945
+    },
+    {
+      "id": "frame_00036",
+      "valid": 242690
+    },
+    {
+      "id": "frame_00037",
+      "valid": 236401
+    },
+    {
+      "id": "frame_00040",
+      "valid": 232757
+    },
+    {
+      "id": "frame_00041",
+      "valid": 233325
+    },
+    {
+      "id": "frame_00042",
+      "valid": 223537
+    },
+    {
+      "id": "frame_00043",
+      "valid": 230151
+    },
+    {
+      "id": "frame_00044",
+      "valid": 225736
+    },
+    {
+      "id": "frame_00045",
+      "valid": 215517
+    },
+    {
+      "id": "frame_00046",
+      "valid": 214500
+    },
+    {
+      "id": "frame_00047",
+      "valid": 178040
+    },
+    {
+      "id": "frame_00050",
+      "valid": 191974
+    },
+    {
+      "id": "frame_00051",
+      "valid": 202697
+    },
+    {
+      "id": "frame_00052",
+      "valid": 203994
+    },
+    {
+      "id": "frame_00053",
+      "valid": 204978
+    },
+    {
+      "id": "frame_00054",
+      "valid": 206357
+    },
+    {
+      "id": "frame_00055",
+      "valid": 205023
+    },
+    {
+      "id": "frame_00056",
+      "valid": 239054
+    },
+    {
+      "id": "frame_00057",
+      "valid": 247938
+    },
+    {
+      "id": "frame_00060",
+      "valid": 247665
+    },
+    {
+      "id": "frame_00061",
+      "valid": 252498
+    },
+    {
+      "id": "frame_00062",
+      "valid": 257971
+    },
+    {
+      "id": "frame_00063",
+      "valid": 256130
+    },
+    {
+      "id": "frame_00064",
+      "valid": 256619
+    },
+    {
+      "id": "frame_00065",
+      "valid": 260158
+    },
+    {
+      "id": "frame_00066",
+      "valid": 242202
+    },
+    {
+      "id": "frame_00067",
+      "valid": 242048
+    },
+    {
+      "id": "frame_00070",
+      "valid": 236181
+    },
+    {
+      "id": "frame_00071",
+      "valid": 226500
+    },
+    {
+      "id": "frame_00072",
+      "valid": 221760
+    },
+    {
+      "id": "frame_00073",
+      "valid": 217040
+    },
+    {
+      "id": "frame_00074",
+      "valid": 217367
+    },
+    {
+      "id": "frame_00075",
+      "valid": 216596
+    },
+    {
+      "id": "frame_00076",
+      "valid": 216792
+    },
+    {
+      "id": "frame_00077",
+      "valid": 213070
+    },
+    {
+      "id": "frame_00080",
+      "valid": 199617
+    },
+    {
+      "id": "frame_00081",
+      "valid": 191506
+    },
+    {
+      "id": "frame_00082",
+      "valid": 201246
+    },
+    {
+      "id": "frame_00083",
+      "valid": 210456
+    },
+    {
+      "id": "frame_00084",
+      "valid": 210126
+    },
+    {
+      "id": "frame_00085",
+      "valid": 211578
+    },
+    {
+      "id": "frame_00086",
+      "valid": 206601
+    },
+    {
+      "id": "frame_00087",
+      "valid": 196990
+    },
+    {
+      "id": "frame_00090",
+      "valid": 179698
+    },
+    {
+      "id": "frame_00091",
+      "valid": 178908
+    },
+    {
+      "id": "frame_00092",
+      "valid": 178443
+    },
+    {
+      "id": "frame_00093",
+      "valid": 179753
+    },
+    {
+      "id": "frame_00094",
+      "valid": 178410
+    },
+    {
+      "id": "frame_00095",
+      "valid": 170328
+    },
+    {
+      "id": "frame_00096",
+      "valid": 171462
+    },
+    {
+      "id": "frame_00097",
+      "valid": 182274
+    },
+    {
+      "id": "frame_00100",
+      "valid": 186259
+    },
+    {
+      "id": "frame_00101",
+      "valid": 183883
+    },
+    {
+      "id": "frame_00102",
+      "valid": 183011
+    },
+    {
+      "id": "frame_00103",
+      "valid": 188275
+    },
+    {
+      "id": "frame_00104",
+      "valid": 189638
+    },
+    {
+      "id": "frame_00105",
+      "valid": 181445
+    },
+    {
+      "id": "frame_00106",
+      "valid": 191184
+    },
+    {
+      "id": "frame_00107",
+      "valid": 191087
+    },
+    {
+      "id": "frame_00110",
+      "valid": 188659
+    },
+    {
+      "id": "frame_00111",
+      "valid": 189790
+    },
+    {
+      "id": "frame_00112",
+      "valid": 183675
+    },
+    {
+      "id": "frame_00113",
+      "valid": 184037
+    },
+    {
+      "id": "frame_00114",
+      "valid": 185788
+    },
+    {
+      "id": "frame_00115",
+      "valid": 173904
+    },
+    {
+      "id": "frame_00116",
+      "valid": 177274
+    },
+    {
+      "id": "frame_00117",
+      "valid": 182414
+    },
+    {
+      "id": "frame_00120",
+      "valid": 179232
+    },
+    {
+      "id": "frame_00121",
+      "valid": 185759
+    },
+    {
+      "id": "frame_00122",
+      "valid": 180000
+    },
+    {
+      "id": "frame_00123",
+      "valid": 178458
+    },
+    {
+      "id": "frame_00124",
+      "valid": 184492
+    },
+    {
+      "id": "frame_00125",
+      "valid": 188656
+    },
+    {
+      "id": "frame_00126",
+      "valid": 185484
+    },
+    {
+      "id": "frame_00127",
+      "valid": 186816
+    },
+    {
+      "id": "frame_00130",
+      "valid": 210293
+    },
+    {
+      "id": "frame_00131",
+      "valid": 199480
+    },
+    {
+      "id": "frame_00132",
+      "valid": 199333
+    },
+    {
+      "id": "frame_00133",
+      "valid": 187840
+    },
+    {
+      "id": "frame_00134",
+      "valid": 194220
+    },
+    {
+      "id": "frame_00135",
+      "valid": 190319
+    },
+    {
+      "id": "frame_00136",
+      "valid": 191579
+    },
+    {
+      "id": "frame_00137",
+      "valid": 194881
+    },
+    {
+      "id": "frame_00140",
+      "valid": 197803
+    },
+    {
+      "id": "frame_00141",
+      "valid": 206547
+    },
+    {
+      "id": "frame_00142",
+      "valid": 208430
+    },
+    {
+      "id": "frame_00143",
+      "valid": 219691
+    },
+    {
+      "id": "frame_00144",
+      "valid": 223175
+    },
+    {
+      "id": "frame_00145",
+      "valid": 219597
+    },
+    {
+      "id": "frame_00146",
+      "valid": 209119
+    },
+    {
+      "id": "frame_00147",
+      "valid": 196313
+    },
+    {
+      "id": "frame_00150",
+      "valid": 214321
+    },
+    {
+      "id": "frame_00151",
+      "valid": 217193
+    },
+    {
+      "id": "frame_00152",
+      "valid": 213936
+    },
+    {
+      "id": "frame_00153",
+      "valid": 214054
+    },
+    {
+      "id": "frame_00154",
+      "valid": 201988
+    },
+    {
+      "id": "frame_00155",
+      "valid": 199409
+    },
+    {
+      "id": "frame_00156",
+      "valid": 202768
+    },
+    {
+      "id": "frame_00157",
+      "valid": 198508
+    },
+    {
+      "id": "frame_00160",
+      "valid": 190499
+    },
+    {
+      "id": "frame_00161",
+      "valid": 187658
+    },
+    {
+      "id": "frame_00162",
+      "valid": 184442
+    },
+    {
+      "id": "frame_00163",
+      "valid": 190552
+    },
+    {
+      "id": "frame_00164",
+      "valid": 222522
+    },
+    {
+      "id": "frame_00165",
+      "valid": 223886
+    },
+    {
+      "id": "frame_00166",
+      "valid": 210257
+    },
+    {
+      "id": "frame_00167",
+      "valid": 199398
+    },
+    {
+      "id": "frame_00170",
+      "valid": 181510
+    },
+    {
+      "id": "frame_00171",
+      "valid": 175895
+    },
+    {
+      "id": "frame_00172",
+      "valid": 181289
+    },
+    {
+      "id": "frame_00173",
+      "valid": 181937
+    },
+    {
+      "id": "frame_00174",
+      "valid": 177743
+    },
+    {
+      "id": "frame_00175",
+      "valid": 168806
+    },
+    {
+      "id": "frame_00176",
+      "valid": 167381
+    },
+    {
+      "id": "frame_00177",
+      "valid": 170273
+    },
+    {
+      "id": "frame_00180",
+      "valid": 170215
+    },
+    {
+      "id": "frame_00181",
+      "valid": 173471
+    },
+    {
+      "id": "frame_00182",
+      "valid": 163404
+    },
+    {
+      "id": "frame_00183",
+      "valid": 174956
+    },
+    {
+      "id": "frame_00184",
+      "valid": 177889
+    },
+    {
+      "id": "frame_00185",
+      "valid": 165931
+    },
+    {
+      "id": "frame_00186",
+      "valid": 169730
+    },
+    {
+      "id": "frame_00187",
+      "valid": 173552
+    },
+    {
+      "id": "frame_00190",
+      "valid": 178427
+    },
+    {
+      "id": "frame_00191",
+      "valid": 173843
+    },
+    {
+      "id": "frame_00192",
+      "valid": 181968
+    },
+    {
+      "id": "frame_00193",
+      "valid": 182683
+    },
+    {
+      "id": "frame_00194",
+      "valid": 172092
+    },
+    {
+      "id": "frame_00195",
+      "valid": 168668
+    },
+    {
+      "id": "frame_00196",
+      "valid": 171070
+    },
+    {
+      "id": "frame_00197",
+      "valid": 173114
+    },
+    {
+      "id": "frame_00200",
+      "valid": 154334
+    },
+    {
+      "id": "frame_00201",
+      "valid": 148169
+    },
+    {
+      "id": "frame_00202",
+      "valid": 139679
+    },
+    {
+      "id": "frame_00203",
+      "valid": 146779
+    },
+    {
+      "id": "frame_00204",
+      "valid": 140548
+    },
+    {
+      "id": "frame_00205",
+      "valid": 139294
+    },
+    {
+      "id": "frame_00206",
+      "valid": 138879
+    },
+    {
+      "id": "frame_00207",
+      "valid": 144263
+    },
+    {
+      "id": "frame_00210",
+      "valid": 150013
+    },
+    {
+      "id": "frame_00211",
+      "valid": 144307
+    },
+    {
+      "id": "frame_00212",
+      "valid": 137229
+    },
+    {
+      "id": "frame_00213",
+      "valid": 131787
+    },
+    {
+      "id": "frame_00214",
+      "valid": 130125
+    },
+    {
+      "id": "frame_00215",
+      "valid": 118499
+    },
+    {
+      "id": "frame_00216",
+      "valid": 113310
+    },
+    {
+      "id": "frame_00217",
+      "valid": 119155
+    },
+    {
+      "id": "frame_00220",
+      "valid": 161041
+    },
+    {
+      "id": "frame_00221",
+      "valid": 159744
+    },
+    {
+      "id": "frame_00222",
+      "valid": 158024
+    },
+    {
+      "id": "frame_00223",
+      "valid": 153935
+    },
+    {
+      "id": "frame_00224",
+      "valid": 152825
+    },
+    {
+      "id": "frame_00225",
+      "valid": 154213
+    },
+    {
+      "id": "frame_00226",
+      "valid": 143050
+    },
+    {
+      "id": "frame_00227",
+      "valid": 138152
+    },
+    {
+      "id": "frame_00230",
+      "valid": 138251
+    },
+    {
+      "id": "frame_00231",
+      "valid": 135092
+    },
+    {
+      "id": "frame_00232",
+      "valid": 135299
+    },
+    {
+      "id": "frame_00233",
+      "valid": 128549
+    },
+    {
+      "id": "frame_00234",
+      "valid": 127889
+    },
+    {
+      "id": "frame_00235",
+      "valid": 126068
+    },
+    {
+      "id": "frame_00236",
+      "valid": 128626
+    },
+    {
+      "id": "frame_00237",
+      "valid": 138100
+    },
+    {
+      "id": "frame_00240",
+      "valid": 132419
+    },
+    {
+      "id": "frame_00241",
+      "valid": 130901
+    },
+    {
+      "id": "frame_00242",
+      "valid": 132843
+    },
+    {
+      "id": "frame_00243",
+      "valid": 152373
+    },
+    {
+      "id": "frame_00244",
+      "valid": 156116
+    },
+    {
+      "id": "frame_00245",
+      "valid": 160226
+    },
+    {
+      "id": "frame_00246",
+      "valid": 159058
+    },
+    {
+      "id": "frame_00247",
+      "valid": 158853
+    },
+    {
+      "id": "frame_00250",
+      "valid": 159926
+    },
+    {
+      "id": "frame_00251",
+      "valid": 162029
+    },
+    {
+      "id": "frame_00252",
+      "valid": 172231
+    },
+    {
+      "id": "frame_00253",
+      "valid": 175081
+    },
+    {
+      "id": "frame_00254",
+      "valid": 164630
+    },
+    {
+      "id": "frame_00255",
+      "valid": 166757
+    },
+    {
+      "id": "frame_00256",
+      "valid": 151536
+    },
+    {
+      "id": "frame_00257",
+      "valid": 154438
+    },
+    {
+      "id": "frame_00260",
+      "valid": 161779
+    },
+    {
+      "id": "frame_00261",
+      "valid": 160687
+    },
+    {
+      "id": "frame_00262",
+      "valid": 150464
+    },
+    {
+      "id": "frame_00263",
+      "valid": 147958
+    },
+    {
+      "id": "frame_00264",
+      "valid": 144309
+    },
+    {
+      "id": "frame_00265",
+      "valid": 148817
+    },
+    {
+      "id": "frame_00266",
+      "valid": 153672
+    },
+    {
+      "id": "frame_00267",
+      "valid": 147758
+    },
+    {
+      "id": "frame_00270",
+      "valid": 148404
+    },
+    {
+      "id": "frame_00271",
+      "valid": 153614
+    },
+    {
+      "id": "frame_00272",
+      "valid": 155689
+    },
+    {
+      "id": "frame_00273",
+      "valid": 155016
+    },
+    {
+      "id": "frame_00274",
+      "valid": 163533
+    },
+    {
+      "id": "frame_00275",
+      "valid": 158670
+    },
+    {
+      "id": "frame_00276",
+      "valid": 155532
+    },
+    {
+      "id": "frame_00277",
+      "valid": 150313
+    },
+    {
+      "id": "frame_00280",
+      "valid": 150625
+    },
+    {
+      "id": "frame_00281",
+      "valid": 149841
+    },
+    {
+      "id": "frame_00282",
+      "valid": 154717
+    },
+    {
+      "id": "frame_00283",
+      "valid": 151876
+    },
+    {
+      "id": "frame_00284",
+      "valid": 152359
+    },
+    {
+      "id": "frame_00285",
+      "valid": 148396
+    },
+    {
+      "id": "frame_00286",
+      "valid": 145062
+    },
+    {
+      "id": "frame_00287",
+      "valid": 152271
+    },
+    {
+      "id": "frame_00290",
+      "valid": 154893
+    },
+    {
+      "id": "frame_00291",
+      "valid": 156517
+    },
+    {
+      "id": "frame_00292",
+      "valid": 141422
+    },
+    {
+      "id": "frame_00293",
+      "valid": 138260
+    },
+    {
+      "id": "frame_00294",
+      "valid": 144173
+    },
+    {
+      "id": "frame_00295",
+      "valid": 148485
+    },
+    {
+      "id": "frame_00296",
+      "valid": 145131
+    },
+    {
+      "id": "frame_00297",
+      "valid": 138779
+    },
+    {
+      "id": "frame_00300",
+      "valid": 134544
+    },
+    {
+      "id": "frame_00301",
+      "valid": 139990
+    },
+    {
+      "id": "frame_00302",
+      "valid": 145143
+    },
+    {
+      "id": "frame_00303",
+      "valid": 140362
+    },
+    {
+      "id": "frame_00304",
+      "valid": 142184
+    },
+    {
+      "id": "frame_00305",
+      "valid": 133738
+    },
+    {
+      "id": "frame_00306",
+      "valid": 129222
+    },
+    {
+      "id": "frame_00307",
+      "valid": 147560
+    },
+    {
+      "id": "frame_00310",
+      "valid": 138093
+    },
+    {
+      "id": "frame_00311",
+      "valid": 137495
+    },
+    {
+      "id": "frame_00312",
+      "valid": 134147
+    },
+    {
+      "id": "frame_00313",
+      "valid": 132683
+    },
+    {
+      "id": "frame_00314",
+      "valid": 136772
+    },
+    {
+      "id": "frame_00315",
+      "valid": 151781
+    },
+    {
+      "id": "frame_00316",
+      "valid": 154224
+    },
+    {
+      "id": "frame_00317",
+      "valid": 157015
+    },
+    {
+      "id": "frame_00320",
+      "valid": 144252
+    },
+    {
+      "id": "frame_00321",
+      "valid": 145128
+    },
+    {
+      "id": "frame_00322",
+      "valid": 157247
+    },
+    {
+      "id": "frame_00323",
+      "valid": 156017
+    },
+    {
+      "id": "frame_00324",
+      "valid": 155743
+    },
+    {
+      "id": "frame_00325",
+      "valid": 150784
+    },
+    {
+      "id": "frame_00326",
+      "valid": 157319
+    },
+    {
+      "id": "frame_00327",
+      "valid": 157778
+    },
+    {
+      "id": "frame_00330",
+      "valid": 190691
+    },
+    {
+      "id": "frame_00331",
+      "valid": 186787
+    },
+    {
+      "id": "frame_00332",
+      "valid": 185284
+    },
+    {
+      "id": "frame_00333",
+      "valid": 179279
+    },
+    {
+      "id": "frame_00334",
+      "valid": 177782
+    },
+    {
+      "id": "frame_00335",
+      "valid": 187752
+    },
+    {
+      "id": "frame_00336",
+      "valid": 187438
+    },
+    {
+      "id": "frame_00337",
+      "valid": 185559
+    },
+    {
+      "id": "frame_00340",
+      "valid": 159383
+    },
+    {
+      "id": "frame_00341",
+      "valid": 159356
+    },
+    {
+      "id": "frame_00342",
+      "valid": 159492
+    },
+    {
+      "id": "frame_00343",
+      "valid": 153844
+    },
+    {
+      "id": "frame_00344",
+      "valid": 149786
+    },
+    {
+      "id": "frame_00345",
+      "valid": 155522
+    },
+    {
+      "id": "frame_00346",
+      "valid": 138770
+    },
+    {
+      "id": "frame_00347",
+      "valid": 140756
+    },
+    {
+      "id": "frame_00350",
+      "valid": 142176
+    },
+    {
+      "id": "frame_00351",
+      "valid": 149150
+    },
+    {
+      "id": "frame_00352",
+      "valid": 140738
+    },
+    {
+      "id": "frame_00353",
+      "valid": 138782
+    },
+    {
+      "id": "frame_00354",
+      "valid": 147848
+    },
+    {
+      "id": "frame_00355",
+      "valid": 153191
+    },
+    {
+      "id": "frame_00356",
+      "valid": 148818
+    },
+    {
+      "id": "frame_00357",
+      "valid": 149128
+    },
+    {
+      "id": "frame_00360",
+      "valid": 157701
+    },
+    {
+      "id": "frame_00361",
+      "valid": 161245
+    },
+    {
+      "id": "frame_00362",
+      "valid": 159158
+    },
+    {
+      "id": "frame_00363",
+      "valid": 161309
+    },
+    {
+      "id": "frame_00364",
+      "valid": 158719
+    },
+    {
+      "id": "frame_00365",
+      "valid": 158429
+    },
+    {
+      "id": "frame_00366",
+      "valid": 153290
+    },
+    {
+      "id": "frame_00367",
+      "valid": 141024
+    },
+    {
+      "id": "frame_00370",
+      "valid": 159793
+    },
+    {
+      "id": "frame_00371",
+      "valid": 163011
+    },
+    {
+      "id": "frame_00372",
+      "valid": 162135
+    },
+    {
+      "id": "frame_00373",
+      "valid": 163765
+    },
+    {
+      "id": "frame_00374",
+      "valid": 154866
+    },
+    {
+      "id": "frame_00375",
+      "valid": 152810
+    },
+    {
+      "id": "frame_00376",
+      "valid": 149980
+    },
+    {
+      "id": "frame_00377",
+      "valid": 147645
+    },
+    {
+      "id": "frame_00380",
+      "valid": 143956
+    },
+    {
+      "id": "frame_00381",
+      "valid": 139673
+    },
+    {
+      "id": "frame_00382",
+      "valid": 136991
+    },
+    {
+      "id": "frame_00383",
+      "valid": 139374
+    },
+    {
+      "id": "frame_00384",
+      "valid": 127952
+    },
+    {
+      "id": "frame_00385",
+      "valid": 115466
+    },
+    {
+      "id": "frame_00386",
+      "valid": 97102
+    },
+    {
+      "id": "frame_00387",
+      "valid": 86665
+    },
+    {
+      "id": "frame_00390",
+      "valid": 88960
+    },
+    {
+      "id": "frame_00391",
+      "valid": 86153
+    },
+    {
+      "id": "frame_00392",
+      "valid": 88434
+    },
+    {
+      "id": "frame_00393",
+      "valid": 96777
+    },
+    {
+      "id": "frame_00394",
+      "valid": 103690
+    },
+    {
+      "id": "frame_00395",
+      "valid": 94082
+    },
+    {
+      "id": "frame_00396",
+      "valid": 89471
+    },
+    {
+      "id": "frame_00397",
+      "valid": 88281
+    },
+    {
+      "id": "frame_00400",
+      "valid": 98682
+    },
+    {
+      "id": "frame_00401",
+      "valid": 93461
+    },
+    {
+      "id": "frame_00402",
+      "valid": 96117
+    },
+    {
+      "id": "frame_00403",
+      "valid": 92142
+    },
+    {
+      "id": "frame_00404",
+      "valid": 91641
+    },
+    {
+      "id": "frame_00405",
+      "valid": 110110
+    },
+    {
+      "id": "frame_00406",
+      "valid": 114237
+    },
+    {
+      "id": "frame_00407",
+      "valid": 113688
+    },
+    {
+      "id": "frame_00410",
+      "valid": 113022
+    },
+    {
+      "id": "frame_00411",
+      "valid": 108515
+    },
+    {
+      "id": "frame_00412",
+      "valid": 93522
+    },
+    {
+      "id": "frame_00413",
+      "valid": 81257
+    },
+    {
+      "id": "frame_00414",
+      "valid": 81932
+    },
+    {
+      "id": "frame_00415",
+      "valid": 95474
+    },
+    {
+      "id": "frame_00416",
+      "valid": 88416
+    },
+    {
+      "id": "frame_00417",
+      "valid": 82765
+    },
+    {
+      "id": "frame_00420",
+      "valid": 50514
+    },
+    {
+      "id": "frame_00421",
+      "valid": 52789
+    },
+    {
+      "id": "frame_00422",
+      "valid": 54238
+    },
+    {
+      "id": "frame_00423",
+      "valid": 48148
+    },
+    {
+      "id": "frame_00424",
+      "valid": 44354
+    },
+    {
+      "id": "frame_00425",
+      "valid": 31907
+    },
+    {
+      "id": "frame_00426",
+      "valid": 26773
+    },
+    {
+      "id": "frame_00427",
+      "valid": 36079
+    },
+    {
+      "id": "frame_00430",
+      "valid": 29666
+    },
+    {
+      "id": "frame_00431",
+      "valid": 27802
+    },
+    {
+      "id": "frame_00432",
+      "valid": 28244
+    },
+    {
+      "id": "frame_00433",
+      "valid": 29353
+    },
+    {
+      "id": "frame_00434",
+      "valid": 28553
+    },
+    {
+      "id": "frame_00435",
+      "valid": 37660
+    },
+    {
+      "id": "frame_00436",
+      "valid": 49876
+    },
+    {
+      "id": "frame_00437",
+      "valid": 62315
+    },
+    {
+      "id": "frame_00440",
+      "valid": 77385
+    },
+    {
+      "id": "frame_00441",
+      "valid": 79808
+    },
+    {
+      "id": "frame_00442",
+      "valid": 83573
+    },
+    {
+      "id": "frame_00443",
+      "valid": 87319
+    },
+    {
+      "id": "frame_00444",
+      "valid": 90307
+    },
+    {
+      "id": "frame_00445",
+      "valid": 100777
+    },
+    {
+      "id": "frame_00446",
+      "valid": 99652
+    },
+    {
+      "id": "frame_00447",
+      "valid": 97628
+    },
+    {
+      "id": "frame_00450",
+      "valid": 111580
+    },
+    {
+      "id": "frame_00451",
+      "valid": 104773
+    },
+    {
+      "id": "frame_00452",
+      "valid": 110339
+    },
+    {
+      "id": "frame_00453",
+      "valid": 108191
+    },
+    {
+      "id": "frame_00454",
+      "valid": 100988
+    },
+    {
+      "id": "frame_00455",
+      "valid": 98180
+    },
+    {
+      "id": "frame_00456",
+      "valid": 96653
+    },
+    {
+      "id": "frame_00457",
+      "valid": 96686
+    },
+    {
+      "id": "frame_00460",
+      "valid": 100651
+    },
+    {
+      "id": "frame_00461",
+      "valid": 98527
+    },
+    {
+      "id": "frame_00462",
+      "valid": 103298
+    },
+    {
+      "id": "frame_00463",
+      "valid": 109740
+    },
+    {
+      "id": "frame_00464",
+      "valid": 119535
+    },
+    {
+      "id": "frame_00465",
+      "valid": 110173
+    },
+    {
+      "id": "frame_00466",
+      "valid": 108856
+    },
+    {
+      "id": "frame_00467",
+      "valid": 97055
+    },
+    {
+      "id": "frame_00470",
+      "valid": 102392
+    },
+    {
+      "id": "frame_00471",
+      "valid": 118812
+    },
+    {
+      "id": "frame_00472",
+      "valid": 115225
+    },
+    {
+      "id": "frame_00473",
+      "valid": 115967
+    },
+    {
+      "id": "frame_00474",
+      "valid": 104919
+    },
+    {
+      "id": "frame_00475",
+      "valid": 121012
+    },
+    {
+      "id": "frame_00476",
+      "valid": 117322
+    },
+    {
+      "id": "frame_00477",
+      "valid": 114804
+    },
+    {
+      "id": "frame_00480",
+      "valid": 118209
+    },
+    {
+      "id": "frame_00481",
+      "valid": 120849
+    },
+    {
+      "id": "frame_00482",
+      "valid": 115519
+    },
+    {
+      "id": "frame_00483",
+      "valid": 118743
+    },
+    {
+      "id": "frame_00484",
+      "valid": 120634
+    },
+    {
+      "id": "frame_00485",
+      "valid": 130565
+    },
+    {
+      "id": "frame_00486",
+      "valid": 126560
+    },
+    {
+      "id": "frame_00487",
+      "valid": 117090
+    },
+    {
+      "id": "frame_00490",
+      "valid": 107561
+    },
+    {
+      "id": "frame_00491",
+      "valid": 112506
+    },
+    {
+      "id": "frame_00492",
+      "valid": 114763
+    },
+    {
+      "id": "frame_00493",
+      "valid": 107882
+    },
+    {
+      "id": "frame_00494",
+      "valid": 96301
+    },
+    {
+      "id": "frame_00495",
+      "valid": 90518
+    },
+    {
+      "id": "frame_00496",
+      "valid": 91770
+    },
+    {
+      "id": "frame_00497",
+      "valid": 86810
+    },
+    {
+      "id": "frame_00500",
+      "valid": 98330
+    },
+    {
+      "id": "frame_00501",
+      "valid": 97468
+    },
+    {
+      "id": "frame_00502",
+      "valid": 92049
+    },
+    {
+      "id": "frame_00503",
+      "valid": 90487
+    },
+    {
+      "id": "frame_00504",
+      "valid": 99065
+    },
+    {
+      "id": "frame_00505",
+      "valid": 101604
+    },
+    {
+      "id": "frame_00506",
+      "valid": 101961
+    },
+    {
+      "id": "frame_00507",
+      "valid": 107942
+    },
+    {
+      "id": "frame_00510",
+      "valid": 98523
+    },
+    {
+      "id": "frame_00511",
+      "valid": 102438
+    },
+    {
+      "id": "frame_00512",
+      "valid": 119487
+    },
+    {
+      "id": "frame_00513",
+      "valid": 117170
+    },
+    {
+      "id": "frame_00514",
+      "valid": 120698
+    },
+    {
+      "id": "frame_00515",
+      "valid": 121722
+    },
+    {
+      "id": "frame_00516",
+      "valid": 119985
+    },
+    {
+      "id": "frame_00517",
+      "valid": 110069
+    },
+    {
+      "id": "frame_00520",
+      "valid": 123315
+    },
+    {
+      "id": "frame_00521",
+      "valid": 121062
+    },
+    {
+      "id": "frame_00522",
+      "valid": 117439
+    },
+    {
+      "id": "frame_00523",
+      "valid": 112094
+    },
+    {
+      "id": "frame_00524",
+      "valid": 91856
+    },
+    {
+      "id": "frame_00525",
+      "valid": 93721
+    },
+    {
+      "id": "frame_00526",
+      "valid": 111292
+    },
+    {
+      "id": "frame_00527",
+      "valid": 111444
+    },
+    {
+      "id": "frame_00530",
+      "valid": 92727
+    },
+    {
+      "id": "frame_00531",
+      "valid": 100039
+    },
+    {
+      "id": "frame_00532",
+      "valid": 97259
+    },
+    {
+      "id": "frame_00533",
+      "valid": 108736
+    },
+    {
+      "id": "frame_00534",
+      "valid": 107773
+    },
+    {
+      "id": "frame_00535",
+      "valid": 113060
+    },
+    {
+      "id": "frame_00536",
+      "valid": 109530
+    },
+    {
+      "id": "frame_00537",
+      "valid": 106767
+    },
+    {
+      "id": "frame_00540",
+      "valid": 111846
+    },
+    {
+      "id": "frame_00541",
+      "valid": 110602
+    },
+    {
+      "id": "frame_00542",
+      "valid": 109791
+    },
+    {
+      "id": "frame_00543",
+      "valid": 110325
+    },
+    {
+      "id": "frame_00544",
+      "valid": 105397
+    },
+    {
+      "id": "frame_00545",
+      "valid": 104875
+    },
+    {
+      "id": "frame_00546",
+      "valid": 105170
+    },
+    {
+      "id": "frame_00547",
+      "valid": 121788
+    },
+    {
+      "id": "frame_00550",
+      "valid": 117189
+    },
+    {
+      "id": "frame_00551",
+      "valid": 116617
+    },
+    {
+      "id": "frame_00552",
+      "valid": 108143
+    },
+    {
+      "id": "frame_00553",
+      "valid": 106014
+    },
+    {
+      "id": "frame_00554",
+      "valid": 101706
+    },
+    {
+      "id": "frame_00555",
+      "valid": 104197
+    },
+    {
+      "id": "frame_00556",
+      "valid": 107223
+    },
+    {
+      "id": "frame_00557",
+      "valid": 103153
+    },
+    {
+      "id": "frame_00560",
+      "valid": 93847
+    },
+    {
+      "id": "frame_00561",
+      "valid": 99345
+    },
+    {
+      "id": "frame_00562",
+      "valid": 95349
+    },
+    {
+      "id": "frame_00563",
+      "valid": 103040
+    },
+    {
+      "id": "frame_00564",
+      "valid": 95452
+    },
+    {
+      "id": "frame_00565",
+      "valid": 82731
+    },
+    {
+      "id": "frame_00566",
+      "valid": 78031
+    },
+    {
+      "id": "frame_00567",
+      "valid": 101463
+    },
+    {
+      "id": "frame_00570",
+      "valid": 94847
+    },
+    {
+      "id": "frame_00571",
+      "valid": 76638
+    },
+    {
+      "id": "frame_00572",
+      "valid": 83883
+    },
+    {
+      "id": "frame_00573",
+      "valid": 91693
+    },
+    {
+      "id": "frame_00574",
+      "valid": 101807
+    },
+    {
+      "id": "frame_00575",
+      "valid": 114353
+    },
+    {
+      "id": "frame_00576",
+      "valid": 123632
+    },
+    {
+      "id": "frame_00577",
+      "valid": 125417
+    },
+    {
+      "id": "frame_00580",
+      "valid": 118984
+    },
+    {
+      "id": "frame_00581",
+      "valid": 125887
+    },
+    {
+      "id": "frame_00582",
+      "valid": 121675
+    },
+    {
+      "id": "frame_00583",
+      "valid": 114507
+    },
+    {
+      "id": "frame_00584",
+      "valid": 112152
+    },
+    {
+      "id": "frame_00585",
+      "valid": 105816
+    },
+    {
+      "id": "frame_00586",
+      "valid": 94615
+    },
+    {
+      "id": "frame_00587",
+      "valid": 96038
+    },
+    {
+      "id": "frame_00590",
+      "valid": 96183
+    },
+    {
+      "id": "frame_00591",
+      "valid": 99048
+    },
+    {
+      "id": "frame_00592",
+      "valid": 96463
+    },
+    {
+      "id": "frame_00593",
+      "valid": 93128
+    },
+    {
+      "id": "frame_00594",
+      "valid": 94449
+    },
+    {
+      "id": "frame_00595",
+      "valid": 102479
+    },
+    {
+      "id": "frame_00596",
+      "valid": 97776
+    },
+    {
+      "id": "frame_00597",
+      "valid": 104398
+    },
+    {
+      "id": "frame_00600",
+      "valid": 101884
+    },
+    {
+      "id": "frame_00601",
+      "valid": 92311
+    },
+    {
+      "id": "frame_00602",
+      "valid": 102714
+    },
+    {
+      "id": "frame_00603",
+      "valid": 106741
+    },
+    {
+      "id": "frame_00604",
+      "valid": 92390
+    },
+    {
+      "id": "frame_00605",
+      "valid": 77652
+    },
+    {
+      "id": "frame_00606",
+      "valid": 76524
+    },
+    {
+      "id": "frame_00607",
+      "valid": 73247
+    },
+    {
+      "id": "frame_00610",
+      "valid": 89559
+    },
+    {
+      "id": "frame_00611",
+      "valid": 77787
+    },
+    {
+      "id": "frame_00612",
+      "valid": 87368
+    },
+    {
+      "id": "frame_00613",
+      "valid": 80952
+    },
+    {
+      "id": "frame_00614",
+      "valid": 93977
+    },
+    {
+      "id": "frame_00615",
+      "valid": 111409
+    },
+    {
+      "id": "frame_00616",
+      "valid": 98139
+    },
+    {
+      "id": "frame_00617",
+      "valid": 102213
+    },
+    {
+      "id": "frame_00620",
+      "valid": 103337
+    },
+    {
+      "id": "frame_00621",
+      "valid": 102275
+    },
+    {
+      "id": "frame_00622",
+      "valid": 110848
+    },
+    {
+      "id": "frame_00623",
+      "valid": 121666
+    },
+    {
+      "id": "frame_00624",
+      "valid": 127523
+    },
+    {
+      "id": "frame_00625",
+      "valid": 120137
+    },
+    {
+      "id": "frame_00626",
+      "valid": 129167
+    },
+    {
+      "id": "frame_00627",
+      "valid": 134766
+    },
+    {
+      "id": "frame_00630",
+      "valid": 121531
+    },
+    {
+      "id": "frame_00631",
+      "valid": 137306
+    },
+    {
+      "id": "frame_00632",
+      "valid": 118037
+    },
+    {
+      "id": "frame_00633",
+      "valid": 124395
+    },
+    {
+      "id": "frame_00634",
+      "valid": 129256
+    },
+    {
+      "id": "frame_00635",
+      "valid": 129564
+    },
+    {
+      "id": "frame_00636",
+      "valid": 123635
+    },
+    {
+      "id": "frame_00637",
+      "valid": 130576
+    },
+    {
+      "id": "frame_00640",
+      "valid": 136869
+    },
+    {
+      "id": "frame_00641",
+      "valid": 140022
+    },
+    {
+      "id": "frame_00642",
+      "valid": 129832
+    },
+    {
+      "id": "frame_00643",
+      "valid": 126810
+    },
+    {
+      "id": "frame_00644",
+      "valid": 134920
+    },
+    {
+      "id": "frame_00645",
+      "valid": 149080
+    },
+    {
+      "id": "frame_00646",
+      "valid": 146093
+    },
+    {
+      "id": "frame_00647",
+      "valid": 143793
+    },
+    {
+      "id": "frame_00650",
+      "valid": 112984
+    },
+    {
+      "id": "frame_00651",
+      "valid": 119663
+    },
+    {
+      "id": "frame_00652",
+      "valid": 129924
+    },
+    {
+      "id": "frame_00653",
+      "valid": 108621
+    },
+    {
+      "id": "frame_00654",
+      "valid": 87801
+    },
+    {
+      "id": "frame_00655",
+      "valid": 91566
+    },
+    {
+      "id": "frame_00656",
+      "valid": 91307
+    },
+    {
+      "id": "frame_00657",
+      "valid": 78605
+    },
+    {
+      "id": "frame_00660",
+      "valid": 83316
+    },
+    {
+      "id": "frame_00661",
+      "valid": 89987
+    },
+    {
+      "id": "frame_00662",
+      "valid": 96157
+    },
+    {
+      "id": "frame_00663",
+      "valid": 91969
+    },
+    {
+      "id": "frame_00664",
+      "valid": 97224
+    },
+    {
+      "id": "frame_00665",
+      "valid": 89219
+    },
+    {
+      "id": "frame_00666",
+      "valid": 76117
+    },
+    {
+      "id": "frame_00667",
+      "valid": 82536
+    },
+    {
+      "id": "frame_00670",
+      "valid": 101561
+    },
+    {
+      "id": "frame_00671",
+      "valid": 109878
+    },
+    {
+      "id": "frame_00672",
+      "valid": 98188
+    },
+    {
+      "id": "frame_00673",
+      "valid": 87745
+    },
+    {
+      "id": "frame_00674",
+      "valid": 84517
+    },
+    {
+      "id": "frame_00675",
+      "valid": 87869
+    },
+    {
+      "id": "frame_00676",
+      "valid": 94691
+    },
+    {
+      "id": "frame_00677",
+      "valid": 89428
+    },
+    {
+      "id": "frame_00680",
+      "valid": 91908
+    },
+    {
+      "id": "frame_00681",
+      "valid": 84898
+    },
+    {
+      "id": "frame_00682",
+      "valid": 107901
+    },
+    {
+      "id": "frame_00683",
+      "valid": 116118
+    },
+    {
+      "id": "frame_00684",
+      "valid": 120720
+    },
+    {
+      "id": "frame_00685",
+      "valid": 123427
+    },
+    {
+      "id": "frame_00686",
+      "valid": 134980
+    },
+    {
+      "id": "frame_00687",
+      "valid": 127180
+    },
+    {
+      "id": "frame_00690",
+      "valid": 145612
+    },
+    {
+      "id": "frame_00691",
+      "valid": 130541
+    },
+    {
+      "id": "frame_00692",
+      "valid": 134502
+    },
+    {
+      "id": "frame_00693",
+      "valid": 138866
+    },
+    {
+      "id": "frame_00694",
+      "valid": 126615
+    },
+    {
+      "id": "frame_00695",
+      "valid": 128253
+    },
+    {
+      "id": "frame_00696",
+      "valid": 137636
+    },
+    {
+      "id": "frame_00697",
+      "valid": 136059
+    },
+    {
+      "id": "frame_00700",
+      "valid": 152930
+    },
+    {
+      "id": "frame_00701",
+      "valid": 143680
+    },
+    {
+      "id": "frame_00702",
+      "valid": 161499
+    },
+    {
+      "id": "frame_00703",
+      "valid": 170978
+    },
+    {
+      "id": "frame_00704",
+      "valid": 165674
+    },
+    {
+      "id": "frame_00705",
+      "valid": 163757
+    },
+    {
+      "id": "frame_00706",
+      "valid": 141371
+    },
+    {
+      "id": "frame_00707",
+      "valid": 103315
+    },
+    {
+      "id": "frame_00710",
+      "valid": 94704
+    },
+    {
+      "id": "frame_00711",
+      "valid": 88752
+    },
+    {
+      "id": "frame_00712",
+      "valid": 89099
+    },
+    {
+      "id": "frame_00713",
+      "valid": 91748
+    },
+    {
+      "id": "frame_00714",
+      "valid": 94605
+    },
+    {
+      "id": "frame_00715",
+      "valid": 86024
+    },
+    {
+      "id": "frame_00716",
+      "valid": 84908
+    },
+    {
+      "id": "frame_00717",
+      "valid": 77979
+    },
+    {
+      "id": "frame_00720",
+      "valid": 93489
+    },
+    {
+      "id": "frame_00721",
+      "valid": 99579
+    },
+    {
+      "id": "frame_00722",
+      "valid": 89327
+    },
+    {
+      "id": "frame_00723",
+      "valid": 83388
+    },
+    {
+      "id": "frame_00724",
+      "valid": 93328
+    },
+    {
+      "id": "frame_00725",
+      "valid": 97336
+    },
+    {
+      "id": "frame_00726",
+      "valid": 112940
+    },
+    {
+      "id": "frame_00727",
+      "valid": 120573
+    },
+    {
+      "id": "frame_00730",
+      "valid": 128920
+    },
+    {
+      "id": "frame_00731",
+      "valid": 125539
+    },
+    {
+      "id": "frame_00732",
+      "valid": 115137
+    },
+    {
+      "id": "frame_00733",
+      "valid": 143256
+    },
+    {
+      "id": "frame_00734",
+      "valid": 165826
+    },
+    {
+      "id": "frame_00735",
+      "valid": 181533
+    },
+    {
+      "id": "frame_00736",
+      "valid": 192318
+    },
+    {
+      "id": "frame_00737",
+      "valid": 202766
+    },
+    {
+      "id": "frame_00740",
+      "valid": 205552
+    },
+    {
+      "id": "frame_00741",
+      "valid": 190476
+    },
+    {
+      "id": "frame_00742",
+      "valid": 168013
+    },
+    {
+      "id": "frame_00743",
+      "valid": 161904
+    },
+    {
+      "id": "frame_00744",
+      "valid": 152698
+    },
+    {
+      "id": "frame_00745",
+      "valid": 147176
+    },
+    {
+      "id": "frame_00746",
+      "valid": 135662
+    },
+    {
+      "id": "frame_00747",
+      "valid": 128375
+    },
+    {
+      "id": "frame_00750",
+      "valid": 123282
+    },
+    {
+      "id": "frame_00751",
+      "valid": 134013
+    },
+    {
+      "id": "frame_00752",
+      "valid": 146581
+    },
+    {
+      "id": "frame_00753",
+      "valid": 159480
+    },
+    {
+      "id": "frame_00754",
+      "valid": 152979
+    },
+    {
+      "id": "frame_00755",
+      "valid": 149696
+    },
+    {
+      "id": "frame_00756",
+      "valid": 161477
+    },
+    {
+      "id": "frame_00757",
+      "valid": 174163
+    },
+    {
+      "id": "frame_00760",
+      "valid": 185217
+    },
+    {
+      "id": "frame_00761",
+      "valid": 177697
+    },
+    {
+      "id": "frame_00762",
+      "valid": 179525
+    },
+    {
+      "id": "frame_00763",
+      "valid": 172594
+    },
+    {
+      "id": "frame_00764",
+      "valid": 155229
+    },
+    {
+      "id": "frame_00765",
+      "valid": 152799
+    },
+    {
+      "id": "frame_00766",
+      "valid": 153192
+    },
+    {
+      "id": "frame_00767",
+      "valid": 157966
+    },
+    {
+      "id": "frame_00770",
+      "valid": 154793
+    },
+    {
+      "id": "frame_00771",
+      "valid": 163140
+    },
+    {
+      "id": "frame_00772",
+      "valid": 152862
+    },
+    {
+      "id": "frame_00773",
+      "valid": 150969
+    },
+    {
+      "id": "frame_00774",
+      "valid": 153465
+    },
+    {
+      "id": "frame_00775",
+      "valid": 157980
+    },
+    {
+      "id": "frame_00776",
+      "valid": 151198
+    },
+    {
+      "id": "frame_00777",
+      "valid": 145383
+    },
+    {
+      "id": "frame_00780",
+      "valid": 144477
+    },
+    {
+      "id": "frame_00781",
+      "valid": 136015
+    },
+    {
+      "id": "frame_00782",
+      "valid": 143731
+    },
+    {
+      "id": "frame_00783",
+      "valid": 155643
+    },
+    {
+      "id": "frame_00784",
+      "valid": 142632
+    },
+    {
+      "id": "frame_00785",
+      "valid": 147257
+    },
+    {
+      "id": "frame_00786",
+      "valid": 161722
+    },
+    {
+      "id": "frame_00787",
+      "valid": 161181
+    },
+    {
+      "id": "frame_00790",
+      "valid": 180418
+    },
+    {
+      "id": "frame_00791",
+      "valid": 180419
+    },
+    {
+      "id": "frame_00792",
+      "valid": 171175
+    },
+    {
+      "id": "frame_00793",
+      "valid": 173690
+    },
+    {
+      "id": "frame_00794",
+      "valid": 182157
+    },
+    {
+      "id": "frame_00795",
+      "valid": 190976
+    },
+    {
+      "id": "frame_00796",
+      "valid": 188152
+    },
+    {
+      "id": "frame_00797",
+      "valid": 187122
+    },
+    {
+      "id": "frame_00800",
+      "valid": 200220
+    },
+    {
+      "id": "frame_00801",
+      "valid": 186233
+    },
+    {
+      "id": "frame_00802",
+      "valid": 180557
+    },
+    {
+      "id": "frame_00803",
+      "valid": 165902
+    },
+    {
+      "id": "frame_00804",
+      "valid": 166706
+    },
+    {
+      "id": "frame_00805",
+      "valid": 149109
+    },
+    {
+      "id": "frame_00806",
+      "valid": 160002
+    },
+    {
+      "id": "frame_00807",
+      "valid": 156292
+    },
+    {
+      "id": "frame_00810",
+      "valid": 166423
+    },
+    {
+      "id": "frame_00811",
+      "valid": 176641
+    },
+    {
+      "id": "frame_00812",
+      "valid": 169709
+    },
+    {
+      "id": "frame_00813",
+      "valid": 178452
+    },
+    {
+      "id": "frame_00814",
+      "valid": 202972
+    },
+    {
+      "id": "frame_00815",
+      "valid": 251031
+    },
+    {
+      "id": "frame_00816",
+      "valid": 259053
+    },
+    {
+      "id": "frame_00817",
+      "valid": 238494
+    },
+    {
+      "id": "frame_00820",
+      "valid": 140735
+    },
+    {
+      "id": "frame_00821",
+      "valid": 152994
+    },
+    {
+      "id": "frame_00822",
+      "valid": 181963
+    },
+    {
+      "id": "frame_00823",
+      "valid": 182770
+    },
+    {
+      "id": "frame_00824",
+      "valid": 184982
+    },
+    {
+      "id": "frame_00825",
+      "valid": 188739
+    },
+    {
+      "id": "frame_00826",
+      "valid": 180802
+    },
+    {
+      "id": "frame_00827",
+      "valid": 193620
+    },
+    {
+      "id": "frame_00830",
+      "valid": 165799
+    },
+    {
+      "id": "frame_00831",
+      "valid": 167981
+    },
+    {
+      "id": "frame_00832",
+      "valid": 161145
+    },
+    {
+      "id": "frame_00833",
+      "valid": 171672
+    },
+    {
+      "id": "frame_00834",
+      "valid": 161003
+    },
+    {
+      "id": "frame_00835",
+      "valid": 156243
+    },
+    {
+      "id": "frame_00836",
+      "valid": 147699
+    },
+    {
+      "id": "frame_00837",
+      "valid": 140269
+    },
+    {
+      "id": "frame_00840",
+      "valid": 128723
+    },
+    {
+      "id": "frame_00841",
+      "valid": 119674
+    },
+    {
+      "id": "frame_00842",
+      "valid": 103204
+    },
+    {
+      "id": "frame_00843",
+      "valid": 96496
+    },
+    {
+      "id": "frame_00844",
+      "valid": 116633
+    },
+    {
+      "id": "frame_00845",
+      "valid": 117953
+    },
+    {
+      "id": "frame_00846",
+      "valid": 123380
+    },
+    {
+      "id": "frame_00847",
+      "valid": 126655
+    },
+    {
+      "id": "frame_00850",
+      "valid": 130950
+    },
+    {
+      "id": "frame_00851",
+      "valid": 135905
+    },
+    {
+      "id": "frame_00852",
+      "valid": 131957
+    },
+    {
+      "id": "frame_00853",
+      "valid": 133963
+    },
+    {
+      "id": "frame_00854",
+      "valid": 126545
+    },
+    {
+      "id": "frame_00855",
+      "valid": 127005
+    },
+    {
+      "id": "frame_00856",
+      "valid": 125745
+    },
+    {
+      "id": "frame_00857",
+      "valid": 125719
+    },
+    {
+      "id": "frame_00860",
+      "valid": 118937
+    },
+    {
+      "id": "frame_00861",
+      "valid": 119834
+    },
+    {
+      "id": "frame_00862",
+      "valid": 130744
+    },
+    {
+      "id": "frame_00863",
+      "valid": 134245
+    },
+    {
+      "id": "frame_00864",
+      "valid": 133520
+    },
+    {
+      "id": "frame_00865",
+      "valid": 131786
+    },
+    {
+      "id": "frame_00866",
+      "valid": 132114
+    },
+    {
+      "id": "frame_00867",
+      "valid": 136325
+    },
+    {
+      "id": "frame_00870",
+      "valid": 142443
+    },
+    {
+      "id": "frame_00871",
+      "valid": 143510
+    },
+    {
+      "id": "frame_00872",
+      "valid": 136954
+    },
+    {
+      "id": "frame_00873",
+      "valid": 145488
+    },
+    {
+      "id": "frame_00874",
+      "valid": 136367
+    },
+    {
+      "id": "frame_00875",
+      "valid": 134889
+    },
+    {
+      "id": "frame_00876",
+      "valid": 139985
+    },
+    {
+      "id": "frame_00877",
+      "valid": 130250
+    },
+    {
+      "id": "frame_00880",
+      "valid": 130180
+    },
+    {
+      "id": "frame_00881",
+      "valid": 141948
+    },
+    {
+      "id": "frame_00882",
+      "valid": 149702
+    },
+    {
+      "id": "frame_00883",
+      "valid": 161191
+    },
+    {
+      "id": "frame_00884",
+      "valid": 185375
+    },
+    {
+      "id": "frame_00885",
+      "valid": 209526
+    },
+    {
+      "id": "frame_00886",
+      "valid": 225584
+    },
+    {
+      "id": "frame_00887",
+      "valid": 238392
+    },
+    {
+      "id": "frame_00890",
+      "valid": 247576
+    },
+    {
+      "id": "frame_00891",
+      "valid": 245621
+    },
+    {
+      "id": "frame_00892",
+      "valid": 254611
+    },
+    {
+      "id": "frame_00893",
+      "valid": 235249
+    },
+    {
+      "id": "frame_00894",
+      "valid": 218134
+    },
+    {
+      "id": "frame_00895",
+      "valid": 201520
+    },
+    {
+      "id": "frame_00896",
+      "valid": 193246
+    },
+    {
+      "id": "frame_00897",
+      "valid": 183762
+    },
+    {
+      "id": "frame_00900",
+      "valid": 164772
+    },
+    {
+      "id": "frame_00901",
+      "valid": 168588
+    },
+    {
+      "id": "frame_00902",
+      "valid": 163722
+    },
+    {
+      "id": "frame_00903",
+      "valid": 154404
+    },
+    {
+      "id": "frame_00904",
+      "valid": 147732
+    },
+    {
+      "id": "frame_00905",
+      "valid": 151540
+    },
+    {
+      "id": "frame_00906",
+      "valid": 145866
+    },
+    {
+      "id": "frame_00907",
+      "valid": 134649
+    },
+    {
+      "id": "frame_00910",
+      "valid": 125759
+    },
+    {
+      "id": "frame_00911",
+      "valid": 120367
+    },
+    {
+      "id": "frame_00912",
+      "valid": 115537
+    },
+    {
+      "id": "frame_00913",
+      "valid": 129651
+    },
+    {
+      "id": "frame_00914",
+      "valid": 137122
+    },
+    {
+      "id": "frame_00915",
+      "valid": 130781
+    },
+    {
+      "id": "frame_00916",
+      "valid": 118063
+    },
+    {
+      "id": "frame_00917",
+      "valid": 127335
+    },
+    {
+      "id": "frame_00920",
+      "valid": 135018
+    },
+    {
+      "id": "frame_00921",
+      "valid": 141594
+    },
+    {
+      "id": "frame_00922",
+      "valid": 148015
+    },
+    {
+      "id": "frame_00923",
+      "valid": 147396
+    },
+    {
+      "id": "frame_00924",
+      "valid": 141105
+    },
+    {
+      "id": "frame_00925",
+      "valid": 153332
+    },
+    {
+      "id": "frame_00926",
+      "valid": 158059
+    },
+    {
+      "id": "frame_00927",
+      "valid": 165735
+    },
+    {
+      "id": "frame_00930",
+      "valid": 191361
+    },
+    {
+      "id": "frame_00931",
+      "valid": 186832
+    },
+    {
+      "id": "frame_00932",
+      "valid": 191870
+    },
+    {
+      "id": "frame_00933",
+      "valid": 184005
+    },
+    {
+      "id": "frame_00934",
+      "valid": 157688
+    },
+    {
+      "id": "frame_00935",
+      "valid": 127603
+    },
+    {
+      "id": "frame_00936",
+      "valid": 133384
+    },
+    {
+      "id": "frame_00937",
+      "valid": 139660
+    },
+    {
+      "id": "frame_00940",
+      "valid": 145011
+    },
+    {
+      "id": "frame_00941",
+      "valid": 147100
+    },
+    {
+      "id": "frame_00942",
+      "valid": 147653
+    },
+    {
+      "id": "frame_00943",
+      "valid": 149797
+    },
+    {
+      "id": "frame_00944",
+      "valid": 152300
+    },
+    {
+      "id": "frame_00945",
+      "valid": 159560
+    },
+    {
+      "id": "frame_00946",
+      "valid": 159346
+    },
+    {
+      "id": "frame_00947",
+      "valid": 157068
+    },
+    {
+      "id": "frame_00950",
+      "valid": 207041
+    },
+    {
+      "id": "frame_00951",
+      "valid": 231320
+    },
+    {
+      "id": "frame_00952",
+      "valid": 241493
+    },
+    {
+      "id": "frame_00953",
+      "valid": 235489
+    },
+    {
+      "id": "frame_00954",
+      "valid": 240191
+    },
+    {
+      "id": "frame_00955",
+      "valid": 230848
+    },
+    {
+      "id": "frame_00956",
+      "valid": 231993
+    },
+    {
+      "id": "frame_00957",
+      "valid": 239130
+    },
+    {
+      "id": "frame_00960",
+      "valid": 211300
+    },
+    {
+      "id": "frame_00961",
+      "valid": 203590
+    },
+    {
+      "id": "frame_00962",
+      "valid": 194175
+    },
+    {
+      "id": "frame_00963",
+      "valid": 180505
+    },
+    {
+      "id": "frame_00964",
+      "valid": 172091
+    },
+    {
+      "id": "frame_00965",
+      "valid": 178754
+    },
+    {
+      "id": "frame_00966",
+      "valid": 174420
+    },
+    {
+      "id": "frame_00967",
+      "valid": 158587
+    },
+    {
+      "id": "frame_00970",
+      "valid": 140131
+    },
+    {
+      "id": "frame_00971",
+      "valid": 141107
+    },
+    {
+      "id": "frame_00972",
+      "valid": 142874
+    },
+    {
+      "id": "frame_00973",
+      "valid": 141939
+    },
+    {
+      "id": "frame_00974",
+      "valid": 141296
+    },
+    {
+      "id": "frame_00975",
+      "valid": 136856
+    },
+    {
+      "id": "frame_00976",
+      "valid": 136978
+    },
+    {
+      "id": "frame_00977",
+      "valid": 135289
+    },
+    {
+      "id": "frame_00980",
+      "valid": 131080
+    },
+    {
+      "id": "frame_00981",
+      "valid": 141446
+    },
+    {
+      "id": "frame_00982",
+      "valid": 158486
+    },
+    {
+      "id": "frame_00983",
+      "valid": 181910
+    },
+    {
+      "id": "frame_00984",
+      "valid": 178857
+    },
+    {
+      "id": "frame_00985",
+      "valid": 177184
+    },
+    {
+      "id": "frame_00986",
+      "valid": 174587
+    },
+    {
+      "id": "frame_00987",
+      "valid": 200798
+    },
+    {
+      "id": "frame_00990",
+      "valid": 168666
+    },
+    {
+      "id": "frame_00991",
+      "valid": 176837
+    },
+    {
+      "id": "frame_00992",
+      "valid": 193932
+    },
+    {
+      "id": "frame_00993",
+      "valid": 190095
+    },
+    {
+      "id": "frame_00994",
+      "valid": 214399
+    },
+    {
+      "id": "frame_00995",
+      "valid": 232437
+    },
+    {
+      "id": "frame_00996",
+      "valid": 246579
+    },
+    {
+      "id": "frame_00997",
+      "valid": 250793
+    },
+    {
+      "id": "frame_01000",
+      "valid": 287939
+    },
+    {
+      "id": "frame_01001",
+      "valid": 293642
+    },
+    {
+      "id": "frame_01002",
+      "valid": 307528
+    },
+    {
+      "id": "frame_01003",
+      "valid": 290298
+    },
+    {
+      "id": "frame_01004",
+      "valid": 297136
+    },
+    {
+      "id": "frame_01005",
+      "valid": 310721
+    },
+    {
+      "id": "frame_01006",
+      "valid": 309109
+    },
+    {
+      "id": "frame_01007",
+      "valid": 305550
+    },
+    {
+      "id": "frame_01010",
+      "valid": 307477
+    },
+    {
+      "id": "frame_01011",
+      "valid": 302620
+    },
+    {
+      "id": "frame_01012",
+      "valid": 317414
+    },
+    {
+      "id": "frame_01013",
+      "valid": 314929
+    },
+    {
+      "id": "frame_01014",
+      "valid": 321810
+    },
+    {
+      "id": "frame_01015",
+      "valid": 318937
+    },
+    {
+      "id": "frame_01016",
+      "valid": 317454
+    },
+    {
+      "id": "frame_01017",
+      "valid": 319650
+    },
+    {
+      "id": "frame_01020",
+      "valid": 314155
+    },
+    {
+      "id": "frame_01021",
+      "valid": 312296
+    },
+    {
+      "id": "frame_01022",
+      "valid": 310680
+    },
+    {
+      "id": "frame_01023",
+      "valid": 310047
+    },
+    {
+      "id": "frame_01024",
+      "valid": 309888
+    },
+    {
+      "id": "frame_01025",
+      "valid": 304524
+    },
+    {
+      "id": "frame_01026",
+      "valid": 295457
+    },
+    {
+      "id": "frame_01027",
+      "valid": 283692
+    },
+    {
+      "id": "frame_01030",
+      "valid": 284592
+    },
+    {
+      "id": "frame_01031",
+      "valid": 276957
+    },
+    {
+      "id": "frame_01032",
+      "valid": 275759
+    },
+    {
+      "id": "frame_01033",
+      "valid": 279620
+    },
+    {
+      "id": "frame_01034",
+      "valid": 293926
+    },
+    {
+      "id": "frame_01035",
+      "valid": 276995
+    },
+    {
+      "id": "frame_01036",
+      "valid": 277288
+    },
+    {
+      "id": "frame_01037",
+      "valid": 287234
+    },
+    {
+      "id": "frame_01040",
+      "valid": 301588
+    },
+    {
+      "id": "frame_01041",
+      "valid": 301645
+    },
+    {
+      "id": "frame_01042",
+      "valid": 314338
+    },
+    {
+      "id": "frame_01043",
+      "valid": 314013
+    },
+    {
+      "id": "frame_01044",
+      "valid": 310528
+    },
+    {
+      "id": "frame_01045",
+      "valid": 292979
+    },
+    {
+      "id": "frame_01046",
+      "valid": 275712
+    },
+    {
+      "id": "frame_01047",
+      "valid": 287121
+    },
+    {
+      "id": "frame_01050",
+      "valid": 311877
+    },
+    {
+      "id": "frame_01051",
+      "valid": 316848
+    },
+    {
+      "id": "frame_01052",
+      "valid": 324522
+    },
+    {
+      "id": "frame_01053",
+      "valid": 339469
+    },
+    {
+      "id": "frame_01054",
+      "valid": 352498
+    },
+    {
+      "id": "frame_01055",
+      "valid": 354744
+    },
+    {
+      "id": "frame_01056",
+      "valid": 345356
+    },
+    {
+      "id": "frame_01057",
+      "valid": 342433
+    },
+    {
+      "id": "frame_01060",
+      "valid": 339502
+    },
+    {
+      "id": "frame_01061",
+      "valid": 323637
+    },
+    {
+      "id": "frame_01062",
+      "valid": 318085
+    },
+    {
+      "id": "frame_01063",
+      "valid": 318240
+    },
+    {
+      "id": "frame_01064",
+      "valid": 320896
+    },
+    {
+      "id": "frame_01065",
+      "valid": 314297
+    },
+    {
+      "id": "frame_01066",
+      "valid": 307934
+    },
+    {
+      "id": "frame_01067",
+      "valid": 304483
+    },
+    {
+      "id": "frame_01070",
+      "valid": 300156
+    },
+    {
+      "id": "frame_01071",
+      "valid": 298500
+    },
+    {
+      "id": "frame_01072",
+      "valid": 294501
+    },
+    {
+      "id": "frame_01073",
+      "valid": 290284
+    },
+    {
+      "id": "frame_01074",
+      "valid": 287496
+    },
+    {
+      "id": "frame_01075",
+      "valid": 281989
+    },
+    {
+      "id": "frame_01076",
+      "valid": 271222
+    },
+    {
+      "id": "frame_01077",
+      "valid": 284804
+    },
+    {
+      "id": "frame_01080",
+      "valid": 325188
+    },
+    {
+      "id": "frame_01081",
+      "valid": 304604
+    },
+    {
+      "id": "frame_01082",
+      "valid": 281071
+    },
+    {
+      "id": "frame_01083",
+      "valid": 282675
+    },
+    {
+      "id": "frame_01084",
+      "valid": 274171
+    },
+    {
+      "id": "frame_01085",
+      "valid": 272181
+    },
+    {
+      "id": "frame_01086",
+      "valid": 248150
+    },
+    {
+      "id": "frame_01087",
+      "valid": 224759
+    },
+    {
+      "id": "frame_01090",
+      "valid": 242039
+    },
+    {
+      "id": "frame_01091",
+      "valid": 250247
+    },
+    {
+      "id": "frame_01092",
+      "valid": 263700
+    },
+    {
+      "id": "frame_01093",
+      "valid": 263591
+    },
+    {
+      "id": "frame_01094",
+      "valid": 274010
+    },
+    {
+      "id": "frame_01095",
+      "valid": 279210
+    },
+    {
+      "id": "frame_01096",
+      "valid": 272133
+    },
+    {
+      "id": "frame_01097",
+      "valid": 259582
+    },
+    {
+      "id": "frame_01100",
+      "valid": 261242
+    },
+    {
+      "id": "frame_01101",
+      "valid": 260475
+    },
+    {
+      "id": "frame_01102",
+      "valid": 273991
+    },
+    {
+      "id": "frame_01103",
+      "valid": 266726
+    },
+    {
+      "id": "frame_01104",
+      "valid": 259462
+    },
+    {
+      "id": "frame_01105",
+      "valid": 261024
+    },
+    {
+      "id": "frame_01106",
+      "valid": 253003
+    },
+    {
+      "id": "frame_01107",
+      "valid": 258502
+    },
+    {
+      "id": "frame_01110",
+      "valid": 250822
+    },
+    {
+      "id": "frame_01111",
+      "valid": 261754
+    },
+    {
+      "id": "frame_01112",
+      "valid": 269005
+    },
+    {
+      "id": "frame_01113",
+      "valid": 254038
+    },
+    {
+      "id": "frame_01114",
+      "valid": 266937
+    },
+    {
+      "id": "frame_01115",
+      "valid": 261727
+    },
+    {
+      "id": "frame_01116",
+      "valid": 270309
+    },
+    {
+      "id": "frame_01117",
+      "valid": 250985
+    },
+    {
+      "id": "frame_01120",
+      "valid": 255186
+    },
+    {
+      "id": "frame_01121",
+      "valid": 261076
+    },
+    {
+      "id": "frame_01122",
+      "valid": 266431
+    },
+    {
+      "id": "frame_01123",
+      "valid": 258781
+    },
+    {
+      "id": "frame_01124",
+      "valid": 244406
+    },
+    {
+      "id": "frame_01125",
+      "valid": 259335
+    },
+    {
+      "id": "frame_01126",
+      "valid": 286816
+    },
+    {
+      "id": "frame_01127",
+      "valid": 295190
+    },
+    {
+      "id": "frame_01130",
+      "valid": 253468
+    },
+    {
+      "id": "frame_01131",
+      "valid": 257547
+    },
+    {
+      "id": "frame_01132",
+      "valid": 244604
+    },
+    {
+      "id": "frame_01133",
+      "valid": 249573
+    },
+    {
+      "id": "frame_01134",
+      "valid": 247416
+    },
+    {
+      "id": "frame_01135",
+      "valid": 224919
+    },
+    {
+      "id": "frame_01136",
+      "valid": 218996
+    },
+    {
+      "id": "frame_01137",
+      "valid": 213314
+    },
+    {
+      "id": "frame_01140",
+      "valid": 215272
+    },
+    {
+      "id": "frame_01141",
+      "valid": 232614
+    },
+    {
+      "id": "frame_01142",
+      "valid": 232347
+    },
+    {
+      "id": "frame_01143",
+      "valid": 222982
+    },
+    {
+      "id": "frame_01144",
+      "valid": 227138
+    },
+    {
+      "id": "frame_01145",
+      "valid": 232900
+    },
+    {
+      "id": "frame_01146",
+      "valid": 225220
+    },
+    {
+      "id": "frame_01147",
+      "valid": 214713
+    },
+    {
+      "id": "frame_01150",
+      "valid": 205466
+    },
+    {
+      "id": "frame_01151",
+      "valid": 192077
+    },
+    {
+      "id": "frame_01152",
+      "valid": 191275
+    },
+    {
+      "id": "frame_01153",
+      "valid": 195353
+    },
+    {
+      "id": "frame_01154",
+      "valid": 184763
+    },
+    {
+      "id": "frame_01155",
+      "valid": 192142
+    },
+    {
+      "id": "frame_01156",
+      "valid": 199933
+    },
+    {
+      "id": "frame_01157",
+      "valid": 203707
+    },
+    {
+      "id": "frame_01160",
+      "valid": 198213
+    },
+    {
+      "id": "frame_01161",
+      "valid": 194619
+    },
+    {
+      "id": "frame_01162",
+      "valid": 210028
+    },
+    {
+      "id": "frame_01163",
+      "valid": 225775
+    },
+    {
+      "id": "frame_01164",
+      "valid": 239143
+    },
+    {
+      "id": "frame_01165",
+      "valid": 233968
+    },
+    {
+      "id": "frame_01166",
+      "valid": 262222
+    },
+    {
+      "id": "frame_01167",
+      "valid": 238803
+    },
+    {
+      "id": "frame_01170",
+      "valid": 241091
+    },
+    {
+      "id": "frame_01171",
+      "valid": 222760
+    },
+    {
+      "id": "frame_01172",
+      "valid": 233822
+    },
+    {
+      "id": "frame_01173",
+      "valid": 221912
+    },
+    {
+      "id": "frame_01174",
+      "valid": 222534
+    },
+    {
+      "id": "frame_01175",
+      "valid": 218509
+    },
+    {
+      "id": "frame_01176",
+      "valid": 217005
+    },
+    {
+      "id": "frame_01177",
+      "valid": 221688
+    },
+    {
+      "id": "frame_01180",
+      "valid": 237607
+    },
+    {
+      "id": "frame_01181",
+      "valid": 238538
+    },
+    {
+      "id": "frame_01182",
+      "valid": 241619
+    },
+    {
+      "id": "frame_01183",
+      "valid": 236175
+    },
+    {
+      "id": "frame_01184",
+      "valid": 261142
+    },
+    {
+      "id": "frame_01185",
+      "valid": 258166
+    },
+    {
+      "id": "frame_01186",
+      "valid": 246268
+    },
+    {
+      "id": "frame_01187",
+      "valid": 261540
+    },
+    {
+      "id": "frame_01190",
+      "valid": 270185
+    },
+    {
+      "id": "frame_01191",
+      "valid": 280023
+    },
+    {
+      "id": "frame_01192",
+      "valid": 272204
+    },
+    {
+      "id": "frame_01193",
+      "valid": 269822
+    },
+    {
+      "id": "frame_01194",
+      "valid": 272671
+    },
+    {
+      "id": "frame_01195",
+      "valid": 255801
+    },
+    {
+      "id": "frame_01196",
+      "valid": 258801
+    },
+    {
+      "id": "frame_01197",
+      "valid": 244269
+    },
+    {
+      "id": "frame_01200",
+      "valid": 237171
+    },
+    {
+      "id": "frame_01201",
+      "valid": 240340
+    },
+    {
+      "id": "frame_01202",
+      "valid": 244778
+    },
+    {
+      "id": "frame_01203",
+      "valid": 250469
+    },
+    {
+      "id": "frame_01204",
+      "valid": 249149
+    },
+    {
+      "id": "frame_01205",
+      "valid": 256138
+    },
+    {
+      "id": "frame_01206",
+      "valid": 252610
+    },
+    {
+      "id": "frame_01207",
+      "valid": 236704
+    },
+    {
+      "id": "frame_01210",
+      "valid": 237160
+    },
+    {
+      "id": "frame_01211",
+      "valid": 234509
+    },
+    {
+      "id": "frame_01212",
+      "valid": 248602
+    },
+    {
+      "id": "frame_01213",
+      "valid": 242882
+    },
+    {
+      "id": "frame_01214",
+      "valid": 245732
+    },
+    {
+      "id": "frame_01215",
+      "valid": 248537
+    },
+    {
+      "id": "frame_01216",
+      "valid": 261677
+    },
+    {
+      "id": "frame_01217",
+      "valid": 262416
+    },
+    {
+      "id": "frame_01220",
+      "valid": 249235
+    },
+    {
+      "id": "frame_01221",
+      "valid": 256615
+    },
+    {
+      "id": "frame_01222",
+      "valid": 260798
+    },
+    {
+      "id": "frame_01223",
+      "valid": 271014
+    },
+    {
+      "id": "frame_01224",
+      "valid": 276300
+    },
+    {
+      "id": "frame_01225",
+      "valid": 282506
+    },
+    {
+      "id": "frame_01226",
+      "valid": 277166
+    },
+    {
+      "id": "frame_01227",
+      "valid": 282152
+    },
+    {
+      "id": "frame_01230",
+      "valid": 290458
+    },
+    {
+      "id": "frame_01231",
+      "valid": 281417
+    },
+    {
+      "id": "frame_01232",
+      "valid": 254021
+    },
+    {
+      "id": "frame_01233",
+      "valid": 234001
+    },
+    {
+      "id": "frame_01234",
+      "valid": 220856
+    },
+    {
+      "id": "frame_01235",
+      "valid": 222154
+    },
+    {
+      "id": "frame_01236",
+      "valid": 236532
+    },
+    {
+      "id": "frame_01237",
+      "valid": 235012
+    },
+    {
+      "id": "frame_01240",
+      "valid": 209713
+    },
+    {
+      "id": "frame_01241",
+      "valid": 214345
+    },
+    {
+      "id": "frame_01242",
+      "valid": 213144
+    },
+    {
+      "id": "frame_01243",
+      "valid": 215199
+    },
+    {
+      "id": "frame_01244",
+      "valid": 214546
+    },
+    {
+      "id": "frame_01245",
+      "valid": 205342
+    },
+    {
+      "id": "frame_01246",
+      "valid": 207260
+    },
+    {
+      "id": "frame_01247",
+      "valid": 216705
+    },
+    {
+      "id": "frame_01250",
+      "valid": 225538
+    },
+    {
+      "id": "frame_01251",
+      "valid": 213637
+    },
+    {
+      "id": "frame_01252",
+      "valid": 256520
+    },
+    {
+      "id": "frame_01253",
+      "valid": 266908
+    },
+    {
+      "id": "frame_01254",
+      "valid": 270029
+    },
+    {
+      "id": "frame_01255",
+      "valid": 262055
+    },
+    {
+      "id": "frame_01256",
+      "valid": 276656
+    },
+    {
+      "id": "frame_01257",
+      "valid": 266783
+    },
+    {
+      "id": "frame_01260",
+      "valid": 217312
+    },
+    {
+      "id": "frame_01261",
+      "valid": 211348
+    },
+    {
+      "id": "frame_01262",
+      "valid": 207626
+    },
+    {
+      "id": "frame_01263",
+      "valid": 203123
+    },
+    {
+      "id": "frame_01264",
+      "valid": 215784
+    },
+    {
+      "id": "frame_01265",
+      "valid": 226213
+    },
+    {
+      "id": "frame_01266",
+      "valid": 220703
+    },
+    {
+      "id": "frame_01267",
+      "valid": 222375
+    },
+    {
+      "id": "frame_01270",
+      "valid": 191494
+    },
+    {
+      "id": "frame_01271",
+      "valid": 211539
+    },
+    {
+      "id": "frame_01272",
+      "valid": 216131
+    },
+    {
+      "id": "frame_01273",
+      "valid": 208998
+    },
+    {
+      "id": "frame_01274",
+      "valid": 208593
+    },
+    {
+      "id": "frame_01275",
+      "valid": 214962
+    },
+    {
+      "id": "frame_01276",
+      "valid": 220126
+    },
+    {
+      "id": "frame_01277",
+      "valid": 206886
+    },
+    {
+      "id": "frame_01280",
+      "valid": 221185
+    },
+    {
+      "id": "frame_01281",
+      "valid": 205548
+    },
+    {
+      "id": "frame_01282",
+      "valid": 185208
+    },
+    {
+      "id": "frame_01283",
+      "valid": 186559
+    },
+    {
+      "id": "frame_01284",
+      "valid": 177132
+    },
+    {
+      "id": "frame_01285",
+      "valid": 181653
+    },
+    {
+      "id": "frame_01286",
+      "valid": 181170
+    },
+    {
+      "id": "frame_01287",
+      "valid": 167296
+    },
+    {
+      "id": "frame_01290",
+      "valid": 183390
+    },
+    {
+      "id": "frame_01291",
+      "valid": 184621
+    },
+    {
+      "id": "frame_01292",
+      "valid": 185951
+    },
+    {
+      "id": "frame_01293",
+      "valid": 187644
+    },
+    {
+      "id": "frame_01294",
+      "valid": 191880
+    },
+    {
+      "id": "frame_01295",
+      "valid": 188632
+    },
+    {
+      "id": "frame_01296",
+      "valid": 188093
+    },
+    {
+      "id": "frame_01297",
+      "valid": 193567
+    },
+    {
+      "id": "frame_01300",
+      "valid": 200918
+    },
+    {
+      "id": "frame_01301",
+      "valid": 209048
+    },
+    {
+      "id": "frame_01302",
+      "valid": 196355
+    },
+    {
+      "id": "frame_01303",
+      "valid": 206787
+    },
+    {
+      "id": "frame_01304",
+      "valid": 207708
+    },
+    {
+      "id": "frame_01305",
+      "valid": 225292
+    },
+    {
+      "id": "frame_01306",
+      "valid": 224751
+    },
+    {
+      "id": "frame_01307",
+      "valid": 230686
+    },
+    {
+      "id": "frame_01310",
+      "valid": 251656
+    },
+    {
+      "id": "frame_01311",
+      "valid": 259243
+    },
+    {
+      "id": "frame_01312",
+      "valid": 260791
+    },
+    {
+      "id": "frame_01313",
+      "valid": 246971
+    },
+    {
+      "id": "frame_01314",
+      "valid": 237412
+    },
+    {
+      "id": "frame_01315",
+      "valid": 262453
+    },
+    {
+      "id": "frame_01316",
+      "valid": 268635
+    },
+    {
+      "id": "frame_01317",
+      "valid": 266584
+    },
+    {
+      "id": "frame_01320",
+      "valid": 293445
+    },
+    {
+      "id": "frame_01321",
+      "valid": 283210
+    },
+    {
+      "id": "frame_01322",
+      "valid": 267881
+    },
+    {
+      "id": "frame_01323",
+      "valid": 276458
+    },
+    {
+      "id": "frame_01324",
+      "valid": 263533
+    },
+    {
+      "id": "frame_01325",
+      "valid": 264031
+    },
+    {
+      "id": "frame_01326",
+      "valid": 268031
+    },
+    {
+      "id": "frame_01327",
+      "valid": 267762
+    },
+    {
+      "id": "frame_01330",
+      "valid": 262271
+    },
+    {
+      "id": "frame_01331",
+      "valid": 266911
+    },
+    {
+      "id": "frame_01332",
+      "valid": 276755
+    },
+    {
+      "id": "frame_01333",
+      "valid": 277683
+    },
+    {
+      "id": "frame_01334",
+      "valid": 268197
+    },
+    {
+      "id": "frame_01335",
+      "valid": 287986
+    },
+    {
+      "id": "frame_01336",
+      "valid": 276758
+    },
+    {
+      "id": "frame_01337",
+      "valid": 276422
+    },
+    {
+      "id": "frame_01340",
+      "valid": 267889
+    },
+    {
+      "id": "frame_01341",
+      "valid": 261651
+    },
+    {
+      "id": "frame_01342",
+      "valid": 274147
+    },
+    {
+      "id": "frame_01343",
+      "valid": 258097
+    },
+    {
+      "id": "frame_01344",
+      "valid": 230002
+    },
+    {
+      "id": "frame_01345",
+      "valid": 240290
+    },
+    {
+      "id": "frame_01346",
+      "valid": 246955
+    },
+    {
+      "id": "frame_01347",
+      "valid": 234653
+    },
+    {
+      "id": "frame_01350",
+      "valid": 234678
+    },
+    {
+      "id": "frame_01351",
+      "valid": 219800
+    },
+    {
+      "id": "frame_01352",
+      "valid": 217605
+    },
+    {
+      "id": "frame_01353",
+      "valid": 219134
+    },
+    {
+      "id": "frame_01354",
+      "valid": 230983
+    },
+    {
+      "id": "frame_01355",
+      "valid": 233367
+    },
+    {
+      "id": "frame_01356",
+      "valid": 250061
+    },
+    {
+      "id": "frame_01357",
+      "valid": 252810
+    },
+    {
+      "id": "frame_01360",
+      "valid": 250422
+    },
+    {
+      "id": "frame_01361",
+      "valid": 243024
+    },
+    {
+      "id": "frame_01362",
+      "valid": 255299
+    },
+    {
+      "id": "frame_01363",
+      "valid": 244746
+    },
+    {
+      "id": "frame_01364",
+      "valid": 252687
+    },
+    {
+      "id": "frame_01365",
+      "valid": 252804
+    },
+    {
+      "id": "frame_01366",
+      "valid": 246914
+    },
+    {
+      "id": "frame_01367",
+      "valid": 235636
+    },
+    {
+      "id": "frame_01370",
+      "valid": 250870
+    },
+    {
+      "id": "frame_01371",
+      "valid": 253401
+    },
+    {
+      "id": "frame_01372",
+      "valid": 253426
+    },
+    {
+      "id": "frame_01373",
+      "valid": 260242
+    },
+    {
+      "id": "frame_01374",
+      "valid": 264263
+    },
+    {
+      "id": "frame_01375",
+      "valid": 272216
+    },
+    {
+      "id": "frame_01376",
+      "valid": 279233
+    },
+    {
+      "id": "frame_01377",
+      "valid": 259046
+    },
+    {
+      "id": "frame_01380",
+      "valid": 247632
+    },
+    {
+      "id": "frame_01381",
+      "valid": 256215
+    },
+    {
+      "id": "frame_01382",
+      "valid": 241940
+    },
+    {
+      "id": "frame_01383",
+      "valid": 237067
+    },
+    {
+      "id": "frame_01384",
+      "valid": 224686
+    },
+    {
+      "id": "frame_01385",
+      "valid": 215637
+    },
+    {
+      "id": "frame_01386",
+      "valid": 212308
+    },
+    {
+      "id": "frame_01387",
+      "valid": 216059
+    },
+    {
+      "id": "frame_01390",
+      "valid": 147273
+    },
+    {
+      "id": "frame_01391",
+      "valid": 182612
+    },
+    {
+      "id": "frame_01392",
+      "valid": 205714
+    },
+    {
+      "id": "frame_01393",
+      "valid": 196639
+    },
+    {
+      "id": "frame_01394",
+      "valid": 219777
+    },
+    {
+      "id": "frame_01395",
+      "valid": 227459
+    },
+    {
+      "id": "frame_01396",
+      "valid": 236709
+    },
+    {
+      "id": "frame_01397",
+      "valid": 232646
+    },
+    {
+      "id": "frame_01400",
+      "valid": 273271
+    },
+    {
+      "id": "frame_01401",
+      "valid": 276735
+    },
+    {
+      "id": "frame_01402",
+      "valid": 287165
+    },
+    {
+      "id": "frame_01403",
+      "valid": 271120
+    },
+    {
+      "id": "frame_01404",
+      "valid": 264594
+    },
+    {
+      "id": "frame_01405",
+      "valid": 261112
+    },
+    {
+      "id": "frame_01406",
+      "valid": 265099
+    },
+    {
+      "id": "frame_01407",
+      "valid": 261875
+    },
+    {
+      "id": "frame_01410",
+      "valid": 278009
+    },
+    {
+      "id": "frame_01411",
+      "valid": 271437
+    },
+    {
+      "id": "frame_01412",
+      "valid": 277121
+    },
+    {
+      "id": "frame_01413",
+      "valid": 288696
+    },
+    {
+      "id": "frame_01414",
+      "valid": 293315
+    },
+    {
+      "id": "frame_01415",
+      "valid": 277962
+    },
+    {
+      "id": "frame_01416",
+      "valid": 280042
+    },
+    {
+      "id": "frame_01417",
+      "valid": 279905
+    },
+    {
+      "id": "frame_01420",
+      "valid": 256368
+    },
+    {
+      "id": "frame_01421",
+      "valid": 243863
+    },
+    {
+      "id": "frame_01422",
+      "valid": 242436
+    },
+    {
+      "id": "frame_01423",
+      "valid": 252575
+    },
+    {
+      "id": "frame_01424",
+      "valid": 262078
+    },
+    {
+      "id": "frame_01425",
+      "valid": 285097
+    },
+    {
+      "id": "frame_01426",
+      "valid": 303119
+    },
+    {
+      "id": "frame_01427",
+      "valid": 308264
+    },
+    {
+      "id": "frame_01430",
+      "valid": 303724
+    },
+    {
+      "id": "frame_01431",
+      "valid": 288130
+    },
+    {
+      "id": "frame_01432",
+      "valid": 269386
+    },
+    {
+      "id": "frame_01433",
+      "valid": 268622
+    },
+    {
+      "id": "frame_01434",
+      "valid": 266063
+    },
+    {
+      "id": "frame_01435",
+      "valid": 272771
+    },
+    {
+      "id": "frame_01436",
+      "valid": 281598
+    },
+    {
+      "id": "frame_01437",
+      "valid": 291359
+    },
+    {
+      "id": "frame_01440",
+      "valid": 340054
+    },
+    {
+      "id": "frame_01441",
+      "valid": 367863
+    },
+    {
+      "id": "frame_01442",
+      "valid": 368231
+    },
+    {
+      "id": "frame_01443",
+      "valid": 355755
+    },
+    {
+      "id": "frame_01444",
+      "valid": 347150
+    },
+    {
+      "id": "frame_01445",
+      "valid": 338171
+    },
+    {
+      "id": "frame_01446",
+      "valid": 333558
+    },
+    {
+      "id": "frame_01447",
+      "valid": 324369
+    },
+    {
+      "id": "frame_01450",
+      "valid": 306662
+    },
+    {
+      "id": "frame_01451",
+      "valid": 300626
+    },
+    {
+      "id": "frame_01452",
+      "valid": 294741
+    },
+    {
+      "id": "frame_01453",
+      "valid": 295742
+    },
+    {
+      "id": "frame_01454",
+      "valid": 282452
+    },
+    {
+      "id": "frame_01455",
+      "valid": 289048
+    },
+    {
+      "id": "frame_01456",
+      "valid": 278729
+    },
+    {
+      "id": "frame_01457",
+      "valid": 274729
+    },
+    {
+      "id": "frame_01460",
+      "valid": 273526
+    },
+    {
+      "id": "frame_01461",
+      "valid": 273012
+    },
+    {
+      "id": "frame_01462",
+      "valid": 294199
+    },
+    {
+      "id": "frame_01463",
+      "valid": 302358
+    },
+    {
+      "id": "frame_01464",
+      "valid": 312448
+    },
+    {
+      "id": "frame_01465",
+      "valid": 294632
+    },
+    {
+      "id": "frame_01466",
+      "valid": 313012
+    },
+    {
+      "id": "frame_01467",
+      "valid": 334452
+    },
+    {
+      "id": "frame_01470",
+      "valid": 358702
+    },
+    {
+      "id": "frame_01471",
+      "valid": 372672
+    },
+    {
+      "id": "frame_01472",
+      "valid": 366154
+    },
+    {
+      "id": "frame_01473",
+      "valid": 353465
+    },
+    {
+      "id": "frame_01474",
+      "valid": 355947
+    },
+    {
+      "id": "frame_01475",
+      "valid": 357847
+    },
+    {
+      "id": "frame_01476",
+      "valid": 340525
+    },
+    {
+      "id": "frame_01477",
+      "valid": 326784
+    },
+    {
+      "id": "frame_01480",
+      "valid": 288289
+    },
+    {
+      "id": "frame_01481",
+      "valid": 261504
+    },
+    {
+      "id": "frame_01482",
+      "valid": 265706
+    },
+    {
+      "id": "frame_01483",
+      "valid": 287851
+    },
+    {
+      "id": "frame_01484",
+      "valid": 283197
+    },
+    {
+      "id": "frame_01485",
+      "valid": 298797
+    },
+    {
+      "id": "frame_01486",
+      "valid": 288286
+    },
+    {
+      "id": "frame_01487",
+      "valid": 283981
+    },
+    {
+      "id": "frame_01490",
+      "valid": 283601
+    },
+    {
+      "id": "frame_01491",
+      "valid": 250492
+    },
+    {
+      "id": "frame_01492",
+      "valid": 261845
+    },
+    {
+      "id": "frame_01493",
+      "valid": 254662
+    },
+    {
+      "id": "frame_01494",
+      "valid": 249268
+    },
+    {
+      "id": "frame_01495",
+      "valid": 264116
+    },
+    {
+      "id": "frame_01496",
+      "valid": 268940
+    },
+    {
+      "id": "frame_01497",
+      "valid": 266922
+    },
+    {
+      "id": "frame_01500",
+      "valid": 274810
+    },
+    {
+      "id": "frame_01501",
+      "valid": 276465
+    },
+    {
+      "id": "frame_01502",
+      "valid": 302848
+    },
+    {
+      "id": "frame_01503",
+      "valid": 322615
+    },
+    {
+      "id": "frame_01504",
+      "valid": 320532
+    },
+    {
+      "id": "frame_01505",
+      "valid": 313988
+    },
+    {
+      "id": "frame_01506",
+      "valid": 304749
+    },
+    {
+      "id": "frame_01507",
+      "valid": 318989
+    },
+    {
+      "id": "frame_01510",
+      "valid": 322945
+    },
+    {
+      "id": "frame_01511",
+      "valid": 335290
+    },
+    {
+      "id": "frame_01512",
+      "valid": 351506
+    },
+    {
+      "id": "frame_01513",
+      "valid": 313789
+    },
+    {
+      "id": "frame_01514",
+      "valid": 297800
+    },
+    {
+      "id": "frame_01515",
+      "valid": 318771
+    },
+    {
+      "id": "frame_01516",
+      "valid": 340553
+    },
+    {
+      "id": "frame_01517",
+      "valid": 322787
+    },
+    {
+      "id": "frame_01520",
+      "valid": 302511
+    },
+    {
+      "id": "frame_01521",
+      "valid": 308761
+    },
+    {
+      "id": "frame_01522",
+      "valid": 310547
+    },
+    {
+      "id": "frame_01523",
+      "valid": 309169
+    },
+    {
+      "id": "frame_01524",
+      "valid": 285126
+    },
+    {
+      "id": "frame_01525",
+      "valid": 290575
+    },
+    {
+      "id": "frame_01526",
+      "valid": 291548
+    },
+    {
+      "id": "frame_01527",
+      "valid": 295215
+    },
+    {
+      "id": "frame_01530",
+      "valid": 291639
+    },
+    {
+      "id": "frame_01531",
+      "valid": 287378
+    },
+    {
+      "id": "frame_01532",
+      "valid": 283434
+    },
+    {
+      "id": "frame_01533",
+      "valid": 290838
+    },
+    {
+      "id": "frame_01534",
+      "valid": 302807
+    },
+    {
+      "id": "frame_01535",
+      "valid": 295874
+    },
+    {
+      "id": "frame_01536",
+      "valid": 296275
+    },
+    {
+      "id": "frame_01537",
+      "valid": 304436
+    },
+    {
+      "id": "frame_01540",
+      "valid": 296115
+    },
+    {
+      "id": "frame_01541",
+      "valid": 291575
+    },
+    {
+      "id": "frame_01542",
+      "valid": 278418
+    },
+    {
+      "id": "frame_01543",
+      "valid": 266527
+    },
+    {
+      "id": "frame_01544",
+      "valid": 265104
+    },
+    {
+      "id": "frame_01545",
+      "valid": 262011
+    },
+    {
+      "id": "frame_01546",
+      "valid": 277662
+    },
+    {
+      "id": "frame_01547",
+      "valid": 273139
+    },
+    {
+      "id": "frame_01550",
+      "valid": 246506
+    },
+    {
+      "id": "frame_01551",
+      "valid": 237303
+    },
+    {
+      "id": "frame_01552",
+      "valid": 229640
+    },
+    {
+      "id": "frame_01553",
+      "valid": 220196
+    },
+    {
+      "id": "frame_01554",
+      "valid": 207081
+    },
+    {
+      "id": "frame_01555",
+      "valid": 191846
+    },
+    {
+      "id": "frame_01556",
+      "valid": 205369
+    },
+    {
+      "id": "frame_01557",
+      "valid": 225763
+    },
+    {
+      "id": "frame_01560",
+      "valid": 211008
+    },
+    {
+      "id": "frame_01561",
+      "valid": 206600
+    },
+    {
+      "id": "frame_01562",
+      "valid": 197792
+    },
+    {
+      "id": "frame_01563",
+      "valid": 211610
+    },
+    {
+      "id": "frame_01564",
+      "valid": 210486
+    },
+    {
+      "id": "frame_01565",
+      "valid": 208164
+    },
+    {
+      "id": "frame_01566",
+      "valid": 225902
+    },
+    {
+      "id": "frame_01567",
+      "valid": 244708
+    },
+    {
+      "id": "frame_01570",
+      "valid": 213150
+    },
+    {
+      "id": "frame_01571",
+      "valid": 216697
+    },
+    {
+      "id": "frame_01572",
+      "valid": 231023
+    },
+    {
+      "id": "frame_01573",
+      "valid": 223277
+    },
+    {
+      "id": "frame_01574",
+      "valid": 196887
+    },
+    {
+      "id": "frame_01575",
+      "valid": 202232
+    },
+    {
+      "id": "frame_01576",
+      "valid": 213261
+    },
+    {
+      "id": "frame_01577",
+      "valid": 213903
+    },
+    {
+      "id": "frame_01580",
+      "valid": 225669
+    },
+    {
+      "id": "frame_01581",
+      "valid": 254054
+    },
+    {
+      "id": "frame_01582",
+      "valid": 268804
+    },
+    {
+      "id": "frame_01583",
+      "valid": 272277
+    },
+    {
+      "id": "frame_01584",
+      "valid": 267056
+    },
+    {
+      "id": "frame_01585",
+      "valid": 272640
+    },
+    {
+      "id": "frame_01586",
+      "valid": 269464
+    },
+    {
+      "id": "frame_01587",
+      "valid": 259643
+    },
+    {
+      "id": "frame_01590",
+      "valid": 236470
+    },
+    {
+      "id": "frame_01591",
+      "valid": 242308
+    },
+    {
+      "id": "frame_01592",
+      "valid": 255405
+    },
+    {
+      "id": "frame_01593",
+      "valid": 248685
+    },
+    {
+      "id": "frame_01594",
+      "valid": 241661
+    },
+    {
+      "id": "frame_01595",
+      "valid": 249388
+    },
+    {
+      "id": "frame_01596",
+      "valid": 239848
+    },
+    {
+      "id": "frame_01597",
+      "valid": 243576
+    },
+    {
+      "id": "frame_01600",
+      "valid": 277876
+    },
+    {
+      "id": "frame_01601",
+      "valid": 279684
+    },
+    {
+      "id": "frame_01602",
+      "valid": 266096
+    },
+    {
+      "id": "frame_01603",
+      "valid": 259535
+    },
+    {
+      "id": "frame_01604",
+      "valid": 264246
+    },
+    {
+      "id": "frame_01605",
+      "valid": 273497
+    },
+    {
+      "id": "frame_01606",
+      "valid": 268030
+    },
+    {
+      "id": "frame_01607",
+      "valid": 273374
+    },
+    {
+      "id": "frame_01610",
+      "valid": 249670
+    },
+    {
+      "id": "frame_01611",
+      "valid": 248227
+    },
+    {
+      "id": "frame_01612",
+      "valid": 256685
+    },
+    {
+      "id": "frame_01613",
+      "valid": 247329
+    },
+    {
+      "id": "frame_01614",
+      "valid": 242095
+    },
+    {
+      "id": "frame_01615",
+      "valid": 238985
+    },
+    {
+      "id": "frame_01616",
+      "valid": 249806
+    },
+    {
+      "id": "frame_01617",
+      "valid": 260299
+    },
+    {
+      "id": "frame_01620",
+      "valid": 251303
+    },
+    {
+      "id": "frame_01621",
+      "valid": 245487
+    },
+    {
+      "id": "frame_01622",
+      "valid": 238660
+    },
+    {
+      "id": "frame_01623",
+      "valid": 240128
+    },
+    {
+      "id": "frame_01624",
+      "valid": 243598
+    },
+    {
+      "id": "frame_01625",
+      "valid": 256117
+    },
+    {
+      "id": "frame_01626",
+      "valid": 256343
+    },
+    {
+      "id": "frame_01627",
+      "valid": 262906
+    },
+    {
+      "id": "frame_01630",
+      "valid": 270238
+    },
+    {
+      "id": "frame_01631",
+      "valid": 265783
+    },
+    {
+      "id": "frame_01632",
+      "valid": 258164
+    },
+    {
+      "id": "frame_01633",
+      "valid": 265591
+    },
+    {
+      "id": "frame_01634",
+      "valid": 276535
+    },
+    {
+      "id": "frame_01635",
+      "valid": 281189
+    },
+    {
+      "id": "frame_01636",
+      "valid": 309562
+    },
+    {
+      "id": "frame_01637",
+      "valid": 299871
+    },
+    {
+      "id": "frame_01640",
+      "valid": 257303
+    },
+    {
+      "id": "frame_01641",
+      "valid": 251343
+    },
+    {
+      "id": "frame_01642",
+      "valid": 249489
+    },
+    {
+      "id": "frame_01643",
+      "valid": 247507
+    },
+    {
+      "id": "frame_01644",
+      "valid": 245543
+    },
+    {
+      "id": "frame_01645",
+      "valid": 250994
+    },
+    {
+      "id": "frame_01646",
+      "valid": 244330
+    },
+    {
+      "id": "frame_01647",
+      "valid": 239245
+    },
+    {
+      "id": "frame_01650",
+      "valid": 241392
+    },
+    {
+      "id": "frame_01651",
+      "valid": 250640
+    },
+    {
+      "id": "frame_01652",
+      "valid": 237748
+    },
+    {
+      "id": "frame_01653",
+      "valid": 221387
+    },
+    {
+      "id": "frame_01654",
+      "valid": 229779
+    },
+    {
+      "id": "frame_01655",
+      "valid": 232492
+    },
+    {
+      "id": "frame_01656",
+      "valid": 231417
+    },
+    {
+      "id": "frame_01657",
+      "valid": 231124
+    },
+    {
+      "id": "frame_01660",
+      "valid": 230889
+    },
+    {
+      "id": "frame_01661",
+      "valid": 261648
+    },
+    {
+      "id": "frame_01662",
+      "valid": 246828
+    },
+    {
+      "id": "frame_01663",
+      "valid": 239145
+    },
+    {
+      "id": "frame_01664",
+      "valid": 240627
+    },
+    {
+      "id": "frame_01665",
+      "valid": 244570
+    },
+    {
+      "id": "frame_01666",
+      "valid": 227622
+    },
+    {
+      "id": "frame_01667",
+      "valid": 225501
+    },
+    {
+      "id": "frame_01670",
+      "valid": 224434
+    },
+    {
+      "id": "frame_01671",
+      "valid": 227777
+    },
+    {
+      "id": "frame_01672",
+      "valid": 233025
+    },
+    {
+      "id": "frame_01673",
+      "valid": 232730
+    },
+    {
+      "id": "frame_01674",
+      "valid": 249678
+    },
+    {
+      "id": "frame_01675",
+      "valid": 254377
+    },
+    {
+      "id": "frame_01676",
+      "valid": 252382
+    },
+    {
+      "id": "frame_01677",
+      "valid": 251063
+    },
+    {
+      "id": "frame_01680",
+      "valid": 250987
+    },
+    {
+      "id": "frame_01681",
+      "valid": 258265
+    },
+    {
+      "id": "frame_01682",
+      "valid": 253555
+    },
+    {
+      "id": "frame_01683",
+      "valid": 243273
+    },
+    {
+      "id": "frame_01684",
+      "valid": 246643
+    },
+    {
+      "id": "frame_01685",
+      "valid": 237325
+    },
+    {
+      "id": "frame_01686",
+      "valid": 230858
+    },
+    {
+      "id": "frame_01687",
+      "valid": 232203
+    },
+    {
+      "id": "frame_01690",
+      "valid": 244862
+    },
+    {
+      "id": "frame_01691",
+      "valid": 239991
+    },
+    {
+      "id": "frame_01692",
+      "valid": 231622
+    },
+    {
+      "id": "frame_01693",
+      "valid": 218916
+    },
+    {
+      "id": "frame_01694",
+      "valid": 220222
+    },
+    {
+      "id": "frame_01695",
+      "valid": 222521
+    },
+    {
+      "id": "frame_01696",
+      "valid": 225782
+    },
+    {
+      "id": "frame_01697",
+      "valid": 227494
+    },
+    {
+      "id": "frame_01700",
+      "valid": 220293
+    },
+    {
+      "id": "frame_01701",
+      "valid": 224793
+    },
+    {
+      "id": "frame_01702",
+      "valid": 215406
+    },
+    {
+      "id": "frame_01703",
+      "valid": 214268
+    },
+    {
+      "id": "frame_01704",
+      "valid": 208783
+    },
+    {
+      "id": "frame_01705",
+      "valid": 207002
+    },
+    {
+      "id": "frame_01706",
+      "valid": 216048
+    },
+    {
+      "id": "frame_01707",
+      "valid": 210558
+    },
+    {
+      "id": "frame_01710",
+      "valid": 202359
+    },
+    {
+      "id": "frame_01711",
+      "valid": 209813
+    },
+    {
+      "id": "frame_01712",
+      "valid": 213624
+    },
+    {
+      "id": "frame_01713",
+      "valid": 217083
+    },
+    {
+      "id": "frame_01714",
+      "valid": 215534
+    },
+    {
+      "id": "frame_01715",
+      "valid": 215625
+    },
+    {
+      "id": "frame_01716",
+      "valid": 198463
+    },
+    {
+      "id": "frame_01717",
+      "valid": 209744
+    },
+    {
+      "id": "frame_01720",
+      "valid": 220141
+    },
+    {
+      "id": "frame_01721",
+      "valid": 221333
+    },
+    {
+      "id": "frame_01722",
+      "valid": 216045
+    },
+    {
+      "id": "frame_01723",
+      "valid": 208584
+    },
+    {
+      "id": "frame_01724",
+      "valid": 207872
+    },
+    {
+      "id": "frame_01725",
+      "valid": 208632
+    },
+    {
+      "id": "frame_01726",
+      "valid": 216405
+    },
+    {
+      "id": "frame_01727",
+      "valid": 229634
+    },
+    {
+      "id": "frame_01730",
+      "valid": 228246
+    },
+    {
+      "id": "frame_01731",
+      "valid": 225790
+    },
+    {
+      "id": "frame_01732",
+      "valid": 216992
+    },
+    {
+      "id": "frame_01733",
+      "valid": 221985
+    },
+    {
+      "id": "frame_01734",
+      "valid": 217946
+    },
+    {
+      "id": "frame_01735",
+      "valid": 216316
+    },
+    {
+      "id": "frame_01736",
+      "valid": 220254
+    },
+    {
+      "id": "frame_01737",
+      "valid": 210464
+    },
+    {
+      "id": "frame_01740",
+      "valid": 193750
+    },
+    {
+      "id": "frame_01741",
+      "valid": 196494
+    },
+    {
+      "id": "frame_01742",
+      "valid": 215506
+    },
+    {
+      "id": "frame_01743",
+      "valid": 198866
+    },
+    {
+      "id": "frame_01744",
+      "valid": 200931
+    },
+    {
+      "id": "frame_01745",
+      "valid": 208254
+    },
+    {
+      "id": "frame_01746",
+      "valid": 206965
+    },
+    {
+      "id": "frame_01747",
+      "valid": 201950
+    },
+    {
+      "id": "frame_01750",
+      "valid": 208676
+    },
+    {
+      "id": "frame_01751",
+      "valid": 224049
+    },
+    {
+      "id": "frame_01752",
+      "valid": 226286
+    },
+    {
+      "id": "frame_01753",
+      "valid": 214723
+    },
+    {
+      "id": "frame_01754",
+      "valid": 206813
+    },
+    {
+      "id": "frame_01755",
+      "valid": 205627
+    },
+    {
+      "id": "frame_01756",
+      "valid": 192773
+    },
+    {
+      "id": "frame_01757",
+      "valid": 178446
+    },
+    {
+      "id": "frame_01760",
+      "valid": 191986
+    },
+    {
+      "id": "frame_01761",
+      "valid": 162776
+    },
+    {
+      "id": "frame_01762",
+      "valid": 134170
+    },
+    {
+      "id": "frame_01763",
+      "valid": 93287
+    },
+    {
+      "id": "frame_01764",
+      "valid": 75949
+    },
+    {
+      "id": "frame_01765",
+      "valid": 48629
+    },
+    {
+      "id": "frame_01766",
+      "valid": 145086
+    },
+    {
+      "id": "frame_01767",
+      "valid": 258122
+    },
+    {
+      "id": "frame_01770",
+      "valid": 258348
+    },
+    {
+      "id": "frame_01771",
+      "valid": 263240
+    },
+    {
+      "id": "frame_01772",
+      "valid": 270861
+    },
+    {
+      "id": "frame_01773",
+      "valid": 274000
+    },
+    {
+      "id": "frame_01774",
+      "valid": 268929
+    },
+    {
+      "id": "frame_01775",
+      "valid": 269250
+    },
+    {
+      "id": "frame_01776",
+      "valid": 265235
+    },
+    {
+      "id": "frame_01777",
+      "valid": 264589
+    },
+    {
+      "id": "frame_01780",
+      "valid": 269163
+    },
+    {
+      "id": "frame_01781",
+      "valid": 267383
+    },
+    {
+      "id": "frame_01782",
+      "valid": 267679
+    },
+    {
+      "id": "frame_01783",
+      "valid": 268137
+    },
+    {
+      "id": "frame_01784",
+      "valid": 270192
+    },
+    {
+      "id": "frame_01785",
+      "valid": 269244
+    },
+    {
+      "id": "frame_01786",
+      "valid": 268891
+    },
+    {
+      "id": "frame_01787",
+      "valid": 268065
+    },
+    {
+      "id": "frame_01790",
+      "valid": 270629
+    },
+    {
+      "id": "frame_01791",
+      "valid": 272471
+    },
+    {
+      "id": "frame_01792",
+      "valid": 275336
+    },
+    {
+      "id": "frame_01793",
+      "valid": 275269
+    },
+    {
+      "id": "frame_01794",
+      "valid": 276772
+    },
+    {
+      "id": "frame_01795",
+      "valid": 276586
+    },
+    {
+      "id": "frame_01796",
+      "valid": 276037
+    },
+    {
+      "id": "frame_01797",
+      "valid": 275439
+    },
+    {
+      "id": "frame_01800",
+      "valid": 274760
+    },
+    {
+      "id": "frame_01801",
+      "valid": 275833
+    },
+    {
+      "id": "frame_01802",
+      "valid": 278668
+    },
+    {
+      "id": "frame_01803",
+      "valid": 278462
+    },
+    {
+      "id": "frame_01804",
+      "valid": 279356
+    },
+    {
+      "id": "frame_01805",
+      "valid": 279126
+    },
+    {
+      "id": "frame_01806",
+      "valid": 279178
+    },
+    {
+      "id": "frame_01807",
+      "valid": 280514
+    },
+    {
+      "id": "frame_01810",
+      "valid": 283253
+    },
+    {
+      "id": "frame_01811",
+      "valid": 283109
+    },
+    {
+      "id": "frame_01812",
+      "valid": 280810
+    },
+    {
+      "id": "frame_01813",
+      "valid": 281007
+    },
+    {
+      "id": "frame_01814",
+      "valid": 280991
+    },
+    {
+      "id": "frame_01815",
+      "valid": 280213
+    },
+    {
+      "id": "frame_01816",
+      "valid": 281166
+    },
+    {
+      "id": "frame_01817",
+      "valid": 280415
+    },
+    {
+      "id": "frame_01820",
+      "valid": 279145
+    },
+    {
+      "id": "frame_01821",
+      "valid": 279130
+    },
+    {
+      "id": "frame_01822",
+      "valid": 276940
+    },
+    {
+      "id": "frame_01823",
+      "valid": 276432
+    },
+    {
+      "id": "frame_01824",
+      "valid": 276474
+    },
+    {
+      "id": "frame_01825",
+      "valid": 277333
+    },
+    {
+      "id": "frame_01826",
+      "valid": 278090
+    },
+    {
+      "id": "frame_01827",
+      "valid": 278995
+    },
+    {
+      "id": "frame_01830",
+      "valid": 279966
+    },
+    {
+      "id": "frame_01831",
+      "valid": 278741
+    },
+    {
+      "id": "frame_01832",
+      "valid": 279588
+    },
+    {
+      "id": "frame_01833",
+      "valid": 281129
+    },
+    {
+      "id": "frame_01834",
+      "valid": 279979
+    },
+    {
+      "id": "frame_01835",
+      "valid": 279794
+    },
+    {
+      "id": "frame_01836",
+      "valid": 281449
+    },
+    {
+      "id": "frame_01837",
+      "valid": 280671
+    },
+    {
+      "id": "frame_01840",
+      "valid": 282206
+    },
+    {
+      "id": "frame_01841",
+      "valid": 281812
+    },
+    {
+      "id": "frame_01842",
+      "valid": 281414
+    },
+    {
+      "id": "frame_01843",
+      "valid": 280528
+    },
+    {
+      "id": "frame_01844",
+      "valid": 282270
+    },
+    {
+      "id": "frame_01845",
+      "valid": 282246
+    }
+  ],
+  "T_rgb_depth": [
+    [
+      0.9999675750732422,
+      -0.007584353443235159,
+      0.0027173368725925684,
+      -0.013604243278503418
+    ],
+    [
+      0.00758380675688386,
+      0.9999712109565735,
+      0.00021145583014003932,
+      0.00016550984978675842
+    ],
+    [
+      -0.0027188623789697886,
+      -0.0001908412086777389,
+      0.9999963045120239,
+      -0.0017640596628189088
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "native_K": [
+    [
+      414.2334289550781,
+      0,
+      422.6750183105469
+    ],
+    [
+      0,
+      414.2334289550781,
+      235.36251831054688
+    ],
+    [
+      0,
+      0,
+      1
+    ]
+  ],
+  "independent_ground_truth": false,
+  "depth_grid": [
+    848,
+    480
+  ],
+  "depth_distortion": "native calibrated zero coefficients"
+}

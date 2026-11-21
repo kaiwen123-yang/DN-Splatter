@@ -1,20 +1,77 @@
 {
-  "schema_version": 1,
-  "task": "capture-full-quality-v2",
   "run_id": "capture-full-quality-v2-20261121-v1",
-  "status": "planned_not_started",
-  "date": "2026-11-21",
-  "timezone": "Asia/Shanghai",
-  "evidence_commit": "3728dae350a240d317702d57e560554d529679c6",
-  "plan": "docs/14_capture_quality_plan.md",
-  "protocol": "configs/capture_quality_protocol.json",
-  "actual": {
-    "server_start_time": null,
-    "server_pid": null,
-    "completed_updates": null,
-    "checkpoint_sha256": null,
-    "metrics": null,
-    "meshes": null
+  "status": "running",
+  "as_of_utc": "2026-11-21T16:46:17.117674+00:00",
+  "tmux": "dn-b2-formal",
+  "server": {
+    "stage": "training",
+    "pid": 861694,
+    "updated_utc": "2026-11-21T16:35:32.920275+00:00",
+    "child_pid": 862271,
+    "started_utc": "2026-11-21T16:35:32.919307+00:00"
   },
-  "note": "This commit contains an evidence review and execution plan, not a newly started AutoDL job."
+  "training": {
+    "updates": 6100,
+    "step_in_progress": 6100,
+    "frame": "images/frame_00162.png",
+    "points": 1211003
+  },
+  "identity": {
+    "run_id": "capture-full-quality-v2-20261121-v1",
+    "protocol_sha256": "a039a58e8ca6a394141b4fd601ba1a6ac27ae04b1dd5dfa5b6fe58aeaf56fbfa",
+    "baseline": "51cea461bf2b045d5c3b87bd465ce05c775ae515e7f5b2eec76998b88e2cfc45",
+    "geometry": "05873700af32712450b319f9f44f0f4cffa0735f974390be0dbd84b57f803802"
+  },
+  "model_quality": null,
+  "model_mesh_quality": null,
+  "remaining_unresolved_pose_ids": [
+    1304,
+    1305,
+    1514
+  ],
+  "sensor_mesh": {
+    "path": ".local/runs/capture-full-quality-v2-20261121-v1/meshes/sensor_tsdf.ply",
+    "bytes": 1507537285,
+    "sha256": "f87865043b3dca5e27e122c4763c212e27763d7901c8b860faf711f9a3702d66"
+  },
+  "sensor_tsdf_train_views": 1478,
+  "training_orchestration": "native project Python and tmux",
+  "operator_note": "On-instance Codex OAuth refresh was revoked. The authorized SSH connection, native experiment and local receiver remain operational.",
+  "first_refinement": {
+    "step": 5600,
+    "before": 2071347,
+    "eligible": true,
+    "split_children": 61920,
+    "duplicates": 691,
+    "cull_union": 922955,
+    "masks": {
+      "opacity": 891995,
+      "world": 0,
+      "screen": 0,
+      "parent": 30960
+    },
+    "exclusive_overlap_bits_opacity_world_screen_parent": [
+      1211003,
+      891995,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      30960,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "after": 1211003,
+    "opacity_reset": false
+  },
+  "verified_complete_shuffled_epochs": 3,
+  "local_sensor_sha256_verified": true,
+  "overview": "reports/capture-full-quality-v2/launch-20261122/overview.md"
 }
