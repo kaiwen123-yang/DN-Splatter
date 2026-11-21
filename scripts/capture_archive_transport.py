@@ -79,7 +79,7 @@ def safe_rel(name):
 def ssh_args():
     host = read(ROOT / ".local/transfer/full-host").strip()
     check(re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9_.-]*", host), "Invalid saved project connection")
-    return ["ssh", "-T", "-o", "BatchMode=yes", "-o", "ConnectTimeout=15", "-o", "ServerAliveInterval=20",
+    return ["ssh", "-n", "-T", "-o", "BatchMode=yes", "-o", "ConnectTimeout=15", "-o", "ServerAliveInterval=20",
             "-o", "ServerAliveCountMax=4", "-o", "IPQoS=none", host]
 
 
@@ -88,7 +88,7 @@ def remote_bytes(rel, optional=False):
     cmd = f"if test -f {path}; then cat -- {path}; fi" if optional else f"cat -- {path}"
     for attempt in range(5):
         try:
-            r = subprocess.run(ssh_args() + [cmd], capture_output=True, timeout=120)
+            r = subprocess.run(ssh_args() + [cmd], stdin=subprocess.DEVNULL, capture_output=True, timeout=120)
             if r.returncode == 0:
                 return r.stdout
         except subprocess.TimeoutExpired:
@@ -150,18 +150,32 @@ def download(ssh, remote_rel, target, info, workers, partial=None, progress=None
             with partial.open("r+b", buffering=0) as f:
                 f.seek(a + filled)
                 command = f"dd if={remote} iflag=skip_bytes,count_bytes bs=262144 skip={a+filled} count={n-filled} status=none"
-                with subprocess.Popen(ssh + [command], stdout=subprocess.PIPE, stderr=subprocess.DEVNULL) as proc:
-                    while filled < n:
-                        b = proc.stdout.read(min(262144, n-filled))
-                        if not b:
-                            break
-                        f.write(b)
-                        filled += len(b)
-                        with lock:
-                            have[i] = filled
-                            update()
-                    proc.stdout.close()
-                    proc.wait()
+                with subprocess.Popen(ssh + [command], stdin=subprocess.DEVNULL, stdout=subprocess.PIPE, stderr=subprocess.DEVNULL) as proc:
+                    stop = threading.Event()
+                    last_byte = [time.monotonic()]
+                    def retry_idle_stream():
+                        while not stop.wait(8):
+                            if time.monotonic()-last_byte[0] > 80 and proc.poll() is None:
+                                proc.kill()
+                                return
+                    guard = threading.Thread(target=retry_idle_stream, daemon=True)
+                    guard.start()
+                    try:
+                        while filled < n:
+                            b = proc.stdout.read1(min(262144, n-filled))
+                            if not b:
+                                break
+                            last_byte[0] = time.monotonic()
+                            f.write(b)
+                            filled += len(b)
+                            with lock:
+                                have[i] = filled
+                                update()
+                        proc.stdout.close()
+                        proc.wait()
+                    finally:
+                        stop.set()
+                        guard.join()
                 if filled == n:
                     f.seek(a)
                     if hashlib.sha256(f.read(n)).hexdigest() == h:
