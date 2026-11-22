@@ -161,6 +161,16 @@ def run_formal(manifest_path):
         cfg = original_config()
         cfg.experiment_name = 'capture-full-b3'
         cfg.timestamp = 'surface-v3'
+        # The B2 trainer discovers its latest checkpoint itself. Validate that
+        # exact file before it can restore anything or run a missing val node.
+        checkpoints = sorted(cfg.get_checkpoint_dir().glob('step-*.ckpt'))
+        if checkpoints:
+            digest = hashlib.sha256(manifest_path.read_bytes()).hexdigest()
+            recovery = validate_recovery_checkpoint(checkpoints[-1], digest)
+            filename_step = int(checkpoints[-1].stem.removeprefix('step-'))
+            if recovery['saved_step'] != filename_step:
+                raise ValueError('checkpoint filename and saved step differ')
+            print(json.dumps({'b3_recovery_preflight': recovery}, sort_keys=True), flush=True)
         cfg.save_config()
         return cfg
     trainer.config = b3_config
