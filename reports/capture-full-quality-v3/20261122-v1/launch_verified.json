@@ -1,0 +1,111 @@
+{
+  "run_id": "capture-full-quality-v3-20261122-v1",
+  "observed_utc": "2026-11-22T05:58:46.510217+00:00",
+  "status": "running_frozen_local_export",
+  "phase": {
+    "run_id": "capture-full-quality-v3-20261122-v1",
+    "stage": "A1",
+    "pid": 999952,
+    "utc": "2026-11-22T05:58:39.076781+00:00",
+    "model": "B2",
+    "submaps": 34,
+    "total": 187,
+    "frames": 272,
+    "latest_counts": {
+      "sensor": {
+        "vertices": 1794746,
+        "triangles": 2643628
+      },
+      "model": {
+        "vertices": 1314945,
+        "triangles": 1981169
+      }
+    },
+    "identity": "42ef99925a5df982c5d04c68eaf98a9da3107c10791e1dc6e7f360534af23197"
+  },
+  "tmux": [
+    "dn-capture-b3:frozen"
+  ],
+  "cpu_quota_cores": 25.0,
+  "ram_limit_bytes": 128849018880,
+  "source_commit": "c183df5d3b64f9be9d2d0872de4a546fc0827606",
+  "checkpoint": {
+    "path": ".local/runs/capture-full-quality-v2-20261121-v1/training/capture-full-b2/dn-splatter/quality-v2/nerfstudio_models/step-000209999.ckpt",
+    "bytes": 568111157,
+    "sha256": "6cb4203b6a22df19c686f403de99d3d4f4b54b5b0022148cce7c1e34a96838a9"
+  },
+  "cameras": {
+    "path": ".local/runs/capture-full-quality-v2-20261121-v1/inputs/transforms.json",
+    "bytes": 1259044,
+    "sha256": "3e173297428839d7de762ce0c4dac5415f1e4cb63d5d8be08a22ee896c3d811e"
+  },
+  "split": [
+    1478,
+    184,
+    184
+  ],
+  "verified_submap_samples": [
+    {
+      "group": 0,
+      "frames": 8,
+      "counts": {
+        "sensor": {
+          "vertices": 947072,
+          "triangles": 1375618
+        },
+        "model": {
+          "vertices": 676337,
+          "triangles": 945734
+        }
+      },
+      "meshes": {
+        "sensor": {
+          "path": ".local/runs/capture-full-quality-v3-20261122-v1/export/B2/submaps/0000/sensor.ply",
+          "bytes": 63342757,
+          "sha256": "87ce054fba61de6587544a0435f0a44e0b922b60971ba9b01c05b8510477e27f"
+        },
+        "model": {
+          "path": ".local/runs/capture-full-quality-v3-20261122-v1/export/B2/submaps/0000/model.ply",
+          "bytes": 44758984,
+          "sha256": "0765cc7648c096d5726c9f80d85801ddedda5453b12b383b2ae5fb076a6634f1"
+        }
+      },
+      "receipt_sha256": "9b2cd9923971b6019d2954562f13b790a772e008ebb9ea4009643122026689f1"
+    },
+    {
+      "group": 33,
+      "frames": 8,
+      "counts": {
+        "sensor": {
+          "vertices": 1794746,
+          "triangles": 2643628
+        },
+        "model": {
+          "vertices": 1314945,
+          "triangles": 1981169
+        }
+      },
+      "meshes": {
+        "sensor": {
+          "path": ".local/runs/capture-full-quality-v3-20261122-v1/export/B2/submaps/0033/sensor.ply",
+          "bytes": 120515240,
+          "sha256": "9efe88f5a90f6fceca83e1a38b49a8e8c5350a3c7ea2a457b0c3b0ecda02bf86"
+        },
+        "model": {
+          "path": ".local/runs/capture-full-quality-v3-20261122-v1/export/B2/submaps/0033/model.ply",
+          "bytes": 88872825,
+          "sha256": "286a73e02980469eff2fd29055c2a367f03056ae5ab3f3270e3752e75cb1a77c"
+        }
+      },
+      "receipt_sha256": "41d04e685b8f9cff0df5aee5e22f9511dc6ccf0c41682ee5b5cd8f1446689f7c"
+    }
+  ],
+  "training_decision": null,
+  "training_switches": {
+    "accepted_pose_changes": null,
+    "depth_weights_enabled": null,
+    "texture_split_enabled": null
+  },
+  "validation_gain": null,
+  "development_test_gain": null
+}
