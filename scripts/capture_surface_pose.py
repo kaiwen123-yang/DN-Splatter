@@ -247,9 +247,33 @@ def main():
     depth_gate = bool(len(common_depth)==4 and all(r['common'] > 0 and
         r['proposed_valid'] >= r['old_valid'] and r['proposed_rate'] > r['old_rate']
         for r in common_depth))
-    # Group IDs alone do not establish the required viewpoint baseline and ray angle.
-    # Keep the proposal diagnostic until that check and the 1514 plane analysis exist.
-    independent_viewpoint_gate = False
+    # Test actual pairs of fixed-map camera centres at each fitted 3-D point.
+    viewpoint = {}
+    for i in TARGET:
+        fitted = [fit[i][j] for j in inliers.get(i, [])]
+        pairs = []
+        for a in range(len(fitted)):
+            for b in range(a + 1, len(fitted)):
+                ra, rb = fitted[a], fitted[b]
+                if groups[ra[2]] == groups[rb[2]] or np.linalg.norm(ra[3]-rb[3]) > .05:
+                    continue
+                ca = (np.asarray(frames[ra[2]]['transform_matrix']) @ FLIP)[:3, 3]
+                cb = (np.asarray(frames[rb[2]]['transform_matrix']) @ FLIP)[:3, 3]
+                point = (ra[3] + rb[3]) * .5
+                va, vb = ca - point, cb - point
+                denom = np.linalg.norm(va) * np.linalg.norm(vb)
+                if denom == 0:
+                    continue
+                distance = float(np.linalg.norm(ca-cb))
+                angle = float(np.degrees(np.arccos(np.clip(np.dot(va,vb)/denom,-1,1))))
+                if distance >= .1 and angle >= 3:
+                    pairs.append({'frames':[ra[2],rb[2]], 'groups':[groups[ra[2]],groups[rb[2]]],
+                                  'baseline_m':distance, 'ray_angle_deg':angle})
+                    break
+            if pairs:
+                break
+        viewpoint[str(i)] = {'independent_pair': pairs[0] if pairs else None}
+    independent_viewpoint_gate = all(viewpoint[str(i)]['independent_pair'] is not None for i in TARGET)
     accepted = bool(all(gates) and depth_gate and independent_viewpoint_gate)
     output = copy.deepcopy(meta)
     if accepted:
@@ -267,15 +291,48 @@ def main():
         diagnostic_edges.append({'edge':[a,b], 'directed':pair(a,b,{})})
     image = cv2.imread(str(B2 / 'inputs' / frames[1514]['file_path']), cv2.IMREAD_GRAYSCALE)
     blur = float(cv2.Laplacian(image, cv2.CV_64F).var()) if image is not None else None
+    # Extract real native-depth planes independently; report RGB correspondences to
+    # adjacent training frames without treating them as a validated rigid correction.
+    depth1514, depth_pose = native_observation(PACKET, frames[1514], selection, extrinsic)
+    zz = depth1514[yy, xx]
+    valid = np.isfinite(zz) & (zz >= .3) & (zz <= 6)
+    points = np.c_[(xx[valid]-nk['cx'])*zz[valid]/nk['fx'],
+                   (yy[valid]-nk['cy'])*zz[valid]/nk['fy'], zz[valid]]
+    rng = np.random.default_rng(42)
+    planes = []
+    for _ in range(6):
+        if len(points) < 100: break
+        best = np.zeros(len(points), dtype=bool)
+        for __ in range(300):
+            sample = points[rng.choice(len(points), 3, replace=False)]
+            normal = np.cross(sample[1]-sample[0], sample[2]-sample[0])
+            norm = np.linalg.norm(normal)
+            if norm < 1e-9: continue
+            normal /= norm
+            mask = np.abs((points-sample[0]) @ normal) <= .02
+            if mask.sum() > best.sum(): best = mask
+        if best.sum() < 100: break
+        selected = points[best]; center = selected.mean(axis=0)
+        _, singular, vh = np.linalg.svd(selected-center, full_matrices=False)
+        normal = vh[-1]
+        planes.append({'count':int(best.sum()), 'center_depth_camera_m':center.tolist(),
+                       'normal_depth_camera':normal.tolist(), 'singular_values':singular.tolist(),
+                       'median_abs_residual_m':float(np.median(np.abs((selected-center) @ normal)))})
+        points = points[~best]
+    rgb_checks = []
+    for neighbour in (adjacent[0], adjacent[2]):
+        matches = match(1514, neighbour)
+        stat = residual(np.asarray(frames[1514]['transform_matrix']) @ FLIP, matches)
+        rgb_checks.append({'frame':neighbour, 'matches':len(matches), 'old_pose_reprojection':stat})
     write(out / 'diagnostics.json', dict(run_id=RUN.name, input_sha256=sha(path), joint_matches=len(joint_pairs),
         candidates=rows, boundary_native_depth=checks, common_support_depth=common_depth, independent_reprojection_gates=gates,
-        common_support_depth_gate=depth_gate, independent_viewpoint_gate=independent_viewpoint_gate, accepted_pose_changes=2 if accepted else 0,
+        common_support_depth_gate=depth_gate, independent_viewpoint_gate=independent_viewpoint_gate, viewpoint_evidence=viewpoint, accepted_pose_changes=2 if accepted else 0,
         status='accepted' if accepted else 'original_retained_unresolved',
-        failure='incomplete: independent viewpoint geometry and 1514 multi-plane analysis not implemented',
+        failure=None if accepted else 'joint proposal did not satisfy all measured acceptance gates',
         separate_1514={'status':'original_retained_unresolved', 'accepted':False,
-                       'adjacent_edges':diagnostic_edges, 'laplacian_variance':blur,
+                       'adjacent_edges':diagnostic_edges, 'laplacian_variance':blur, 'native_planes':planes, 'rgb_neighbour_checks':rgb_checks,
                        'reason':'rigid submap correction lacks validated multi-plane evidence'},
-        training_decision='incomplete_not_equivalent'))
+        training_decision='pending_other_evidence'))
     db.close()
 
 
