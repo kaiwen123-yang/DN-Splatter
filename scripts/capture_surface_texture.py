@@ -7,6 +7,7 @@ freezing the manifest, before examining this run's validation or test outputs.
 """
 import argparse
 import json
+import inspect
 from pathlib import Path
 
 import cv2
@@ -58,7 +59,12 @@ def warp(source_depth, target_depth, source_pose, target_pose, meta, crop):
     order=np.lexsort((q[ids,2],key)); sorted_ids=ids[order]; sorted_key=key[order]
     keep=sorted_ids[np.r_[True,sorted_key[1:]!=sorted_key[:-1]]] if len(ids) else ids
     valid[:]=False; valid[keep]=True
-    return u.reshape(z.shape).astype(np.float32),v.reshape(z.shape).astype(np.float32),valid.reshape(z.shape)
+    world = p @ source_pose[:3,:3].T + source_pose[:3,3]
+    va = source_pose[:3,3] - world; vb = target_pose[:3,3] - world
+    denom = np.linalg.norm(va,axis=1)*np.linalg.norm(vb,axis=1)
+    cosine = np.divide((va*vb).sum(1),denom,out=np.ones_like(denom),where=denom>0)
+    angle = np.degrees(np.arccos(np.clip(cosine,-1,1))).reshape(z.shape)
+    return u.reshape(z.shape).astype(np.float32),v.reshape(z.shape).astype(np.float32),valid.reshape(z.shape),angle
 
 
 def measure(manifest, label, renders):
@@ -85,7 +91,7 @@ def measure(manifest, label, renders):
             check(entry['sha256']==sha(path), 'render hash mismatch '+name)
         ma,mb=image(renders/(Path(a).stem+'.png')),image(renders/(Path(b).stem+'.png'))
         za=np.load(scene/fa['depth_file_path']); zb=np.load(scene/fb['depth_file_path'])
-        u,v,valid=warp(za,zb,pa,pb,meta,(x0,y0,x1,y1)); sl=np.s_[y0:y1,x0:x1]
+        u,v,valid,angle=warp(za,zb,pa,pb,meta,(x0,y0,x1,y1)); sl=np.s_[y0:y1,x0:x1]
         ga,gb=gradient(ra),gradient(rb); warped=cv2.remap(gb,u,v,cv2.INTER_LINEAR)
         src_edges=(ga[sl] > np.quantile(ga[sl][valid],.75)) & valid if valid.any() else np.zeros_like(valid)
         dst_edges=(gb > np.quantile(gb,.75)).astype(np.uint8)
@@ -102,10 +108,17 @@ def measure(manifest, label, renders):
                 g0=float(ga[sl][s][m].mean()); g1=float(warped[s][m].mean()); median=(g0+g1)/2
                 e0=float(ea[sl][s][m].mean()); e1=float(ebt[s][m].mean())
                 med=float(np.median(ed)) if len(ed) else None
+                angle_median=float(np.median(angle[s][m]))
+                independent=float(np.linalg.norm(center)) >= .1 and angle_median >= 3
+                # Two views alone cannot establish that both are above the
+                # median of a larger set of observations of the same block.
+                clear0=g0>=median; clear1=g1>=median
+                eligible=False
                 records.append(dict(x=x0+xx,y=y0+yy,valid_pixels=n,overlap=n/1024,edge_samples=len(ed),edge_median_px=med,
-                    source_gradient=g0,target_gradient=g1,clear_both=None,
+                    source_gradient=g0,target_gradient=g1,clarity_median=median,source_clear=clear0,target_clear=clear1,clear_both=clear0 and clear1,
+                    surface_ray_angle_median_deg=angle_median,independent_viewpoints=independent,
                     source_highpass_error=e0,target_highpass_error=e1,source_q90=qa,target_q90=qb,
-                    eligible=False))
+                    eligible=eligible))
         rays_a=pa[:3,3]- (pa[:3,3]+pa[:3,2])
         rays_b=pb[:3,3]- (pb[:3,3]+pb[:3,2])
         view_angle=float(np.degrees(np.arccos(np.clip(np.dot(rays_a,rays_b)/(np.linalg.norm(rays_a)*np.linalg.norm(rays_b)),-1,1))))
@@ -113,12 +126,20 @@ def measure(manifest, label, renders):
             baseline_m=float(np.linalg.norm(center)),camera_axis_angle_deg=view_angle,valid_pixels=int(valid.sum()),crop_pixels=int(valid.size),
             edge_median_px=float(np.median(edge[src_edges])) if src_edges.any() else None,
             residual_quantiles=dict(source=qa,target=qb,source_blocks=na,target_blocks=nb),blocks=records))
-    # The standard renderer returns RGB/depth/alpha, not per-pixel contributing IDs.
-    # A list of spatially nearby Gaussians cannot establish visibility or contribution.
+    # Record the inspected renderer implementation rather than inventing IDs from
+    # a projected position or treating rasterizer tile intersections as visibility.
+    from dn_splatter.dn_model import DNSplatterModel
+    renderer_source=inspect.getsourcefile(DNSplatterModel)
+    renderer_text=Path(renderer_source).read_text(encoding='utf-8')
+    attribution=dict(renderer_source=str(renderer_source),renderer_sha256=sha(Path(renderer_source)),
+        get_outputs_source=inspect.getsource(DNSplatterModel.get_outputs),
+        mentions_gaussian_ids=('gaussian_ids' in renderer_text),
+        contributing_ids_verified=False,
+        reason='No per-pixel contribution IDs were supplied and verified against the rendered pixels; spatial or tile candidates are insufficient.')
     write(RUN/'texture'/label/'receipt.json',dict(schema_version=1,identity_sha256=sha(identity_path),manifest=manifest,
         manifest_sha256=sha(Path(manifest['_path'])),render_receipt_sha256=sha(renders/'receipt.json'),results=results,eligible_blocks=sum(r['eligible'] for o in results for r in o['blocks']),
-        texture_split_enabled=False,extra_parent_ids=[],attribution='not yet inspected: per-pixel contributing Gaussian IDs have not been established',
-        status='incomplete', note='Pairwise clarity, independent viewpoint angle, attribution and render provenance require verification; do not use for training decisions.'))
+        texture_split_enabled=False,extra_parent_ids=[],attribution=attribution,
+        status='incomplete', note='Two-view clarity cannot establish the multi-view median; actual contributing IDs are also unverified. Do not use for training decisions.'))
 
 
 if __name__=='__main__':
