@@ -37,7 +37,7 @@ def weighted_edge_aware_log_l1(pred, gt, rgb, mask, weights, empty_counts=None):
         raise ValueError('depth and weight shapes differ')
     if mask is not None and mask.shape != pred.shape:
         raise ValueError('mask shape differs')
-    if not torch.isfinite(weights).all() or (weights < 0).any():
+    if not torch.isfinite(weights).all() or (weights < 0).any() or (weights > 1).any():
         raise ValueError('invalid depth weights')
     logl1 = torch.log(1 + torch.abs(pred - gt))
     dx = torch.mean(torch.abs(rgb[..., :, :-1, :] - rgb[..., :, 1:, :]), -1, keepdim=True)
@@ -144,8 +144,12 @@ def run_formal(manifest_path):
     if not {'transforms.json', 'geometry.json'}.issubset(manifest['files']):
         raise ValueError('manifest must bind camera and initialization identities')
     meta = json.loads((scene / 'transforms.json').read_text(encoding='utf-8'))
-    if len(meta['train_filenames']) != 1478:
+    if (len(meta['train_filenames']) != 1478 or len(set(meta['train_filenames'])) != 1478
+            or len(meta['val_filenames']) != 184 or len(meta['test_filenames']) != 184):
         raise ValueError('incorrect training population')
+    splits = [set(meta[k]) for k in ('train_filenames', 'val_filenames', 'test_filenames')]
+    if any(splits[i] & splits[j] for i in range(3) for j in range(i + 1, 3)):
+        raise ValueError('training and held-out splits overlap')
     os.environ['DN_RUN_OVERRIDE'] = str(RUN)
     os.environ['DN_SCENE_OVERRIDE'] = str(scene)
     import capture_quality_train as trainer
@@ -192,6 +196,8 @@ def run_formal(manifest_path):
             weights = torch.as_tensor(array, device=outputs['depth'].device, dtype=outputs['depth'].dtype)
             if weights.ndim == 2:
                 weights = weights.unsqueeze(-1)
+            if weights.shape != outputs['depth'].shape:
+                raise ValueError('weight and rendered depth dimensions differ for ' + names[idx])
             def forward(module, pred, gt, rgb, mask):
                 if module.implementation != 'scalar':
                     raise ValueError('B3 weights require scalar EdgeAwareLogL1')
