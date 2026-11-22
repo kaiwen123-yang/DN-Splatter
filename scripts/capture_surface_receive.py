@@ -32,7 +32,10 @@ def metadata():
     script = """import base64, hashlib, json, pathlib, sys
 r = pathlib.Path(sys.argv[1])
 out = {}
-for name in ('state/delivery_ready.json','state/B2_local_surfaces.json','state/current.json','state/training_progress.json','export/B2/identity.json'):
+for name in ('state/delivery_ready.json','state/B2_local_surfaces.json','state/native_pipeline.json','state/current.json',
+             'state/A3_progress.json','state/A3_fusion_progress.json','state/training_progress.json','state/training_decision.json',
+             'export/B2/fusion_model/complete.json','export/B2/fusion_sensor/complete.json',
+             'export/B2/tolerances.json','export/B2/tiles/complete.json','export/B2/identity.json'):
  p = r / name
  if p.is_file():
   data = p.read_bytes()
@@ -47,7 +50,7 @@ print(json.dumps(out))
         check(hashlib.sha256(b).hexdigest() == key, "Remote evidence checksum")
         local = DEST / "server_state" / safe_rel(name)
         local.parent.mkdir(parents=True, exist_ok=True)
-        tmp = local.with_name(local.name+".part")
+        tmp = local.with_name(local.name+f".{os.getpid()}.part")
         tmp.write_bytes(b)
         check(digest(tmp) == key, "Local evidence checksum")
         os.replace(tmp, local)
@@ -61,7 +64,9 @@ def receive():
     if ready is None:
         atomic(STATE, dict(run_id=ID, pid=os.getpid(), utc=utc(), status="waiting_for_delivery",
               metadata_sha256=hashes, submaps=meta.get("state/B2_local_surfaces.json"),
-              server=meta.get("state/current.json"), training=meta.get("state/training_progress.json")))
+              server=meta.get("state/current.json"), fusion=meta.get("state/A3_fusion_progress.json"),
+              global_meshes={k:meta.get(f"export/B2/fusion_{k}/complete.json") for k in ("model","sensor")},
+              training_decision=meta.get("state/training_decision.json"), training=meta.get("state/training_progress.json")))
         return False
     commit = ready["commit"]
     check(ready["run_id"] == ID and ready["schema_version"] == 1 and re.fullmatch("[a-f0-9]{40}", commit),

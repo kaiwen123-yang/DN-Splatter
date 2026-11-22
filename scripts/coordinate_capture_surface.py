@@ -61,6 +61,23 @@ def tail_bytes(path):
 
 def current_assignment():
     # The experiment spans separate CLI invocations. Give each implementation turn an executable deliverable.
+    if (ROOT / "scripts/capture_surface_assemble.py").is_file():
+        queue = [
+            ("capture_surface_pose.py", "independent_viewpoint_gate = False",
+             "完成实际对应的独立光心与视线检查，1514 单独提取多朝向平面与 RGB 核验，统计两条邻边；保留真实失败边界和独立留出定位。"),
+            ("capture_surface_texture.py", "not yet inspected",
+             "完成训练局部的双机位清晰度、视角、实际渲染参与 ID 检查、来源核验和固定物体块清单，关闭项也需要实测依据。"),
+            ("capture_surface_train.py", "formal launcher is deliberately gated",
+             "复用 B2 正式训练器及 B3 独立初始化、输入、经过训练端检查的权重和细分状态，建立可执行的完整 240k 入口、验证和恢复。"),
+        ]
+        for name, marker, job in queue:
+            if marker in (ROOT/"scripts"/name).read_text(encoding="utf-8"):
+                return (f"本次先实际编辑、核验、发布 scripts/{name}。{job} "
+                        "A1、A2 及全部三角面的空间索引已完成。原 run 在 dn-capture-b3:A3-fusion 正式进行 GPU 融合，"
+                        "A4-val 窗口通过锁排在其后；保持这些原进程、实现和哈希，不重复启动。A3/A4 计算期间只开发后续代码。"
+                        "主入口现为 launch_capture_surface_quality.sh。不得删除 incomplete 标识充当实现；实测检查须可复核。")
+        return ("将剩余 B 诊断和 C/选择/交付的持久执行链接在 state/frozen_pair_val.json 后；完善权重生成及固定局部、视频、"
+                "完整 val/test 和相机/检查点 SHA 复核，处理实际故障直到最终回读。A3 和 A4 进程不重复启动。")
     work = [
         ("capture_surface_votes.py", "实现一个实际可供后续融合与深度权重调用的批量可见性投票模块。读取 A1 identity 的原生训练相机和 A2 tolerances，使用原生 Z 首面、断边距离、独立光心和视线角、源子图排除，分开 S/C、遮挡与未知，分组内按断边距离、残差及稳定 ID 选票。空间分块/相机裁剪，不做近似丢点。在真实已完成子图上做函数级等价性核对。"),
         ("capture_surface_fuse.py", "用已有 votes 和 A1/A2 实现可运行的 A3 模型和传感器融合命令：逐面顶点、三个中点及中心；支持与冲突；两票替换旧自由空间、补洞、其余旧面回退；法线分层与持有子图、裁接去重、统计面积；块级可恢复。包括可发现的命令用法和输出 JSON。"),
