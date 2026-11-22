@@ -102,6 +102,12 @@ def validate_recovery_checkpoint(path, expected_manifest, target_updates=240000)
         raise ValueError("checkpoint missing sampler or growth state: " + ", ".join(missing))
     if any(key not in recovery["growth"] for key in ("xys_grad_norm", "vis_counts", "max_2Dsize")):
         raise ValueError("checkpoint missing densification state")
+    if not isinstance(recovery['sampler'], dict) or not {'epoch', 'order'} <= recovery['sampler'].keys():
+        raise ValueError('checkpoint missing sampler epoch or order')
+    if not isinstance(recovery['remaining'], (list, tuple)) or not isinstance(recovery['rng'], dict):
+        raise ValueError('invalid sampler or RNG recovery state')
+    if not {'python', 'numpy', 'torch_cpu', 'torch_cuda'} <= recovery['rng'].keys():
+        raise ValueError('checkpoint missing RNG state')
     return {"saved_step": step, "completed_updates": step + 1,
             "remaining_updates": target_updates - (step + 1), "manifest": expected_manifest}
 
@@ -124,6 +130,19 @@ def run_formal(manifest_path):
     decision = training_decision(manifest['pose'], manifest['weights'], manifest['texture'])
     if decision['decision'] != 'train':
         raise ValueError('formal training requires a measured nonidentity change')
+    # Decisions must be tied to the diagnostic files, not merely copied into a
+    # manifest. This also makes a later change to a receipt invalidate recovery.
+    receipts = manifest.get('diagnostic_receipts', {})
+    for kind in ('pose', 'weights', 'texture'):
+        receipt = receipts.get(kind, {})
+        path = (RUN / receipt.get('path', '')).resolve()
+        if not path.is_relative_to(RUN.resolve()) or not path.is_file():
+            raise ValueError('missing B3 diagnostic receipt: ' + kind)
+        digest = hashlib.sha256(path.read_bytes()).hexdigest()
+        if digest != receipt.get('sha256'):
+            raise ValueError('diagnostic receipt hash mismatch: ' + kind)
+        if json.loads(path.read_text(encoding='utf-8')) != manifest[kind]:
+            raise ValueError('manifest differs from diagnostic receipt: ' + kind)
     # These switches require explicit integration with the native model. A
     # diagnostic receipt alone is not evidence that the trainer consumes them.
     if decision['texture_split_enabled']:
@@ -193,6 +212,7 @@ def run_formal(manifest_path):
         trainer.AUDIT.mkdir(parents=True, exist_ok=True)
         (trainer.AUDIT / 'weight_equivalence.json').write_text(json.dumps(equivalence, indent=2))
         original_loss = DNSplatterModel.get_loss_dict
+        first_weight_batch = {}
         def weighted_loss(model, outputs, batch, *args, **kwargs):
             if not model.training:
                 return original_loss(model, outputs, batch, *args, **kwargs)
@@ -203,6 +223,12 @@ def run_formal(manifest_path):
                 weights = weights.unsqueeze(-1)
             if weights.shape != outputs['depth'].shape:
                 raise ValueError('weight and rendered depth dimensions differ for ' + names[idx])
+            if not first_weight_batch:
+                first_weight_batch.update(frame=names[idx], shape=list(weights.shape),
+                    minimum=float(weights.min()), maximum=float(weights.max()),
+                    nonidentity_pixels=int((weights != 1).sum()), sha256=entries[idx]['sha256'])
+                (trainer.AUDIT / 'first_weight_batch.json').write_text(
+                    json.dumps(first_weight_batch, indent=2), encoding='utf-8')
             def forward(module, pred, gt, rgb, mask):
                 if module.implementation != 'scalar':
                     raise ValueError('B3 weights require scalar EdgeAwareLogL1')
