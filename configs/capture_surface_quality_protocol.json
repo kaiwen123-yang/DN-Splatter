@@ -1,0 +1,133 @@
+{
+  "schema_version": 1,
+  "status": "planned",
+  "run_id": "capture-full-quality-v3-20261122-v1",
+  "evidence_commit": "a0408bc4da45920ba0cd297536339838e5f3fe34",
+  "plan": "docs/15_capture_surface_quality_plan.md",
+  "baseline": {
+    "run_id": "capture-full-quality-v2-20261121-v1",
+    "selected_updates": 210000,
+    "selected_step": 209999,
+    "selected_checkpoint_sha256": "6cb4203b6a22df19c686f403de99d3d4f4b54b5b0022148cce7c1e34a96838a9",
+    "final_step": 239999,
+    "model_val_source": "reports/capture-full-quality-v2/20261121-v1/val_step-000209999.json.gz",
+    "surface_val_source": "reports/capture-full-quality-v2/20261121-v1/surfaces_val.json",
+    "default_model_mesh": "supported_poisson",
+    "inherited_protocol": "configs/capture_quality_protocol.json"
+  },
+  "data": {
+    "primary_train": 1478,
+    "val": 184,
+    "development_test": 184,
+    "timeline_frames": 1846,
+    "rgb_wh": [
+      1280,
+      720
+    ],
+    "native_depth_wh": [
+      848,
+      480
+    ],
+    "z_m": [
+      0.3,
+      6
+    ],
+    "val_reference_pixels": 29222080,
+    "test_reference_pixels": 29100252,
+    "range_bin_edges_m": [
+      0.3,
+      1,
+      2,
+      4,
+      6
+    ],
+    "time_window_s": 30,
+    "mapping_only_auxiliary_images": 100
+  },
+  "fusion": {
+    "submap_seconds": 2,
+    "split_at_adjacent_rotation_deg_over": 90,
+    "global_voxel_m": 0.01,
+    "local_sdf_trunc_m": 0.04,
+    "model_alpha_min": 0.5,
+    "independent_support_groups_min": 2,
+    "independent_center_baseline_m_min": 0.1,
+    "independent_surface_ray_angle_deg_min": 3,
+    "edge_radius_native_px": 2,
+    "normal_separation_deg": 30,
+    "support_tolerance": {
+      "floor": "max(0.05 m,0.03*reference_Z)",
+      "estimate": "2.5 * 1.4826 * MAD of signed, reciprocal, interior train residuals in the same reference-Z bin",
+      "cap_m": 0.2,
+      "min_samples_per_bin": 1000,
+      "min_frame_pairs_per_bin": 10
+    },
+    "eval_tolerance": "max(0.05 m,0.03*reference_Z); fixed B2 evaluator",
+    "local_model_surface": "predicted optical Z, validated by native sensor; B2 legacy supported mesh for fallback",
+    "local_sensor_surface": "native sensor Z, separate sensor-only product"
+  },
+  "pose": {
+    "primary_candidates": [
+      1304,
+      1305
+    ],
+    "separate_candidate": [
+      1514
+    ],
+    "fixed_fitting_external_min_groups": 2,
+    "fit_pnp_inliers_min": 20,
+    "fit_median_reprojection_px_max": 2.5,
+    "evaluation_requires_unused_train_correspondences": true
+  },
+  "training": {
+    "max_new_runs": 1,
+    "trigger": "any supported, nonidentity pose, reliability-weighted supervision or localized subdivision change measured on training observations; otherwise skip_equivalent",
+    "from_scratch": true,
+    "target_updates": 240000,
+    "final_step": 239999,
+    "save_every_updates": 10000,
+    "full_val_every_updates": 30000,
+    "growth_stops_at": 120000,
+    "extra_texture_split_parent_fraction_of_ordinary_splits_max": 0.1,
+    "no_new_rasterizer": true,
+    "seed": 42
+  },
+  "depth_weighting": {
+    "weights": "(1+S)/(1+S+C); S=independent surface support groups, C=reliable free-space conflict groups",
+    "exclude_from_evidence": ["source frame", "source submap", "near-duplicate views", "occluded or unknown observations"],
+    "activation": "Nonidentity effective weights and larger independent training residuals in lower-confidence pixels; log cross-group comparison and counts.",
+    "empty_support": "w=1 when S=C=0; empty directional loss mask contributes zero",
+    "invariant": "All-one weights reproduce both B2 directional loss terms and gradients"
+  },
+  "texture": {
+    "patch_size_px": 32,
+    "valid_overlap_min": 0.5,
+    "max_median_warp_error_px": 1.0,
+    "min_clear_independent_views": 2,
+    "highpass_gaussian_sigma_px": 1.0,
+    "within_view_residual_quantile": 0.9,
+    "fallback": "No extra split when source imagery is unclear, evidence is misaligned or contributing Gaussian IDs cannot be determined reliably"
+  },
+  "selection": {
+    "checkpoint": "exact B2 210k val RGB noninferiority, then min pooled Z MAE, max PSNR, earliest; if none, B3 final as diagnostic",
+    "model_promotion": "RGB gate and pooled val depth MAE <= B2 210k; otherwise retain B2",
+    "model_mesh_candidates": "legacy supported Poisson, legacy model TSDF and new model surface for each available primary model; exclude sensor-only outputs",
+    "mesh_promotion": "hit>=0.90, correct10 >= B2 supported and foreground <= B2 supported, all on val; then all three goals, max correct10, min foreground, min hit MAE, incumbent on exact tie",
+    "goals": {
+      "val_model_mesh_correct10_min": 0.7,
+      "val_model_mesh_hit_min": 0.9,
+      "val_model_mesh_foreground_max": 0.15
+    },
+    "test": "only after all choices have been frozen; full 184 development test once per distinct deliverable"
+  },
+  "actual": {
+    "export_A": null,
+    "accepted_pose_updates": null,
+    "training_decision": null,
+    "training_updates": null,
+    "selected_checkpoint": null,
+    "selected_model_surface": null,
+    "metrics": null,
+    "receipt": null
+  }
+}
