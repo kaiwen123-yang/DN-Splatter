@@ -69,13 +69,21 @@ def measure(manifest, label, renders):
     frames={f['file_path']:f for f in meta['frames']}; train=set(meta['train_filenames'])
     groups={name:g['id'] for g in identity['groups'] for name in g['names']}
     objects=manifest['objects']; check(len(objects)==3 and len({o['name'] for o in objects})==3,'three distinct fixed objects required')
+    provenance=read(renders/'receipt.json')
+    check(provenance['identity_sha256']==sha(identity_path), 'render identity mismatch')
+    check(provenance['checkpoint_sha256']==identity['checkpoint']['sha256'], 'render checkpoint mismatch')
+    check(provenance['cameras_sha256']==identity['cameras']['sha256'], 'render camera mismatch')
     results=[]
     for obj in objects:
         a,b=obj['source'],obj['target']; crop=obj['crop']
         check(a in train and b in train and groups[a]!=groups[b], 'views must be distinct training groups')
         x0,y0,x1,y1=map(int,crop); check(0<=x0<x1<=1280 and 0<=y0<y1<=720,'invalid crop')
         fa,fb=frames[a],frames[b]; pa=np.asarray(fa['transform_matrix'])@FLIP; pb=np.asarray(fb['transform_matrix'])@FLIP
-        ra,rb=image(scene/a),image(scene/b); ma,mb=image(renders/(Path(a).stem+'.png')),image(renders/(Path(b).stem+'.png'))
+        ra,rb=image(scene/a),image(scene/b)
+        for name in (a,b):
+            entry=provenance['frames'][name]; path=renders/(Path(name).stem+'.png')
+            check(entry['sha256']==sha(path), 'render hash mismatch '+name)
+        ma,mb=image(renders/(Path(a).stem+'.png')),image(renders/(Path(b).stem+'.png'))
         za=np.load(scene/fa['depth_file_path']); zb=np.load(scene/fb['depth_file_path'])
         u,v,valid=warp(za,zb,pa,pb,meta,(x0,y0,x1,y1)); sl=np.s_[y0:y1,x0:x1]
         ga,gb=gradient(ra),gradient(rb); warped=cv2.remap(gb,u,v,cv2.INTER_LINEAR)
@@ -98,14 +106,17 @@ def measure(manifest, label, renders):
                     source_gradient=g0,target_gradient=g1,clear_both=None,
                     source_highpass_error=e0,target_highpass_error=e1,source_q90=qa,target_q90=qb,
                     eligible=False))
+        rays_a=pa[:3,3]- (pa[:3,3]+pa[:3,2])
+        rays_b=pb[:3,3]- (pb[:3,3]+pb[:3,2])
+        view_angle=float(np.degrees(np.arccos(np.clip(np.dot(rays_a,rays_b)/(np.linalg.norm(rays_a)*np.linalg.norm(rays_b)),-1,1))))
         results.append(dict(name=obj['name'],source=a,target=b,crop=[x0,y0,x1,y1],source_group=groups[a],target_group=groups[b],
-            baseline_m=float(np.linalg.norm(center)),valid_pixels=int(valid.sum()),crop_pixels=int(valid.size),
+            baseline_m=float(np.linalg.norm(center)),camera_axis_angle_deg=view_angle,valid_pixels=int(valid.sum()),crop_pixels=int(valid.size),
             edge_median_px=float(np.median(edge[src_edges])) if src_edges.any() else None,
             residual_quantiles=dict(source=qa,target=qb,source_blocks=na,target_blocks=nb),blocks=records))
     # The standard renderer returns RGB/depth/alpha, not per-pixel contributing IDs.
     # A list of spatially nearby Gaussians cannot establish visibility or contribution.
     write(RUN/'texture'/label/'receipt.json',dict(schema_version=1,identity_sha256=sha(identity_path),manifest=manifest,
-        manifest_sha256=sha(Path(manifest['_path'])),results=results,eligible_blocks=sum(r['eligible'] for o in results for r in o['blocks']),
+        manifest_sha256=sha(Path(manifest['_path'])),render_receipt_sha256=sha(renders/'receipt.json'),results=results,eligible_blocks=sum(r['eligible'] for o in results for r in o['blocks']),
         texture_split_enabled=False,extra_parent_ids=[],attribution='not yet inspected: per-pixel contributing Gaussian IDs have not been established',
         status='incomplete', note='Pairwise clarity, independent viewpoint angle, attribution and render provenance require verification; do not use for training decisions.'))
 
