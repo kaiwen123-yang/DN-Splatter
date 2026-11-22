@@ -12,6 +12,7 @@ import time
 import zipfile
 
 from capture_archive_transport import ROOT, SERVER, atomic, check, digest, safe_rel, ssh_args, utc
+from capture_archive_windows import extended_path
 
 
 def document(path):
@@ -51,6 +52,7 @@ def fetch_file(row, ssh):
     check(isinstance(size, int) and size >= 0 and re.fullmatch("[0-9a-f]{64}", key), "Artifact identity")
     dest = DEST / "artifacts" / remote.relative_to(RUN)
     check(dest.resolve().is_relative_to((DEST / "artifacts").resolve()), "Local artifact path")
+    dest = extended_path(dest)
     if dest.exists():
         check(dest.stat().st_size == size and digest(dest) == key, "Previously received artifact differs")
         return
