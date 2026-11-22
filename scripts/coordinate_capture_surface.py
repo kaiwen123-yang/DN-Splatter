@@ -4,6 +4,7 @@ import os
 from pathlib import Path
 import shutil
 import subprocess
+import sys
 import time
 
 from capture_archive_transport import atomic
@@ -58,7 +59,31 @@ def tail_bytes(path):
         return stream.read()
 
 
+def current_assignment():
+    # The experiment spans separate CLI invocations. Give each implementation turn an executable deliverable.
+    work = [
+        ("capture_surface_votes.py", "实现一个实际可供后续融合与深度权重调用的批量可见性投票模块。读取 A1 identity 的原生训练相机和 A2 tolerances，使用原生 Z 首面、断边距离、独立光心和视线角、源子图排除，分开 S/C、遮挡与未知，分组内按断边距离、残差及稳定 ID 选票。空间分块/相机裁剪，不做近似丢点。在真实已完成子图上做函数级等价性核对。"),
+        ("capture_surface_fuse.py", "用已有 votes 和 A1/A2 实现可运行的 A3 模型和传感器融合命令：逐面顶点、三个中点及中心；支持与冲突；两票替换旧自由空间、补洞、其余旧面回退；法线分层与持有子图、裁接去重、统计面积；块级可恢复。包括可发现的命令用法和输出 JSON。"),
+        ("capture_surface_evaluate.py", "实现 A4 和全轨迹网格评价，复用已有模块。全184个视角、固定分母、按视角/深度/时间、paired正确像素转移、共同命中、3训练相机与4个局部、固定物体图。只在全部选择冻结后允许 test。"),
+        ("capture_surface_pose.py", "实际实现 B3 坏段外训练地图 1304/1305 联合重定位、独立未拟合对应和双向真实深度验收、1514 单独诊断及保留失败标记。输出独立相机、配对残差与实测开关。"),
+        ("capture_surface_weights.py", "实际实现所有训练有效深度的两类独立投票、w 像素权重、留组交叉验证与按距离的诊断；使用 B2 真实原生对应冻结 RGB-Z 像素映射，保留空像素和全部帧。"),
+        ("capture_surface_texture.py", "对三个物体在训练视角的原尺寸固定局部做真图-真图几何重投影、边缘偏差、高通残差分位数与跨机位清晰度判断；检查真实可见高斯归因，输出可启用的额外父点/明确实测关闭理由。"),
+        ("capture_surface_train.py", "实现条件训练门、初始化、每方向带权 EdgeAwareLogL1 以及全1等价检查、可能的局部细分和 B3 正式训练入口。复用 B2 trainer，run/输入/回调/恢复全部指向 B3，使用 B2 210k 精确 val 选点。"),
+        ("capture_surface_select.py", "实现最终 checkpoint 推荐 vs 网格 val 选择，验证输入冻结后再统一开发 test、B3 未改相机及旧 mesh 对照，按精确门槛与固定同分规则。"),
+        ("capture_surface_publish.py", "实现完整时间轴/原隐私遮挡、固定局部、中文结果报告及 Git 与私有大件交付/引用清单，兼容 capture_surface_receive.py。"),
+        ("launch_capture_surface_quality.sh", "串接全部真实阶段、计算开关、一次条件训练和交付到单实例可恢复主链，采用已运行的 A1/A2，不重复启动；部署进项目 tmux，核验后持续运行至收据。"),
+    ]
+    for name, task in work:
+        if not (ROOT / "scripts" / name).is_file():
+            return (f"本次首先交付 scripts/{name}。{task} 这是具体编码工作：请直接读必要函数并使用工具写该文件、"
+                    "做语法和接口校验、审查、提交、部署，而后再继续下一项。已经核实 A1 正常，不需要再花本轮重复检查 A1。"
+                    "若远端已存在等效实现，取回审阅合并并复用。主协调者是调用你的持久 Python 程序，"
+                    "它独立持有锁，当前会话拥有实际实施权限。")
+    return "请核对整个 native 主链实际运行状态、已实现行为和错误，修复并续接直到完成最终回传。"
+
+
 def main():
+    source_version = Path(__file__).stat().st_mtime_ns
     CONTROL.mkdir(exist_ok=True, parents=True)
     exe = shutil.which("codex.exe")
     if not exe:
@@ -67,6 +92,9 @@ def main():
         lock_receiver(lock)
         attempt = int(document(STATUS).get("attempt", 0)) if STATUS.exists() else 0
         while True:
+            if Path(__file__).stat().st_mtime_ns != source_version:
+                lock.close()
+                os.execv(sys.executable, [sys.executable, __file__])
             receipt = document(STATE) if STATE.exists() else {}
             if receipt.get("run_id") == ID and receipt.get("status") in ("received", "server_blocked"):
                 atomic(STATUS, dict(run_id=ID, pid=os.getpid(), utc=now(), status=receipt["status"], attempt=attempt))
@@ -90,7 +118,7 @@ def main():
                 process = subprocess.Popen(command, cwd=ROOT, stdin=subprocess.PIPE, stdout=output, stderr=errors)
                 atomic(STATUS, dict(run_id=ID, pid=os.getpid(), worker_pid=process.pid, attempt=attempt,
                       utc=now(), status="coordinating", log=log.name))
-                process.communicate(BRIEF.encode("utf-8"))
+                process.communicate((BRIEF + "\n\n" + current_assignment()).encode("utf-8"))
             atomic(STATUS, dict(run_id=ID, pid=os.getpid(), attempt=attempt, utc=now(), exit_code=process.returncode,
                   status="checking_delivery", log=log.name, last=last.name))
             if process.returncode:
@@ -104,7 +132,7 @@ def main():
                 if b"model_not_found" in tail and not standalone_defaults:
                     continue
             # One active coordinator at a time. A returned CLI call alone is not an experiment receipt.
-            time.sleep(60 if process.returncode == 0 else 180)
+            time.sleep(15 if process.returncode == 0 else 180)
 
 
 if __name__ == "__main__":
