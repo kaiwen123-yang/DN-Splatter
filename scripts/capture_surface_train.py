@@ -106,18 +106,90 @@ def validate_recovery_checkpoint(path, expected_manifest, target_updates=240000)
             "remaining_updates": target_updates - (step + 1), "manifest": expected_manifest}
 
 
+def run_formal(manifest_path):
+    """Run the B2 trainer against a separately prepared, manifest-bound B3 scene.
+
+    The input manifest must be produced only after the three training decisions
+    and initialization are complete. No B2 weights are loaded for a fresh run.
+    """
+    import hashlib
+    import os
+
+    manifest_path = manifest_path.resolve()
+    if not manifest_path.is_relative_to(RUN.resolve()):
+        raise ValueError('B3 manifest must reside inside the B3 run')
+    manifest = json.loads(manifest_path.read_text(encoding='utf-8'))
+    if manifest.get('run_id') != SPEC['run_id']:
+        raise ValueError('B3 run identity mismatch')
+    decision = training_decision(manifest['pose'], manifest['weights'], manifest['texture'])
+    if decision['decision'] != 'train':
+        raise ValueError('formal training requires a measured nonidentity change')
+    # These switches require explicit integration with the native model. A
+    # diagnostic receipt alone is not evidence that the trainer consumes them.
+    if decision['depth_weights_enabled'] or decision['texture_split_enabled']:
+        raise NotImplementedError('enabled depth weights or texture split are not yet wired into the B2 trainer')
+    scene = (RUN / 'inputs').resolve()
+    if manifest_path != scene / 'training_manifest.json':
+        raise ValueError('training manifest must be the scene training_manifest.json')
+    for name, expected in manifest['files'].items():
+        path = (scene / name).resolve()
+        if not path.is_relative_to(scene) or not path.is_file():
+            raise ValueError('invalid B3 input path: ' + name)
+        h = hashlib.sha256()
+        with path.open('rb') as f:
+            for chunk in iter(lambda: f.read(1024 * 1024), b''):
+                h.update(chunk)
+        if h.hexdigest() != expected:
+            raise ValueError('B3 input hash mismatch: ' + name)
+    if not {'transforms.json', 'geometry.json'}.issubset(manifest['files']):
+        raise ValueError('manifest must bind camera and initialization identities')
+    meta = json.loads((scene / 'transforms.json').read_text(encoding='utf-8'))
+    if len(meta['train_filenames']) != 1478:
+        raise ValueError('incorrect training population')
+    os.environ['DN_RUN_OVERRIDE'] = str(RUN)
+    os.environ['DN_SCENE_OVERRIDE'] = str(scene)
+    import capture_quality_train as trainer
+    import capture_quality_eval as evaluator
+    from capture_surface_select import choose_checkpoint
+    trainer.RUN = RUN
+    trainer.SCENE = scene
+    trainer.STATE = RUN / 'state'
+    trainer.GEOM = RUN / 'geometry'
+    trainer.AUDIT = trainer.STATE / 'trainer'
+    original_config = trainer.config
+    def b3_config():
+        cfg = original_config()
+        cfg.experiment_name = 'capture-full-b3'
+        cfg.timestamp = 'surface-v3'
+        cfg.save_config()
+        return cfg
+    trainer.config = b3_config
+    def select_b3(config):
+        files = [RUN / 'evaluation' / 'val' / f'step-{n:09d}.json' for n in evaluator.NODES]
+        result = choose_checkpoint(files)
+        evaluator.write(RUN / 'state' / 'selection.json', result)
+        return result
+    trainer.select = select_b3
+    trainer.main()
+
+
 def main():
-    """Inspect a recovery checkpoint without starting or modifying a training run."""
     import argparse
     import hashlib
 
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--inspect-checkpoint', type=Path, required=True)
+    parser.add_argument('--inspect-checkpoint', type=Path)
     parser.add_argument('--training-manifest', type=Path, required=True)
+    parser.add_argument('--train', action='store_true')
     args = parser.parse_args()
-    digest = hashlib.sha256(args.training_manifest.read_bytes()).hexdigest()
-    result = validate_recovery_checkpoint(args.inspect_checkpoint, digest)
-    print(json.dumps(result, sort_keys=True))
+    if args.train == bool(args.inspect_checkpoint):
+        parser.error('choose exactly one of --train and --inspect-checkpoint')
+    if args.train:
+        run_formal(args.training_manifest)
+    else:
+        digest = hashlib.sha256(args.training_manifest.read_bytes()).hexdigest()
+        result = validate_recovery_checkpoint(args.inspect_checkpoint, digest)
+        print(json.dumps(result, sort_keys=True))
 
 
 if __name__ == '__main__':
