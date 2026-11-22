@@ -1,0 +1,257 @@
+{
+  "source": "capture-full-quality-v2-20261121-v1",
+  "training_frames_checked": 1478,
+  "local_window": "Within 2 s of true native depth device time, inclusive.",
+  "selection": "Four training frames selected for diagnostic coverage. In each, a source point was picked after examining the native TSDF, from a 16-pixel-stride grid starting at (35,35), with 0.6<Z<4 m, 7x7 peak-to-peak depth <0.035 m and nearest every-sixth mesh vertex >0.2 m. Failures deliberately selected; no population inference.",
+  "voxel_length_m": 0.01,
+  "sdf_trunc_m": 0.04,
+  "voxels_per_block_side": 16,
+  "method": "Apply the native sensor K and delivered corrected OpenGL RGB poses, depth-to-RGB calibration and mm-to-m conversion. Test block activation against all valid native points inside the block expanded by truncation. For every activated block, project every voxel center, sample the nearest native pixel, then apply Open3D's projective signed distance update. All 1478 training frames participate in actual file order. Positive means free space. A TSDF surface requires a sign crossing.",
+  "precision_and_scope": "Independent NumPy implementation uses float64 projection/updates and float32 input depths; Open3D uses float32 internally. No complete volume is reconstructed. Counts cover internal edges of each block only. Native pixel locations and optical Z are used. Point observations are evaluated separately at the exact source point. Mesh vertex counts scan all original XYZ records; normals, face intersections and direction of normal are not used. Nearest vertex distance is not a ray depth or nearest-triangle distance.",
+  "inputs": {
+    "transforms_sha256": "3e173297428839d7de762ce0c4dac5415f1e4cb63d5d8be08a22ee896c3d811e",
+    "native_calibration_sha256": "b279b092495d8e690a35681998ce99aaf8e468699a602510c0358dedc1472973",
+    "sensor_mesh_sha256_from_frozen_receipt": "f87865043b3dca5e27e122c4763c212e27763d7901c8b860faf711f9a3702d66",
+    "native_sensor_build": "scripts/capture_quality_tsdf.py, sensor() and integrate()",
+    "open3d_block_activation": "https://github.com/isl-org/Open3D/blob/v0.18.0/cpp/open3d/pipelines/integration/ScalableTSDFVolume.cpp#L63-L91",
+    "open3d_voxel_update": "https://github.com/isl-org/Open3D/blob/v0.18.0/cpp/open3d/pipelines/integration/UniformTSDFVolume.cpp#L381-L415"
+  },
+  "probes": [
+    {
+      "frame": "frame_00120",
+      "native_xy": [
+        67,
+        355
+      ],
+      "native_Z_m": 2.2209999561309814,
+      "native_patch_7x7_depth_peak_to_peak_m": 0.029999971389770508,
+      "block_origin_world_m": [
+        1.6,
+        0.96,
+        3.52
+      ],
+      "world_point_m": [
+        1.6288987573506404,
+        1.081011993594362,
+        3.6263958187984318
+      ],
+      "touched_train_frames": 331,
+      "full_field": {
+        "observed_voxels": 4096,
+        "min_tsdf": 0.32881175062828116,
+        "max_tsdf": 0.9952894526366253,
+        "observed_exact_zero_voxels": 0,
+        "internal_grid_edges_with_sign_change": 0
+      },
+      "local_field_within_2s": {
+        "observed_voxels": 4096,
+        "min_tsdf": -0.43816207338798635,
+        "max_tsdf": 1.0,
+        "observed_exact_zero_voxels": 0,
+        "internal_grid_edges_with_sign_change": 343
+      },
+      "full_mesh_vertices_in_block": 0,
+      "nearest_full_mesh_vertex_m": 0.4837694502430541,
+      "point_observations": {
+        "within_2s": {
+          "valid_measurements_in_touched_blocks": 12,
+          "behind_measured_surface_skipped": 5,
+          "within_truncation_band": 5,
+          "free_space_positive_saturated": 2,
+          "mean_accepted_tsdf": 0.1668808289607183
+        },
+        "outside_2s": {
+          "valid_measurements_in_touched_blocks": 295,
+          "behind_measured_surface_skipped": 239,
+          "within_truncation_band": 8,
+          "free_space_positive_saturated": 48,
+          "mean_accepted_tsdf": 0.8007255836373182
+        },
+        "all": {
+          "valid_measurements_in_touched_blocks": 307,
+          "behind_measured_surface_skipped": 244,
+          "within_truncation_band": 13,
+          "free_space_positive_saturated": 50,
+          "mean_accepted_tsdf": 0.7302983886732516
+        }
+      }
+    },
+    {
+      "frame": "frame_00600",
+      "native_xy": [
+        243,
+        339
+      ],
+      "native_Z_m": 2.0169999599456787,
+      "native_patch_7x7_depth_peak_to_peak_m": 0.029999971389770508,
+      "block_origin_world_m": [
+        1.6,
+        0.16,
+        9.28
+      ],
+      "world_point_m": [
+        1.6751501883286384,
+        0.25463247348254714,
+        9.409654930129758
+      ],
+      "touched_train_frames": 210,
+      "full_field": {
+        "observed_voxels": 4096,
+        "min_tsdf": 0.2415290877553781,
+        "max_tsdf": 0.9831135739698562,
+        "observed_exact_zero_voxels": 0,
+        "internal_grid_edges_with_sign_change": 0
+      },
+      "local_field_within_2s": {
+        "observed_voxels": 2617,
+        "min_tsdf": -0.9990544137505109,
+        "max_tsdf": 1.0,
+        "observed_exact_zero_voxels": 0,
+        "internal_grid_edges_with_sign_change": 932
+      },
+      "full_mesh_vertices_in_block": 0,
+      "nearest_full_mesh_vertex_m": 0.24522546097671197,
+      "point_observations": {
+        "within_2s": {
+          "valid_measurements_in_touched_blocks": 12,
+          "behind_measured_surface_skipped": 7,
+          "within_truncation_band": 5,
+          "free_space_positive_saturated": 0,
+          "mean_accepted_tsdf": -0.16629343411916375
+        },
+        "outside_2s": {
+          "valid_measurements_in_touched_blocks": 183,
+          "behind_measured_surface_skipped": 121,
+          "within_truncation_band": 23,
+          "free_space_positive_saturated": 39,
+          "mean_accepted_tsdf": 0.574564732545599
+        },
+        "all": {
+          "valid_measurements_in_touched_blocks": 195,
+          "behind_measured_surface_skipped": 128,
+          "within_truncation_band": 28,
+          "free_space_positive_saturated": 39,
+          "mean_accepted_tsdf": 0.519276809660169
+        }
+      }
+    },
+    {
+      "frame": "frame_00900",
+      "native_xy": [
+        115,
+        323
+      ],
+      "native_Z_m": 1.1299999952316284,
+      "native_patch_7x7_depth_peak_to_peak_m": 0.012000083923339844,
+      "block_origin_world_m": [
+        1.76,
+        0.64,
+        7.36
+      ],
+      "world_point_m": [
+        1.8560817484488086,
+        0.6680169814702263,
+        7.458074039864095
+      ],
+      "touched_train_frames": 298,
+      "full_field": {
+        "observed_voxels": 4096,
+        "min_tsdf": 0.4715133721081537,
+        "max_tsdf": 0.9774091381602885,
+        "observed_exact_zero_voxels": 0,
+        "internal_grid_edges_with_sign_change": 0
+      },
+      "local_field_within_2s": {
+        "observed_voxels": 3553,
+        "min_tsdf": -0.9990607485693217,
+        "max_tsdf": 1.0,
+        "observed_exact_zero_voxels": 0,
+        "internal_grid_edges_with_sign_change": 549
+      },
+      "full_mesh_vertices_in_block": 0,
+      "nearest_full_mesh_vertex_m": 0.4305957615102406,
+      "point_observations": {
+        "within_2s": {
+          "valid_measurements_in_touched_blocks": 10,
+          "behind_measured_surface_skipped": 0,
+          "within_truncation_band": 9,
+          "free_space_positive_saturated": 1,
+          "mean_accepted_tsdf": 0.08674235601551239
+        },
+        "outside_2s": {
+          "valid_measurements_in_touched_blocks": 252,
+          "behind_measured_surface_skipped": 91,
+          "within_truncation_band": 49,
+          "free_space_positive_saturated": 112,
+          "mean_accepted_tsdf": 0.7064302312725272
+        },
+        "all": {
+          "valid_measurements_in_touched_blocks": 262,
+          "behind_measured_surface_skipped": 91,
+          "within_truncation_band": 58,
+          "free_space_positive_saturated": 113,
+          "mean_accepted_tsdf": 0.6701911742399532
+        }
+      }
+    },
+    {
+      "frame": "frame_01700",
+      "native_xy": [
+        435,
+        275
+      ],
+      "native_Z_m": 3.4509999752044678,
+      "native_patch_7x7_depth_peak_to_peak_m": 0.01699995994567871,
+      "block_origin_world_m": [
+        -1.6,
+        0.8,
+        6.5600000000000005
+      ],
+      "world_point_m": [
+        -1.4712261304241312,
+        0.8301381261186318,
+        6.6973412115073305
+      ],
+      "touched_train_frames": 182,
+      "full_field": {
+        "observed_voxels": 4096,
+        "min_tsdf": 0.09427612679648671,
+        "max_tsdf": 0.9489497324765985,
+        "observed_exact_zero_voxels": 0,
+        "internal_grid_edges_with_sign_change": 0
+      },
+      "local_field_within_2s": {
+        "observed_voxels": 4096,
+        "min_tsdf": -0.9856712012242166,
+        "max_tsdf": 1.0,
+        "observed_exact_zero_voxels": 0,
+        "internal_grid_edges_with_sign_change": 1093
+      },
+      "full_mesh_vertices_in_block": 0,
+      "nearest_full_mesh_vertex_m": 0.29348090995800347,
+      "point_observations": {
+        "within_2s": {
+          "valid_measurements_in_touched_blocks": 15,
+          "behind_measured_surface_skipped": 8,
+          "within_truncation_band": 4,
+          "free_space_positive_saturated": 3,
+          "mean_accepted_tsdf": 0.3954215309416467
+        },
+        "outside_2s": {
+          "valid_measurements_in_touched_blocks": 158,
+          "behind_measured_surface_skipped": 64,
+          "within_truncation_band": 28,
+          "free_space_positive_saturated": 66,
+          "mean_accepted_tsdf": 0.7275728661132886
+        },
+        "all": {
+          "valid_measurements_in_touched_blocks": 173,
+          "behind_measured_surface_skipped": 72,
+          "within_truncation_band": 32,
+          "free_space_positive_saturated": 69,
+          "mean_accepted_tsdf": 0.7045524765469372
+        }
+      }
+    }
+  ]
+}

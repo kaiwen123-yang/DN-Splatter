@@ -1,0 +1,68 @@
+{
+  "video": {
+    "filename": "reference_B1_B2_public.mp4",
+    "sha256": "4f6f01184be7dd303617f2c688e7b54aad6a86e89e53aa9d031cb29bc0a61c9c",
+    "frames": 1846
+  },
+  "source_split_files": [
+    "val_step-000209999.json.gz",
+    "test_step-000209999.json.gz"
+  ],
+  "sampling": "Display-coded pixels of the reference and B2 panels. Skip 42 title rows, use the top-left pixel and every third pixel in x and y of each 1280x720 panel (102480 pixel pairs per frame).",
+  "fit": "Per frame and channel fit reference = gain * prediction + offset by least squares on the sampled pixels. Gains and predicted values are unconstrained. Divide fitted MSE by original MSE on the same sampled pixels, averaging squared errors over all pixels and channels. Frame summaries weight each included frame equally.",
+  "scope": "Compressed public video diagnostic. Excludes its manifest redactions from the fit and summaries. Official frozen evaluation uses all 184 val and 184 development test frames.",
+  "summary": {
+    "val": {
+      "official_split_frames": 184,
+      "public_frames_analyzed": 181,
+      "public_redactions_excluded": 3,
+      "median_residual_mse_fraction": 0.9639283494904247,
+      "residual_mse_fraction_p25_p75": [
+        0.90298879352243,
+        0.9834337401564897
+      ],
+      "median_psnr_gain_db": 0.15955246779131937,
+      "max_psnr_gain_db": 2.408076982668941,
+      "frames_above_1db_gain": 17
+    },
+    "test": {
+      "official_split_frames": 184,
+      "public_frames_analyzed": 181,
+      "public_redactions_excluded": 3,
+      "median_residual_mse_fraction": 0.9617200620165981,
+      "residual_mse_fraction_p25_p75": [
+        0.8988259755136885,
+        0.9843729892150924
+      ],
+      "median_psnr_gain_db": 0.16951324234415197,
+      "max_psnr_gain_db": 1.9983252550516215,
+      "frames_above_1db_gain": 15
+    }
+  },
+  "published_example_frames": {
+    "frame_00308": {
+      "split": "val",
+      "residual_mse_fraction": 0.733706005868263,
+      "psnr_gain_db": 1.344779259234947
+    },
+    "frame_00329": {
+      "split": "test",
+      "residual_mse_fraction": 0.7776969540813348,
+      "psnr_gain_db": 1.091896019941608
+    },
+    "frame_01108": {
+      "split": "val",
+      "residual_mse_fraction": 0.8701886748530715,
+      "psnr_gain_db": 0.6038657317019612
+    },
+    "frame_01419": {
+      "split": "test",
+      "residual_mse_fraction": 0.9534005264720403,
+      "psnr_gain_db": 0.20724612589552766
+    }
+  },
+  "versions": {
+    "numpy": "2.4.5",
+    "opencv": "4.13.0"
+  }
+}

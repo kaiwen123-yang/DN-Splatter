@@ -21,23 +21,17 @@
 - 2026-11-20：[全程效果复核](reports/capture-full-review/2026-11-20/overview.md)发现旧同源48张留出中47张PSNR下降，旧239深度反而改善；训练容量/调度和原始网格额外遮挡面需分别解释。
 - 2026-11-20 完成 **Metric3D v2 ViT-Large** 法线替换对照。184 个测试视角上，B0/B1 的 PSNR 为 15.826 / 16.885 dB，传感器深度 MAE 为 0.492 / 0.336 m。使用同一支持网格流程时，10 cm 正确覆盖率为 58.88% / 59.02%。[完整实验结果](reports/capture-full-metric3d-30k/20261120-v1/overview.md) · [详细指标解读、图与逐帧 Excel](reports/capture-full-quality/2026-11-21/overview.md)。
 - 2026-11-21 已将全程对照与复算材料恢复至私有外置盘，并按 SHA256 读回核验。公开视频、几何和报告共 18 个文件。[GitHub Release](https://github.com/kaiwen123-yang/DN-Splatter/releases/tag/capture-full-metric3d-30k-20261120-v1) · [归档与发布回执](reports/capture-full-metric3d-30k/archive-20261121.json)。
-- 2026-11-21：新增[质量原因复核](reports/capture-quality-review/2026-11-21/overview.md)和[B2完整质量改进计划](docs/14_capture_quality_plan.md)；计划尚未执行。
+- 2026-11-21 制定[B2完整质量改进计划](docs/14_capture_quality_plan.md)。11 月 22 日完成 240k、选点、全量评价、三种网格及同预算 30k 补评。[B2 实测对照](reports/capture-full-quality-v2/20261121-v1/B2_完整指标对比.md)
 - 目标不是仅安装成功，而是尽可能在一个持续执行的任务中完成上述完整流程。
 - 原论文历史实现与论文公式存在待核实差异，首轮结果应标记为“固定历史官方实现的单场景基线”，不能提前称完整论文复现成功。
 
 ## 从这里开始
 
-**当前要执行的是一次完整B2质量改进，方案已提交，服务器尚未因此自动启动。** 新增复核发现：B1 step1600净删80.11%高斯，后半程拟合继续退化；01294–01306局部估计位姿与参考RGB不符。已有B1法线替换及归档全部完成。
+**B2 已完成 240k，验证集选中 210k。** 自采大厅开发测试集 PSNR 为 24.681 dB，模型深度 MAE 为 12.36 cm，支持 Poisson 网格 10 cm 正确覆盖为 61.95%。后续质量改进建议见[大厅重建质量诊断](reports/capture-quality-review/2026-11-22/overview.md)，其中列有原生深度融合、局部位姿和纹理残差的新测量。
 
-- [质量原因与证据](reports/capture-quality-review/2026-11-21/overview.md)
-- [B2完整执行计划](docs/14_capture_quality_plan.md) · [机器协议](configs/capture_quality_protocol.json) · [真实运行状态](reports/capture-full-quality-v2/latest.json)
-- [本地Codex协调提示词](prompts/local_capture_quality.md) · [AutoDL完整执行提示词](prompts/autodl_capture_quality.md)
-
-整轮包含现成B1六checkpoint全val、局部位姿纠正、可靠初始化补充、从头240k与完整留出/视频、原生sensor TSDF/模型TSDF/支持Poisson。复用已有环境和先验，保持主划分及真实传感器监督，不重复短训练和阶段审批；各实际结果尚待执行填写。
-
-[Metric3D B1计划](docs/11_capture_metric3d_plan.md)、[法线接口](docs/12_metric3d_normal_adapter.md)、[支持网格](docs/13_capture_supported_mesh.md)和旧提示词保留为已完成阶段/接口依据。B1的“只换法线”限制不适用于当前明确记录的B2联合改动。初次VR、s01和full旧入口不自动重跑。
-
-读取顺序：AGENTS.md → 本次质量复核 → docs/14 → configs/capture_quality_protocol.json → 对应执行提示词。环境隔离与GitHub网络仍遵循docs/01，历史源码依据见docs/03。原实验数据/指标/协议保持可追溯，不能以计划字段冒充实测完成。
+- [B2 指标、固定画面与网格](reports/capture-full-quality-v2/20261121-v1/B2_完整指标对比.md) · [运行状态](reports/capture-full-quality-v2/latest.json)
+- [B1 质量复核](reports/capture-quality-review/2026-11-21/overview.md) · [已执行的 B2 方案](docs/14_capture_quality_plan.md) · [机器协议](configs/capture_quality_protocol.json)
+- [法线接口](docs/12_metric3d_normal_adapter.md) · [支持网格](docs/13_capture_supported_mesh.md) · [论文 VR Room 对照](reports/vr-room-iphone-30k/summary.md)
 
 ## GitHub：优先 AutoDL 官方学术加速
 

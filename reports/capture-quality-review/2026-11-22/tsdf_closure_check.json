@@ -1,0 +1,398 @@
+{
+  "run": "capture-full-quality-v2-20261121-v1",
+  "numpy": "1.26.4",
+  "open3d": "0.18.0",
+  "cpu_affinity_count": 1,
+  "settings": {
+    "voxel_m": 0.01,
+    "tsdf_trunc_m": 0.04,
+    "source": "production volume() and integrate()",
+    "ray_direction": "unnormalized, optical-axis Z",
+    "evaluation": "own training view"
+  },
+  "transforms_sha256": "3e173297428839d7de762ce0c4dac5415f1e4cb63d5d8be08a22ee896c3d811e",
+  "calibration_sha256": "b279b092495d8e690a35681998ce99aaf8e468699a602510c0358dedc1472973",
+  "production_integration_sha256": "8e2d4461fd26e0b5470425d0fc3246b59c87a1527d72b09f4933715729973947",
+  "synthetic": {
+    "input_views": [
+      "plane"
+    ],
+    "valid_native_counts": [
+      13824
+    ],
+    "mesh_vertices": 84924,
+    "mesh_faces": 168269,
+    "measurements": {
+      "native": {
+        "reference_pixels": 13824,
+        "hits": 13649,
+        "correct_10cm": 13649,
+        "hit_fraction": 0.9873408564814815,
+        "correct_10cm_fraction": 0.9873408564814815,
+        "foreground_conflict_fraction": 0.0,
+        "mae_hit_m": 0.0002459570797155764,
+        "signed_mean_hit_m": -9.343540094668931e-06,
+        "p50_hit_m": 0.00014925003051757812,
+        "p95_hit_m": 0.000794243812561035
+      }
+    }
+  },
+  "frames": {
+    "frame_00000": {
+      "rgb_reference_exact": true,
+      "self": {
+        "input_views": [
+          "frame_00000"
+        ],
+        "valid_native_counts": [
+          156910
+        ],
+        "mesh_vertices": 446750,
+        "mesh_faces": 589982,
+        "measurements": {
+          "native": {
+            "reference_pixels": 156910,
+            "hits": 118477,
+            "correct_10cm": 118366,
+            "hit_fraction": 0.7550634121470907,
+            "correct_10cm_fraction": 0.7543560002549232,
+            "foreground_conflict_fraction": 0.000860365814798292,
+            "mae_hit_m": 0.00421699486049109,
+            "signed_mean_hit_m": 5.977293757957181e-05,
+            "p50_hit_m": 0.0024766921997070312,
+            "p95_hit_m": 0.012178802490234375
+          },
+          "frozen_rgb": {
+            "reference_pixels": 126543,
+            "hits": 95877,
+            "correct_10cm": 95524,
+            "hit_fraction": 0.7576634029539366,
+            "correct_10cm_fraction": 0.7548738373517302,
+            "foreground_conflict_fraction": 0.0027184435330282987,
+            "mae_hit_m": 0.006034959046052404,
+            "signed_mean_hit_m": -0.0010577269797666959,
+            "p50_hit_m": 0.002902507781982422,
+            "p95_hit_m": 0.016926574707031242
+          }
+        }
+      },
+      "neighborhood": {
+        "input_views": [
+          "frame_00000",
+          "frame_00001",
+          "frame_00002",
+          "frame_00003",
+          "frame_00004"
+        ],
+        "valid_native_counts": [
+          156910,
+          159527,
+          165089,
+          167061,
+          164110
+        ],
+        "mesh_vertices": 818894,
+        "mesh_faces": 1167364,
+        "measurements": {
+          "native": {
+            "reference_pixels": 156910,
+            "hits": 136478,
+            "correct_10cm": 118391,
+            "hit_fraction": 0.8697852272003059,
+            "correct_10cm_fraction": 0.7545153272576637,
+            "foreground_conflict_fraction": 0.008597285067873304,
+            "mae_hit_m": 0.04909235556796919,
+            "signed_mean_hit_m": 0.03231972765885162,
+            "p50_hit_m": 0.018290042877197266,
+            "p95_hit_m": 0.20483165979385373
+          },
+          "frozen_rgb": {
+            "reference_pixels": 126543,
+            "hits": 109933,
+            "correct_10cm": 93190,
+            "hit_fraction": 0.8687402701058138,
+            "correct_10cm_fraction": 0.7364295140782184,
+            "foreground_conflict_fraction": 0.010375919647866733,
+            "mae_hit_m": 0.054974376790409646,
+            "signed_mean_hit_m": 0.035838153545252674,
+            "p50_hit_m": 0.021402835845947266,
+            "p95_hit_m": 0.21957340240478493
+          }
+        }
+      }
+    },
+    "frame_00330": {
+      "rgb_reference_exact": true,
+      "self": {
+        "input_views": [
+          "frame_00330"
+        ],
+        "valid_native_counts": [
+          190691
+        ],
+        "mesh_vertices": 698326,
+        "mesh_faces": 970089,
+        "measurements": {
+          "native": {
+            "reference_pixels": 190691,
+            "hits": 143505,
+            "correct_10cm": 143482,
+            "hit_fraction": 0.752552558851755,
+            "correct_10cm_fraction": 0.7524319448741682,
+            "foreground_conflict_fraction": 7.341720374847266e-05,
+            "mae_hit_m": 0.0034229542493762043,
+            "signed_mean_hit_m": 0.00041050782689964815,
+            "p50_hit_m": 0.002231121063232422,
+            "p95_hit_m": 0.010931015014648438
+          },
+          "frozen_rgb": {
+            "reference_pixels": 140774,
+            "hits": 107725,
+            "correct_10cm": 107529,
+            "hit_fraction": 0.7652336368931763,
+            "correct_10cm_fraction": 0.7638413343373066,
+            "foreground_conflict_fraction": 0.000767187122622075,
+            "mae_hit_m": 0.00497816381168963,
+            "signed_mean_hit_m": -0.00027910502888149884,
+            "p50_hit_m": 0.002740621566772461,
+            "p95_hit_m": 0.01579513549804687
+          }
+        }
+      },
+      "neighborhood": {
+        "input_views": [
+          "frame_00324",
+          "frame_00325",
+          "frame_00326",
+          "frame_00327",
+          "frame_00330",
+          "frame_00331",
+          "frame_00332",
+          "frame_00333",
+          "frame_00334"
+        ],
+        "valid_native_counts": [
+          155743,
+          150784,
+          157319,
+          157778,
+          190691,
+          186787,
+          185284,
+          179279,
+          177782
+        ],
+        "mesh_vertices": 1802057,
+        "mesh_faces": 2655948,
+        "measurements": {
+          "native": {
+            "reference_pixels": 190691,
+            "hits": 162819,
+            "correct_10cm": 118951,
+            "hit_fraction": 0.853836835508755,
+            "correct_10cm_fraction": 0.623789271648898,
+            "foreground_conflict_fraction": 0.02222443639185908,
+            "mae_hit_m": 0.08873093567792216,
+            "signed_mean_hit_m": 0.06066477706402339,
+            "p50_hit_m": 0.02430582046508789,
+            "p95_hit_m": 0.35395178794860854
+          },
+          "frozen_rgb": {
+            "reference_pixels": 140774,
+            "hits": 122777,
+            "correct_10cm": 82287,
+            "hit_fraction": 0.8721567903163937,
+            "correct_10cm_fraction": 0.5845326551778027,
+            "foreground_conflict_fraction": 0.025722079361245685,
+            "mae_hit_m": 0.10688687436360857,
+            "signed_mean_hit_m": 0.07568732689011809,
+            "p50_hit_m": 0.04043245315551758,
+            "p95_hit_m": 0.38609361648559565
+          }
+        }
+      }
+    },
+    "frame_01420": {
+      "rgb_reference_exact": true,
+      "self": {
+        "input_views": [
+          "frame_01420"
+        ],
+        "valid_native_counts": [
+          256368
+        ],
+        "mesh_vertices": 544480,
+        "mesh_faces": 781749,
+        "measurements": {
+          "native": {
+            "reference_pixels": 256368,
+            "hits": 209699,
+            "correct_10cm": 209505,
+            "hit_fraction": 0.8179608999563128,
+            "correct_10cm_fraction": 0.8172041752480809,
+            "foreground_conflict_fraction": 0.0007957311364912938,
+            "mae_hit_m": 0.0038017685668300287,
+            "signed_mean_hit_m": -0.0013624937600992017,
+            "p50_hit_m": 0.0008593201637268066,
+            "p95_hit_m": 0.008400678634643555
+          },
+          "frozen_rgb": {
+            "reference_pixels": 200551,
+            "hits": 167284,
+            "correct_10cm": 167055,
+            "hit_fraction": 0.8341219939067868,
+            "correct_10cm_fraction": 0.8329801397150849,
+            "foreground_conflict_fraction": 0.0010371426719388086,
+            "mae_hit_m": 0.0032820427065508935,
+            "signed_mean_hit_m": -0.0002889977612846828,
+            "p50_hit_m": 0.0008949041366577148,
+            "p95_hit_m": 0.011130756139755251
+          }
+        }
+      },
+      "neighborhood": {
+        "input_views": [
+          "frame_01414",
+          "frame_01415",
+          "frame_01416",
+          "frame_01417",
+          "frame_01420",
+          "frame_01421",
+          "frame_01422",
+          "frame_01423",
+          "frame_01424"
+        ],
+        "valid_native_counts": [
+          293315,
+          277962,
+          280042,
+          279905,
+          256368,
+          243863,
+          242436,
+          252575,
+          262078
+        ],
+        "mesh_vertices": 2440595,
+        "mesh_faces": 3580627,
+        "measurements": {
+          "native": {
+            "reference_pixels": 256368,
+            "hits": 231957,
+            "correct_10cm": 201560,
+            "hit_fraction": 0.9047814079760345,
+            "correct_10cm_fraction": 0.7862135679960057,
+            "foreground_conflict_fraction": 0.036736254134681394,
+            "mae_hit_m": 0.06852132978957556,
+            "signed_mean_hit_m": 0.027474675911795733,
+            "p50_hit_m": 0.004204928874969482,
+            "p95_hit_m": 0.3100303649902323
+          },
+          "frozen_rgb": {
+            "reference_pixels": 200551,
+            "hits": 182961,
+            "correct_10cm": 160668,
+            "hit_fraction": 0.9122916365413286,
+            "correct_10cm_fraction": 0.8011328789185793,
+            "foreground_conflict_fraction": 0.022403278966447438,
+            "mae_hit_m": 0.07129976924457357,
+            "signed_mean_hit_m": 0.03912633668580759,
+            "p50_hit_m": 0.004136145114898682,
+            "p95_hit_m": 0.30275678634643555
+          }
+        }
+      }
+    }
+  },
+  "peak_rss_mib": 4149.45703125,
+  "all_training_views": {
+    "mesh": "sensor_tsdf.ply",
+    "vertices": 22838378,
+    "faces": 31638067,
+    "all_faces_processed": true,
+    "face_chunk": 500000,
+    "measurements": {
+      "frame_00000": {
+        "native": {
+          "reference_pixels": 156910,
+          "hits": 134125,
+          "correct_10cm": 27150,
+          "hit_fraction": 0.8547893697023772,
+          "correct_10cm_fraction": 0.17302912497610096,
+          "foreground_conflict_fraction": 0.11156076731884519,
+          "mae_hit_m": 1.5780108352784008,
+          "signed_mean_hit_m": 1.1392567277264618,
+          "p50_hit_m": 0.6514668464660645,
+          "p95_hit_m": 6.415356492996214
+        },
+        "frozen_rgb": {
+          "reference_pixels": 126543,
+          "hits": 107462,
+          "correct_10cm": 17227,
+          "hit_fraction": 0.8492133108903693,
+          "correct_10cm_fraction": 0.13613554285894913,
+          "foreground_conflict_fraction": 0.0979746015188513,
+          "mae_hit_m": 1.850366642060893,
+          "signed_mean_hit_m": 1.4386360496084287,
+          "p50_hit_m": 0.9006602764129639,
+          "p95_hit_m": 6.847516787052155
+        }
+      },
+      "frame_00330": {
+        "native": {
+          "reference_pixels": 190691,
+          "hits": 131068,
+          "correct_10cm": 4723,
+          "hit_fraction": 0.687331861493201,
+          "correct_10cm_fraction": 0.024767818093145454,
+          "foreground_conflict_fraction": 0.13344625598481313,
+          "mae_hit_m": 1.0371144142396487,
+          "signed_mean_hit_m": 0.44699539325031507,
+          "p50_hit_m": 0.6962893009185791,
+          "p95_hit_m": 3.261964440345761
+        },
+        "frozen_rgb": {
+          "reference_pixels": 140774,
+          "hits": 98211,
+          "correct_10cm": 3444,
+          "hit_fraction": 0.6976501342577465,
+          "correct_10cm_fraction": 0.02446474491028173,
+          "foreground_conflict_fraction": 0.1400755821387472,
+          "mae_hit_m": 1.1337386860168566,
+          "signed_mean_hit_m": 0.534763130601421,
+          "p50_hit_m": 0.7621588706970215,
+          "p95_hit_m": 3.575335144996643
+        }
+      },
+      "frame_01420": {
+        "native": {
+          "reference_pixels": 256368,
+          "hits": 196393,
+          "correct_10cm": 9010,
+          "hit_fraction": 0.7660589465143856,
+          "correct_10cm_fraction": 0.03514479186169881,
+          "foreground_conflict_fraction": 0.26224411783061846,
+          "mae_hit_m": 2.3034958620908585,
+          "signed_mean_hit_m": 0.34775735325744084,
+          "p50_hit_m": 2.1653919219970703,
+          "p95_hit_m": 5.750369641929863
+        },
+        "frozen_rgb": {
+          "reference_pixels": 200551,
+          "hits": 152115,
+          "correct_10cm": 11628,
+          "hit_fraction": 0.7584853727979417,
+          "correct_10cm_fraction": 0.057980264371656084,
+          "foreground_conflict_fraction": 0.17599014714461658,
+          "mae_hit_m": 2.1942102254848646,
+          "signed_mean_hit_m": 0.989566586719726,
+          "p50_hit_m": 2.0815261006355286,
+          "p95_hit_m": 5.984655082225797
+        }
+      }
+    },
+    "mesh_sha256": "f87865043b3dca5e27e122c4763c212e27763d7901c8b860faf711f9a3702d66",
+    "peak_rss_mib": 2018.1171875
+  },
+  "analysis_script_sha256": "45ed221469666aad2e6e12374d736e56eed16c8b0db7dee90832979f77083eda"
+}
