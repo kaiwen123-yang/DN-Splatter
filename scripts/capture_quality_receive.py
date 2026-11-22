@@ -45,13 +45,13 @@ def lock_receiver(handle):
         fcntl.flock(handle, fcntl.LOCK_EX | fcntl.LOCK_NB)
 
 
-def fetch_file(row, ssh):
+def fetch_file(row, ssh, *, run=RUN, destination=DEST, state=STATE, run_id=ID):
     remote = PurePosixPath(safe_rel(row["path"]))
-    check(remote.is_relative_to(RUN) and remote != RUN, "Artifact outside B2 run")
+    check(remote.is_relative_to(run) and remote != run, "Artifact outside declared run")
     size, key = row["bytes"], row["sha256"]
     check(isinstance(size, int) and size >= 0 and re.fullmatch("[0-9a-f]{64}", key), "Artifact identity")
-    dest = DEST / "artifacts" / remote.relative_to(RUN)
-    check(dest.resolve().is_relative_to((DEST / "artifacts").resolve()), "Local artifact path")
+    dest = destination / "artifacts" / remote.relative_to(run)
+    check(dest.resolve().is_relative_to((destination / "artifacts").resolve()), "Local artifact path")
     dest = extended_path(dest)
     if dest.exists():
         check(dest.stat().st_size == size and digest(dest) == key, "Previously received artifact differs")
@@ -61,7 +61,7 @@ def fetch_file(row, ssh):
     if part.exists() and part.stat().st_size > size:
         raise ValueError("Partial artifact exceeds declared size")
     offset = part.stat().st_size if part.exists() else 0
-    atomic(STATE, dict(status="receiving", run_id=ID, utc=utc(), path=str(remote), offset=offset, bytes=size))
+    atomic(state, dict(status="receiving", run_id=run_id, utc=utc(), path=str(remote), offset=offset, bytes=size))
     with part.open("ab") as out:
         if offset < size:
             src = shlex.quote(SERVER + "/" + str(remote))
