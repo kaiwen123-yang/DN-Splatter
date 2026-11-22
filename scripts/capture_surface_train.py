@@ -11,6 +11,12 @@ RUN = ROOT / '.local' / 'runs' / SPEC['run_id']
 
 def training_decision(pose, weights, texture):
     """Require actual diagnostic results; missing evidence is never an equivalence decision."""
+    if pose.get('training_decision') == 'incomplete_not_equivalent':
+        raise ValueError('pose diagnostics are incomplete; training decision is unavailable')
+    if texture.get('status') == 'incomplete':
+        raise ValueError('texture diagnostics are incomplete; training decision is unavailable')
+    if 'depth_weights_enabled' not in weights or 'nonidentity_pixels' not in weights:
+        raise ValueError('depth weight diagnostics are incomplete')
     accepted = pose['accepted_pose_changes']
     if not isinstance(accepted, (int, list)) or isinstance(accepted, bool):
         raise ValueError('accepted_pose_changes must be a count or list')
@@ -67,3 +73,52 @@ def check_all_one_equivalence(original):
     torch.testing.assert_close(actual, expected, rtol=1e-12, atol=1e-12)
     torch.testing.assert_close(g1, g0, rtol=1e-12, atol=1e-12)
     return dict(loss_abs_error=float((actual-expected).abs()), gradient_max_abs_error=float((g1-g0).abs().max()))
+
+
+def validate_recovery_checkpoint(path, expected_manifest, target_updates=240000):
+    """Inspect B2-compatible recovery state before computing a B3 resume budget.
+
+    The input manifest binds the checkpoint to the B3 scene; an unbound B2
+    checkpoint must never become the starting point for the new experiment.
+    """
+    from vr_room_checkpoint import numpy_scalar_scope
+    with numpy_scalar_scope():
+        checkpoint = torch.load(Path(path), map_location="cpu", weights_only=True, mmap=True)
+    if not isinstance(checkpoint, dict):
+        raise ValueError("checkpoint is not a mapping")
+    required = ("step", "pipeline", "optimizers", "schedulers", "scalers", "b2_recovery")
+    missing = [key for key in required if key not in checkpoint]
+    if missing:
+        raise ValueError("checkpoint missing recovery fields: " + ", ".join(missing))
+    step = checkpoint["step"]
+    if type(step) is not int or not 0 <= step < target_updates or (step + 1) % 10000:
+        raise ValueError("invalid cumulative checkpoint step")
+    recovery = checkpoint["b2_recovery"]
+    if not isinstance(recovery, dict) or recovery.get("manifest") != expected_manifest:
+        raise ValueError("checkpoint is not bound to the B3 input manifest")
+    fields = ("sampler", "remaining", "perm", "rng", "growth")
+    missing = [key for key in fields if key not in recovery]
+    if missing:
+        raise ValueError("checkpoint missing sampler or growth state: " + ", ".join(missing))
+    if any(key not in recovery["growth"] for key in ("xys_grad_norm", "vis_counts", "max_2Dsize")):
+        raise ValueError("checkpoint missing densification state")
+    return {"saved_step": step, "completed_updates": step + 1,
+            "remaining_updates": target_updates - (step + 1), "manifest": expected_manifest}
+
+
+def main():
+    """Inspect a recovery checkpoint without starting or modifying a training run."""
+    import argparse
+    import hashlib
+
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--inspect-checkpoint', type=Path, required=True)
+    parser.add_argument('--training-manifest', type=Path, required=True)
+    args = parser.parse_args()
+    digest = hashlib.sha256(args.training_manifest.read_bytes()).hexdigest()
+    result = validate_recovery_checkpoint(args.inspect_checkpoint, digest)
+    print(json.dumps(result, sort_keys=True))
+
+
+if __name__ == '__main__':
+    main()
