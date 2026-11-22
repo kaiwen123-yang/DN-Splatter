@@ -126,8 +126,8 @@ def run_formal(manifest_path):
         raise ValueError('formal training requires a measured nonidentity change')
     # These switches require explicit integration with the native model. A
     # diagnostic receipt alone is not evidence that the trainer consumes them.
-    if decision['depth_weights_enabled'] or decision['texture_split_enabled']:
-        raise NotImplementedError('enabled depth weights or texture split are not yet wired into the B2 trainer')
+    if decision['texture_split_enabled']:
+        raise ValueError('texture subdivision requires verified contributing Gaussian IDs and a resumable native split implementation')
     scene = (RUN / 'inputs').resolve()
     if manifest_path != scene / 'training_manifest.json':
         raise ValueError('training manifest must be the scene training_manifest.json')
@@ -156,6 +156,49 @@ def run_formal(manifest_path):
     trainer.STATE = RUN / 'state'
     trainer.GEOM = RUN / 'geometry'
     trainer.AUDIT = trainer.STATE / 'trainer'
+    trainer.legacy.SCENE = scene
+    trainer.legacy.STATE = trainer.STATE
+    evaluator.RUN = RUN
+    evaluator.SCENE = scene
+    evaluator.STATE = trainer.STATE
+    if decision['depth_weights_enabled']:
+        import numpy as np
+        from unittest.mock import patch
+        from dn_splatter.losses import EdgeAwareLogL1
+        from dn_splatter.dn_model import DNSplatterModel
+        entries = manifest['weights']['frames']
+        names = json.loads((scene / 'transforms.json').read_text(encoding='utf-8'))['train_filenames']
+        if len(entries) != len(names) or [e['frame'] for e in entries] != names:
+            raise ValueError('weight receipt does not cover the ordered train split')
+        paths = []
+        for entry in entries:
+            path = (ROOT / entry['path']).resolve()
+            if not path.is_relative_to(RUN.resolve()) or not path.is_file():
+                raise ValueError('weight file outside B3 run or missing')
+            if hashlib.sha256(path.read_bytes()).hexdigest() != entry['sha256']:
+                raise ValueError('weight file hash mismatch')
+            paths.append(path)
+        original_forward = EdgeAwareLogL1.forward
+        equivalence = check_all_one_equivalence(lambda p, g, rgb, mask: original_forward(
+            EdgeAwareLogL1(implementation='scalar'), p, g, rgb, mask))
+        trainer.AUDIT.mkdir(parents=True, exist_ok=True)
+        (trainer.AUDIT / 'weight_equivalence.json').write_text(json.dumps(equivalence, indent=2))
+        original_loss = DNSplatterModel.get_loss_dict
+        def weighted_loss(model, outputs, batch, *args, **kwargs):
+            if not model.training:
+                return original_loss(model, outputs, batch, *args, **kwargs)
+            idx = int(batch['image_idx'])
+            array = np.load(paths[idx], allow_pickle=False)
+            weights = torch.as_tensor(array, device=outputs['depth'].device, dtype=outputs['depth'].dtype)
+            if weights.ndim == 2:
+                weights = weights.unsqueeze(-1)
+            def forward(module, pred, gt, rgb, mask):
+                if module.implementation != 'scalar':
+                    raise ValueError('B3 weights require scalar EdgeAwareLogL1')
+                return weighted_edge_aware_log_l1(pred, gt, rgb, mask, weights)
+            with patch.object(EdgeAwareLogL1, 'forward', forward):
+                return original_loss(model, outputs, batch, *args, **kwargs)
+        trainer._b3_weighted_loss = weighted_loss
     original_config = trainer.config
     def b3_config():
         cfg = original_config()
@@ -180,7 +223,11 @@ def run_formal(manifest_path):
         evaluator.write(RUN / 'state' / 'selection.json', result)
         return result
     trainer.select = select_b3
-    trainer.main()
+    if decision['depth_weights_enabled']:
+        with patch.object(DNSplatterModel, 'get_loss_dict', trainer._b3_weighted_loss):
+            trainer.main()
+    else:
+        trainer.main()
 
 
 def main():
