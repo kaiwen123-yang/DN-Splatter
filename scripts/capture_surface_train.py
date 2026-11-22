@@ -148,8 +148,13 @@ def run_formal(manifest_path):
             or len(meta['val_filenames']) != 184 or len(meta['test_filenames']) != 184):
         raise ValueError('incorrect training population')
     splits = [set(meta[k]) for k in ('train_filenames', 'val_filenames', 'test_filenames')]
+    if any(len(split) != expected for split, expected in zip(splits, (1478, 184, 184))):
+        raise ValueError('duplicate filenames within a split')
     if any(splits[i] & splits[j] for i in range(3) for j in range(i + 1, 3)):
         raise ValueError('training and held-out splits overlap')
+    frame_paths = [frame['file_path'] for frame in meta['frames']]
+    if len(frame_paths) != len(set(frame_paths)) or not set.union(*splits).issubset(frame_paths):
+        raise ValueError('split frames missing or duplicated in camera metadata')
     os.environ['DN_RUN_OVERRIDE'] = str(RUN)
     os.environ['DN_SCENE_OVERRIDE'] = str(scene)
     import capture_quality_train as trainer
