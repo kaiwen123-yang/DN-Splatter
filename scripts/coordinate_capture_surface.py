@@ -52,6 +52,12 @@ def now():
     return datetime.now(timezone.utc).isoformat()
 
 
+def tail_bytes(path):
+    with path.open("rb") as stream:
+        stream.seek(max(0, path.stat().st_size - 16000))
+        return stream.read()
+
+
 def main():
     CONTROL.mkdir(exist_ok=True, parents=True)
     exe = shutil.which("codex.exe")
@@ -76,6 +82,10 @@ def main():
             last = CONTROL / (prefix + ".md")
             command = [exe, "exec", "--ephemeral", "-C", str(ROOT), "-s", "danger-full-access",
                        "-c", 'approval_policy="never"', "--color", "never", "--json", "-o", str(last), "-"]
+            standalone_defaults = any(b"model_not_found" in tail_bytes(p)
+                                      for p in CONTROL.glob("segment-*.jsonl"))
+            if standalone_defaults:
+                command.insert(2, "--ignore-user-config")
             with log.open("xb") as output, (CONTROL / (prefix+".stderr")).open("xb") as errors:
                 process = subprocess.Popen(command, cwd=ROOT, stdin=subprocess.PIPE, stdout=output, stderr=errors)
                 atomic(STATUS, dict(run_id=ID, pid=os.getpid(), worker_pid=process.pid, attempt=attempt,
@@ -85,12 +95,14 @@ def main():
                   status="checking_delivery", log=log.name, last=last.name))
             if process.returncode:
                 # A revoked credential or exhausted account cannot be repaired by restarting this client.
-                tail = log.read_bytes()[-16000:] + (CONTROL / (prefix+".stderr")).read_bytes()[-16000:]
+                tail = tail_bytes(log) + tail_bytes(CONTROL / (prefix+".stderr"))
                 if any(term in tail.lower() for term in (b"token_revoked", b"refresh_token_reused",
                        b"insufficient_quota", b"unauthorized", b"invalid_api_key")):
                     atomic(STATUS, dict(run_id=ID, pid=os.getpid(), attempt=attempt, utc=now(),
                                         status="coordinator_access_blocked", log=log.name))
                     return
+                if b"model_not_found" in tail and not standalone_defaults:
+                    continue
             # One active coordinator at a time. A returned CLI call alone is not an experiment receipt.
             time.sleep(60 if process.returncode == 0 else 180)
 
