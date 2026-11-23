@@ -8,6 +8,7 @@ import argparse
 import json
 from pathlib import Path
 import tempfile
+from concurrent.futures import ThreadPoolExecutor
 
 import cv2
 import numpy as np
@@ -107,14 +108,16 @@ def evaluate(manifest, split):
     scenes = {k: make_scene(p) for k, p in meshes.items() if k!='supported_poisson' or split=='val'}
     output = Path(config["output"]); output.mkdir(parents=True, exist_ok=True)
     rows, totals, errors, transfers = [], {}, {}, {}
-    with tempfile.TemporaryDirectory(dir=output, prefix="quantiles_") as temp:
-        def add(group, key, ref, z, valid):
-            c, err = stats(ref, z, valid)
+    with tempfile.TemporaryDirectory(dir=output, prefix="quantiles_") as temp, ThreadPoolExecutor(max_workers=CPU) as pool:
+        print(f"Surface evaluation: {CPU} native ray threads, then up to {CPU} independent statistics workers",flush=True)
+        def accumulate(job):
+            group, key, values = job
+            c, err = stats(*values)
             entry = totals.setdefault((group, key), {k: 0 for k in c})
             for k, v in c.items(): entry[k] += v
             file = errors.setdefault((group, key), Path(temp) / (str(len(errors)) + ".bin"))
             with file.open("ab") as out: err.tofile(out)
-            return measures(c, err)
+            return key, measures(c,err) if group=="all" else None
         for i, name in enumerate(names):
             frame = frames[name]; stem = Path(name).stem
             depth = np.load(root / frame["depth_file_path"], mmap_mode="r")
@@ -133,15 +136,21 @@ def evaluate(manifest, split):
                         scenes['supported_poisson']=make_scene(meshes['supported_poisson'])
                     if 'supported_poisson' not in z:
                         z['supported_poisson']=scenes['supported_poisson'].cast_rays(q,nthreads=CPU)['t_hit'].numpy()
-                    temp=path.with_suffix('.pending.npy')
-                    np.save(temp,z['supported_poisson'],allow_pickle=False);temp.replace(path)
+                    pending=path.with_suffix('.pending.npy')
+                    np.save(pending,z['supported_poisson'],allow_pickle=False);pending.replace(path)
                     save(marker,dict(sha256=sha(path),reference_pixels=len(ref)))
             valid = {k: np.isfinite(v) & (v > 0) for k, v in z.items()}
             row = {"id": stem, "relative_s": times[stem], "reference_pixels": len(ref), "surfaces": {}, "paired": {}}
             base = z["supported_poisson"]; bv = valid["supported_poisson"]
             bc = bv & (np.abs(base.astype('f8')-ref) <= .1)
+            jobs=[]
+            def add(group,key,ref,z,valid):
+                # Assign separate streams before dispatch; workers own disjoint (group, mesh) keys.
+                if (group,key) not in errors:
+                    errors[group,key]=Path(temp)/(str(len(errors))+".bin")
+                jobs.append((group,key,(ref,z,valid)))
             for k, value in z.items():
-                row["surfaces"][k] = add("all", k, ref, value, valid[k])
+                add("all", k, ref, value, valid[k])
                 if stem in same: add("same_s01_source",k,ref,value,valid[k])
                 add("time_%d" % (int(times[stem] // 30)*30), k, ref, value, valid[k])
                 for a, b in BANDS:
@@ -158,13 +167,18 @@ def evaluate(manifest, split):
                     row["paired"][k] = pair
                     total = transfers.setdefault(k, {a: 0 for a in pair})
                     for a, v in pair.items(): total[a] += v
+            check(len({(group,key) for group,key,_ in jobs})==len(jobs),'overlapping frame statistics jobs')
+            row["surfaces"]={key:value for key,value in pool.map(accumulate,jobs) if value is not None}
             rows.append(row)
             if (i+1) % 32 == 0: print(split, i+1, flush=True)
         check(sum(r["reference_pixels"] for r in rows) == EXPECTED[split], "reference denominator mismatch")
         groups = {}
-        for (group, key), c in totals.items():
+        def finish(item):
+            (group,key),c=item
             err = np.fromfile(errors[(group, key)], dtype=np.float64)
-            groups.setdefault(group, {})[key] = measures(c, err)
+            return group,key,measures(c,err)
+        for group,key,result in pool.map(finish,sorted(totals.items())):
+            groups.setdefault(group,{})[key]=result
         save(output / ("surface_frames_" + split + ".json"), rows)
         save(output / ("surfaces_" + split + ".json"), {"split": split, "frames": len(rows),
              "meshes": identities, "groups": groups, "paired_10cm": transfers,
