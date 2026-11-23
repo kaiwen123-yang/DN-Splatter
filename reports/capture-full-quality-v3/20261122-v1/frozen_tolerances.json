@@ -1,0 +1,62 @@
+{
+  "model": "B2",
+  "camera_sha256": "3e173297428839d7de762ce0c4dac5415f1e4cb63d5d8be08a22ee896c3d811e",
+  "bins": [
+    {
+      "range_m": [
+        0.3,
+        1.0
+      ],
+      "samples": 848503,
+      "pairs": 942,
+      "median_signed_m": 7.555178523088735e-05,
+      "MAD_m": 0.003260106848782751,
+      "fallback": false,
+      "empirical_term_m": 0.012083586035013267
+    },
+    {
+      "range_m": [
+        1.0,
+        2.0
+      ],
+      "samples": 2459921,
+      "pairs": 1621,
+      "median_signed_m": 0.00014327542536940463,
+      "MAD_m": 0.0074856407645824685,
+      "fallback": false,
+      "empirical_term_m": 0.027745527493924917
+    },
+    {
+      "range_m": [
+        2.0,
+        4.0
+      ],
+      "samples": 3414919,
+      "pairs": 1869,
+      "median_signed_m": 6.479493554145677e-05,
+      "MAD_m": 0.028207019065463967,
+      "fallback": false,
+      "empirical_term_m": 0.10454931616614219
+    },
+    {
+      "range_m": [
+        4.0,
+        6.0
+      ],
+      "samples": 1150563,
+      "pairs": 1869,
+      "median_signed_m": -0.003391209157828534,
+      "MAD_m": 0.08020237525306051,
+      "fallback": false,
+      "empirical_term_m": 0.29727010387546876
+    }
+  ],
+  "train_pairs": 1871,
+  "sample_stride_px": 8,
+  "sample_offset_px": 4,
+  "reciprocal_max_px": 1.0,
+  "edges": "Interior distance >2 native pixels; nearest projected Z per target pixel",
+  "pair_rule": "Both directions of time neighbors and all revisits >=10 s, <=0.5 m, <=15 deg",
+  "build_tolerance": "min(.20,max(.05,.03*reference_Z,empirical_term_m))",
+  "evaluation_tolerance": "max(.05,.03*reference_Z)"
+}
