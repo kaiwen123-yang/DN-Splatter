@@ -59,7 +59,10 @@ def independent_votes(voter, points, source_gid, source_center, heldout, score_f
         center = np.zeros((n, 3))
         for _, pose, path in frames:
             c, d, r = voter.observe(points, pose, path)
-            better = (c > 0) & ((d > dist) | ((d == dist) & (r < res)))
+            # Distances on the native pixel grid have integer squares. OpenCV can
+            # round sqrt(n) differently by one float ULP for equal distances.
+            d = np.rint(np.square(d.astype(np.float64)))
+            better = (c > 0) & (d > 4) & ((d > dist) | ((d == dist) & (r < res)))
             cat[better], dist[better], res[better] = c[better], d[better], r[better]
             center[better] = pose[:3, 3]
         ray = center - points

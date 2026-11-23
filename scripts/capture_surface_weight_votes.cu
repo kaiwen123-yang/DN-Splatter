@@ -44,13 +44,14 @@ __global__ void weights(int n, const double *points, int source, int views,
             size_t idx=((size_t)v*h+t)*w+u;
             int mm=depth[idx];
             float distance=edges[idx];
-            if (distance<=2.f || mm<300 || mm>6000) continue;
+            int edge_squared=__double2int_rn((double)distance*distance);
+            if (edge_squared<=4 || mm<300 || mm>6000) continue;
             double measured=(float)mm/1000.f;
             int b=(mm>=1000)+(mm>=2000)+(mm>=4000);
             double tol=fmin(.20,fmax(terms[b],(double)fmaxf(.05f,.03f*(float)measured)));
             double err=fabs(Z-measured);
-            if (distance>best_edge || (distance==best_edge && err<best_error)) {
-                best=v; best_edge=distance; best_error=err;
+            if (edge_squared>best_edge || (edge_squared==best_edge && err<best_error)) {
+                best=v; best_edge=edge_squared; best_error=err;
                 category=err<=tol ? 1 : (Z<measured ? 2 : 3);
             }
         } while (j<views && group[j]==g);
