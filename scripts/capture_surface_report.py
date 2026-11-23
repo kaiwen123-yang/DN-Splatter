@@ -5,7 +5,6 @@ from pathlib import Path
 import shutil
 
 from capture_surface_final import B2,ROOT,RUN,STATE,EV,read,write,sha
-from capture_surface_publish import prepare
 
 
 def main():
@@ -123,7 +122,10 @@ def main():
               selection_frozen=True,test_complete=True,privacy_verified=video['privacy_verified'],timeline_frames=video['frames'],
               fixed_views_complete=len(video['fixed_views'])==(8 if f['trained'] else 4),val_frames=184,test_frames=184,
               artifacts=sorted(files),references=sorted(refs),overview='\n'.join(text))
-    prepare(spec)
+    spec['small_reports']=['metrics.json','selection_freeze.json','training_decision.json','texture.json.gz',
+        'weights.json.gz','video.json','sensor_mesh.json']
+    spec['small_reports'] += [str(p.relative_to(report)) for p in sorted((report/'paired').glob('*'))]
+    spec['small_reports'] += ['previews/'+Path(row['image']['path']).name for row in video['fixed_views'].values()]
     write(RUN/'delivery/spec.json',spec)
 
 

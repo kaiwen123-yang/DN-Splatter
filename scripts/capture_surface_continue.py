@@ -58,7 +58,8 @@ def main():
     phase('development_test','capture_surface_final.py',['test'],RUN/'evaluation/development_test.json',CPU)
     phase('video','capture_surface_video.py',[],RUN/'video/receipt.json',CPU)
     phase('report','capture_surface_report.py',[],RUN/'delivery/spec.json')
-    status('artifacts_ready',run_id=RUN.name,report=str(RUN/'delivery/spec.json'))
+    phase('publish','capture_surface_publish.py',[RUN/'delivery/spec.json','--publish'],STATE/'delivery_ready.json')
+    status('complete',run_id=RUN.name,commit=read(STATE/'delivery_ready.json')['commit'])
 
 
 if __name__=='__main__':

@@ -81,7 +81,12 @@ def publish(spec):
     manifest = prepare(spec)
     origin = git('remote', 'get-url', 'origin')
     require(re.fullmatch(r'(?:https://github\.com/|git@github\.com:|ssh://git@github\.com/)kaiwen123-yang/DN-Splatter(?:\.git)?/?', origin, re.I), 'wrong GitHub destination')
-    paths = [str((REPORT / p).relative_to(ROOT)) for p in ('overview.md', 'artifacts.json')]
+    paths=[]
+    for name in ['overview.md','artifacts.json',*spec.get('small_reports',[])]:
+        path=(REPORT/name).resolve(strict=True)
+        require(path.is_relative_to(REPORT.resolve()) and path.suffix in {'.md','.json','.gz','.jpg'},
+                'unexpected report path')
+        paths.append(str(path.relative_to(ROOT)))
     require(not git('diff', '--cached', '--name-only'), 'existing staged changes require preservation')
     git('add', '--', *paths)
     git('diff', '--cached', '--check')
@@ -94,9 +99,12 @@ def publish(spec):
         git('commit', '-m', 'Publish measured B3 surface results', '--', *paths)
     commit = git('rev-parse', 'HEAD')
     require(re.fullmatch('[a-f0-9]{40}', commit), 'commit identity')
-    transport = ROOT / 'scripts/github_transport.sh'
-    subprocess.run(['bash', str(transport), 'git', 'push', 'origin', 'HEAD:main'], cwd=ROOT, check=True)
-    subprocess.run(['bash', str(transport), 'git', 'fetch', '-q', 'origin', 'main'], cwd=ROOT, check=True)
+    for args in (['push','origin','HEAD:main'],['fetch','-q','origin','main']):
+        if Path('/etc/network_turbo').is_file():
+            result=subprocess.run(['bash','-c','source /etc/network_turbo >/dev/null 2>&1 && exec git "$@"',
+                                   'b3-git',*args],cwd=ROOT)
+            if not result.returncode: continue
+        subprocess.run(['git',*args],cwd=ROOT,check=True)
     subprocess.run(['git', 'merge-base', '--is-ancestor', commit, 'origin/main'], cwd=ROOT, check=True)
     receipt = dict(schema_version=1, run_id=RUN_ID, commit=commit, status='completed',
                    training_updates=spec['training_updates'], selected_step=spec['selected_step'], **{k: manifest[k] for k in ('artifacts', 'references')})
