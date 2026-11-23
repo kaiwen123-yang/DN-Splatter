@@ -78,31 +78,62 @@ def classify(t,g,w,scene,e,level,output):
 
 
 def cut_original(t, polygons):
+    from shapely import make_valid
     from shapely.geometry import Polygon
-    from shapely.ops import unary_union
+    from shapely.ops import triangulate, unary_union
     import mapbox_earcut
-    parent=Polygon([(0.,0.),(1.,0.),(0.,1.)])
-    cuts=[Polygon(p).intersection(parent) for p in polygons]
-    rest=parent.difference(unary_union(cuts))
+
     def polygon_parts(geometry):
-        if geometry.is_empty:return
-        if geometry.geom_type=="Polygon":yield geometry
-        elif hasattr(geometry,"geoms"):
-            for item in geometry.geoms:yield from polygon_parts(item)
-    faces=[]
+        if geometry.is_empty:
+            return
+        if geometry.geom_type == "Polygon":
+            yield geometry
+        elif hasattr(geometry, "geoms"):
+            for child in geometry.geoms:
+                yield from polygon_parts(child)
+
+    def valid_polygonal(geometry):
+        if geometry.is_valid:
+            return geometry
+        # Interpolated cut edges can meet within a few ulps and leave nested shells.
+        # make_valid may also return boundary linework, which has no surface area.
+        return unary_union(list(polygon_parts(make_valid(geometry))))
+
+    def earcut(piece):
+        rings = [np.asarray(ring.coords)[:-1] for ring in (piece.exterior, *piece.interiors)]
+        points = np.ascontiguousarray(np.concatenate(rings), dtype="f8")
+        ends = np.cumsum([len(ring) for ring in rings]).astype("u4")
+        triangles = points[mapbox_earcut.triangulate_float64(points, ends).reshape(-1, 3)]
+        return triangles
+
+    def oriented(triangles):
+        u = triangles[:, 1] - triangles[:, 0]
+        v = triangles[:, 2] - triangles[:, 0]
+        cross = u[:, 0]*v[:, 1] - u[:, 1]*v[:, 0]
+        back = cross < 0
+        triangles[back] = triangles[back][:, [0, 2, 1]]
+        return triangles, float(np.abs(cross).sum()/2)
+
+    parent = Polygon([(0., 0.), (1., 0.), (0., 1.)])
+    cuts = [Polygon(p).intersection(parent) for p in polygons]
+    removed = valid_polygonal(unary_union(cuts))
+    rest = valid_polygonal(parent.difference(removed))
+    if abs(rest.area + removed.area - parent.area) > 1e-7:
+        raise ValueError("Clipped domain area conservation")
+    faces = []
     for piece in polygon_parts(rest):
-        if piece.area<1e-14:continue
-        rings=[np.asarray(r.coords)[:-1] for r in (piece.exterior,*piece.interiors)]
-        points=np.ascontiguousarray(np.concatenate(rings),dtype="f8")
-        ends=np.cumsum([len(r) for r in rings]).astype("u4")
-        idx=mapbox_earcut.triangulate_float64(points,ends).reshape(-1,3)
-        tri=points[idx];d1=tri[:,1]-tri[:,0];d2=tri[:,2]-tri[:,0]
-        cross=d1[:,0]*d2[:,1]-d1[:,1]*d2[:,0]
-        if abs(np.abs(cross).sum()/2-piece.area)>1e-7:raise ValueError("Clipped area conservation")
-        tri[cross<0]=tri[cross<0][:,[0,2,1]]
-        faces.extend(t[0]+tri[:,:,0,None]*(t[1]-t[0])
-                     +tri[:,:,1,None]*(t[2]-t[0]))
-    return np.asarray(faces,dtype="f8").reshape(-1,3,3),min(1.,max(0.,1-2*rest.area))
+        if piece.area < 1e-14:
+            continue
+        tri, area = oriented(earcut(piece))
+        if abs(area - piece.area) > 1e-7:
+            # Each Delaunay cell is intersected with the actual polygon, retaining holes.
+            parts = [earcut(part) for cell in triangulate(piece)
+                     for part in polygon_parts(cell.intersection(piece)) if part.area >= 1e-14]
+            tri, area = oriented(np.concatenate(parts) if parts else np.empty((0, 3, 2)))
+            if abs(area - piece.area) > 1e-7:
+                raise ValueError("Clipped area conservation")
+        faces.extend(t[0] + tri[:, :, 0, None]*(t[1]-t[0]) + tri[:, :, 1, None]*(t[2]-t[0]))
+    return np.asarray(faces, dtype="f8").reshape(-1, 3, 3), min(1., max(0., 1-2*rest.area))
 
 
 def combined(label,branch):
@@ -115,7 +146,14 @@ def combined(label,branch):
     ident=dict(layers=sha(layer/"complete.json"),old_sha256=sha(base) if branch=="model" else None,
                implementation=[sha(__file__),sha(ROOT/"scripts/capture_surface_ply.py")])
     signature=out/"assembly_identity.json"
-    if signature.is_file() and read(signature)!=ident:raise ValueError("Existing global assembly identity changed")
+    if signature.is_file() and read(signature) != ident:
+        previous = read(signature)
+        # The original classifier and PLY writer agree byte-for-byte. Only final clipping changed.
+        compatible = dict(ident, implementation=[
+            "884d4c28556effae59c6719d0c8e69d2568499836f8c42dde1948adf8cb5808f", ident["implementation"][1]])
+        if previous != compatible or (out/"complete.json").exists():
+            raise ValueError("Existing global assembly identity changed")
+        write(out/"assembly_identity_before_clip_repair.json", previous)
     write(signature,ident)
     if (out/"complete.json").is_file():
         if read(out/"complete.json")["mesh"]["sha256"]!=sha(path):raise ValueError("Global mesh readback")
@@ -169,6 +207,9 @@ def combined(label,branch):
                     t=np.asarray(v[f[first:first+65536]])
                     area=normal_area(t)[1];stats["old_retained_area_m2"]+=float(area.sum())
                     block=d/f"{first//65536}.bin"
+                    write(RUN/"state"/"A3_assembly_progress.json",
+                          dict(run_id=RUN.name, branch=branch, phase="old_face_clipping",
+                               first_face=first, total_faces=len(f), block_faces=len(t)))
                     if not block.exists():yield t;continue
                     records=np.fromfile(block,dtype);groups=defaultdict(list)
                     for rec in records:groups[int(rec["id"])-first].append(rec["uv"])
