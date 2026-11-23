@@ -1,0 +1,1 @@
+{"model": {"split": "val", "views": 184, "reference_pixels": 29222080, "metrics_sha256": "d91da99a5c0165d205a9d1fd6266f2295252b3dad14b81d8db35003174192064"}, "sensor": {"split": "val", "views": 184, "reference_pixels": 29222080, "metrics_sha256": "e85bbe49ec5d5d8b7134a63dac07920e535cba4d944585e51358236f624ad66c"}}
