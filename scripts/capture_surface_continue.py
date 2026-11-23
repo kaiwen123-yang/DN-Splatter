@@ -33,6 +33,7 @@ def main():
             return
         stage(name,[sys.executable,'-u',ROOT/'scripts'/script,*args],cwd=ROOT,threads=threads)
         write(marker,dict(binding=binding,path=str(output.relative_to(RUN)),sha256=sha(output)))
+    phase('B_pose_evidence','capture_surface_pose_evidence.py',[],RUN/'geometry/pose/decision.json')
     phase('B_texture','capture_surface_texture.py',[],RUN/'texture/B2/receipt.json')
     phase('B_weights','capture_surface_weights.py',['B2','--device','cuda','--chunk','65536'],
           RUN/'weights/B2/receipt.json')

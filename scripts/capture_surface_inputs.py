@@ -20,7 +20,7 @@ def independent_copy(source, target, digest):
 
 
 def prepare():
-    receipt_paths=dict(pose=RUN/'geometry/pose/diagnostics.json',
+    receipt_paths=dict(pose=RUN/'geometry/pose/decision.json',
                        weights=RUN/'weights/B2/receipt.json',texture=RUN/'texture/B2/receipt.json')
     results={k:read(p) for k,p in receipt_paths.items()}
     binding={k:dict(path=str(p.relative_to(RUN)),sha256=sha(p)) for k,p in receipt_paths.items()}

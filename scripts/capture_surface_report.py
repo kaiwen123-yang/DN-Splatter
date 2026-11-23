@@ -31,7 +31,7 @@ def main():
     for name in ('sensor_tsdf.ply','model_tsdf.ply'): include(B2/'meshes'/name)
     for name in ('surfaces_test.json','surfaces_val.json'): include(B2/'evaluation'/name)
     for path in [STATE/'selection_freeze.json',STATE/'training_decision.json',STATE/'frozen_pair_val.json',
-                 RUN/'geometry/pose/transforms.json',RUN/'geometry/pose/diagnostics.json',EV/'development_test.json',
+                 RUN/'geometry/pose/transforms.json',RUN/'geometry/pose/diagnostics.json',RUN/'geometry/pose/decision.json',EV/'development_test.json',
                  RUN/'texture/B2/manifest.json',RUN/'texture/B2/receipt.json',RUN/'weights/B2/receipt.json',
                  RUN/'weights/B2/native_equivalence.json',RUN/'video/receipt.json',RUN/'video/timestamps.json']:
         include(path)
