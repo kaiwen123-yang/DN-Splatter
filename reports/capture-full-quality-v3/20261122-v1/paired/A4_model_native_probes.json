@@ -1,0 +1,153 @@
+{
+  "probes": [
+    {
+      "frame": "frame_00120",
+      "native_xy": [
+        67,
+        355
+      ],
+      "historical_local_tsdf": {
+        "observed_voxels": 4096,
+        "min_tsdf": -0.43816207338798635,
+        "max_tsdf": 1.0,
+        "observed_exact_zero_voxels": 0,
+        "internal_grid_edges_with_sign_change": 343
+      },
+      "historical_global_tsdf": {
+        "observed_voxels": 4096,
+        "min_tsdf": 0.32881175062828116,
+        "max_tsdf": 0.9952894526366253,
+        "observed_exact_zero_voxels": 0,
+        "internal_grid_edges_with_sign_change": 0
+      },
+      "meshes": {
+        "supported_poisson": {
+          "hit_Z_m": 2.252542018890381,
+          "reference_Z_m": 2.2209999561309814,
+          "first_hit_within_10cm": true,
+          "foreground_conflict": false,
+          "crossed_grid_edges": 532
+        },
+        "new_model_surface": {
+          "hit_Z_m": 3.9535861015319824,
+          "reference_Z_m": 2.2209999561309814,
+          "first_hit_within_10cm": false,
+          "foreground_conflict": false,
+          "crossed_grid_edges": 706
+        }
+      }
+    },
+    {
+      "frame": "frame_00600",
+      "native_xy": [
+        243,
+        339
+      ],
+      "historical_local_tsdf": {
+        "observed_voxels": 2617,
+        "min_tsdf": -0.9990544137505109,
+        "max_tsdf": 1.0,
+        "observed_exact_zero_voxels": 0,
+        "internal_grid_edges_with_sign_change": 932
+      },
+      "historical_global_tsdf": {
+        "observed_voxels": 4096,
+        "min_tsdf": 0.2415290877553781,
+        "max_tsdf": 0.9831135739698562,
+        "observed_exact_zero_voxels": 0,
+        "internal_grid_edges_with_sign_change": 0
+      },
+      "meshes": {
+        "supported_poisson": {
+          "hit_Z_m": 1.9768420457839966,
+          "reference_Z_m": 2.0169999599456787,
+          "first_hit_within_10cm": true,
+          "foreground_conflict": false,
+          "crossed_grid_edges": 435
+        },
+        "new_model_surface": {
+          "hit_Z_m": 1.9768420457839966,
+          "reference_Z_m": 2.0169999599456787,
+          "first_hit_within_10cm": true,
+          "foreground_conflict": false,
+          "crossed_grid_edges": 868
+        }
+      }
+    },
+    {
+      "frame": "frame_00900",
+      "native_xy": [
+        115,
+        323
+      ],
+      "historical_local_tsdf": {
+        "observed_voxels": 3553,
+        "min_tsdf": -0.9990607485693217,
+        "max_tsdf": 1.0,
+        "observed_exact_zero_voxels": 0,
+        "internal_grid_edges_with_sign_change": 549
+      },
+      "historical_global_tsdf": {
+        "observed_voxels": 4096,
+        "min_tsdf": 0.4715133721081537,
+        "max_tsdf": 0.9774091381602885,
+        "observed_exact_zero_voxels": 0,
+        "internal_grid_edges_with_sign_change": 0
+      },
+      "meshes": {
+        "supported_poisson": {
+          "hit_Z_m": 1.1331663131713867,
+          "reference_Z_m": 1.1299999952316284,
+          "first_hit_within_10cm": true,
+          "foreground_conflict": false,
+          "crossed_grid_edges": 785
+        },
+        "new_model_surface": {
+          "hit_Z_m": 1.1331663131713867,
+          "reference_Z_m": 1.1299999952316284,
+          "first_hit_within_10cm": true,
+          "foreground_conflict": false,
+          "crossed_grid_edges": 870
+        }
+      }
+    },
+    {
+      "frame": "frame_01700",
+      "native_xy": [
+        435,
+        275
+      ],
+      "historical_local_tsdf": {
+        "observed_voxels": 4096,
+        "min_tsdf": -0.9856712012242166,
+        "max_tsdf": 1.0,
+        "observed_exact_zero_voxels": 0,
+        "internal_grid_edges_with_sign_change": 1093
+      },
+      "historical_global_tsdf": {
+        "observed_voxels": 4096,
+        "min_tsdf": 0.09427612679648671,
+        "max_tsdf": 0.9489497324765985,
+        "observed_exact_zero_voxels": 0,
+        "internal_grid_edges_with_sign_change": 0
+      },
+      "meshes": {
+        "supported_poisson": {
+          "hit_Z_m": 3.411890983581543,
+          "reference_Z_m": 3.4509999752044678,
+          "first_hit_within_10cm": true,
+          "foreground_conflict": false,
+          "crossed_grid_edges": 1501
+        },
+        "new_model_surface": {
+          "hit_Z_m": 3.411890983581543,
+          "reference_Z_m": 3.4509999752044678,
+          "first_hit_within_10cm": true,
+          "foreground_conflict": false,
+          "crossed_grid_edges": 1501
+        }
+      }
+    }
+  ],
+  "edges": "First triangle intersection on each positive 1 cm grid edge; open meshes have no global signed TSDF."
+}

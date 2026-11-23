@@ -1,0 +1,492 @@
+{
+  "run_id": "capture-full-quality-v3-20261122-v1",
+  "artifacts": [
+    {
+      "path": ".local/runs/capture-full-quality-v3-20261122-v1/evaluation/A4_model/native_probes.json",
+      "bytes": 4531,
+      "sha256": "17cc59eb6e95d951ebac0b114576e2b411f3fa05c83af73ced1dd9c538f5593f"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v3-20261122-v1/evaluation/A4_model/surface_frames_val.json",
+      "bytes": 488803,
+      "sha256": "f39530003f10bae6d925ba237947459ee105cc3dcc67bd83006f8fe63ecc5293"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v3-20261122-v1/evaluation/A4_model/surface_local.json",
+      "bytes": 18346,
+      "sha256": "03d23cf3521bdbddcfd84a92ed49bc109aa078a504032b92dc370e5b73367284"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v3-20261122-v1/evaluation/A4_model/surfaces_val.json",
+      "bytes": 50419,
+      "sha256": "d91da99a5c0165d205a9d1fd6266f2295252b3dad14b81d8db35003174192064"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v3-20261122-v1/evaluation/A4_sensor/native_probes.json",
+      "bytes": 4535,
+      "sha256": "f853edabb53f22ac085846f9a5957f30397d2c7cffff933c86b485a425dc72b2"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v3-20261122-v1/evaluation/A4_sensor/surface_frames_val.json",
+      "bytes": 489939,
+      "sha256": "61ba9afbc042d86fd54bcf4edf9c74d4ca17d8f1df18be26a4a2f035c65b20b0"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v3-20261122-v1/evaluation/A4_sensor/surface_local.json",
+      "bytes": 18368,
+      "sha256": "6a561d48b880fecf7c9ec21b657923d730d322d1376e6bd9bfbd6d15b0a97a31"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v3-20261122-v1/evaluation/A4_sensor/surfaces_val.json",
+      "bytes": 50562,
+      "sha256": "e85bbe49ec5d5d8b7134a63dac07920e535cba4d944585e51358236f624ad66c"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v3-20261122-v1/evaluation/C_val/native_probes.json",
+      "bytes": 6507,
+      "sha256": "ec3d855b1c9dea90dd76ca7ada79b3df6c3f92c65fd8a3f6a681dbbb5e58e308"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v3-20261122-v1/evaluation/C_val/surface_frames_val.json",
+      "bytes": 988954,
+      "sha256": "bb57c9cf954693830bf527725a7368a6cf4a91d598a4d88a9d04bb0aedc313ef"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v3-20261122-v1/evaluation/C_val/surface_local.json",
+      "bytes": 35760,
+      "sha256": "4d95bd9ece60eede7b3cca31fa45015190e9ecce9078da3ca6f7f051e4d879cf"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v3-20261122-v1/evaluation/C_val/surfaces_val.json",
+      "bytes": 102053,
+      "sha256": "2b9c1f6bc3741995c1ec6018bc2262ac74e750a8cbc1c45c232c75c8f23c9d56"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v3-20261122-v1/evaluation/development_test.json",
+      "bytes": 3372,
+      "sha256": "277b9cad9ba48efe3869d88cdf5b41dbec7205f09d6cd64f94300bcad5cfc4fd"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v3-20261122-v1/evaluation/test/step-000209999.json",
+      "bytes": 772974,
+      "sha256": "49a0ca45779808af3f1077a3ecfda3485da98b6b5a7099ef7799db6873d28969"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v3-20261122-v1/evaluation/test/step-000239999.json",
+      "bytes": 773002,
+      "sha256": "203fac03991147f835cf629020b5b6c54a65a9fc089b3eaf59d5061ae6cacded"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v3-20261122-v1/evaluation/test_B3_model_tsdf/surface_frames_test.json",
+      "bytes": 491406,
+      "sha256": "0a57fc54fb514e70cc5b16837fc0859d7c1de2d95c4c591b1061312965b9e861"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v3-20261122-v1/evaluation/test_B3_model_tsdf/surfaces_test.json",
+      "bytes": 50782,
+      "sha256": "ecc4a571c9544f2b30d01ea4d1f9b3fa94c445a418e22f34d225d82177ee611d"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v3-20261122-v1/evaluation/test_B3_new_model_surface/surface_frames_test.json",
+      "bytes": 490250,
+      "sha256": "5f4c9aa376be87bfe5f3f536efb10c3810b919505b87e68356ed26d702557028"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v3-20261122-v1/evaluation/test_B3_new_model_surface/surfaces_test.json",
+      "bytes": 50607,
+      "sha256": "78c0b35bad58e9dde83d5910122c59e76089047341a900a3d7670071d5091301"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v3-20261122-v1/evaluation/test_B3_supported_poisson/surface_frames_test.json",
+      "bytes": 489997,
+      "sha256": "a895275806cfdacb8ec27a3055ac01c31a7c871527b6b9c6e2d9082ca2aa900e"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v3-20261122-v1/evaluation/test_B3_supported_poisson/surfaces_test.json",
+      "bytes": 50486,
+      "sha256": "f1937cd3d897206bdaacc90007358868df1e3358d182b31f50926ae6adaf4697"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v3-20261122-v1/evaluation/test_new_model_surface/surface_frames_test.json",
+      "bytes": 488784,
+      "sha256": "dc57e11dd30aaf5bbd8cc302e664e9355bbed6821bd05c9c178b3b59c0d80d56"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v3-20261122-v1/evaluation/test_new_model_surface/surfaces_test.json",
+      "bytes": 50575,
+      "sha256": "fb49f04507cc00c5ee6f4db2fb35d33fa006d1c098bd071cf5c2efa0001602b6"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v3-20261122-v1/evaluation/test_new_sensor_surface/surface_frames_test.json",
+      "bytes": 489758,
+      "sha256": "08bc0455e77c4cbd3327b9b85078aeeb7839e2c1dfb23588e9965e733702c381"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v3-20261122-v1/evaluation/test_new_sensor_surface/surfaces_test.json",
+      "bytes": 50630,
+      "sha256": "7e7e5073b830754fe89acf838dc7ae3d01cc72354f373320044d0456f209669e"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v3-20261122-v1/evaluation/val/step-000029999.json",
+      "bytes": 772269,
+      "sha256": "93c49b6f4a2c2dd097eea7880c578ad091afb63173a102c34eb7515fa227366c"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v3-20261122-v1/evaluation/val/step-000059999.json",
+      "bytes": 772359,
+      "sha256": "647d633e8834a903bf7ce87d3ee3402023a1e681e67be550485dfee78a3f8faf"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v3-20261122-v1/evaluation/val/step-000089999.json",
+      "bytes": 772206,
+      "sha256": "11b494040dddb9cb37841c6dda0a598b4a2f0955028cecbec5a9269251dcc96f"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v3-20261122-v1/evaluation/val/step-000119999.json",
+      "bytes": 772157,
+      "sha256": "701c9f67bbee1ebfdf0a3de8fb8c0b7c6801460170c614a23d61e8a2022ff14b"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v3-20261122-v1/evaluation/val/step-000149999.json",
+      "bytes": 772366,
+      "sha256": "5edfd7a498f54127f74f559c5fa3eed5a226d68d27abd636132142704f4d2eec"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v3-20261122-v1/evaluation/val/step-000179999.json",
+      "bytes": 772460,
+      "sha256": "11f97fc4dc0882e2c5aa8314b44789f76fb8b273665e6c87a9410514fb85daee"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v3-20261122-v1/evaluation/val/step-000209999.json",
+      "bytes": 772433,
+      "sha256": "c9583b9aa03091aacd7c5aa681a593f6a5e35ef05a93af1988a189ba95dc0e0c"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v3-20261122-v1/evaluation/val/step-000239999.json",
+      "bytes": 772283,
+      "sha256": "3fdc572490dcab5ef8b336f23191e2616f08211c037d6170fa9bcaec30a9cde6"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v3-20261122-v1/export/B2/fusion_model/complete.json",
+      "bytes": 736,
+      "sha256": "78d4bdd5536c09d778be205742c86507c5556f51245afa352033e8f5a7b67f2c"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v3-20261122-v1/export/B2/fusion_model/global.ply",
+      "bytes": 4571385010,
+      "sha256": "694e7e9a3b01f4cf3f89f9a5ff6980d511bac33b755472c1c5b71b6d223ce5ee"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v3-20261122-v1/export/B2/fusion_sensor/complete.json",
+      "bytes": 666,
+      "sha256": "c541862d77e22289e8d781df4225aaa2c5f14a297a9e5df592dd1f728833dae1"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v3-20261122-v1/export/B2/fusion_sensor/global.ply",
+      "bytes": 15778218913,
+      "sha256": "6d62f1ac33184775a4236c44da60c9ff12b5c9b62fdf2b2dd439ec2d29f15689"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v3-20261122-v1/export/B3/fusion_model/global.ply",
+      "bytes": 4067236294,
+      "sha256": "24b34b98fea416080b9530a29dccd8553004281862f164f307677cd6433a99ad"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v3-20261122-v1/geometry/pose/decision.json",
+      "bytes": 15097,
+      "sha256": "4ff0a1f5c1dd6000c4d154ce827d55c78b008d9b6fefa989c7b9acba33fe3384"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v3-20261122-v1/geometry/pose/diagnostics.json",
+      "bytes": 11867,
+      "sha256": "bceec3b718c0e11bb1375e43fb3a58e4b9c7463faafe5a3c982863c36f50a71e"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v3-20261122-v1/geometry/pose/transforms.json",
+      "bytes": 1259044,
+      "sha256": "3e173297428839d7de762ce0c4dac5415f1e4cb63d5d8be08a22ee896c3d811e"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v3-20261122-v1/inputs/geometry.json",
+      "bytes": 73592,
+      "sha256": "21d95e9dfd24c911b5774e82220c626ecf7d42c8d10c3f1db34277117f60d650"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v3-20261122-v1/inputs/init_train.ply",
+      "bytes": 55926579,
+      "sha256": "6a7f3c8dffc26f3ef417f5aa1d8962d9a53567d73cb03a8d2c1763c2a7cbf386"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v3-20261122-v1/inputs/training_manifest.json",
+      "bytes": 1509926,
+      "sha256": "83d5c39f81bd51354e98a4da9d85425781d9b638786727fe924f27bf14877a44"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v3-20261122-v1/inputs/transforms.json",
+      "bytes": 1259044,
+      "sha256": "3e173297428839d7de762ce0c4dac5415f1e4cb63d5d8be08a22ee896c3d811e"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v3-20261122-v1/meshes/model_tsdf.ply",
+      "bytes": 2021372046,
+      "sha256": "a290f3d8bf79e64bbe0c022a37e65693b524f8cfee8767be01026fcdcbb07ef0"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v3-20261122-v1/meshes/supported/supported.ply",
+      "bytes": 541098948,
+      "sha256": "a5a42d4c1b4b877b734ed754f738342bd123a57cbb61233d068d8dc2d7386dfe"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v3-20261122-v1/previews/B2_chair_legs.jpg",
+      "bytes": 198700,
+      "sha256": "b7dc21aab9c3ccc83220805434cbf5590545376cf8fc3cb1dedd75fc861cc5bd"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v3-20261122-v1/previews/B2_foam_teeth.jpg",
+      "bytes": 251864,
+      "sha256": "7c8c809ac83ba6860cfde4154b16495b8e2cb654d2835a2c1dbe36a65aada6ab"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v3-20261122-v1/previews/B2_pillar.jpg",
+      "bytes": 185405,
+      "sha256": "5193e7004704fd26247b41dba24ad213241a2e7c736564cc3b4bb17a5c2e04da"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v3-20261122-v1/previews/B2_table.jpg",
+      "bytes": 198704,
+      "sha256": "5a8c646ee5897be3780fac279aaf7158269cefb0074d2a59630276d2969d890f"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v3-20261122-v1/previews/B3_chair_legs.jpg",
+      "bytes": 197730,
+      "sha256": "bc9ef3d1504157aaabf3fe2bf5239dd738d30f98cfaa6b8be39d500ffb94bd80"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v3-20261122-v1/previews/B3_foam_teeth.jpg",
+      "bytes": 246188,
+      "sha256": "32ff501d9e554318b84ca5caffa6790b751a70e55e69d4babbc6ad80bd3a6833"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v3-20261122-v1/previews/B3_pillar.jpg",
+      "bytes": 183844,
+      "sha256": "f975a3d4f4b8ddc2801454916de54322e450b66772a1f494b8115a760ac10835"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v3-20261122-v1/previews/B3_table.jpg",
+      "bytes": 197900,
+      "sha256": "c944cc64e0f90d766f0b4aaa3cd1468f1ba324ffa568f3dd575a9a0edb6e7349"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v3-20261122-v1/state/frozen_pair_val.json",
+      "bytes": 316,
+      "sha256": "bcdbeabdf3e7f8b7b0ae590fe6054c908e92587c1ddc9a38c1bf33222620a4ec"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v3-20261122-v1/state/selection.json",
+      "bytes": 4039,
+      "sha256": "e3fc329d9f5a90ff4c49da0ab18cd5526286209fd18bfcf0d16f70823a6f6e69"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v3-20261122-v1/state/selection_freeze.json",
+      "bytes": 3983,
+      "sha256": "ec355e0d44ec6ae293b5049bfe9804135a93c354afd967d4f392ae295975b9e3"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v3-20261122-v1/state/trainer/configuration.diff",
+      "bytes": 2580,
+      "sha256": "a1595a7ad56b64844c67f1481433e8194ffadf707133dda3014fc20695c25ff5"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v3-20261122-v1/state/trainer/first_batch_000000000.json",
+      "bytes": 205,
+      "sha256": "3bc8fa819f80e5120b41a68752f54628a18137b9e1ec15c47ec9622510a89fd2"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v3-20261122-v1/state/trainer/first_refinement.json",
+      "bytes": 461,
+      "sha256": "8ae40e8c20f142c6c2ca53e2a0b77ec9edacd175a705afd8ac9770bd8a91b312"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v3-20261122-v1/state/trainer/first_weight_batch.json",
+      "bytes": 368,
+      "sha256": "8c03ccaa20ab05f7c7bc0553964340ae9203ce840d4d8762cd106f5cbdce5289"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v3-20261122-v1/state/trainer/host_cache.json",
+      "bytes": 681,
+      "sha256": "ee13df1e19ec9d561000be10da9e5efbf18413db5df9ec942b5a23f9e2ce6b58"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v3-20261122-v1/state/trainer/loaded_sources.json",
+      "bytes": 873,
+      "sha256": "43d3a9d4657a2a2eccae978076a2001d5af9f2b469a5aa297b338950d3489a42"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v3-20261122-v1/state/trainer/refinement.jsonl",
+      "bytes": 71986,
+      "sha256": "90d6e47934274a9846504aa549554f62d0057038ded5286d3c30e0fd6367042e"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v3-20261122-v1/state/trainer/weight_equivalence.json",
+      "bytes": 60,
+      "sha256": "3c669154192b2580919711e36b9d415ed0162696e18e646f9ed59e8f91fb4bc3"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v3-20261122-v1/state/training_decision.json",
+      "bytes": 599,
+      "sha256": "487102ab3627a644afbedba5ae84a5363312891a60ad977f34e6568aa7de9430"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v3-20261122-v1/texture/B2/manifest.json",
+      "bytes": 2712,
+      "sha256": "96d785a0b4860c973e613f5b77f91a53e49155a071799e33010cbba3b1baaa14"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v3-20261122-v1/texture/B2/receipt.json",
+      "bytes": 500197,
+      "sha256": "e6b4edfd18af1f532e4073a0ca18bc5ab43fdf4c3d3268944eb921a31e64de8e"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v3-20261122-v1/training/capture-full-b3/dn-splatter/surface-v3/config.yml",
+      "bytes": 8469,
+      "sha256": "5e466f4bf1c06f33bff86cb4440ac22959882380b8ff0e63eaad3848adcc7a52"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v3-20261122-v1/training/capture-full-b3/dn-splatter/surface-v3/nerfstudio_models/step-000209999.ckpt",
+      "bytes": 551809781,
+      "sha256": "37db2c157f78e9259c9d49f88b9212e7cb8880eadd592981bca5f86f563f195b"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v3-20261122-v1/training/capture-full-b3/dn-splatter/surface-v3/nerfstudio_models/step-000239999.ckpt",
+      "bytes": 551808565,
+      "sha256": "f175b282feb3cb75c264b21b873604ff5a9c5c2b15f18d1a5e0ee7b83a57083e"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v3-20261122-v1/training_complete.json",
+      "bytes": 465,
+      "sha256": "d9373e426dfcd7f6056148e3b5921f56f6db8c9c04292de5d36e841be4536707"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v3-20261122-v1/video/meshes_B2/public.mp4",
+      "bytes": 1292573341,
+      "sha256": "5ebc289d362ffd3c54dd8135752903aee84b6f181cfaf8e97c138115a17666df"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v3-20261122-v1/video/meshes_B2/timeline.ffconcat",
+      "bytes": 81224,
+      "sha256": "7ae84077a5a598639f66680701a7cf37d3a86a93bf28b555589e698b1871b35f"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v3-20261122-v1/video/meshes_B3/public.mp4",
+      "bytes": 1278419179,
+      "sha256": "9e5c5a22e1b817257cb25c16c35160185a370cd00b68765e222187c66d1794ae"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v3-20261122-v1/video/meshes_B3/timeline.ffconcat",
+      "bytes": 81224,
+      "sha256": "7ae84077a5a598639f66680701a7cf37d3a86a93bf28b555589e698b1871b35f"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v3-20261122-v1/video/receipt.json",
+      "bytes": 9044,
+      "sha256": "79def5ff7d4435990a37578fbc37674af5ea8f30486415fc05b00c19aa000fc4"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v3-20261122-v1/video/rgb_B2_B3/public.mp4",
+      "bytes": 522902272,
+      "sha256": "0db927d48b9623340c97caa1c58796b350d7d63faca6c196182621029f690379"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v3-20261122-v1/video/rgb_B2_B3/timeline.ffconcat",
+      "bytes": 81224,
+      "sha256": "7ae84077a5a598639f66680701a7cf37d3a86a93bf28b555589e698b1871b35f"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v3-20261122-v1/video/timestamps.json",
+      "bytes": 292149,
+      "sha256": "a33393aacdbd918541e365c9ca6c58c4e5889bd31e413bdd81f04dfc7a775514"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v3-20261122-v1/weights/B2/native_equivalence.json",
+      "bytes": 597,
+      "sha256": "c3bb4dbfe6ced6810634b3d46561a962b54ccf6eb7cf47a1b5e16a1aacd8289e"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v3-20261122-v1/weights/B2/receipt.json",
+      "bytes": 376863,
+      "sha256": "ea1c3829e6db8a806ea359e954a032eb841b8f69e652c14469e63982ea663cf3"
+    }
+  ],
+  "references": [
+    {
+      "path": ".local/runs/capture-full-quality-v2-20261121-v1/evaluation/surfaces_test.json",
+      "bytes": 100305,
+      "sha256": "38372972cfe3b9e9ba00137c963e419b9a6e7ae0f8f700a6a49bdf8fa6c72f54"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v2-20261121-v1/evaluation/surfaces_val.json",
+      "bytes": 100214,
+      "sha256": "7c4a94422861366e093751881f727a717415cea6c104726282de88a96d45e5cd"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v2-20261121-v1/evaluation/test/step-000209999.json",
+      "bytes": 755065,
+      "sha256": "838ec355dfd0f45b2113dcd968d554e895a5b4a68e3015f2a9421d73530281e4"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v2-20261121-v1/evaluation/test/step-000239999.json",
+      "bytes": 754996,
+      "sha256": "23b63918d3828aa61bcf2c86ef431267176b6e9a4c072e4f2cfa56b197169e4b"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v2-20261121-v1/evaluation/val/step-000209999.json",
+      "bytes": 754382,
+      "sha256": "fd733c0faecf51b6f64f39cd97ba5742ad9dbed433d9022544694c72d6066933"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v2-20261121-v1/evaluation/val/step-000239999.json",
+      "bytes": 754454,
+      "sha256": "07a0040a3a18b9d66b07b29fa88e357fbddd9192352b449cec1b7a2933c0616f"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v2-20261121-v1/meshes/model_tsdf.ply",
+      "bytes": 2029799689,
+      "sha256": "91d9a2de40dff811e2efe4e7ff21560de2c04ab74f1e4b52a5a6a6a8b715c39a"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v2-20261121-v1/meshes/sensor_tsdf.ply",
+      "bytes": 1507537285,
+      "sha256": "f87865043b3dca5e27e122c4763c212e27763d7901c8b860faf711f9a3702d66"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v2-20261121-v1/meshes/supported/supported.ply",
+      "bytes": 555199888,
+      "sha256": "c0dcf4a342e7de0119e3a1037f4ccd8c6b91955f1b8f44c493e16387d2192fbf"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v2-20261121-v1/training/capture-full-b2/dn-splatter/quality-v2/config.yml",
+      "bytes": 8469,
+      "sha256": "c7193ce1132827b44ef53dc74f9f5daa4d2ac5b288615fd27f13f3d11310fe1c"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v2-20261121-v1/training/capture-full-b2/dn-splatter/quality-v2/nerfstudio_models/step-000209999.ckpt",
+      "bytes": 568111157,
+      "sha256": "6cb4203b6a22df19c686f403de99d3d4f4b54b5b0022148cce7c1e34a96838a9"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v2-20261121-v1/training/capture-full-b2/dn-splatter/quality-v2/nerfstudio_models/step-000239999.ckpt",
+      "bytes": 568109877,
+      "sha256": "e05f8153b17b1fd9f17b6abe774ff7144df5b266417f40d034937177b8a1278a"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v2-20261121-v1/video/reference_B1_B2_public.mp4",
+      "bytes": 484070855,
+      "sha256": "4f6f01184be7dd303617f2c688e7b54aad6a86e89e53aa9d031cb29bc0a61c9c"
+    },
+    {
+      "path": ".local/runs/capture-full-quality-v2-20261121-v1/video/video_manifest.json",
+      "bytes": 1005,
+      "sha256": "e14e550259606d1b4705b306d9fbcbae2f978e5249025cd2742650b730334b43"
+    }
+  ]
+}

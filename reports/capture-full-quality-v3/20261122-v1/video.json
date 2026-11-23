@@ -1,0 +1,374 @@
+{
+  "movies": {
+    "B2_RGB_reference": {
+      "video": {
+        "path": ".local/runs/capture-full-quality-v2-20261121-v1/video/reference_B1_B2_public.mp4",
+        "bytes": 484070855,
+        "sha256": "4f6f01184be7dd303617f2c688e7b54aad6a86e89e53aa9d031cb29bc0a61c9c"
+      },
+      "frames": 1846,
+      "duration_s": 368.92,
+      "redacted_frames": [
+        1743,
+        1744,
+        1745,
+        1746,
+        1747,
+        1748,
+        1749,
+        1750,
+        1751,
+        1752,
+        1753,
+        1754,
+        1755,
+        1756,
+        1757,
+        1758,
+        1759,
+        1760,
+        1761,
+        1762,
+        1763,
+        1764,
+        1765,
+        1766,
+        1767,
+        1768,
+        1769,
+        1770,
+        1771,
+        1772
+      ],
+      "all_pts_equal_B1": true,
+      "selected_checkpoint": {
+        "path": ".local/runs/capture-full-quality-v2-20261121-v1/training/capture-full-b2/dn-splatter/quality-v2/nerfstudio_models/step-000209999.ckpt",
+        "bytes": 568111157,
+        "sha256": "6cb4203b6a22df19c686f403de99d3d4f4b54b5b0022148cce7c1e34a96838a9"
+      },
+      "worst_frames": [
+        "frame_00308",
+        "frame_00329",
+        "frame_01108",
+        "frame_01419"
+      ]
+    },
+    "RGB": {
+      "video": {
+        "path": ".local/runs/capture-full-quality-v3-20261122-v1/video/rgb_B2_B3/public.mp4",
+        "bytes": 522902272,
+        "sha256": "0db927d48b9623340c97caa1c58796b350d7d63faca6c196182621029f690379"
+      },
+      "frames": 1846,
+      "duration_s": 368.92,
+      "timeline": {
+        "path": ".local/runs/capture-full-quality-v3-20261122-v1/video/rgb_B2_B3/timeline.ffconcat",
+        "bytes": 81224,
+        "sha256": "7ae84077a5a598639f66680701a7cf37d3a86a93bf28b555589e698b1871b35f"
+      },
+      "redacted_frames": [
+        1743,
+        1744,
+        1745,
+        1746,
+        1747,
+        1748,
+        1749,
+        1750,
+        1751,
+        1752,
+        1753,
+        1754,
+        1755,
+        1756,
+        1757,
+        1758,
+        1759,
+        1760,
+        1761,
+        1762,
+        1763,
+        1764,
+        1765,
+        1766,
+        1767,
+        1768,
+        1769,
+        1770,
+        1771,
+        1772
+      ],
+      "all_pts_equal_B2": true,
+      "privacy_verified": true,
+      "identity": {
+        "freeze": "ec355e0d44ec6ae293b5049bfe9804135a93c354afd967d4f392ae295975b9e3",
+        "checkpoint": "37db2c157f78e9259c9d49f88b9212e7cb8880eadd592981bca5f86f563f195b",
+        "B2": {
+          "path": ".local/runs/capture-full-quality-v2-20261121-v1/video/reference_B1_B2_public.mp4",
+          "bytes": 484070855,
+          "sha256": "4f6f01184be7dd303617f2c688e7b54aad6a86e89e53aa9d031cb29bc0a61c9c"
+        }
+      }
+    },
+    "B2_meshes": {
+      "video": {
+        "path": ".local/runs/capture-full-quality-v3-20261122-v1/video/meshes_B2/public.mp4",
+        "bytes": 1292573341,
+        "sha256": "5ebc289d362ffd3c54dd8135752903aee84b6f181cfaf8e97c138115a17666df"
+      },
+      "frames": 1846,
+      "duration_s": 368.92,
+      "timeline": {
+        "path": ".local/runs/capture-full-quality-v3-20261122-v1/video/meshes_B2/timeline.ffconcat",
+        "bytes": 81224,
+        "sha256": "7ae84077a5a598639f66680701a7cf37d3a86a93bf28b555589e698b1871b35f"
+      },
+      "redacted_frames": [
+        1743,
+        1744,
+        1745,
+        1746,
+        1747,
+        1748,
+        1749,
+        1750,
+        1751,
+        1752,
+        1753,
+        1754,
+        1755,
+        1756,
+        1757,
+        1758,
+        1759,
+        1760,
+        1761,
+        1762,
+        1763,
+        1764,
+        1765,
+        1766,
+        1767,
+        1768,
+        1769,
+        1770,
+        1771,
+        1772
+      ],
+      "all_pts_equal_B2": true,
+      "privacy_verified": true,
+      "identity": {
+        "freeze": "ec355e0d44ec6ae293b5049bfe9804135a93c354afd967d4f392ae295975b9e3",
+        "old": "c0dcf4a342e7de0119e3a1037f4ccd8c6b91955f1b8f44c493e16387d2192fbf",
+        "new": "694e7e9a3b01f4cf3f89f9a5ff6980d511bac33b755472c1c5b71b6d223ce5ee"
+      }
+    },
+    "B3_meshes": {
+      "video": {
+        "path": ".local/runs/capture-full-quality-v3-20261122-v1/video/meshes_B3/public.mp4",
+        "bytes": 1278419179,
+        "sha256": "9e5c5a22e1b817257cb25c16c35160185a370cd00b68765e222187c66d1794ae"
+      },
+      "frames": 1846,
+      "duration_s": 368.92,
+      "timeline": {
+        "path": ".local/runs/capture-full-quality-v3-20261122-v1/video/meshes_B3/timeline.ffconcat",
+        "bytes": 81224,
+        "sha256": "7ae84077a5a598639f66680701a7cf37d3a86a93bf28b555589e698b1871b35f"
+      },
+      "redacted_frames": [
+        1743,
+        1744,
+        1745,
+        1746,
+        1747,
+        1748,
+        1749,
+        1750,
+        1751,
+        1752,
+        1753,
+        1754,
+        1755,
+        1756,
+        1757,
+        1758,
+        1759,
+        1760,
+        1761,
+        1762,
+        1763,
+        1764,
+        1765,
+        1766,
+        1767,
+        1768,
+        1769,
+        1770,
+        1771,
+        1772
+      ],
+      "all_pts_equal_B2": true,
+      "privacy_verified": true,
+      "identity": {
+        "freeze": "ec355e0d44ec6ae293b5049bfe9804135a93c354afd967d4f392ae295975b9e3",
+        "old": "a5a42d4c1b4b877b734ed754f738342bd123a57cbb61233d068d8dc2d7386dfe",
+        "new": "24b34b98fea416080b9530a29dccd8553004281862f164f307677cd6433a99ad"
+      }
+    }
+  },
+  "fixed_views": {
+    "B2/table": {
+      "frame": "frame_00120",
+      "crop": [
+        774,
+        406,
+        1180,
+        598
+      ],
+      "image": {
+        "path": ".local/runs/capture-full-quality-v3-20261122-v1/previews/B2_table.jpg",
+        "bytes": 198704,
+        "sha256": "5a8c646ee5897be3780fac279aaf7158269cefb0074d2a59630276d2969d890f"
+      }
+    },
+    "B2/pillar": {
+      "frame": "frame_00000",
+      "crop": [
+        604,
+        284,
+        810,
+        714
+      ],
+      "image": {
+        "path": ".local/runs/capture-full-quality-v3-20261122-v1/previews/B2_pillar.jpg",
+        "bytes": 185405,
+        "sha256": "5193e7004704fd26247b41dba24ad213241a2e7c736564cc3b4bb17a5c2e04da"
+      }
+    },
+    "B2/chair_legs": {
+      "frame": "frame_00240",
+      "crop": [
+        214,
+        440,
+        496,
+        720
+      ],
+      "image": {
+        "path": ".local/runs/capture-full-quality-v3-20261122-v1/previews/B2_chair_legs.jpg",
+        "bytes": 198700,
+        "sha256": "b7dc21aab9c3ccc83220805434cbf5590545376cf8fc3cb1dedd75fc861cc5bd"
+      }
+    },
+    "B2/foam_teeth": {
+      "frame": "frame_01420",
+      "crop": [
+        720,
+        224,
+        1104,
+        608
+      ],
+      "image": {
+        "path": ".local/runs/capture-full-quality-v3-20261122-v1/previews/B2_foam_teeth.jpg",
+        "bytes": 251864,
+        "sha256": "7c8c809ac83ba6860cfde4154b16495b8e2cb654d2835a2c1dbe36a65aada6ab"
+      }
+    },
+    "B3/table": {
+      "frame": "frame_00120",
+      "crop": [
+        774,
+        406,
+        1180,
+        598
+      ],
+      "image": {
+        "path": ".local/runs/capture-full-quality-v3-20261122-v1/previews/B3_table.jpg",
+        "bytes": 197900,
+        "sha256": "c944cc64e0f90d766f0b4aaa3cd1468f1ba324ffa568f3dd575a9a0edb6e7349"
+      }
+    },
+    "B3/pillar": {
+      "frame": "frame_00000",
+      "crop": [
+        604,
+        284,
+        810,
+        714
+      ],
+      "image": {
+        "path": ".local/runs/capture-full-quality-v3-20261122-v1/previews/B3_pillar.jpg",
+        "bytes": 183844,
+        "sha256": "f975a3d4f4b8ddc2801454916de54322e450b66772a1f494b8115a760ac10835"
+      }
+    },
+    "B3/chair_legs": {
+      "frame": "frame_00240",
+      "crop": [
+        214,
+        440,
+        496,
+        720
+      ],
+      "image": {
+        "path": ".local/runs/capture-full-quality-v3-20261122-v1/previews/B3_chair_legs.jpg",
+        "bytes": 197730,
+        "sha256": "bc9ef3d1504157aaabf3fe2bf5239dd738d30f98cfaa6b8be39d500ffb94bd80"
+      }
+    },
+    "B3/foam_teeth": {
+      "frame": "frame_01420",
+      "crop": [
+        720,
+        224,
+        1104,
+        608
+      ],
+      "image": {
+        "path": ".local/runs/capture-full-quality-v3-20261122-v1/previews/B3_foam_teeth.jpg",
+        "bytes": 246188,
+        "sha256": "32ff501d9e554318b84ca5caffa6790b751a70e55e69d4babbc6ad80bd3a6833"
+      }
+    }
+  },
+  "timestamps": {
+    "path": ".local/runs/capture-full-quality-v3-20261122-v1/video/timestamps.json",
+    "bytes": 292149,
+    "sha256": "a33393aacdbd918541e365c9ca6c58c4e5889bd31e413bdd81f04dfc7a775514"
+  },
+  "frames": 1846,
+  "redacted_frames": [
+    1743,
+    1744,
+    1745,
+    1746,
+    1747,
+    1748,
+    1749,
+    1750,
+    1751,
+    1752,
+    1753,
+    1754,
+    1755,
+    1756,
+    1757,
+    1758,
+    1759,
+    1760,
+    1761,
+    1762,
+    1763,
+    1764,
+    1765,
+    1766,
+    1767,
+    1768,
+    1769,
+    1770,
+    1771,
+    1772
+  ],
+  "privacy_verified": true,
+  "freeze_sha256": "ec355e0d44ec6ae293b5049bfe9804135a93c354afd967d4f392ae295975b9e3"
+}
