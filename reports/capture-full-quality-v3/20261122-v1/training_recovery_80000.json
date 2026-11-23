@@ -1,0 +1,63 @@
+{
+  "run_id": "capture-full-quality-v3-20261122-v1",
+  "observed_utc": "2026-11-23T16:44:44.829704+00:00",
+  "interruption": {
+    "stage": "failed",
+    "pid": 186421,
+    "updated_utc": "2026-11-23T15:58:05.070223+00:00",
+    "failed_stage": "C_training",
+    "reason": "C_training exited -9; see logs/C_training.log"
+  },
+  "reported_exit_code": -9,
+  "last_old_sample_step": 88773,
+  "checkpoint": {
+    "step": 79999,
+    "updates": 80000,
+    "gaussians": 681373,
+    "path": ".local/runs/capture-full-quality-v3-20261122-v1/training/capture-full-b3/dn-splatter/surface-v3/nerfstudio_models/step-000079999.ckpt",
+    "bytes": 518587393,
+    "sha256": "93cf79d5e9b99e1321cd461f52b8a30e6b302912b7a9d65180bc82d59c3e0cb3"
+  },
+  "resumed_segment": {
+    "saved_step": 79999,
+    "remaining": 160000,
+    "canonical_steps": 240000
+  },
+  "cause": "SIGKILL sender unknown; container cgroup oom_kill counter read as zero on inspection",
+  "first_resumed_batch": {
+    "step": 80000,
+    "frame": "images/frame_00673.png",
+    "loss": {
+      "main_loss": 0.1427069902420044,
+      "scale_reg": 0.0
+    },
+    "normal_nonfinite": 0,
+    "grad_elements": 40201007,
+    "nonfinite_grad": 0
+  },
+  "replayed_steps_compared": 64,
+  "same_replayed_camera_sequence": true,
+  "replayed_gaussian_population_matches": 64,
+  "lossless_cache": {
+    "mode": "lossless_compact",
+    "estimated_reclaimable_bytes": 119079845888,
+    "explicitly_requested": true,
+    "splits": {
+      "train": {
+        "frames": 1478,
+        "raw_tensor_bytes": 38139494400,
+        "resident_tensor_bytes": 20431872000,
+        "file_backed_depth_bytes": 5448499200,
+        "codec": "uint8 / 255 only after complete tensor equality; depth mmap only after complete equality"
+      },
+      "eval": {
+        "frames": 184,
+        "raw_tensor_bytes": 4748083200,
+        "resident_tensor_bytes": 2543616000,
+        "file_backed_depth_bytes": 678297600,
+        "codec": "uint8 / 255 only after complete tensor equality; depth mmap only after complete equality"
+      }
+    }
+  },
+  "latest_observed_updates": 80400
+}
