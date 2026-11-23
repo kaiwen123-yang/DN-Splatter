@@ -97,6 +97,13 @@ def main():
         copy_result(f'paired/{path.parent.name}_{path.stem}.json.gz',path)
     for path in [*EV.glob('*/surface_local.json'),*EV.glob('*/native_probes.json')]:
         copy_result(f'paired/{path.parent.name}_{path.name}',path)
+    if f['trained']:
+        for path in sorted([*(EV/'val').glob('step-*.json'),*(EV/'test').glob('step-*.json')]):
+            copy_result(f'paired/B3_{path.parent.name}_{path.stem}.json.gz',path)
+        for name in ('host_cache.json','first_weight_batch.json','first_refinement.json','weight_equivalence.json',
+                     'first_batch_000000000.json','empty_weighted_axes.jsonl'):
+            p=STATE/'trainer'/name
+            if p.exists(): include(p);copy_result('paired/'+name+'.gz',p)
     write(report/'metrics.json',dict(rgb=rgb,surfaces=metrics,paired_changes=deltas,difficult=difficult,
            unchanged_pose_subset=dict(views=184,why='all B3 cameras byte-identical to B2',same_as='all'),
            development_reference='finite measured sensor Z in [0.3,6] m'))
@@ -115,6 +122,30 @@ def main():
            '',f"训练决定为 {dec['decision']}。接受位姿修改 {dec['accepted_pose_changes']} 项，启用深度权重 {dec['depth_weights_enabled']}，额外纹理细分 {dec['texture_split_enabled']}。",
            '', '完整距离档、30 秒时间段、同源子集、共同命中误差和困难相机见 [metrics.json](metrics.json)。'
            '逐帧记录见 [paired](paired)，四处同相机裁剪见 [previews](previews)。所有网格、视频和模型的服务器路径、字节数与 SHA-256 见 [artifacts.json](artifacts.json)。']
+    text+=['','## 验证集网格选择','','| 模型 / 出口 | 命中 | 10 cm 正确覆盖 | 前方冲突 | 三项目标均达到 |',
+           '| --- | ---: | ---: | ---: | --- |']
+    for key,row in mesh['candidates'].items():
+        n=row['reference']; goal='是' if all(row['goals'].values()) else '否'
+        text.append(f"| {key} | {row['hits']/n:.2%} | {row['correct_10']/n:.2%} | {row['foreground']/n:.2%} | {goal} |")
+    text+=['','## 模型渲染与几何','','| 模型 | 开发测试节点 | PSNR (dB) | SSIM | LPIPS | 全参考 Z MAE (cm) | Z 绝对误差 P95 (cm) |',
+           '| --- | --- | ---: | ---: | ---: | ---: | ---: |']
+    for model,records in rgb.items():
+        for key,row in records.items():
+            if not key.endswith('_test'): continue
+            v=row['rgb']; d=row['depth']
+            mae='无完整预测' if d['MAE_m'] is None else f"{100*d['MAE_m']:.2f}"
+            p95='无完整预测' if d.get('absolute_error_P95_m') is None else f"{100*d['absolute_error_P95_m']:.2f}"
+            text.append(f"| {model} | {key.split('_')[0]} | {v['psnr']:.4f} | {v['ssim']:.5f} | {v['lpips']:.5f} | {mae} | {p95} |")
+    text+=['','## 四个固定训练视角裁剪','','| 结构 | 有效参考像素 | B2 旧网格 10 cm 正确覆盖 | B2 新网格 10 cm 正确覆盖 |',
+           '| --- | ---: | ---: | ---: |']
+    local=read(EV/'A4_model/surface_local.json')
+    for key,name in [('table','桌沿'),('pillar','柱面'),('chair_legs','椅腿'),('foam_teeth','泡沫齿边')]:
+        old,new=(local[key]['surfaces'][k] for k in ('supported_poisson','new_model_surface'))
+        text.append(f"| {name} | {new['reference']:,} | {old['correct_10_fraction_all_reference']:.2%} | {new['correct_10_fraction_all_reference']:.2%} |")
+    weights=read(RUN/'weights/B2/receipt.json'); tex=read(RUN/'texture/B2/receipt.json')
+    text+=['',f"训练集中 {weights['valid_pixels']:,} 个有效 Z 像素中，{weights['nonidentity_pixels']:,} 个权重小于 1。"
+           f"纹理检查有 {tex['eligible_image_blocks']} 个块达到图像证据条件。安装的渲染器返回 {', '.join(tex['attribution']['runtime_output_keys'])}，"
+           '缺少可核验的逐像素贡献高斯身份，额外纹理细分关闭。']
     spec=dict(run_id=RUN.name,training_updates=240000 if f['trained'] else 0,
               training_decision='trained' if f['trained'] else 'skipped_equivalent',
               training_switches=[dict(kind=k,evidence=v) for k,v in dec['diagnostic_receipts'].items()],

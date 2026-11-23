@@ -230,10 +230,15 @@ def run_formal(manifest_path):
             def forward(module, pred, gt, rgb, mask):
                 if module.implementation != 'scalar':
                     raise ValueError('B3 weights require scalar EdgeAwareLogL1')
-                value = weighted_edge_aware_log_l1(pred, gt, rgb, mask, weights)
+                empty={}
+                value = weighted_edge_aware_log_l1(pred, gt, rgb, mask, weights, empty)
+                if empty:
+                    with (trainer.AUDIT/'empty_weighted_axes.jsonl').open('a') as stream:
+                        print(json.dumps(dict(step=int(model.step),frame=names[idx],empty=empty)),file=stream)
                 if 'consumed_at_step' not in first_weight_batch:
                     first_weight_batch.update(consumed_at_step=int(model.step), weighted_loss=float(value.detach()),
-                        valid_pixels=int(mask.sum()) if mask is not None else weights.numel())
+                        valid_pixels=int(mask.sum()) if mask is not None else weights.numel(),
+                        effective_weight_sum=float(weights[mask].sum()) if mask is not None else float(weights.sum()))
                     target=trainer.AUDIT/'first_weight_batch.json'
                     if not target.exists():
                         evaluator.write(target,first_weight_batch)

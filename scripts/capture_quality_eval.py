@@ -132,6 +132,10 @@ def evaluate_fixed(config,step,split,pipe,checkpoint):
                 distances[f'{lo}-{hi}'] = stats(ref, z, alpha, mask & (ref >= lo) & ((ref <= hi) if hi == 6 else (ref < hi)))
             rows.append(dict(id=stem, rgb=rgb, relative_s=times[stem], same_s01_source=stem in same,
                              depth=stats(ref, z, alpha, mask), distance=distances))
+            if RUN.name=='capture-full-quality-v3-20261122-v1':
+                depth=rows[-1]['depth']
+                depth['absolute_error_P95_m']=float(np.percentile(abs_errors[-1],95)) if valid.any() else None
+                depth['signed_bias_m']=depth['signed_error_sum']/int(valid.sum()) if valid.any() else None
             print(f'{split} step={step} {i+1}/{len(names)}', flush=True)
     rgb = {k: float(np.mean([r['rgb'][k] for r in rows])) for k in ('psnr', 'ssim', 'lpips')}
     by_time = {}
