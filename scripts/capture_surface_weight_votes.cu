@@ -20,19 +20,20 @@ __device__ bool same_view(const double *poses, int a, int b, const double *p) {
 __global__ void weights(int n, const double *points, int source, int views,
     const int *group, const double *poses, const unsigned short *depth,
     const float *edges, int h, int w, double fx, double fy, double cx, double cy,
-    const double *terms, int *result, double *residual) {
+    const double *terms, int score_first, int *result, double *residual) {
     int i = blockIdx.x*blockDim.x + threadIdx.x;
     if (i >= n) return;
     const double *p = points + 3*i;
     short accepted[256];
     int used = 0, support = 0, conflict = 0, held = 0;
     double error_sum = 0.;
-    for (int j = 0; j < views;) {
+    for (int pass=0; pass <= score_first; ++pass) for (int j = 0; j < views;) {
         int g = group[j], best = -1, category = 0;
         double best_edge = -1., best_error = INFINITY;
         do {
             int v = j++;
             if (g == group[source]) continue;
+            if (score_first && (g%5 == group[source]%5) != (pass==1)) continue;
             const double *a = poses + 16*v;
             double x=p[0]-a[3], y=p[1]-a[7], z=p[2]-a[11];
             double Z=x*a[2]+y*a[6]+z*a[10];
@@ -73,7 +74,7 @@ __global__ void weights(int n, const double *points, int source, int views,
 extern "C" int weight_votes(int n, const double *p, int source, int nv,
     const int *groups, const double *poses, const unsigned short *depth, const float *edge,
     int h, int w, double fx, double fy, double cx, double cy, const double *terms,
-    int *out, double *error) {
-    weights<<<(n+127)/128,128>>>(n,p,source,nv,groups,poses,depth,edge,h,w,fx,fy,cx,cy,terms,out,error);
+    int score_first, int *out, double *error) {
+    weights<<<(n+127)/128,128>>>(n,p,source,nv,groups,poses,depth,edge,h,w,fx,fy,cx,cy,terms,score_first,out,error);
     return (int)cudaDeviceSynchronize();
 }

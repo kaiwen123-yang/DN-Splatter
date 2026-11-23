@@ -27,10 +27,10 @@ class WeightVotes:
             temp.replace(lib)
         self.lib = ct.CDLL(str(lib))
         p, i, d = ct.c_void_p, ct.c_int, ct.c_double
-        self.lib.weight_votes.argtypes = [i,p,i,i,p,p,p,p,i,i,d,d,d,d,p,p,p]
+        self.lib.weight_votes.argtypes = [i,p,i,i,p,p,p,p,i,i,d,d,d,d,p,i,p,p]
         self.lib.weight_votes.restype = i
 
-    def score(self, points, name):
+    def score(self, points, name, score_first=False):
         e = self.evidence
         p = torch.as_tensor(np.ascontiguousarray(points, dtype='f8'), device='cuda')
         counts = torch.empty((len(p), 3), dtype=torch.int32, device='cuda')
@@ -39,7 +39,7 @@ class WeightVotes:
         rc = self.lib.weight_votes(len(p), p.data_ptr(), self.index[name], len(self.index),
                  e.group.data_ptr(), e.cam.data_ptr(), e.depth.data_ptr(), e.edge.data_ptr(),
                  e.h, e.w, *[e.k[k] for k in ('fx','fy','cx','cy')], e.terms.data_ptr(),
-                 counts.data_ptr(), errors.data_ptr())
+                 int(score_first), counts.data_ptr(), errors.data_ptr())
         if rc:
             raise RuntimeError(f'native weight vote CUDA status {rc}')
         return counts.cpu().numpy(), errors.cpu().numpy()

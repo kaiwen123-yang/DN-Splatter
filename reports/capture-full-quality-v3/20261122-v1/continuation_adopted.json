@@ -1,0 +1,81 @@
+{
+  "run_id": "capture-full-quality-v3-20261122-v1",
+  "observed_utc": "2026-11-23T12:16:43.753026+00:00",
+  "phase": {
+    "run_id": "capture-full-quality-v3-20261122-v1",
+    "phase": "A3_sensor_votes",
+    "status": "running",
+    "pid": 120046,
+    "utc": "2026-11-23T11:39:42.457939+00:00"
+  },
+  "progress": {
+    "run_id": "capture-full-quality-v3-20261122-v1",
+    "phase": "A3_cross_view_fusion",
+    "branch": "sensor",
+    "pid": 122726,
+    "utc_epoch": 1795436195.1461844,
+    "tiles": 19712,
+    "total_tiles": 54137,
+    "source_faces": 92345788,
+    "total_source_faces": 318478401,
+    "owned_faces": 50692934
+  },
+  "local_submaps": {
+    "run_id": "capture-full-quality-v3-20261122-v1",
+    "stage": "A1",
+    "pid": 999952,
+    "utc": "2026-11-22T06:19:40.554690+00:00",
+    "model": "B2",
+    "submaps": 187,
+    "total": 187,
+    "frames": 1478,
+    "latest_counts": {
+      "sensor": {
+        "vertices": 585651,
+        "triangles": 891355
+      },
+      "model": {
+        "vertices": 522209,
+        "triangles": 701322
+      }
+    },
+    "identity": "42ef99925a5df982c5d04c68eaf98a9da3107c10791e1dc6e7f360534af23197"
+  },
+  "frozen_model": {
+    "vertices": 78393107,
+    "triangles": 62193508,
+    "duplicate_faces": 0,
+    "degenerate_faces": 6094,
+    "bytes": 4571385010,
+    "sha256": "694e7e9a3b01f4cf3f89f9a5ff6980d511bac33b755472c1c5b71b6d223ce5ee",
+    "path": ".local/runs/capture-full-quality-v3-20261122-v1/export/B2/fusion_model/global.ply"
+  },
+  "pose_changes": 0,
+  "original_camera_digest": "3e173297428839d7de762ce0c4dac5415f1e4cb63d5d8be08a22ee896c3d811e",
+  "output_camera_digest": "3e173297428839d7de762ce0c4dac5415f1e4cb63d5d8be08a22ee896c3d811e",
+  "training_texture_views": {
+    "foam_teeth_and_relief": [
+      "images/frame_01420.png",
+      "images/frame_01417.png",
+      "images/frame_01373.png",
+      "images/frame_01370.png",
+      "images/frame_01360.png"
+    ],
+    "table_edge": [
+      "images/frame_00120.png",
+      "images/frame_00122.png",
+      "images/frame_00166.png",
+      "images/frame_00132.png",
+      "images/frame_00110.png"
+    ],
+    "fine_net": [
+      "images/frame_00940.png",
+      "images/frame_00955.png"
+    ]
+  },
+  "train_checkpoints": 0,
+  "A4_complete": false,
+  "training_decision": null,
+  "continuation": "installed and waiting on the original A4 flock",
+  "source_commit": "6af33d053910bb79a02616b61bdbffeb548d826a"
+}

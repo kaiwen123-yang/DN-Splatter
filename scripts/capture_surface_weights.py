@@ -36,7 +36,7 @@ def mapping(raw, rays, translation, grid, frozen):
     return flat, ids
 
 
-def independent_votes(voter, points, source_gid, source_center, heldout):
+def independent_votes(voter, points, source_gid, source_center, heldout, score_first=False):
     """Separate deterministic group sets; reject views near the source or prior views."""
     n = len(points)
     counts = np.zeros((n, 2, 4), np.uint16)
@@ -47,7 +47,8 @@ def independent_votes(voter, points, source_gid, source_center, heldout):
     source_norm = np.linalg.norm(source_ray, axis=1)
     source_ray /= np.maximum(source_norm[:, None], 1e-12)
     cosine = np.cos(np.deg2rad(3.))
-    for gid, frames in voter.groups:
+    groups = sorted(voter.groups,key=lambda g: g[0]%5==heldout) if score_first else voter.groups
+    for gid, frames in groups:
         if gid == source_gid:
             continue
         partition = int(gid % 5 == heldout)
@@ -105,7 +106,8 @@ def run(label, chunk, device='cpu'):
     check(len(group_of) == len(meta['train_filenames']) == 1478, 'training population')
     def empty_stats():
         return [[dict(pixels=0, independent_pixels=0, residual_sum_m=0., observations=0,
-                      effective_weight_sum=0.) for _ in range(2)] for _ in range(4)]
+                      effective_weight_sum=0., crossfit_pixels=0, crossfit_observations=0,
+                      crossfit_residual_sum_m=0.) for _ in range(2)] for _ in range(4)]
     stats = empty_stats()
     binding = dict(identity=sha(identity_path), tolerances=sha(tolerance_path),
                    weight_code=sha(Path(__file__)), device=device)
@@ -143,16 +145,26 @@ def run(label, chunk, device='cpu'):
             if engine is None:
                 counts, rs, rc = independent_votes(voter, p[start:end], gid, pose[:3, 3], gid % 5)
                 s, c = counts[:, 0, 0], counts[:, 0, 1]
+                exact, xr, xc=independent_votes(voter,p[start:end],gid,pose[:3,3],gid%5,score_first=True)
+                cross_low=exact[:,0,1]>0
             else:
                 counts, rs = engine.score(p[start:end], name)
                 s, c, rc = counts.T
+                exact,xr=engine.score(p[start:end],name,score_first=True)
+                cross_low=exact[:,1]>0
+                xc=exact[:,2]
                 if not check_path.exists():
                     ix = np.linspace(0,end-start-1,min(256,end-start),dtype=int)
                     ref, rr, rn = independent_votes(voter, p[start:end][ix], gid, pose[:3,3], gid%5)
                     np.testing.assert_array_equal(counts[ix], np.column_stack((ref[:,0,0],ref[:,0,1],rn)))
                     np.testing.assert_allclose(rs[ix], rr, atol=1e-9, rtol=1e-9)
+                    original_error=float(np.max(np.abs(rs[ix]-rr)))
+                    ref,rr,rn=independent_votes(voter,p[start:end][ix],gid,pose[:3,3],gid%5,score_first=True)
+                    np.testing.assert_array_equal(exact[ix],np.column_stack((ref[:,0,0],ref[:,0,1],rn)))
+                    np.testing.assert_allclose(xr[ix],rr,atol=1e-9,rtol=1e-9)
                     write(check_path, dict(frame=name, measured_pixels=len(ix), counts_equal=True,
-                          maximum_residual_sum_difference_m=float(np.max(np.abs(rs[ix]-rr))),binding=binding))
+                          maximum_residual_sum_difference_m=original_error,
+                          crossfit_max_residual_difference_m=float(np.max(np.abs(xr[ix]-rr))),binding=binding))
                     voter.load.cache_clear()
             w = (1. + s) / (1. + s + c)
             weights[flat[start:end]] = w
@@ -164,6 +176,10 @@ def run(label, chunk, device='cpu'):
                     v['pixels'] += int(m.sum()); v['independent_pixels'] += int((m & (rc > 0)).sum())
                     v['residual_sum_m'] += float(rs[m].sum()); v['observations'] += int(rc[m].sum())
                     v['effective_weight_sum'] += float(w[m].sum())
+                    independent=(bins==b)&(cross_low==bool(low))
+                    v['crossfit_pixels']+=int(independent.sum())
+                    v['crossfit_observations']+=int(xc[independent].sum())
+                    v['crossfit_residual_sum_m']+=float(xr[independent].sum())
             frame_changed += int((w < 1.).sum())
         total += len(flat)
         temp = out / (stem + '.pending.npy')
@@ -179,12 +195,16 @@ def run(label, chunk, device='cpu'):
     for row in stats:
         for v in row:
             v['mean_independent_abs_residual_m'] = v['residual_sum_m'] / v['observations'] if v['observations'] else None
+            v['crossfit_MAE_m']=v['crossfit_residual_sum_m']/v['crossfit_observations'] if v['crossfit_observations'] else None
     comparisons = [(r[0]['mean_independent_abs_residual_m'], r[1]['mean_independent_abs_residual_m']) for r in stats]
     supported = [(a,b) for a,b in comparisons if a is not None and b is not None]
-    enabled = bool(changed and supported and all(b > a for a,b in supported))
+    cross=[(r[0]['crossfit_MAE_m'],r[1]['crossfit_MAE_m']) for r in stats]
+    tested=[(a,b) for a,b in cross if a is not None and b is not None]
+    enabled = bool(changed and supported and tested and all(b>a for a,b in supported+tested))
     write(out / 'receipt.json', dict(model=label, identity_sha256=sha(identity_path), valid_pixels=total,
           nonidentity_pixels=changed, depth_weights_enabled=enabled, distance_bins_m=[.3,1,2,4,6],
           diagnostics=stats, binding=binding, fold='group id modulo 5 equals source group modulo 5 is held out',
+          crossfit='Training maps retain the original greedy group order; additionally score all non-held groups first, then validate on independent held groups excluded from score deduplication.',
           empty_pixels='zero weight; no evidence on valid pixel gives one', frames=receipts))
 
 

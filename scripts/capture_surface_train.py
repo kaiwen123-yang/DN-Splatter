@@ -264,10 +264,15 @@ def run_formal(manifest_path):
         evaluator.write(RUN / 'state' / 'selection.json', result)
         return result
     trainer.select = select_b3
-    if decision['depth_weights_enabled']:
-        with patch.object(DNSplatterModel, 'get_loss_dict', trainer._b3_weighted_loss):
-            trainer.main()
-    else:
+    from contextlib import ExitStack
+    from capture_surface_cache import bind
+    trainer.AUDIT.mkdir(parents=True,exist_ok=True)
+    cache=bind(trainer.DNSplatterDataManager,scene,trainer.AUDIT/'host_cache.json',evaluator.write)
+    with ExitStack() as scope:
+        if cache is not None:
+            scope.enter_context(cache)
+        if decision['depth_weights_enabled']:
+            scope.enter_context(patch.object(DNSplatterModel, 'get_loss_dict', trainer._b3_weighted_loss))
         trainer.main()
 
 
