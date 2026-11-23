@@ -1,0 +1,35 @@
+{
+  "run_id": "capture-full-quality-v3-20261122-v1",
+  "stage": "B_weights",
+  "failed_attempt_utc": "2026-11-23T14:04:44Z",
+  "previous_crossfit_count_cells_different": 1,
+  "previous_crossfit_count_cells_compared": 768,
+  "example": {
+    "sample_index": 253,
+    "gpu_support": 8,
+    "cpu_support": 9
+  },
+  "observed_equal_grid_distance_float_discrepancy": {
+    "view_index": 446,
+    "cpu_pixels": 7.615773677825928,
+    "gpu_pixels": 7.6157732009887695
+  },
+  "repair": "Rank native interior distances by their integer squared pixel distance before applying the original residual tie-break.",
+  "recovered_code": "591d152",
+  "first_frame_readback": {
+    "frame": "images/frame_00000.png",
+    "measured_pixels": 256,
+    "counts_equal": true,
+    "maximum_residual_sum_difference_m": 1.7763568394002505e-15,
+    "crossfit_max_residual_difference_m": 1.7763568394002505e-15,
+    "binding": {
+      "identity": "42ef99925a5df982c5d04c68eaf98a9da3107c10791e1dc6e7f360534af23197",
+      "tolerances": "1e747b86407280a03c2d7b5de3ab4ba0058cee76356e493047e097ca63471cde",
+      "weight_code": "e99563ff458c518caa94625ad1dc6715a60a9ec938c79fa1612686d22118e737",
+      "device": "cuda",
+      "kernel": "f2f6b83725097ddd86011aeba40d9c7ee33b8c62156e86d4e24cab1031022270"
+    }
+  },
+  "readback_sha256": "c3bb4dbfe6ced6810634b3d46561a962b54ccf6eb7cf47a1b5e16a1aacd8289e",
+  "training_decision": "pending_at_first_frame_readback"
+}
