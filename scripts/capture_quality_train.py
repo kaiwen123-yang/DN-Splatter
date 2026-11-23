@@ -41,13 +41,13 @@ def restore_rng(state):
     torch.cuda.set_rng_state_all(state["torch_cuda"])
 
 
-def config():
+def config(experiment="capture-full-b2", timestamp="quality-v2"):
     path=Path(read(B1/"training_complete.json")["config"])
     check(sha(path)==sha(ROOT/P["baseline"]["configuration"]),"frozen B1 config")
     before=yaml.load(path.read_text(),Loader=yaml.Loader)
     cfg=copy.deepcopy(before)
     cfg.output_dir=RUN/"training"
-    cfg.experiment_name="capture-full-b2"; cfg.timestamp="quality-v2"
+    cfg.experiment_name=experiment; cfg.timestamp=timestamp
     cfg.pipeline.datamanager.dataparser.data=SCENE
     cfg.steps_per_save=10000; cfg.max_num_iterations=TOTAL
     cfg.optimizers["means"]["scheduler"].max_steps=TOTAL
@@ -58,7 +58,7 @@ def config():
           and m.densify_grad_thresh==.0008 and m.stop_screen_size_at==4000,"fixed method")
     import difflib
     (AUDIT/"configuration.diff").write_text("".join(difflib.unified_diff(yaml.dump(before).splitlines(True),
-             yaml.dump(cfg).splitlines(True),fromfile="B1",tofile="B2")))
+             yaml.dump(cfg).splitlines(True),fromfile="B1",tofile=experiment)))
     cfg.save_config()
     return cfg
 

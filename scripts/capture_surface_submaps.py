@@ -100,6 +100,12 @@ def local_maps(label, model_run):
         check(identity["cameras"] == old["geometry"], "Frozen B2 camera hash")
     immutable(output / "identity.json", identity)
     identity_hash = sha(output / "identity.json")
+    reuse_sensor = False
+    if label == "B3":
+        frozen = read(RUN/"export/B2/identity.json")
+        reuse_sensor = (frozen["cameras"]["sha256"] == identity["cameras"]["sha256"]
+                        and frozen["groups"] == identity["groups"]
+                        and frozen["calibration"] == identity["calibration"] and frozen["selection"] == identity["selection"])
     native, rgb, extrinsic = camera_parameters(meta, read(PACKET / "calibration.json"))
     train = meta["train_filenames"]
     indices = {name: i for i, name in enumerate(train)}
@@ -120,15 +126,21 @@ def local_maps(label, model_run):
             check(row["identity"] == identity_hash and all(member(ROOT / entry["path"]) == entry
                   for entry in row["meshes"].values()), "Submap resume hash")
         else:
-            sensor_vol, model_vol = volume(), volume()
+            sensor_vol, model_vol = None if reuse_sensor else volume(), volume()
+            if reuse_sensor:
+                sensor_ref=read(RUN/"export/B2/submaps"/f"{group_id:04d}"/"receipt.json")
+                counts_by_frame={r["id"]:r["sensor_valid"] for r in sensor_ref["observations"]}
             observations = []
             for name in group["names"]:
                 stem = Path(name).stem
                 pose = cameras[name]
-                with np.load(PACKET / source[stem]["depth"]["file"]) as archive:
-                    sensor_z = archive["depth"].astype(np.float32) / 1000.
-                check(sensor_z.shape == (480, 848), "Native shape")
-                native_count = integrate(sensor_vol, sensor_z, native, np.linalg.inv(pose @ extrinsic))
+                if reuse_sensor:
+                    native_count=counts_by_frame[stem]
+                else:
+                    with np.load(PACKET / source[stem]["depth"]["file"]) as archive:
+                        sensor_z = archive["depth"].astype(np.float32) / 1000.
+                    check(sensor_z.shape == (480, 848), "Native shape")
+                    native_count = integrate(sensor_vol, sensor_z, native, np.linalg.inv(pose @ extrinsic))
                 with torch.inference_mode():
                     cam = ds.cameras[indices[name]:indices[name]+1].to(pipe.device)
                     pred = pipe.model.get_outputs_for_camera(camera=cam)
@@ -141,6 +153,11 @@ def local_maps(label, model_run):
                 observations.append(dict(id=stem, sensor_valid=native_count, model_valid=count))
             meshes, counts = {}, {}
             for kind, vol in (("sensor", sensor_vol), ("model", model_vol)):
+                if kind=="sensor" and reuse_sensor:
+                    meshes[kind]=sensor_ref["meshes"][kind]
+                    counts[kind]=sensor_ref["counts"][kind]
+                    check(member(ROOT/meshes[kind]["path"])==meshes[kind], "reused native submap hash")
+                    continue
                 mesh = vol.extract_triangle_mesh()
                 mesh.compute_vertex_normals()
                 target = directory / (kind + ".ply")

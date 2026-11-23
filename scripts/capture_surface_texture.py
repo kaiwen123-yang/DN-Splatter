@@ -1,12 +1,5 @@
-"""Measure fixed train-view texture evidence; never infer Gaussian IDs from depth.
-
-Manifest JSON contains exactly three objects, each with name, source, target and
-crop [x0,y0,x1,y1]. Frame names must belong to the frozen training split. RGB
-renders are supplied as lossless PNGs in --renders/<frame stem>.png. Run after
-freezing the manifest, before examining this run's validation or test outputs.
-"""
+"""Freeze repeated training observations and measure native-supported texture evidence."""
 import argparse
-import json
 import inspect
 from pathlib import Path
 
@@ -24,14 +17,6 @@ def image(path):
 
 def highpass(a):
     return a - cv2.GaussianBlur(a, (0, 0), 1.)
-
-
-def block_quantile(real, pred):
-    delta = np.abs(highpass(real) - highpass(pred)).mean(axis=2)
-    # 720 is not divisible by 32: retain all complete blocks; report their count.
-    h, w = delta.shape
-    values = delta[:h//32*32, :w//32*32].reshape(h//32,32,w//32,32).mean((1,3))
-    return float(np.quantile(values, .9)), int(values.size), delta
 
 
 def gradient(im):
@@ -67,84 +52,209 @@ def warp(source_depth, target_depth, source_pose, target_pose, meta, crop):
     return u.reshape(z.shape).astype(np.float32),v.reshape(z.shape).astype(np.float32),valid.reshape(z.shape),angle
 
 
-def measure(manifest, label, renders):
-    identity_path=RUN/'export'/label/'identity.json'; identity=read(identity_path)
-    for key in ('cameras','checkpoint'):
-        check(sha(ROOT/identity[key]['path'])==identity[key]['sha256'], 'identity mismatch '+key)
-    meta=read(ROOT/identity['cameras']['path']); scene=(ROOT/identity['cameras']['path']).parent
-    frames={f['file_path']:f for f in meta['frames']}; train=set(meta['train_filenames'])
-    groups={name:g['id'] for g in identity['groups'] for name in g['names']}
-    objects=manifest['objects']; check(len(objects)==3 and len({o['name'] for o in objects})==3,'three distinct fixed objects required')
-    provenance=read(renders/'receipt.json')
-    check(provenance['identity_sha256']==sha(identity_path), 'render identity mismatch')
-    check(provenance['checkpoint_sha256']==identity['checkpoint']['sha256'], 'render checkpoint mismatch')
-    check(provenance['cameras_sha256']==identity['cameras']['sha256'], 'render camera mismatch')
-    results=[]
-    for obj in objects:
-        a,b=obj['source'],obj['target']; crop=obj['crop']
-        check(a in train and b in train and groups[a]!=groups[b], 'views must be distinct training groups')
-        x0,y0,x1,y1=map(int,crop); check(0<=x0<x1<=1280 and 0<=y0<y1<=720,'invalid crop')
-        fa,fb=frames[a],frames[b]; pa=np.asarray(fa['transform_matrix'])@FLIP; pb=np.asarray(fb['transform_matrix'])@FLIP
-        ra,rb=image(scene/a),image(scene/b)
-        for name in (a,b):
-            entry=provenance['frames'][name]; path=renders/(Path(name).stem+'.png')
-            check(entry['sha256']==sha(path), 'render hash mismatch '+name)
-        ma,mb=image(renders/(Path(a).stem+'.png')),image(renders/(Path(b).stem+'.png'))
-        za=np.load(scene/fa['depth_file_path']); zb=np.load(scene/fb['depth_file_path'])
-        u,v,valid,angle=warp(za,zb,pa,pb,meta,(x0,y0,x1,y1)); sl=np.s_[y0:y1,x0:x1]
-        ga,gb=gradient(ra),gradient(rb); warped=cv2.remap(gb,u,v,cv2.INTER_LINEAR)
-        src_edges=(ga[sl] > np.quantile(ga[sl][valid],.75)) & valid if valid.any() else np.zeros_like(valid)
-        dst_edges=(gb > np.quantile(gb,.75)).astype(np.uint8)
-        distances=cv2.distanceTransform(1-dst_edges,cv2.DIST_L2,cv2.DIST_MASK_PRECISE)
-        edge=cv2.remap(distances,u,v,cv2.INTER_LINEAR)
-        qa,na,ea=block_quantile(ra,ma); qb,nb,eb=block_quantile(rb,mb)
-        ebt=cv2.remap(eb,u,v,cv2.INTER_LINEAR); center=pa[:3,3]-pb[:3,3]
-        records=[]
-        for yy in range(0,y1-y0-31,32):
-            for xx in range(0,x1-x0-31,32):
-                s=np.s_[yy:yy+32,xx:xx+32]; m=valid[s]; n=int(m.sum())
-                if not n: continue
-                se=src_edges[s]; ed=edge[s][se]
-                g0=float(ga[sl][s][m].mean()); g1=float(warped[s][m].mean()); median=(g0+g1)/2
-                e0=float(ea[sl][s][m].mean()); e1=float(ebt[s][m].mean())
-                med=float(np.median(ed)) if len(ed) else None
-                angle_median=float(np.median(angle[s][m]))
-                independent=float(np.linalg.norm(center)) >= .1 and angle_median >= 3
-                # Two views alone cannot establish that both are above the
-                # median of a larger set of observations of the same block.
-                clear0=g0>=median; clear1=g1>=median
-                eligible=False
-                records.append(dict(x=x0+xx,y=y0+yy,valid_pixels=n,overlap=n/1024,edge_samples=len(ed),edge_median_px=med,
-                    source_gradient=g0,target_gradient=g1,clarity_median=median,source_clear=clear0,target_clear=clear1,clear_both=clear0 and clear1,
-                    surface_ray_angle_median_deg=angle_median,independent_viewpoints=independent,
-                    source_highpass_error=e0,target_highpass_error=e1,source_q90=qa,target_q90=qb,
-                    eligible=eligible))
-        rays_a=pa[:3,3]- (pa[:3,3]+pa[:3,2])
-        rays_b=pb[:3,3]- (pb[:3,3]+pb[:3,2])
-        view_angle=float(np.degrees(np.arccos(np.clip(np.dot(rays_a,rays_b)/(np.linalg.norm(rays_a)*np.linalg.norm(rays_b)),-1,1))))
-        results.append(dict(name=obj['name'],source=a,target=b,crop=[x0,y0,x1,y1],source_group=groups[a],target_group=groups[b],
-            baseline_m=float(np.linalg.norm(center)),camera_axis_angle_deg=view_angle,valid_pixels=int(valid.sum()),crop_pixels=int(valid.size),
-            edge_median_px=float(np.median(edge[src_edges])) if src_edges.any() else None,
-            residual_quantiles=dict(source=qa,target=qb,source_blocks=na,target_blocks=nb),blocks=records))
-    # Record the inspected renderer implementation rather than inventing IDs from
-    # a projected position or treating rasterizer tile intersections as visibility.
+def choose_views(obj, meta, frames, groups, scene):
+    name = obj['source']
+    train = meta['train_filenames']
+    source = frames[name]
+    pose = np.asarray(source['transform_matrix']) @ FLIP
+    depth = np.load(scene / source['depth_file_path'], mmap_mode='r')
+    pos = train.index(name)
+    candidates = sorted(range(len(train)), key=lambda i: (abs(i-pos), i))
+    scored = []
+    for i in [i for i in candidates if groups[train[i]] != groups[name]][:100]:
+        other = train[i]
+        target = frames[other]
+        target_pose = np.asarray(target['transform_matrix']) @ FLIP
+        baseline = float(np.linalg.norm(pose[:3,3]-target_pose[:3,3]))
+        if baseline < .1:
+            continue
+        z = np.load(scene / target['depth_file_path'], mmap_mode='r')
+        _, _, valid, angle = warp(depth,z,pose,target_pose,meta,obj['crop'])
+        if not valid.any():
+            continue
+        median_angle = float(np.median(angle[valid]))
+        if median_angle >= 3.:
+            scored.append(dict(name=other, group=groups[other], baseline_m=baseline,
+                               median_angle_deg=median_angle, observed_overlap=int(valid.sum())))
+    chosen = []
+    used = set()
+    for row in sorted(scored, key=lambda r: (-r['observed_overlap'], r['name'])):
+        if row['group'] not in used:
+            chosen.append(row)
+            used.add(row['group'])
+            if len(chosen) == 4:
+                break
+    return chosen
+
+
+def supported_depth(rendered, alpha, rel, meta, native, k):
+    """Verify each model surface pixel in the native depth camera before warping it."""
+    y,x = np.indices(rendered.shape, dtype=np.float64)
+    z = np.asarray(rendered, dtype=np.float64)
+    points = np.stack(((x-meta['cx']+.5)*z/meta['fl_x'],
+                       (y-meta['cy']+.5)*z/meta['fl_y'], z), axis=-1)
+    q = (points-rel[:3,3]) @ rel[:3,:3]
+    ok = np.isfinite(q).all(axis=-1) & (q[:,:,2]>=.3) & (q[:,:,2]<=6) & (alpha>=.5)
+    div = np.where(ok, q[:,:,2], 1.)
+    u = np.rint(k['fx']*q[:,:,0]/div+k['cx']).astype(int)
+    v = np.rint(k['fy']*q[:,:,1]/div+k['cy']).astype(int)
+    ok &= (u>=0)&(v>=0)&(u<k['width'])&(v<k['height'])
+    measured = native[np.clip(v,0,k['height']-1),np.clip(u,0,k['width']-1)]
+    ok &= (measured>=.3)&(measured<=6.)&(np.abs(q[:,:,2]-measured)<=np.maximum(.05,.03*measured))
+    return np.where(ok, z, 0.).astype('f4')
+
+
+def patch_features(real, pred, depth):
+    grad = gradient(real)
+    err = np.abs(highpass(real)-highpass(pred)).mean(axis=2)
+    mask = depth[:704] > 0
+    def blocks(a):
+        return a[:704].reshape(22,32,40,32).sum(axis=(1,3))
+    count = blocks(mask)
+    valid = count >= 512
+    q = float(np.quantile(blocks(err[:704]*mask)[valid]/count[valid],.9)) if valid.any() else None
+    gray = np.uint8(np.rint(cv2.cvtColor(real,cv2.COLOR_BGR2GRAY)*255))
+    return dict(gray=gray, grad=grad, err=err, z=depth, q=q, q_blocks=int(valid.sum()))
+
+
+def aligned_edges(source, target, u, v, valid, crop):
+    """Track identifiable corners on source edges, initialized by the geometric warp."""
+    x0,y0,x1,y1=crop
+    mask=np.zeros(source.shape,'u1')
+    mask[y0:y1,x0:x1]=valid.astype('u1')*255
+    key=cv2.goodFeaturesToTrack(source,4096,.01,3,mask=mask)
+    offsets=np.full(valid.shape,np.nan,dtype='f4')
+    if key is None:
+        return offsets
+    x,y=np.rint(key[:,0]).astype(int).T
+    predicted=np.stack((u[y-y0,x-x0],v[y-y0,x-x0]),axis=-1)[:,None,:]
+    got,ok,_=cv2.calcOpticalFlowPyrLK(source,target,key,predicted.copy(),
+        flags=cv2.OPTFLOW_USE_INITIAL_FLOW,winSize=(15,15),maxLevel=2)
+    back,ok2,_=cv2.calcOpticalFlowPyrLK(target,source,got,key.copy(),
+        flags=cv2.OPTFLOW_USE_INITIAL_FLOW,winSize=(15,15),maxLevel=2)
+    keep=ok.ravel().astype(bool)&ok2.ravel().astype(bool)&(np.linalg.norm((back-key)[:,0],axis=1)<=1.)
+    offsets[y[keep]-y0,x[keep]-x0]=np.linalg.norm((got-predicted)[keep,0],axis=1)
+    return offsets
+
+
+def diagnose(freeze_only=False):
+    import torch
+    from unittest.mock import patch
+    import capture_quality_eval as evaluator
+    from capture_surface_submaps import B2, PACKET, camera_parameters, immutable
     from dn_splatter.dn_model import DNSplatterModel
-    renderer_source=inspect.getsourcefile(DNSplatterModel)
-    renderer_text=Path(renderer_source).read_text(encoding='utf-8')
-    attribution=dict(renderer_source=str(renderer_source),renderer_sha256=sha(Path(renderer_source)),
-        get_outputs_source=inspect.getsource(DNSplatterModel.get_outputs),
-        mentions_gaussian_ids=('gaussian_ids' in renderer_text),
-        contributing_ids_verified=False,
-        reason='No per-pixel contribution IDs were supplied and verified against the rendered pixels; spatial or tile candidates are insufficient.')
-    write(RUN/'texture'/label/'receipt.json',dict(schema_version=1,identity_sha256=sha(identity_path),manifest=manifest,
-        manifest_sha256=sha(Path(manifest['_path'])),render_receipt_sha256=sha(renders/'receipt.json'),results=results,eligible_blocks=sum(r['eligible'] for o in results for r in o['blocks']),
-        texture_split_enabled=False,extra_parent_ids=[],attribution=attribution,
-        status='incomplete', note='Two-view clarity cannot establish the multi-view median; actual contributing IDs are also unverified. Do not use for training decisions.'))
+    out = RUN/'texture'/'B2'
+    ip = RUN/'export/B2/identity.json'
+    identity = read(ip)
+    for key in ('config','cameras','checkpoint','selection','calibration'):
+        check(sha(ROOT/identity[key]['path'])==identity[key]['sha256'], 'identity mismatch '+key)
+    meta=read(ROOT/identity['cameras']['path'])
+    scene=(ROOT/identity['cameras']['path']).parent
+    train=meta['train_filenames']
+    frames={f['file_path']:f for f in meta['frames']}
+    groups={n:g['id'] for g in identity['groups'] for n in g['names']}
+    spec=ROOT/'configs/capture_surface_texture_regions.json'
+    rows=read(spec)['objects']
+    check(len(rows)==3 and all(r['source'] in train for r in rows),'train-only fixed texture crops')
+    manifest_path=out/'manifest.json'
+    if manifest_path.exists():
+        manifest=read(manifest_path)
+        check(manifest['regions_sha256']==sha(spec) and manifest['identity_sha256']==sha(ip),'texture freeze mismatch')
+    else:
+        for obj in rows:
+            obj['targets']=choose_views(obj,meta,frames,groups,scene)
+        manifest=dict(regions_sha256=sha(spec),identity_sha256=sha(ip),objects=rows)
+        immutable(manifest_path,manifest)
+    rows=manifest['objects']
+    if freeze_only:
+        return
+    names=sorted({n for o in rows for n in [o['source']]+[r['name'] for r in o['targets']]})
+    selection={r['id']:r for r in read(ROOT/identity['selection']['path'])}
+    cal=read(ROOT/identity['calibration']['path'])
+    _,_,rel=camera_parameters(meta,cal)
+    with patch.object(evaluator,'RUN',B2), patch.object(evaluator,'SCENE',scene):
+        _,pipe,loaded,step=evaluator.load_model(ROOT/identity['config']['path'],identity['step'],'val')
+    check(Path(loaded).resolve()==(ROOT/identity['checkpoint']['path']).resolve(),'texture checkpoint')
+    ds=pipe.datamanager.train_dataset
+    check([p.relative_to(scene).as_posix() for p in ds.image_filenames]==train,'training camera order')
+    views={}; provenance={}; outputs_keys=set()
+    for name in names:
+        stem=Path(name).stem
+        with torch.inference_mode():
+            i=train.index(name)
+            prediction=pipe.model.get_outputs_for_camera(camera=ds.cameras[i:i+1].to(pipe.device))
+            outputs_keys.update(prediction.keys())
+            rgb=prediction['rgb'].reshape(720,1280,3).cpu().numpy()[:,:,::-1]
+            z=prediction['depth'].reshape(720,1280).cpu().numpy()
+            alpha=prediction['accumulation'].reshape(720,1280).cpu().numpy()
+        with np.load(PACKET/selection[stem]['depth']['file']) as data:
+            native=data['depth'].astype('f4')/1000.
+        pose=np.asarray(frames[name]['transform_matrix'])@FLIP
+        depth=supported_depth(z,alpha,rel,meta,native,cal['cameras']['depth'])
+        path=out/(stem+'.png')
+        check(cv2.imwrite(str(path),np.uint8(np.rint(255*np.clip(rgb,0.,1.)))), 'lossless render')
+        views[name]=patch_features(image(scene/name),rgb,depth)
+        views[name]['pose']=pose
+        provenance[name]=dict(rgb_sha256=sha(scene/name),render_sha256=sha(path),supported_pixels=int((depth>0).sum()))
+    results=[]
+    for obj in rows:
+        name=obj['source']; crop=obj['crop']; x0,y0,x1,y1=crop
+        src=views[name]; region=np.s_[y0:y1,x0:x1]
+        pairs=[]
+        for target in obj['targets']:
+            target_name=target['name']
+            dst=views[target_name]
+            u,v,visible,angle=warp(src['z'],dst['z'],src['pose'],dst['pose'],meta,crop)
+            errors=aligned_edges(src['gray'],dst['gray'],u,v,visible,crop)
+            pairs.append(dict(name=target_name,mask=visible,angle=angle,edges=errors,
+                              grad=cv2.remap(dst['grad'],u,v,cv2.INTER_LINEAR),
+                              err=cv2.remap(dst['err'],u,v,cv2.INTER_LINEAR)))
+        blocks=[]
+        for y in range(0,y1-y0-31,32):
+            for x in range(0,x1-x0-31,32):
+                s=np.s_[y:y+32,x:x+32]; sm=src['z'][region][s]>0
+                source_grad=float(src['grad'][region][s][sm].mean()) if sm.any() else None
+                measured=[]
+                for pair in pairs:
+                    m=pair['mask'][s]; n=int(m.sum()); edges=pair['edges'][s]
+                    edge=edges[np.isfinite(edges)&m]
+                    measured.append(dict(name=pair['name'],visible_pixels=n,overlap=n/1024,
+                        gradient=float(pair['grad'][s][m].mean()) if n else None,
+                        edge_matches=len(edge),edge_median_px=float(np.median(edge)) if len(edge) else None,
+                        angle_deg=float(np.median(pair['angle'][s][m])) if n else None,
+                        target_error=float(pair['err'][s][m].mean()) if n else None,
+                        source_error=float(src['err'][region][s][m].mean()) if n else None,
+                        target_q90=views[pair['name']]['q']))
+                energies=[m['gradient'] for m in measured if m['overlap']>=.5]
+                median=float(np.median([source_grad]+energies)) if source_grad is not None and energies else None
+                for m in measured:
+                    m['passes']=bool(median is not None and m['overlap']>=.5 and m['angle_deg']>=3
+                        and source_grad>=median and m['gradient']>=median
+                        and m['edge_median_px'] is not None and m['edge_median_px']<=1.
+                        and src['q'] is not None and m['target_q90'] is not None
+                        and m['source_error']>src['q'] and m['target_error']>m['target_q90'])
+                blocks.append(dict(x=x0+x,y=y0+y,source_pixels=int(sm.sum()),source_gradient=source_grad,
+                                   clarity_median=median,source_q90=src['q'],pairs=measured,
+                                   image_evidence_passed=any(m['passes'] for m in measured)))
+        results.append(dict(name=obj['name'],source=name,crop=crop,targets=obj['targets'],blocks=blocks))
+    # Inspect both the live return and the exact forward code that built it.
+    code=inspect.getsource(DNSplatterModel.get_outputs)
+    keys=sorted(outputs_keys)
+    if any(any(word in key.lower() for word in ('contrib','gaussian_id','weights_per_pixel')) for key in keys):
+        raise RuntimeError('Renderer exposes attribution candidates; verify pixel contributions before a split decision')
+    path=Path(inspect.getsourcefile(DNSplatterModel))
+    from hashlib import sha256
+    passed=sum(b['image_evidence_passed'] for o in results for b in o['blocks'])
+    write(out/'receipt.json',dict(status='diagnosed',run_id=RUN.name,texture_split_enabled=False,
+        reason='The installed model returned aggregate image buffers with no per-pixel contributor IDs and weights.',
+        attribution=dict(model_source_sha256=sha(path),get_outputs_sha256=sha256(code.encode()).hexdigest(),
+            runtime_output_keys=keys,verified_contributor_ids=False),objects=results,eligible_image_blocks=passed,
+        extra_parent_ids=[],manifest_sha256=sha(manifest_path),identity_sha256=sha(ip),
+        checkpoint_sha256=identity['checkpoint']['sha256'],cameras_sha256=identity['cameras']['sha256'],
+        frames=provenance,reference_quantile_blocks={n:v['q_blocks'] for n,v in views.items()}))
 
 
 if __name__=='__main__':
-    parser=argparse.ArgumentParser(description=__doc__); parser.add_argument('model',choices=('B2','B3'))
-    parser.add_argument('--manifest',type=Path,required=True); parser.add_argument('--renders',type=Path,required=True)
-    args=parser.parse_args(); manifest=read(args.manifest); manifest['_path']=str(args.manifest.resolve())
-    measure(manifest,args.model,args.renders)
-
+    parser=argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--freeze',action='store_true')
+    diagnose(parser.parse_args().freeze)

@@ -13,7 +13,7 @@ def training_decision(pose, weights, texture):
     """Require actual diagnostic results; missing evidence is never an equivalence decision."""
     if pose.get('training_decision') == 'incomplete_not_equivalent':
         raise ValueError('pose diagnostics are incomplete; training decision is unavailable')
-    if texture.get('status') == 'incomplete':
+    if texture.get('status') != 'diagnosed' or not texture.get('attribution', {}).get('runtime_output_keys'):
         raise ValueError('texture diagnostics are incomplete; training decision is unavailable')
     if 'depth_weights_enabled' not in weights or 'nonidentity_pixels' not in weights:
         raise ValueError('depth weight diagnostics are incomplete')
@@ -226,21 +226,24 @@ def run_formal(manifest_path):
             if not first_weight_batch:
                 first_weight_batch.update(frame=names[idx], shape=list(weights.shape),
                     minimum=float(weights.min()), maximum=float(weights.max()),
-                    nonidentity_pixels=int((weights != 1).sum()), sha256=entries[idx]['sha256'])
-                (trainer.AUDIT / 'first_weight_batch.json').write_text(
-                    json.dumps(first_weight_batch, indent=2), encoding='utf-8')
+                    nonidentity_valid_pixels=int(((weights>0)&(weights<1)).sum()), sha256=entries[idx]['sha256'])
             def forward(module, pred, gt, rgb, mask):
                 if module.implementation != 'scalar':
                     raise ValueError('B3 weights require scalar EdgeAwareLogL1')
-                return weighted_edge_aware_log_l1(pred, gt, rgb, mask, weights)
+                value = weighted_edge_aware_log_l1(pred, gt, rgb, mask, weights)
+                if 'consumed_at_step' not in first_weight_batch:
+                    first_weight_batch.update(consumed_at_step=int(model.step), weighted_loss=float(value.detach()),
+                        valid_pixels=int(mask.sum()) if mask is not None else weights.numel())
+                    target=trainer.AUDIT/'first_weight_batch.json'
+                    if not target.exists():
+                        evaluator.write(target,first_weight_batch)
+                return value
             with patch.object(EdgeAwareLogL1, 'forward', forward):
                 return original_loss(model, outputs, batch, *args, **kwargs)
         trainer._b3_weighted_loss = weighted_loss
     original_config = trainer.config
     def b3_config():
-        cfg = original_config()
-        cfg.experiment_name = 'capture-full-b3'
-        cfg.timestamp = 'surface-v3'
+        cfg = original_config(experiment='capture-full-b3', timestamp='surface-v3')
         # The B2 trainer discovers its latest checkpoint itself. Validate that
         # exact file before it can restore anything or run a missing val node.
         checkpoints = sorted(cfg.get_checkpoint_dir().glob('step-*.ckpt'))
@@ -257,6 +260,7 @@ def run_formal(manifest_path):
     def select_b3(config):
         files = [RUN / 'evaluation' / 'val' / f'step-{n:09d}.json' for n in evaluator.NODES]
         result = choose_checkpoint(files)
+        result['config'] = str(Path(config).resolve())
         evaluator.write(RUN / 'state' / 'selection.json', result)
         return result
     trainer.select = select_b3

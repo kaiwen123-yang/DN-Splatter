@@ -16,7 +16,7 @@ OLD_ID = 'capture-full-quality-v2-20261121-v1'
 RUN = ROOT / '.local/runs' / RUN_ID
 OLD = ROOT / '.local/runs' / OLD_ID
 REPORT = ROOT / 'reports/capture-full-quality-v3/20261122-v1'
-BASE_SHA = '6cb4203b6a22df19c686f403de99d3d4f4b5b0022148cce7c1e34a96838a9'
+BASE_SHA = json.loads((ROOT/'configs/capture_surface_quality_protocol.json').read_bytes())['baseline']['selected_checkpoint_sha256']
 
 
 def require(condition, message):

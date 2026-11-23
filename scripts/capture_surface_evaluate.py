@@ -13,7 +13,8 @@ import cv2
 import numpy as np
 import open3d as o3d
 
-from capture_metric3d_common import B0_REPORT, selection, sha
+from capture_metric3d_common import B0_REPORT, REPORT as B1_REPORT, selection, sha
+from capture_surface_tiles import ROOT, RUN, ply
 from capture_metric3d_surface_eval import rays, stats, measures
 from capture_quality_paths import check
 from capture_s01_mesh import titled
@@ -37,11 +38,43 @@ def save(path, obj):
 
 
 def make_scene(path):
-    mesh = o3d.io.read_triangle_mesh(str(path))
-    check(len(mesh.triangles) > 0, "empty mesh: " + str(path))
+    vertices, faces = ply(path)
+    check(len(faces)>0, "empty mesh: " + str(path))
     scene = o3d.t.geometry.RaycastingScene(nthreads=CPU)
-    scene.add_triangles(o3d.t.geometry.TriangleMesh.from_legacy(mesh))
+    scene.add_triangles(o3d.core.Tensor.from_numpy(np.ascontiguousarray(vertices,dtype='f4')),
+                        o3d.core.Tensor.from_numpy(np.ascontiguousarray(faces,dtype='u4')))
     return scene
+
+
+def native_probes(scenes, frames, meta):
+    from capture_surface_submaps import PACKET, camera_parameters
+    old=load(ROOT/'reports/capture-quality-review/2026-11-22/tsdf_block_check.json')
+    cal=load(PACKET/'calibration.json'); k=cal['cameras']['depth']
+    _,_,extrinsic=camera_parameters(meta,cal)
+    result=[]
+    for probe in old['probes']:
+        pose=np.asarray(frames['images/'+probe['frame']+'.png']['transform_matrix'])@FLIP@extrinsic
+        u,v=probe['native_xy']
+        ray=rays(np.asarray([u]),np.asarray([v]),pose,[k['fx'],k['fy'],k['cx']+.5,k['cy']+.5])
+        grid=np.indices((16,16,16)).transpose(1,2,3,0)
+        points=np.asarray(probe['block_origin_world_m'])+(grid+.5)*.01
+        out={}
+        for name,scene in scenes.items():
+            hit=float(scene.cast_rays(ray,nthreads=CPU)['t_hit'].numpy()[0])
+            ref=probe['native_Z_m']; valid=np.isfinite(hit)
+            crossings=0
+            for axis in range(3):
+                inside=grid[...,axis]<15
+                direction=np.zeros(3); direction[axis]=1.
+                q=np.concatenate((points[inside],np.broadcast_to(direction,points[inside].shape)),axis=1)
+                t=scene.cast_rays(o3d.core.Tensor(q.astype('f4')),nthreads=CPU)['t_hit'].numpy()
+                crossings+=int(((t>=0.)&(t<.01)).sum())
+            out[name]=dict(hit_Z_m=hit if valid else None, reference_Z_m=ref,
+                first_hit_within_10cm=bool(valid and abs(hit-ref)<=.1),
+                foreground_conflict=bool(valid and hit<ref-max(.05,.03*ref)),crossed_grid_edges=crossings)
+        result.append(dict(frame=probe['frame'],native_xy=[u,v],historical_local_tsdf=probe['local_field_within_2s'],
+                        historical_global_tsdf=probe['full_field'],meshes=out))
+    return dict(probes=result,edges='First triangle intersection on each positive 1 cm grid edge; open meshes have no global signed TSDF.')
 
 
 def evaluate(manifest, split):
@@ -62,9 +95,16 @@ def evaluate(manifest, split):
     names = meta[split + "_filenames"]
     check(len(names) == len(set(names)) == 184, "184 distinct holdout views required")
     frames = {f["file_path"]: f for f in meta["frames"]}
+    same={r['id'] for r in load(B1_REPORT/'comparison_s01_same_sources.json')[split]['frames']}
+    check(len(same)==24,'fixed same-source population')
     times = {r["id"]: r["relative_s"] for r in selection()}
     intr = [meta[k] for k in ("fl_x", "fl_y", "cx", "cy")]
-    scenes = {k: make_scene(p) for k, p in meshes.items()}
+    # Paired development comparisons share the immutable incumbent intersections.
+    # Keep one depth vector per camera, not a second BVH or another baseline pass.
+    cache = RUN/'evaluation'/'baseline_hits'/split/(sha(root/'transforms.json')+'_'+identities['supported_poisson']['sha256'])
+    if split=='test':
+        cache.mkdir(parents=True,exist_ok=True)
+    scenes = {k: make_scene(p) for k, p in meshes.items() if k!='supported_poisson' or split=='val'}
     output = Path(config["output"]); output.mkdir(parents=True, exist_ok=True)
     rows, totals, errors, transfers = [], {}, {}, {}
     with tempfile.TemporaryDirectory(dir=output, prefix="quantiles_") as temp:
@@ -80,13 +120,29 @@ def evaluate(manifest, split):
             depth = np.load(root / frame["depth_file_path"], mmap_mode="r")
             y, x = np.where(np.isfinite(depth) & (depth >= .3) & (depth <= 6))
             ref = np.asarray(depth[y, x]); q = rays(x, y, np.asarray(frame["transform_matrix"]) @ FLIP, intr)
-            z = {k: s.cast_rays(q, nthreads=CPU)["t_hit"].numpy() for k, s in scenes.items()}
+            z = {k: s.cast_rays(q, nthreads=CPU)["t_hit"].numpy() for k, s in scenes.items()
+                 if split!='test' or k!='supported_poisson'}
+            if split=='test':
+                path=cache/(stem+'.npy'); marker=cache/(stem+'.json')
+                if marker.is_file():
+                    binding=load(marker)
+                    check(binding['sha256']==sha(path) and binding['reference_pixels']==len(ref),'baseline reference cache')
+                    z['supported_poisson']=np.load(path,allow_pickle=False)
+                else:
+                    if 'supported_poisson' not in scenes:
+                        scenes['supported_poisson']=make_scene(meshes['supported_poisson'])
+                    if 'supported_poisson' not in z:
+                        z['supported_poisson']=scenes['supported_poisson'].cast_rays(q,nthreads=CPU)['t_hit'].numpy()
+                    temp=path.with_suffix('.pending.npy')
+                    np.save(temp,z['supported_poisson'],allow_pickle=False);temp.replace(path)
+                    save(marker,dict(sha256=sha(path),reference_pixels=len(ref)))
             valid = {k: np.isfinite(v) & (v > 0) for k, v in z.items()}
             row = {"id": stem, "relative_s": times[stem], "reference_pixels": len(ref), "surfaces": {}, "paired": {}}
             base = z["supported_poisson"]; bv = valid["supported_poisson"]
-            bc = bv & (np.abs(base-ref) <= .1)
+            bc = bv & (np.abs(base.astype('f8')-ref) <= .1)
             for k, value in z.items():
                 row["surfaces"][k] = add("all", k, ref, value, valid[k])
+                if stem in same: add("same_s01_source",k,ref,value,valid[k])
                 add("time_%d" % (int(times[stem] // 30)*30), k, ref, value, valid[k])
                 for a, b in BANDS:
                     mask = (ref >= a) & ((ref <= b) if b == 6 else (ref < b))
@@ -95,7 +151,7 @@ def evaluate(manifest, split):
                 add("common_" + k, k, ref, value, common)
                 if k != "supported_poisson":
                     add("common_" + k, "supported_poisson", ref, base, common)
-                    correct = valid[k] & (np.abs(value-ref) <= .1)
+                    correct = valid[k] & (np.abs(value.astype('f8')-ref) <= .1)
                     pair = {"reference": len(ref), "common_hits": int(common.sum()),
                             "correct_to_incorrect": int((bc & ~correct).sum()),
                             "incorrect_to_correct": int((~bc & correct).sum())}
@@ -114,9 +170,11 @@ def evaluate(manifest, split):
              "meshes": identities, "groups": groups, "paired_10cm": transfers,
              "reference": "all finite sensor optical Z in [0.3,6] m; first mesh intersection"})
     if split == "val":
+        save(output/'native_probes.json',native_probes(scenes,frames,meta))
         local = load(B0_REPORT / "mesh_validation.json")["local_views"]
         crops = [("train_%05d" % n, "images/frame_%05d.png" % n, None) for n in (0, 330, 1420)]
         crops += [(r["object"], "images/frame_%05d.png" % r["train_id"], r["xyxy"]) for r in local]
+        crops += [('foam_teeth','images/frame_01420.png',[720,224,1104,608])]
         report = {}
         for label, name, crop in crops:
             frame = frames[name]; depth = np.load(root / frame["depth_file_path"], mmap_mode="r")

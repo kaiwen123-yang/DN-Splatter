@@ -1,0 +1,8 @@
+{
+  "objects": [
+    {"name": "foam_teeth_and_relief", "source": "images/frame_01420.png", "crop": [720, 224, 1104, 608]},
+    {"name": "table_edge", "source": "images/frame_00120.png", "crop": [800, 416, 1120, 544]},
+    {"name": "fine_net", "source": "images/frame_00940.png", "crop": [32, 64, 352, 384]}
+  ],
+  "target_selection": "Among the nearest 100 training timestamps, rank by the number of source measured samples visible at target, then frame name. Retain up to four distinct other 2-second groups with at least 0.10 m baseline and 3 degrees median ray angle. No RGB residual is used for selection."
+}
