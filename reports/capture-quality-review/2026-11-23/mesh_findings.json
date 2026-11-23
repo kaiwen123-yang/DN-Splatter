@@ -1,0 +1,465 @@
+{
+  "schema_version": 1,
+  "review_date": "2026-11-23",
+  "source_commit": "d6405240df30c49e71365f87fdce4ec7ce7c7462",
+  "scope": {
+    "remote_mutations": false,
+    "server_live_inspection": false,
+    "new_training_or_exports": false,
+    "read_only_github_snapshot": true,
+    "note": "Current server state cannot be inferred from yesterday launch receipt or subsequent code commits."
+  },
+  "conclusion_zh": "B2渲染已有显著改善，网格仍差。完成现有B3全量候选与既定比较，停止扩张新的融合模块，再依据全量结果选择后续方向。",
+  "b2_selected": {
+    "updates": 210000,
+    "zero_based_step": 209999,
+    "completed_budget_updates": 240000,
+    "test_PSNR_dB": 24.681,
+    "test_model_MAE_m_rounded": 0.1236,
+    "test_model_correct10_fraction_rounded": 0.7272
+  },
+  "surface_test": {
+    "frames": 184,
+    "reference_pixels": 29100252,
+    "counts_and_metrics": {
+      "sensor_tsdf": {
+        "reference": 29100252,
+        "hits": 21979876,
+        "misses": 7120376,
+        "correct_tau": 1402912,
+        "correct_05": 940712,
+        "correct_10": 1683951,
+        "correct_20": 3398457,
+        "foreground": 5114072,
+        "nearer_than_03": 1214505,
+        "abs_sum": 40036847.44168942,
+        "squared_sum": 177825046.86914134,
+        "signed_sum": 18494028.994627796,
+        "hits_fraction_all_reference": 0.7553156584348479,
+        "correct_tau_fraction_all_reference": 0.04820961687891912,
+        "correct_05_fraction_all_reference": 0.03232659291060435,
+        "correct_10_fraction_all_reference": 0.057867230840475195,
+        "correct_20_fraction_all_reference": 0.11678445258824563,
+        "foreground_fraction_all_reference": 0.1757397839716302,
+        "nearer_than_03_fraction_all_reference": 0.04173520559203405,
+        "foreground_fraction_hits": 0.23267064836944484,
+        "nearer_than_03_fraction_hits": 0.055255316272029925,
+        "MAE_hit_m": 1.821522898568191,
+        "RMSE_hit_m": 2.844355312930822,
+        "signed_mean_hit_m": 0.8414073398151926,
+        "P50_hit_m": 1.0029257535934448,
+        "P95_hit_m": 6.282108306884766
+      },
+      "model_tsdf": {
+        "reference": 29100252,
+        "hits": 28526208,
+        "misses": 574044,
+        "correct_tau": 15087996,
+        "correct_05": 11706786,
+        "correct_10": 16324405,
+        "correct_20": 20500000,
+        "foreground": 4135170,
+        "nearer_than_03": 485316,
+        "abs_sum": 13630955.642829755,
+        "squared_sum": 44967013.612845,
+        "signed_sum": 1904083.020322402,
+        "hits_fraction_all_reference": 0.9802735728886471,
+        "correct_tau_fraction_all_reference": 0.5184833450926817,
+        "correct_05_fraction_all_reference": 0.4022915677843615,
+        "correct_10_fraction_all_reference": 0.5609712589430497,
+        "correct_20_fraction_all_reference": 0.7044612534626848,
+        "foreground_fraction_all_reference": 0.14210083129177026,
+        "nearer_than_03_fraction_all_reference": 0.016677381350512017,
+        "foreground_fraction_hits": 0.1449603816953168,
+        "nearer_than_03_fraction_hits": 0.017012986794459325,
+        "MAE_hit_m": 0.4778397340028424,
+        "RMSE_hit_m": 1.2555239471626234,
+        "signed_mean_hit_m": 0.06674854997630257,
+        "P50_hit_m": 0.07246232032775879,
+        "P95_hit_m": 2.9799694776535013
+      },
+      "supported_poisson": {
+        "reference": 29100252,
+        "hits": 28014439,
+        "misses": 1085813,
+        "correct_tau": 16941956,
+        "correct_05": 12855113,
+        "correct_10": 18026889,
+        "correct_20": 22417937,
+        "foreground": 6477269,
+        "nearer_than_03": 1285,
+        "abs_sum": 5808208.885114133,
+        "squared_sum": 10775103.832167119,
+        "signed_sum": 1532387.6775456667,
+        "hits_fraction_all_reference": 0.9626871616094596,
+        "correct_tau_fraction_all_reference": 0.5821927590180319,
+        "correct_05_fraction_all_reference": 0.4417526349943636,
+        "correct_10_fraction_all_reference": 0.6194753571206187,
+        "correct_20_fraction_all_reference": 0.7703691706862195,
+        "foreground_fraction_all_reference": 0.22258463603682882,
+        "nearer_than_03_fraction_all_reference": 4.41576932048561e-05,
+        "foreground_fraction_hits": 0.23121180474111938,
+        "nearer_than_03_fraction_hits": 4.586920337758682e-05,
+        "MAE_hit_m": 0.20732911642864357,
+        "RMSE_hit_m": 0.6201828706663293,
+        "signed_mean_hit_m": 0.054699923762373634,
+        "P50_hit_m": 0.0583653450012207,
+        "P95_hit_m": 0.8130275994539239
+      },
+      "B1_supported": {
+        "reference": 29100252,
+        "hits": 26801630,
+        "misses": 2298622,
+        "correct_tau": 15671436,
+        "correct_05": 11858925,
+        "correct_10": 17175784,
+        "correct_20": 21417078,
+        "foreground": 6485137,
+        "nearer_than_03": 4822,
+        "abs_sum": 5496695.048908383,
+        "squared_sum": 8756549.036024021,
+        "signed_sum": 1199820.5523485243,
+        "hits_fraction_all_reference": 0.9210102372996632,
+        "correct_tau_fraction_all_reference": 0.5385326560058655,
+        "correct_05_fraction_all_reference": 0.4075196668399985,
+        "correct_10_fraction_all_reference": 0.5902280158948452,
+        "correct_20_fraction_all_reference": 0.7359756884579556,
+        "foreground_fraction_all_reference": 0.22285501170230415,
+        "nearer_than_03_fraction_all_reference": 0.00016570303239985687,
+        "foreground_fraction_hits": 0.24196800716971317,
+        "nearer_than_03_fraction_hits": 0.00017991443057754322,
+        "MAE_hit_m": 0.20508808788526603,
+        "RMSE_hit_m": 0.5715916664076888,
+        "signed_mean_hit_m": 0.04476670084425926,
+        "P50_hit_m": 0.06096649169921875,
+        "P95_hit_m": 0.8461092293262471
+      }
+    },
+    "common_all_four": {
+      "sensor_tsdf": {
+        "reference": 29100252,
+        "hits": 19775869,
+        "misses": 9324383,
+        "correct_tau": 1270770,
+        "correct_05": 895651,
+        "correct_10": 1589269,
+        "correct_20": 3183232,
+        "foreground": 4297775,
+        "nearer_than_03": 1058521,
+        "abs_sum": 36079697.77603041,
+        "squared_sum": 162702231.9262585,
+        "signed_sum": 19170139.863081053,
+        "hits_fraction_all_reference": 0.6795772421489683,
+        "correct_tau_fraction_all_reference": 0.04366869400306224,
+        "correct_05_fraction_all_reference": 0.030778118347566198,
+        "correct_10_fraction_all_reference": 0.05461358204045793,
+        "correct_20_fraction_all_reference": 0.10938846852597703,
+        "foreground_fraction_all_reference": 0.14768858359027268,
+        "nearer_than_03_fraction_all_reference": 0.03637497709641827,
+        "foreground_fraction_hits": 0.21732420456466414,
+        "nearer_than_03_fraction_hits": 0.05352589056895553,
+        "MAE_hit_m": 1.8244304599727277,
+        "RMSE_hit_m": 2.8683290209763697,
+        "signed_mean_hit_m": 0.9693702897749299,
+        "P50_hit_m": 1.0129692554473877,
+        "P95_hit_m": 6.429619312286377
+      },
+      "model_tsdf": {
+        "reference": 29100252,
+        "hits": 19775869,
+        "misses": 9324383,
+        "correct_tau": 10922742,
+        "correct_05": 8551828,
+        "correct_10": 11842630,
+        "correct_20": 14673673,
+        "foreground": 2568066,
+        "nearer_than_03": 306347,
+        "abs_sum": 8310510.136402143,
+        "squared_sum": 25338979.598453578,
+        "signed_sum": 1465525.5956821311,
+        "hits_fraction_all_reference": 0.6795772421489683,
+        "correct_tau_fraction_all_reference": 0.375348708320464,
+        "correct_05_fraction_all_reference": 0.2938747059647456,
+        "correct_10_fraction_all_reference": 0.40695970605340465,
+        "correct_20_fraction_all_reference": 0.5042455646088563,
+        "foreground_fraction_all_reference": 0.08824892650414161,
+        "nearer_than_03_fraction_all_reference": 0.010527297151928443,
+        "foreground_fraction_hits": 0.12985856651861924,
+        "nearer_than_03_fraction_hits": 0.015490950106920712,
+        "MAE_hit_m": 0.4202348901280719,
+        "RMSE_hit_m": 1.1319487719594197,
+        "signed_mean_hit_m": 0.07410676090553245,
+        "P50_hit_m": 0.06520533561706543,
+        "P95_hit_m": 2.6214979410171484
+      },
+      "supported_poisson": {
+        "reference": 29100252,
+        "hits": 19775869,
+        "misses": 9324383,
+        "correct_tau": 12032288,
+        "correct_05": 9192914,
+        "correct_10": 12859296,
+        "correct_20": 15932487,
+        "foreground": 4637207,
+        "nearer_than_03": 877,
+        "abs_sum": 3955325.9223070443,
+        "squared_sum": 6819321.059263763,
+        "signed_sum": 957216.0982525051,
+        "hits_fraction_all_reference": 0.6795772421489683,
+        "correct_tau_fraction_all_reference": 0.4134771066587327,
+        "correct_05_fraction_all_reference": 0.31590496192266654,
+        "correct_10_fraction_all_reference": 0.4418963794540336,
+        "correct_20_fraction_all_reference": 0.5475034030633137,
+        "foreground_fraction_all_reference": 0.15935281247736274,
+        "nearer_than_03_fraction_all_reference": 3.013719606276949e-05,
+        "foreground_fraction_hits": 0.23448815321339356,
+        "nearer_than_03_fraction_hits": 4.4346976610737055e-05,
+        "MAE_hit_m": 0.20000769231971774,
+        "RMSE_hit_m": 0.5872226257725801,
+        "signed_mean_hit_m": 0.04840323822192112,
+        "P50_hit_m": 0.05702924728393555,
+        "P95_hit_m": 0.7923207759857167
+      },
+      "B1_supported": {
+        "reference": 29100252,
+        "hits": 19775869,
+        "misses": 9324383,
+        "correct_tau": 11530921,
+        "correct_05": 8664786,
+        "correct_10": 12605600,
+        "correct_20": 15776591,
+        "foreground": 4894237,
+        "nearer_than_03": 4241,
+        "abs_sum": 4092321.176182717,
+        "squared_sum": 6619140.796388164,
+        "signed_sum": 905454.6320301592,
+        "hits_fraction_all_reference": 0.6795772421489683,
+        "correct_tau_fraction_all_reference": 0.3962481493287412,
+        "correct_05_fraction_all_reference": 0.29775639056321573,
+        "correct_10_fraction_all_reference": 0.4331783793487424,
+        "correct_20_fraction_all_reference": 0.5421461985964933,
+        "foreground_fraction_all_reference": 0.16818538203724145,
+        "nearer_than_03_fraction_all_reference": 0.00014573756955781688,
+        "foreground_fraction_hits": 0.24748530646112188,
+        "nearer_than_03_fraction_hits": 0.00021445328142090747,
+        "MAE_hit_m": 0.20693508721071713,
+        "RMSE_hit_m": 0.5785395071413677,
+        "signed_mean_hit_m": 0.0457858328263683,
+        "P50_hit_m": 0.061824917793273926,
+        "P95_hit_m": 0.8373446464538574
+      }
+    },
+    "reference_kind": "same-capture sensor optical Z, not independent ground-truth geometry",
+    "MAE_denominator": "mesh hit pixels",
+    "coverage_denominator": "all valid sensor reference pixels"
+  },
+  "visual_inspection": [
+    {
+      "path": "reports/capture-full-quality-v2/20261121-v1/previews/surface_table.jpg",
+      "opened": true,
+      "finding_zh": "桌面/桌沿仍颗粒粗糙；model TSDF主体比supported Poisson更易辨认。"
+    },
+    {
+      "path": "reports/capture-full-quality-v2/20261121-v1/previews/surface_pillar.jpg",
+      "opened": true,
+      "finding_zh": "model TSDF柱面较连续，supported Poisson柱面有明显碎裂条带及缺口，齿边未还原。"
+    },
+    {
+      "path": "reports/capture-full-quality-v2/20261121-v1/previews/surface_chair_legs.jpg",
+      "opened": true,
+      "finding_zh": "model TSDF中一些交叉杆尚可辨认；supported Poisson和B1细杆被颗粒面、粘连及缺损淹没。"
+    }
+  ],
+  "tsdf": {
+    "depth_sampling_stride": 1,
+    "voxel_length_m": 0.01,
+    "sdf_trunc_m": 0.04,
+    "depth_scale": 1.0,
+    "valid_Z_m": [
+      0.3,
+      6.0
+    ],
+    "RGBD_depth_trunc_m": 6.000001,
+    "default_stride_or_3m_truncation_explanation_supported": false,
+    "failure_evidence_zh": "四个定向失败块全局4096体素均已观测且全正、无内部零交叉；局部存在正负交叉。支持融合冲突侵蚀表面，不支持单纯未分配块。",
+    "local_sign_crossings": [
+      343,
+      932,
+      549,
+      1093
+    ],
+    "global_sign_crossings": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "probe_scope": "four deliberately selected failed surface blocks, not representative random sample",
+    "closure_correct10_percent": [
+      {
+        "frame": 0,
+        "single": 75.49,
+        "nearby": 73.64,
+        "global": 13.61
+      },
+      {
+        "frame": 330,
+        "single": 76.38,
+        "nearby": 58.45,
+        "global": 2.45
+      },
+      {
+        "frame": 1420,
+        "single": 83.3,
+        "nearby": 80.11,
+        "global": 5.8
+      }
+    ],
+    "unresolved_causes": [
+      "pose errors",
+      "depth bias",
+      "dynamic objects",
+      "occlusion conflicts",
+      "shared calibration bias"
+    ]
+  },
+  "b3": {
+    "observed_launch_utc": "2026-11-22T05:58:46.510217+00:00",
+    "observed_submaps": 34,
+    "total_submaps": 187,
+    "observed_frames": 272,
+    "started_in_repository_evidence": true,
+    "completed_in_repository_evidence": false,
+    "current_server_state": "not inspected",
+    "implemented_primary_shell_endpoint": "A4 full validation of frozen B2 model/sensor surface candidates; writes state/frozen_pair_val.json then exits",
+    "primary_shell_includes_B_C_test_delivery": false,
+    "manual_crop": false,
+    "surface_algorithm_zh": "约2秒局部TSDF、源子图排除、至少2个独立观察支持、七点面检测、旧面至少2自由空间冲突方替换，其余回退；sensor与model分开。",
+    "fine_structure_constraint": {
+      "native_depth_fx_px": 414.2334289550781,
+      "edge_interior_strictly_greater_than_px": 2,
+      "all_triangle_samples_required": 7,
+      "metric_scale_at_Z3m_mm_per_px": 7.24229333100332,
+      "claim": "Only a projected-scale inference; actual rod width not measured. Few-pixel rods may have no eligible interior and revert to old surface."
+    },
+    "latest_patch_scope": "Polygon make_valid, conserved area, hole-preserving triangulation fallback, tightly scoped incomplete-assembly identity migration, progress receipt.",
+    "latest_patch_changes_training": false,
+    "latest_patch_proves_quality_gain": false,
+    "surface_promotion": {
+      "split": "val",
+      "min_hit_fraction": 0.9,
+      "correct10_not_below_B2": true,
+      "foreground_not_above_B2": true,
+      "aspirational_correct10_fraction": 0.7,
+      "aspirational_max_foreground_fraction": 0.15
+    },
+    "recommendation_zh": "接续当前唯一作业，完成既定候选、全量val、冻结、最终test与固定物体/全程网格视频；不再增加新融合模块、不重复启动B3。若收益有限，停止扩张裁接器，依据完整结果再转向位姿或表面表示。"
+  },
+  "sources": [
+    {
+      "path": "reports/capture-full-quality-v2/20261121-v1/overview.md",
+      "sha256": "3488a22104ca8d1a264a6a08e59267170c551e901501ee04e6ba4dc5bd72d9f8",
+      "url": "https://github.com/kaiwen123-yang/DN-Splatter/blob/d6405240df30c49e71365f87fdce4ec7ce7c7462/reports/capture-full-quality-v2/20261121-v1/overview.md"
+    },
+    {
+      "path": "reports/capture-full-quality-v2/20261121-v1/surfaces_test.json",
+      "sha256": "38372972cfe3b9e9ba00137c963e419b9a6e7ae0f8f700a6a49bdf8fa6c72f54",
+      "url": "https://github.com/kaiwen123-yang/DN-Splatter/blob/d6405240df30c49e71365f87fdce4ec7ce7c7462/reports/capture-full-quality-v2/20261121-v1/surfaces_test.json"
+    },
+    {
+      "path": "reports/capture-full-quality-v2/20261121-v1/surfaces_val.json",
+      "sha256": "7c4a94422861366e093751881f727a717415cea6c104726282de88a96d45e5cd",
+      "url": "https://github.com/kaiwen123-yang/DN-Splatter/blob/d6405240df30c49e71365f87fdce4ec7ce7c7462/reports/capture-full-quality-v2/20261121-v1/surfaces_val.json"
+    },
+    {
+      "path": "reports/capture-quality-review/2026-11-22/overview.md",
+      "sha256": "1bf84a890248be91858711ed00f9000f8af712a50e35dbb461025a7ace2db0b6",
+      "url": "https://github.com/kaiwen123-yang/DN-Splatter/blob/d6405240df30c49e71365f87fdce4ec7ce7c7462/reports/capture-quality-review/2026-11-22/overview.md"
+    },
+    {
+      "path": "reports/capture-quality-review/2026-11-22/native_neighbor_check.json",
+      "sha256": "f96828d6cdf8c3f5ce7fb6edd3fa32b61f10337b588c6de5fe4f654adc7b24ee",
+      "url": "https://github.com/kaiwen123-yang/DN-Splatter/blob/d6405240df30c49e71365f87fdce4ec7ce7c7462/reports/capture-quality-review/2026-11-22/native_neighbor_check.json"
+    },
+    {
+      "path": "reports/capture-quality-review/2026-11-22/tsdf_closure_check.json",
+      "sha256": "ebffd6dbcd55f7c50a80c198634678d65f9de7bc37c49740fc0d320573428538",
+      "url": "https://github.com/kaiwen123-yang/DN-Splatter/blob/d6405240df30c49e71365f87fdce4ec7ce7c7462/reports/capture-quality-review/2026-11-22/tsdf_closure_check.json"
+    },
+    {
+      "path": "reports/capture-quality-review/2026-11-22/tsdf_block_check.json",
+      "sha256": "4e280315d84156491d168f82e5fe160ec14d541a33000d2c326cfa035527c193",
+      "url": "https://github.com/kaiwen123-yang/DN-Splatter/blob/d6405240df30c49e71365f87fdce4ec7ce7c7462/reports/capture-quality-review/2026-11-22/tsdf_block_check.json"
+    },
+    {
+      "path": "reports/capture-full-quality-v3/20261122-v1/launch_verified.json",
+      "sha256": "1803d4430d94115f361d5c14cef0d64d7d77754e3e987bbcdbad18b70234859b",
+      "url": "https://github.com/kaiwen123-yang/DN-Splatter/blob/d6405240df30c49e71365f87fdce4ec7ce7c7462/reports/capture-full-quality-v3/20261122-v1/launch_verified.json"
+    },
+    {
+      "path": "configs/capture_surface_quality_protocol.json",
+      "sha256": "3f127ed8d8647e4a649fcce6828bb9e4bbbdec234d19841f910edf064d964808",
+      "url": "https://github.com/kaiwen123-yang/DN-Splatter/blob/d6405240df30c49e71365f87fdce4ec7ce7c7462/configs/capture_surface_quality_protocol.json"
+    },
+    {
+      "path": "scripts/capture_quality_tsdf.py",
+      "sha256": "8e2d4461fd26e0b5470425d0fc3246b59c87a1527d72b09f4933715729973947",
+      "url": "https://github.com/kaiwen123-yang/DN-Splatter/blob/d6405240df30c49e71365f87fdce4ec7ce7c7462/scripts/capture_quality_tsdf.py"
+    },
+    {
+      "path": "scripts/capture_surface_submaps.py",
+      "sha256": "91507024578b09b28572dda9c6b57b1a6866d7875667cafd9d71a954947bcde8",
+      "url": "https://github.com/kaiwen123-yang/DN-Splatter/blob/d6405240df30c49e71365f87fdce4ec7ce7c7462/scripts/capture_surface_submaps.py"
+    },
+    {
+      "path": "scripts/capture_surface_repeatability.py",
+      "sha256": "b45b9abbfd01ff7c57d53836f550f2a29a2c6086c9be47e49c7a2beb98ee5ae4",
+      "url": "https://github.com/kaiwen123-yang/DN-Splatter/blob/d6405240df30c49e71365f87fdce4ec7ce7c7462/scripts/capture_surface_repeatability.py"
+    },
+    {
+      "path": "scripts/capture_surface_votes.py",
+      "sha256": "27e88c614c0b680fa57fe4a467e0e2e0e56cebd96b6457bc72947cf102821943",
+      "url": "https://github.com/kaiwen123-yang/DN-Splatter/blob/d6405240df30c49e71365f87fdce4ec7ce7c7462/scripts/capture_surface_votes.py"
+    },
+    {
+      "path": "scripts/capture_surface_device.py",
+      "sha256": "fbcc4b1909aa6bd86d329c5e940e4a97f1050930bdc0be66f8f46fd5bf6bd5ff",
+      "url": "https://github.com/kaiwen123-yang/DN-Splatter/blob/d6405240df30c49e71365f87fdce4ec7ce7c7462/scripts/capture_surface_device.py"
+    },
+    {
+      "path": "scripts/capture_surface_evidence.cu",
+      "sha256": "fbfe0789caf16ca775496036108405807f7b5e6bfeb53941086a2e3bbd424234",
+      "url": "https://github.com/kaiwen123-yang/DN-Splatter/blob/d6405240df30c49e71365f87fdce4ec7ce7c7462/scripts/capture_surface_evidence.cu"
+    },
+    {
+      "path": "scripts/capture_surface_layers.py",
+      "sha256": "9768654d6c4905d788bbf1d416b34e19f7be805fbef442ef907e0168eb1b6299",
+      "url": "https://github.com/kaiwen123-yang/DN-Splatter/blob/d6405240df30c49e71365f87fdce4ec7ce7c7462/scripts/capture_surface_layers.py"
+    },
+    {
+      "path": "scripts/capture_surface_assemble.py",
+      "sha256": "3f5d4b64949a147e7ffa0a75e222591407086b6e9d74640fac0ea1022c8de170",
+      "url": "https://github.com/kaiwen123-yang/DN-Splatter/blob/d6405240df30c49e71365f87fdce4ec7ce7c7462/scripts/capture_surface_assemble.py"
+    },
+    {
+      "path": "scripts/capture_surface_evaluate.py",
+      "sha256": "8faf7c5d08858def1008595e0e6fb5a5b5e2821a28262d38d4ee85ebb4ceb2e6",
+      "url": "https://github.com/kaiwen123-yang/DN-Splatter/blob/d6405240df30c49e71365f87fdce4ec7ce7c7462/scripts/capture_surface_evaluate.py"
+    },
+    {
+      "path": "scripts/capture_surface_select.py",
+      "sha256": "b03e8caf86ca24b2674e0854c6d650157aefcaf8fa91f6b5c05786da3f51f8d6",
+      "url": "https://github.com/kaiwen123-yang/DN-Splatter/blob/d6405240df30c49e71365f87fdce4ec7ce7c7462/scripts/capture_surface_select.py"
+    },
+    {
+      "path": "scripts/launch_capture_surface_quality.sh",
+      "sha256": "262862487abed44d7d1aa787bc355bf9b495750b5ea9f5893f8de9f1e0dbd788",
+      "url": "https://github.com/kaiwen123-yang/DN-Splatter/blob/d6405240df30c49e71365f87fdce4ec7ce7c7462/scripts/launch_capture_surface_quality.sh"
+    },
+    {
+      "path": "scripts/coordinate_capture_surface.py",
+      "sha256": "6005d0f77adebd63b7629e05b6ac02d1b2acd04b01b9a4b2fd41939f2a503bd1",
+      "url": "https://github.com/kaiwen123-yang/DN-Splatter/blob/d6405240df30c49e71365f87fdce4ec7ce7c7462/scripts/coordinate_capture_surface.py"
+    }
+  ]
+}

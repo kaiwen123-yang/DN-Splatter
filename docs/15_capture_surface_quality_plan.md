@@ -1,6 +1,8 @@
 # 自采大厅 B3 质量改进执行计划
 
-2026 年 11 月 22 日。当前状态为 **planned**。B2 已完整跑到 240k，按验证集选中 210k。B3 要回答三个问题：同一模型能否导出更准确的表面，修正训练观测后中远景深度能否改善，以及清晰源图上的细纹能否出现在新视角中。主标尺是同一大厅的 B2，VR Room 单独保留为论文对照。[B2 诊断及实测依据](../reports/capture-quality-review/2026-11-22/overview.md) · [机器可读协议](../configs/capture_surface_quality_protocol.json)
+本计划于2026年11月22日冻结，以下实验规则保持原样。**2026年11月23日状态复核：已有B3历史启动回执，尚无完整结果；审阅版本主入口只串到A4，后续仍须接续实施。** 实时状态应由AutoDL进程与产物确认，不能将此计划或代码提交当作完成证据。[最新复核](../reports/capture-quality-review/2026-11-23/overview.md) · [当前接续提示词](../prompts/capture_quality_continue_20261123.md)。
+
+B2 已完整跑到 240k，按验证集选中 210k。B3 要回答三个问题：同一模型能否导出更准确的表面，修正训练观测后中远景深度能否改善，以及清晰源图上的细纹能否出现在新视角中。主标尺是同一大厅的 B2，VR Room 单独保留为论文对照。[B2 诊断及实测依据](../reports/capture-quality-review/2026-11-22/overview.md) · [机器可读协议](../configs/capture_surface_quality_protocol.json)
 
 ## 1. 实验范围与完成条件
 

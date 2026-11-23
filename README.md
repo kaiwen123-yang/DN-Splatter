@@ -29,7 +29,7 @@
 
 **B2 已完成 240k，验证集选中 210k。** 自采大厅开发测试集 PSNR 为 24.681 dB，模型深度 MAE 为 12.36 cm，支持 Poisson 网格 10 cm 正确覆盖为 61.95%。后续质量改进建议见[大厅重建质量诊断](reports/capture-quality-review/2026-11-22/overview.md)，其中列有原生深度融合、局部位姿和纹理残差的新测量。
 
-**B3 执行材料已准备，当前为计划阶段。** 从本机协调 AutoDL 时使用本地提示词，直接在服务器工作时使用 AutoDL 提示词，两者接续同一个 run。[完整计划](docs/15_capture_surface_quality_plan.md) · [参数与验收规则](configs/capture_surface_quality_protocol.json) · [本地 Codex 提示词](prompts/local_capture_surface_quality.md) · [AutoDL Codex 提示词](prompts/autodl_capture_surface_quality.md)
+**2026-11-23复核：B3已有历史启动回执，仓库尚无最终结果。** 最新审阅源码 `d640524` 的主入口实际只接到A3融合和A4完整val，B诊断、条件C训练及最终交付仍需串接。先查AutoDL实时状态，接续同一个run；不重跑已完成B2。当前统一入口：[最新质量复核](reports/capture-quality-review/2026-11-23/overview.md) · [接续当前B3的Codex提示词](prompts/capture_quality_continue_20261123.md)。原[完整计划](docs/15_capture_surface_quality_plan.md)与[参数及验收规则](configs/capture_surface_quality_protocol.json)保持冻结。
 
 - [B2 指标、固定画面与网格](reports/capture-full-quality-v2/20261121-v1/B2_完整指标对比.md) · [运行状态](reports/capture-full-quality-v2/latest.json)
 - [B1 质量复核](reports/capture-quality-review/2026-11-21/overview.md) · [已执行的 B2 方案](docs/14_capture_quality_plan.md) · [机器协议](configs/capture_quality_protocol.json)

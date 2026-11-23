@@ -1,0 +1,488 @@
+{
+  "schema_version": 1,
+  "review_date": "2026-11-23",
+  "source_commit": "d6405240df30c49e71365f87fdce4ec7ce7c7462",
+  "scope": "Read-only source/report review; no live AutoDL inspection, new reconstruction, training, protocol changes, or remote mutation.",
+  "sources": [
+    {
+      "path": "reports/capture-full-quality-v2/20261121-v1/pose.json",
+      "bytes": 43168,
+      "sha256": "85a03417062bcfc11d27bb020e5a0c6d48b71215be5353cfef6d1e00c8dc22d5"
+    },
+    {
+      "path": "reports/capture-full-quality-v2/20261121-v1/initialization.json",
+      "bytes": 38617,
+      "sha256": "4ec069e1fbb04f9571ae54196aef022836067bed053c88a5ce330d3d4d8fdff3"
+    },
+    {
+      "path": "reports/capture-full-quality-v2/20261121-v1/depth_coverage.json",
+      "bytes": 576788,
+      "sha256": "a864f96ecac630adc41651e739a0d255c9d5cdc45bb2615862fd8e8b6268a7a3"
+    },
+    {
+      "path": "reports/capture-full-quality-v2/20261121-v1/test_step-000209999.json.gz",
+      "bytes": 118775,
+      "sha256": "0b249da3d79a8abf53599b7085d036cb7870767c445f89e220b7cec4876bbe7b"
+    },
+    {
+      "path": "reports/capture-full-quality-v2/20261121-v1/val_step-000209999.json.gz",
+      "bytes": 118209,
+      "sha256": "3bf24ccb7d872024c48fdedc25bfc9772f05479a6dccebda5a78f136602ed1b8"
+    },
+    {
+      "path": "reports/capture-quality-review/2026-11-22/native_neighbor_check.json",
+      "bytes": 14112,
+      "sha256": "f96828d6cdf8c3f5ce7fb6edd3fa32b61f10337b588c6de5fe4f654adc7b24ee"
+    },
+    {
+      "path": "reports/capture-quality-review/2026-11-22/tsdf_block_check.json",
+      "bytes": 9812,
+      "sha256": "4e280315d84156491d168f82e5fe160ec14d541a33000d2c326cfa035527c193"
+    },
+    {
+      "path": "reports/capture-quality-review/2026-11-22/tsdf_closure_check.json",
+      "bytes": 13260,
+      "sha256": "ebffd6dbcd55f7c50a80c198634678d65f9de7bc37c49740fc0d320573428538"
+    },
+    {
+      "path": "reports/capture-quality-review/2026-11-22/video_affine_check.json",
+      "bytes": 2525,
+      "sha256": "c1bbd809818e26560a4f589c435e7f36279ecf82268d87e89f2f97047e916df1"
+    },
+    {
+      "path": "reports/capture-quality-review/2026-11-22/overview.md",
+      "bytes": 14342,
+      "sha256": "1bf84a890248be91858711ed00f9000f8af712a50e35dbb461025a7ace2db0b6"
+    },
+    {
+      "path": "reports/capture-full-dn-30k/20261119-v1/scale_fit.json",
+      "bytes": 5998,
+      "sha256": "ca3dc0589bc8064bdff38c549aba00b6cb90cd1f1b26481bd03465515f7c59d9"
+    },
+    {
+      "path": "scripts/capture_surface_pose.py",
+      "bytes": 17836,
+      "sha256": "649d4d32c7325ded8f50274975e66eeb9cc24a697b9c12bdc9215174955476fe"
+    },
+    {
+      "path": "scripts/capture_surface_weights.py",
+      "bytes": 7989,
+      "sha256": "ba479e5c0d3955d57181054c27f9388db3e2932b6e30b006b7c80ae2c550eff5"
+    },
+    {
+      "path": "scripts/capture_surface_votes.py",
+      "bytes": 6736,
+      "sha256": "27e88c614c0b680fa57fe4a467e0e2e0e56cebd96b6457bc72947cf102821943"
+    },
+    {
+      "path": "scripts/capture_surface_texture.py",
+      "bytes": 9376,
+      "sha256": "2266b4e38c3aebe901753f45dd70e1e743dfed7758e7f42376102b9888919f52"
+    },
+    {
+      "path": "scripts/capture_surface_train.py",
+      "bytes": 16233,
+      "sha256": "19bcddfc093a8a9fcd8283fc6e2d492b3afb343199d81c5b333371442edfecd8"
+    },
+    {
+      "path": "scripts/capture_surface_repeatability.py",
+      "bytes": 5153,
+      "sha256": "b45b9abbfd01ff7c57d53836f550f2a29a2c6086c9be47e49c7a2beb98ee5ae4"
+    },
+    {
+      "path": "scripts/capture_surface_submaps.py",
+      "bytes": 8991,
+      "sha256": "91507024578b09b28572dda9c6b57b1a6866d7875667cafd9d71a954947bcde8"
+    },
+    {
+      "path": "scripts/capture_surface_evaluate.py",
+      "bytes": 8269,
+      "sha256": "8faf7c5d08858def1008595e0e6fb5a5b5e2821a28262d38d4ee85ebb4ceb2e6"
+    },
+    {
+      "path": "scripts/capture_quality_pose.py",
+      "bytes": 7871,
+      "sha256": "cd4badb89cdb2653e210c77dd650837fe6f991ddf517ed2d7371f0d69e0e5c19"
+    },
+    {
+      "path": "scripts/capture_quality_init.py",
+      "bytes": 8339,
+      "sha256": "b31ed82d2411712f8d7b1ead1d124cae5b09eb4fe497e2f39027edd4675d4a35"
+    },
+    {
+      "path": "scripts/capture_quality_tracks.py",
+      "bytes": 1791,
+      "sha256": "431c257e81bff59795cf05685226aa315af066e7981fafdd73b56837d9120e57"
+    },
+    {
+      "path": "scripts/launch_capture_surface_quality.sh",
+      "bytes": 2921,
+      "sha256": "262862487abed44d7d1aa787bc355bf9b495750b5ea9f5893f8de9f1e0dbd788"
+    },
+    {
+      "path": "scripts/coordinate_capture_surface.py",
+      "bytes": 13449,
+      "sha256": "6005d0f77adebd63b7629e05b6ac02d1b2acd04b01b9a4b2fd41939f2a503bd1"
+    }
+  ],
+  "b2_pose": {
+    "candidate_count": 14,
+    "corrected": [
+      {
+        "id": 1294,
+        "split": "train",
+        "inliers": 253
+      },
+      {
+        "id": 1295,
+        "split": "train",
+        "inliers": 295
+      },
+      {
+        "id": 1296,
+        "split": "train",
+        "inliers": 199
+      },
+      {
+        "id": 1297,
+        "split": "train",
+        "inliers": 181
+      },
+      {
+        "id": 1300,
+        "split": "train",
+        "inliers": 129
+      },
+      {
+        "id": 1301,
+        "split": "train",
+        "inliers": 62
+      },
+      {
+        "id": 1302,
+        "split": "train",
+        "inliers": 75
+      },
+      {
+        "id": 1303,
+        "split": "train",
+        "inliers": 37
+      },
+      {
+        "id": 1306,
+        "split": "train",
+        "inliers": 444
+      },
+      {
+        "id": 1298,
+        "split": "val",
+        "inliers": 158
+      },
+      {
+        "id": 1299,
+        "split": "test",
+        "inliers": 118
+      }
+    ],
+    "unresolved": [
+      {
+        "id": 1304,
+        "split": "train",
+        "inliers": 131,
+        "supporting_train_frames": [
+          1307
+        ]
+      },
+      {
+        "id": 1305,
+        "split": "train",
+        "inliers": 202,
+        "supporting_train_frames": [
+          1307
+        ]
+      },
+      {
+        "id": 1514,
+        "split": "train",
+        "inliers": 0,
+        "supporting_train_frames": []
+      }
+    ],
+    "global_scale_status": "unchanged",
+    "map_BA_performed": false
+  },
+  "native_consistency": {
+    "all_neighbor_pairs": {
+      "directed_pairs": 2954,
+      "source_valid_samples": 9130950,
+      "target_pixels_with_projection": 8371496,
+      "shared_valid_pixels": 8045328,
+      "within_10cm": 6408201,
+      "in_front_over_10cm": 754754,
+      "behind_over_10cm": 882373,
+      "absolute_error_sum_m": 801287.3357258217,
+      "fraction_within_10cm_of_shared": 0.7965120875121561,
+      "mae_m_on_shared": 0.09959660261530937
+    },
+    "revisits": {
+      "criteria": "All pairs separated by at least 10 s, RGB centers within 0.5 m, rotations within 15 deg",
+      "train_views_with_partner": 127,
+      "stats": {
+        "directed_pairs": 788,
+        "source_valid_samples": 2963544,
+        "target_pixels_with_projection": 2657251,
+        "shared_valid_pixels": 2611268,
+        "within_10cm": 2318516,
+        "in_front_over_10cm": 132195,
+        "behind_over_10cm": 160557,
+        "absolute_error_sum_m": 165917.19931258526,
+        "fraction_within_10cm_of_shared": 0.8878889489703853,
+        "mae_m_on_shared": 0.0635389394396076
+      }
+    },
+    "selected_edges": [
+      {
+        "from_train_id": 1303,
+        "to_train_id": 1304,
+        "rgb_center_displacement_m": 1.589478451292737,
+        "rotation_deg": 171.6721737956388,
+        "directed_pairs": 2,
+        "source_valid_samples": 6517,
+        "target_pixels_with_projection": 4402,
+        "shared_valid_pixels": 3835,
+        "within_10cm": 374,
+        "in_front_over_10cm": 101,
+        "behind_over_10cm": 3360,
+        "absolute_error_sum_m": 1859.6914190061975,
+        "fraction_within_10cm_of_shared": 0.09752281616688396,
+        "mae_m_on_shared": 0.48492605449966036
+      },
+      {
+        "from_train_id": 1304,
+        "to_train_id": 1305,
+        "rgb_center_displacement_m": 0.09043008042312202,
+        "rotation_deg": 10.326752061793993,
+        "directed_pairs": 2,
+        "source_valid_samples": 6780,
+        "target_pixels_with_projection": 5815,
+        "shared_valid_pixels": 5511,
+        "within_10cm": 4864,
+        "in_front_over_10cm": 231,
+        "behind_over_10cm": 416,
+        "absolute_error_sum_m": 561.1165177426136,
+        "fraction_within_10cm_of_shared": 0.882598439484667,
+        "mae_m_on_shared": 0.10181754994422312
+      },
+      {
+        "from_train_id": 1305,
+        "to_train_id": 1306,
+        "rgb_center_displacement_m": 1.6413618461111317,
+        "rotation_deg": 171.9422166099198,
+        "directed_pairs": 2,
+        "source_valid_samples": 7060,
+        "target_pixels_with_projection": 3906,
+        "shared_valid_pixels": 3158,
+        "within_10cm": 172,
+        "in_front_over_10cm": 76,
+        "behind_over_10cm": 2910,
+        "absolute_error_sum_m": 1731.2546904482126,
+        "fraction_within_10cm_of_shared": 0.05446485117162761,
+        "mae_m_on_shared": 0.5482123782293263
+      },
+      {
+        "from_train_id": 1513,
+        "to_train_id": 1514,
+        "rgb_center_displacement_m": 0.30935143406618837,
+        "rotation_deg": 17.357097769832865,
+        "directed_pairs": 2,
+        "source_valid_samples": 9581,
+        "target_pixels_with_projection": 6310,
+        "shared_valid_pixels": 5880,
+        "within_10cm": 2982,
+        "in_front_over_10cm": 1129,
+        "behind_over_10cm": 1769,
+        "absolute_error_sum_m": 1007.3124944090455,
+        "fraction_within_10cm_of_shared": 0.5071428571428571,
+        "mae_m_on_shared": 0.17131164870902135
+      },
+      {
+        "from_train_id": 1514,
+        "to_train_id": 1515,
+        "rgb_center_displacement_m": 0.29235207452141543,
+        "rotation_deg": 5.973034847762092,
+        "directed_pairs": 2,
+        "source_valid_samples": 9660,
+        "target_pixels_with_projection": 7788,
+        "shared_valid_pixels": 7320,
+        "within_10cm": 3045,
+        "in_front_over_10cm": 1914,
+        "behind_over_10cm": 2361,
+        "absolute_error_sum_m": 1829.7318031600641,
+        "fraction_within_10cm_of_shared": 0.41598360655737704,
+        "mae_m_on_shared": 0.24996336108744047
+      }
+    ],
+    "limits": "Not independent geometry truth. Revisit camera-overlap selection covers only 127 train views and can miss mislocalized loop partners."
+  },
+  "initialization": {
+    "sensor_points": 2011213,
+    "sfm_points": 60134,
+    "total_points": 2071347
+  },
+  "depth_coverage": {
+    "split_aggregates": {
+      "val": {
+        "frames": 184,
+        "counts": {
+          "native_non_sentinel": 70341947,
+          "native_03_6": 36368445,
+          "native_pixels": 74895360,
+          "positive_rgb_Z": 70341947,
+          "in_rgb_fov": 57322780,
+          "collisions": 4210,
+          "outside_rectified_rgb": 0,
+          "rgb_Z_support": 29222080,
+          "rgb_pixels": 169574400
+        },
+        "native_non_sentinel_fraction": 0.9392030026960282,
+        "native_03_6_fraction": 0.4855900953009639,
+        "rgb_Z_support_fraction": 0.17232601147342996
+      },
+      "test": {
+        "frames": 184,
+        "counts": {
+          "native_non_sentinel": 70265792,
+          "native_03_6": 36216753,
+          "native_pixels": 74895360,
+          "positive_rgb_Z": 70265792,
+          "in_rgb_fov": 57253735,
+          "collisions": 4424,
+          "outside_rectified_rgb": 0,
+          "rgb_Z_support": 29100252,
+          "rgb_pixels": 169574400
+        },
+        "native_non_sentinel_fraction": 0.9381861840306261,
+        "native_03_6_fraction": 0.4835647094826702,
+        "rgb_Z_support_fraction": 0.17160757755887682
+      },
+      "train": {
+        "frames": 1478,
+        "counts": {
+          "native_non_sentinel": 564679324,
+          "native_03_6": 291627532,
+          "native_pixels": 601605120,
+          "positive_rgb_Z": 564679324,
+          "in_rgb_fov": 460322553,
+          "collisions": 34002,
+          "outside_rectified_rgb": 0,
+          "rgb_Z_support": 234507001,
+          "rgb_pixels": 1362124800
+        },
+        "native_non_sentinel_fraction": 0.9386212072131301,
+        "native_03_6_fraction": 0.4847490859120348,
+        "rgb_Z_support_fraction": 0.1721626395760506
+      },
+      "all": {
+        "frames": 1846,
+        "counts": {
+          "native_non_sentinel": 705287063,
+          "native_03_6": 364212730,
+          "native_pixels": 751395840,
+          "positive_rgb_Z": 705287063,
+          "in_rgb_fov": 574899068,
+          "collisions": 42636,
+          "outside_rectified_rgb": 0,
+          "rgb_Z_support": 292829333,
+          "rgb_pixels": 1701273600
+        },
+        "native_non_sentinel_fraction": 0.9386358367381965,
+        "native_03_6_fraction": 0.48471486081157966,
+        "rgb_Z_support_fraction": 0.17212359787396925
+      }
+    },
+    "maximum_one_to_one_projection_pixel_ratio": 0.44166666666666665,
+    "interpretation": "Native Z and RGB Z use different axes. These totals cannot be mechanically subtracted into a mutually exclusive loss funnel. Sparse forward projection is not identical to sensor failure."
+  },
+  "test_distance_strata": {
+    "0.3-1": {
+      "reference_pixels": 3063057,
+      "MAE_m": 0.0245735170035192,
+      "correct_10cm_fraction": 0.9823656562708432,
+      "absolute_error_sum": 75270.0832722485,
+      "signed_error_sum": 28645.086264640093,
+      "reference_fraction": 0.10525877920232443,
+      "absolute_error_contribution_fraction": 0.02093022896864904
+    },
+    "1-2": {
+      "reference_pixels": 6300951,
+      "MAE_m": 0.04076270946572073,
+      "correct_10cm_fraction": 0.9529109177328946,
+      "absolute_error_sum": 256843.83497074246,
+      "signed_error_sum": 72763.43466445804,
+      "reference_fraction": 0.21652565070570523,
+      "absolute_error_contribution_fraction": 0.07142014518144639
+    },
+    "2-4": {
+      "reference_pixels": 12937785,
+      "MAE_m": 0.10070417049955578,
+      "correct_10cm_fraction": 0.7604504944238909,
+      "absolute_error_sum": 1302888.9065265954,
+      "signed_error_sum": -132064.68249467015,
+      "reference_fraction": 0.4445935725917425,
+      "absolute_error_contribution_fraction": 0.3622921876634694
+    },
+    "4-6": {
+      "reference_pixels": 6798459,
+      "MAE_m": 0.28848230222082805,
+      "correct_10cm_fraction": 0.3397906790347636,
+      "absolute_error_sum": 1961235.1038739085,
+      "signed_error_sum": -594361.0796219707,
+      "reference_fraction": 0.23362199750022783,
+      "absolute_error_contribution_fraction": 0.5453574381864352
+    }
+  },
+  "test_model_summary": {
+    "reference_pixels": 29100252,
+    "MAE_m": 0.12358098921767051,
+    "RMSE_m": 0.389301651031323,
+    "correct_10cm_fraction": 0.7272062454991799,
+    "absolute_error_P50_m": 0.03981423377990723,
+    "absolute_error_P95_m": 0.4413008213043206
+  },
+  "b3_implementation": {
+    "1304_1305": "Joint candidate and fit/holdout train-group verification, independent viewpoint gate, and common-source native bidirectional gate implemented; no B3 result published.",
+    "1514": "Diagnostic-only: old pose neighbor RGB/native checks, Laplacian variance, plane extraction. No new pose proposal; original_retained_unresolved is hardcoded.",
+    "weights": "Native-source mapping and train-group score/validation implemented; weighted EdgeAwareLogL1 integrated with all-one forward/gradient equivalence and file hashes. No complete runtime receipt.",
+    "texture": "All blocks eligible=False; receipt status=incomplete and texture_split_enabled=False. Multiview clarity population and verified contributing Gaussian IDs not implemented.",
+    "training": "run_formal primitive exists; training_decision rejects incomplete texture. Actual input/initialization/manifest preparation and full orchestration still absent from launcher.",
+    "launcher": "Only adopts fusion, evaluates both model/sensor on full184 val, writes frozen_pair_val.json and exits. No B/C, final frozen test, or delivery steps.",
+    "coordinator": "Textual task queue asks future implementation; not proof of completed executable chain.",
+    "published_status": "launch_verified is a historical startup observation, not current PID or final quality evidence."
+  },
+  "weights_static_performance_risk": {
+    "classification": "static source estimate, not runtime measurement",
+    "train_valid_pixels": 234507001,
+    "chunk_points": 1024,
+    "target_frame_visits_upper_bound": 339551286,
+    "native_cache_frames": 8,
+    "native_z_plus_edge_float32_all_train_bytes": 4812840960,
+    "caveat": "View-frustum exclusion reduces actual depth loads; wall-clock slowdown has not been measured. Arrays exclude Python/temporary overhead.",
+    "remedy": "Precompute and keep native depth/edge arrays resident within available memory or use equivalent batching/GPU implementation without changing folds, independence, or vote rules."
+  },
+  "split_and_mask_review": {
+    "train_only_observed": "B2 init and tracks, B3 submaps and weights consume primary train only; heldout PnP uses fixed external train RGB-D anchors.",
+    "heldout_depth_in_pose": "Read for reported residual diagnostic, not PnP fitting or B2 pose acceptance.",
+    "local_crops": "Display/diagnostic ROIs; global184-view denominator retained. Cropped previews do not establish global improvement.",
+    "privacy_redaction": "30 public-video frames redacted; not a training dynamic-object mask.",
+    "dynamic_mask_status": "No semantic dynamic-object removal established in inspected pipeline; D2C occlusion map is not a semantic mask.",
+    "test_status": "Previously inspected fixed development test in same trajectory. Per-round freeze still useful, but not a never-seen project-level blind test."
+  },
+  "recommended_decision": "Continue and complete existing B3 exactly once: finish actual diagnostics and optional-feature capability decisions, regenerate initialization if poses change, bind inputs/manifest, conditionally run protocol240k, select on fullval, then freeze and evaluate fixedtest. Separate frozen-B2 export gains from new-training gains.",
+  "not_yet_justified": [
+    "Restarting completed B2 240k as a new suggestion",
+    "Declaring current B3 quality improved from a code patch",
+    "Whole-map SLAM/RGB-D reset without residual evidence after B3",
+    "Blindly adding 6–10m raw depth as strong supervision",
+    "Reacquiring the entire scene before assessing B3"
+  ]
+}

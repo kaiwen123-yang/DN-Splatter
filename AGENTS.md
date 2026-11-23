@@ -10,7 +10,15 @@
 
 ## 开始前读取
 
-**当前阶段（2026-11-21）：B0和Metric3D B1已全部完成。最新证据冻结在 `3728dae350a240d317702d57e560554d529679c6`。下一任务是一次完整B2质量改进，而不是再做法线替换。** B1 Test PSNR16.885dB、模型深度MAE0.336m；同支持网格10cm正确覆盖仅59.02%。当前新任务状态为planned，不能把计划提交写成已经启动训练。
+**当前接续状态（2026-11-23，审阅源码 `d6405240df30c49e71365f87fdce4ec7ce7c7462`）：B2 已完整完成 240k，val 选中 210k；test PSNR24.681dB、模型Z MAE0.1236m，但支持Poisson的10cm正确覆盖仍仅61.95%。下一任务是接续现有 B3 run `capture-full-quality-v3-20261122-v1`，完成既定 A/B/条件 C 与完整交付。** 不重新启动 B2，不重做原环境、bag提取或VR基线。
+
+先读 `reports/capture-quality-review/2026-11-23/overview.md`、三份专项复核和 `prompts/capture_quality_continue_20261123.md`，再按 `docs/15_capture_surface_quality_plan.md`、`configs/capture_surface_quality_protocol.json` 的冻结规则执行。11-22 13:58北京时间的B3回执是历史启动证据，不能代替当前服务器实态。先查现有进程、阶段、锁和产物，接续原run，避免双重协调。审阅版本主shell仅接到A4全val；B诊断、独立输入/初始化、条件训练和最终交付仍需完整串接。纹理诊断的incomplete不能通过改字符串绕过，也不能当三项等价跳过训练的证据。协议允许的可选关闭必须有实际诊断/接口证据和原因。
+
+B3至少一项位姿、深度权重或纹理细分实际改变训练且通过原协议核验时，执行一次完整240k；三项均完成真实诊断且无有效改动时才允许skipped_equivalent。实施未完成或失败单列。保持1478/184/184、完整图像和参考分母，冻结选择后完整开发test。代码/小报告推送GitHub，大产物留AutoDL并列路径与哈希；默认不做Windows归档、不删除服务器数据。B2的`curve.json`内容错标为B1六节点，B2曲线以`selection.json`八节点及逐节点指标为准。
+
+### 已完成 B2 的历史任务约定
+
+**以下为2026-11-21制定、现已执行完的B2任务背景。** 当时B0和Metric3D B1已完成，证据冻结在 `3728dae350a240d317702d57e560554d529679c6`；B1 Test PSNR16.885dB、模型深度MAE0.336m，同支持网格10cm正确覆盖59.02%。该历史计划不代表B2仍在等待运行。
 
 先读 `reports/capture-quality-review/2026-11-21/overview.md`、三份专项复核、`docs/14_capture_quality_plan.md`、`configs/capture_quality_protocol.json`。服务器入口 `prompts/autodl_capture_quality.md`；本地协调入口 `prompts/local_capture_quality.md`。复用既有授权连接、数据、独立环境和Metric3D先验，不再次提取bag、重装Blackwell、重做VR Room或全局SfM。
 
@@ -67,9 +75,9 @@ docs/08/09/10/11/12/13和旧提示词作为已执行历史/接口依据保留，
 
 允许对只读环境命令和失效连接设置短命令超时；这不等于给完整实验设置时限。只有实测资源不足等真实阻塞才进入资源等待，不设置“其他 GPU 进程全部退出”或“GPU 必须空闲”的固定门槛。确需等待时可跨多次上下文或会话，留下具体原因、状态、下一步和恢复命令，避免重复启动。
 
-Nerfstudio 1.1.3 的恢复训练会把 max_num_iterations 作为本次追加步数。当前B2累计目标240,000，零基最后step239,999；从checkpoint读取实际saved_step，使用 `remaining=240000-(saved_step+1)`，保留原240k优化器/调度以及sampler/RNG状态。历史B0/B1/VR的目标仍为30k，不改写旧记录。不要盲目追加整个目标步数，不用未经核实的load-config覆盖规则丢失参数。
+Nerfstudio 1.1.3 的恢复训练会把 max_num_iterations 作为本次追加步数。已完成B2及按协议触发的B3 C阶段累计目标均为240,000，零基最后step239,999；从对应run的checkpoint读取实际saved_step，使用 `remaining=240000-(saved_step+1)`，保留原240k优化器/调度以及sampler/RNG状态。历史B0/B1/VR的目标仍为30k，不改写旧记录。不要盲目追加整个目标步数，不用未经核实的load-config覆盖规则丢失参数。
 
-当前B2每10k更新保存恢复checkpoint，全部30k完整val节点及最终保留，精确以累计更新数定义。按docs/14完成一轮240k、全部留出、对照视频和三类几何输出；无新增小训练或阶段审阅门槛。
+已完成B2的每10k恢复checkpoint、每30k完整val节点及最终模型保留。B3条件训练继承相同累计预算和恢复约定，按docs/15完成现有整轮和最终交付；无新增小训练或阶段人工审阅门槛。
 
 ## 证据与推送
 
