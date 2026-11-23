@@ -1,5 +1,6 @@
 """Bound B3 host memory using exactly reversible representations of decoded training images."""
 from pathlib import Path
+import os
 
 import numpy as np
 import torch
@@ -68,10 +69,12 @@ class CompactViews:
 def bind(manager,scene,output,write):
     budget=reclaimable_budget()
     # The B2 run measured approximately 79 GiB peak host RSS with the native full cache.
-    if budget>=80*1024**3:
+    compact_requested=os.environ.get('DN_B3_COMPACT_CACHE')=='1'
+    if budget>=80*1024**3 and not compact_requested:
         write(output,dict(mode='native',estimated_reclaimable_bytes=budget))
         return None
-    observations=dict(mode='lossless_compact',estimated_reclaimable_bytes=budget,splits={})
+    observations=dict(mode='lossless_compact',estimated_reclaimable_bytes=budget,
+                      explicitly_requested=compact_requested,splits={})
     write(output,observations)
     from unittest.mock import patch
     def load(dm,split,cache_images_device):
