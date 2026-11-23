@@ -12,6 +12,7 @@ from capture_surface_submaps import ROOT, RUN, PACKET, FLIP, camera_parameters, 
 from capture_surface_votes import NativeVotes
 from capture_rectify import grid_setup
 from capture_registration_review import project
+from capture_surface_prefetch import prefetch
 
 
 def mapping(raw, rays, translation, grid, frozen):
@@ -116,20 +117,10 @@ def run(label, chunk, device='cpu'):
     check_path = out/'native_equivalence.json'
     total, changed = 0, 0
     receipts = []
-    for name in meta['train_filenames']:
-        f = frames[name]; stem = Path(name).stem; gid = group_of[name]
-        target = out / (stem + '.npy')
-        marker = out/'frames'/(stem+'.json')
-        if marker.exists():
-            row = read(marker)
-            check(row['binding']==binding and row['frame']==name and sha(target)==row['sha256'],
-                  'invalid existing depth weight '+name)
-            receipts.append(row['entry']); total += row['entry']['valid']; changed += row['changed']
-            for b in range(4):
-                for low in range(2):
-                    for k, v in row['stats'][b][low].items(): stats[b][low][k] += v
-            continue
-        local = empty_stats(); frame_changed = 0
+    def prepare_frame(name):
+        f=frames[name]; stem=Path(name).stem
+        if (out/'frames'/(stem+'.json')).exists():
+            return name,None
         with np.load(PACKET / source[stem]['depth']['file']) as archive:
             raw = archive['depth']
         frozen = np.load(scene / f['depth_file_path'], mmap_mode='r')
@@ -139,6 +130,23 @@ def run(label, chunk, device='cpu'):
         p = np.column_stack(((x-dep['cx'])*z/dep['fx'], (y-dep['cy'])*z/dep['fy'], z))
         pose = np.asarray(f['transform_matrix']) @ FLIP @ rel
         p = p @ pose[:3, :3].T + pose[:3, 3]
+        return name,(frozen,flat,p,pose)
+
+    for name,prepared in prefetch(prepare_frame,meta['train_filenames']):
+        stem=Path(name).stem; gid=group_of[name]
+        target=out/(stem+'.npy')
+        marker=out/'frames'/(stem+'.json')
+        if prepared is None:
+            row=read(marker)
+            check(row['binding']==binding and row['frame']==name and sha(target)==row['sha256'],
+                  'invalid existing depth weight '+name)
+            receipts.append(row['entry']); total+=row['entry']['valid']; changed+=row['changed']
+            for b in range(4):
+                for low in range(2):
+                    for k,v in row['stats'][b][low].items(): stats[b][low][k]+=v
+            continue
+        local=empty_stats(); frame_changed=0
+        frozen,flat,p,pose=prepared
         weights = np.zeros(frozen.size, np.float32)
         for start in range(0, len(flat), chunk):
             end = min(start+chunk, len(flat))

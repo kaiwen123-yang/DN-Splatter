@@ -148,12 +148,24 @@ def combined(label,branch):
     signature=out/"assembly_identity.json"
     if signature.is_file() and read(signature) != ident:
         previous = read(signature)
-        # The original classifier and PLY writer agree byte-for-byte. Only final clipping changed.
-        compatible = dict(ident, implementation=[
-            "884d4c28556effae59c6719d0c8e69d2568499836f8c42dde1948adf8cb5808f", ident["implementation"][1]])
-        if previous != compatible or (out/"complete.json").exists():
-            raise ValueError("Existing global assembly identity changed")
-        write(out/"assembly_identity_before_clip_repair.json", previous)
+        serial_identity=dict(ident,implementation=[
+            "3f5d4b64949a147e7ffa0a75e222591407086b6e9d74640fac0ea1022c8de170",
+            "fbcd4024603cdcc6a4abf302e4d5fbbab2f4b9fbe0242bb0c89daac6da4cbd3c"])
+        if previous==serial_identity:
+            if (out/"complete.json").exists():
+                receipt=read(out/"complete.json")
+                if (receipt["model"]!=label or receipt["branch"]!=branch or
+                    receipt["assembly_identity"]!=sha(signature) or receipt["mesh"]["sha256"]!=sha(path)):
+                    raise ValueError("Historical assembly readback")
+                return
+            write(out/"assembly_identity_before_parallel_weld.json",previous)
+        else:
+            # Older shards used the classifier preceding the polygon repair.
+            compatible = dict(ident, implementation=[
+                "884d4c28556effae59c6719d0c8e69d2568499836f8c42dde1948adf8cb5808f", serial_identity["implementation"][1]])
+            if previous != compatible or (out/"complete.json").exists():
+                raise ValueError("Existing global assembly identity changed")
+            write(out/"assembly_identity_before_clip_repair.json", previous)
     write(signature,ident)
     if (out/"complete.json").is_file():
         if read(out/"complete.json")["mesh"]["sha256"]!=sha(path):raise ValueError("Global mesh readback")

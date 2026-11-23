@@ -2,6 +2,7 @@
 import hashlib
 import json
 import os
+from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
 import numpy as np
@@ -109,8 +110,10 @@ def index_all(label):
     groups=read(export/"identity.json")["groups"]
     if len(groups)!=len(ledger["receipts"]):
         raise ValueError("Missing submaps")
-    data={}
-    for item,expected in zip(groups,ledger["receipts"]):
+    if len({g["id"] for g in groups})!=len(groups):
+        raise ValueError("Duplicate submap destination")
+    def index_group(pair):
+        item,expected=pair
         gid=item["id"]
         receipt=ROOT/expected["path"]
         if sha(receipt)!=expected["sha256"]:
@@ -118,14 +121,21 @@ def index_all(label):
         src=read(receipt)
         if src["identity"]!=identity or src["group_id"]!=gid:
             raise ValueError("Submap ID")
+        counts={}
         for branch in ("model","sensor"):
             row=src["meshes"][branch]
             info=index_source(ROOT/row["path"],export/"tiles"/branch/f"{gid:04d}",row)
-            data[branch]=data.get(branch,0)+info["triangles"]
-        progress=dict(run_id=PLAN["run_id"],phase="A3_index",model=label,groups=gid+1,total=len(groups),
-                      triangles=data,pid=os.getpid(),identity=identity)
-        write(RUN/"state"/"A3_progress.json",progress)
-        print(f"Indexed {gid+1}/{len(groups)} original model and sensor submaps: {data}",flush=True)
+            counts[branch]=info["triangles"]
+        return gid,counts
+    data={}
+    workers=min(int(os.environ.get("DN_CPU_BUDGET","1")),len(os.sched_getaffinity(0)),len(groups))
+    with ThreadPoolExecutor(max_workers=workers) as pool:
+        for gid,counts in pool.map(index_group,zip(groups,ledger["receipts"])):
+            for branch,n in counts.items(): data[branch]=data.get(branch,0)+n
+            progress=dict(run_id=PLAN["run_id"],phase="A3_index",model=label,groups=gid+1,total=len(groups),
+                          triangles=data,pid=os.getpid(),identity=identity,cpu_workers=workers)
+            write(RUN/"state"/"A3_progress.json",progress)
+            print(f"Indexed {gid+1}/{len(groups)} original model and sensor submaps: {data}",flush=True)
     write(export/"tiles"/"complete.json",dict(groups=len(groups),frames=1478,triangles=data,identity=identity))
 
 

@@ -1,6 +1,7 @@
 """Freeze B3 input identities and decide once whether training changes the optimization."""
 import os
 from pathlib import Path
+from concurrent.futures import ThreadPoolExecutor
 import shutil
 import subprocess
 
@@ -44,8 +45,14 @@ def prepare():
           for d in ('images','depth','normals_from_pretrain')), 'B2 signed population')
     check(files['transforms.json']==sha(pose) and files[meta['ply_file_path']]==
           read(B2/'geometry/initialization.json')['ply']['sha256'], 'initialization pose or PLY mismatch')
-    for name,digest in files.items():
+    def copy_input(item):
+        name,digest=item
         independent_copy(B2/'inputs'/name,scene/name,digest)
+    workers=min(int(os.environ['DN_CPU_BUDGET']),len(os.sched_getaffinity(0)))
+    print(f'Copying and hashing independent inputs with {workers} CPU workers',flush=True)
+    with ThreadPoolExecutor(max_workers=workers) as pool:
+        for _ in pool.map(copy_input,files.items()):
+            pass
     aux={}
     for name in ('tracks.npz','added_tracks.npz'):
         p=B2/'geometry'/name
