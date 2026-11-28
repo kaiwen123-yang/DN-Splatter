@@ -1109,3 +1109,32 @@ D 线实测支撑面的代理物体接触为 51/90 控制步。E 线 RGB 跟踪�
 本次产物身份、字节数、条件分支和运行 PID 见 [实测状态](reports/interactive-world/latest.json)。在项目服务器根目录运行 `bash scripts/launch_interactive_world.sh status` 可读取最新实态。
 
 <!-- interactive-world-evidence a343443d05aaf1a3 -->
+
+
+### 2026-11-28T21:45:40+08:00｜交互世界服务器实测
+
+运行 `interactive-world-20261128-v1` 使用逐文件哈希核验的大厅、VR、DN 环境和原生深度。采样时仓库提交为 `4fce6619f49b1662700508b0bdf80ac859cd8200`。当前正式训练累计下界 338,300 步，其中可从已落盘 checkpoint 恢复 330,000 步。
+
+| 训练组 | 阶段 | 已执行步数下界 | 可恢复步数 | PID | 调度实态 |
+|---|---|---:|---:|---:|---|
+| R0C | train | 130,400 | 130,000 | 15993 | running |
+| R1 | train | 117,900 | 110,000 | 16581 | running |
+| R2 | train | 0 | 0 | — | three heavy workers already active |
+| R3 | train | 0 | 0 | — | three heavy workers already active |
+| R4 | train | 0 | 0 | — | three heavy workers already active |
+| R5 | train | 0 | 0 | — | three heavy workers already active |
+| R6 | train | 0 | 0 | — | awaiting independent pose audit |
+| R7 | train | 0 | 0 | — | awaiting independent pose audit |
+| VR0C | evaluate | 30,000 | 30,000 | — | evaluation receipt present |
+| VR1 | evaluate | 30,000 | 30,000 | — | evaluation receipt present |
+| VR2 | evaluate | 30,000 | 30,000 | 48531 | running |
+
+A 线 sensor-only 在 1,478 个训练帧的 901,836,249 个自然孔洞中接受 509421 个。B 线有序流已记录 1478 帧，独立训练时组的尺度审计使用 558 帧。固定大厅相机与传感器读数都来自同一采集。
+
+D 线实测支撑面的代理物体接触为 51/90 控制步。E 线 RGB 跟踪的共同有效标签为 46558/47582 帧。生成轨迹数为 1536，对应 230400 个控制时刻。小预测器的 15 项条件与种子组合累计训练 300000 步。
+
+资源快照含 25 核 CPU 配额，GPU 利用率 99%，整卡已用显存 14.24 GiB，cgroup 总用量 92.48 GiB，清洁非活跃文件页 11.31 GiB。逐阶段错误与重试见 run 下 `state/coordinator-events.jsonl` 和各 worker 日志。
+
+本次产物身份、字节数、条件分支和运行 PID 见 [实测状态](reports/interactive-world/latest.json)。在项目服务器根目录运行 `bash scripts/launch_interactive_world.sh status` 可读取最新实态。
+
+<!-- interactive-world-evidence 5fd06560869f54bf -->

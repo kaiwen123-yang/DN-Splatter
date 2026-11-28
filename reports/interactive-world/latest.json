@@ -3,7 +3,7 @@
   "stage": "interactive-world",
   "status": "running",
   "run_id": "interactive-world-20261128-v1",
-  "observed_at": "2026-11-28T21:36:57+08:00",
+  "observed_at": "2026-11-28T21:45:40+08:00",
   "timezone": "Asia/Shanghai",
   "run_directory": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1",
   "source_baseline": "f10e91805877b197d49107347844b675df856d3f",
@@ -14,20 +14,20 @@
     "mandatory_vr_runs": 2,
     "generated_episodes": 1536
   },
-  "actual_new_training_updates_lower_bound": 324300,
-  "durable_training_updates": 320000,
+  "actual_new_training_updates_lower_bound": 338300,
+  "durable_training_updates": 330000,
   "host": {
-    "time": "2026-11-28T21:36:57+08:00",
+    "time": "2026-11-28T21:45:40+08:00",
     "cpu_quota": 25,
-    "cgroup_total_bytes": 107354484736,
+    "cgroup_total_bytes": 99302834176,
     "cgroup_limit_bytes": 128849018880,
-    "clean_inactive_file_bytes": 23351668736,
-    "cgroup_working_bytes": 84002816000,
-    "ram_available_bytes": 44846202880,
+    "clean_inactive_file_bytes": 12145491968,
+    "cgroup_working_bytes": 87157342208,
+    "ram_available_bytes": 41691676672,
     "gpu_total_bytes": 102641958912,
-    "gpu_free_bytes": 89190825984,
-    "gpu_util_percent": 95,
-    "disk_free_bytes": 413402607616
+    "gpu_free_bytes": 87354769408,
+    "gpu_util_percent": 99,
+    "disk_free_bytes": 410955608064
   },
   "coordinator_pid": 16515,
   "protocol": "interactive-world-20261128-v1",
@@ -93,22 +93,22 @@
           "correct_coverage_10cm": 0.44176280012119534
         }
       },
-      "matched_pairs": 8200,
+      "matched_pairs": 8900,
       "planned_pairs": 9881,
       "per_target_pose_audits": {
-        "ready_targets_solved": 979,
+        "ready_targets_solved": 1116,
         "all_targets": 1478,
         "workers": 4
       }
     },
     "C": {
       "status": "running",
-      "mandatory_updates_lower_bound": 111500,
+      "mandatory_updates_lower_bound": 117900,
       "mandatory_updates_target": 1200000,
       "variants": {
         "R0C": {
-          "durable_updates": 120000,
-          "verified_updates_lower_bound": 122800,
+          "durable_updates": 130000,
+          "verified_updates_lower_bound": 130400,
           "training_complete": false,
           "evaluation_complete": false,
           "phase": "train",
@@ -116,17 +116,17 @@
           "log": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1/c_dn/R0C/logs/train-20261128T091954-15986.log",
           "exit_code": null,
           "status": "running",
-          "reason": "waiting for next sample",
+          "reason": "running",
           "resources": {
-            "utc": "2026-11-28T13:36:54.732504+00:00",
+            "utc": "2026-11-28T13:45:39.190635+00:00",
             "pid": 16007,
             "torch_reserved_peak": 14873001984,
             "torch_allocated_peak": 14775135232,
             "torch_threads": 1,
-            "cgroup_current_bytes": 107354370048,
-            "pss_bytes": 3054049280,
+            "cgroup_current_bytes": 99269578752,
+            "pss_bytes": 3001780224,
             "rss_bytes": 3494961152,
-            "uss_bytes": 2855190528
+            "uss_bytes": 2853023744
           },
           "evaluated_nodes": {
             "val": [
@@ -195,7 +195,7 @@
         },
         "R1": {
           "durable_updates": 110000,
-          "verified_updates_lower_bound": 111500,
+          "verified_updates_lower_bound": 117900,
           "training_complete": false,
           "evaluation_complete": false,
           "phase": "train",
@@ -203,17 +203,17 @@
           "log": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1/c_dn/R1/logs/train-20261128T092335-16575.log",
           "exit_code": null,
           "status": "running",
-          "reason": "waiting for next sample",
+          "reason": "running",
           "resources": {
-            "utc": "2026-11-28T13:36:47.447159+00:00",
+            "utc": "2026-11-28T13:45:37.578433+00:00",
             "pid": 16593,
             "torch_reserved_peak": 14881390592,
             "torch_allocated_peak": 14776887296,
             "torch_threads": 1,
-            "cgroup_current_bytes": 107350052864,
-            "pss_bytes": 2965212160,
-            "rss_bytes": 3405422592,
-            "uss_bytes": 2767020032
+            "cgroup_current_bytes": 99245690880,
+            "pss_bytes": 2913293312,
+            "rss_bytes": 3405443072,
+            "uss_bytes": 2765500416
           },
           "evaluated_nodes": {
             "val": [
@@ -275,7 +275,7 @@
           "log": null,
           "exit_code": null,
           "status": "pending",
-          "reason": "waiting for next sample",
+          "reason": "three heavy workers already active",
           "resources": {}
         },
         "R3": {
@@ -288,7 +288,7 @@
           "log": null,
           "exit_code": null,
           "status": "pending",
-          "reason": "waiting for next sample",
+          "reason": "three heavy workers already active",
           "resources": {}
         },
         "R4": {
@@ -301,7 +301,7 @@
           "log": null,
           "exit_code": null,
           "status": "pending",
-          "reason": "waiting for next sample",
+          "reason": "three heavy workers already active",
           "resources": {}
         },
         "R5": {
@@ -314,7 +314,7 @@
           "log": null,
           "exit_code": null,
           "status": "pending",
-          "reason": "waiting for next sample",
+          "reason": "three heavy workers already active",
           "resources": {}
         },
         "R6": {
@@ -327,7 +327,7 @@
           "log": null,
           "exit_code": null,
           "status": "pending",
-          "reason": "waiting for next sample",
+          "reason": "awaiting independent pose audit",
           "resources": {}
         },
         "R7": {
@@ -340,7 +340,7 @@
           "log": null,
           "exit_code": null,
           "status": "pending",
-          "reason": "waiting for next sample",
+          "reason": "awaiting independent pose audit",
           "resources": {}
         }
       }
@@ -519,11 +519,11 @@
           "training_complete": true,
           "evaluation_complete": false,
           "phase": "evaluate",
-          "pid": null,
-          "log": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1/f_vr/VR2/logs/train-20261128T125624-46853.log",
-          "exit_code": 0,
-          "status": "pending",
-          "reason": "admitted",
+          "pid": 48531,
+          "log": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1/f_vr/VR2/logs/evaluate-20261128T133657-48523.log",
+          "exit_code": null,
+          "status": "running",
+          "reason": "running",
           "resources": {
             "utc": "2026-11-28T13:36:24.866337+00:00",
             "pid": 46871,
