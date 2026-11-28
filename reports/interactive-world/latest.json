@@ -3,7 +3,7 @@
   "stage": "interactive-world",
   "status": "running",
   "run_id": "interactive-world-20261128-v1",
-  "observed_at": "2026-11-28T20:56:44+08:00",
+  "observed_at": "2026-11-28T21:00:45+08:00",
   "timezone": "Asia/Shanghai",
   "run_directory": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1",
   "source_baseline": "f10e91805877b197d49107347844b675df856d3f",
@@ -14,20 +14,20 @@
     "mandatory_vr_runs": 2,
     "generated_episodes": 1536
   },
-  "actual_new_training_updates_lower_bound": 244700,
-  "durable_training_updates": 230000,
+  "actual_new_training_updates_lower_bound": 252500,
+  "durable_training_updates": 240000,
   "host": {
-    "time": "2026-11-28T20:56:44+08:00",
+    "time": "2026-11-28T21:00:45+08:00",
     "cpu_quota": 25,
-    "cgroup_total_bytes": 102516109312,
+    "cgroup_total_bytes": 104633118720,
     "cgroup_limit_bytes": 128849018880,
-    "clean_inactive_file_bytes": 19720871936,
-    "cgroup_working_bytes": 82795237376,
-    "ram_available_bytes": 46053781504,
+    "clean_inactive_file_bytes": 19733164032,
+    "cgroup_working_bytes": 84899954688,
+    "ram_available_bytes": 43949064192,
     "gpu_total_bytes": 102641958912,
-    "gpu_free_bytes": 89683656704,
-    "gpu_util_percent": 98,
-    "disk_free_bytes": 419121045504
+    "gpu_free_bytes": 85945483264,
+    "gpu_util_percent": 97,
+    "disk_free_bytes": 418515353600
   },
   "coordinator_pid": 16515,
   "protocol": "interactive-world-20261128-v1",
@@ -93,22 +93,22 @@
           "correct_coverage_10cm": 0.44176280012119534
         }
       },
-      "matched_pairs": 6550,
+      "matched_pairs": 6750,
       "planned_pairs": 9881,
       "per_target_pose_audits": {
-        "ready_targets_solved": 754,
+        "ready_targets_solved": 796,
         "all_targets": 1478,
         "workers": 4
       }
     },
     "C": {
       "status": "running",
-      "mandatory_updates_lower_bound": 87900,
+      "mandatory_updates_lower_bound": 90100,
       "mandatory_updates_target": 1200000,
       "variants": {
         "R0C": {
           "durable_updates": 90000,
-          "verified_updates_lower_bound": 96800,
+          "verified_updates_lower_bound": 99600,
           "training_complete": false,
           "evaluation_complete": false,
           "phase": "train",
@@ -118,15 +118,15 @@
           "status": "running",
           "reason": "running",
           "resources": {
-            "utc": "2026-11-28T12:56:37.431629+00:00",
+            "utc": "2026-11-28T13:00:43.242795+00:00",
             "pid": 16007,
             "torch_reserved_peak": 14873001984,
             "torch_allocated_peak": 14775135232,
             "torch_threads": 1,
-            "cgroup_current_bytes": 102441242624,
-            "pss_bytes": 3024422912,
+            "cgroup_current_bytes": 104633061376,
+            "pss_bytes": 3005017088,
             "rss_bytes": 3503366144,
-            "uss_bytes": 2862194688
+            "uss_bytes": 2861740032
           },
           "evaluated_nodes": {
             "val": [
@@ -179,8 +179,8 @@
           }
         },
         "R1": {
-          "durable_updates": 80000,
-          "verified_updates_lower_bound": 87900,
+          "durable_updates": 90000,
+          "verified_updates_lower_bound": 90100,
           "training_complete": false,
           "evaluation_complete": false,
           "phase": "train",
@@ -190,15 +190,15 @@
           "status": "running",
           "reason": "running",
           "resources": {
-            "utc": "2026-11-28T12:56:41.252288+00:00",
+            "utc": "2026-11-28T13:00:44.341291+00:00",
             "pid": 16593,
             "torch_reserved_peak": 14881390592,
             "torch_allocated_peak": 14776887296,
             "torch_threads": 1,
-            "cgroup_current_bytes": 102500737024,
-            "pss_bytes": 2926865408,
-            "rss_bytes": 3405381632,
-            "uss_bytes": 2765119488
+            "cgroup_current_bytes": 104632872960,
+            "pss_bytes": 2872743936,
+            "rss_bytes": 3370438656,
+            "uss_bytes": 2730164224
           },
           "evaluated_nodes": {
             "val": [
@@ -230,6 +230,21 @@
                   "path": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1/c_dn/R1/evaluation/val/step-000059999.json",
                   "bytes": 754038,
                   "sha256": "5ee2f835d93ecbfb0beb01d77aaa5bd01d6e3d22917c2eaf4eb84ee18ab125cd"
+                }
+              },
+              {
+                "step": 89999,
+                "images": 184,
+                "reference_pixels": 29222080,
+                "invalid": 0,
+                "psnr": 23.846419458803922,
+                "mae_m": 0.13718674784118143,
+                "p95_m": 0.44365406036376953,
+                "correct_10cm_fraction": 0.7136464618535026,
+                "source": {
+                  "path": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1/c_dn/R1/evaluation/val/step-000089999.json",
+                  "bytes": 754050,
+                  "sha256": "b8470b66c428f87ff17ff4518a561258a63dbb50e7247a54fcb0b567e4c51e9e"
                 }
               }
             ]
@@ -485,7 +500,7 @@
         },
         "VR2": {
           "durable_updates": 0,
-          "verified_updates_lower_bound": 0,
+          "verified_updates_lower_bound": 2800,
           "training_complete": false,
           "evaluation_complete": false,
           "phase": "train",
@@ -494,7 +509,19 @@
           "exit_code": null,
           "status": "running",
           "reason": "running",
-          "resources": {}
+          "resources": {
+            "utc": "2026-11-28T13:00:39.800608+00:00",
+            "pid": 46871,
+            "torch_reserved_peak": 4223664128,
+            "torch_allocated_peak": 4183607808,
+            "torch_threads": 1,
+            "cgroup_current_bytes": 104633217024,
+            "cgroup_anon_bytes": 11573739520,
+            "cgroup_file_bytes": 91881320448,
+            "pss_bytes": 2437556224,
+            "rss_bytes": 2928726016,
+            "uss_bytes": 2299363328
+          }
         }
       }
     }
