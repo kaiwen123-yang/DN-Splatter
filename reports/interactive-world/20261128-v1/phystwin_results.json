@@ -61,7 +61,34 @@
       }
     },
     "G-Q1": {
-      "completed": false
+      "completed": true,
+      "initial_frame": 64,
+      "final_frame": 79,
+      "horizon_s": 0.5,
+      "revisions": 1,
+      "endpoint": {
+        "frame": 79,
+        "valid_tracks": 8,
+        "track_mean_m": 0.1745513881659415,
+        "views": {
+          "1": {
+            "valid_measured_object_points": 1627,
+            "observed_to_nodes_mean_m": 0.045026640719712706
+          },
+          "2": {
+            "valid_measured_object_points": 2650,
+            "observed_to_nodes_mean_m": 0.0424327375048078
+          }
+        }
+      },
+      "track_points_over_all_16_timestamps": 127,
+      "prior_identity": "466e0ef9553ca4fad33ec5a91c0a7d223dc4c6f5adb2e33e8bda11a63de9cb09",
+      "accepted_hidden_pixels": 3887,
+      "source": {
+        "path": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1/e_interaction/phystwin/single_push_rope_1/G-Q1_metrics.json",
+        "bytes": 6768,
+        "sha256": "44301d9ee83d2a7d2eb1cdee83544e286bbb971501e097020537ab87751b6131"
+      }
     }
   },
   "single_push_rope_4": {
@@ -126,7 +153,34 @@
       }
     },
     "G-Q1": {
-      "completed": false
+      "completed": true,
+      "initial_frame": 58,
+      "final_frame": 73,
+      "horizon_s": 0.5,
+      "revisions": 1,
+      "endpoint": {
+        "frame": 73,
+        "valid_tracks": 9,
+        "track_mean_m": 0.1759453277982646,
+        "views": {
+          "1": {
+            "valid_measured_object_points": 889,
+            "observed_to_nodes_mean_m": 0.058342311647410786
+          },
+          "2": {
+            "valid_measured_object_points": 957,
+            "observed_to_nodes_mean_m": 0.04063745927452924
+          }
+        }
+      },
+      "track_points_over_all_16_timestamps": 140,
+      "prior_identity": "4ed6cffd848382da1804b1991af710996e4f197ce6269d2dbc8139c04aa61ce5",
+      "accepted_hidden_pixels": 455,
+      "source": {
+        "path": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1/e_interaction/phystwin/single_push_rope_4/G-Q1_metrics.json",
+        "bytes": 6741,
+        "sha256": "2ddc82eb057504f0242ff46acb43b9fef7dcac621c9f6296b5bcd443c75b651d"
+      }
     }
   }
 }

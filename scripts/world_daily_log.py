@@ -5,6 +5,7 @@ import hashlib
 import json
 import os
 from pathlib import Path
+import subprocess
 import time
 from zoneinfo import ZoneInfo
 
@@ -33,6 +34,28 @@ def ref(path):
     return dict(path=str(path),bytes=path.stat().st_size,sha256=digest)
 
 
+def evaluated_nodes(name):
+    out=RUN/("f_vr" if name.startswith("VR") else "c_dn")/name
+    result={}
+    for split in ("val","test"):
+        nodes=[]
+        for file in sorted((out/"evaluation"/split).glob("step-*.json")):
+            row=read(file)
+            d=row["depth_pixel_pooled"]
+            den=d["reference_pixels"]
+            nodes.append(dict(step=row["step"],images=row["frame_count"],reference_pixels=den,
+                              invalid=d["invalid_prediction_pixels"],psnr=row["rgb_frame_means"]["psnr"],
+                              mae_m=d["MAE_m"],p95_m=d.get("absolute_error_P95_m"),
+                              correct_10cm_fraction=d["correct_10cm"]/den if den else None,source=ref(file)))
+        if nodes:
+            result[split]=nodes
+    for crop in ("official418","strict376"):
+        mesh=out/"mesh"/crop/"mesh_metrics.json"
+        if mesh.exists():
+            result[crop]=dict(metrics=read(mesh),source=ref(mesh))
+    return result
+
+
 def snapshot():
     q=read(RUN/"state/queue.json")
     if not q.get("training"):
@@ -49,7 +72,7 @@ def snapshot():
             "f_vr/*/training_complete.json","f_vr/*/evaluation/complete.json","f_vr/coverage.json",
             "c_dn/numeric_checks.json","c_dn/packet_checks.json","f_vr/blackwell_verification/blackwell.json",
             "d_world/proxy/functional.json","d_world/hall_sensor/attempt-2/support_audit.json",
-            "d_world/hall_sensor/attempt-2/functional.json","d_world/memory/results.json",
+            "d_world/hall_sensor/attempt-2/functional.json","d_world/memory/results.json","d_world/static_hall/results.json",
             "e_interaction/assets/pusht/source.json","e_interaction/assets/tblock/source.json",
             "e_interaction/assets/rope/source-*.json","e_interaction/prepare/split.json",
             "e_interaction/track_v2/tracking_all.json","e_interaction/calibration/*.json",
@@ -83,6 +106,9 @@ def snapshot():
             status="failed"
         states[k]={x:r[x] for x in ("durable_updates","verified_updates_lower_bound","training_complete","evaluation_complete","phase","pid","log","exit_code")}
         states[k].update(status=status,reason=reason,resources=r["measured"])
+        measures=evaluated_nodes(k)
+        if measures:
+            states[k]["evaluated_nodes"]=measures
     counts={k:s["verified_updates_lower_bound"] for k,s in states.items()}
     lanes={
       "A":dict(status="running",r1_train_frames=len(r1.get("frames",[])),accepted_pixels=r1.get("accepted_pixels"),
@@ -116,7 +142,7 @@ def snapshot():
         lanes["A"]["status"]="failed"
     elif stage_status.get("A_R3")=="completed" and stage_status.get("A_VR_adapt")=="completed":
         lanes["A"]["status"]="completed"
-    if phys and lanes["D"]["memory_evidence"]:
+    if phys and lanes["D"]["memory_evidence"] and (RUN/"d_world/static_hall/results.json").is_file():
         lanes["D"].update(status="completed",scope="local measured support, synthetic rigid object and independent-teacher memory tests")
     if gen and probe and len(list((RUN/"e_interaction/phystwin").glob("*/G-*_metrics.json")))==6:
         lanes["E"]["status"]="completed"
@@ -127,6 +153,7 @@ def snapshot():
     status="completed" if all(l["status"]=="completed" for l in lanes.values()) else "running"
     return dict(schema_version="2.0",stage="interactive-world",status=status,run_id=RUN.name,
         observed_at=q["host"]["time"],timezone="Asia/Shanghai",run_directory=str(RUN),source_baseline="f10e91805877b197d49107347844b675df856d3f",
+        repository_head_at_observation=subprocess.check_output(["git","rev-parse","HEAD"],cwd=ROOT,text=True).strip(),
         expected=dict(mandatory_dn_runs=5,iterations_each=240000,mandatory_vr_runs=2,generated_episodes=1536),
         actual_new_training_updates_lower_bound=sum(counts.values()),durable_training_updates=sum(s["durable_updates"] for s in states.values()),
         host=q["host"],coordinator_pid=q["coordinator_pid"],protocol=src["protocol_id"],lanes=lanes,artifacts=artifacts,
@@ -137,7 +164,7 @@ def snapshot():
 def journal(s):
     l=s["lanes"]; host=s["host"]; variants={**l["C"]["variants"],**l["F"]["variants"]}
     lines=[f'### {s["observed_at"]}｜交互世界服务器实测', "",
-        f'运行 `{s["run_id"]}` 使用逐文件哈希核验的大厅、VR、DN 环境和原生深度。当前正式训练累计下界 {s["actual_new_training_updates_lower_bound"]:,} 步，其中可从已落盘 checkpoint 恢复 {s["durable_training_updates"]:,} 步。',
+        f'运行 `{s["run_id"]}` 使用逐文件哈希核验的大厅、VR、DN 环境和原生深度。采样时仓库提交为 `{s.get("repository_head_at_observation",s["source_baseline"])}`。当前正式训练累计下界 {s["actual_new_training_updates_lower_bound"]:,} 步，其中可从已落盘 checkpoint 恢复 {s["durable_training_updates"]:,} 步。',
         "", "| 训练组 | 阶段 | 已执行步数下界 | 可恢复步数 | PID | 调度实态 |",
         "|---|---|---:|---:|---:|---|"]
     for k,v in variants.items():
@@ -187,5 +214,5 @@ if __name__=="__main__":
             fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
             while True:
                 record()
-                if mode=="record": break
+                if mode=="record" or read(PUBLIC/"snapshot.json").get("status")=="completed": break
                 time.sleep(60)

@@ -1,0 +1,138 @@
+{
+  "scope": "real_hall_static_assumption_consistency",
+  "positions": 1846,
+  "input_roles": "all frames in chronology; analysis-only, includes publication holdouts; export to training disabled",
+  "pose_source": "fixed captured B2 OpenCV camera poses, no pose fitting, no independently measured camera truth",
+  "counts": {
+    "positions": 1846,
+    "raw_primary_pixels": 287403220,
+    "canvas_pixels": 1670860800,
+    "bootstrap_frames": 1,
+    "seed_anchors": 472,
+    "cross_outside_or_behind": 188249,
+    "cross_occluded_by_anchor": 172,
+    "cross_unknown_sensor_or_edge": 128895,
+    "cross_consistent": 1245,
+    "cross_foreground_occlusion": 28893,
+    "cross_see_through": 4031,
+    "weak_anchor_frames": 1553,
+    "registered_frames": 259,
+    "suspect_reference_pose": 3,
+    "publication_redaction": 30
+  },
+  "counts_by_original_split": {
+    "train": {
+      "positions": 1478,
+      "raw_primary_pixels": 230156268,
+      "canvas_pixels": 1337241600,
+      "bootstrap_frames": 1,
+      "seed_anchors": 472,
+      "cross_outside_or_behind": 150581,
+      "cross_occluded_by_anchor": 136,
+      "cross_unknown_sensor_or_edge": 103463,
+      "cross_consistent": 995,
+      "cross_foreground_occlusion": 23096,
+      "cross_see_through": 3224,
+      "weak_anchor_frames": 1233,
+      "registered_frames": 217,
+      "suspect_reference_pose": 3,
+      "publication_redaction": 24
+    },
+    "val": {
+      "positions": 184,
+      "raw_primary_pixels": 28684244,
+      "canvas_pixels": 166809600,
+      "cross_outside_or_behind": 18846,
+      "cross_occluded_by_anchor": 10,
+      "cross_unknown_sensor_or_edge": 12745,
+      "cross_consistent": 118,
+      "cross_foreground_occlusion": 2875,
+      "cross_see_through": 401,
+      "weak_anchor_frames": 162,
+      "registered_frames": 19,
+      "publication_redaction": 3
+    },
+    "test": {
+      "positions": 184,
+      "raw_primary_pixels": 28562708,
+      "canvas_pixels": 166809600,
+      "cross_outside_or_behind": 18822,
+      "cross_occluded_by_anchor": 26,
+      "cross_unknown_sensor_or_edge": 12687,
+      "cross_consistent": 132,
+      "cross_foreground_occlusion": 2922,
+      "cross_see_through": 406,
+      "weak_anchor_frames": 158,
+      "registered_frames": 23,
+      "publication_redaction": 3
+    }
+  },
+  "methods": {
+    "M0": {
+      "independent_comparisons": 11084,
+      "foreground_occlusions": 9017,
+      "new_retraction_on_occlusion": 0,
+      "clear_ray_comparisons": 1324,
+      "contradicted_on_clear_ray": 0,
+      "new_static_retraction_events": 0
+    },
+    "M1": {
+      "independent_comparisons": 11084,
+      "foreground_occlusions": 9017,
+      "new_retraction_on_occlusion": 0,
+      "clear_ray_comparisons": 1324,
+      "contradicted_on_clear_ray": 1324,
+      "new_static_retraction_events": 233,
+      "previously_contradicted_seen_consistently": 316,
+      "reconfirmed_on_consistent_ray": 39
+    },
+    "M2": {
+      "independent_comparisons": 11084,
+      "foreground_occlusions": 9017,
+      "new_retraction_on_occlusion": 0,
+      "clear_ray_comparisons": 1324,
+      "contradicted_on_clear_ray": 1324,
+      "new_static_retraction_events": 233,
+      "previously_contradicted_seen_consistently": 316,
+      "reconfirmed_on_consistent_ray": 39
+    }
+  },
+  "source_groups": 37,
+  "anchors": 472,
+  "hard_unknown_ids": [
+    "frame_01304",
+    "frame_01305",
+    "frame_01514"
+  ],
+  "source_sampling": "up to 24 background voxels per ten-second group from its first eligible view. 6x4 tile centers, scoped 25x25 pixel search. All 1846 time positions retained.",
+  "comparison": "Cross-group means target frame and anchor birth belong to different ten-second acquisition groups. Each admitted in-canvas ray uses a finite primary sensor reading and local 5x5 continuity support; at least three consistent static anchors spanning two image regions for updates.",
+  "threshold_m": 0.025,
+  "labels": "A new contradicted surface is a suspected false update under the static-scene assumption. Out-of-view, foreground occlusion, missing depth and uncertain camera pose provide no clearing evidence. Actual object motion and pose error remain unseparated.",
+  "object_identity": "No independently labeled movable hall object. M2 surface decisions share M1 visibility, without object-pose version evidence.",
+  "elapsed_s": 17.547339987009764,
+  "frame_audit": {
+    "path": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1/d_world/static_hall/frames.jsonl",
+    "bytes": 1090434,
+    "sha256": "8086847ff834be866fa17dd79a9038b6194f25040c015b1f714eda2bcfc09f00"
+  },
+  "inputs": {
+    "path": "/root/autodl-tmp/DN-Splatter/.local/runs/lingbot-depth-map-20261128-v1/prepare/input_manifest.json",
+    "bytes": 1833282,
+    "sha256": "b98d60043118e2834b7c92dde1ee51a35a61cdfa96811ab210be6726c0e8c505"
+  },
+  "selection": {
+    "path": "/root/autodl-tmp/DN-Splatter/.local/runs/lingbot-depth-map-20261128-v1/prepare/selection.json",
+    "bytes": 106127,
+    "sha256": "f4f8b0393e83c5bdb434ee3323a9f884da5039024060174ccbbb9554557087fd"
+  },
+  "redaction": {
+    "path": "/root/autodl-tmp/DN-Splatter/reports/capture-full-quality-v3/20261122-v1/video.json",
+    "bytes": 9044,
+    "sha256": "79def5ff7d4435990a37578fbc37674af5ea8f30486415fc05b00c19aa000fc4"
+  },
+  "implementation": {
+    "path": "/root/autodl-tmp/DN-Splatter/scripts/interactive_physics_static.py",
+    "bytes": 11923,
+    "sha256": "31434daf6d8a6d9c4b7f5b3d4ed8f2b13fb7bf36fdddfbbf7f9189e3bfbf1b75"
+  }
+}
