@@ -1548,3 +1548,34 @@ D 线实测支撑面的代理物体接触为 51/90 控制步。E 线 RGB 跟踪�
 北京时间 22:42，R2 加入正式训练，原有两组继续运行。原调度器将 VR 终评期间整容器的文件缓存增长分别计入 R0C 和 R1，使 R2 的主存准入达到 87.64 GiB。现按进程树 PSS/USS、瞬态峰值及同一启动窗口内的 cgroup 增量调度，保留原 RAM 和 VRAM 余量。后续组按数值验证结果采用 GPU 图像预取、孔洞项缓存和诊断计算调度。大厅选中模型的渲染也在终评阶段复用。实测数字、分母、适用范围和哈希见[加速记录](reports/interactive-world/20261128-v1/acceleration/README.md)。
 
 <!-- interactive-world-evidence d573ee5f4bd247ca -->
+
+
+### 2026-11-28T23:19:23+08:00｜交互世界服务器实测
+
+运行 `interactive-world-20261128-v1` 使用逐文件哈希核验的大厅、VR、DN 环境和原生深度。采样时仓库提交为 `8007375f573208f0afb0c4ce4f7c79b4fac06d58`。当前正式训练累计下界 474,300 步，其中可从已落盘 checkpoint 恢复 460,000 步。
+
+| 训练组 | 阶段 | 已执行步数下界 | 可恢复步数 | PID | 调度实态 |
+|---|---|---:|---:|---:|---|
+| R0C | train | 190,600 | 190,000 | 15993 | running |
+| R1 | train | 174,200 | 170,000 | 16581 | running |
+| R2 | train | 19,500 | 10,000 | 61426 | running |
+| R3 | train | 0 | 0 | — | three training workers already active |
+| R4 | train | 0 | 0 | — | three training workers already active |
+| R5 | train | 0 | 0 | — | three training workers already active |
+| R6 | train | 0 | 0 | — | not_triggered: no accepted pose |
+| R7 | train | 0 | 0 | — | not_triggered: no accepted pose |
+| VR0C | evaluate | 30,000 | 30,000 | — | evaluation receipt present |
+| VR1 | evaluate | 30,000 | 30,000 | — | evaluation receipt present |
+| VR2 | evaluate | 30,000 | 30,000 | — | evaluation receipt present |
+
+A 线 sensor-only 在 1,478 个训练帧的 901,836,249 个自然孔洞中接受 509421 个。B 线有序流已记录 1478 帧，独立训练时组的尺度审计使用 558 帧。固定大厅相机与传感器读数都来自同一采集。
+
+D 线实测支撑面的代理物体接触为 51/90 控制步。E 线 RGB 跟踪的共同有效标签为 46558/47582 帧。生成轨迹数为 1536，对应 230400 个控制时刻。小预测器的 15 项条件与种子组合累计训练 300000 步。
+
+资源快照含 25 核 CPU 配额，GPU 利用率 93%，整卡已用显存 13.50 GiB，cgroup 总用量 105.20 GiB，清洁非活跃文件页 20.51 GiB。逐阶段错误与重试见 run 下 `state/coordinator-events.jsonl` 和各 worker 日志。
+
+本次产物身份、字节数、条件分支和运行 PID 见 [实测状态](reports/interactive-world/latest.json)。在项目服务器根目录运行 `bash scripts/launch_interactive_world.sh status` 可读取最新实态。
+
+六组大厅剩余 1,055,700 步，最近 30 分钟合计吞吐 114,067 步/小时。按北京时间 11 月 29 日中午的目标、为最终评估和视频预留两小时，所需平均吞吐为 98,877 步/小时。
+
+<!-- interactive-world-evidence 3d36af61cd8acf82 -->
