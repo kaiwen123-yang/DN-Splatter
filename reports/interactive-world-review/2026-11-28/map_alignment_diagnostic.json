@@ -1,0 +1,139 @@
+{
+  "n": 1478,
+  "existing_fixed_scale_prefix_rigid": {
+    "scale": 8.047714710235596,
+    "all": {
+      "median": 0.8265402197742235,
+      "p95": 1.6216084544841072,
+      "mean": 0.8235596700141447,
+      "rmse": 0.9650492926572599
+    },
+    "outside_fit": {
+      "median": 0.8547472011364126,
+      "p95": 1.6221416527870955,
+      "mean": 0.8406304004228377,
+      "rmse": 0.9756119613455994
+    }
+  },
+  "prefix_centres_sim3_diagnostic": {
+    "scale": 8.320119857596481,
+    "all": {
+      "median": 0.586327187767796,
+      "p95": 1.2498627292014588,
+      "mean": 0.609797499466222,
+      "rmse": 0.722829319534342
+    },
+    "outside_fit": {
+      "median": 0.6059407901633701,
+      "p95": 1.2510342631371674,
+      "mean": 0.6223050985395652,
+      "rmse": 0.730749969196492
+    }
+  },
+  "all_centres_sim3_diagnostic_only": {
+    "scale": 9.10325233217424,
+    "all": {
+      "median": 0.1143853287807011,
+      "p95": 0.3976627730506918,
+      "mean": 0.1425377165717445,
+      "rmse": 0.1839089956203317
+    },
+    "outside_fit": null
+  },
+  "audit_metadata": {
+    "kind": "local_readonly_reanalysis_of_published_artifacts",
+    "model_inference_executed": false,
+    "model_training_executed": false,
+    "server_experiment_executed": false,
+    "camera_poses_exported": false,
+    "use_for_training_poses": false,
+    "independent_accuracy_claim_supported": false,
+    "repository": "kaiwen123-yang/DN-Splatter",
+    "ref": "ffc157fe30b01796f12e41361c6b2d3ace33521e",
+    "commit": "ffc157fe30b01796f12e41361c6b2d3ace33521e",
+    "reference": "B2 estimated camera centers; not independent ground truth",
+    "unit_of_center_disagreement": "metres in B2 reference coordinates",
+    "numpy_version": "2.3.5",
+    "inputs": {
+      "trajectory": {
+        "path": "reports/lingbot-depth-map/20261128-v1/full_train_1478/trajectory.json",
+        "url": "https://raw.githubusercontent.com/kaiwen123-yang/DN-Splatter/ffc157fe30b01796f12e41361c6b2d3ace33521e/reports/lingbot-depth-map/20261128-v1/full_train_1478/trajectory.json",
+        "bytes": 1262347,
+        "sha256": "961ae9c7008e5c99f9826b411205b34216e085c3f37a2176ff7f4e80c8d97103",
+        "git_blob_sha1": "d4f3588f720794aede3bdeae3748f00726699e74",
+        "expected_git_blob_sha1": "d4f3588f720794aede3bdeae3748f00726699e74",
+        "expected_blob_verified": true,
+        "hash_basis": "exact input bytes, including the original trailing newline"
+      },
+      "alignment": {
+        "path": "reports/lingbot-depth-map/20261128-v1/full_train_1478/alignment.json",
+        "url": "https://raw.githubusercontent.com/kaiwen123-yang/DN-Splatter/ffc157fe30b01796f12e41361c6b2d3ace33521e/reports/lingbot-depth-map/20261128-v1/full_train_1478/alignment.json",
+        "bytes": 12197,
+        "sha256": "eecb6524d019bfb2ba6583dc4c50fb28cc4586404012586488c552d9694b3821",
+        "git_blob_sha1": "5834fbeb7d9428c10e41156bf068614d276232c4",
+        "expected_git_blob_sha1": "5834fbeb7d9428c10e41156bf068614d276232c4",
+        "expected_blob_verified": true,
+        "hash_basis": "exact input bytes, including the original trailing newline"
+      }
+    },
+    "published_baseline_disagreement_reproduced": true,
+    "fit_frame_ids_for_prefix_diagnostics": [
+      "frame_00003",
+      "frame_00007",
+      "frame_00011",
+      "frame_00015",
+      "frame_00017",
+      "frame_00022",
+      "frame_00024",
+      "frame_00027",
+      "frame_00033",
+      "frame_00037",
+      "frame_00040",
+      "frame_00045",
+      "frame_00046",
+      "frame_00053",
+      "frame_00054",
+      "frame_00061",
+      "frame_00063",
+      "frame_00065",
+      "frame_00072",
+      "frame_00074",
+      "frame_00076",
+      "frame_00081",
+      "frame_00086",
+      "frame_00087",
+      "frame_00092",
+      "frame_00097",
+      "frame_00102",
+      "frame_00104",
+      "frame_00106",
+      "frame_00112",
+      "frame_00114",
+      "frame_00117"
+    ],
+    "fit_and_score_sets": {
+      "existing_fixed_scale_prefix_rigid": {
+        "scale": "published sensor/Map depth ratio on frozen calibration support",
+        "rotation_translation_fit_count": 32,
+        "all_score_count": 1478,
+        "outside_fit_score_count": 1446
+      },
+      "prefix_centres_sim3_diagnostic": {
+        "scale_rotation_translation_fit_count": 32,
+        "all_score_count": 1478,
+        "outside_fit_score_count": 1446
+      },
+      "all_centres_sim3_diagnostic_only": {
+        "scale_rotation_translation_fit_count": 1478,
+        "all_score_count": 1478,
+        "outside_fit_score_count": 0
+      }
+    },
+    "prefix_sim3_warning": "Fits scale, rotation and translation to the frozen calibration B2 centers. Reference-agreement diagnosis only; not independent accuracy validation, an observed accuracy improvement, or a candidate for training camera poses.",
+    "full_sequence_sim3_warning": "Fits all B2 centers and evaluates the same centers. Optimistic reference-fitting diagnosis only; not an observed accuracy improvement, new trajectory estimate, independent validation, GT error, or training poses.",
+    "outside_fit_warning": "Outside the frozen calibration IDs, but still the same correlated training sequence and estimated B2 reference; not a held-out benchmark.",
+    "method": "SVD proper-rotation rigid/similarity alignment of camera centers",
+    "reproduction_command": "python scripts/diagnose_lingbot_alignment.py --repo-root .",
+    "reproduction_command_scope": "default audited baseline; reuse source metadata for other inputs"
+  }
+}

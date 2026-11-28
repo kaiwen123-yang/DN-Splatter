@@ -1,0 +1,636 @@
+{
+  "schema_version": "1.0",
+  "protocol_id": "interactive-world-20261128-v1",
+  "date": "2026-11-28",
+  "timezone": "Asia/Shanghai",
+  "status": "planned",
+  "repository": "kaiwen123-yang/DN-Splatter",
+  "evidence_baseline_commit": "ffc157fe30b01796f12e41361c6b2d3ace33521e",
+  "reviewed_media_followup_commit": "94d17e968ec65854d616f2215bca5135b9d5d905",
+  "plan": "docs/17_interactive_world_plan.md",
+  "prompt": "prompts/interactive_world_20261128.md",
+  "daily_log": "DAILY_RESEARCH_LOG.md",
+  "run_id": "interactive-world-20261128-v1",
+  "report_root": "reports/interactive-world/20261128-v1",
+  "scope": {
+    "new_dn_training_authorized": true,
+    "legacy_offline_only_superseded": true,
+    "vla": false,
+    "va": false,
+    "world_foundation_model_training": false,
+    "remote_execution_completed_in_plan_turn": false
+  },
+  "sources": {
+    "depth": {
+      "repo": "https://github.com/Robbyant/lingbot-depth",
+      "commit": "f3a237e434ae987bc38281476d6cfb5df3e4d739",
+      "weights": "robbyant/lingbot-depth-pretrain-vitl-14-v0.5",
+      "weight_files": "restore exact prior sources manifest hashes; do not infer from model name",
+      "base_weights_frozen": true
+    },
+    "map2": {
+      "repo": "https://github.com/Robbyant/lingbot-map-v2",
+      "commit": "078b54485830c74ab1d3797667073e3e8353f3b9",
+      "public_model": "pure causal base",
+      "gcr_in_public_checkpoint": false
+    },
+    "dn": {
+      "upstream_commit": "811f5cdf342d92d12a9d9a4be185d374c430c184",
+      "patches": "restore frozen B3 patch/config/input identities before creating new variants"
+    },
+    "pusht": {
+      "url": "https://huggingface.co/datasets/shashuo0104/xarm7_pusht",
+      "episodes_expected": 60,
+      "fps": 30,
+      "cameras": 2,
+      "width": 240,
+      "height": 240,
+      "action_and_observation_state": "pusher 2D xy waypoint; audit command/executed semantics and units",
+      "depth_provided": false,
+      "object_pose_provided": false,
+      "force_provided": false,
+      "pin_revision_and_files_before_execution": true
+    },
+    "phystwin": {
+      "repo": "https://github.com/Jianghanxiao/PhysTwin",
+      "commit": "81c718790a37e5e0102eb77af2c6edd34a9db25f",
+      "url": "https://huggingface.co/datasets/Jianghanxiao/PhysTwin/resolve/main/data.zip",
+      "sha256": "586a237a0f870b2a0a144ee69c3f04b636cac4fe251df969c1fd1feaf67eeae2",
+      "full_archive_download_required": false
+    }
+  },
+  "lanes": [
+    {
+      "id": "A",
+      "name": "Depth provenance, candidates and MDM quality transfer",
+      "depends_on": [
+        "inventory",
+        "hall_train_inputs"
+      ],
+      "output": "a_depth"
+    },
+    {
+      "id": "B",
+      "name": "Map gauge, new matches, poses and ordered prefetch",
+      "depends_on": [
+        "inventory",
+        "frozen_map_inputs"
+      ],
+      "output": "b_map"
+    },
+    {
+      "id": "C",
+      "name": "Full DN comparisons and geometric boundaries",
+      "depends_on": [
+        "dn_environment",
+        "per_variant_inputs"
+      ],
+      "output": "c_dn"
+    },
+    {
+      "id": "D",
+      "name": "Object/collision assets, physics/render bridge, evidence memory",
+      "depends_on": [
+        "inventory",
+        "available_frozen_geometry"
+      ],
+      "output": "d_world"
+    },
+    {
+      "id": "E",
+      "name": "Public action replay, calibration, paired data, dynamics probe",
+      "depends_on": [
+        "public_data_audit",
+        "per_stage_world_outputs"
+      ],
+      "output": "e_interaction"
+    },
+    {
+      "id": "F",
+      "name": "VR/Faro, evaluation, media, resource coordination, journal",
+      "depends_on": [],
+      "output": "f_evaluation"
+    }
+  ],
+  "data": {
+    "hall": {
+      "train": 1478,
+      "val": 184,
+      "development_test": 184,
+      "width": 1280,
+      "height": 720,
+      "native_width": 848,
+      "native_height": 480,
+      "depth_quantity": "optical-axis Z",
+      "depth_unit": "m",
+      "raw_native_unit": "mm",
+      "invalid_native": [
+        0,
+        65535
+      ],
+      "primary_range_m": [
+        0.3,
+        6
+      ],
+      "hole_mask": "canvas AND NOT finite_positive(raw_full_Z)",
+      "all_1846_exploratory_allowed_for_training": false
+    },
+    "coordinate_contract": {
+      "pixel_centers": "integer OpenCV; COLMAP/Nerfstudio principal point +0.5 only once",
+      "opengl_to_opencv_c2w": "right multiply diag(1,-1,-1,1)",
+      "physics_world": "right handed z-up, explicit gravity and T_physics_reconstruction from trusted plane",
+      "units": [
+        "m",
+        "s",
+        "kg",
+        "rad"
+      ],
+      "mujoco_quaternion": "wxyz",
+      "sim3": "centers s*R*t+t0; orientations R*Rcam; depth and geometry scale; normals rotate only"
+    },
+    "vr": {
+      "height": 738,
+      "width": 994,
+      "train": 376,
+      "same_capture_holdout": 42,
+      "other_capture": 186,
+      "iterations": 30000,
+      "faro_role": "evaluation only",
+      "legacy_cull_views": 418,
+      "strict_cull_views": 376,
+      "pretraining_overlap": "unknown",
+      "scale": "LingBot already meters; DN depth divided by its own dataparser scale once"
+    }
+  },
+  "depth": {
+    "mask_types": [
+      "native_footprint_bundle",
+      "contiguous_block",
+      "geometric_boundary_band"
+    ],
+    "mask_instances_per_frame_per_type": 1,
+    "native_asset_missing": "block native-only branch; continue other masks",
+    "hidden_source_rule": "remove all projected descendants and derived cache paths before candidate inference",
+    "score_masks": "task-specific; boundary task cannot use old primary AND NOT band mask",
+    "zero_denominator": "null/unavailable",
+    "input_ablations": [
+      "full_range_sparse",
+      "primary_range_only_missing_outside_not_clamped",
+      "footprint_aware"
+    ],
+    "crossfit": {
+      "temporal_group_s": 10,
+      "outer_folds": 5,
+      "seed": 42,
+      "outer_k": "OOF only",
+      "calibration_fold": "(k+1)%5",
+      "fit_folds": "remaining three; source dedup/exclusion before assignment",
+      "normalization_and_pca_fit_role": "fit only"
+    },
+    "quality_head": {
+      "variants": [
+        "calibrated_logistic",
+        "Q0_geometry_statistics",
+        "Q1_geometry_plus_MDM_features"
+      ],
+      "dn_R3_variant": "Q1",
+      "mdm_frozen": true,
+      "features_api": "inspect infer_feat/forward_feat features and cls_token; map spatial features explicitly",
+      "recompute_on_every_mask": true,
+      "cache_identity": [
+        "frame",
+        "mask",
+        "input_representation",
+        "source_lineage",
+        "model",
+        "transform"
+      ],
+      "inference_tensors": "reload cache or clone outside inference_mode before training head",
+      "hidden_units": [
+        64,
+        64
+      ],
+      "mdm_projection_dim": 32,
+      "q0_mdm_slots": "zero",
+      "projection_fit": "PCA fit role only",
+      "logit_bins_cm": [
+        5,
+        10,
+        20,
+        "greater_than_20"
+      ],
+      "epochs": 30,
+      "optimizer": "AdamW",
+      "learning_rate": 0.001,
+      "seed": 42,
+      "max_train_pixels_per_frame_mask": 4096,
+      "evaluate_full_masks": true,
+      "selection": "calibration loss, never outer/test"
+    },
+    "calibration": {
+      "primary_error_threshold_m": 0.1,
+      "target_false_accept_rate": 0.05,
+      "target_coverages": [
+        0.1,
+        0.25,
+        0.5,
+        0.75
+      ],
+      "unreachable": "report unreachable; no zero-coverage win",
+      "metrics": [
+        "risk_coverage",
+        "Brier",
+        "ECE",
+        "accepted_error",
+        "rejected_count",
+        "all_denominators"
+      ],
+      "uncertainty_unit": "independent temporal/source groups"
+    },
+    "hole_loss": {
+      "keep_original_B3_sensor_loss": true,
+      "lambda_relative_to_sensor_depth_lambda": 0.1,
+      "normalization": "sum accepted q*rho / max(sum accepted q,eps)",
+      "filter_before_residual": [
+        "natural_hole_full_raw",
+        "accepted",
+        "finite",
+        "positive",
+        "in_primary_range"
+      ],
+      "empty_acceptance": "differentiable zero; original B3 gradients unchanged",
+      "accepted_q": "1 for every R1-R5 accepted candidate; probability only for selection/rejection",
+      "rho": "log1p(abs(pred-target)), not log(pred)-log(target)",
+      "rgb_edge_factors": "same two directional RGB factors and directional normalization as B3"
+    },
+    "maximum_base_frame_mask_combinations": 4434,
+    "maximum_input_representation_combinations": 13302
+  },
+  "map": {
+    "primary_sequence": "full_train_1478",
+    "published_prefix_calibration_frames": 32,
+    "sim3_all_reference": "diagnostic only, never GT accuracy or training poses",
+    "difficult_frames": [
+      "frame_01304",
+      "frame_01305",
+      "frame_01514"
+    ],
+    "candidate_edges": [
+      "time_neighborhood",
+      "RGB_retrieval",
+      "MASt3R_matches"
+    ],
+    "initializations": [
+      "B2",
+      "LingBot_Map"
+    ],
+    "acceptance": "independent audit geometry/reprojection and normal-region nondegradation; no agreement-to-B2/Map criterion",
+    "preprocessing": "bounded CPU decode/AREA resize/crop queue, immutable output saves",
+    "stream_consumers": 1,
+    "preserve_order": true,
+    "gcr_reimplementation": false,
+    "external_memory_rewrites_model_kv": false,
+    "optional_comparison": "MapAnything RGB+K vs RGB+K+fit-only metric depth"
+  },
+  "dn": {
+    "iterations": 240000,
+    "last_zero_based_step": 239999,
+    "seed": 42,
+    "save_every": 10000,
+    "val_every": 30000,
+    "growth_stop": 120000,
+    "resolution": [
+      720,
+      1280
+    ],
+    "same_initialization": true,
+    "common_gaussian_cap": "freeze from historical B3 growth curve for R1-R5 and paired baseline",
+    "resume_remaining": "240000-(saved_step+1); preserve total schedule, optimizer, sampler and RNG",
+    "mandatory_runs": [
+      {
+        "id": "R1",
+        "change": "B3 + sensor-only conservative hole candidates"
+      },
+      {
+        "id": "R2",
+        "change": "R1 candidates + LingBot; hard independent geometry gate"
+      },
+      {
+        "id": "R3",
+        "change": "same R2 candidate set; Q1 OOF risk selection"
+      },
+      {
+        "id": "R4",
+        "change": "R3 + geometry-supported boundary capacity redistribution"
+      },
+      {
+        "id": "R5",
+        "change": "R3 with normal TV disabled only"
+      }
+    ],
+    "mandatory_total_updates": 1200000,
+    "conditional_runs": [
+      {
+        "id": "R0C",
+        "condition": "historical B3 not identical in initialization/version/patches/sampling/cap",
+        "change": "same-protocol B3 baseline",
+        "iterations": 240000
+      },
+      {
+        "id": "R6",
+        "condition": "independently accepted nonzero pose change",
+        "change": "R3 + accepted poses",
+        "iterations": 240000
+      },
+      {
+        "id": "R7",
+        "condition": "boundary and pose branches each show independent benefit",
+        "change": "R3 + boundary + accepted poses",
+        "iterations": 240000
+      }
+    ],
+    "numeric_equivalence": "verify and annotate; mandatory budgets remain, no claim of new treatment benefit",
+    "stop_for_bad_metric": false,
+    "historical_results_mutable": false
+  },
+  "physics": {
+    "engine": "separate pinned MuJoCo for rigid bridge; original PhysTwin spring-mass for rope probe",
+    "world_minimum": [
+      "static support",
+      "one movable body",
+      "controlled pusher"
+    ],
+    "physics_hz": 240,
+    "control_hz": 30,
+    "steps_per_generated_episode": 150,
+    "interfaces": [
+      "reset",
+      "step",
+      "observe",
+      "replay"
+    ],
+    "action_semantics": [
+      "waypoint",
+      "force",
+      "impulse",
+      "teleport_reset_only"
+    ],
+    "no_global_hall_convex_hull": true,
+    "visual_collision_transform_shared": true,
+    "memory_variants": [
+      "M0_irrevocable",
+      "M1_visibility_free_space",
+      "M2_object_identity_versions_rollback"
+    ],
+    "external_memory_states": [
+      "confirmed",
+      "hypothesized",
+      "occluded",
+      "contradicted",
+      "unknown"
+    ],
+    "reset_restores": [
+      "physics",
+      "objects",
+      "versions",
+      "ledger",
+      "caches",
+      "calibrator"
+    ],
+    "synthetic_teacher": "independent frozen reference; no candidate self-render as validation"
+  },
+  "interaction": {
+    "episode_split": {
+      "fit": 36,
+      "calibration": 12,
+      "test": 12,
+      "seed": 42,
+      "unit": "grouped complete episodes",
+      "fallback_ratios": [
+        0.6,
+        0.2,
+        0.2
+      ]
+    },
+    "object_labels": "independent frozen shared RGB tracker + audited keyframes, visibility and uncertainty; never pusher XY or method's own states",
+    "versions": {
+      "C0": "default physics",
+      "C1": "camera/initial state/control response aligned",
+      "C2": "C1 + identifiable physical parameters",
+      "C3": "C2 + evidence-constrained local state/geometry memory"
+    },
+    "evaluation_regimes": [
+      "frozen_world_open_loop",
+      "causal_online_observation_update"
+    ],
+    "test_updates_flow_to_training_or_other_episodes": false,
+    "calibration_is_independent_test": false,
+    "pusht_geometry_attribution": "known fixed T-block does not establish LingBot geometry contribution",
+    "generated_data": {
+      "versions": [
+        "C0",
+        "C2",
+        "C3"
+      ],
+      "paired_episodes_per_version": 512,
+      "total_episodes": 1536,
+      "total_control_steps": 230400,
+      "actions": "save identical complete arrays and initial states, not seeds only",
+      "worlds": "frozen after fit/calibration; all generated rollouts open loop",
+      "record_all_failures": true,
+      "full_rate_state_hz": 30,
+      "visual_episodes_per_version": 32,
+      "visual_size": [
+        240,
+        240
+      ],
+      "visual_cameras": 2,
+      "visual_fps": 30,
+      "all_episode_preview_hz": 5,
+      "formats": [
+        "RGB8",
+        "depth16 plus quantization/overflow metadata"
+      ],
+      "uncompressed_all_steps_two_cameras_RGBD_GB": 132.7104,
+      "stream_shards": true
+    },
+    "probe": {
+      "task": "state/action-conditioned object response; not VLA/VA or visual-policy proof",
+      "conditions": [
+        "RealOnly",
+        "Real+resampledReal",
+        "Real+C0",
+        "Real+C2",
+        "Real+C3"
+      ],
+      "nonlearned_baselines": [
+        "persistence",
+        "constant_velocity"
+      ],
+      "seeds": [
+        42,
+        43,
+        44
+      ],
+      "updates": 20000,
+      "hidden_units": [
+        128,
+        128
+      ],
+      "optimizer": "AdamW",
+      "learning_rate": 0.001,
+      "history_s": 0.5,
+      "horizons_s": [
+        0.5,
+        1,
+        2
+      ],
+      "real_batch_per_step": 64,
+      "auxiliary_batch_per_step": 64,
+      "auxiliary_loss_weight": 1,
+      "realonly_auxiliary_batch": 0,
+      "selection": "real calibration",
+      "normalization": "real fit",
+      "pair_sampling_order": true,
+      "labels_missing": "blocked",
+      "test": "same complete real episodes and masks"
+    }
+  },
+  "phystwin_probe": {
+    "cases": [
+      {
+        "id": "single_push_rope_1",
+        "path": "data/different_types/single_push_rope_1",
+        "frames": 92,
+        "train_half_open": [
+          0,
+          64
+        ],
+        "test_half_open": [
+          64,
+          92
+        ]
+      },
+      {
+        "id": "single_push_rope_4",
+        "path": "data/different_types/single_push_rope_4",
+        "frames": 83,
+        "train_half_open": [
+          0,
+          58
+        ],
+        "test_half_open": [
+          58,
+          83
+        ],
+        "role": "second case only after identity/calibration audit"
+      }
+    ],
+    "width": 848,
+    "height": 480,
+    "fps": 30,
+    "common_prior": "topology/physical parameters train-prefix only; audit or rebuild official assets",
+    "observation": "masked camera0 RGB-D at test first frame only",
+    "variants": [
+      "G-NN",
+      "G-LingBot",
+      "G-Q1"
+    ],
+    "fixed": [
+      "physics",
+      "nodes",
+      "controller_points",
+      "state_fit_budget",
+      "initial_processing"
+    ],
+    "evaluation_only": [
+      "camera1",
+      "camera2",
+      "future_object_observations",
+      "gt_track_3d"
+    ],
+    "horizon_s": 0.5,
+    "task_label": "known object state correction and response conditioned on recorded controller trajectory",
+    "missing_valid_points": "null, not zero",
+    "full_geometry_identification_claim": false,
+    "missing_required_data_or_interface": "blocked; continue other lanes"
+  },
+  "external_geometry": {
+    "mandatory_runs": [
+      {
+        "id": "VR1",
+        "iterations": 30000,
+        "change": "sensor-only"
+      },
+      {
+        "id": "VR2",
+        "iterations": 30000,
+        "change": "quality selection only"
+      }
+    ],
+    "conditional_baseline": "VR0C if historical protocol differs",
+    "optional_combination": "VR3 boundary only after separate validation",
+    "faro_tuning": false
+  },
+  "resource_policy": {
+    "cpu_nominal": 25,
+    "vram_nominal_GB": 96,
+    "ram_nominal_GB": 120,
+    "logical_lanes": 6,
+    "heavy_training_initial_concurrency": 1,
+    "heavy_training_expand_to": [
+      2,
+      3
+    ],
+    "expansion": "actual incremental peaks after shared mmap; no fixed utilization cap",
+    "ram_admission": {
+      "peak_factor": 1.25,
+      "extra_GiB": 8,
+      "primary_accounting": [
+        "cgroup_total",
+        "incremental_peak",
+        "PSS",
+        "USS"
+      ],
+      "avoid_double_count_shared_RSS": true
+    },
+    "vram_admission": {
+      "reserved_peak_factor": 1.15,
+      "extra_GiB": 6
+    },
+    "cpu_example": {
+      "dn": 10,
+      "depth_matching": 6,
+      "physics": 4,
+      "evaluation_encoding": 4,
+      "coordinator": 1
+    },
+    "preserve_other_projects": true,
+    "change_global_drivers": false,
+    "wall_clock_deadline": null,
+    "watchdog_kill": false,
+    "auto_shutdown": false,
+    "short_connection_timeouts_allowed": true
+  },
+  "delivery": {
+    "states": [
+      "pending",
+      "running",
+      "completed",
+      "failed",
+      "blocked",
+      "not_triggered"
+    ],
+    "conditional_state_only": "not_triggered",
+    "single_git_writer": true,
+    "daily_event_single_writer": true,
+    "reports_small_files_to_git": true,
+    "large_artifacts": "server path/bytes/SHA-256, existing authorized storage only",
+    "pc_archive_after_push": false,
+    "delete_server_outputs": false,
+    "read_existing_archives_to_restore": true,
+    "force_push": false,
+    "verify_remote_readback": true,
+    "final_report": "actual lane counts, results, negative findings, limitations, blocked requirements, resume commands"
+  }
+}

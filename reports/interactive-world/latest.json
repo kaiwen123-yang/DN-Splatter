@@ -1,0 +1,71 @@
+{
+  "schema_version": "1.0",
+  "stage": "interactive-world",
+  "run_id": "interactive-world-20261128-v1",
+  "date": "2026-11-28",
+  "timezone": "Asia/Shanghai",
+  "status": "planned",
+  "evidence_baseline_commit": "ffc157fe30b01796f12e41361c6b2d3ace33521e",
+  "reviewed_media_followup_commit": "94d17e968ec65854d616f2215bca5135b9d5d905",
+  "completed_in_this_review": [
+    "repository/source/metric audit",
+    "published short-video and fixed-image inspection",
+    "local read-only Map alignment diagnostic",
+    "next-round protocol and prompt"
+  ],
+  "not_executed_in_this_review": [
+    "new remote DN/VR training",
+    "physics simulation",
+    "public action replay",
+    "quality-head training",
+    "synthetic dataset generation",
+    "downstream probe"
+  ],
+  "lanes": {
+    "A": {
+      "status": "pending",
+      "name": "Depth provenance, candidates and MDM quality transfer",
+      "completed_experiments": 0
+    },
+    "B": {
+      "status": "pending",
+      "name": "Map gauge, new matches, poses and ordered prefetch",
+      "completed_experiments": 0
+    },
+    "C": {
+      "status": "pending",
+      "name": "Full DN comparisons and geometric boundaries",
+      "completed_experiments": 0
+    },
+    "D": {
+      "status": "pending",
+      "name": "Object/collision assets, physics/render bridge, evidence memory",
+      "completed_experiments": 0
+    },
+    "E": {
+      "status": "pending",
+      "name": "Public action replay, calibration, paired data, dynamics probe",
+      "completed_experiments": 0
+    },
+    "F": {
+      "status": "pending",
+      "name": "VR/Faro, evaluation, media, resource coordination, journal",
+      "completed_experiments": 0
+    }
+  },
+  "expected": {
+    "mandatory_dn_runs": 5,
+    "iterations_each": 240000,
+    "mandatory_vr_runs": 2,
+    "generated_episodes": 1536
+  },
+  "actual_new_training_updates": 0,
+  "actual_new_physics_episodes": 0,
+  "next_action": "Read AGENTS.md, docs/17, protocol and prompt; inspect current server and restore required assets, then execute A-F.",
+  "links": {
+    "plan": "docs/17_interactive_world_plan.md",
+    "prompt": "prompts/interactive_world_20261128.md",
+    "review": "reports/interactive-world-review/2026-11-28/README.md",
+    "daily_log": "DAILY_RESEARCH_LOG.md"
+  }
+}

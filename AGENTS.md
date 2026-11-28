@@ -1,6 +1,20 @@
 # 本项目的执行约定
 
-## 当前任务入口：LingBot-Depth / Map（2026-11-28）
+## 当前任务入口：灵波支持的可校准交互世界（2026-11-28）
+
+用户已将目标扩展为：从真实场景重建出能接受动作、随交互校准、生成有效训练数据的可交互世界。当前完整入口为 [docs/17_interactive_world_plan.md](docs/17_interactive_world_plan.md)、[configs/interactive_world_protocol.json](configs/interactive_world_protocol.json)、[prompts/interactive_world_20261128.md](prompts/interactive_world_20261128.md)。先读 [现状/视频复核](reports/interactive-world-review/2026-11-28/README.md) 与 [文献](reports/interactive-world-review/2026-11-28/literature.md)，持续维护根目录 [DAILY_RESEARCH_LOG.md](DAILY_RESEARCH_LOG.md)。
+
+本轮明确授权实现并执行六条并行工作线：A 条件深度与 MDM 表征质量头，B 尺度/匹配/局部位姿，C 新 DN 薄结构对照，D 对象/碰撞/动作桥梁，E 公共交互校准与数据探针，F 外部几何评价/媒体/运行管理。R1–R5 各累计 240k；R0C/R6/R7 按新协议触发，VR1/VR2 各 30k。VLA/VA/World 大模型训练继续暂缓。
+
+**这项新授权覆盖下文与 docs/16 中“仅离线、不新训 DN”的旧范围，以及首轮“只准一个训练进程/预处理训练网格全部串行”的历史约定。** 当前按实测 cgroup 内存、PSS/USS、GPU reserved 和 CPU 线程调度，允许使用全部已分配 25 CPU / 96GB VRAM / 120GB RAM。六条工作线可并行，重训练并发取决于实际容量；先改善共享缓存/预取，再增加第二/第三训练进程。保护其他项目和原结果的约定继续适用。
+
+持续执行到已授权工作完成或明确真实阻塞；缺一个资产只阻塞对应分支。不要只提交计划、装环境或启动后台后宣称整轮完成。不设墙钟完成 deadline，不以 timeout/watchdog 强杀任务，不自动关机，不因负结果提前停止完整对照。
+
+新实验状态见 reports/interactive-world/latest.json，旧 B2/B3/VR/LingBot 状态保持冻结。计划与实测分开；不能用旧 completed 标记跳过新任务。已有 1846 帧探索含留出信息，不进入严格训练先验；传感器/B2 位姿不是独立真值；Map 公开 base 不含 GCR，外部对象记忆不等于改写模型 KV。
+
+根 DAILY_RESEARCH_LOG.md 按 Asia/Shanghai 每日追加，写目标、实际操作、问题/根因/修复、指标与分母、失败、资源、产物/哈希、提交及恢复入口。coordinator 单写，worker 写各 lane 事件。只向本仓库推送，小文件 GitHub、大文件服务器路径+哈希。推送后不再新建用户电脑归档，也不删除服务器数据。可读取既有归档恢复必要资产。
+
+## 已完成的 LingBot 离线阶段：历史入口（2026-11-28）
 
 用户本轮要求先测试 LingBot-Depth 与 LingBot-Map，并将完整计划和 Codex 提示词推送本仓库。执行新任务时，先完整读取 `docs/16_lingbot_depth_map_plan.md`、`configs/lingbot_depth_map_protocol.json`、`prompts/lingbot_depth_map_20261128.md`。本次计划提交不代表已经启动或完成模型实验。
 
@@ -10,7 +24,7 @@
 
 本轮保持原 1478/184/184 划分；全 1846 帧 Map 仅作单独标注的完整采集探索，不能回流为不含留出信息的训练先验。原始传感器深度、已有轨迹和网格不是独立 GT。两线在接口正确后持续推进全量离线任务，效果差也如实交付，不设中间人工审批或墙钟完成时限。代码/小报告推 GitHub，大产物留服务器列路径和哈希，不做本机归档。
 
-本节按当前任务解释后文中的历史阶段要求；后文的环境隔离、保护并发工作、真实证据、凭据保护、持续执行和禁止 force push 等通用约定继续适用。
+本历史节按当时离线任务解释后文；当前任务以最上方 docs/17 入口为准。后文的环境隔离、保护并发工作、真实证据、凭据保护、持续执行和禁止 force push 等通用约定继续适用。
 
 ## 任务和授权
 
@@ -100,4 +114,3 @@ Nerfstudio 1.1.3 的恢复训练会把 max_num_iterations 作为本次追加步�
 只向本用户复现仓库推送，不向 maturk/dn-splatter 推送，不 force push。推送前检查 staged diff，排除凭据、原始进程参数、数据集、环境、模型大文件。大产物先本项目保留并做清单与哈希；普通 Git 先提交小文件和结论。有用户已配置的本项目大文件存储时再后台上传，不为此配置额外账号或花费。
 
 默认不做 Windows 硬盘归档、不删除服务器数据、不清理其他项目缓存。失败也应推送已完成的工作、实际错误、精简日志和可继续执行的命令。只有真实权限/访问/资源阻塞才明确报告，不因常规实施选择重复请求许可。
-

@@ -1,8 +1,14 @@
-# DN-Splatter：AutoDL / Blackwell 复现
+# DN-Splatter：重建与可校准交互世界
+
+**当前进入“灵波支持的可校准交互世界”阶段；下一轮计划已制定，新的训练/仿真尚未执行。** 以 LingBot-Depth 的条件几何和 MDM 表征、Map 的可修订空间记忆为主线，同时推进五组完整 DN 对照、对象/碰撞资产、动作校准、配对训练数据和真实留出评价。VLA/VA/World 大模型训练继续暂缓。
+
+[完整计划](docs/17_interactive_world_plan.md) · [Codex 启动提示词](prompts/interactive_world_20261128.md) · [机器协议](configs/interactive_world_protocol.json) · [日志/视频复核](reports/interactive-world-review/2026-11-28/README.md) · [18 项文献与复现边界](reports/interactive-world-review/2026-11-28/literature.md) · [每日详细记录](DAILY_RESEARCH_LOG.md) · [新阶段状态](reports/interactive-world/latest.json)
+
+**本轮实行六条工作线并行和按实际容量调度，不设后台完成时限；推送 GitHub 后不再创建电脑归档。** R1–R5 各 240k；其他位姿/组合和同协议基线按明确条件触发。历史结果保留，旧“只离线、不新训 DN”范围不再限制本轮已授权实验。
 
 **2026-11-28 大厅 LingBot 离线实验已完成。** Depth 完成 1,478 张无人工遮挡训练图和 60 次固定遮挡推理。Map 2 在三个独立序列中分别输出 256、1,478 和 1,846 帧，最后一项包含留出 RGB。图像、视频、轨迹和单因素对照建议见[中文结果](reports/lingbot-depth-map/20261128-v1/README.md)。[状态](reports/lingbot-depth-map/latest.json) · [完整计划](docs/16_lingbot_depth_map_plan.md) · [执行提示词](prompts/lingbot_depth_map_20261128.md) · [机器协议](configs/lingbot_depth_map_protocol.json)。
 
-**大厅 B2/B3 均已完成。** 最新冻结选择为 B2 210k 渲染模型与 B3 210k supported Poisson 网格，见 [B3 完整结果](reports/capture-full-quality-v3/20261122-v1/overview.md)及[中文视频与指标对比](reports/capture-full-quality-v3/20261122-v1/B3_完整视频与指标对比.md)。本轮先做 LingBot 预训练模型的推理、评测与可视化；VLA/VA 暂缓，不自动重训 DN 或重跑 B2/B3。
+**大厅 B2/B3 均已完成。** 最新冻结选择为 B2 210k 渲染模型与 B3 210k supported Poisson 网格，见 [B3 完整结果](reports/capture-full-quality-v3/20261122-v1/overview.md)及[中文视频与指标对比](reports/capture-full-quality-v3/20261122-v1/B3_完整视频与指标对比.md)。该离线阶段已完成；其基线和产物供当前 docs/17 使用，不触发历史 B2/B3 重跑。
 
 ## 原始复现目标与历史工作
 
@@ -14,6 +20,7 @@
 
 ## 当前状态
 
+- 2026-11-28：完成现状/短视频复核和 Map 尺度诊断，建立六线并行的交互世界新阶段；本次提交是研究审阅、计划和启动材料，不是新一轮训练/仿真完成回执。
 - 2026-11-18：建立复现计划、执行约束、协议配置和只读环境检查脚本。
 - 2026-11-18：依据用户最新授权，将执行约定、配置和 Codex 提示词同步改为使用实例全部 CPU/GPU 资源。
 - 目标 AutoDL 已完成盘点，独立 Python 3.10 环境及 VR Room iPhone/Faro 几何包已就位。该场景的实测阶段、checkpoint 和指标见 [VR Room 历史运行状态](reports/latest_status.json)，该文件不代表大厅 B3 或 LingBot 的当前状态。下文列出的协议数值为目标值。
@@ -33,7 +40,9 @@
 
 ## 从这里开始
 
-执行当前任务请完整读取 [LingBot-Depth / Map 计划](docs/16_lingbot_depth_map_plan.md)、[协议](configs/lingbot_depth_map_protocol.json)和[启动提示词](prompts/lingbot_depth_map_20261128.md)。任务包含固定 30 帧 Depth 诊断及完整训练集推理、Map 短片段/训练序列/全序列探索，最后交付图、视频、指标和采用建议；全序列探索与可用于后续训练的结果分开标记。
+执行当前任务请完整读取 [可校准交互世界计划](docs/17_interactive_world_plan.md)、[协议](configs/interactive_world_protocol.json)与[完整启动提示词](prompts/interactive_world_20261128.md)。先盘点当前实例的真实资产和进程，恢复必要数据/环境，再并行推进 A–F；不得把既有路径当成现存证据。每日进度写入 [DAILY_RESEARCH_LOG.md](DAILY_RESEARCH_LOG.md)。
+
+已完成的 [LingBot 离线计划](docs/16_lingbot_depth_map_plan.md)作为历史基线保留。最新 [大厅全程录像回执](reports/lingbot-depth-map/20261128-v1/hall_recording.json)登记 6 分 19.075 秒离线视频；16:33 的执行回执记录旧查看器与端口转发已关闭，不再假定 localhost 服务在线。
 
 ### 已完成的大厅质量改进基线
 
@@ -96,11 +105,10 @@
 | `.local/runs/<run-id>/` | checkpoint、完整日志、渲染、网格 | 否；提交指标和清单 |
 | `.local/reports/` | 原始环境盘点及私有诊断 | 否；公开摘要需脱敏 |
 
-不向官方仓库推送。VR Room和s01结果保持原样；当前自采全程任务由docs/10和configs/capture_full_test_protocol.json规定。docs/04中的基准第二轮留待后续，不自动增加AGS-Mesh或超参数搜索。
+不向官方仓库推送。VR Room和s01结果保持原样；已完成的自采全程历史任务由docs/10和configs/capture_full_test_protocol.json规定；当前任务由docs/17规定。docs/04中的基准第二轮留待后续，不自动增加AGS-Mesh或超参数搜索。
 
 ## 文献和实现依据
 
 论文：*DN-Splatter: Depth and Normal Priors for Gaussian Splatting and Meshing*，WACV 2025。
 
 [来源与核查入口](docs/sources.md)。仓库不会上传用户提供的出版商 PDF、公开数据集原包或模型权重到普通 Git。
-
