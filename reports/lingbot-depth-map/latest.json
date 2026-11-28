@@ -1,0 +1,1 @@
+{"run_id":"lingbot-depth-map-20261128-v1","status":"completed","depth_unmasked":1478,"depth_masked":60,"map_sequences":{"short_train_256":256,"full_train_1478":1478,"full_all_1846_exploratory":1846},"report":"reports/lingbot-depth-map/20261128-v1/README.md","decisions":{"depth":"local_use_only","map":"local_use_only"}}

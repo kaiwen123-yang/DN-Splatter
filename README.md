@@ -1,6 +1,6 @@
 # DN-Splatter：AutoDL / Blackwell 复现
 
-**当前任务（2026-11-28）：LingBot-Depth 与 LingBot-Map 2 大厅离线实验。** 使用已有 Gemini 335 RGB-D，分别验证单帧深度补全和 RGB 序列建图；两线独立推进。当前只提交了计划和提示词，尚无本轮运行结果。入口：[完整计划](docs/16_lingbot_depth_map_plan.md) · [完整 Codex 提示词](prompts/lingbot_depth_map_20261128.md) · [机器协议](configs/lingbot_depth_map_protocol.json)。
+**2026-11-28 大厅 LingBot 离线实验已完成。** Depth 完成 1,478 张无人工遮挡训练图和 60 次固定遮挡推理。Map 2 在三个独立序列中分别输出 256、1,478 和 1,846 帧，最后一项包含留出 RGB。图像、视频、轨迹和单因素对照建议见[中文结果](reports/lingbot-depth-map/20261128-v1/README.md)。[状态](reports/lingbot-depth-map/latest.json) · [完整计划](docs/16_lingbot_depth_map_plan.md) · [执行提示词](prompts/lingbot_depth_map_20261128.md) · [机器协议](configs/lingbot_depth_map_protocol.json)。
 
 **大厅 B2/B3 均已完成。** 最新冻结选择为 B2 210k 渲染模型与 B3 210k supported Poisson 网格，见 [B3 完整结果](reports/capture-full-quality-v3/20261122-v1/overview.md)及[中文视频与指标对比](reports/capture-full-quality-v3/20261122-v1/B3_完整视频与指标对比.md)。本轮先做 LingBot 预训练模型的推理、评测与可视化；VLA/VA 暂缓，不自动重训 DN 或重跑 B2/B3。
 

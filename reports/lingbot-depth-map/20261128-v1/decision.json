@@ -1,0 +1,1 @@
+{"depth":{"label":"local_use_only","recommendation":"全图替换会改变原有测量，散点和连续块恢复均落后于最近邻。仅在其他视角能验证的孔洞保留为局部候选。"},"map":{"label":"local_use_only","recommendation":"可用于 RGB 轨迹回放和场景查看。各序列需独立校准，长程差异与困难帧仍需独立定位证据。"},"dn_single_factor":"暂缓全图换深度和全程换位姿。下一项可检验保留传感器原值、仅对多视角支持孔洞启用补值，且使用同一冻结划分。"}
