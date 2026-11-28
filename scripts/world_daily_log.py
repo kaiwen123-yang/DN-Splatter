@@ -6,6 +6,7 @@ import json
 import os
 from pathlib import Path
 import subprocess
+import sys
 import time
 from zoneinfo import ZoneInfo
 
@@ -173,18 +174,56 @@ def journal(s):
         "",f'D 线实测支撑面的代理物体接触为 {l["D"]["rigid_sanity"].get("contact_steps")}/{l["D"]["rigid_sanity"].get("compared_steps")} 控制步。E 线 RGB 跟踪的共同有效标签为 {l["E"]["track_valid"]}/{l["E"]["track_reference_frames"]} 帧。生成轨迹数为 {l["E"]["generated_episodes"]}，对应 {l["E"]["generated_control_steps"]} 个控制时刻。小预测器的 {l["E"]["probe_conditions_seeds"]} 项条件与种子组合累计训练 {l["E"]["actual_probe_updates"]} 步。',
         "",f'资源快照含 {host["cpu_quota"]} 核 CPU 配额，GPU 利用率 {host["gpu_util_percent"]}%，整卡已用显存 {(host["gpu_total_bytes"]-host["gpu_free_bytes"])/1024**3:.2f} GiB，cgroup 总用量 {host["cgroup_total_bytes"]/1024**3:.2f} GiB，清洁非活跃文件页 {host["clean_inactive_file_bytes"]/1024**3:.2f} GiB。逐阶段错误与重试见 run 下 `state/coordinator-events.jsonl` 和各 worker 日志。', "",
         '本次产物身份、字节数、条件分支和运行 PID 见 [实测状态](reports/interactive-world/latest.json)。在项目服务器根目录运行 `bash scripts/launch_interactive_world.sh status` 可读取最新实态。'])
+    if s.get("noon_progress"):
+        speed=s["noon_progress"]
+        rate=speed["last_30_minutes"].get("hall_updates_per_hour")
+        required=speed["required_hall_updates_per_hour_with_tail"]["2h"]
+        if rate is not None:
+            text=f'六组大厅剩余 {speed["remaining_hall_updates"]:,} 步，最近 30 分钟合计吞吐 {rate:,.0f} 步/小时。'
+            if required is not None:
+                text+=f'按北京时间 11 月 29 日中午的目标、为最终评估和视频预留两小时，所需平均吞吐为 {required:,.0f} 步/小时。'
+            lines.extend(["",text])
+    if s.get("acceleration_deployment"):
+        lines.extend(["","北京时间 22:42，R2 加入正式训练，原有两组继续运行。原调度器将 VR 终评期间整容器的文件缓存增长分别计入 R0C 和 R1，使 R2 的主存准入达到 87.64 GiB。现按进程树 PSS/USS、瞬态峰值及同一启动窗口内的 cgroup 增量调度，保留原 RAM 和 VRAM 余量。后续组按数值验证结果采用 GPU 图像预取、孔洞项缓存和诊断计算调度。大厅选中模型的渲染也在终评阶段复用。实测数字、分母、适用范围和哈希见[加速记录](reports/interactive-world/20261128-v1/acceleration/README.md)。"])
+    if s.get("final_delivery",{}).get("status")=="completed":
+        lines.extend(["","完整对照、质量头归因、真实交互、全部评价分母和视频见[最终报告](reports/interactive-world/20261128-v1/final/report.md)。"])
     return "\n".join(lines)
 
 
 def record(first=False):
     PUBLIC.mkdir(parents=True,exist_ok=True)
     snap=snapshot()
+    speed_path=RUN/"f_evaluation/acceleration_20261128/speed_report.json"
+    if speed_path.exists():
+        from world_speed_report import main as speed_report
+        speed=speed_report(datetime.fromisoformat(read(speed_path)["planning_target"]),verbose=False)
+        snap["noon_progress"]={k:speed[k] for k in ("planning_target","remaining_hall_updates","required_hall_updates_per_hour_with_tail")}
+        snap["noon_progress"]["last_30_minutes"]=speed["rolling"]["last_30_minutes"] or {}
+    if snap["status"]=="completed":
+        folder=RUN/"f_evaluation/final_delivery"
+        index=folder/"index.json"
+        final=read(index)
+        if final.get("run_id")!=RUN.name or final.get("status")!="completed":
+            finished=subprocess.run([sys.executable,str(ROOT/"scripts/world_final_report.py"),"build"],cwd=ROOT)
+            final=read(index) if finished.returncode==0 else {}
+        if final.get("status")=="completed" and final.get("run_id")==RUN.name:
+            snap["final_delivery"]=dict(status="completed",index=ref(index))
+            snap["links"]["final_report"]="reports/interactive-world/20261128-v1/final/report.md"
+        else:
+            snap["status"]="running"
+            snap["final_delivery"]={"status":"pending","reason":"awaiting the verified final file manifest"}
+    last=read(PUBLIC/"last-entry.json")
+    if "noon_progress" in snap and "planning_target" not in last.get("signature",{}):
+        snap["acceleration_deployment"]=True
     write(PUBLIC/"snapshot.json",snap)
     date=snap["observed_at"][:10]
     v={**snap["lanes"]["C"]["variants"],**snap["lanes"]["F"]["variants"]}
     signature=dict(date=date,checkpoints={k:[r["durable_updates"],r["training_complete"],r["evaluation_complete"]] for k,r in v.items()},
                    artifacts=sorted(snap["artifacts"]))
-    last=read(PUBLIC/"last-entry.json")
+    if "noon_progress" in snap:
+        signature["planning_target"]=snap["noon_progress"]["planning_target"]
+    if "final_delivery" in snap:
+        signature["final_delivery"]=snap["final_delivery"]
     if last.get("signature")==signature and not first:
         return
     marker=hashlib.sha256(json.dumps(signature,sort_keys=True).encode()).hexdigest()[:16]
@@ -204,14 +243,15 @@ def record(first=False):
 
 if __name__=="__main__":
     p=argparse.ArgumentParser(description=__doc__);p.add_argument("mode",choices=["snapshot","record","watch"])
-    mode=p.parse_args().mode
+    p.add_argument("--wait-for-owner",action="store_true",help="Wait for the previous journal writer to release its lock.")
+    args=p.parse_args();mode=args.mode
     PUBLIC.mkdir(parents=True,exist_ok=True)
     if mode=="snapshot":
         write(PUBLIC/"snapshot.json",snapshot())
     else:
         import fcntl
         with (PUBLIC/"journal.lock").open("a+b") as lock:
-            fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
+            fcntl.flock(lock,fcntl.LOCK_EX if args.wait_for_owner else fcntl.LOCK_EX|fcntl.LOCK_NB)
             while True:
                 record()
                 if mode=="record" or read(PUBLIC/"snapshot.json").get("status")=="completed": break

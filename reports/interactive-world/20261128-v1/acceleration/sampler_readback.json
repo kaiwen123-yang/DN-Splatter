@@ -1,0 +1,1 @@
+{"R0C": {"sampler_60k_to_70k_exact": true, "source_step": 169999, "actual_live_step": 176000, "reconstructed_live_frame": "images/frame_00136.png"}, "R1": {"sampler_60k_to_70k_exact": true, "source_step": 159999, "actual_live_step": 160100, "reconstructed_live_frame": "images/frame_01774.png"}}

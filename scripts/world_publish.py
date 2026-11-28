@@ -1,4 +1,4 @@
-"""Publish only coordinator journal entries and status using the local Git credential."""
+"""Publish coordinator receipts and the verified final small report bundle."""
 import argparse
 import hashlib
 import importlib.util
@@ -19,11 +19,51 @@ OUTBOX="/root/autodl-tmp/DN-Splatter/.local/runs/"+RUN+"/f_evaluation/publicatio
 LOG="DAILY_RESEARCH_LOG.md"
 STATUS="reports/interactive-world/latest.json"
 ORIGIN="https://github.com/kaiwen123-yang/DN-Splatter.git"
+FINAL_DIR="reports/interactive-world/20261128-v1/final"
+FINAL_SOURCE="/root/autodl-tmp/DN-Splatter/.local/runs/"+RUN+"/f_evaluation/final_delivery"
+FINAL_LIMITS={"report.md":512*1024,"metrics.json":4*1024**2,"artifacts.json":5*1024**2,
+              "preview.jpg":2*1024**2,"preview.mp4":8*1024**2,"index.json":256*1024}
 
 
 def git(*args, data=None, env=None):
     return subprocess.run(["git",*args],cwd=ROOT,env=env,input=data,stdout=subprocess.PIPE,
                           stderr=subprocess.PIPE,check=True).stdout
+
+
+def final_files(ftp,snapshot):
+    """Only these six fixed report paths may be read and added at completion."""
+    ref=snapshot["final_delivery"]["index"]
+    if ref.get("path")!=FINAL_SOURCE+"/index.json":
+        raise ValueError("Unexpected final report index")
+    def checked(name,entry):
+        size=entry["bytes"]
+        if type(size) is not int or not 0<size<=FINAL_LIMITS[name]:
+            raise ValueError("Invalid final report file size: "+name)
+        with ftp.open(FINAL_SOURCE+"/"+name,"rb") as f:
+            data=f.read(size+1)
+        if len(data)!=size or hashlib.sha256(data).hexdigest()!=entry["sha256"]:
+            raise ValueError("Final report checksum mismatch: "+name)
+        return data
+    raw=checked("index.json",ref)
+    index=json.loads(raw)
+    entries=index["files"]
+    expected=set(FINAL_LIMITS)-{"index.json"}
+    if (index.get("run_id")!=RUN or index.get("status")!="completed" or len(entries)!=len(expected)
+        or {e["name"] for e in entries}!=expected):
+        raise ValueError("Unexpected final report membership")
+    result={FINAL_DIR+"/index.json":raw}
+    for e in entries:
+        name=e["name"];data=checked(name,e)
+        if name.endswith(".json"):
+            json.loads(data)
+        elif name.endswith(".md"):
+            data.decode("utf8")
+        elif name=="preview.jpg" and not data.startswith(b"\xff\xd8"):
+            raise ValueError("Expected a JPEG preview")
+        elif name=="preview.mp4" and data[4:8]!=b"ftyp":
+            raise ValueError("Expected an MP4 preview")
+        result[FINAL_DIR+"/"+name]=data
+    return result
 
 
 def publish(connector):
@@ -36,6 +76,9 @@ def publish(connector):
     previous=json.loads(git("show",head+":"+STATUS))
     notes=[]
     newest=previous
+    final={}
+    already_final=previous.get("final_delivery",{}).get("status")=="completed" and subprocess.run(
+        ["git","cat-file","-e",head+":"+FINAL_DIR+"/index.json"],cwd=ROOT,capture_output=True).returncode==0
     with connector.connect() as session, session.open_sftp() as ftp:
         for ent in sorted(ftp.listdir_attr(OUTBOX),key=lambda row:row.filename):
             name=ent.filename
@@ -59,11 +102,13 @@ def publish(connector):
             notes.append(("\n\n"+journal(s)+"\n\n"+marker+"\n").encode("utf8"))
             if s["observed_at"]>=newest.get("observed_at",""):
                 newest=s
-    if not notes:
-        return
-    files={LOG:base+b"".join(notes),STATUS:(json.dumps(newest,ensure_ascii=False,indent=2)+"\n").encode("utf8")}
+        if newest.get("final_delivery",{}).get("status")=="completed" and not already_final:
+            final=final_files(ftp,newest)
+    if not notes and not final:
+        return already_final
+    files={LOG:base+b"".join(notes),STATUS:(json.dumps(newest,ensure_ascii=False,indent=2)+"\n").encode("utf8"),**final}
     risk=rb"BEGIN [A-Z ]*PRIVATE KEY|https?://[^/\s]+:[^/\s]+@|Bearer [A-Za-z0-9._-]{20,}|gh[pousr]_[A-Za-z0-9_]{25,}|sk-[A-Za-z0-9_-]{30,}"
-    if any(re.search(risk,d) for d in [*notes,files[STATUS]]):
+    if any(re.search(risk,d) for d in [*notes,files[STATUS],*(body for name,body in final.items() if name.endswith((".json",".md")))]):
         raise ValueError("Publication rejected by credential check")
     gitdir=Path(git("rev-parse","--absolute-git-dir").decode().strip())
     with tempfile.TemporaryDirectory(dir=gitdir) as temp:
@@ -73,7 +118,7 @@ def publish(connector):
             digest=git("hash-object","-w","--stdin",data=body).decode().strip()
             git("update-index","--add","--cacheinfo","100644",digest,path,env=env)
         diff=set(git("diff","--cached","--name-only",head,env=env).decode().splitlines())
-        if not diff.issubset(files) or LOG not in diff:
+        if not diff.issubset(files) or not diff or (LOG not in diff and not final):
             raise ValueError("Publication contains unexpected paths")
         git("diff","--cached","--check",head,env=env)
         tree=git("write-tree",env=env).decode().strip()
@@ -89,6 +134,7 @@ def publish(connector):
         not git("status","--porcelain","--untracked-files=no")):
         git("merge","--ff-only",commit)
     print("Verified GitHub main",commit,"entries",len(notes),flush=True)
+    return bool(final) or already_final
 
 
 if __name__=="__main__":
@@ -100,11 +146,12 @@ if __name__=="__main__":
     connector=importlib.util.module_from_spec(spec);spec.loader.exec_module(connector)
     while True:
         try:
-            publish(connector)
+            complete=publish(connector)
         except Exception as error:
             # A connection/credential can go offline without interrupting server jobs.
             print(time.strftime("%Y-%m-%d %H:%M:%S"),type(error).__name__,getattr(error,"returncode",""),flush=True)
             if not a.watch:
                 raise
-        if not a.watch: break
+            complete=False
+        if not a.watch or complete: break
         time.sleep(120)

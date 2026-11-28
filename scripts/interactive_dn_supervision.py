@@ -137,3 +137,108 @@ def loss_at_pixels(pred, rgb, sensor, index, target_m, depth_scale, range_m, sce
         weight = torch.exp(-torch.mean(torch.abs(pixels[source] - pixels[source + offset]), dim=-1))
         result = result + (weight * residual[available]).sum() / max(1, source.numel())
     return result, idx.numel()
+
+
+class FrozenHoleTerms:
+    """Cache target-only gathers and RGB factors for a fixed full-resolution training stream."""
+    def __init__(self, packets, depth_scale, range_m):
+        self.packets=packets
+        self.scale=depth_scale
+        self.range=range_m
+        self.frames={}
+        self.cached_bytes=0
+        self.calls=0
+        self.fallbacks=0
+        self.budget=None
+
+    @torch.no_grad()
+    def _terms(self,i,rgb,sensor,mask):
+        points=self.packets.get(i)
+        device=rgb.device
+        ids=torch.as_tensor(np.array(points["index"],copy=True),device=device)
+        target=torch.as_tensor(np.array(points["z_m"],copy=True),device=device)
+        seen=sensor.reshape(-1)[ids]
+        valid=(torch.isfinite(target)&(target>0)&(target>=self.range[0])&(target<=self.range[1])&
+               ~(torch.isfinite(seen)&(seen>0)))
+        if mask is not None:
+            valid&=mask.reshape(-1)[ids].bool()
+        ix=torch.where(valid)[0]
+        ids,target=ids[ix],target[ix]
+        height,width=rgb.shape[:2]
+        img=rgb.reshape(-1,3)
+        axes=[]
+        for good,offset in ((ids%width<width-1,1),(ids<(height-1)*width,width)):
+            pos=torch.where(good)[0].to(torch.int32)
+            src=ids[pos]
+            factor=torch.exp(-torch.mean(torch.abs(img[src]-img[src+offset]),dim=-1))
+            axes.append((pos,factor))
+        # int32 indices cover the entire native 720x1280 canvas and its subsets.
+        return len(points),ids,target,axes
+
+    def loss(self,i,pred,rgb,sensor,mask=None):
+        if pred.shape!=(*self.packets.shape,1) or rgb.shape!=(*self.packets.shape,3) or sensor.shape!=pred.shape:
+            raise ValueError("fixed hole supervision requires the frozen full-resolution canvas")
+        self.calls+=1
+        rec=self.frames.get(i)
+        if rec is None:
+            rec=self._terms(i,rgb,sensor,mask)
+            _,ids,target,axes=rec
+            use=sum(t.numel()*t.element_size() for t in (ids,target,*(x for pair in axes for x in pair)))
+            if self.budget is None:
+                total=sum(row["accepted_pixels"] for row in self.packets.rows)*24
+                free=torch.cuda.mem_get_info(pred.device)[0] if pred.is_cuda else total
+                self.budget=min(total+1024*1024,max(0,free-6*1024**3)//3) if pred.is_cuda else total+1024*1024
+            if self.cached_bytes+use<=self.budget:
+                self.frames[i]=rec
+                self.cached_bytes+=use
+        count,ids,target,axes=rec
+        z=pred.reshape(-1)[ids]
+        finite=torch.isfinite(z)&(z>0)
+        # Filter nonphysical predictions before any residual is evaluated. The
+        # fallback retains the exact ordered reductions on a changing visible set.
+        if len(ids) and not bool(finite.all()):
+            self.fallbacks+=1
+            loss,n=loss_at_pixels(pred,rgb,sensor,ids,target,self.scale,self.range,mask)
+            return loss,count,n
+        result=pred.reshape(-1)[:0].sum()
+        error=torch.log1p(torch.abs(z-target*self.scale))
+        for pos,weight in axes:
+            result=result+(weight*error[pos]).sum()/max(1,pos.numel())
+        return result,count,len(ids)
+
+
+def warm_cache(run, variants, workers):
+    """Decode immutable packets before their first training epoch, once per input identity."""
+    from concurrent.futures import ThreadPoolExecutor
+    import time
+    from interactive_dn_cache import atomic_json
+    b3 = run/"restore/tree/.local/runs/capture-full-quality-v3-20261122-v1/inputs/transforms.json"
+    meta = json.loads(b3.read_bytes())
+    names = meta["train_filenames"]
+    if len(names) != 1478 or workers < 1:
+        raise ValueError("invalid frozen hall input or worker count")
+    for variant in variants:
+        manifest = run/"a_depth/supervision"/variant/"manifest.json"
+        packets = Packets(manifest,names,(meta["h"],meta["w"]),run/"shared/packet-cache")
+        started = time.monotonic()
+        def get_count(i):
+            n = len(packets.get(i))
+            if packets.rows[i]["accepted_pixels"] != n:
+                raise ValueError(f"sparse population mismatch: {variant} image {i}")
+            return n
+        with ThreadPoolExecutor(max_workers=workers) as pool:
+            counts = list(pool.map(get_count,range(len(names))))
+        receipt = dict(variant=variant,train_frames=len(counts),accepted_pixels=sum(counts),
+                       manifest_sha256=digest(manifest),seconds=time.monotonic()-started,workers=workers)
+        atomic_json(packets.cache/"complete.json",receipt)
+        print(json.dumps(receipt),flush=True)
+
+
+if __name__ == "__main__":
+    import argparse
+    cli = argparse.ArgumentParser(description="Prepare lossless sparse hall treatment inputs")
+    cli.add_argument("variants",nargs="+",choices=("R1","R2","R3"))
+    cli.add_argument("--workers",type=int,default=3)
+    cli.add_argument("--run",type=Path,default=Path(__file__).resolve().parents[1]/".local/runs/interactive-world-20261128-v1")
+    args=cli.parse_args()
+    warm_cache(args.run,args.variants,args.workers)

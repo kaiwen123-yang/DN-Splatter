@@ -42,7 +42,7 @@ def _encode_image(value):
 
 
 class MMapViews:
-    def __init__(self, dataset, dtype, directory):
+    def __init__(self, dataset, dtype, directory, device=None):
         self.dataset = dataset
         self.dtype = dtype
         self.directory = directory
@@ -50,6 +50,12 @@ class MMapViews:
         self.future = None
         self.next_id = None
         self.hits = self.reads = 0
+        self.device = None if device is None else torch.device(device)
+        self.copy_stream = torch.cuda.Stream(device=self.device) if self.device is not None else None
+        if self.copy_stream is not None:
+            with torch.cuda.stream(self.copy_stream):
+                # Reuse exactly the float32 values produced by the original CPU decode.
+                self.byte_values = torch.arange(256,dtype=torch.float32).div_(255).to(self.device)
         # Ordered evaluation code may access cameras before cached_eval[i]. Install
         # all corrections up front only on sources which actually have distortion.
         dist = dataset.cameras.distortion_params
@@ -119,7 +125,7 @@ class MMapViews:
                 getattr(self.dataset.cameras, key)[index] = value
         return row["fields"]
 
-    def _read(self, index):
+    def _decode(self, index):
         if not 0 <= index < len(self):
             raise IndexError(index)
         result = {}
@@ -131,22 +137,47 @@ class MMapViews:
             arr = np.load(self.directory / field["file"], mmap_mode="c", allow_pickle=False)
             if "shape" in field:
                 arr = arr.reshape(field["shape"])
-            if "lut" in field:
-                lut = np.load(self.directory / field["lut"], allow_pickle=False)
-                arr = np.stack([row[arr[..., c]] for c, row in enumerate(lut)], axis=-1)
             tensor = torch.from_numpy(arr)
-            if field.get("byte") and "lut" not in field:
+            if self.device is not None:
+                # This mapping is COW, and this task never writes it. PyTorch stages
+                # pageable CPU memory, while the next render proceeds on another stream.
+                tensor = tensor.to(self.device,non_blocking=True)
+                if "lut" in field:
+                    lut = torch.from_numpy(np.load(self.directory/field["lut"],allow_pickle=False))
+                    lut = lut.to(self.device,non_blocking=True)
+                    tensor = torch.stack([table[tensor[..., c].long()] for c,table in enumerate(lut)],dim=-1)
+                elif field.get("byte"):
+                    tensor = self.byte_values[tensor.long()]
+            elif "lut" in field:
+                lut = np.load(self.directory / field["lut"], allow_pickle=False)
+                tensor = torch.from_numpy(np.stack([row[arr[..., c]] for c,row in enumerate(lut)],axis=-1))
+            elif field.get("byte"):
                 tensor = tensor.float().div_(255)
             result[key] = tensor
         return result
+
+    def _read(self,index):
+        if self.copy_stream is None:
+            return self._decode(index),None
+        with torch.cuda.stream(self.copy_stream):
+            batch=self._decode(index)
+            return batch,self.copy_stream.record_event()
 
     def __getitem__(self, index):
         self.reads += 1
         if self.future is not None and self.next_id == index:
             task, self.future = self.future, None
             self.hits += 1
-            return task.result()
-        return self._read(index)
+            batch,event=task.result()
+        else:
+            batch,event=self._read(index)
+        if event is not None:
+            consumer=torch.cuda.current_stream(self.device)
+            consumer.wait_event(event)
+            for value in batch.values():
+                if torch.is_tensor(value):
+                    value.record_stream(consumer)
+        return batch
 
     def prefetch(self, index):
         if self.future is None:
@@ -158,7 +189,7 @@ class MMapViews:
 
 
 @contextlib.contextmanager
-def shared_views(manager_class, cache_dir):
+def shared_views(manager_class, cache_dir, prefetch_to_gpu=False):
     from unittest.mock import patch
     opened = []
 
@@ -169,7 +200,8 @@ def shared_views(manager_class, cache_dir):
         names = "\n".join(map(str, dataset.image_filenames)).encode("utf8")
         directory = cache_dir / hashlib.sha256(names).hexdigest()
         dm.train_cameras = dm.train_dataset.cameras
-        view = MMapViews(dataset, dm.config.cache_images_type, directory)
+        device = dm.device if prefetch_to_gpu and split=="train" and torch.device(dm.device).type=="cuda" else None
+        view = MMapViews(dataset, dm.config.cache_images_type, directory,device=device)
         opened.append(view)
         return view
 

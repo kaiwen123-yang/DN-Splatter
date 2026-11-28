@@ -1,9 +1,13 @@
 """Same-export hall mesh comparison, local structure measurements and full-timeline publication."""
-from contextlib import ExitStack
+from concurrent.futures import ThreadPoolExecutor
+from contextlib import contextmanager
+from datetime import datetime,timezone
 from fractions import Fraction
+import gc
 import json
 import os
 from pathlib import Path
+import threading
 from unittest.mock import patch
 
 import cv2
@@ -13,6 +17,7 @@ import torch
 
 from interactive_dn_cache import atomic_json
 from interactive_dn_supervision import digest
+from interactive_eval_render import panel_depth,prepare_train_and_media
 
 ROOT=Path(__file__).resolve().parents[1]
 FLIP=np.diag([1.,-1.,-1.,1.])
@@ -27,11 +32,8 @@ def artifact(p):
     return {"path":str(p),"bytes":p.stat().st_size,"sha256":digest(p)}
 
 
-def export(dest, scene, config, step):
-    import capture_quality_eval as ev
-    import capture_quality_tsdf as tsdf
+def export(dest, scene, config, step,stage):
     import capture_metric3d_mesh as supported
-    import capture_s01_eval as older
     base=dest/"meshes"
     folder=base/"supported"
     folder.mkdir(parents=True,exist_ok=True)
@@ -39,22 +41,18 @@ def export(dest, scene, config, step):
     from interactive_dn_train import freeze
     freeze(base/"identity.json",{"step":step,"config":artifact(config),
                                  "selection_sha256":digest(dest/"state/selection.json"),"support":supported.SPEC})
-    def selected(split="val"):
-        return ev.load_model(config,step,split)
-    with ExitStack() as stack:
-        for obj,key,value in ((tsdf,"SCENE",scene),(tsdf,"RUN",dest),(tsdf,"MESH",base),
-                              (tsdf,"load_selected",selected),(supported,"model_paths",lambda label:(dest,scene)),
-                              (older,"final_setup",lambda split:selected("val"))):
-            stack.enter_context(patch.object(obj,key,value))
-        if not (base/"model_tsdf.json").is_file():
-            tsdf.model()
-        for action in ("sample","fuse","poisson","crop"):
+    render=prepare_train_and_media(dest,scene,config,step,ROOT,folder,stage)
+    gc.collect()
+    torch.cuda.empty_cache()
+    with patch.object(supported,"model_paths",lambda label:(dest,scene)):
+        for action in ("fuse","poisson","crop"):
             if not (folder/(action+".json")).is_file():
+                stage("supported_"+action,action!="crop",False)
                 getattr(supported,action)(dest.name,folder)
     paths={"model_tsdf":base/"model_tsdf.ply","supported_poisson":folder/"supported.ply"}
     freeze(base/"export_freeze.json",{"models":{k:artifact(v) for k,v in paths.items()},
                                       "checkpoint_selection":check["selected_step"],"unit":"m"})
-    return paths
+    return paths,render
 
 
 def ray_scene(path, threads):
@@ -66,13 +64,23 @@ def ray_scene(path, threads):
     return sc
 
 
-def z_at(sc,y,x,meta,frame,threads):
-    from capture_metric3d_surface_eval import rays
-    if sc is None or not x.size:
-        return np.full(x.shape,np.inf,np.float32)
+def intrinsics(meta,frame):
+    return tuple(frame.get(k,meta.get(k)) for k in ("fl_x","fl_y","cx","cy"))
+
+
+def ray_directions(y,x,intr):
+    fx,fy,cx,cy=intr
+    return np.stack(((x+.5-cx)/fx,(y+.5-cy)/fy,np.ones_like(x)),axis=-1)
+
+
+def intersections(casts,directions,frame,threads):
     camera=np.asarray(frame["transform_matrix"])@FLIP
-    intr=[frame.get(k,meta.get(k)) for k in ("fl_x","fl_y","cx","cy")]
-    return sc.cast_rays(rays(x,y,camera,intr),nthreads=threads)["t_hit"].numpy()
+    data=np.empty((*directions.shape[:-1],6),np.float32)
+    data[...,:3]=camera[:3,3]
+    data[...,3:]=directions@camera[:3,:3].T
+    rays=o3d.core.Tensor.from_numpy(data)
+    return {k:(sc.cast_rays(rays,nthreads=threads)["t_hit"].numpy() if sc is not None and data.size
+               else np.full(directions.shape[:-1],np.inf,np.float32)) for k,sc in casts.items()}
 
 
 def batch_edges(ref,z):
@@ -142,19 +150,18 @@ def local_stats(ref,pred):
 
 def evaluate_meshes(dest,scene,casts,meta,frames,threads):
     from capture_metric3d_surface_eval import stats,measures
-    # Fixed denominator pooled over all 184 frames. Bound memory by retaining only
-    # per-method hit errors for one split, matching the historical percentile.
     for split,count in (("val",29222080),("test",29100252)):
-        for k,sc in casts.items():
-            target=dest/"evaluation"/f"{split}_{k}.json"
-            if target.exists():
-                continue
-            rows=[]; totals={}; edges={}; errs=[]
-            for name in meta[split+"_filenames"]:
-                frame=frames[name]
-                ref=np.load(scene/frame["depth_file_path"],mmap_mode="r",allow_pickle=False)
-                y,x=np.where(np.isfinite(ref)&(ref>=.3)&(ref<=6))
-                z=z_at(sc,y,x,meta,frame,threads)
+        todo={k:sc for k,sc in casts.items() if not (dest/"evaluation"/f"{split}_{k}.json").is_file()}
+        if not todo:
+            continue
+        records={k:([],{},{},[]) for k in todo}
+        for name in meta[split+"_filenames"]:
+            frame=frames[name]
+            ref=np.load(scene/frame["depth_file_path"],mmap_mode="r",allow_pickle=False)
+            y,x=np.where(np.isfinite(ref)&(ref>=.3)&(ref<=6))
+            directions=ray_directions(y,x,intrinsics(meta,frame))
+            for k,z in intersections(todo,directions,frame,threads).items():
+                rows,totals,edges,errs=records[k]
                 c,e=stats(ref[y,x],z,np.isfinite(z)&(z>0))
                 for field,val in c.items():
                     totals[field]=totals.get(field,0)+val
@@ -164,18 +171,11 @@ def evaluate_meshes(dest,scene,casts,meta,frames,threads):
                     edges[field]=edges.get(field,0)+val
                 errs.append(e)
                 rows.append({"id":Path(name).stem,"reference_pixels":len(x),"counts":c,"edges":ec})
+        for k,(rows,totals,edges,errs) in records.items():
             if len(rows)!=184 or sum(r["reference_pixels"] for r in rows)!=count:
                 raise ValueError("hall fixed surface denominator changed")
-            atomic_json(target,{"split":split,"method":k,"frames":rows,"edge_counts":edges,
+            atomic_json(dest/"evaluation"/f"{split}_{k}.json",{"split":split,"method":k,"frames":rows,"edge_counts":edges,
                                 "pooled":measures(totals,np.concatenate(errs)),"reference_pixels":count})
-
-
-def panel_depth(values):
-    keep=np.isfinite(values)&(values>0)
-    code=np.clip((np.where(keep,values,.3)-.3)*(255/5.7),0,255).astype(np.uint8)
-    img=cv2.applyColorMap(code,cv2.COLORMAP_TURBO)
-    img[~keep]=0
-    return img
 
 
 def stream(mux,size):
@@ -209,59 +209,66 @@ def inspect_video(path, times, hidden):
     return dict(frames=n,verified_pts=n,redacted_frames=len(hidden),max_mask_error=max_redaction_error)
 
 
-def media(dest,scene,config,step,meta,frames,casts,threads):
+def media(dest,scene,step,render,casts,threads):
     import av
-    from nerfstudio.cameras.cameras import Cameras,CameraType
-    import capture_quality_eval as ev
-    from capture_metric3d_common import selection
     from lingbot_record_hall import write_frame
+    from interactive_eval_reference import prepare as reference_panels
+    cache,meta,frames,seq,hidden,rois,ck=render
     folder=dest/"media"; folder.mkdir(exist_ok=True)
     if (folder/"receipt.json").is_file():
         return
-    _,pipe,ck,_=ev.load_model(config,step,"val")
-    seq=selection()
-    if len(seq)!=1846:
-        raise ValueError("full hall timeline missing")
     stamps=[int(r["actual_rgb_timestamp_ns"]) for r in seq]
     times=[(t-stamps[0]+500)//1000 for t in stamps]
     short=[40000*i for i in range(len(seq))]
-    hidden={i for i,r in enumerate(seq) if 349<=r["relative_s"]<=353.7 or r.get("annotation")=="late dynamic interval"}
     if len(hidden)!=30 or any(b<=a for a,b in zip(times,times[1:])):
         raise ValueError("public timeline timing or withholding interval changed")
-    boxes=read(ROOT/"reports/capture-full-dn-30k/20261119-v1/mesh_validation.json")["local_views"]
-    rois={int(r["train_id"]):(r["object"],r["xyxy"]) for r in boxes}
-    rois[1420]=("foam_teeth",[720,224,1104,608])
+    refdir,refmanifest=reference_panels(scene,frames,seq,hidden,max(1,min(3,threads)))
+    refrows={row["id"]:row for row in refmanifest["frames"]}
     masks=set(rois)|{1304,1305,1514}
     local={}
     h,w=meta["h"],meta["w"]
     yy,xx=np.mgrid[0:h:2,0:w:2]
+    # One camera-space grid is shared by all frames using these intrinsics.
+    last_intr=grid=None
     file1,file2=folder/"full.pending.mp4",folder/"summary.pending.mp4"
     opts={"movflags":"+faststart","video_track_timescale":"1000000"}
-    with av.open(str(file1),"w",format="mp4",options=opts) as full, av.open(str(file2),"w",format="mp4",options=opts) as brief,torch.inference_mode():
+    with av.open(str(file1),"w",format="mp4",options=opts) as full, av.open(str(file2),"w",format="mp4",options=opts) as brief,ThreadPoolExecutor(max_workers=1) as writer:
         size=(1920,768)
         st1,st2=stream(full,size),stream(brief,size)
+        def encode(canvas,i):
+            write_frame(full,st1,canvas,times[i])
+            caption=("Reference / novel rendering share one camera" if i<len(seq)//3 else
+                     "Depth panels share one metric colour scale" if i<2*len(seq)//3 else
+                     "Mesh depths are ray intersections; black means no predicted surface")
+            cv2.putText(canvas,caption,(870,30),0,.68,(240,238,205),1,cv2.LINE_AA)
+            write_frame(brief,st2,canvas,short[i])
+        pending=None
         for i,r in enumerate(seq):
             canvas=np.full((768,1920,3),22,np.uint8)
-            fid=r["id"]; frame=frames[f"images/{fid}.png"]
+            fid=r["id"]; name=f"images/{fid}.png";frame=frames[name]
             if i not in hidden:
-                P=np.asarray(frame["transform_matrix"],np.float32)
-                c=Cameras(camera_to_worlds=torch.tensor(P)[None,:3,:],**{k:meta[k] for k in ("cx","cy")},
-                          fx=meta["fl_x"],fy=meta["fl_y"],width=w,height=h,camera_type=CameraType.PERSPECTIVE).to(pipe.device)
-                out=pipe.model.get_outputs_for_camera(camera=c)
-                rgb=np.rint(out["rgb"].clamp(0,1).cpu().numpy()*255).astype(np.uint8)[...,::-1]
-                z=out["depth"].reshape(h,w).cpu().numpy()
-                ref=np.load(scene/frame["depth_file_path"],mmap_mode="r",allow_pickle=False)
-                photo=cv2.imread(str(scene/frame["file_path"]))
-                meshes={k:z_at(s,yy,xx,meta,frame,threads) for k,s in casts.items()}
-                tiles=(photo,rgb,panel_depth(ref),panel_depth(z),panel_depth(meshes["supported_poisson"]),panel_depth(meshes["model_tsdf"]))
+                refrow=refrows[fid]
+                refpath=refdir/refrow["path"]
+                if digest(refpath)!=refrow["sha256"]:
+                    raise IOError("Shared reference panels changed: "+fid)
+                photo_tile,ref_tile=np.load(refpath,mmap_mode="r",allow_pickle=False)
+                current=intrinsics(meta,frame)
+                if current!=last_intr:
+                    grid=ray_directions(yy,xx,current);last_intr=current
+                meshes=intersections(casts,grid,frame,max(1,threads-1))
+                with np.load(cache.folder/cache.rows[name]["file"],allow_pickle=False) as saved:
+                    rgb_tile,z_tile=saved["rgb"],saved["depth"]
+                    roi_z=saved["roi_z"] if i in rois else None
+                tiles=(photo_tile,rgb_tile,ref_tile,z_tile,panel_depth(meshes["supported_poisson"]),panel_depth(meshes["model_tsdf"]))
                 for j,tile in enumerate(tiles):
                     y=48+(j//3)*360; x=j%3*640
-                    canvas[y:y+360,x:x+640]=cv2.resize(tile,(640,360),interpolation=cv2.INTER_AREA)
+                    canvas[y:y+360,x:x+640]=tile if tile.shape[:2]==(360,640) else cv2.resize(tile,(640,360),interpolation=cv2.INTER_AREA)
                 if i in rois:
                     label,(x0,y0,x1,y1)=rois[i]
                     gy,gx=np.mgrid[y0:y1,x0:x1]
-                    crop=ref[y0:y1,x0:x1]
-                    models={"model":z[y0:y1,x0:x1],**{k:z_at(s,gy,gx,meta,frame,threads) for k,s in casts.items()}}
+                    crop=np.load(scene/frame["depth_file_path"],mmap_mode="r",allow_pickle=False)[y0:y1,x0:x1]
+                    photo=cv2.imread(str(scene/frame["file_path"]))
+                    models={"model":roi_z,**intersections(casts,ray_directions(gy,gx,current),frame,max(1,threads-1))}
                     local[label]={"id":fid,"xyxy":[x0,y0,x1,y1],"results":{k:local_stats(crop,v) for k,v in models.items()}}
                     cv2.imwrite(str(folder/(label+".jpg")),np.hstack((photo[y0:y1,x0:x1],panel_depth(crop),*[panel_depth(a) for a in models.values()])))
             else:
@@ -276,12 +283,11 @@ def media(dest,scene,config,step,meta,frames,casts,threads):
             cv2.putText(canvas,label,(14,31),0,.80,(235,235,235),1,cv2.LINE_AA)
             if i in masks:
                 cv2.imwrite(str(folder/(fid+".jpg")),cv2.resize(canvas,(960,384)))
-            write_frame(full,st1,canvas,times[i])
-            caption=("Reference / novel rendering share one camera" if i<len(seq)//3 else
-                     "Depth panels share one metric colour scale" if i<2*len(seq)//3 else
-                     "Mesh depths are ray intersections; black means no predicted surface")
-            cv2.putText(canvas,caption,(870,30),0,.68,(240,238,205),1,cv2.LINE_AA)
-            write_frame(brief,st2,canvas,short[i])
+            if pending is not None:
+                pending.result()
+            pending=writer.submit(encode,canvas,i)
+        if pending is not None:
+            pending.result()
         for mux,s in ((full,st1),(brief,st2)):
             for packet in s.encode(): mux.mux(packet)
     artifacts={}
@@ -293,15 +299,73 @@ def media(dest,scene,config,step,meta,frames,casts,threads):
     atomic_json(folder/"receipt.json",{"checkpoint":artifact(ck),"views":1846,"public_withheld":len(hidden),"movies":artifacts})
 
 
+@contextmanager
+def measured_stages(dest,threads):
+    state={}
+    lock=threading.Lock()
+    finished=threading.Event()
+    def sample():
+        report=dict(state)
+        report["sampled"]=datetime.now(timezone.utc).isoformat()
+        report["reserved_bytes"]=torch.cuda.memory_reserved()
+        report["cgroup_bytes"]=int(Path("/sys/fs/cgroup/memory.current").read_text())
+        for line in Path("/proc/self/smaps_rollup").read_text().splitlines():
+            k,_,v=line.partition(":")
+            if k in ("Pss","Rss","Private_Clean","Private_Dirty"):
+                report[k+"_bytes"]=int(v.split()[0])*1024
+        report["USS_bytes"]=report["Private_Clean_bytes"]+report["Private_Dirty_bytes"]
+        for k in ("Pss_bytes","Rss_bytes","USS_bytes","reserved_bytes"):
+            state["peak_"+k]=max(state.get("peak_"+k,0),report[k])
+            report["peak_"+k]=state["peak_"+k]
+        atomic_json(dest/"state/evaluation_stage.json",report)
+        return report
+    def log(report,event):
+        with (dest/"state/evaluation_events.jsonl").open("a") as f:
+            f.write(json.dumps({**report,"event":event})+"\n")
+    def stage(name,cpu_only,gpu_released):
+        with lock:
+            if state:
+                log(sample(),"end")
+            state.clear()
+            state.update(stage=name,pid=os.getpid(),started=datetime.now(timezone.utc).isoformat(),threads=threads,
+                         cpu_only=cpu_only,gpu_released=gpu_released)
+            log(sample(),"start")
+        print("Evaluation stage",name,"threads",threads,flush=True)
+    def heartbeat():
+        while not finished.wait(10):
+            with lock:
+                if state:
+                    sample()
+    worker=threading.Thread(target=heartbeat,daemon=True,name="evaluation-stage-resources")
+    worker.start()
+    try:
+        yield stage
+    finally:
+        finished.set()
+        worker.join()
+
+
 def run(dest,scene,config,step):
     cv2.setNumThreads(1)
-    threads=int(os.environ["DN_CPU_BUDGET"])
-    paths=export(dest,scene,config,step)
-    casts={k:ray_scene(p,threads) for k,p in paths.items()}
-    meta=read(scene/"transforms.json")
-    frames={f["file_path"]:f for f in meta["frames"]}
-    evaluate_meshes(dest,scene,casts,meta,frames,threads)
-    media(dest,scene,config,step,meta,frames,casts,threads)
-    receipts=[dest/"evaluation/test_complete.json",dest/"meshes/export_freeze.json",dest/"media/receipt.json",
-              dest/"media/local_geometry.json",*[dest/"evaluation"/f"{s}_{k}.json" for s in ("val","test") for k in casts]]
-    atomic_json(dest/"evaluation/complete.json",{"variant":dest.name,"selected_step":step,"artifacts":[artifact(p) for p in receipts]})
+    threads=int(os.environ.get("IW_EVAL_CPU_THREADS",os.environ["DN_CPU_BUDGET"]))
+    capacity=len(os.sched_getaffinity(0))
+    quota,period=Path("/sys/fs/cgroup/cpu.max").read_text().split()
+    if quota!="max":
+        capacity=min(capacity,max(1,int(quota)//int(period)))
+    if not 1<=threads<=capacity:
+        raise ValueError("Invalid allocated evaluation CPU threads")
+    os.environ["DN_CPU_BUDGET"]=str(threads)
+    with measured_stages(dest,threads) as stage:
+        stage("geometry_identity",False,False)
+        paths,render=export(dest,scene,config,step,stage)
+        gc.collect()
+        torch.cuda.empty_cache()
+        stage("surface_scores",True,True)
+        casts={k:ray_scene(p,threads) for k,p in paths.items()}
+        evaluate_meshes(dest,scene,casts,render[1],render[2],threads)
+        stage("full_timeline_encoding",False,True)
+        media(dest,scene,step,render,casts,threads)
+        receipts=[dest/"evaluation/test_complete.json",dest/"meshes/export_freeze.json",dest/"media/receipt.json",
+                  dest/"media/local_geometry.json",*[dest/"evaluation"/f"{s}_{k}.json" for s in ("val","test") for k in casts]]
+        atomic_json(dest/"evaluation/complete.json",{"variant":dest.name,"selected_step":step,"artifacts":[artifact(p) for p in receipts]})
+        stage("completed",True,True)

@@ -1,0 +1,212 @@
+{
+  "observed_at": "2026-11-28T23:11:27+08:00",
+  "run_id": "interactive-world-20261128-v1",
+  "planning_target": "2026-11-29T12:00:00+08:00",
+  "total_hall_updates": 1440000,
+  "remaining_hall_updates": 1071100,
+  "observed_updates": {
+    "R0C": 185000,
+    "R1": 168900,
+    "VR0C": 30000,
+    "VR1": 30000,
+    "VR2": 30000,
+    "R2": 15000,
+    "R3": 0,
+    "R4": 0,
+    "R5": 0,
+    "R6": 0,
+    "R7": 0
+  },
+  "clean_two_hall": {
+    "start": "2026-11-28T22:27:13+08:00",
+    "end": "2026-11-28T22:42:07+08:00",
+    "samples": 46,
+    "seconds": 894.0,
+    "net_updates": {
+      "R0C": 13600,
+      "R1": 13100,
+      "R2": 0,
+      "R3": 0,
+      "R4": 0,
+      "R5": 0
+    },
+    "hall_updates_per_hour": 107516.8,
+    "mean_gpu_util_percent": 76.83
+  },
+  "initial_three_hall": {
+    "start": "2026-11-28T22:43:30+08:00",
+    "end": "2026-11-28T23:11:27+08:00",
+    "samples": 82,
+    "seconds": 1677.0,
+    "net_updates": {
+      "R0C": 18800,
+      "R1": 17900,
+      "R2": 14900,
+      "R3": 0,
+      "R4": 0,
+      "R5": 0
+    },
+    "hall_updates_per_hour": 110769.2,
+    "mean_gpu_util_percent": 97.94
+  },
+  "three_after_first_growth": {
+    "start": "2026-11-28T22:55:14+08:00",
+    "end": "2026-11-28T23:11:27+08:00",
+    "samples": 48,
+    "seconds": 973.0,
+    "net_updates": {
+      "R0C": 11200,
+      "R1": 10900,
+      "R2": 9300,
+      "R3": 0,
+      "R4": 0,
+      "R5": 0
+    },
+    "hall_updates_per_hour": 116176.8,
+    "mean_gpu_util_percent": 97.75
+  },
+  "rolling": {
+    "last_10_minutes": {
+      "start": "2026-11-28T23:01:47+08:00",
+      "end": "2026-11-28T23:11:27+08:00",
+      "samples": 29,
+      "seconds": 580.0,
+      "net_updates": {
+        "R0C": 6500,
+        "R1": 6500,
+        "R2": 5500,
+        "R3": 0,
+        "R4": 0,
+        "R5": 0
+      },
+      "hall_updates_per_hour": 114827.6,
+      "mean_gpu_util_percent": 97.69
+    },
+    "last_30_minutes": {
+      "start": "2026-11-28T22:41:38+08:00",
+      "end": "2026-11-28T23:11:27+08:00",
+      "samples": 88,
+      "seconds": 1789.0,
+      "net_updates": {
+        "R0C": 20400,
+        "R1": 19100,
+        "R2": 15000,
+        "R3": 0,
+        "R4": 0,
+        "R5": 0
+      },
+      "hall_updates_per_hour": 109670.2,
+      "mean_gpu_util_percent": 96.03
+    },
+    "last_60_minutes": {
+      "start": "2026-11-28T22:11:28+08:00",
+      "end": "2026-11-28T23:11:27+08:00",
+      "samples": 178,
+      "seconds": 3599.0,
+      "net_updates": {
+        "R0C": 40500,
+        "R1": 38800,
+        "R2": 15000,
+        "R3": 0,
+        "R4": 0,
+        "R5": 0
+      },
+      "hall_updates_per_hour": 94326.2,
+      "mean_gpu_util_percent": 91.92
+    }
+  },
+  "required_hall_updates_per_hour_with_tail": {
+    "0h": 83619.8,
+    "1h": 90700.7,
+    "2h": 99091.8,
+    "3h": 109193.8
+  },
+  "coverage": "Application progress is sampled every 100 completed updates. Windows include actual contention and validations.",
+  "evidence": {
+    "f_evaluation/acceleration_20261128/before_admission.json": {
+      "path": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1/f_evaluation/acceleration_20261128/before_admission.json",
+      "bytes": 4476,
+      "sha256": "0e6323400d9bef31e8568f645b83061e2d4285bfdb4e0d7c737d6af209dc8e99"
+    },
+    "f_evaluation/acceleration_20261128/after_admission_replay.json": {
+      "path": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1/f_evaluation/acceleration_20261128/after_admission_replay.json",
+      "bytes": 1939,
+      "sha256": "38c2df1c8053647326804090cb289236d55c82bef02313105de50fd5fe2f6adb"
+    },
+    "f_evaluation/acceleration/boundary_timing.json": {
+      "path": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1/f_evaluation/acceleration/boundary_timing.json",
+      "bytes": 446,
+      "sha256": "a1a8b890c2f3ddc0f2dae0b0ca985fe0e2e032b1ac3b0af0e864b831dea30409"
+    },
+    "f_evaluation/acceleration/future_segment_policy.json": {
+      "path": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1/f_evaluation/acceleration/future_segment_policy.json",
+      "bytes": 3209,
+      "sha256": "6b5baebca4884118647455a996ffb2c40e7b05f2eb37f1f263585b095c6f73e4"
+    },
+    "f_evaluation/acceleration/hole_terms.json": {
+      "path": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1/f_evaluation/acceleration/hole_terms.json",
+      "bytes": 791,
+      "sha256": "a7ab5c913f225d673bd1062ab311536a10cdfde5848c9054ce0bd77def389b07"
+    },
+    "f_evaluation/acceleration/hole_terms_verified.json": {
+      "path": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1/f_evaluation/acceleration/hole_terms_verified.json",
+      "bytes": 1548,
+      "sha256": "27fd17af952654b1bc9e307da3d1a7d801a63a55cbbe8e679c54a827344daeed"
+    },
+    "f_evaluation/acceleration/image_transfer.json": {
+      "path": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1/f_evaluation/acceleration/image_transfer.json",
+      "bytes": 596,
+      "sha256": "7d6dff6898085e751ec78ea57b425085730e66b41890a4dd079a733a1b6ce8d3"
+    },
+    "f_evaluation/acceleration/image_transfer_verified.json": {
+      "path": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1/f_evaluation/acceleration/image_transfer_verified.json",
+      "bytes": 1238,
+      "sha256": "dd7129189630a017078759f8a9b715a70e8e3d7d5c6a43ba9fa14fc826eb7e2d"
+    },
+    "f_evaluation/acceleration/metric_dispatch.json": {
+      "path": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1/f_evaluation/acceleration/metric_dispatch.json",
+      "bytes": 3507,
+      "sha256": "dd8490eb5416d7993ba17ad0f47ec2413b96651f7e31a6f9ec71d08e5550c0c7"
+    },
+    "f_evaluation/acceleration/metric_dispatch_verified.json": {
+      "path": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1/f_evaluation/acceleration/metric_dispatch_verified.json",
+      "bytes": 4756,
+      "sha256": "d1d6b855118485f27cc503f03addfbabe14e565cea2e92845908af111bb97b30"
+    },
+    "f_evaluation/acceleration/recovery_readback.json": {
+      "path": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1/f_evaluation/acceleration/recovery_readback.json",
+      "bytes": 1252,
+      "sha256": "b1164955f314c7e72c6f8a2473d45789aaa982964b72a48dabb9257c5a785ab0"
+    },
+    "f_evaluation/acceleration/sampler_readback.json": {
+      "path": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1/f_evaluation/acceleration/sampler_readback.json",
+      "bytes": 296,
+      "sha256": "2bfef2ff377b8b36f7f14f9521e3c83466333b5f7ad6f02fe4a2c297a73e6068"
+    },
+    "f_evaluation/eval_performance/final_preview_seek.json": {
+      "path": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1/f_evaluation/eval_performance/final_preview_seek.json",
+      "bytes": 404,
+      "sha256": "480db0311a1a16801f536a6a8cb681dbb0f6765c5dd63bad3bc2760ef00be126"
+    },
+    "f_evaluation/eval_performance/mux.json": {
+      "path": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1/f_evaluation/eval_performance/mux.json",
+      "bytes": 1164,
+      "sha256": "e693880270b2cf903fa80d12246c0de6569bb5de403e56ac4e0460aa89262f1f"
+    },
+    "f_evaluation/eval_performance/rays.json": {
+      "path": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1/f_evaluation/eval_performance/rays.json",
+      "bytes": 1291,
+      "sha256": "b9975fe31deb4c6c5a86e6ea1d1988a41cf57892231a44463db2eec2c4766cb5"
+    },
+    "f_evaluation/eval_performance/reference.json": {
+      "path": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1/f_evaluation/eval_performance/reference.json",
+      "bytes": 496,
+      "sha256": "cd33862b78c624ece3d04434db3bfe53eefd9bea25bdad2142fc1a7941c73628"
+    },
+    "f_evaluation/eval_performance/render.json": {
+      "path": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1/f_evaluation/eval_performance/render.json",
+      "bytes": 1134,
+      "sha256": "de05580c3741477c39fd468801fe922c245a5ea7371fe9bbc29200bc4a748b3a"
+    }
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "sample": {
+    "time": "2026-11-28T22:40:49+08:00",
+    "cpu_quota": 25,
+    "cgroup_total_bytes": 103475666944,
+    "cgroup_limit_bytes": 128849018880,
+    "clean_inactive_file_bytes": 15767236608,
+    "cgroup_working_bytes": 87708430336,
+    "cgroup_nonclean_bytes": 9729204224,
+    "cgroup_anon_bytes": 8537563136,
+    "cgroup_file_bytes": 93800742912,
+    "cgroup_dirty_bytes": 61440,
+    "cpu_usage_usec": 112242822632,
+    "ram_available_bytes": 41140588544,
+    "gpu_total_bytes": 102641958912,
+    "gpu_free_bytes": 91816460288,
+    "gpu_util_percent": 90,
+    "disk_free_bytes": 403935600640
+  },
+  "time": "2026-11-28T22:40:50+08:00",
+  "same_input": [
+    true,
+    "admitted",
+    {
+      "ram_required_bytes": 12512041472,
+      "gpu_required_bytes": 23556050124,
+      "threads": 3,
+      "active_ram_growth_reserve_bytes": 6275371008,
+      "active_gpu_growth_reserve_bytes": 29762781184,
+      "evidence": "process-tree PSS/USS, transient high water and cohort-bounded startup pressure"
+    }
+  ],
+  "live": [
+    true,
+    "admitted",
+    {
+      "ram_required_bytes": 13910787072,
+      "gpu_required_bytes": 23556050124,
+      "threads": 3,
+      "active_ram_growth_reserve_bytes": 1337970688,
+      "active_gpu_growth_reserve_bytes": 20757610496,
+      "evidence": "process-tree PSS/USS, transient high water and cohort-bounded startup pressure"
+    }
+  ],
+  "workers": [
+    {
+      "variant": "R0C",
+      "pid": 15993,
+      "resources": {
+        "pss_bytes": 3671695360,
+        "uss_bytes": 3056099328,
+        "transient_allowance_bytes": 584986624,
+        "process_count": 35,
+        "gpu_process_bytes": 4710203392
+      }
+    },
+    {
+      "variant": "R1",
+      "pid": 16581,
+      "resources": {
+        "pss_bytes": 3503697920,
+        "uss_bytes": 2926280704,
+        "transient_allowance_bytes": 575143936,
+        "process_count": 35,
+        "gpu_process_bytes": 4294967296
+      }
+    }
+  ]
+}

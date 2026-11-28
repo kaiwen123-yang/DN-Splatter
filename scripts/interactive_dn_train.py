@@ -18,7 +18,8 @@ import torch
 
 from interactive_dn_cache import atomic_json, shared_seed_geometry, shared_views
 from interactive_dn_growth import Growth, freeze_cap
-from interactive_dn_supervision import Packets, digest, loss_at_pixels
+from interactive_dn_metrics import acceleration_policy,metrics_at_writer_steps
+from interactive_dn_supervision import FrozenHoleTerms, Packets, digest, loss_at_pixels
 
 ROOT = Path(__file__).resolve().parents[1]
 PROTOCOL = ROOT/"configs/interactive_world_protocol.json"
@@ -27,6 +28,7 @@ B3_ID = "capture-full-quality-v3-20261122-v1"
 B3_REPORT = ROOT/"reports/capture-full-quality-v3/20261122-v1"
 VR_REPORT = ROOT/"reports/vr-room-iphone-30k"
 HALL_CONFIG = ROOT/"reports/capture-full-quality-v2/20261121-v1/config.yml"
+TRAINER_SOURCE_SHA256 = digest(Path(__file__))
 RUNS = ("R0C","R1","R2","R3","R4","R5","R6","R7","VR0C","VR1","VR2")
 
 
@@ -70,7 +72,11 @@ def prepare(args):
     vr = args.variant.startswith("VR")
     dest = run/("f_vr" if vr else "c_dn")/args.variant
     audit = dest/"state"
-    audit.mkdir(parents=True,exist_ok=True)
+    if args.phase=="audit-restore":
+        if not (audit/"inputs.json").is_file():
+            raise ValueError("readback requires an existing frozen training input receipt")
+    else:
+        audit.mkdir(parents=True,exist_ok=True)
     restored = run/"restore/tree/.local"
     b3 = args.b3_root or restored/"runs"/B3_ID
     positioned = args.variant in ("R6","R7")
@@ -179,7 +185,11 @@ def prepare(args):
             boundary = Packets(path,names,shape,run/"shared/packet-cache",boundary=True)
             info.update(boundary_sha256=digest(path), split_replacement_fraction=.2)
     info["image_hw"] = list(shape)
-    freeze(audit/"inputs.json",info)
+    if args.phase=="audit-restore":
+        if read(audit/"inputs.json")!=info:
+            raise ValueError("existing source treatment differs from readback inputs")
+    else:
+        freeze(audit/"inputs.json",info)
     return run,dest,scene,config_file,names,weights,packets,boundary,info
 
 
@@ -219,7 +229,10 @@ def train(args, prepared):
     from vr_room_checkpoint import numpy_scalar_scope
 
     run,dest,scene,config_file,names,weights,packets,boundary,info = prepared
-    audit = dest/"state"
+    readback_only = args.phase == "audit-restore"
+    audit = (run/"f_evaluation/acceleration/recovery-check"/f"{args.variant}-{args.at_update}"
+             if readback_only else dest/"state")
+    audit.mkdir(parents=True,exist_ok=True)
     vr = args.variant.startswith("VR")
     budget = info["budget"]
     cfg = yaml.load(config_file.read_text(encoding="utf8"), Loader=yaml.Loader)
@@ -235,12 +248,18 @@ def train(args, prepared):
         raise ValueError("historical model configuration differs")
     if args.variant == "R5":
         cfg.pipeline.model.use_normal_tv_loss = False
-    cfg.save_config()
     canonical = cfg.get_base_dir()/"config.yml"
     directory = cfg.get_checkpoint_dir()
+    if readback_only:
+        if args.at_update<=0 or args.at_update%10000:
+            raise ValueError("audit-restore requires an existing complete 10k checkpoint")
+        cfg.output_dir=audit/"trainer-logs"
+    else:
+        cfg.save_config()
     identity = signature(info)
     evaluation.SCENE, evaluation.RUN, evaluation.EVAL = scene,dest,dest/"evaluation"
-    latest = max(directory.glob("step-*.ckpt"),default=None)
+    latest = (directory/f"step-{args.at_update-1:09d}.ckpt" if readback_only else
+              max(directory.glob("step-*.ckpt"),default=None))
     model_state = None
     saved = -1
     if latest is not None:
@@ -251,13 +270,18 @@ def train(args, prepared):
                 or not 0 <= saved < budget or model_state["world_recovery"]["identity"] != identity):
             raise ValueError("checkpoint does not belong to this treatment or budget")
     cfg.max_num_iterations = budget-(saved+1)
+    speed=acceleration_policy(run,args.variant,info,integration_sha=TRAINER_SOURCE_SHA256)
+    atomic_json(audit/f"acceleration_{saved+1:09d}.json",dict(variant=args.variant,identity=identity,
+                from_update=saved+1,phase=args.phase,trainer_source_sha256=TRAINER_SOURCE_SHA256,methods=speed))
     growth = None if vr else Growth(info["common_cap"]["cap"],boundary)
     sampler = random.Random(42)
     epoch = 0
     order = []
     scale = None
     pending_rng = None
+    recovery_check = None
     use_weight = None
+    frozen_holes = None
     weight_records = {}
     tick = time.monotonic()
 
@@ -304,7 +328,7 @@ def train(args, prepared):
                 raise ValueError("common initial parameters differ from the paired baseline")
 
     def restore(trainer):
-        nonlocal model_state,pending_rng,order,epoch,scale
+        nonlocal model_state,pending_rng,order,epoch,scale,recovery_check
         dm = trainer.pipeline.datamanager
         actual = [p.relative_to(scene).as_posix() for p in dm.train_dataset.image_filenames]
         if actual != names:
@@ -330,6 +354,8 @@ def train(args, prepared):
         sampler.setstate(r["sampler_rng"])
         order,epoch = r["order"],r["epoch"]
         dm.train_unseen_cameras,dm.eval_unseen_cameras = r["remaining"],r["eval_remaining"]
+        from interactive_dn_recovery import readback
+        recovery_check = readback(trainer,ck,sampler,order,epoch,growth,GROWTH_FIELDS,names)
         pending_rng = r["rng"]
         model_state = None
 
@@ -372,6 +398,22 @@ def train(args, prepared):
         finally:
             trainer.pipeline.train(training)
             restore_rng(rng)
+        if args.variant=="R3" and step==59999 and not (audit/"slot_balance_decision.json").exists():
+            # The optimizer update, its checkpoint and all validation images are
+            # durable here. Missing evidence keeps the full training run continuous.
+            try:
+                from interactive_slot_balance import should_yield
+                cp=read(audit/"checkpoint.json")
+                val=dest/"evaluation/val"/f"step-{step:09d}.json"
+                decision=should_yield(run,args.variant,step,cp,val)
+            except (ImportError,OSError,ValueError,KeyError,TypeError,IndexError,ArithmeticError) as exc:
+                decision={"yield_slot":False,"reason":"scheduling evidence unavailable","error_type":type(exc).__name__}
+            atomic_json(audit/"slot_balance_decision.json",decision)
+            if decision.get("yield_slot") is True:
+                atomic_json(audit/"slot_handoff.json",dict(completed_updates=step+1,
+                    checkpoint_sha256=cp["sha256"],validation_sha256=digest(val),next_variant="R5",exit_code=76))
+                print("R3 checkpoint and full validation verified; returning one training slot to R5",flush=True)
+                raise SystemExit(76)
 
     base_weighted = EdgeAwareLogL1.forward
     def sensor_loss(module,pred,gt,rgb,mask):
@@ -382,7 +424,7 @@ def train(args, prepared):
     native_loss = Model.get_loss_dict
     first = {}
     def loss(model,outputs,batch,*pos,**kw):
-        nonlocal use_weight
+        nonlocal use_weight,frozen_holes
         if not model.training:
             return native_loss(model,outputs,batch,*pos,**kw)
         idx = int(batch["image_idx"])
@@ -395,14 +437,20 @@ def train(args, prepared):
         finally:
             use_weight = None
         if packets is not None:
-            points = packets.get(idx)
-            index = torch.as_tensor(np.array(points["index"],copy=True),device=pred.device)
-            z = torch.as_tensor(np.array(points["z_m"],copy=True),device=pred.device)
             rgb = model.get_gt_img(batch["image"]).clamp(min=10/255)
-            term,accepted = loss_at_pixels(pred,rgb,batch["sensor_depth"],index,z,scale,
-                                           (0,float("inf")) if vr else (.3,6.),batch.get("mask"))
+            if speed["hole_terms"]["enabled"]:
+                if frozen_holes is None:
+                    frozen_holes = FrozenHoleTerms(packets,scale,(.3,6.))
+                term,count,accepted=frozen_holes.loss(idx,pred,rgb,batch["sensor_depth"],batch.get("mask"))
+            else:
+                points = packets.get(idx)
+                index = torch.as_tensor(np.array(points["index"],copy=True),device=pred.device)
+                z = torch.as_tensor(np.array(points["z_m"],copy=True),device=pred.device)
+                term,accepted = loss_at_pixels(pred,rgb,batch["sensor_depth"],index,z,scale,
+                                               (0,float("inf")) if vr else (.3,6.),batch.get("mask"))
+                count=len(points)
             result["hole_depth"] = .1*model.config.sensor_depth_lambda*term
-            weight_records[idx] = [len(points),accepted]
+            weight_records[idx] = [count,accepted]
         if not first:
             first.update(frame=names[idx],step=int(model.step),losses={k:float(v.detach()) for k,v in result.items()},
                          sensor_weighted=bool(weights),packet_pixels=weight_records.get(idx),
@@ -411,7 +459,9 @@ def train(args, prepared):
             atomic_json(audit/"progress.json",{"durable_checkpoint_updates":(int(model.step)//10000)*10000,
                          "step_in_progress":int(model.step),"verified_completed_this_segment":int(model.step)-(saved+1),
                          "frame":names[idx],"gaussians":int(model.num_points),"wall_seconds":time.monotonic()-tick,
-                         "resources":resources()})
+                         "resources":resources(),"static_hole_cache":None if frozen_holes is None else
+                         {"bytes":frozen_holes.cached_bytes,"frames":len(frozen_holes.frames),
+                          "calls":frozen_holes.calls,"nonpositive_or_nonfinite_fallbacks":frozen_holes.fallbacks}})
         return result
 
     optimizer = Optimizers.optimizer_scaler_step_some
@@ -433,10 +483,37 @@ def train(args, prepared):
         if pending_rng is not None:
             _ = trainer.pipeline.datamanager.cached_train,trainer.pipeline.datamanager.cached_eval
             restore_rng(pending_rng)
+            from interactive_dn_recovery import assert_exact
+            assert_exact(rng_state(),pending_rng,"restored_rng")
+            recovery_check.update(rng_exact=["python","numpy","torch_cpu","torch_cuda_all"],
+                                  checkpoint_sha256=digest(latest),saved_budget=budget,remaining=cfg.max_num_iterations)
             pending_rng = None
+            if readback_only:
+                # Run the normal sampler and before-iteration step clock; no render, backward or optimizer step.
+                trainer.pipeline.train()
+                trainer.pipeline.model.step_cb(saved+1)
+                _,batch=trainer.pipeline.datamanager.next_train(saved+1)
+                actual=int(batch["image_idx"])
+                if (actual!=recovery_check["next_image_idx"] or trainer.pipeline.model.step!=saved+1
+                        or not trainer.pipeline.training or not trainer.pipeline.model.training):
+                    raise ValueError("first recovered sample, training mode or step clock differs")
+                recovery_check.update(passed=True,variant=args.variant,observed_next_frame=names[actual],
+                                      model_training=True,observed_step=trainer.pipeline.model.step,optimizer_updates_executed=0,
+                                      resume_seconds=time.monotonic()-tick)
+                atomic_json(audit/"readback.json",recovery_check)
+                atomic_json(run/"f_evaluation/acceleration/recovery_readback.json",recovery_check)
+                return
+            atomic_json(audit/f"restored_{saved+1:09d}.json",dict(recovery_check,passed=True))
         atomic_json(audit/"segment.json",{"saved_step":saved,"remaining":cfg.max_num_iterations,"canonical_steps":budget,
                                          "started":resources(),"command_variant":args.variant})
-        trainer.train()
+        if speed["metric_dispatch"]["enabled"]:
+            with metrics_at_writer_steps(Model,cfg.logging.steps_per_log) as counts:
+                try:
+                    trainer.train()
+                finally:
+                    atomic_json(audit/f"metric_calls_{saved+1:09d}.json",counts)
+        else:
+            trainer.train()
 
     # Bind to the serialization implementation of image tensors without invalidating
     # R0C's already-produced identical pages for an unrelated seed-cache extension.
@@ -444,9 +521,10 @@ def train(args, prepared):
     cache_identity = signature([info["scene_sha256"],info["historical_config_sha256"],image_format_hash])
     with ExitStack() as stack:
         stack.enter_context(shared_seed_geometry(Model,run/"shared/initial-geometry"))
-        views = stack.enter_context(shared_views(Manager,run/"shared/image-cache"/cache_identity))
+        views = stack.enter_context(shared_views(Manager,run/"shared/image-cache"/cache_identity,
+                                                 prefetch_to_gpu=speed["image_transfer"]["enabled"]))
         # Refill validation nodes from already-saved immutable models before a resumed segment.
-        if not vr:
+        if not vr and not readback_only:
             for n in evaluation.NODES:
                 if n <= saved and not (dest/"evaluation/val"/f"step-{n:09d}.json").exists():
                     evaluation.evaluate(canonical,n,"val")
@@ -472,6 +550,10 @@ def train(args, prepared):
                     stack.enter_context(patch.object(legacy,key,val))
                 legacy.main(recovery_epochs=3)
             atomic_json(audit/"shared_cache.json",[{"reads":v.reads,"prefetch_hits":v.hits,"directory":str(v.directory)} for v in views])
+    if readback_only:
+        if not (audit/"readback.json").is_file():
+            raise ValueError("no completed read-only restore")
+        return
     last = read(audit/"checkpoint.json")
     if last["completed_updates"] != budget or digest(Path(last["path"])) != last["sha256"]:
         raise ValueError("terminal checkpoint is absent, incomplete or corrupt")
@@ -512,7 +594,8 @@ def evaluate_selected(args,dest,scene):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("variant",choices=RUNS)
-    parser.add_argument("--phase",choices=("prepare","train","evaluate","all"),default="all")
+    parser.add_argument("--phase",choices=("prepare","train","evaluate","all","audit-restore"),default="all")
+    parser.add_argument("--at-update",type=int,default=0,help="checkpoint update for audit-restore")
     parser.add_argument("--run-root",type=Path,default=ROOT/".local/runs"/RUN_ID)
     for k in ("b3-root","scene","supervision","boundary","pose-receipt","joint-receipt"):
         parser.add_argument("--"+k,type=Path)
@@ -521,8 +604,14 @@ def main():
     if root.name != RUN_ID:
         parser.error("different run identity")
     dest = root/("f_vr" if args.variant.startswith("VR") else "c_dn")/args.variant
-    dest.mkdir(parents=True,exist_ok=True)
-    with (dest/"training.lock").open("a+b") as guard:
+    if args.phase=="audit-restore" and not dest.is_dir():
+        parser.error("select an existing training directory for readback")
+    if args.phase!="audit-restore":
+        dest.mkdir(parents=True,exist_ok=True)
+    lock_dir=(root/"f_evaluation/acceleration" if args.phase=="audit-restore" else dest)
+    lock_dir.mkdir(parents=True,exist_ok=True)
+    lock_name=f"readback_{args.variant}.lock" if args.phase=="audit-restore" else "training.lock"
+    with (lock_dir/lock_name).open("a+b") as guard:
         fcntl.flock(guard,fcntl.LOCK_EX|fcntl.LOCK_NB)
         prepared = prepare(args)
         if args.phase=="prepare":

@@ -1,0 +1,149 @@
+{
+  "host": {
+    "time": "2026-11-28T22:34:36+08:00",
+    "cpu_quota": 25,
+    "cgroup_total_bytes": 99263332352,
+    "cgroup_limit_bytes": 128849018880,
+    "clean_inactive_file_bytes": 14794883072,
+    "cgroup_working_bytes": 84468449280,
+    "ram_available_bytes": 44380569600,
+    "gpu_total_bytes": 102641958912,
+    "gpu_free_bytes": 92953116672,
+    "gpu_util_percent": 85,
+    "disk_free_bytes": 407565504512
+  },
+  "workers": {
+    "R0C": {
+      "variant": "R0C",
+      "active": true,
+      "pid": 15993,
+      "log": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1/c_dn/R0C/logs/train-20261128T091954-15986.log",
+      "durable_updates": 150000,
+      "verified_updates_lower_bound": 158400,
+      "phase": "train",
+      "training_complete": false,
+      "evaluation_complete": false,
+      "first_batch": true,
+      "measured": {
+        "utc": "2026-11-28T14:34:35.550034+00:00",
+        "pid": 16007,
+        "torch_reserved_peak": 14873001984,
+        "torch_allocated_peak": 14775135232,
+        "torch_threads": 1,
+        "cgroup_current_bytes": 99224481792,
+        "pss_bytes": 3092488192,
+        "rss_bytes": 3507019776,
+        "uss_bytes": 2869248000
+      },
+      "exit_code": null,
+      "queue_reason": "running"
+    },
+    "R1": {
+      "variant": "R1",
+      "active": true,
+      "pid": 16581,
+      "log": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1/c_dn/R1/logs/train-20261128T092335-16575.log",
+      "durable_updates": 140000,
+      "verified_updates_lower_bound": 143600,
+      "phase": "train",
+      "training_complete": false,
+      "evaluation_complete": false,
+      "first_batch": true,
+      "measured": {
+        "utc": "2026-11-28T14:34:31.636721+00:00",
+        "pid": 16593,
+        "torch_reserved_peak": 14881390592,
+        "torch_allocated_peak": 14776887296,
+        "torch_threads": 1,
+        "cgroup_current_bytes": 99026968576,
+        "pss_bytes": 2956941312,
+        "rss_bytes": 3361169408,
+        "uss_bytes": 2723680256
+      },
+      "exit_code": null,
+      "queue_reason": "running"
+    },
+    "R2": {
+      "variant": "R2",
+      "active": false,
+      "pid": null,
+      "log": null,
+      "durable_updates": 0,
+      "verified_updates_lower_bound": 0,
+      "phase": "train",
+      "training_complete": false,
+      "evaluation_complete": false,
+      "first_batch": false,
+      "measured": {},
+      "exit_code": null,
+      "queue_reason": "RAM admission",
+      "admission": {
+        "ram_required_bytes": 94098798592,
+        "gpu_required_bytes": 23556050124,
+        "evidence": "measured"
+      }
+    }
+  },
+  "ledger": {
+    "R0C": {
+      "pss_bytes": 3137685504,
+      "uss_bytes": 2982248448,
+      "torch_reserved_peak": 14873001984,
+      "torch_allocated_peak": 14775135232,
+      "prelaunch_working": 45458448384,
+      "prelaunch_note": "attached to already-running worker; pre-attach working set is unknown",
+      "incremental_working_peak": 68407091200
+    },
+    "R1": {
+      "prelaunch_working": 46058893312,
+      "launch_time": "2026-11-28T17:23:35+08:00",
+      "pss_bytes": 3003149312,
+      "uss_bytes": 2841214976,
+      "torch_reserved_peak": 14881390592,
+      "torch_allocated_peak": 14776887296,
+      "incremental_working_peak": 67806646272
+    },
+    "VR0C": {
+      "prelaunch_working": 72140689408,
+      "launch_time": "2026-11-28T18:23:55+08:00",
+      "pss_bytes": 2532582400,
+      "uss_bytes": 2392694784,
+      "torch_reserved_peak": 4223664128,
+      "torch_allocated_peak": 4183607808,
+      "incremental_working_peak": 27166916608
+    },
+    "VR1": {
+      "prelaunch_working": 82821967872,
+      "launch_time": "2026-11-28T20:05:28+08:00",
+      "pss_bytes": 2506592256,
+      "uss_bytes": 2367508480,
+      "torch_reserved_peak": 4223664128,
+      "torch_allocated_peak": 4183607808,
+      "incremental_working_peak": 24400650240
+    },
+    "VR2": {
+      "prelaunch_working": 84002816000,
+      "launch_time": "2026-11-28T21:36:57+08:00",
+      "pss_bytes": 2501485568,
+      "uss_bytes": 2363944960,
+      "torch_reserved_peak": 4223664128,
+      "torch_allocated_peak": 4183607808,
+      "incremental_working_peak": 29862723584
+    },
+    "R2": {},
+    "R3": {},
+    "R4": {},
+    "R5": {},
+    "R6": {},
+    "R7": {}
+  },
+  "decision": [
+    false,
+    "RAM admission",
+    {
+      "ram_required_bytes": 94098798592,
+      "gpu_required_bytes": 23556050124,
+      "evidence": "measured"
+    }
+  ]
+}
