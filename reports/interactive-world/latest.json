@@ -3,7 +3,7 @@
   "stage": "interactive-world",
   "status": "running",
   "run_id": "interactive-world-20261128-v1",
-  "observed_at": "2026-11-28T19:28:36+08:00",
+  "observed_at": "2026-11-28T19:39:40+08:00",
   "timezone": "Asia/Shanghai",
   "run_directory": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1",
   "source_baseline": "f10e91805877b197d49107347844b675df856d3f",
@@ -14,20 +14,20 @@
     "mandatory_vr_runs": 2,
     "generated_episodes": 1536
   },
-  "actual_new_training_updates_lower_bound": 129200,
-  "durable_training_updates": 120000,
+  "actual_new_training_updates_lower_bound": 148200,
+  "durable_training_updates": 140000,
   "host": {
-    "time": "2026-11-28T19:28:36+08:00",
+    "time": "2026-11-28T19:39:40+08:00",
     "cpu_quota": 25,
-    "cgroup_total_bytes": 108322091008,
+    "cgroup_total_bytes": 110142992384,
     "cgroup_limit_bytes": 128849018880,
-    "clean_inactive_file_bytes": 27409436672,
-    "cgroup_working_bytes": 80912654336,
-    "ram_available_bytes": 47936364544,
+    "clean_inactive_file_bytes": 28899274752,
+    "cgroup_working_bytes": 81243717632,
+    "ram_available_bytes": 47605301248,
     "gpu_total_bytes": 102641958912,
-    "gpu_free_bytes": 83983597568,
+    "gpu_free_bytes": 84088455168,
     "gpu_util_percent": 100,
-    "disk_free_bytes": 430780276736
+    "disk_free_bytes": 429119688704
   },
   "coordinator_pid": 16515,
   "protocol": "interactive-world-20261128-v1",
@@ -89,22 +89,22 @@
           "correct_coverage_10cm": 0.44176280012119534
         }
       },
-      "matched_pairs": 3150,
+      "matched_pairs": 3500,
       "planned_pairs": 9881,
       "per_target_pose_audits": {
-        "ready_targets_solved": 231,
+        "ready_targets_solved": 282,
         "all_targets": 1478,
         "workers": 4
       }
     },
     "C": {
       "status": "running",
-      "mandatory_updates_lower_bound": 44600,
+      "mandatory_updates_lower_bound": 50300,
       "mandatory_updates_target": 1200000,
       "variants": {
         "R0C": {
           "durable_updates": 50000,
-          "verified_updates_lower_bound": 50300,
+          "verified_updates_lower_bound": 56700,
           "training_complete": false,
           "evaluation_complete": false,
           "phase": "train",
@@ -114,15 +114,15 @@
           "status": "running",
           "reason": "running",
           "resources": {
-            "utc": "2026-11-28T11:28:28.872412+00:00",
+            "utc": "2026-11-28T11:39:33.132050+00:00",
             "pid": 16007,
             "torch_reserved_peak": 14873001984,
             "torch_allocated_peak": 14775135232,
             "torch_threads": 1,
-            "cgroup_current_bytes": 107780579328,
-            "pss_bytes": 3004250112,
+            "cgroup_current_bytes": 110133891072,
+            "pss_bytes": 3004141568,
             "rss_bytes": 3502968832,
-            "uss_bytes": 2861654016
+            "uss_bytes": 2861662208
           },
           "evaluated_nodes": {
             "val": [
@@ -145,8 +145,8 @@
           }
         },
         "R1": {
-          "durable_updates": 40000,
-          "verified_updates_lower_bound": 44600,
+          "durable_updates": 50000,
+          "verified_updates_lower_bound": 50300,
           "training_complete": false,
           "evaluation_complete": false,
           "phase": "train",
@@ -156,15 +156,15 @@
           "status": "running",
           "reason": "running",
           "resources": {
-            "utc": "2026-11-28T11:28:34.781214+00:00",
+            "utc": "2026-11-28T11:39:30.507768+00:00",
             "pid": 16593,
             "torch_reserved_peak": 14881390592,
             "torch_allocated_peak": 14776887296,
             "torch_threads": 1,
-            "cgroup_current_bytes": 107977052160,
-            "pss_bytes": 2876784640,
-            "rss_bytes": 3374841856,
-            "uss_bytes": 2734940160
+            "cgroup_current_bytes": 110133846016,
+            "pss_bytes": 2898850816,
+            "rss_bytes": 3397021696,
+            "uss_bytes": 2757120000
           },
           "evaluated_nodes": {
             "val": [
@@ -380,8 +380,8 @@
           }
         },
         "VR1": {
-          "durable_updates": 0,
-          "verified_updates_lower_bound": 4300,
+          "durable_updates": 10000,
+          "verified_updates_lower_bound": 11200,
           "training_complete": false,
           "evaluation_complete": false,
           "phase": "train",
@@ -391,17 +391,17 @@
           "status": "running",
           "reason": "running",
           "resources": {
-            "utc": "2026-11-28T11:28:33.748092+00:00",
+            "utc": "2026-11-28T11:39:39.245791+00:00",
             "pid": 33201,
             "torch_reserved_peak": 4223664128,
             "torch_allocated_peak": 4183607808,
             "torch_threads": 1,
-            "cgroup_current_bytes": 107917324288,
-            "cgroup_anon_bytes": 13667491840,
-            "cgroup_file_bytes": 93000486912,
-            "pss_bytes": 2449469440,
-            "rss_bytes": 2942345216,
-            "uss_bytes": 2310381568
+            "cgroup_current_bytes": 110143238144,
+            "cgroup_anon_bytes": 14143692800,
+            "cgroup_file_bytes": 94743388160,
+            "pss_bytes": 2498229248,
+            "rss_bytes": 2991280128,
+            "uss_bytes": 2359255040
           }
         },
         "VR2": {
@@ -525,6 +525,11 @@
       "path": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1/a_depth/quality/fold_0/calibration.json",
       "bytes": 3907,
       "sha256": "2cac60171d79c02aeb5711baf1ce6d6e665a457d6e02264ad1a0972b75814e4d"
+    },
+    "a_depth/quality/fold_1/calibration.json": {
+      "path": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1/a_depth/quality/fold_1/calibration.json",
+      "bytes": 3914,
+      "sha256": "ac238884a972ca5a2478d927e77399f4ce24d9fe58d0eecb30fd69201c768880"
     },
     "a_depth/masked_manifest.json": {
       "path": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1/a_depth/masked_manifest.json",
