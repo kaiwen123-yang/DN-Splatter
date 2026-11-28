@@ -3,7 +3,7 @@
   "stage": "interactive-world",
   "status": "running",
   "run_id": "interactive-world-20261128-v1",
-  "observed_at": "2026-11-28T19:39:40+08:00",
+  "observed_at": "2026-11-28T19:45:41+08:00",
   "timezone": "Asia/Shanghai",
   "run_directory": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1",
   "source_baseline": "f10e91805877b197d49107347844b675df856d3f",
@@ -14,20 +14,20 @@
     "mandatory_vr_runs": 2,
     "generated_episodes": 1536
   },
-  "actual_new_training_updates_lower_bound": 148200,
-  "durable_training_updates": 140000,
+  "actual_new_training_updates_lower_bound": 159200,
+  "durable_training_updates": 150000,
   "host": {
-    "time": "2026-11-28T19:39:40+08:00",
+    "time": "2026-11-28T19:45:41+08:00",
     "cpu_quota": 25,
-    "cgroup_total_bytes": 110142992384,
+    "cgroup_total_bytes": 112599117824,
     "cgroup_limit_bytes": 128849018880,
-    "clean_inactive_file_bytes": 28899274752,
-    "cgroup_working_bytes": 81243717632,
-    "ram_available_bytes": 47605301248,
+    "clean_inactive_file_bytes": 29181693952,
+    "cgroup_working_bytes": 83417423872,
+    "ram_available_bytes": 45431595008,
     "gpu_total_bytes": 102641958912,
-    "gpu_free_bytes": 84088455168,
+    "gpu_free_bytes": 84948287488,
     "gpu_util_percent": 100,
-    "disk_free_bytes": 429119688704
+    "disk_free_bytes": 428331700224
   },
   "coordinator_pid": 16515,
   "protocol": "interactive-world-20261128-v1",
@@ -89,22 +89,22 @@
           "correct_coverage_10cm": 0.44176280012119534
         }
       },
-      "matched_pairs": 3500,
+      "matched_pairs": 3750,
       "planned_pairs": 9881,
       "per_target_pose_audits": {
-        "ready_targets_solved": 282,
+        "ready_targets_solved": 321,
         "all_targets": 1478,
         "workers": 4
       }
     },
     "C": {
       "status": "running",
-      "mandatory_updates_lower_bound": 50300,
+      "mandatory_updates_lower_bound": 53700,
       "mandatory_updates_target": 1200000,
       "variants": {
         "R0C": {
-          "durable_updates": 50000,
-          "verified_updates_lower_bound": 56700,
+          "durable_updates": 60000,
+          "verified_updates_lower_bound": 60100,
           "training_complete": false,
           "evaluation_complete": false,
           "phase": "train",
@@ -114,15 +114,15 @@
           "status": "running",
           "reason": "running",
           "resources": {
-            "utc": "2026-11-28T11:39:33.132050+00:00",
+            "utc": "2026-11-28T11:45:37.522323+00:00",
             "pid": 16007,
             "torch_reserved_peak": 14873001984,
             "torch_allocated_peak": 14775135232,
             "torch_threads": 1,
-            "cgroup_current_bytes": 110133891072,
-            "pss_bytes": 3004141568,
-            "rss_bytes": 3502968832,
-            "uss_bytes": 2861662208
+            "cgroup_current_bytes": 112575700992,
+            "pss_bytes": 2985305088,
+            "rss_bytes": 3484131328,
+            "uss_bytes": 2842824704
           },
           "evaluated_nodes": {
             "val": [
@@ -140,13 +140,28 @@
                   "bytes": 754098,
                   "sha256": "e07fd01ea02bfcd098994346f844a8f44f0eb8aac5665ee2d0677874435918ba"
                 }
+              },
+              {
+                "step": 59999,
+                "images": 184,
+                "reference_pixels": 29222080,
+                "invalid": 0,
+                "psnr": 23.70556109884511,
+                "mae_m": 0.1369238972880344,
+                "p95_m": 0.42878010272979594,
+                "correct_10cm_fraction": 0.716900200122647,
+                "source": {
+                  "path": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1/c_dn/R0C/evaluation/val/step-000059999.json",
+                  "bytes": 754006,
+                  "sha256": "f17fcbeeb3096f7ecda99288af8faf0169c87fd030e6688ca8c502a001ee1969"
+                }
               }
             ]
           }
         },
         "R1": {
           "durable_updates": 50000,
-          "verified_updates_lower_bound": 50300,
+          "verified_updates_lower_bound": 53700,
           "training_complete": false,
           "evaluation_complete": false,
           "phase": "train",
@@ -156,13 +171,13 @@
           "status": "running",
           "reason": "running",
           "resources": {
-            "utc": "2026-11-28T11:39:30.507768+00:00",
+            "utc": "2026-11-28T11:45:36.240348+00:00",
             "pid": 16593,
             "torch_reserved_peak": 14881390592,
             "torch_allocated_peak": 14776887296,
             "torch_threads": 1,
-            "cgroup_current_bytes": 110133846016,
-            "pss_bytes": 2898850816,
+            "cgroup_current_bytes": 112569032704,
+            "pss_bytes": 2898851840,
             "rss_bytes": 3397021696,
             "uss_bytes": 2757120000
           },
@@ -381,7 +396,7 @@
         },
         "VR1": {
           "durable_updates": 10000,
-          "verified_updates_lower_bound": 11200,
+          "verified_updates_lower_bound": 15400,
           "training_complete": false,
           "evaluation_complete": false,
           "phase": "train",
@@ -391,17 +406,17 @@
           "status": "running",
           "reason": "running",
           "resources": {
-            "utc": "2026-11-28T11:39:39.245791+00:00",
+            "utc": "2026-11-28T11:45:41.335168+00:00",
             "pid": 33201,
             "torch_reserved_peak": 4223664128,
             "torch_allocated_peak": 4183607808,
             "torch_threads": 1,
-            "cgroup_current_bytes": 110143238144,
-            "cgroup_anon_bytes": 14143692800,
-            "cgroup_file_bytes": 94743388160,
-            "pss_bytes": 2498229248,
-            "rss_bytes": 2991280128,
-            "uss_bytes": 2359255040
+            "cgroup_current_bytes": 112592265216,
+            "cgroup_anon_bytes": 14127939584,
+            "cgroup_file_bytes": 97205063680,
+            "pss_bytes": 2499138560,
+            "rss_bytes": 2992189440,
+            "uss_bytes": 2360164352
           }
         },
         "VR2": {
