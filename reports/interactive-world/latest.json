@@ -3,7 +3,7 @@
   "stage": "interactive-world",
   "status": "running",
   "run_id": "interactive-world-20261128-v1",
-  "observed_at": "2026-11-28T21:48:41+08:00",
+  "observed_at": "2026-11-28T22:05:46+08:00",
   "timezone": "Asia/Shanghai",
   "run_directory": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1",
   "source_baseline": "f10e91805877b197d49107347844b675df856d3f",
@@ -14,20 +14,20 @@
     "mandatory_vr_runs": 2,
     "generated_episodes": 1536
   },
-  "actual_new_training_updates_lower_bound": 343000,
-  "durable_training_updates": 340000,
+  "actual_new_training_updates_lower_bound": 355900,
+  "durable_training_updates": 350000,
   "host": {
-    "time": "2026-11-28T21:48:41+08:00",
+    "time": "2026-11-28T22:05:46+08:00",
     "cpu_quota": 25,
-    "cgroup_total_bytes": 104354025472,
+    "cgroup_total_bytes": 105360531456,
     "cgroup_limit_bytes": 128849018880,
-    "clean_inactive_file_bytes": 12557197312,
-    "cgroup_working_bytes": 91796828160,
-    "ram_available_bytes": 37052190720,
+    "clean_inactive_file_bytes": 13132886016,
+    "cgroup_working_bytes": 92227645440,
+    "ram_available_bytes": 36621373440,
     "gpu_total_bytes": 102641958912,
-    "gpu_free_bytes": 88964333568,
-    "gpu_util_percent": 93,
-    "disk_free_bytes": 410083127296
+    "gpu_free_bytes": 86161489920,
+    "gpu_util_percent": 100,
+    "disk_free_bytes": 409516662784
   },
   "coordinator_pid": 16515,
   "protocol": "interactive-world-20261128-v1",
@@ -93,22 +93,22 @@
           "correct_coverage_10cm": 0.44176280012119534
         }
       },
-      "matched_pairs": 9100,
+      "matched_pairs": 9400,
       "planned_pairs": 9881,
       "per_target_pose_audits": {
-        "ready_targets_solved": 1166,
+        "ready_targets_solved": 1265,
         "all_targets": 1478,
         "workers": 4
       }
     },
     "C": {
       "status": "running",
-      "mandatory_updates_lower_bound": 120000,
+      "mandatory_updates_lower_bound": 125900,
       "mandatory_updates_target": 1200000,
       "variants": {
         "R0C": {
-          "durable_updates": 130000,
-          "verified_updates_lower_bound": 133000,
+          "durable_updates": 140000,
+          "verified_updates_lower_bound": 140000,
           "training_complete": false,
           "evaluation_complete": false,
           "phase": "train",
@@ -118,15 +118,15 @@
           "status": "running",
           "reason": "running",
           "resources": {
-            "utc": "2026-11-28T13:48:36.534618+00:00",
+            "utc": "2026-11-28T14:05:31.789714+00:00",
             "pid": 16007,
             "torch_reserved_peak": 14873001984,
             "torch_allocated_peak": 14775135232,
             "torch_threads": 1,
-            "cgroup_current_bytes": 104336916480,
-            "pss_bytes": 3033277440,
+            "cgroup_current_bytes": 105202995200,
+            "pss_bytes": 3027555328,
             "rss_bytes": 3506384896,
-            "uss_bytes": 2865201152
+            "uss_bytes": 2865197056
           },
           "evaluated_nodes": {
             "val": [
@@ -195,7 +195,7 @@
         },
         "R1": {
           "durable_updates": 120000,
-          "verified_updates_lower_bound": 120000,
+          "verified_updates_lower_bound": 125900,
           "training_complete": false,
           "evaluation_complete": false,
           "phase": "train",
@@ -205,15 +205,15 @@
           "status": "running",
           "reason": "running",
           "resources": {
-            "utc": "2026-11-28T13:48:23.804311+00:00",
+            "utc": "2026-11-28T14:05:38.688867+00:00",
             "pid": 16593,
             "torch_reserved_peak": 14881390592,
             "torch_allocated_peak": 14776887296,
             "torch_threads": 1,
-            "cgroup_current_bytes": 103670026240,
-            "pss_bytes": 2932817920,
-            "rss_bytes": 3405438976,
-            "uss_bytes": 2765234176
+            "cgroup_current_bytes": 105282355200,
+            "pss_bytes": 2926930944,
+            "rss_bytes": 3405271040,
+            "uss_bytes": 2765066240
           },
           "evaluated_nodes": {
             "val": [
