@@ -3,7 +3,7 @@
   "stage": "interactive-world",
   "status": "running",
   "run_id": "interactive-world-20261128-v1",
-  "observed_at": "2026-11-28T20:13:51+08:00",
+  "observed_at": "2026-11-28T20:16:31+08:00",
   "timezone": "Asia/Shanghai",
   "run_directory": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1",
   "source_baseline": "f10e91805877b197d49107347844b675df856d3f",
@@ -14,20 +14,20 @@
     "mandatory_vr_runs": 2,
     "generated_episodes": 1536
   },
-  "actual_new_training_updates_lower_bound": 208500,
-  "durable_training_updates": 200000,
+  "actual_new_training_updates_lower_bound": 212300,
+  "durable_training_updates": 210000,
   "host": {
-    "time": "2026-11-28T20:13:51+08:00",
+    "time": "2026-11-28T20:16:31+08:00",
     "cpu_quota": 25,
-    "cgroup_total_bytes": 98574159872,
+    "cgroup_total_bytes": 99533942784,
     "cgroup_limit_bytes": 128849018880,
-    "clean_inactive_file_bytes": 18986889216,
-    "cgroup_working_bytes": 79587270656,
-    "ram_available_bytes": 49261748224,
+    "clean_inactive_file_bytes": 19657474048,
+    "cgroup_working_bytes": 79876468736,
+    "ram_available_bytes": 48972550144,
     "gpu_total_bytes": 102641958912,
-    "gpu_free_bytes": 88102404096,
-    "gpu_util_percent": 100,
-    "disk_free_bytes": 422791020544
+    "gpu_free_bytes": 88235573248,
+    "gpu_util_percent": 99,
+    "disk_free_bytes": 421956878336
   },
   "coordinator_pid": 16515,
   "protocol": "interactive-world-20261128-v1",
@@ -91,22 +91,22 @@
           "correct_coverage_10cm": 0.44176280012119534
         }
       },
-      "matched_pairs": 5100,
+      "matched_pairs": 5300,
       "planned_pairs": 9881,
       "per_target_pose_audits": {
-        "ready_targets_solved": 484,
+        "ready_targets_solved": 521,
         "all_targets": 1478,
         "workers": 4
       }
     },
     "C": {
       "status": "running",
-      "mandatory_updates_lower_bound": 70400,
+      "mandatory_updates_lower_bound": 72300,
       "mandatory_updates_target": 1200000,
       "variants": {
         "R0C": {
-          "durable_updates": 70000,
-          "verified_updates_lower_bound": 78100,
+          "durable_updates": 80000,
+          "verified_updates_lower_bound": 80000,
           "training_complete": false,
           "evaluation_complete": false,
           "phase": "train",
@@ -116,15 +116,15 @@
           "status": "running",
           "reason": "running",
           "resources": {
-            "utc": "2026-11-28T12:13:47.730408+00:00",
+            "utc": "2026-11-28T12:16:22.444219+00:00",
             "pid": 16007,
             "torch_reserved_peak": 14873001984,
             "torch_allocated_peak": 14775135232,
             "torch_threads": 1,
-            "cgroup_current_bytes": 98573570048,
-            "pss_bytes": 2999702528,
-            "rss_bytes": 3484192768,
-            "uss_bytes": 2842693632
+            "cgroup_current_bytes": 99529834496,
+            "pss_bytes": 3011894272,
+            "rss_bytes": 3484196864,
+            "uss_bytes": 2842951680
           },
           "evaluated_nodes": {
             "val": [
@@ -163,7 +163,7 @@
         },
         "R1": {
           "durable_updates": 70000,
-          "verified_updates_lower_bound": 70400,
+          "verified_updates_lower_bound": 72300,
           "training_complete": false,
           "evaluation_complete": false,
           "phase": "train",
@@ -173,15 +173,15 @@
           "status": "running",
           "reason": "running",
           "resources": {
-            "utc": "2026-11-28T12:13:45.673098+00:00",
+            "utc": "2026-11-28T12:16:30.255667+00:00",
             "pid": 16593,
             "torch_reserved_peak": 14881390592,
             "torch_allocated_peak": 14776887296,
             "torch_threads": 1,
-            "cgroup_current_bytes": 98573516800,
-            "pss_bytes": 2921634816,
-            "rss_bytes": 3405373440,
-            "uss_bytes": 2765365248
+            "cgroup_current_bytes": 99534176256,
+            "pss_bytes": 2933786624,
+            "rss_bytes": 3405381632,
+            "uss_bytes": 2765217792
           },
           "evaluated_nodes": {
             "val": [
