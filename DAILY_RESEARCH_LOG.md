@@ -239,3 +239,32 @@ F 线拟恢复 VR/Faro 做第二场景验证，Faro 仅供评价；同时交付�
 首次执行提交 `7872b084574844c7c4802324236694afc002768d` 已分别从 GitHub、本机和指定服务器读回。该提交含完整代码、分支回执、留出视频和复现入口。此后 VR0C 的严格 376 视角裁剪完成，F-score 为 0.868006，accuracy 0.028940 m，completeness 0.022032 m。调度器已释放其评价槽并启动 VR1。大厅第 0 折在 39,950,843 个校准候选上选择 Q0 的第 20 个、Q1 的第 22 个 epoch。两例 PhysTwin 均完成 G-Q1，0.5 秒末帧跟踪误差为粗绳 17.46 cm（8 点）、细绳 17.59 cm（9 点）。G-Q1 在粗绳减轻直接补全的误差，在细绳介于 NN 和直接补全之间。[质量头选点](reports/interactive-world/20261128-v1/q_fold0_epoch_selection.json) · [Faro 完成清单](reports/interactive-world/20261128-v1/vr0c_complete.json) · [推绳三路结果](reports/interactive-world/20261128-v1/phystwin_results.json)
 
 19:24 补充。全 1,846 个大厅时刻已作为独立静态诊断运行，沿用 30 个遮挡位置、3 个困难位姿，37 组共 472 个背景锚点。实测 259 帧支持充分、1,553 帧证据弱。可更新的 11,084 个跨组比较含 9,017 次前方遮挡，未因此撤回旧表面；1,324 次可靠看穿中，M1/M2 各新撤回 233 次。静止假设下记疑似误更新，未获得独立运动标签。结果 SHA-256 为 `844befa4593b3f3f078015014553a3ed7cb0ba1d21fef36623dd4485fb409966`。[静态全厅审计](reports/interactive-world/20261128-v1/hall_static_memory.json)
+
+
+### 2026-11-28T19:24:35+08:00｜交互世界服务器实测
+
+运行 `interactive-world-20261128-v1` 使用逐文件哈希核验的大厅、VR、DN 环境和原生深度。采样时仓库提交为 `4fce6619f49b1662700508b0bdf80ac859cd8200`。当前正式训练累计下界 121,800 步，其中可从已落盘 checkpoint 恢复 110,000 步。
+
+| 训练组 | 阶段 | 已执行步数下界 | 可恢复步数 | PID | 调度实态 |
+|---|---|---:|---:|---:|---|
+| R0C | train | 47,900 | 40,000 | 15993 | running |
+| R1 | train | 42,300 | 40,000 | 16581 | running |
+| R2 | train | 0 | 0 | — | three heavy workers already active |
+| R3 | train | 0 | 0 | — | waiting for a_depth/supervision/R3/manifest.json |
+| R4 | train | 0 | 0 | — | waiting for a_depth/supervision/R3/manifest.json |
+| R5 | train | 0 | 0 | — | waiting for a_depth/supervision/R3/manifest.json |
+| R6 | train | 0 | 0 | — | awaiting independent pose audit |
+| R7 | train | 0 | 0 | — | awaiting independent pose audit |
+| VR0C | evaluate | 30,000 | 30,000 | — | evaluation receipt present |
+| VR1 | train | 1,600 | 0 | 33189 | running |
+| VR2 | train | 0 | 0 | — | three heavy workers already active |
+
+A 线 sensor-only 在 1,478 个训练帧的 901,836,249 个自然孔洞中接受 509421 个。B 线有序流已记录 1478 帧，独立训练时组的尺度审计使用 558 帧。固定大厅相机与传感器读数都来自同一采集。
+
+D 线实测支撑面的代理物体接触为 51/90 控制步。E 线 RGB 跟踪的共同有效标签为 46558/47582 帧。生成轨迹数为 1536，对应 230400 个控制时刻。小预测器的 15 项条件与种子组合累计训练 300000 步。
+
+资源快照含 25 核 CPU 配额，GPU 利用率 100%，整卡已用显存 16.72 GiB，cgroup 总用量 99.25 GiB，清洁非活跃文件页 24.65 GiB。逐阶段错误与重试见 run 下 `state/coordinator-events.jsonl` 和各 worker 日志。
+
+本次产物身份、字节数、条件分支和运行 PID 见 [实测状态](reports/interactive-world/latest.json)。在项目服务器根目录运行 `bash scripts/launch_interactive_world.sh status` 可读取最新实态。
+
+<!-- interactive-world-evidence 6c2c480859bcd096 -->
