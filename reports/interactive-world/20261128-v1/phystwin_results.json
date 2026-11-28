@@ -1,0 +1,132 @@
+{
+  "single_push_rope_1": {
+    "G-NN": {
+      "completed": true,
+      "initial_frame": 64,
+      "final_frame": 79,
+      "horizon_s": 0.5,
+      "revisions": 1,
+      "endpoint": {
+        "frame": 79,
+        "valid_tracks": 8,
+        "track_mean_m": 0.17314253085053427,
+        "views": {
+          "1": {
+            "valid_measured_object_points": 1627,
+            "observed_to_nodes_mean_m": 0.05380097046203679
+          },
+          "2": {
+            "valid_measured_object_points": 2650,
+            "observed_to_nodes_mean_m": 0.043375113266337986
+          }
+        }
+      },
+      "track_points_over_all_16_timestamps": 127,
+      "prior_identity": "466e0ef9553ca4fad33ec5a91c0a7d223dc4c6f5adb2e33e8bda11a63de9cb09",
+      "accepted_hidden_pixels": 3887,
+      "source": {
+        "path": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1/e_interaction/phystwin/single_push_rope_1/G-NN_metrics.json",
+        "bytes": 6769,
+        "sha256": "d5ad3d70bf1f6b6fb4fef338c9c40468cd0383c677496744bd5ce6bf8f440e4a"
+      }
+    },
+    "G-LingBot": {
+      "completed": true,
+      "initial_frame": 64,
+      "final_frame": 79,
+      "horizon_s": 0.5,
+      "revisions": 1,
+      "endpoint": {
+        "frame": 79,
+        "valid_tracks": 8,
+        "track_mean_m": 0.21467758932619352,
+        "views": {
+          "1": {
+            "valid_measured_object_points": 1627,
+            "observed_to_nodes_mean_m": 0.03236408733901129
+          },
+          "2": {
+            "valid_measured_object_points": 2650,
+            "observed_to_nodes_mean_m": 0.029765334196786588
+          }
+        }
+      },
+      "track_points_over_all_16_timestamps": 127,
+      "prior_identity": "466e0ef9553ca4fad33ec5a91c0a7d223dc4c6f5adb2e33e8bda11a63de9cb09",
+      "accepted_hidden_pixels": 3887,
+      "source": {
+        "path": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1/e_interaction/phystwin/single_push_rope_1/G-LingBot_metrics.json",
+        "bytes": 6783,
+        "sha256": "7101a0b9e6748c2ae392c026ee15d25cf9ad1690f663c7ed7004a2347009a63d"
+      }
+    },
+    "G-Q1": {
+      "completed": false
+    }
+  },
+  "single_push_rope_4": {
+    "G-NN": {
+      "completed": true,
+      "initial_frame": 58,
+      "final_frame": 73,
+      "horizon_s": 0.5,
+      "revisions": 1,
+      "endpoint": {
+        "frame": 73,
+        "valid_tracks": 9,
+        "track_mean_m": 0.2143168788606319,
+        "views": {
+          "1": {
+            "valid_measured_object_points": 889,
+            "observed_to_nodes_mean_m": 0.058370426179892194
+          },
+          "2": {
+            "valid_measured_object_points": 957,
+            "observed_to_nodes_mean_m": 0.052313095771229653
+          }
+        }
+      },
+      "track_points_over_all_16_timestamps": 140,
+      "prior_identity": "4ed6cffd848382da1804b1991af710996e4f197ce6269d2dbc8139c04aa61ce5",
+      "accepted_hidden_pixels": 455,
+      "source": {
+        "path": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1/e_interaction/phystwin/single_push_rope_4/G-NN_metrics.json",
+        "bytes": 6742,
+        "sha256": "583ffd2ae59ece79ed6028eaeab0a98aee07b26d74f6c26092ddb6d0324e9478"
+      }
+    },
+    "G-LingBot": {
+      "completed": true,
+      "initial_frame": 58,
+      "final_frame": 73,
+      "horizon_s": 0.5,
+      "revisions": 1,
+      "endpoint": {
+        "frame": 73,
+        "valid_tracks": 9,
+        "track_mean_m": 0.15024562518450804,
+        "views": {
+          "1": {
+            "valid_measured_object_points": 889,
+            "observed_to_nodes_mean_m": 0.08343343098237488
+          },
+          "2": {
+            "valid_measured_object_points": 957,
+            "observed_to_nodes_mean_m": 0.05295427591896873
+          }
+        }
+      },
+      "track_points_over_all_16_timestamps": 140,
+      "prior_identity": "4ed6cffd848382da1804b1991af710996e4f197ce6269d2dbc8139c04aa61ce5",
+      "accepted_hidden_pixels": 455,
+      "source": {
+        "path": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1/e_interaction/phystwin/single_push_rope_4/G-LingBot_metrics.json",
+        "bytes": 6742,
+        "sha256": "1cab75823d31704ce9982a4822df7082e0741fc40cbc958e1dbf9a724b6a6b47"
+      }
+    },
+    "G-Q1": {
+      "completed": false
+    }
+  }
+}

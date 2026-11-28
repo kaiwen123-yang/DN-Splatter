@@ -1,0 +1,223 @@
+{
+  "fit_id": "frame_00120",
+  "polygon_xy": [
+    [
+      839,
+      441
+    ],
+    [
+      886,
+      444
+    ],
+    [
+      1098,
+      488
+    ],
+    [
+      951,
+      491
+    ]
+  ],
+  "fit_depths": 1594,
+  "fit_inliers_12mm": 693,
+  "fit_rms_m": 0.006465955364335704,
+  "inside_bounded_support": 75,
+  "within_35mm_inside_support": 75,
+  "source_rgb": "c2bde4f94c3c831c9893d6a3f245aaae644197eeb4ad97a200fd7ee2d5e860cb",
+  "source_z": "114ef3fbd841b65d44c17d1c2a6068894a117217ca89e4e918c40f64cc3ec3b6",
+  "train_only": true,
+  "support_half_m": [
+    0.12349999999999998,
+    0.06824999999999999
+  ],
+  "T_physics_reconstruction": [
+    [
+      0.6292102803268786,
+      0.06015329068746237,
+      -0.7749038680703823,
+      2.3028142045493594
+    ],
+    [
+      0.7529908847044576,
+      0.1998947663395411,
+      0.6269344542630104,
+      -6.8248850136722545
+    ],
+    [
+      0.19261139811280406,
+      -0.9779691528926311,
+      0.08048096239174189,
+      -0.011680321794069847
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "audit": [
+    {
+      "id": "frame_00113",
+      "group_10s": 244,
+      "depth_sha256": "5a754eac224dc684de1d87af54d6810edc82e3130b1aac27c324065e2e31f9ce",
+      "valid_depths": 56,
+      "within_35mm": 56,
+      "median_abs_plane_m": 0.012333373536735448
+    },
+    {
+      "id": "frame_00164",
+      "group_10s": 246,
+      "depth_sha256": "373148d41afaba9144177419d6d6eb16cb44504ecc9b0b6dd2a73cd78dcdf2a3",
+      "valid_depths": 91,
+      "within_35mm": 82,
+      "median_abs_plane_m": 0.013677090399277133
+    },
+    {
+      "id": "frame_00233",
+      "group_10s": 247,
+      "depth_sha256": "c3ef3f10b0e14fa51130f97b0f458ba534e2b7f3f861a349d955db5357fde6d9",
+      "valid_depths": 0,
+      "within_35mm": 0,
+      "median_abs_plane_m": null
+    },
+    {
+      "id": "frame_00463",
+      "group_10s": 251,
+      "depth_sha256": "b49ad0aba9f301a9d6b81820cf7b48aaaa3eeb2e5b5a7f7d993bb19580a92768",
+      "valid_depths": 69,
+      "within_35mm": 1,
+      "median_abs_plane_m": 0.07428809101211821
+    },
+    {
+      "id": "frame_00502",
+      "group_10s": 252,
+      "depth_sha256": "26f2b5d7b18b45395810795b23118822b7c46ddc8622aad1f9ae92eb029ea075",
+      "valid_depths": 501,
+      "within_35mm": 206,
+      "median_abs_plane_m": 0.04427682563358858
+    },
+    {
+      "id": "frame_00525",
+      "group_10s": 253,
+      "depth_sha256": "75a646bf275a1abee1376204b9252e8951fc8f6b793b6fe0094b0afb19315e2f",
+      "valid_depths": 165,
+      "within_35mm": 93,
+      "median_abs_plane_m": 0.03297435897448836
+    },
+    {
+      "id": "frame_00605",
+      "group_10s": 254,
+      "depth_sha256": "1087c704ea5e238d80bbc17c5bb33df3369b8d67ab5c30c7200165842875e08d",
+      "valid_depths": 84,
+      "within_35mm": 32,
+      "median_abs_plane_m": 0.04148594937038406
+    },
+    {
+      "id": "frame_00707",
+      "group_10s": 256,
+      "depth_sha256": "cf699964bdb6c490bb7498a626ea5fad16b37af43f2632ad445b904fa75fcfed",
+      "valid_depths": 78,
+      "within_35mm": 11,
+      "median_abs_plane_m": 0.0758721954117286
+    },
+    {
+      "id": "frame_00762",
+      "group_10s": 257,
+      "depth_sha256": "5dd814107ffd2f4f945c5df85e6316e2a16798893da4e405e2cc5299899db24d",
+      "valid_depths": 52,
+      "within_35mm": 42,
+      "median_abs_plane_m": 0.029104020880025505
+    },
+    {
+      "id": "frame_00787",
+      "group_10s": 258,
+      "depth_sha256": "74c0155916e3ce33c3eb31d1e9ff4a5d780d1468d9b6a5a0dd247e37331e19ba",
+      "valid_depths": 652,
+      "within_35mm": 640,
+      "median_abs_plane_m": 0.018205586451889473
+    },
+    {
+      "id": "frame_01110",
+      "group_10s": 264,
+      "depth_sha256": "9c82875b62b185273ac5ee16cc823a7c822338ce8a40c48a64b4feed72889ebd",
+      "valid_depths": 169,
+      "within_35mm": 156,
+      "median_abs_plane_m": 0.01725963534751905
+    },
+    {
+      "id": "frame_01132",
+      "group_10s": 265,
+      "depth_sha256": "530e1fb247c04b006f90e5b0050518fd7197bb3072b977898c0917446cb0551e",
+      "valid_depths": 2426,
+      "within_35mm": 2422,
+      "median_abs_plane_m": 0.021570563487373687
+    },
+    {
+      "id": "frame_01194",
+      "group_10s": 266,
+      "depth_sha256": "40ce3688036c4ea61366ab0793c18ce33c436ef47d8a56bc58d724c7ce981391",
+      "valid_depths": 408,
+      "within_35mm": 314,
+      "median_abs_plane_m": 0.017294900668212404
+    },
+    {
+      "id": "frame_01251",
+      "group_10s": 267,
+      "depth_sha256": "1380176dec239b209cb00e684968a8a057373ad380312e44d609f6fa7f11a970",
+      "valid_depths": 148,
+      "within_35mm": 0,
+      "median_abs_plane_m": 0.607741332491428
+    },
+    {
+      "id": "frame_01267",
+      "group_10s": 268,
+      "depth_sha256": "ea3ceff7ad6e4b41cc047dc2cdefe917e72056596218eefa9227f6ad27f89a8f",
+      "valid_depths": 199,
+      "within_35mm": 14,
+      "median_abs_plane_m": 0.11801629746527319
+    },
+    {
+      "id": "frame_01333",
+      "group_10s": 269,
+      "depth_sha256": "f31d50a7df7418ef3b7b73bfd31dd03d497a0f7c269e716f69c648fad1b940c5",
+      "valid_depths": 258,
+      "within_35mm": 74,
+      "median_abs_plane_m": 0.05345184294274459
+    },
+    {
+      "id": "frame_01410",
+      "group_10s": 270,
+      "depth_sha256": "e87c1f4cf58cace084aad8c8818b345eb019c7688a70c20ac8b70db43b45a55f",
+      "valid_depths": 119,
+      "within_35mm": 114,
+      "median_abs_plane_m": 0.011294293633960414
+    },
+    {
+      "id": "frame_01550",
+      "group_10s": 273,
+      "depth_sha256": "184ed28e1126fc9db86d97ddfa8a1047336e0f97fa14b55437855dde334fa278",
+      "valid_depths": 188,
+      "within_35mm": 188,
+      "median_abs_plane_m": 0.00828305395683527
+    },
+    {
+      "id": "frame_01565",
+      "group_10s": 274,
+      "depth_sha256": "4fd5b24441539af4d2c4eb4b63e361088547a690f2e5af11c0ac5ef5dbba0e4d",
+      "valid_depths": 113,
+      "within_35mm": 19,
+      "median_abs_plane_m": 0.0756574867496988
+    },
+    {
+      "id": "frame_01614",
+      "group_10s": 275,
+      "depth_sha256": "55a55e9ac96f187485783d5d316f399cdc7263b6ac0e2c73db5d5e3ff1f69de3",
+      "valid_depths": 44,
+      "within_35mm": 28,
+      "median_abs_plane_m": 0.027754375800625064
+    }
+  ],
+  "verified_group_count": 9,
+  "assumption": "gravity perpendicular to measured tabletop and facing the camera; no gravity sensor label"
+}

@@ -1,71 +1,631 @@
 {
-  "schema_version": "1.0",
+  "schema_version": "2.0",
   "stage": "interactive-world",
+  "status": "running",
   "run_id": "interactive-world-20261128-v1",
-  "date": "2026-11-28",
+  "observed_at": "2026-11-28T19:14:31+08:00",
   "timezone": "Asia/Shanghai",
-  "status": "planned",
-  "evidence_baseline_commit": "ffc157fe30b01796f12e41361c6b2d3ace33521e",
-  "reviewed_media_followup_commit": "94d17e968ec65854d616f2215bca5135b9d5d905",
-  "completed_in_this_review": [
-    "repository/source/metric audit",
-    "published short-video and fixed-image inspection",
-    "local read-only Map alignment diagnostic",
-    "next-round protocol and prompt"
-  ],
-  "not_executed_in_this_review": [
-    "new remote DN/VR training",
-    "physics simulation",
-    "public action replay",
-    "quality-head training",
-    "synthetic dataset generation",
-    "downstream probe"
-  ],
-  "lanes": {
-    "A": {
-      "status": "pending",
-      "name": "Depth provenance, candidates and MDM quality transfer",
-      "completed_experiments": 0
-    },
-    "B": {
-      "status": "pending",
-      "name": "Map gauge, new matches, poses and ordered prefetch",
-      "completed_experiments": 0
-    },
-    "C": {
-      "status": "pending",
-      "name": "Full DN comparisons and geometric boundaries",
-      "completed_experiments": 0
-    },
-    "D": {
-      "status": "pending",
-      "name": "Object/collision assets, physics/render bridge, evidence memory",
-      "completed_experiments": 0
-    },
-    "E": {
-      "status": "pending",
-      "name": "Public action replay, calibration, paired data, dynamics probe",
-      "completed_experiments": 0
-    },
-    "F": {
-      "status": "pending",
-      "name": "VR/Faro, evaluation, media, resource coordination, journal",
-      "completed_experiments": 0
-    }
-  },
+  "run_directory": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1",
+  "source_baseline": "f10e91805877b197d49107347844b675df856d3f",
   "expected": {
     "mandatory_dn_runs": 5,
     "iterations_each": 240000,
     "mandatory_vr_runs": 2,
     "generated_episodes": 1536
   },
-  "actual_new_training_updates": 0,
-  "actual_new_physics_episodes": 0,
-  "next_action": "Read AGENTS.md, docs/17, protocol and prompt; inspect current server and restore required assets, then execute A-F.",
+  "actual_new_training_updates_lower_bound": 110800,
+  "durable_training_updates": 100000,
+  "host": {
+    "time": "2026-11-28T19:14:31+08:00",
+    "cpu_quota": 25,
+    "cgroup_total_bytes": 106779312128,
+    "cgroup_limit_bytes": 128849018880,
+    "clean_inactive_file_bytes": 25992478720,
+    "cgroup_working_bytes": 80786833408,
+    "ram_available_bytes": 48062185472,
+    "gpu_total_bytes": 102641958912,
+    "gpu_free_bytes": 85220917248,
+    "gpu_util_percent": 99,
+    "disk_free_bytes": 433573851136
+  },
+  "coordinator_pid": 16515,
+  "protocol": "interactive-world-20261128-v1",
+  "lanes": {
+    "A": {
+      "status": "running",
+      "r1_train_frames": 1478,
+      "accepted_pixels": 509421,
+      "natural_holes": 901836249,
+      "boundary_accepted": 41522,
+      "boundary_candidates": 6894573,
+      "r2_accepted_pixels": 761830,
+      "r2_train_frames": 1478,
+      "stage_receipts": {
+        "A_R1": "completed",
+        "A_VR_masks": "completed",
+        "A_VR_zero_shot": "pending",
+        "A_fold_0": "running",
+        "A_freeze": "completed",
+        "A_masked": "completed",
+        "A_natural": "completed"
+      }
+    },
+    "B": {
+      "status": "running",
+      "stream_frames": 1478,
+      "persistent_frames": 302,
+      "stream_fps": 24.587448104682707,
+      "end_to_end_fps": 5.746483754640469,
+      "scale_audit_frames": 558,
+      "raw_depth_audit": {
+        "historical_prefix32": {
+          "reference_pixels": 12333809,
+          "finite_pairs": 12333809,
+          "invalid_or_unobserved": 0,
+          "mae_m": 0.4880331033565703,
+          "p95_m": 1.0972721576690674,
+          "within_10cm": 2061454,
+          "correct_coverage_10cm": 0.16713847279457628
+        },
+        "fit_global": {
+          "reference_pixels": 12333809,
+          "finite_pairs": 12333809,
+          "invalid_or_unobserved": 0,
+          "mae_m": 0.4009700374075561,
+          "p95_m": 1.0627245903015137,
+          "within_10cm": 5634488,
+          "correct_coverage_10cm": 0.4568327594500612
+        },
+        "fit_log_linear": {
+          "reference_pixels": 12333809,
+          "finite_pairs": 12333809,
+          "invalid_or_unobserved": 0,
+          "mae_m": 0.416371906408618,
+          "p95_m": 1.1233916282653809,
+          "within_10cm": 5448618,
+          "correct_coverage_10cm": 0.44176280012119534
+        }
+      },
+      "matched_pairs": 2650,
+      "planned_pairs": 9881,
+      "per_target_pose_audits": {
+        "ready_targets_solved": 181,
+        "all_targets": 1478,
+        "workers": 4
+      }
+    },
+    "C": {
+      "status": "running",
+      "mandatory_updates_lower_bound": 37800,
+      "mandatory_updates_target": 1200000,
+      "variants": {
+        "R0C": {
+          "durable_updates": 40000,
+          "verified_updates_lower_bound": 43000,
+          "training_complete": false,
+          "evaluation_complete": false,
+          "phase": "train",
+          "pid": 15993,
+          "log": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1/c_dn/R0C/logs/train-20261128T091954-15986.log",
+          "exit_code": null,
+          "status": "running",
+          "reason": "running",
+          "resources": {
+            "utc": "2026-11-28T11:14:29.006680+00:00",
+            "pid": 16007,
+            "torch_reserved_peak": 14873001984,
+            "torch_allocated_peak": 14775135232,
+            "torch_threads": 1,
+            "cgroup_current_bytes": 106770178048,
+            "pss_bytes": 3023913984,
+            "rss_bytes": 3502886912,
+            "uss_bytes": 2861789184
+          }
+        },
+        "R1": {
+          "durable_updates": 30000,
+          "verified_updates_lower_bound": 37800,
+          "training_complete": false,
+          "evaluation_complete": false,
+          "phase": "train",
+          "pid": 16581,
+          "log": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1/c_dn/R1/logs/train-20261128T092335-16575.log",
+          "exit_code": null,
+          "status": "running",
+          "reason": "running",
+          "resources": {
+            "utc": "2026-11-28T11:14:29.911904+00:00",
+            "pid": 16593,
+            "torch_reserved_peak": 14881390592,
+            "torch_allocated_peak": 14776887296,
+            "torch_threads": 1,
+            "cgroup_current_bytes": 106775580672,
+            "pss_bytes": 2896429056,
+            "rss_bytes": 3374821376,
+            "uss_bytes": 2734387200
+          }
+        },
+        "R2": {
+          "durable_updates": 0,
+          "verified_updates_lower_bound": 0,
+          "training_complete": false,
+          "evaluation_complete": false,
+          "phase": "train",
+          "pid": null,
+          "log": null,
+          "exit_code": null,
+          "status": "pending",
+          "reason": "three heavy workers already active",
+          "resources": {}
+        },
+        "R3": {
+          "durable_updates": 0,
+          "verified_updates_lower_bound": 0,
+          "training_complete": false,
+          "evaluation_complete": false,
+          "phase": "train",
+          "pid": null,
+          "log": null,
+          "exit_code": null,
+          "status": "pending",
+          "reason": "waiting for a_depth/supervision/R3/manifest.json",
+          "resources": {}
+        },
+        "R4": {
+          "durable_updates": 0,
+          "verified_updates_lower_bound": 0,
+          "training_complete": false,
+          "evaluation_complete": false,
+          "phase": "train",
+          "pid": null,
+          "log": null,
+          "exit_code": null,
+          "status": "pending",
+          "reason": "waiting for a_depth/supervision/R3/manifest.json",
+          "resources": {}
+        },
+        "R5": {
+          "durable_updates": 0,
+          "verified_updates_lower_bound": 0,
+          "training_complete": false,
+          "evaluation_complete": false,
+          "phase": "train",
+          "pid": null,
+          "log": null,
+          "exit_code": null,
+          "status": "pending",
+          "reason": "waiting for a_depth/supervision/R3/manifest.json",
+          "resources": {}
+        },
+        "R6": {
+          "durable_updates": 0,
+          "verified_updates_lower_bound": 0,
+          "training_complete": false,
+          "evaluation_complete": false,
+          "phase": "train",
+          "pid": null,
+          "log": null,
+          "exit_code": null,
+          "status": "pending",
+          "reason": "awaiting independent pose audit",
+          "resources": {}
+        },
+        "R7": {
+          "durable_updates": 0,
+          "verified_updates_lower_bound": 0,
+          "training_complete": false,
+          "evaluation_complete": false,
+          "phase": "train",
+          "pid": null,
+          "log": null,
+          "exit_code": null,
+          "status": "pending",
+          "reason": "awaiting independent pose audit",
+          "resources": {}
+        }
+      }
+    },
+    "D": {
+      "status": "completed",
+      "rigid_sanity": {
+        "scene_hash": "c9c7b8d4f673ba43c28ae59ad577095dab714545bb3ee49bbec4a271734edd27",
+        "scope": "simulation_sanity",
+        "mujoco": "3.3.7",
+        "source": "synthetic_proxy",
+        "reset_replay_identical": true,
+        "compared_steps": 90,
+        "contact_steps": 51,
+        "stationary_control_steps": 45,
+        "stationary_contact_steps": 0,
+        "response_displacement_m": 0.07584250645834012,
+        "peak_penetration_m": 0.0007669926827963789,
+        "gravity_drop_m": 0.006131250000000005,
+        "horizontal_ray_below_support_hit": false,
+        "foreground_pixels": 50,
+        "world_frame": "right-handed z-up"
+      },
+      "memory_evidence": [
+        "d_world/memory/results.json"
+      ],
+      "scope": "local measured support, synthetic rigid object and independent-teacher memory tests"
+    },
+    "E": {
+      "status": "running",
+      "episodes": 60,
+      "track_valid": 46558,
+      "track_reference_frames": 47582,
+      "generated_manifest": true,
+      "generated_episodes": 1536,
+      "generated_control_steps": 230400,
+      "paired_sets": 512,
+      "actual_probe_updates": 300000,
+      "probe_conditions_seeds": 15,
+      "calibration_artifacts": [
+        "e_interaction/calibration/C0.json",
+        "e_interaction/calibration/C1.json",
+        "e_interaction/calibration/C2.json",
+        "e_interaction/calibration/C3.json",
+        "e_interaction/calibration/causal_online.json",
+        "e_interaction/calibration/freeze.json",
+        "e_interaction/calibration/open_loop.json"
+      ],
+      "phystwin_conditions": [
+        "e_interaction/phystwin/results_summary.json",
+        "e_interaction/phystwin/single_push_rope_1/G-LingBot_metrics.json",
+        "e_interaction/phystwin/single_push_rope_1/G-NN_metrics.json",
+        "e_interaction/phystwin/single_push_rope_4/G-LingBot_metrics.json",
+        "e_interaction/phystwin/single_push_rope_4/G-NN_metrics.json"
+      ]
+    },
+    "F": {
+      "status": "running",
+      "external_evaluation": "Faro",
+      "variants": {
+        "VR0C": {
+          "durable_updates": 30000,
+          "verified_updates_lower_bound": 30000,
+          "training_complete": true,
+          "evaluation_complete": false,
+          "phase": "evaluate",
+          "pid": 20294,
+          "log": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1/f_vr/VR0C/logs/evaluate-20261128T102355-20286.log",
+          "exit_code": null,
+          "status": "running",
+          "reason": "running",
+          "resources": {
+            "utc": "2026-11-28T10:23:24.908956+00:00",
+            "pid": 17326,
+            "torch_reserved_peak": 4223664128,
+            "torch_allocated_peak": 4183607808,
+            "torch_threads": 1,
+            "cgroup_current_bytes": 126689394688,
+            "cgroup_anon_bytes": 17265549312,
+            "cgroup_file_bytes": 108176048128,
+            "pss_bytes": 2522426368,
+            "rss_bytes": 3015618560,
+            "uss_bytes": 2382540800
+          }
+        },
+        "VR1": {
+          "durable_updates": 0,
+          "verified_updates_lower_bound": 0,
+          "training_complete": false,
+          "evaluation_complete": false,
+          "phase": "train",
+          "pid": null,
+          "log": null,
+          "exit_code": null,
+          "status": "pending",
+          "reason": "three heavy workers already active",
+          "resources": {}
+        },
+        "VR2": {
+          "durable_updates": 0,
+          "verified_updates_lower_bound": 0,
+          "training_complete": false,
+          "evaluation_complete": false,
+          "phase": "train",
+          "pid": null,
+          "log": null,
+          "exit_code": null,
+          "status": "pending",
+          "reason": "three heavy workers already active",
+          "resources": {}
+        }
+      }
+    }
+  },
+  "artifacts": {
+    "restore/env.verified.json": {
+      "path": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1/restore/env.verified.json",
+      "bytes": 338,
+      "sha256": "39e8e6bb703884eeb2ffea852a0907d78c7023f7825c067a3991b6646c04865e"
+    },
+    "restore/frozen.verified.json": {
+      "path": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1/restore/frozen.verified.json",
+      "bytes": 388,
+      "sha256": "b1b0b04ffd24530a8d7e03872d161daecd11b87892379b07daa0da7f19f962e1"
+    },
+    "restore/hall.verified.json": {
+      "path": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1/restore/hall.verified.json",
+      "bytes": 390,
+      "sha256": "4e34e1b34f23304ae8c5a21aa3a16ed5aa780fc0531bfd340a64a586c0ed871f"
+    },
+    "restore/metric.verified.json": {
+      "path": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1/restore/metric.verified.json",
+      "bytes": 387,
+      "sha256": "39aa77b49c5c7f07480125a0bf32c29cc0f0cae142763d4f5f39b55691d63121"
+    },
+    "restore/vr.verified.json": {
+      "path": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1/restore/vr.verified.json",
+      "bytes": 387,
+      "sha256": "892a900d12bc619a04e2fbb52c3f5490731ebbf7fc3975bd19403defa8001999"
+    },
+    "a_depth/freeze.json": {
+      "path": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1/a_depth/freeze.json",
+      "bytes": 2058316,
+      "sha256": "4deeb8752749dfb0929b8c54233d21e2c2e77ce1a0941e38ee0335acd3ab2446"
+    },
+    "a_depth/supervision/R1/manifest.json": {
+      "path": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1/a_depth/supervision/R1/manifest.json",
+      "bytes": 391846,
+      "sha256": "970c9c23714b689a5ef1622d480425d8411e3d068656b9802e24af50b708e692"
+    },
+    "a_depth/supervision/R2/manifest.json": {
+      "path": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1/a_depth/supervision/R2/manifest.json",
+      "bytes": 392986,
+      "sha256": "522b0da146a2a169974ddccc63559a04a2180e02649a8c3c9da16521551b9b0f"
+    },
+    "a_depth/boundary/manifest.json": {
+      "path": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1/a_depth/boundary/manifest.json",
+      "bytes": 257928,
+      "sha256": "d9cf21e1d2b88cb125f8420d3b37835c531238590fc290994cf9883d3d6b2a49"
+    },
+    "a_depth/provenance/manifest.json": {
+      "path": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1/a_depth/provenance/manifest.json",
+      "bytes": 314926,
+      "sha256": "e34db61a99d96837e7b2a619e9cbcb44b330558f37b7b25c5f0166ada136279a"
+    },
+    "a_depth/interface_check.json": {
+      "path": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1/a_depth/interface_check.json",
+      "bytes": 1022,
+      "sha256": "4153ec3fd3d67b59c42a9941e25b4bfda1e86a84e2b389afd0ae74cf69987559"
+    },
+    "a_depth/status/A_R1.json": {
+      "path": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1/a_depth/status/A_R1.json",
+      "bytes": 115,
+      "sha256": "c6f7db0e7977843a17308d7c70fc5db78ae21e7d45efb71852a501d23ebac8b7"
+    },
+    "a_depth/status/A_VR_masks.json": {
+      "path": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1/a_depth/status/A_VR_masks.json",
+      "bytes": 121,
+      "sha256": "74cfb0e5c3d98ce03436c00f1700da221f843c43863321d158cc7dce06b2af26"
+    },
+    "a_depth/status/A_VR_zero_shot.json": {
+      "path": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1/a_depth/status/A_VR_zero_shot.json",
+      "bytes": 126,
+      "sha256": "5864dcac7dd3d6eb348e1ff1d113eb2a106ec8150d85dafb7cdca2ad359f82b8"
+    },
+    "a_depth/status/A_fold_0.json": {
+      "path": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1/a_depth/status/A_fold_0.json",
+      "bytes": 120,
+      "sha256": "23fa77df633d711cafb7990cf67c8ddae608e70f8a38d31ba986eba5fc8c543f"
+    },
+    "a_depth/status/A_freeze.json": {
+      "path": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1/a_depth/status/A_freeze.json",
+      "bytes": 119,
+      "sha256": "6854ef2b3653283ba02a5e8090985952bb3e8bd6e98af869b9ebf37e2f0765cd"
+    },
+    "a_depth/status/A_masked.json": {
+      "path": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1/a_depth/status/A_masked.json",
+      "bytes": 119,
+      "sha256": "e50460048d14b19c88c55f180d6c13706559fd1f5cef57a5ae571ed5321d635f"
+    },
+    "a_depth/status/A_natural.json": {
+      "path": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1/a_depth/status/A_natural.json",
+      "bytes": 120,
+      "sha256": "e38d7046fab32d45d520f3f8786c5bfd0458f753d22db2ad4c86465b3f2e0adb"
+    },
+    "a_depth/masked_manifest.json": {
+      "path": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1/a_depth/masked_manifest.json",
+      "bytes": 703031,
+      "sha256": "edbf7cc7a285f09aac20017f4a4c046924e61973a4561e8de33d3ce14f369e4a"
+    },
+    "a_depth/natural_manifest.json": {
+      "path": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1/a_depth/natural_manifest.json",
+      "bytes": 217523,
+      "sha256": "b3f6264e6f24221c88797af12de0483665030e6f57e86bc7e39cbdf76786fb28"
+    },
+    "b_map/ordered_stream/verified.json": {
+      "path": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1/b_map/ordered_stream/verified.json",
+      "bytes": 2450,
+      "sha256": "644b3c1d27e893e3ff7f87dc463989fe64fd0df412423ba923204beac8d11405"
+    },
+    "b_map/scale/audit.json": {
+      "path": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1/b_map/scale/audit.json",
+      "bytes": 12032,
+      "sha256": "7622d68f9f0857582b51367e939740f67f8d42dfa106adae4693d15a556d6857"
+    },
+    "b_map/equivalence/cpu_equivalence.json": {
+      "path": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1/b_map/equivalence/cpu_equivalence.json",
+      "bytes": 11295,
+      "sha256": "b4023c2b0c64123dc1931cd06f32a7550fd6d5cf97ee89216fb6927d79dc75c1"
+    },
+    "f_vr/VR0C/training_complete.json": {
+      "path": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1/f_vr/VR0C/training_complete.json",
+      "bytes": 629,
+      "sha256": "cadc12dcaa339a820125f4dd72d5fd04dcb7b3639c8b09abe53b5026ad5fbba4"
+    },
+    "f_vr/coverage.json": {
+      "path": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1/f_vr/coverage.json",
+      "bytes": 38717,
+      "sha256": "882383ee05bbda14adea183b81db34da799fdf6907e6d846d0c6481857fae19b"
+    },
+    "c_dn/numeric_checks.json": {
+      "path": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1/c_dn/numeric_checks.json",
+      "bytes": 500,
+      "sha256": "7f41a808549afd7f92d1435b4dee98f680592b3876417e57f037af3e76a31c1a"
+    },
+    "c_dn/packet_checks.json": {
+      "path": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1/c_dn/packet_checks.json",
+      "bytes": 491,
+      "sha256": "08a767d85154c06e4583106bd9d3f212847d51214ce3a7b05de8c36f03114d1e"
+    },
+    "f_vr/blackwell_verification/blackwell.json": {
+      "path": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1/f_vr/blackwell_verification/blackwell.json",
+      "bytes": 378,
+      "sha256": "881313dace72d9b44280b977483b0796e2f9420e5071791cbbf8f7fbf92efd76"
+    },
+    "d_world/proxy/functional.json": {
+      "path": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1/d_world/proxy/functional.json",
+      "bytes": 567,
+      "sha256": "40548dc9c2fb9b6720bfdcd290f3316ea145bcbdabae6da3933347d043fd18a7"
+    },
+    "d_world/hall_sensor/attempt-2/support_audit.json": {
+      "path": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1/d_world/hall_sensor/attempt-2/support_audit.json",
+      "bytes": 6277,
+      "sha256": "a236ec5b73a9281869f70335522537416732a32f2c6c7649015ab80e35cde995"
+    },
+    "d_world/hall_sensor/attempt-2/functional.json": {
+      "path": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1/d_world/hall_sensor/attempt-2/functional.json",
+      "bytes": 568,
+      "sha256": "0b995434c931a6ca69ed5561fada78e8c9539465576481132fd6f1125d4186e4"
+    },
+    "d_world/memory/results.json": {
+      "path": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1/d_world/memory/results.json",
+      "bytes": 1538,
+      "sha256": "a13b02b2ba34a70b316d12e94d7cbc4c2c2f9243a25ff766527d1b7c38345799"
+    },
+    "e_interaction/assets/pusht/source.json": {
+      "path": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1/e_interaction/assets/pusht/source.json",
+      "bytes": 35447,
+      "sha256": "3bb89653ebf4dec1a7f00aa556e5462a56e4e13b27c55bf7fdd62c2d43aa54bf"
+    },
+    "e_interaction/assets/tblock/source.json": {
+      "path": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1/e_interaction/assets/tblock/source.json",
+      "bytes": 948,
+      "sha256": "e501bc81b85b3c0eaf3cc661e6ff2b17b1669b6906af37db607e0ac9446cd73f"
+    },
+    "e_interaction/assets/rope/source-single_push_rope_1-single_push_rope_4.json": {
+      "path": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1/e_interaction/assets/rope/source-single_push_rope_1-single_push_rope_4.json",
+      "bytes": 481360,
+      "sha256": "96753d336e2fcbbb1d0655bfd938b8ac462cb0f2ea4473bd50c46f7387906033"
+    },
+    "e_interaction/prepare/split.json": {
+      "path": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1/e_interaction/prepare/split.json",
+      "bytes": 16832,
+      "sha256": "75e9e046b220aaab0a4fefb8e79c9823d503279a933e3a74ef935b1aa6c72de5"
+    },
+    "e_interaction/track_v2/tracking_all.json": {
+      "path": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1/e_interaction/track_v2/tracking_all.json",
+      "bytes": 41380,
+      "sha256": "72190197dd07e71bff3ef2ec18ea4c18c475e415e4ad39bbcfd2905b8f7c6199"
+    },
+    "e_interaction/calibration/C0.json": {
+      "path": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1/e_interaction/calibration/C0.json",
+      "bytes": 5487,
+      "sha256": "92fb3b5ab285184018d6c98d3ff745e71afb81e8fc9ad32c257a44dbcd349b18"
+    },
+    "e_interaction/calibration/C1.json": {
+      "path": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1/e_interaction/calibration/C1.json",
+      "bytes": 5487,
+      "sha256": "f8688a882198958f0bb4aed5e4bc155856a70d729fd3b0707d629a75b9cfb549"
+    },
+    "e_interaction/calibration/C2.json": {
+      "path": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1/e_interaction/calibration/C2.json",
+      "bytes": 5641,
+      "sha256": "3e6152f603070bf67392461fa0f5636cd7cd659d97f45e07ac42bf8c9f584649"
+    },
+    "e_interaction/calibration/C3.json": {
+      "path": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1/e_interaction/calibration/C3.json",
+      "bytes": 5787,
+      "sha256": "a2e65b784f0108803813eac03f9fe721fdfc9c48c22e47f629fdea3596098496"
+    },
+    "e_interaction/calibration/causal_online.json": {
+      "path": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1/e_interaction/calibration/causal_online.json",
+      "bytes": 276447,
+      "sha256": "5c968da7e413610f885005ec4c7862f175684b0a8f15ce789b4d7c3de45c6723"
+    },
+    "e_interaction/calibration/freeze.json": {
+      "path": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1/e_interaction/calibration/freeze.json",
+      "bytes": 3128,
+      "sha256": "c47e51e46faf6da4459d0c9769ae2dc83e2c103ff86302975b2a3dfc08dc5742"
+    },
+    "e_interaction/calibration/open_loop.json": {
+      "path": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1/e_interaction/calibration/open_loop.json",
+      "bytes": 274271,
+      "sha256": "c860f879d5d50ff0ab52f81a0ad5ad3306efbcdd7efe49ad17cd6a464a2b139e"
+    },
+    "e_interaction/generated/manifest.json": {
+      "path": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1/e_interaction/generated/manifest.json",
+      "bytes": 1163526,
+      "sha256": "6f244e3124afc709755c7ea2834c265c94afa51a8ae804c126cc55a8e7e0fdc8"
+    },
+    "e_interaction/probe/manifest.json": {
+      "path": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1/e_interaction/probe/manifest.json",
+      "bytes": 3568,
+      "sha256": "f085cf0cc5884256540e01ae8813aa755b0bab95a2d461e1c073cb3f91320d0c"
+    },
+    "e_interaction/probe/baselines.json": {
+      "path": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1/e_interaction/probe/baselines.json",
+      "bytes": 10097,
+      "sha256": "34e1197198771795a737f9ea1050bf3b2642d0d6fd1e1220238fa0686a5d97c5"
+    },
+    "e_interaction/media/manifest.json": {
+      "path": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1/e_interaction/media/manifest.json",
+      "bytes": 16493,
+      "sha256": "a983fb47392122a781e85474b15bccc051911a18d6f5d96257a07b2252c9c38e"
+    },
+    "e_interaction/pusht_result_summary.json": {
+      "path": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1/e_interaction/pusht_result_summary.json",
+      "bytes": 33868,
+      "sha256": "4a5430487cbef3c5fd65f38c3dad00665efcde5549c2b59b7d1a6c43970c6b10"
+    },
+    "e_interaction/phystwin/results_summary.json": {
+      "path": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1/e_interaction/phystwin/results_summary.json",
+      "bytes": 4324,
+      "sha256": "0a67b262f3faa41cd6a8d719a2f03ac02f1307580783816286b5677a02431df5"
+    },
+    "e_interaction/phystwin/single_push_rope_1/G-LingBot_metrics.json": {
+      "path": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1/e_interaction/phystwin/single_push_rope_1/G-LingBot_metrics.json",
+      "bytes": 6783,
+      "sha256": "7101a0b9e6748c2ae392c026ee15d25cf9ad1690f663c7ed7004a2347009a63d"
+    },
+    "e_interaction/phystwin/single_push_rope_1/G-NN_metrics.json": {
+      "path": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1/e_interaction/phystwin/single_push_rope_1/G-NN_metrics.json",
+      "bytes": 6769,
+      "sha256": "d5ad3d70bf1f6b6fb4fef338c9c40468cd0383c677496744bd5ce6bf8f440e4a"
+    },
+    "e_interaction/phystwin/single_push_rope_4/G-LingBot_metrics.json": {
+      "path": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1/e_interaction/phystwin/single_push_rope_4/G-LingBot_metrics.json",
+      "bytes": 6742,
+      "sha256": "1cab75823d31704ce9982a4822df7082e0741fc40cbc958e1dbf9a724b6a6b47"
+    },
+    "e_interaction/phystwin/single_push_rope_4/G-NN_metrics.json": {
+      "path": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1/e_interaction/phystwin/single_push_rope_4/G-NN_metrics.json",
+      "bytes": 6742,
+      "sha256": "583ffd2ae59ece79ed6028eaeab0a98aee07b26d74f6c26092ddb6d0324e9478"
+    },
+    "b_map/pose/targets/frame_01304.json": {
+      "path": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1/b_map/pose/targets/frame_01304.json",
+      "bytes": 1630,
+      "sha256": "8e3e92b52334f249835cd37f31d13dd8dc99c003f5ee01b598934c6b07df1883"
+    },
+    "b_map/pose/targets/frame_01305.json": {
+      "path": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1/b_map/pose/targets/frame_01305.json",
+      "bytes": 497,
+      "sha256": "bb565d45f4cd80189b850855fac7eebf75875acae701d6175656ebfa685a6870"
+    },
+    "b_map/pose/targets/frame_01514.json": {
+      "path": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1/b_map/pose/targets/frame_01514.json",
+      "bytes": 1641,
+      "sha256": "db6730fe65aaf93f4a1b106b8dacb97ef914060362f82dd78cc2d7eecdd9387f"
+    }
+  },
+  "resume": "bash scripts/launch_interactive_world.sh status",
   "links": {
     "plan": "docs/17_interactive_world_plan.md",
-    "prompt": "prompts/interactive_world_20261128.md",
-    "review": "reports/interactive-world-review/2026-11-28/README.md",
-    "daily_log": "DAILY_RESEARCH_LOG.md"
+    "daily_log": "DAILY_RESEARCH_LOG.md",
+    "report": "reports/interactive-world/20261128-v1/README.md"
   }
 }

@@ -1,0 +1,65 @@
+{
+  "results": [
+    {
+      "path": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1/e_interaction/probe/Real+C0/seed_42/result.json",
+      "sha256": "57878d60296363004be06ebe69d3b1ae87413f28ed3b316f88ac12b9d800de19"
+    },
+    {
+      "path": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1/e_interaction/probe/Real+C0/seed_43/result.json",
+      "sha256": "457ca31514508bb6116f7bce5b26b3b8d9f62ed445e3ffd8ab4018e6e4a9ccda"
+    },
+    {
+      "path": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1/e_interaction/probe/Real+C0/seed_44/result.json",
+      "sha256": "af78666f5e1dc08a9fc3f6c490105762e37ab552c3803b38b20c0e03c40377b7"
+    },
+    {
+      "path": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1/e_interaction/probe/Real+C2/seed_42/result.json",
+      "sha256": "025840cc74d8c9dd56e863bd0c77b9da7928624ee25032755db447b9922f9a63"
+    },
+    {
+      "path": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1/e_interaction/probe/Real+C2/seed_43/result.json",
+      "sha256": "388f0dc7ed53af66f85414ad762087e2c30672d88b770cb1c10bb4ccdef79bf6"
+    },
+    {
+      "path": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1/e_interaction/probe/Real+C2/seed_44/result.json",
+      "sha256": "c5badc53d367a993492122aa6a06a3b63bf47c161773b286d88df7dac30fb0d5"
+    },
+    {
+      "path": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1/e_interaction/probe/Real+C3/seed_42/result.json",
+      "sha256": "a566d60afb54d4e6da599836d7c5dd17ce15f1876b1e76c70fc890c7f7dcf007"
+    },
+    {
+      "path": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1/e_interaction/probe/Real+C3/seed_43/result.json",
+      "sha256": "90a8def90fc07e3418130c49a4e684902bd4aa6a7c1b3e6afe7e75be91c48cb3"
+    },
+    {
+      "path": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1/e_interaction/probe/Real+C3/seed_44/result.json",
+      "sha256": "6f569b3d5cb4661bdd7c31c099d11def23eaa65e5d87e723a663e249885fb3d9"
+    },
+    {
+      "path": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1/e_interaction/probe/Real+resampledReal/seed_42/result.json",
+      "sha256": "df4c4bc8175e1899c864c5b1001e9b26feff9c277df9e0d73d1c42fb35a5cabd"
+    },
+    {
+      "path": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1/e_interaction/probe/Real+resampledReal/seed_43/result.json",
+      "sha256": "d09a1a9c8f1d661b325f8bc5984721f2182a961d69619c037b3cfd1393fa3d12"
+    },
+    {
+      "path": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1/e_interaction/probe/Real+resampledReal/seed_44/result.json",
+      "sha256": "5e5cb9f0905a2c13ccaef57752014b83ed63451709ebfa2a2af1e8176580e5ca"
+    },
+    {
+      "path": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1/e_interaction/probe/RealOnly/seed_42/result.json",
+      "sha256": "bec90596d16f6e21e39cc3a69a8de2cbe8b4ebd10c567ab8da0a728d79b4c2ff"
+    },
+    {
+      "path": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1/e_interaction/probe/RealOnly/seed_43/result.json",
+      "sha256": "fee109c648889b671879c103b3c014c4f34361b06a4ae72a10d313adc0f3376e"
+    },
+    {
+      "path": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1/e_interaction/probe/RealOnly/seed_44/result.json",
+      "sha256": "fd40f956d49bb6e102e3bdfe2557eceda6fc4b1aa81ae293e53315a407e6300e"
+    }
+  ],
+  "training_updates": 300000
+}

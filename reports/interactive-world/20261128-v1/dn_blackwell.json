@@ -1,0 +1,19 @@
+{
+  "sample": "iphone/long_capture/images/frame_00001.jpg",
+  "gradient_norms": {
+    "rgb": 84.57120513916016,
+    "depth": 279.9593200683594,
+    "legacy_normal": 84.5711898803711
+  },
+  "torch": "2.7.1+cu128",
+  "torch_cuda": "12.8",
+  "compute_capability": [
+    12,
+    0
+  ],
+  "gsplat_backends": [
+    "csrc",
+    "csrc_legacy"
+  ],
+  "optimizer_update_verified": true
+}

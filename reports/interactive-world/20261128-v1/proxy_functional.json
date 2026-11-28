@@ -1,0 +1,17 @@
+{
+  "scene_hash": "0b68812ba7ec9c6ea3d2986328ecd68f78f58fa048b50a0c56c9de29b1546256",
+  "scope": "simulation_sanity",
+  "mujoco": "3.3.7",
+  "source": "synthetic_proxy",
+  "reset_replay_identical": true,
+  "compared_steps": 90,
+  "contact_steps": 48,
+  "stationary_control_steps": 45,
+  "stationary_contact_steps": 0,
+  "response_displacement_m": 0.07704843318761477,
+  "peak_penetration_m": 0.00061596976796593,
+  "gravity_drop_m": 0.006131250000000005,
+  "horizontal_ray_below_support_hit": false,
+  "foreground_pixels": 531,
+  "world_frame": "right-handed z-up"
+}

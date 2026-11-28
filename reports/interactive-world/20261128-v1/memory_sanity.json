@@ -1,0 +1,54 @@
+{
+  "scope": "simulation_sanity",
+  "teacher": "frozen independent analytic depth and moving rectangle",
+  "kinematic_motion_known_only_to_evaluator": true,
+  "results": {
+    "M0": {
+      "frames": 32,
+      "false_old_geometry_pixel_times": 2304,
+      "visible_background_pixel_times": 94389,
+      "hidden_true_surface_pixel_times": 405,
+      "contradicted_hidden_cell_times": 0,
+      "pose_versions": 29,
+      "rollback_as_of_9": null,
+      "cells_after_reset": 0,
+      "events_after_reset": 0,
+      "elapsed_s": 0.023315664380788803
+    },
+    "M1": {
+      "frames": 32,
+      "false_old_geometry_pixel_times": 0,
+      "visible_background_pixel_times": 94389,
+      "hidden_true_surface_pixel_times": 405,
+      "contradicted_hidden_cell_times": 0,
+      "pose_versions": 29,
+      "rollback_as_of_9": null,
+      "cells_after_reset": 0,
+      "events_after_reset": 0,
+      "elapsed_s": 0.05340678244829178
+    },
+    "M2": {
+      "frames": 32,
+      "false_old_geometry_pixel_times": 0,
+      "visible_background_pixel_times": 94389,
+      "hidden_true_surface_pixel_times": 405,
+      "contradicted_hidden_cell_times": 0,
+      "pose_versions": 29,
+      "rollback_as_of_9": {
+        "step": 9,
+        "object_id": "movable",
+        "source_group": "9",
+        "pose": [
+          -0.10833333333333334,
+          0.0,
+          0.0
+        ],
+        "version": 11,
+        "state": "confirmed"
+      },
+      "cells_after_reset": 0,
+      "events_after_reset": 0,
+      "elapsed_s": 0.0533093698322773
+    }
+  }
+}

@@ -1,0 +1,240 @@
+{
+  "hall": {
+    "R0C": {
+      "source": {
+        "path": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1/c_dn/R0C/evaluation/val/step-000029999.json",
+        "bytes": 754098,
+        "sha256": "e07fd01ea02bfcd098994346f844a8f44f0eb8aac5665ee2d0677874435918ba"
+      },
+      "step": 29999,
+      "frame_count": 184,
+      "checkpoint_sha256": "fec62715972ab147256256fda864595a10e4e3af9586e49e3e93a18b6494d3cc",
+      "rgb_frame_means": {
+        "psnr": 23.345754457556684,
+        "ssim": 0.7899014146431632,
+        "lpips": 0.2220648434418051
+      },
+      "depth_pixel_pooled": {
+        "reference_pixels": 29222080,
+        "invalid_prediction_pixels": 0,
+        "absolute_error_sum": 4152541.032809615,
+        "signed_error_sum": 780209.1970843077,
+        "alpha_zero": 0,
+        "alpha_ge_05": 29222080,
+        "correct_5cm": 15858745,
+        "correct_10cm": 20980417,
+        "correct_20cm": 25041599,
+        "foreground_conflict": 4599951,
+        "positive_error": 14395818,
+        "negative_error": 14826223,
+        "squared_error_sum": 9514391.529870812,
+        "relative_error_sum": 1365294.0980038997,
+        "positive_error_sum": 2466375.1149469614,
+        "negative_error_sum": -1686165.9178626537,
+        "MAE_m": 0.14210285622411598,
+        "RMSE_m": 0.5706041775728389,
+        "AbsRel": 0.04672131819514216,
+        "frame_mean_MAE_m": 0.15704420350211554,
+        "alpha_zero_fraction": 0.0,
+        "alpha_ge_05_fraction": 1.0,
+        "correct_5cm_fraction": 0.5426973370820968,
+        "correct_10cm_fraction": 0.7179645322988644,
+        "correct_20cm_fraction": 0.8569410185722577,
+        "foreground_conflict_fraction": 0.1574135379822381,
+        "absolute_error_P50_m": 0.042479753494262695,
+        "absolute_error_P95_m": 0.4375748634338379
+      }
+    },
+    "R1": {
+      "source": {
+        "path": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1/c_dn/R1/evaluation/val/step-000029999.json",
+        "bytes": 754159,
+        "sha256": "d32256b12ae79c46b9f11b398e060ab5fe9f576c89edc994eac1e2c602b80af6"
+      },
+      "step": 29999,
+      "frame_count": 184,
+      "checkpoint_sha256": "dffad7696c0dd518081fbcc1b7c10c447a75b1d01303c1e28954a40f30b41df9",
+      "rgb_frame_means": {
+        "psnr": 23.282351224318795,
+        "ssim": 0.7891065283961918,
+        "lpips": 0.22306316714409902
+      },
+      "depth_pixel_pooled": {
+        "reference_pixels": 29222080,
+        "invalid_prediction_pixels": 0,
+        "absolute_error_sum": 4216312.845999956,
+        "signed_error_sum": 658515.8854740858,
+        "alpha_zero": 0,
+        "alpha_ge_05": 29222080,
+        "correct_5cm": 15754944,
+        "correct_10cm": 20993948,
+        "correct_20cm": 25066630,
+        "foreground_conflict": 4735701,
+        "positive_error": 14332083,
+        "negative_error": 14889951,
+        "squared_error_sum": 9578540.529574217,
+        "relative_error_sum": 1391900.9427401163,
+        "positive_error_sum": 2437414.365737021,
+        "negative_error_sum": -1778898.4802629352,
+        "MAE_m": 0.14428517223962004,
+        "RMSE_m": 0.5725245418889577,
+        "AbsRel": 0.04763182301670916,
+        "frame_mean_MAE_m": 0.1601084950525496,
+        "alpha_zero_fraction": 0.0,
+        "alpha_ge_05_fraction": 1.0,
+        "correct_5cm_fraction": 0.5391451943188165,
+        "correct_10cm_fraction": 0.7184275725752581,
+        "correct_20cm_fraction": 0.8577975968856426,
+        "foreground_conflict_fraction": 0.16205899785367778,
+        "absolute_error_P50_m": 0.04299736022949219,
+        "absolute_error_P95_m": 0.45258235931396484
+      }
+    }
+  },
+  "VR0C": {
+    "source": {
+      "path": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1/f_vr/VR0C/evaluation/faro_common_mask.json",
+      "bytes": 175115,
+      "sha256": "a64a0116e33398bf18c585b9685aeb4875899b3d36bb9d2dff65b64d8911ab72"
+    },
+    "sensor_and_Faro_units": "metres in the following scores",
+    "trajectories": {
+      "within": {
+        "frame_count": 42,
+        "pooled": {
+          "pixels": 30810024,
+          "finite_positive_gt": 26525046,
+          "reference": 26525046,
+          "invalid_prediction": 0,
+          "absolute_error_sum": 907221.3366139531,
+          "square_error_sum": 329831.3235321083,
+          "square_log_error_sum": 80847.4336635504,
+          "correct_5cm": 23505787,
+          "correct_10cm": 24962702,
+          "correct_20cm": 25679422,
+          "valid_pairs": 26525046,
+          "conditional": {
+            "MAE_m": 0.03420244159478378,
+            "MSE_m2": 0.012434712593226352,
+            "RMSE_m": 0.11151104247215318,
+            "log_RMSE": 0.0552083854416808
+          },
+          "fixed_reference": {
+            "MAE_m": 0.03420244159478378,
+            "MSE_m2": 0.012434712593226352,
+            "RMSE_m": 0.11151104247215318,
+            "log_RMSE": 0.0552083854416808
+          },
+          "coverage": {
+            "correct_5cm": 0.8861732793978944,
+            "correct_10cm": 0.9410992915902955,
+            "correct_20cm": 0.9681197913850932
+          }
+        }
+      },
+      "with": {
+        "frame_count": 186,
+        "pooled": {
+          "pixels": 136444392,
+          "finite_positive_gt": 114993165,
+          "reference": 114993165,
+          "invalid_prediction": 0,
+          "absolute_error_sum": 4966811.493836582,
+          "square_error_sum": 2740254.576383185,
+          "square_log_error_sum": 587232.8933510755,
+          "correct_5cm": 99335185,
+          "correct_10cm": 107520039,
+          "correct_20cm": 110795773,
+          "valid_pairs": 114993165,
+          "conditional": {
+            "MAE_m": 0.04319223228473259,
+            "MSE_m2": 0.02382971697824984,
+            "RMSE_m": 0.15436876943944924,
+            "log_RMSE": 0.07146101384579671
+          },
+          "fixed_reference": {
+            "MAE_m": 0.04319223228473259,
+            "MSE_m2": 0.02382971697824984,
+            "RMSE_m": 0.15436876943944924,
+            "log_RMSE": 0.07146101384579671
+          },
+          "coverage": {
+            "correct_5cm": 0.8638355592699792,
+            "correct_10cm": 0.9350124331302647,
+            "correct_20cm": 0.9634987696877462
+          }
+        }
+      }
+    }
+  },
+  "pose_decisions": {
+    "01304": {
+      "source": {
+        "path": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1/b_map/pose/targets/frame_01304.json",
+        "bytes": 1630,
+        "sha256": "8e3e92b52334f249835cd37f31d13dd8dc99c003f5ee01b598934c6b07df1883"
+      },
+      "accepted": false,
+      "fit_matches": 322,
+      "audit_matches": 346,
+      "eligible_initializations": [
+        "B2",
+        "Map"
+      ]
+    },
+    "01305": {
+      "source": {
+        "path": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1/b_map/pose/targets/frame_01305.json",
+        "bytes": 497,
+        "sha256": "bb565d45f4cd80189b850855fac7eebf75875acae701d6175656ebfa685a6870"
+      },
+      "accepted": false,
+      "fit_matches": 428,
+      "audit_matches": 245,
+      "eligible_initializations": []
+    },
+    "01514": {
+      "source": {
+        "path": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1/b_map/pose/targets/frame_01514.json",
+        "bytes": 1641,
+        "sha256": "db6730fe65aaf93f4a1b106b8dacb97ef914060362f82dd78cc2d7eecdd9387f"
+      },
+      "accepted": false,
+      "fit_matches": 268,
+      "audit_matches": 405,
+      "eligible_initializations": [
+        "B2",
+        "Map"
+      ]
+    }
+  },
+  "last_hour_resource_samples": {
+    "start": "2026-11-28T18:14:12+08:00",
+    "end": "2026-11-28T19:14:11+08:00",
+    "elapsed_seconds": 3599.0,
+    "n": 180,
+    "mean_gpu_utilization": 99.35555555555555,
+    "min_gpu_used_MiB": 16320.0,
+    "max_gpu_used_MiB": 21638.0,
+    "cumulative_update_deltas": {
+      "R0C": 21700,
+      "R1": 19600,
+      "VR0C": 5500,
+      "VR1": 0,
+      "VR2": 0,
+      "R2": 0,
+      "R3": 0,
+      "R4": 0,
+      "R5": 0,
+      "R6": 0,
+      "R7": 0
+    },
+    "cgroup_events": [
+      "low 0",
+      "high 132052",
+      "max 0",
+      "oom 0",
+      "oom_kill 0"
+    ]
+  }
+}
