@@ -3,7 +3,7 @@
   "stage": "interactive-world",
   "status": "running",
   "run_id": "interactive-world-20261128-v1",
-  "observed_at": "2026-11-29T02:01:41+08:00",
+  "observed_at": "2026-11-29T02:13:44+08:00",
   "timezone": "Asia/Shanghai",
   "run_directory": "/root/autodl-tmp/DN-Splatter/.local/runs/interactive-world-20261128-v1",
   "source_baseline": "f10e91805877b197d49107347844b675df856d3f",
@@ -14,28 +14,28 @@
     "mandatory_vr_runs": 2,
     "generated_episodes": 1536
   },
-  "actual_new_training_updates_lower_bound": 783200,
-  "durable_training_updates": 780000,
+  "actual_new_training_updates_lower_bound": 808300,
+  "durable_training_updates": 790000,
   "host": {
-    "time": "2026-11-29T02:01:41+08:00",
+    "time": "2026-11-29T02:13:44+08:00",
     "cpu_quota": 25,
-    "cgroup_total_bytes": 71465623552,
+    "cgroup_total_bytes": 72430690304,
     "cgroup_limit_bytes": 128849018880,
-    "clean_inactive_file_bytes": 10548301824,
-    "cgroup_working_bytes": 60917321728,
-    "cgroup_nonclean_bytes": 10969710592,
-    "cgroup_anon_bytes": 9710313472,
-    "cgroup_file_bytes": 60561584128,
-    "cgroup_dirty_bytes": 106496,
-    "cpu_usage_usec": 171582005945,
-    "ram_available_bytes": 67931697152,
-    "ram_available_for_mesh_bytes": 86800884369,
+    "clean_inactive_file_bytes": 11523678208,
+    "cgroup_working_bytes": 60907012096,
+    "cgroup_nonclean_bytes": 10936446976,
+    "cgroup_anon_bytes": 9670610944,
+    "cgroup_file_bytes": 61564514304,
+    "cgroup_dirty_bytes": 4706304,
+    "cpu_usage_usec": 174192219179,
+    "ram_available_bytes": 67942006784,
+    "ram_available_for_mesh_bytes": 86836916881,
     "retained_dataset_bytes": 30364159343,
-    "file_mapped_bytes": 714264576,
+    "file_mapped_bytes": 711495680,
     "gpu_total_bytes": 102641958912,
-    "gpu_free_bytes": 83048267776,
-    "gpu_util_percent": 98,
-    "disk_free_bytes": 348784857088
+    "gpu_free_bytes": 82838552576,
+    "gpu_util_percent": 99,
+    "disk_free_bytes": 347999657984
   },
   "coordinator_pid": 72372,
   "protocol": "interactive-world-20261128-v1",
@@ -111,7 +111,7 @@
     },
     "C": {
       "status": "running",
-      "mandatory_updates_lower_bound": 453200,
+      "mandatory_updates_lower_bound": 478300,
       "mandatory_updates_target": 1200000,
       "variants": {
         "R0C": {
@@ -474,7 +474,7 @@
         },
         "R2": {
           "durable_updates": 110000,
-          "verified_updates_lower_bound": 111900,
+          "verified_updates_lower_bound": 119200,
           "training_complete": false,
           "evaluation_complete": false,
           "phase": "train",
@@ -484,17 +484,17 @@
           "status": "running",
           "reason": "running",
           "resources": {
-            "utc": "2026-11-28T18:01:34.067518+00:00",
+            "utc": "2026-11-28T18:13:40.689641+00:00",
             "pid": 61438,
             "torch_reserved_peak": 14881390592,
             "torch_allocated_peak": 14776887296,
             "torch_threads": 1,
-            "cgroup_current_bytes": 71464927232,
-            "cgroup_anon_bytes": 9710313472,
-            "cgroup_file_bytes": 60561461248,
-            "pss_bytes": 2852645888,
-            "rss_bytes": 3165093888,
-            "uss_bytes": 2747588608
+            "cgroup_current_bytes": 72430620672,
+            "cgroup_anon_bytes": 9670610944,
+            "cgroup_file_bytes": 61564456960,
+            "pss_bytes": 2852649984,
+            "rss_bytes": 3165097984,
+            "uss_bytes": 2747592704
           },
           "evaluated_nodes": {
             "val": [
@@ -547,8 +547,8 @@
           }
         },
         "R3": {
-          "durable_updates": 40000,
-          "verified_updates_lower_bound": 41200,
+          "durable_updates": 50000,
+          "verified_updates_lower_bound": 50300,
           "training_complete": false,
           "evaluation_complete": false,
           "phase": "train",
@@ -558,17 +558,17 @@
           "status": "running",
           "reason": "running",
           "resources": {
-            "utc": "2026-11-28T18:01:37.240036+00:00",
+            "utc": "2026-11-28T18:13:40.716912+00:00",
             "pid": 115079,
             "torch_reserved_peak": 14927527936,
             "torch_allocated_peak": 14802693120,
             "torch_threads": 1,
-            "cgroup_current_bytes": 71465009152,
-            "cgroup_anon_bytes": 9710313472,
-            "cgroup_file_bytes": 60561514496,
-            "pss_bytes": 2897098752,
-            "rss_bytes": 3260317696,
-            "uss_bytes": 2752176128
+            "cgroup_current_bytes": 72430596096,
+            "cgroup_anon_bytes": 9670610944,
+            "cgroup_file_bytes": 61564461056,
+            "pss_bytes": 2897192960,
+            "rss_bytes": 3260411904,
+            "uss_bytes": 2752270336
           },
           "evaluated_nodes": {
             "val": [
@@ -592,7 +592,7 @@
         },
         "R4": {
           "durable_updates": 60000,
-          "verified_updates_lower_bound": 60100,
+          "verified_updates_lower_bound": 68800,
           "training_complete": false,
           "evaluation_complete": false,
           "phase": "train",
@@ -602,17 +602,17 @@
           "status": "running",
           "reason": "running",
           "resources": {
-            "utc": "2026-11-28T18:01:39.383746+00:00",
+            "utc": "2026-11-28T18:13:38.531232+00:00",
             "pid": 75575,
             "torch_reserved_peak": 14927527936,
             "torch_allocated_peak": 14802693120,
             "torch_threads": 1,
-            "cgroup_current_bytes": 71465299968,
-            "cgroup_anon_bytes": 9710313472,
-            "cgroup_file_bytes": 60561555456,
-            "pss_bytes": 2847844352,
-            "rss_bytes": 3161894912,
-            "uss_bytes": 2743508992
+            "cgroup_current_bytes": 72430284800,
+            "cgroup_anon_bytes": 9670610944,
+            "cgroup_file_bytes": 61564420096,
+            "pss_bytes": 2807375872,
+            "rss_bytes": 3121426432,
+            "uss_bytes": 2703040512
           },
           "evaluated_nodes": {
             "val": [
@@ -1351,28 +1351,28 @@
   },
   "noon_progress": {
     "planning_target": "2026-11-29T12:00:00+08:00",
-    "remaining_hall_updates": 746800,
+    "remaining_hall_updates": 721700,
     "required_hall_updates_per_hour_with_tail": {
-      "0h": 74890.1,
-      "1h": 83237.3,
-      "2h": 93678.5,
-      "3h": 107115.0
+      "0h": 73860.6,
+      "1h": 82281.5,
+      "2h": 92869.6,
+      "3h": 106585.2
     },
     "last_30_minutes": {
-      "start": "2026-11-29T01:31:44+08:00",
-      "end": "2026-11-29T02:01:41+08:00",
+      "start": "2026-11-29T01:43:47+08:00",
+      "end": "2026-11-29T02:13:44+08:00",
       "samples": 88,
       "seconds": 1797.0,
       "net_updates": {
         "R0C": 0,
         "R1": 0,
-        "R2": 17700,
-        "R3": 21800,
-        "R4": 20700,
+        "R2": 18200,
+        "R3": 22400,
+        "R4": 21300,
         "R5": 0
       },
-      "hall_updates_per_hour": 120601.0,
-      "mean_gpu_util_percent": 96.88
+      "hall_updates_per_hour": 124006.7,
+      "mean_gpu_util_percent": 96.52
     }
   }
 }
