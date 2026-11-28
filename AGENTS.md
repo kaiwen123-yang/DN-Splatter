@@ -1,5 +1,17 @@
 # 本项目的执行约定
 
+## 当前任务入口：LingBot-Depth / Map（2026-11-28）
+
+用户本轮要求先测试 LingBot-Depth 与 LingBot-Map，并将完整计划和 Codex 提示词推送本仓库。执行新任务时，先完整读取 `docs/16_lingbot_depth_map_plan.md`、`configs/lingbot_depth_map_protocol.json`、`prompts/lingbot_depth_map_20261128.md`。本次计划提交不代表已经启动或完成模型实验。
+
+当前工作是现有 Gemini 335 大厅数据上的预训练模型离线推理、评测和可视化；Depth 与 Map 两条独立环境/任务可并行，按实际显存/RAM调度，允许使用已分配全部资源。VLA、VA 和腕相机迁移暂缓；不自动启动新的 DN 训练、不重做历史 B2/B3、不改旧输入或结果。新任务按独立 run 与状态保存，不能使用旧完成标记跳过。
+
+**B2 与 B3 均已完成。** `reports/capture-full-quality-v3/20261122-v1/overview.md`、`B3_完整视频与指标对比.md` 和 `selection_freeze.json` 已给出完整结果：冻结 B2 210k 渲染模型、B3 210k supported Poisson 网格。下面关于 11 月 23 日接续 B3 的内容是历史背景，不能触发重跑。根 `reports/latest_status.json` 仍是 VR Room 的历史状态。
+
+本轮保持原 1478/184/184 划分；全 1846 帧 Map 仅作单独标注的完整采集探索，不能回流为不含留出信息的训练先验。原始传感器深度、已有轨迹和网格不是独立 GT。两线在接口正确后持续推进全量离线任务，效果差也如实交付，不设中间人工审批或墙钟完成时限。代码/小报告推 GitHub，大产物留服务器列路径和哈希，不做本机归档。
+
+本节按当前任务解释后文中的历史阶段要求；后文的环境隔离、保护并发工作、真实证据、凭据保护、持续执行和禁止 force push 等通用约定继续适用。
+
 ## 任务和授权
 
 用户已授权在其 AutoDL 实例上复现 DN-Splatter，创建本项目独立 Conda 环境，复用合适的既有资源，并将本项目计划、代码改动、配置、指标和结论推送到 `kaiwen123-yang/DN-Splatter`。目标机器标称 RTX PRO 6000 96GB、120GB RAM、25 核 CPU；以只读盘点得到的实际可用资源为准。
@@ -8,9 +20,9 @@
 
 **最新资源授权（2026-11-18）：用户现在专心进行本项目，允许使用 AutoDL 实例分配的全部 CPU 和整张 GPU。此授权覆盖此前“其他任务优先、CPU 仅 4–6 线程、GPU 繁忙即排队”的策略。** CPU 预算以容器实际配额和 affinity 为准，标称 25 核；GPU 可使用整卡算力和可用的 96GB 显存，不人为设置共享份额。软件环境和文件仍按下文隔离。
 
-## 开始前读取
+## 已完成任务的历史接续记录
 
-**当前接续状态（2026-11-23，审阅源码 `d6405240df30c49e71365f87fdce4ec7ce7c7462`）：B2 已完整完成 240k，val 选中 210k；test PSNR24.681dB、模型Z MAE0.1236m，但支持Poisson的10cm正确覆盖仍仅61.95%。下一任务是接续现有 B3 run `capture-full-quality-v3-20261122-v1`，完成既定 A/B/条件 C 与完整交付。** 不重新启动 B2，不重做原环境、bag提取或VR基线。
+**历史接续状态（2026-11-23，审阅源码 `d6405240df30c49e71365f87fdce4ec7ce7c7462`，对应 B3 现已完成）：B2 已完整完成 240k，val 选中 210k；test PSNR24.681dB、模型Z MAE0.1236m，但支持Poisson的10cm正确覆盖仍仅61.95%。当时任务是接续 B3 run `capture-full-quality-v3-20261122-v1`，完成既定 A/B/条件 C 与完整交付。** 以下保留当时的执行依据；当前启动入口见本文件开头。
 
 先读 `reports/capture-quality-review/2026-11-23/overview.md`、三份专项复核和 `prompts/capture_quality_continue_20261123.md`，再按 `docs/15_capture_surface_quality_plan.md`、`configs/capture_surface_quality_protocol.json` 的冻结规则执行。11-22 13:58北京时间的B3回执是历史启动证据，不能代替当前服务器实态。先查现有进程、阶段、锁和产物，接续原run，避免双重协调。审阅版本主shell仅接到A4全val；B诊断、独立输入/初始化、条件训练和最终交付仍需完整串接。纹理诊断的incomplete不能通过改字符串绕过，也不能当三项等价跳过训练的证据。协议允许的可选关闭必须有实际诊断/接口证据和原因。
 
@@ -88,3 +100,4 @@ Nerfstudio 1.1.3 的恢复训练会把 max_num_iterations 作为本次追加步�
 只向本用户复现仓库推送，不向 maturk/dn-splatter 推送，不 force push。推送前检查 staged diff，排除凭据、原始进程参数、数据集、环境、模型大文件。大产物先本项目保留并做清单与哈希；普通 Git 先提交小文件和结论。有用户已配置的本项目大文件存储时再后台上传，不为此配置额外账号或花费。
 
 默认不做 Windows 硬盘归档、不删除服务器数据、不清理其他项目缓存。失败也应推送已完成的工作、实际错误、精简日志和可继续执行的命令。只有真实权限/访问/资源阻塞才明确报告，不因常规实施选择重复请求许可。
+

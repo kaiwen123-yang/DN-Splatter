@@ -1,5 +1,11 @@
 # DN-Splatter：AutoDL / Blackwell 复现
 
+**当前任务（2026-11-28）：LingBot-Depth 与 LingBot-Map 2 大厅离线实验。** 使用已有 Gemini 335 RGB-D，分别验证单帧深度补全和 RGB 序列建图；两线独立推进。当前只提交了计划和提示词，尚无本轮运行结果。入口：[完整计划](docs/16_lingbot_depth_map_plan.md) · [完整 Codex 提示词](prompts/lingbot_depth_map_20261128.md) · [机器协议](configs/lingbot_depth_map_protocol.json)。
+
+**大厅 B2/B3 均已完成。** 最新冻结选择为 B2 210k 渲染模型与 B3 210k supported Poisson 网格，见 [B3 完整结果](reports/capture-full-quality-v3/20261122-v1/overview.md)及[中文视频与指标对比](reports/capture-full-quality-v3/20261122-v1/B3_完整视频与指标对比.md)。本轮先做 LingBot 预训练模型的推理、评测与可视化；VLA/VA 暂缓，不自动重训 DN 或重跑 B2/B3。
+
+## 原始复现目标与历史工作
+
 目标是在 **RTX PRO 6000 96GB、120GB RAM、25 核 CPU** 的现有 AutoDL 实例上，完成：
 
 **环境盘点与隔离 → Blackwell 适配 → MuSHRoom VR Room 30,000 次训练 → RGB/深度评估与渲染 → Poisson 网格及几何评估。**
@@ -10,7 +16,7 @@
 
 - 2026-11-18：建立复现计划、执行约束、协议配置和只读环境检查脚本。
 - 2026-11-18：依据用户最新授权，将执行约定、配置和 Codex 提示词同步改为使用实例全部 CPU/GPU 资源。
-- 目标 AutoDL 已完成盘点，独立 Python 3.10 环境及 VR Room iPhone/Faro 几何包已就位。最新实测阶段、checkpoint 和指标见 [运行状态](reports/latest_status.json)。下文列出的协议数值为目标值。
+- 目标 AutoDL 已完成盘点，独立 Python 3.10 环境及 VR Room iPhone/Faro 几何包已就位。该场景的实测阶段、checkpoint 和指标见 [VR Room 历史运行状态](reports/latest_status.json)，该文件不代表大厅 B3 或 LingBot 的当前状态。下文列出的协议数值为目标值。
 - 2026-11-19：VR Room 首轮完整执行结束，结果提交 `c747cc9`。累计 30k；同轨迹 PSNR 26.9720 / SSIM 0.88108；官方网格 F-score@5cm 86.8629%、C-L1 2.5517cm、NC 89.6993%。主要指标接近论文 Table 4，当前结论限于单场景历史实现。
 - 已复核六张图像拼图、两张网格预览及运行/评价脚本，新增 [结果审查](reports/review_2026-11-19.md)、[第二轮计划](docs/04_round2_plan.md) 和 [自有数据接入说明](docs/06_custom_data.md)。仓库尚无第二场景完成记录。
 - 2026-11-19：本地 Gemini 335 bag 审计已回传 `a13bb40`。实际原件 `H:\capture.bag\capture.bag`，5,919,666,852字节；RGB/毫米Z深度/双相机标定与时间关联可用，相机位姿缺失，原生深度未注册至RGB。见 [原始审计](reports/capture-bag-audit/20261119T091841Z-3982cb26/overview.md)。
@@ -27,9 +33,13 @@
 
 ## 从这里开始
 
+执行当前任务请完整读取 [LingBot-Depth / Map 计划](docs/16_lingbot_depth_map_plan.md)、[协议](configs/lingbot_depth_map_protocol.json)和[启动提示词](prompts/lingbot_depth_map_20261128.md)。任务包含固定 30 帧 Depth 诊断及完整训练集推理、Map 短片段/训练序列/全序列探索，最后交付图、视频、指标和采用建议；全序列探索与可用于后续训练的结果分开标记。
+
+### 已完成的大厅质量改进基线
+
 **B2 已完成 240k，验证集选中 210k。** 自采大厅开发测试集 PSNR 为 24.681 dB，模型深度 MAE 为 12.36 cm，支持 Poisson 网格 10 cm 正确覆盖为 61.95%。后续质量改进建议见[大厅重建质量诊断](reports/capture-quality-review/2026-11-22/overview.md)，其中列有原生深度融合、局部位姿和纹理残差的新测量。
 
-**2026-11-23复核：B3已有历史启动回执，仓库尚无最终结果。** 最新审阅源码 `d640524` 的主入口实际只接到A3融合和A4完整val，B诊断、条件C训练及最终交付仍需串接。先查AutoDL实时状态，接续同一个run；不重跑已完成B2。当前统一入口：[最新质量复核](reports/capture-quality-review/2026-11-23/overview.md) · [接续当前B3的Codex提示词](prompts/capture_quality_continue_20261123.md)。原[完整计划](docs/15_capture_surface_quality_plan.md)与[参数及验收规则](configs/capture_surface_quality_protocol.json)保持冻结。
+**2026-11-24：B3 已完成并交付完整结果。** 参见 [B3 总报告](reports/capture-full-quality-v3/20261122-v1/overview.md)和[冻结选择](reports/capture-full-quality-v3/20261122-v1/selection_freeze.json)。11 月 23 日的[质量复核](reports/capture-quality-review/2026-11-23/overview.md)与[B3 接续提示词](prompts/capture_quality_continue_20261123.md)保留为历史记录，不是当前启动入口。原[完整计划](docs/15_capture_surface_quality_plan.md)与[参数及验收规则](configs/capture_surface_quality_protocol.json)保持冻结。
 
 - [B2 指标、固定画面与网格](reports/capture-full-quality-v2/20261121-v1/B2_完整指标对比.md) · [运行状态](reports/capture-full-quality-v2/latest.json)
 - [B1 质量复核](reports/capture-quality-review/2026-11-21/overview.md) · [已执行的 B2 方案](docs/14_capture_quality_plan.md) · [机器协议](configs/capture_quality_protocol.json)
@@ -93,3 +103,4 @@
 论文：*DN-Splatter: Depth and Normal Priors for Gaussian Splatting and Meshing*，WACV 2025。
 
 [来源与核查入口](docs/sources.md)。仓库不会上传用户提供的出版商 PDF、公开数据集原包或模型权重到普通 Git。
+

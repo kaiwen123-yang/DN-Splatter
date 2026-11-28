@@ -1,0 +1,404 @@
+{
+  "schema_version": 1,
+  "status": "planned",
+  "created_date": "2026-11-28",
+  "timezone": "Asia/Shanghai",
+  "run_id": "lingbot-depth-map-20261128-v1",
+  "plan": "docs/16_lingbot_depth_map_plan.md",
+  "prompt": "prompts/lingbot_depth_map_20261128.md",
+  "evidence": {
+    "repository": "kaiwen123-yang/DN-Splatter",
+    "commit": "1f2b48744feefe95f879bbf43c7bc58a9871d2d8",
+    "b2_run": "capture-full-quality-v2-20261121-v1",
+    "b3_run": "capture-full-quality-v3-20261122-v1",
+    "baseline_render": "B2/210000",
+    "baseline_model_mesh": "B3/210000/supported_poisson",
+    "b3_results": "reports/capture-full-quality-v3/20261122-v1/overview.md",
+    "b3_selection": "reports/capture-full-quality-v3/20261122-v1/selection_freeze.json",
+    "baseline_is_independent_ground_truth": false
+  },
+  "scope": {
+    "task": "pretrained_offline_inference_and_evaluation",
+    "data_source": "Gemini335_capture_hall",
+    "depth_and_map_independent": true,
+    "train_lingbot": false,
+    "train_dn_splatter": false,
+    "robot_motion": false,
+    "vla": false,
+    "va": false,
+    "dc1_transfer": "future_separate_experiment",
+    "preserve_existing_inputs_and_results": true
+  },
+  "paths": {
+    "project_root_hint": "/root/autodl-tmp/DN-Splatter",
+    "resolve_from_actual_checkout": true,
+    "run": ".local/runs/lingbot-depth-map-20261128-v1",
+    "report": "reports/lingbot-depth-map/20261128-v1",
+    "latest": "reports/lingbot-depth-map/latest.json",
+    "depth_environment": ".local/conda/lingbot-depth-bw",
+    "map_environment": ".local/conda/lingbot-map2-bw",
+    "depth_upstream": ".local/upstream/lingbot-depth",
+    "map_upstream": ".local/upstream/lingbot-map-v2",
+    "input_source": ".local/runs/capture-full-quality-v2-20261121-v1/inputs",
+    "geometry_paths_source": "configs/capture_full_test_protocol.json",
+    "actual_paths_must_be_resolved_and_recorded": true
+  },
+  "data": {
+    "primary_total": 1846,
+    "train": 1478,
+    "val": 184,
+    "development_test": 184,
+    "auxiliary_mapping_only_excluded": 100,
+    "rgb_wh": [
+      1280,
+      720
+    ],
+    "native_depth_wh": [
+      848,
+      480
+    ],
+    "prepared_depth_unit": "m",
+    "prepared_depth_dtype": "float32",
+    "prepared_depth_definition": "color_camera_optical_axis_Z",
+    "prepared_depth_registered_to_rgb": true,
+    "raw_depth_unit": "mm",
+    "raw_depth_sentinels": [
+      0,
+      65535
+    ],
+    "input_identity_required": [
+      "frame_id",
+      "rgb_timestamp_ns",
+      "camera_id",
+      "split",
+      "rgb_path",
+      "rgb_sha256",
+      "depth_path",
+      "depth_sha256",
+      "image_wh",
+      "depth_unit",
+      "depth_definition",
+      "intrinsics_source",
+      "pixel_center_convention",
+      "pose_source"
+    ],
+    "metric_z_range_m": [
+      0.3,
+      6
+    ],
+    "distance_bin_edges_m": [
+      0.3,
+      1,
+      2,
+      4,
+      6
+    ],
+    "preserve_out_of_range_input": true,
+    "ground_truth": "none_independent_verified"
+  },
+  "execution": {
+    "gpu_processes_target": 2,
+    "one_active_map_stream_per_model": true,
+    "cpu_budget": "actual_container_quota_and_affinity_up_to_full_allocation",
+    "resource_policy": "parallel_when_capacity_allows_otherwise_schedule_without_changing_algorithm_or_dataset",
+    "persistent_session": "tmux",
+    "wall_clock_deadline_seconds": null,
+    "terminate_other_projects": false,
+    "automatic_shutdown": false,
+    "official_example_policy": "Depth_example_0_once_Map_uses_formal_short_sequence_add_external_example_only_to_resolve_specific_failure",
+    "continue_after_valid_first_batch": true,
+    "negative_quality_results_stop_pipeline": false,
+    "github_transport": "AutoDL_official_network_turbo_in_project_subshell_when_available",
+    "extra_local_archive": false
+  },
+  "depth": {
+    "repository": "https://github.com/Robbyant/lingbot-depth",
+    "code_commit": "f3a237e434ae987bc38281476d6cfb5df3e4d739",
+    "model": "robbyant/lingbot-depth-pretrain-vitl-14-v0.5",
+    "license": "Apache-2.0",
+    "weight_revision": "record_on_download",
+    "weight_sha256": null,
+    "official_dependency_pins": {
+      "torch": "2.6.0",
+      "xformers": "v0.0.29.post2"
+    },
+    "blackwell_policy": "isolated_compatible_torch_xformers_pair_preserve_depth_masking_and_nested_token_semantics_record_patches",
+    "inputs": {
+      "rgb_layout": "BCHW",
+      "rgb_channel_order": "RGB",
+      "rgb_range": [
+        0,
+        1
+      ],
+      "rgb_external_imagenet_normalization": false,
+      "depth_layout": "BHW",
+      "depth_unit": "m",
+      "intrinsics": "K_cv_normalized_once_by_actual_W_H",
+      "intrinsics_pixel_center": "integer_zero_based",
+      "if_source_is_current_DN_K_colmap_ns": "subtract_0.5_from_cx_cy_once_before_normalization",
+      "all_inputs_same_device": true
+    },
+    "inference": {
+      "batch_size": 1,
+      "eval_mode": true,
+      "inference_mode": true,
+      "resolution_level": 9,
+      "apply_mask": true,
+      "enable_depth_mask": true
+    },
+    "sample_selection": {
+      "split": "train",
+      "count": 30,
+      "groups": {
+        "ordinary_complete": 10,
+        "natural_holes": 10,
+        "edges_and_thin_structures": 10
+      },
+      "freeze_before_model_output": true,
+      "if_group_unavailable": "report_actual_count_and_reason_do_not_fabricate"
+    },
+    "full_inference": {
+      "split": "train",
+      "count": 1478,
+      "artificial_masks": false
+    },
+    "masked_recovery": {
+      "seed": 42,
+      "reference": "original_finite_sensor_Z_in_range_valid_canvas_exclude_depth_edge_band",
+      "depth_edge_exclusion_radius_px": 2,
+      "experiments": [
+        {
+          "name": "random_points",
+          "target_fraction_of_reference": 0.1
+        },
+        {
+          "name": "blocks",
+          "block_wh_px": [
+            64,
+            64
+          ],
+          "target_fraction_of_reference": 0.2
+        }
+      ],
+      "record_actual_mask_ids_and_fraction": true,
+      "mask_before_custom_preprocessing": true,
+      "hidden_target_may_not_enter_inputs_or_scale_statistics": true,
+      "baseline": "2D_nearest_valid_measurement_from_identical_masked_input",
+      "metrics": [
+        "valid_prediction_coverage",
+        "invalid_prediction_fraction",
+        "mae_m_on_valid_predictions",
+        "rmse_m_on_valid_predictions",
+        "abs_rel_on_valid_predictions",
+        "absolute_error_p95_m",
+        "correct_recovery_coverage_5cm",
+        "correct_recovery_coverage_10cm",
+        "correct_recovery_coverage_20cm",
+        "common_valid_support_error"
+      ],
+      "coverage_denominator": "all_frozen_masked_reference_pixels",
+      "aggregate": [
+        "per_frame",
+        "equal_frame",
+        "pooled_pixels_separately",
+        "preselected_group",
+        "distance_bin"
+      ],
+      "edge_detector": "capture_rectify.edges_adjacent_valid_Z_difference_gt_max_0.05m_0.03_times_nearer_Z_then_dilate_2_pixels",
+      "block_input_mask": "all_pixels_in_selected_rectangles_set_to_invalid",
+      "block_scoring_mask": "block_input_mask_intersect_frozen_reliable_reference",
+      "save_separate_input_and_scoring_masks": true,
+      "valid_prediction": "finite_and_strictly_positive_and_method_validity_rule",
+      "discard_predictions_outside_reference_distance_range": false,
+      "conditional_error_denominator": "frozen_scoring_mask_intersect_valid_prediction_with_support_count",
+      "empty_prediction_support": {
+        "conditional_error": null,
+        "coverage": 0,
+        "count_failed_frames": true
+      }
+    },
+    "unmasked_diagnostics": {
+      "valid_region": "change_from_sensor_not_independent_accuracy",
+      "natural_holes": "coverage_and_independent_observation_support_only",
+      "cross_view": "same_frozen_baseline_poses_visibility_aware_consistency_not_GT"
+    },
+    "outputs": [
+      "depth_refined_m.npy",
+      "model_mask",
+      "finite_positive_mask",
+      "input_output_manifest",
+      "per_frame_metrics",
+      "fixed_scale_comparison",
+      "same_view_pointclouds"
+    ],
+    "visualization": {
+      "color_range_m": [
+        0.3,
+        6
+      ],
+      "mark_out_of_range_and_invalid": true,
+      "display_subsampling_may_not_change_metric_support": true
+    },
+    "optional_fusion_candidate": "preserve_original_valid_measurements_fill_only_holes_and_save_source_mask"
+  },
+  "map": {
+    "repository": "https://github.com/Robbyant/lingbot-map-v2",
+    "code_commit": "078b54485830c74ab1d3797667073e3e8353f3b9",
+    "model": "robbyant/lingbot-map-v2-base-streaming",
+    "license": "CC-BY-NC-4.0",
+    "checkpoint_kind": "pure_causal_geometric_streaming_base_without_GCR",
+    "expected_weight_sha256": "d3ae62a09d3caaeb0947c4372f6fb23a4c0e85304867fa9702948ba030310e27",
+    "config_source": "configs/base-streaming.json",
+    "explicit_checkpoint_and_config": true,
+    "dependencies": {
+      "torch": ">=2.8",
+      "flashinfer": true,
+      "bf16_cuda": true
+    },
+    "inference": {
+      "width": 512,
+      "height": 288,
+      "scale_frames": 8,
+      "sliding_window": 64,
+      "default_config_max_persistent_frames": 1024,
+      "keyframe_policy": "official_infer_CLI_uniform320_nominal_budget",
+      "force_every_frame_persistent": false,
+      "predict_every_input_frame": true,
+      "include_depth": true,
+      "compile": "official_default_record_actual"
+    },
+    "sequences": [
+      {
+        "id": "short_train_256",
+        "split": "train",
+        "expected_frames": 256,
+        "usage": "first_formal_sequence_and_diagnostics",
+        "independent_initialization": true
+      },
+      {
+        "id": "full_train_1478",
+        "split": "train",
+        "expected_frames": 1478,
+        "usage": "training_only_candidate_geometry",
+        "independent_initialization": true
+      },
+      {
+        "id": "full_all_1846_exploratory",
+        "split": "train_val_development_test",
+        "expected_frames": 1846,
+        "usage": "full_recording_exploration_includes_heldout_RGB",
+        "independent_initialization": true,
+        "may_feed_strict_dn_training": false
+      }
+    ],
+    "input_order": "original_RGB_timestamp_increasing",
+    "input_json_type": "array_of_image_path_strings",
+    "association_key": "manifest_and_NPZ_raw_indices_to_original_frame_id",
+    "frame_indices_are_unique_raw_ids": false,
+    "npz_count_is_frame_count": false,
+    "outputs": [
+      "poses_c2w",
+      "intrinsics",
+      "depth",
+      "depth_conf",
+      "raw_indices",
+      "frame_indices",
+      "manifest"
+    ],
+    "coordinate_convention": "OpenCV_camera_to_world_x_right_y_down_z_forward",
+    "native_scene_scale": "arbitrary",
+    "calibration": {
+      "selection_split": "train",
+      "target_frames_up_to": 32,
+      "freeze_selection_before_map_output": true,
+      "preferred_location": "reliable_front_part_of_short_train_sequence",
+      "scale_estimator": "median_across_frames_of_median_sensor_Z_over_map_Z_on_predefined_valid_support",
+      "single_frozen_global_scale": true,
+      "per_frame_rescaling": false,
+      "reference_trajectory_alignment": "single_rotation_translation_on_same_calibration_set_after_scale",
+      "optional_global_sim3": "separate_diagnostic_with_fit_set_disclosed",
+      "insufficient_support": "report_arbitrary_scale_and_unverified_metric_scale",
+      "global_scale_and_rigid_alignment_scope": "per_independent_sequence_attempt",
+      "reuse_same_frozen_calibration_frame_ids_across_sequences": true,
+      "reuse_numeric_transform_across_independent_streams": false,
+      "missing_calibration_output": "report_insufficient_support_per_run_do_not_replace_frozen_frames",
+      "rigid_alignment_degeneracy": "report_separately_from_metric_scale_reliability"
+    },
+    "evaluation": {
+      "has_independent_pose_gt": false,
+      "trajectory_comparison_label": "difference_from_existing_reference_not_GT_ATE_RPE",
+      "confidence_is_calibrated_probability": false,
+      "report_filter_coverage": true,
+      "loop_metric_requires_observed_real_revisit": true
+    },
+    "resume": "prefer_full_original_image_list_restart_in_new_attempt_if_no_full_stream_state_checkpoint",
+    "viewer": "demo.py --predictions on_same_saved_predictions_with_source_RGB_accessible",
+    "replay_preserves_original_full_length_persistent_raw_ids": true,
+    "recompute_uniform320_from_truncated_replay_list": false
+  },
+  "data_use": {
+    "freeze_existing_splits": true,
+    "train_run_excludes_val_test_from_prefix_memory_scale_and_fusion": true,
+    "full_sequence_exploration_separate": true,
+    "filtering_full_run_to_train_does_not_remove_context_information": true,
+    "development_test_is_not_blind": true,
+    "no_interpolated_heldout_poses_to_fake_coverage": true
+  },
+  "timing": {
+    "separate": [
+      "loading",
+      "compile_and_warmup",
+      "gpu_inference",
+      "device_transfer",
+      "saving",
+      "end_to_end"
+    ],
+    "gpu_synchronization_required": true,
+    "report": [
+      "p50",
+      "p95",
+      "peak_vram",
+      "peak_ram",
+      "resolution",
+      "batch_size",
+      "token_settings",
+      "concurrency_context"
+    ]
+  },
+  "reporting": {
+    "decision_labels": [
+      "candidate_supported",
+      "local_use_only",
+      "insufficient_evidence",
+      "not_recommended_current_setting",
+      "blocked"
+    ],
+    "quality_decision_separate_from_execution_status": true,
+    "missing_metric_value": null,
+    "required_small_files": [
+      "README.md",
+      "sources.json",
+      "environment.json",
+      "input_manifest.json",
+      "selection.json",
+      "metrics.json",
+      "decision.json",
+      "artifacts.json",
+      "execution.md"
+    ],
+    "large_artifacts": "server_paths_sizes_sha256_no_ordinary_git",
+    "publish_to": "kaiwen123-yang/DN-Splatter",
+    "force_push": false
+  },
+  "actual": {
+    "host_inspected": false,
+    "environments_ready": false,
+    "inputs_frozen": false,
+    "depth_completed_frames": null,
+    "map_completed_sequences": null,
+    "metrics": null,
+    "decisions": null,
+    "artifacts": null,
+    "execution_receipt": null
+  }
+}
